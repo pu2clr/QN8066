@@ -5,7 +5,12 @@ UNDER CONSTRUCTION ...
 
 ![UNDER CONSTRUCTION ...](./extra/images/under_construction.png)
 
-## Pin Descriptions
+
+## QN8066 PINOUT 
+
+![QN8066 PINOUT](./extra/images/QN8066_PINOUT.png)
+
+## QN8066 Pin Descriptions
 
 | SSOP16 PIN | NAME | DESCRIPTION |
 | ------- | ---- | ----------- |
@@ -28,7 +33,7 @@ UNDER CONSTRUCTION ...
 
 
 
-## Summary of User Control Registers
+## QN8066 Summary of User Control Registers
 
 | REGISTER  | NAME          | USER CONTROL FUNCTIONS |
 | --------- | ------------- | ---------------------- | 
