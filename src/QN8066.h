@@ -13,6 +13,8 @@
 #include <Wire.h>
 
 
+// ATENÇÃO/LEMBRETE -->> ERRO - INVERTER AS ORDENS DOS BITS DAS ESTRUTURAS ABAIXO
+
 /** @defgroup group01 Union, Struct and Defined Data Types
  * @section group01 Data Types
  *
@@ -25,9 +27,9 @@
 /**
  * @ingroup group01
  *
- * @brief System1 - Sets device modes.
+ * @brief System1 - Sets device modes (Address: 00h)
  *
- * @see 
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 19
  */
 
 typedef union
@@ -50,9 +52,9 @@ typedef union
 /**
  * @ingroup group01
  *
- * @brief System2 - Sets device modes.
+ * @brief System2 - Sets device modes (Address: 01h)
  *
- * @see 
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 20
  */
 
 typedef union
@@ -72,8 +74,129 @@ typedef union
 } qn8066_system2;
 
 
+/**
+ * @ingroup group01
+ *
+ * @brief CCA - Sets CCA parameters ( Address: 02h)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 21
+ */
 
 
+typedef union
+{
+    struct
+    {
+        uint8_t xtal_inj : 1;    //!<  Select the reference clock source. 0 = Inject sine-wave clock; 1 = Inject digital clock
+        uint8_t imr : 1;         //!<  Image Rejection. 0 = LO<RF, image is in lower side; 1 = LO>RF, image is in upper side
+        uint8_t SNR_CCA_TH : 6;  //!<  The threshold for determination of whether current channel is valid by check its SNR.  
+    } arg;              
+    uint8_t raw;   
+} qn8066_cca;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief SRN - Estimate RF input CNR value( Address: 03h - Read Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 21
+ */
+
+typedef union
+{
+    uint8_t SNRDB;           
+    uint8_t raw;   
+} qn8066_srn;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief RSSISIG - In-band signal RSSI (Received signal strength indicator) dBuV value. dBuV=RSSI-49( Address: 04h - Read Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 22
+ */
+
+typedef union
+{
+    uint8_t RSSISIG;           
+    uint8_t raw;   
+} qn8066_rssisig;
+
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief CID1 - Device ID numbers ( Address: 05h - Read Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 22
+ */
+
+
+typedef union
+{
+    uint8_t CID1;
+    uint8_t raw;   
+} qn8066_cid1;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief CID2 - Device ID numbers ( Address: 06h - Read Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 22
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t CID3 : 6;   //!<  Chip ID for product ID. 001101 = Transceiver – QN8066; Others = Reserved unkown 
+        uint8_t CID4 : 2;   //!<  Sequency integer values from 0 to 4.
+    } arg;   
+    uint8_t raw;   
+} qn8066_cid2;
+
+/**
+ * @ingroup group01
+ *
+ * @brief XTAL_DIV0 - Frequency select of reference clock source (Lower bits -  Address: 07h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 23
+ */
+
+typedef union
+{
+    uint8_t xtal_div;       // !< Lower 8 bits of xtal_div[10:0]. Xtal_div[10:0] = round(freq of xtal/32.768KHz).
+    uint8_t raw;   
+} qn8066_xtal_div0;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief XTAL_DIV1 - Frequency select of reference clock source (Lower bits -  Address: 07h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 23
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t pll_dlt  : 5;   //!<  Lower 5 bits of pll_dlt[12:0].
+        uint8_t xtal_div : 3;   //!<  Higher 3 bits of xtal_div[10:0]. Xtal_div[10:0] = round(freq of xtal/32.768KHz)
+    } arg;  
+    uint8_t raw;   
+} qn8066_xtal_div1;
+
+
+
+
+/*
 // TEMPLATE
 typedef union
 {
@@ -86,11 +209,11 @@ typedef union
         uint8_t e : 1;          //!< 
         uint8_t f : 1;          //!< 
         uint8_t g : 1;          //!<  
-        uint8_t h : 1;        //!<  
+        uint8_t h : 1;          //!<  
     } arg;              
     uint8_t raw;   
 } qn8066_xx;
-
+*/
 
 
 
