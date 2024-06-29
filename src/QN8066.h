@@ -25,7 +25,7 @@
 /**
  * @ingroup group01
  *
- * @brief Sets device modes.
+ * @brief System1 - Sets device modes.
  *
  * @see 
  */
@@ -42,9 +42,54 @@ typedef union
         uint8_t chsc : 1;           //!< Channel Scan mode enable - 0 = Normal operation; 1 = Channel Scan mode operation
         uint8_t ccs_ch_dis : 1;     //!<  0 = TX_CH is decided by internal CCS; 1 = TX_CH is decided writing in TX_CH[9:0]
         uint8_t cca_ch_dis : 1;     //!<  0 = RX_CH is decided by internal CCA; 1 = RX_CH is decided writing in RX_CH[9:0]
-    } arg;              
-
+    } arg;   
+    uint8_t raw;           
 } qn8066_system1;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief System2 - Sets device modes.
+ *
+ * @see 
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t rx_rdsen : 1;  //!<  Receiver RDS enable; 0 = RDS Disable; 1 = RDS Enable
+        uint8_t tx_rdsen : 1;  //!<  Transmitter RDS enable; 0 = RDS Disable; 1 = RDS Enable
+        uint8_t force_mo : 1;  //!<  Force receiver in MONO mode; 0 = Not forced. ST/MONO auto selected; Forced in MONO mode
+        uint8_t tx_mono : 1;   //!<  TX stereo and mono mode selection; 0 = Stereo;  1 = Mono
+        uint8_t rx_mute : 1;   //!<  RX audio Mute enable - 0 = Mute Disabled; 1 = Mute Enabled
+        uint8_t tx_mute : 1;   //!<  TX audio mute enabel - 0 = Mute Disabled; 1 = Mute Enabled
+        uint8_t rdsrdy : 1;    //!<  RDS transmitting ready; - If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit.
+        uint8_t tc : 1;        //!<  Pre-emphasis and de-emphasis time constant; 0 = 50; 1 = 75
+    } arg;              
+    uint8_t raw;   
+} qn8066_system2;
+
+
+
+
+// TEMPLATE
+typedef union
+{
+    struct
+    {
+        uint8_t a : 1;          //!< 
+        uint8_t b : 1;          //!< 
+        uint8_t c : 1;          //!< 
+        uint8_t d : 1;          //!<  
+        uint8_t e : 1;          //!< 
+        uint8_t f : 1;          //!< 
+        uint8_t g : 1;          //!<  
+        uint8_t h : 1;        //!<  
+    } arg;              
+    uint8_t raw;   
+} qn8066_xx;
 
 
 
