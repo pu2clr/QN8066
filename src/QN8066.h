@@ -36,7 +36,6 @@ typedef union
     {
         uint8_t cca_ch_dis : 1;     //!<  0 = RX_CH is decided by internal CCA; 1 = RX_CH is decided writing in RX_CH[9:0]
         uint8_t ccs_ch_dis : 1;     //!<  0 = TX_CH is decided by internal CCS; 1 = TX_CH is decided writing in TX_CH[9:0]
-        uint8_t ccs_ch_dis : 1;     //!<  0 = TX_CH is decided by internal CCS; 1 = TX_CH is decided writing in TX_CH[9:0]
         uint8_t chsc : 1;           //!< Channel Scan mode enable - 0 = Normal operation; 1 = Channel Scan mode operation
         uint8_t txreq : 1;          //!< Transmission request - 0 = Non TX mode; 1 = Enter transmit mode
         uint8_t rxreq : 1;          //!< Receiving request - 0 = Non RX mode; 1 = Enter Receiving mode
@@ -99,7 +98,7 @@ typedef union
  * @ingroup group01
  *
  * @brief SRN - Estimate RF input CNR value( Address: 03h - Read Only)
- *
+ * @details Estimated RF input CNR.
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 21
  */
 
@@ -137,7 +136,12 @@ typedef union
 
 typedef union
 {
-    uint8_t CID1;
+    struct
+    {
+        uint8_t CID2 : 2;   //!<  Chip ID for minor revision: 1~4 
+        uint8_t CID1 : 3;   //!<  Chip ID for product family: 000 = FM; others Reserved  
+        uint8_t RSVD : 3;   //!<  Reserved
+    } arg;   
     uint8_t raw;   
 } qn8066_cid1;
 
@@ -256,7 +260,7 @@ typedef union
  * @details which can be written by the user, another is from CCA. CCA selected channel is stored in an internal register, which is
  * @details physically a different register with CH register, but it can be read out through register CH and be used for RX when 
  * @details CCA_CH_DIS(REG0[0])=0.
- *
+ * @details FM channel: (60+RXCH*0.05)MHz
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 25
  */
 
@@ -264,7 +268,7 @@ typedef union
 {
     uint8_t RXCH; 
     uint8_t raw;   
-} qn8066_rxch;
+} qn8066_rx_ch;
 
 
 /**
@@ -321,7 +325,7 @@ typedef union
 /**
  * @ingroup group01
  *
- * @brief RDS - RDS data byte 0 to byte 7 (Address: 0Fh to 16F - Read Only)
+ * @brief RDS - RDS data byte 0 to byte 7 (Address: 0Fh to 16h - Read Only)
  *
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 26-28
  */
@@ -485,7 +489,8 @@ typedef union
  * @ingroup group01
  *
  * @brief PAC - PA output power target control (Address: 24h - Write Only)
- *
+ * @details  PA_TRGT  - PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56. 
+ * @details  TXPD_CLR -  TX aud_pk clear signal. Audio peak value is max-hold and stored in aud_pk[3:0]. Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again.
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 33
  */
 
@@ -493,8 +498,8 @@ typedef union
 {
     struct
     {
-        uint8_t TXPD_CLR: 1;    //!< TX aud_pk clear signal. Audio peak value is max-hold and stored in aud_pk[3:0]. Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again.
         uint8_t PA_TRGT : 7;    //!< PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56. 
+        uint8_t TXPD_CLR: 1;    //!< TX aud_pk clear signal. Audio peak value is max-hold and stored in aud_pk[3:0]. Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again.
     } arg; 
     uint8_t raw;   
 } qn8066_pac;
@@ -505,7 +510,7 @@ typedef union
  * @ingroup group01
  *
  * @brief FDEV - Specify total TX frequency deviation (Address: 25h - Write Only)
- *
+ * @details Specify total TX frequency deviation. TX frequency deviation = 0.69KHz*TX_FEDV. From 0 to 255
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 33
  */
 
@@ -520,7 +525,7 @@ typedef union
  * @ingroup group01
  *
  * @brief RDS - Specify transmit RDS frequency deviation (Address: 26h - Write Only)
- *
+ * @details RDSFDEV - RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode. Values = from 0 to 127
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 34
  */
 
@@ -572,32 +577,57 @@ typedef union
     {
         uint8_t GAIN_TXPLT : 4;   //!< Gain of TX pilot to adjust pilot frequency deviation. Refer to peak frequency deviation of MPX signal when audio input is full scale. 
         uint8_t t1m_sel : 2;      //!< Selection of 1 minute time for PA off when no audio.   
-        uint8_t tx_sftclpth : 1;  //!< TX soft clip threshold
+        uint8_t tx_sftclpth : 2;  //!< TX soft clip threshold
     } arg;              
     uint8_t raw;   
 } qn8066_gplt;
 
 
+/**
+ * @ingroup group01
+ *
+ * @brief REG_VGA - X AGC gain (Address: 28h - Read and Write)
+ *
+ * | RIN        | Input impedance (K Ohoms) | 
+ * | ---------- | ------------------------- | 
+ * |  0 - 00    | 10    | 
+ * |  1 - 01    | 20    | 
+ * |  2 - 10    | 40    | 
+ * |  3 - 11    | 80    |
+ *
+ * | TXAGC_GDB  | TX digital gain | 
+ * | ---------- | ----- | 
+ * |  0 - 00    | 0 dB | 
+ * |  1 - 01    | 1 dB | 
+ * |  2 - 10    | 2 dB | 
+ * |  3 - 11    | Reserved |
+ * 
+ * | TXAGC_GVGA  | Attenuation depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY  | 
+ * | ----------  | ---------------------------------------------------------- | 
+ * |  0 - 000    |  3; -3; -9; -15   | 
+ * |  1 - 001    |  6;  0; -6; -12   | 
+ * |  2 - 010    |  9;  3; -3; -9    | 
+ * |  3 - 011    | 12;  6;  0; -6    |
+ * |  4 - 100    | 15;  9;  3; -3    |
+ * |  5 - 101    | 18; 12;  6;  0    | 
+ * |  Others     | Reserved | 
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 35
+ *
+ */
 
-
-/*
-// TEMPLATE
 typedef union
 {
     struct
     {
-        uint8_t a : 1;          //!< 
-        uint8_t b : 1;          //!< 
-        uint8_t c : 1;          //!< 
-        uint8_t d : 1;          //!<  
-        uint8_t e : 1;          //!< 
-        uint8_t f : 1;          //!< 
-        uint8_t g : 1;          //!<  
-        uint8_t h : 1;          //!<  
+        uint8_t RIN : 2;         //!< TX mode input impedance for both L/R channels. See table above
+        uint8_t TXAGC_GDB: 2;    //!< TX digital gain. See table above.
+        uint8_t TXAGC_GVGA : 3;  //!< TX input buffer gain. See table above
+        uint8_t tx_sftclpen : 1; //!< TX soft clipping enable 
     } arg;              
     uint8_t raw;   
-} qn8066_xx;
-*/
+} qn8066_reg_vga;
+
 
 
 /**
