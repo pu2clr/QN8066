@@ -486,7 +486,7 @@ typedef union
  *
  * @brief PAC - PA output power target control (Address: 24h - Write Only)
  *
- * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 25
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 33
  */
 
 typedef union
@@ -498,6 +498,85 @@ typedef union
     } arg; 
     uint8_t raw;   
 } qn8066_pac;
+
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief FDEV - Specify total TX frequency deviation (Address: 25h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 33
+ */
+
+typedef union
+{
+    uint8_t TX_FDEV;  //!< Specify total TX frequency deviation. TX frequency deviation = 0.69KHz*TX_FEDV. From 0 to 255
+    uint8_t raw;   
+} qn8066_fdev;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief RDS - Specify transmit RDS frequency deviation (Address: 26h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 34
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t RDSFDEV : 7;     //!< RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode. Values = from 0 to 127
+        uint8_t line_in_en : 1;  //!< Audio Line-in enable control. 0 = Disable; 1 = Enable
+    } arg;              
+    uint8_t raw;   
+} qn8066_rds;
+
+
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief GPLT - Transmitter soft chip threshold, gain of TX pilot (Address: 27h - Write Only)
+ *
+ * | GAIN_TXPLT | value | 
+ * | ---------- | ----- | 
+ * |  7 - 0111  | 7% * 75KHz | 
+ * |  8 - 1000  | 8% * 75KHz | 
+ * |  9 - 1001  | 9% * 75KHz | 
+ * | 10 - 1010  | 10% * 75KHz |
+ *
+ * | t1m_sel    | value | 
+ * | ---------- | ----- | 
+ * |  0 - 00    | 57s | 
+ * |  1 - 01    | 58s | 
+ * |  2 - 10    | 59s | 
+ * |  3 - 11    | Infinity (Never) |
+ * 
+ * | tx_sftclpth | value | 
+ * | ----------  | ----- | 
+ * |  0 - 00     | 12’d2051 (3db back off from 0.5v) | 
+ * |  1 - 01     | 12’d1725 (4.5db back off from 0.5v) | 
+ * |  2 - 10     | 12’d1452 (6db back off from 0.5v) | 
+ * |  3 - 11     | 12’d1028 (9db back off from 0.5v) |
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 34
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t GAIN_TXPLT : 4;   //!< Gain of TX pilot to adjust pilot frequency deviation. Refer to peak frequency deviation of MPX signal when audio input is full scale. 
+        uint8_t t1m_sel : 2;      //!< Selection of 1 minute time for PA off when no audio.   
+        uint8_t tx_sftclpth : 1;  //!< TX soft clip threshold
+    } arg;              
+    uint8_t raw;   
+} qn8066_gplt;
+
 
 
 
