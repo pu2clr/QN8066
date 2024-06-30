@@ -210,6 +210,43 @@ typedef union
 } qn8066_xtal_div2;
 
 
+/**
+ * @ingroup group01
+ *
+ * @brief STATUS1 -  System status ( Address: 0Ah - Read Only)
+ *
+ * | FSM Status | Description  | 
+ * | ---------- | ------------ |
+ * |  0 - 0000  | STBY         | 
+ * |  1 - 0001  | RESET        |
+ * |  2 - 0010  | CALI         | 
+ * |  3 - 0011  | IDLE         |
+ * |  4 - 0100  | CALIPLL      | 
+ * |  5 - 0101  | Reserved     | 
+ * |  6 - 0110  | Reserved     | 
+ * |  7 - 0111  | TXPLLC       |
+ * |  8 - 1000  | TX_RSTB      | 
+ * |  9 - 1001  | PACAL        | 
+ * | 10 - 1010  | TRANSMIT     |
+ * | 11 - 1011  | TXCCA        |
+ * | Others     | Reserved     |  
+ *    
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 24
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t ST_MO_RX : 1;   //!<< Stereo receiving status. 0 = Stereo; 1 = Mono
+        uint8_t RXSTATUS : 1;   //!<< RX Status. 0 = No receiving; 1 = Receiving
+        uint8_t RXAGCSET : 1;   //!<< RX AGC Settling status. 0 = Not settled; 1 = Settled
+        uint8_t rxcca_fail : 1; //!<< RXCCA status flag. To indicate whether a valid channel is found during RX CCA. 0 = RX CCA success to find a valid channel; 1 = RX CCA fail to find a valid channel
+        uint8_t FSM : 4;        //!<< Top FSM state code 
+    } arg;   
+    uint8_t raw;   
+} qn8066_cid2;
+
 
 /*
 // TEMPLATE
