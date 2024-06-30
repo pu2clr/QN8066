@@ -13,8 +13,6 @@
 #include <Wire.h>
 
 
-// ATENÇÃO/LEMBRETE -->> ERRO - INVERTER AS ORDENS DOS BITS DAS ESTRUTURAS ABAIXO
-
 /** @defgroup group01 Union, Struct and Defined Data Types
  * @section group01 Data Types
  *
@@ -36,14 +34,15 @@ typedef union
 {
     struct
     {
-        uint8_t swrst : 1;          //!< Reset all registers to default values; 0 = Keep the current value; 1 = Reset to default values
-        uint8_t recal : 1;          //!< Reset the state to initial states and recalibrate all blocks - 0 = No action. FSM runs normally;  1 =  Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence.
-        uint8_t stnby : 1;          //!< Request Immediately enter Standby mode whatever state chip is in - 0 = Non standby mode; 1 = Enter standby mode
-        uint8_t rxreq : 1;          //!< Receiving request - 0 = Non RX mode; 1 = Enter Receiving mode 
-        uint8_t txreq : 1;          //!< Transmission request - 0 = Non TX mode; 1 = Enter transmit mode 
-        uint8_t chsc : 1;           //!< Channel Scan mode enable - 0 = Normal operation; 1 = Channel Scan mode operation
-        uint8_t ccs_ch_dis : 1;     //!<  0 = TX_CH is decided by internal CCS; 1 = TX_CH is decided writing in TX_CH[9:0]
         uint8_t cca_ch_dis : 1;     //!<  0 = RX_CH is decided by internal CCA; 1 = RX_CH is decided writing in RX_CH[9:0]
+        uint8_t ccs_ch_dis : 1;     //!<  0 = TX_CH is decided by internal CCS; 1 = TX_CH is decided writing in TX_CH[9:0]
+        uint8_t ccs_ch_dis : 1;     //!<  0 = TX_CH is decided by internal CCS; 1 = TX_CH is decided writing in TX_CH[9:0]
+        uint8_t chsc : 1;           //!< Channel Scan mode enable - 0 = Normal operation; 1 = Channel Scan mode operation
+        uint8_t txreq : 1;          //!< Transmission request - 0 = Non TX mode; 1 = Enter transmit mode
+        uint8_t rxreq : 1;          //!< Receiving request - 0 = Non RX mode; 1 = Enter Receiving mode
+        uint8_t stnby : 1;          //!< Request Immediately enter Standby mode whatever state chip is in - 0 = Non standby mode; 1 = Enter standby mode
+        uint8_t recal : 1;          //!< Reset the state to initial states and recalibrate all blocks - 0 = No action. FSM runs normally;  1 =  Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence.
+        uint8_t swrst : 1;          //!< Reset all registers to default values; 0 = Keep the current value; 1 = Reset to default values
     } arg;   
     uint8_t raw;           
 } qn8066_system1;
@@ -61,14 +60,15 @@ typedef union
 {
     struct
     {
-        uint8_t rx_rdsen : 1;  //!<  Receiver RDS enable; 0 = RDS Disable; 1 = RDS Enable
-        uint8_t tx_rdsen : 1;  //!<  Transmitter RDS enable; 0 = RDS Disable; 1 = RDS Enable
-        uint8_t force_mo : 1;  //!<  Force receiver in MONO mode; 0 = Not forced. ST/MONO auto selected; Forced in MONO mode
-        uint8_t tx_mono : 1;   //!<  TX stereo and mono mode selection; 0 = Stereo;  1 = Mono
-        uint8_t rx_mute : 1;   //!<  RX audio Mute enable - 0 = Mute Disabled; 1 = Mute Enabled
-        uint8_t tx_mute : 1;   //!<  TX audio mute enabel - 0 = Mute Disabled; 1 = Mute Enabled
-        uint8_t rdsrdy : 1;    //!<  RDS transmitting ready; - If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit.
         uint8_t tc : 1;        //!<  Pre-emphasis and de-emphasis time constant; 0 = 50; 1 = 75
+        uint8_t rdsrdy : 1;    //!<  RDS transmitting ready; - If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit.
+        uint8_t tx_mute : 1;   //!<  TX audio mute enabel - 0 = Mute Disabled; 1 = Mute Enabled
+        uint8_t rx_mute : 1;   //!<  RX audio Mute enable - 0 = Mute Disabled; 1 = Mute Enabled
+        uint8_t tx_mono : 1;   //!<  TX stereo and mono mode selection; 0 = Stereo;  1 = Mono
+        uint8_t force_mo : 1;  //!<  Force receiver in MONO mode; 0 = Not forced. ST/MONO auto selected; Forced in MONO mode
+        uint8_t tx_rdsen : 1;  //!<  Transmitter RDS enable; 0 = RDS Disable; 1 = RDS Enable
+        uint8_t rx_rdsen : 1;  //!<  Receiver RDS enable; 0 = RDS Disable; 1 = RDS Enable
+
     } arg;              
     uint8_t raw;   
 } qn8066_system2;
@@ -87,9 +87,9 @@ typedef union
 {
     struct
     {
-        uint8_t xtal_inj : 1;    //!<  Select the reference clock source. 0 = Inject sine-wave clock; 1 = Inject digital clock
-        uint8_t imr : 1;         //!<  Image Rejection. 0 = LO<RF, image is in lower side; 1 = LO>RF, image is in upper side
-        uint8_t SNR_CCA_TH : 6;  //!<  The threshold for determination of whether current channel is valid by check its SNR.  
+        uint8_t SNR_CCA_TH : 6;  //!<  The threshold for determination of whether current channel is valid by check its SNR.
+        uint8_t imr : 1;         //!<  Image Rejection. 0 = LO<RF, image is in lower side; 1 = LO>RF, image is in upper side 
+        uint8_t xtal_inj : 1;    //!<  Select the reference clock source. 0 = Inject sine-wave clock; 1 = Inject digital clock 
     } arg;              
     uint8_t raw;   
 } qn8066_cca;
@@ -154,8 +154,8 @@ typedef union
 {
     struct
     {
-        uint8_t CID3 : 6;   //!<  Chip ID for product ID. 001101 = Transceiver – QN8066; Others = Reserved unkown 
         uint8_t CID4 : 2;   //!<  Sequency integer values from 0 to 4.
+        uint8_t CID3 : 6;   //!<  Chip ID for product ID. 001101 = Transceiver – QN8066; Others = Reserved unkown 
     } arg;   
     uint8_t raw;   
 } qn8066_cid2;
@@ -178,7 +178,7 @@ typedef union
 /**
  * @ingroup group01
  *
- * @brief XTAL_DIV1 - Frequency select of reference clock source (Lower bits -  Address: 07h - Write Only)
+ * @brief XTAL_DIV1 - Frequency select of reference clock source (Lower bits -  Address: 08h - Write Only)
  *
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 23
  */
@@ -187,12 +187,27 @@ typedef union
 {
     struct
     {
-        uint8_t pll_dlt  : 5;   //!<  Lower 5 bits of pll_dlt[12:0].
         uint8_t xtal_div : 3;   //!<  Higher 3 bits of xtal_div[10:0]. Xtal_div[10:0] = round(freq of xtal/32.768KHz)
+        uint8_t pll_dlt  : 5;   //!<  Lower 5 bits of pll_dlt[12:0].
     } arg;  
     uint8_t raw;   
 } qn8066_xtal_div1;
 
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief XTAL_DIV2 - Frequency select of reference clock source (Lower bits -  Address: 09h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 23
+ */
+
+typedef union
+{
+    uint8_t pll_dlt;
+    uint8_t raw;   
+} qn8066_xtal_div2;
 
 
 
