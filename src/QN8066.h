@@ -245,7 +245,153 @@ typedef union
         uint8_t FSM : 4;        //!<< Top FSM state code 
     } arg;   
     uint8_t raw;   
-} qn8066_cid2;
+} qn8066_status1;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief   RX_CH - Lower 8 bit of 10-bit receiver channel index (Address: 0Bh - Write Only)
+ * @details Channel used for RX have two origins, one is from RXCH register (REG0EH[1:0]+REG0BH) 
+ * @details which can be written by the user, another is from CCA. CCA selected channel is stored in an internal register, which is
+ * @details physically a different register with CH register, but it can be read out through register CH and be used for RX when 
+ * @details CCA_CH_DIS(REG0[0])=0.
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 25
+ */
+
+typedef union
+{
+    uint8_t RXCH; 
+    uint8_t raw;   
+} qn8066_rxch;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief CH_START - Lower 8 bits of 10-bit CCA(channel scan) start channel index (Address: 0Ch - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 25
+ */
+
+typedef union
+{
+    uint8_t CH_START; 
+    uint8_t raw;   
+} qn8066_ch_start;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief CH_STOP - Lower 8 bits of 10-bit channel scan stop channel index (Address: 0Dh - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 25
+ */
+
+typedef union
+{
+    uint8_t CH_STOP; 
+    uint8_t raw;   
+} qn8066_ch_stop;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief CH_STEP - Channel scan frequency step (Address: 0Eh - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 26
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t RXCH : 2;       //!< Highest 2 bits of 10-bit channel index. Channel freq is (60+RXCH*0.05)MHz
+        uint8_t CH_STA : 2;     //!< Highest 2 bits of 10-bit CCA(channel scan) start channel index. Start freq is (60+RXCH_STA*0.05)MHz
+        uint8_t CH_STP : 2;     //!< Highest 2 bits of 10-bit CCA(channel scan) stop channel index. Stop freq is (60+RXCH_STP*0.05)MHz
+        uint8_t CH_FSTEP : 2;   //!< CCA (channel scan) frequency step. 00=50kHz; 01=100kHz; 10 = 200kHz; 11=Reserved 
+    } arg;  
+    uint8_t raw;   
+} qn8066_ch_step;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief RDS - RDS data byte 0 to byte 7 (Address: 0Fh to 16F - Read Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 26-28
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t RX_RDSD0;          //!< RDS data byte 0  - 0Fh
+        uint8_t RX_RDSD1;          //!< RDS data byte 1  - 10h
+        uint8_t RX_RDSD2;          //!< RDS data byte 2  - 11h
+        uint8_t RX_RDSD3;          //!< RDS data byte 3  - 12h
+        uint8_t RX_RDSD4;          //!< RDS data byte 4  - 13h 
+        uint8_t RX_RDSD5;          //!< RDS data byte 5  - 14h
+        uint8_t RX_RDSD6;          //!< RDS data byte 6  - 15h
+        uint8_t RX_RDSD7;          //!< RDS data byte 7  - 16h
+    } arg;   
+    uint8_t data[8];   
+} qn8066_rx_rds;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief STATUS2 - Receiver RDS status indicators (Address: 17h - Read Only)
+ *
+ * @details RDS_RXUPD - RDS RX: RDS received group updated. Each time a new group is received, this bit will be toggled.
+ * @details             If RDS_INT_EN=1, then at the same time this bit is toggled, interrupt output will out put a 4.5 ms low pulse
+ * @details             0->1 or 1->0 -> A new set (8 Byte) of data is received
+ * @details             0->0 or 1->1 -> New data is in receiving
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 28-29
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t RDS3ERR : 1;     //!< 0 = No Error
+        uint8_t RDS2ERR : 1;     //!< 0 = No Error
+        uint8_t RDS1ERR : 1;     //!< 0 = No Error
+        uint8_t RDS0ERR : 1;     //!< 0 = No Error 
+        uint8_t RDSSYNC : 1;     //!< RDS block synchronous indicator. 0 = Non-synchronous;  1 = Synchronous
+        uint8_t RDSC0C1 : 1;     //!< Type indicator of the RDS third block in one group. 0 = C0; 1 = C1
+        uint8_t E_DET : 1;       //!< ‘E’ block (MMBS block) detected. 0 = Not detected; 1 = Detected  
+        uint8_t RDS_RXUPD : 1;   //!< RDS received group updated. Each time a new group is received, this bit will be toggled.  See comment above.
+    } arg;              
+    uint8_t raw;   
+} qn8066_status2;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief VOL_CT -  Audio volume control (Address: 18h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 29
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t GAIN_ANA : 3;   //!< set volume control gain of analog portion. From 7 to 0:  111 (7) = 0dB ... 000(0) = -42dB (see Datasheet)  
+        uint8_t GAIN_DIG : 3;   //!< set digital volume gain. From 5 to 0; 101 (5) = -5dB ... 000 (0) = 0dB  (see Datasheet)
+        uint8_t DAC_HOLD : 1;   //!< DAC output control. 0 = Normal operation; 1 = Hold DAC output to a fixed voltage.
+        uint8_t TX_DIFF : 1;    //!< Tx audio input mode selection. 0 = Single ended; 1 = Differential. 
+    } arg;              
+    uint8_t raw;   
+} qn8066_vol_ctl;
+
 
 
 /*
@@ -266,6 +412,23 @@ typedef union
     uint8_t raw;   
 } qn8066_xx;
 */
+
+
+/**
+ * @ingroup  CLASSDEF 
+ * @brief QN8066 Class 
+ * @details This class implements all functions that will help you to control the QN8066 devices. 
+ * 
+ * @author PU2CLR - Ricardo Lima Caratti 
+ */
+class QN8066
+{
+    private: 
+
+    protected: 
+
+    public: 
+}
 
 
 
