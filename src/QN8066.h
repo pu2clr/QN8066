@@ -393,6 +393,113 @@ typedef union
 } qn8066_vol_ctl;
 
 
+/**
+ * @ingroup group01
+ *
+ * @brief INT_CTRL -  Receiver RDS control (Address: 19h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 30
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t TXCH : 2;        //!< Highest 2 bits of 10-bit channel index.  hannel freq is (60+TXCH*0.05)MHz
+        uint8_t priv_mode : 1;   //!< Private mode for RX/TX
+        uint8_t rds_4k_mode : 1; //!< Enable RDS RX/TX 4k Mode: with or without the privacy mode (audio scramble and RDS encryption)
+        uint8_t s1k_en : 1;      //!< Internal 1K tone selection. It will be used as DAC output when RXREQ. 0 = Disabled; 1 = Enabled  
+        uint8_t rds_only : 1;    //!< RDS Mode Selection. 0 = Received bit-stream have both RDS and MMBS blocks (‘E’ block); 1 = Received bit-stream has RDS block only, no MMBS block (‘E’ block)
+        uint8_t cca_int_en : 1;  //!< RX CCA interrupt enable. When CCA_INT_EN=1, a 4.5ms low pulse will be output from pad din (RX mode) when a RXCCA (RX mode) is finished. 0 = Disabled; 1 = Enabled
+        uint8_t rds_int_en : 1;  //!< RDS RX interrupt enable. When RDS_INT_EN=1, a 4.5ms low pulse will be output from pad din (RX mode) when a new group data is received and stored into RDS0~RDS7 (RX mode). 0 = Disabled; 1 = Enabled
+    } arg;              
+    uint8_t raw;   
+} qn8066_int_ctrl;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief STATUS3 -  Receiver audio peak level and AGC status (Address: 1Ah - Read Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 30-31
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t rsvd : 1;       //!< Reserved
+        uint8_t rxagcerr : 1;   //!< RXAGC Error Flag. 0 = No Error; 1 = Error
+        uint8_t RDS_TXUPD : 1;  //!< RDS TX: To transmit the 8 bytes in RDS0~RDS7, user should toggle the register bit RDSRDY. Then the chip internally fetches these bytes after completing transmitting of current group. Once the chip internally fetched these bytes, it will toggle this bit, and user can write in another group.
+        uint8_t aud_pk : 4;     //!< Audio peak value at ADC input is aud_pk * 45mV 
+        uint8_t CAP_SH : 1;     //!< Large CAP short detection flag. 1 indicates a short. This bit is the OR-ed result of Poly phase filter I path and Poly phase filter Q path.
+    } arg;              
+    uint8_t raw;   
+} qn8066_status3;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief TXCH - Lower 8 bit of 10-bit transmitter channel index (Address: 1Bh - Read and Write)
+ * @details Lower 8 bits of 10-bit Channel index. Channel used for TX have two origins, one is from TXCH register (REG19H[1:0]+REG1BH) which can be written by the user,
+ * @details another is from CCS. CCS selected channel is stored in an internal register, which is physically a different register with TXCH register, but it can be read out through
+ * @details register TXCH and be used for TX when CCS_CH_DIS(REG0[0])=0. FM channel: (60+TXCH*0.05)MHz
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 31
+ */
+
+typedef union
+{
+    uint8_t TXCH; 
+    uint8_t raw;   
+} qn8066_tx_ch;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief RDS - RDS tx data from byte 0 to byte 7 (Address: 1Ch to 23h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 31-33
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t TX_RDSD0;          //!< RDS data byte 0  - 0Fh
+        uint8_t TX_RDSD1;          //!< RDS data byte 1  - 10h
+        uint8_t TX_RDSD2;          //!< RDS data byte 2  - 11h
+        uint8_t TX_RDSD3;          //!< RDS data byte 3  - 12h
+        uint8_t TX_RDSD4;          //!< RDS data byte 4  - 13h 
+        uint8_t TX_RDSD5;          //!< RDS data byte 5  - 14h
+        uint8_t TX_RDSD6;          //!< RDS data byte 6  - 15h
+        uint8_t TX_RDSD7;          //!< RDS data byte 7  - 16h
+    } arg;   
+    uint8_t data[8];   
+} qn8066_tx_rds;
+
+
+/**
+ * @ingroup group01
+ *
+ * @brief PAC - PA output power target control (Address: 24h - Write Only)
+ *
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 25
+ */
+
+typedef union
+{
+    struct
+    {
+        uint8_t TXPD_CLR: 1;    //!< TX aud_pk clear signal. Audio peak value is max-hold and stored in aud_pk[3:0]. Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again.
+        uint8_t PA_TRGT : 7;    //!< PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56. 
+    } arg; 
+    uint8_t raw;   
+} qn8066_pac;
+
+
 
 /*
 // TEMPLATE
