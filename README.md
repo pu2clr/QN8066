@@ -127,6 +127,25 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 
 
 
+## DIY Kit 5W-7W FM Transceiver
+
+It is possible to find Transceivers based on the QN8066 in kit form. With this library, you will also be able to control this kit, thereby expanding its original functionalities. Check AliExpress and others to check it out. 
+
+The images below show the DIY Kit 5W-7W FM Transceiver available on AliExpress.
+
+
+### DIY Kit 5W-7W FM Transceiver assembled without the RF final amplifier 
+
+![DIY Kit 5W-7W FM Transceiver 01](./extra/images/KIT_ALIEXPRESS_01.jpg)
+
+
+### DIY Kit 5W-7W FM Transceiver assembled in a homemade case
+
+![DIY Kit 5W-7W FM Transceiver 02](./extra/images/KIT_ALIEXPRESS_02.jpg)
+
+
+
+
 ## References 
 
 * [Dynamic_RDS - FM Transmitter Plugin for Falcon Player](https://github.com/ShadowLight8/Dynamic_RDS)
