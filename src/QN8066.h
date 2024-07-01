@@ -102,7 +102,7 @@ typedef union
  * @ingroup group01
  *
  * @brief SRN - Estimate RF input CNR value( Address: 03h - Read Only)
- * @details Estimated RF input CNR.
+ * @details Estimated RF input SNR.
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 21
  */
 
@@ -650,6 +650,7 @@ class QN8066
 
     public: 
 
+    bool detectDevice();
     void setResetDelay(uint16_t delayAfterReset) { this->resetDelay = delayAfterReset;};
     void setup(); 
     void reset();
