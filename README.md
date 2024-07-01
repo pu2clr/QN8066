@@ -125,3 +125,9 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 | 28h       | REG_VGA       | TX AGC gain | 
 
 
+
+
+## References 
+
+* [Dynamic_RDS - FM Transmitter Plugin for Falcon Player](https://github.com/ShadowLight8/Dynamic_RDS)
+* []()

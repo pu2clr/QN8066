@@ -13,6 +13,10 @@
 #include <Wire.h>
 
 
+#define QN8066_I2C_ADDRESS  0x21  // See Datasheet pag. 16. 
+
+
+
 /** @defgroup group01 Union, Struct and Defined Data Types
  * @section group01 Data Types
  *
@@ -640,11 +644,19 @@ typedef union
 class QN8066
 {
     private: 
+        uint16_t resetDelay = 1000;          //!<< Delay after reset (default 1s)
 
     protected: 
 
     public: 
-}
+
+    void setResetDelay(uint16_t delayAfterReset) { this->resetDelay = delayAfterReset;};
+    void setup(); 
+    void reset();
+    void stopTransmitting();
+    void startTransmitting(); 
+    void setFrequency(uint16_t frequency); 
+};
 
 
 
