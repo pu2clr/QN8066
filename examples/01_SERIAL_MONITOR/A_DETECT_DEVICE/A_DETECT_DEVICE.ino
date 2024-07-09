@@ -10,6 +10,8 @@ void setup() {
     Serial.begin(9600);
     while(!Serial);
 
+    Serial.println("\nStart communication...");    
+
     if ( dv.detectDevice() ) { 
         Serial.println("Device QN8066 detected");
     } else {

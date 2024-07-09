@@ -22,7 +22,7 @@ bool QN8066::detectDevice() {
     Wire.begin();
     // check 0x21 I2C address
     Wire.beginTransmission(QN8066_I2C_ADDRESS);
-    return  Wire.endTransmission();
+    return  !Wire.endTransmission();
 }
 
  /**
