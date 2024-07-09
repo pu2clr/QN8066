@@ -23,5 +23,29 @@ bool QN8066::detectDevice() {
     // check 0x21 I2C address
     Wire.beginTransmission(QN8066_I2C_ADDRESS);
     return  Wire.endTransmission();
-
 }
+
+ /**
+  * @brief  Scans the I2C bus and returns the addresses of the devices found.
+  * @details Searches for devices connected to the I2C bus. The addresses of the devices found are stored in the "device" array.
+  * @param device array of device addresses found.  
+  * @return uint8_t number of devices found or 0 if no device found or error. 
+  */
+uint8_t QN8066::scanI2CBus(uint8_t *device) {
+
+  uint8_t error, address;
+  uint8_t idxDevice = 0;
+
+  for (address = 1; address < 127; address++) {
+    Wire.beginTransmission(address);
+    error = Wire.endTransmission();
+    
+    if (error == 0) {
+       device[idxDevice] = address;
+       idxDevice++;
+    } else if (error == 4) {
+       return 0; 
+    }
+  }
+  return idxDevice;
+} 

@@ -651,6 +651,7 @@ class QN8066
     public: 
 
     bool detectDevice();
+    uint8_t scanI2CBus(uint8_t *device); 
     void setResetDelay(uint16_t delayAfterReset) { this->resetDelay = delayAfterReset;};
     void setup(); 
     void reset();
