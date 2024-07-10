@@ -106,10 +106,11 @@ void QN8066::setTX() {
 void QN8066::setChannel(float frequency) {
   uint16_t channel = (uint16_t) (round((frequency - 64) / 0.05f)) ;
 
-  qn8066_int_ctrl value = this->getRegister(QN_INT_CTRL);
+  qn8066_int_ctrl value;
+  value.raw = this->getRegister(QN_INT_CTRL);
   value.arg.TXCH = (channel >> 8);
   this->setRegister(QN_INT_CTRL, value.raw);
-  this->setRegister(QN_TXCH, ( channel & 0xFF) );
+  this->setRegister(QN_TXCH, (uint8_t) (channel & 0xFF) );
 }
 
 
