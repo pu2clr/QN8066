@@ -6,6 +6,7 @@ QN8066  dv;
 void setup() {
 
     uint8_t deviceList[5], deviceCount = 0;
+    char str[80];
 
     Serial.begin(9600);
     while(!Serial);
@@ -16,6 +17,7 @@ void setup() {
         Serial.println("Device QN8066 detected");
     } else {
       Serial.println("Device QN8066 not detected");  
+      while(1);
     }
 
     deviceCount = dv.scanI2CBus(deviceList);
@@ -25,6 +27,11 @@ void setup() {
             Serial.print(deviceList[i]);
         }
     }
+
+    sprintf(str,"\nProduct ID:  %d \nProduct Family: %d",  dv.getDeviceProductID().arg.CID1, dv.getDeviceProductFamily().arg.CID3);
+    Serial.print(str);
+
+    
 
 }
 

@@ -49,3 +49,26 @@ uint8_t QN8066::scanI2CBus(uint8_t *device) {
   }
   return idxDevice;
 } 
+
+uint8_t QN8066::getRegister(uint8_t registerNumber) {
+
+    Wire.beginTransmission(QN8066_I2C_ADDRESS);
+    Wire.write(registerNumber);
+    Wire.endTransmission();
+    delayMicroseconds(QN8066_DELAY_COMMAND);
+
+    Wire.requestFrom(QN8066_I2C_ADDRESS, 1);
+    return Wire.read();
+
+}
+
+void  QN8066::setRegister(uint8_t registerNumber, uint8_t value) {
+
+    Wire.beginTransmission(QN8066_I2C_ADDRESS);
+    Wire.write(registerNumber);
+    Wire.write(value);
+    Wire.endTransmission();
+    delayMicroseconds(QN8066_DELAY_COMMAND);
+
+} 
+
