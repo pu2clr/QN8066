@@ -16,6 +16,7 @@
 #define QN8066_RESET_DELAY 1000   // Delay after reset in us
 #define QN8066_DELAY_COMMAND 2500 // Delay after command
 
+
 /**
  * @brief QN8066 Register addresses
  *
@@ -752,6 +753,8 @@ class QN8066 {
 private:
   uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
 
+  void setChannel(float frequency);
+  inline void setFrequency(float frequency) { setChannel(frequency);};
 
 protected:
 

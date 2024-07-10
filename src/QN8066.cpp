@@ -75,20 +75,41 @@ void QN8066::setRegister(uint8_t registerNumber, uint8_t value) {
   delayMicroseconds(QN8066_DELAY_COMMAND);
 }
 
+/**
+ * @brief sets the devive to RX
+ */
 void QN8066::setRX() {
   qn8066_system1 value;
-  value.raw = 0;
-  value.arg.cca_ch_dis = 1;
-  value.arg.ccs_ch_dis = 1;
+  value.raw = this->getRegister(QN_SYSTEM1);  // Gets the current value of SYSTEM1 register
   value.arg.rxreq = 1;
+  value.arg.txreq = 0;
   this->setRegister(QN_SYSTEM1, value.raw);
 }
 
+/**
+ * @brief sets the devive to TX
+ */
 void QN8066::setTX() {
   qn8066_system1 value;
-  value.raw = 0;
-  value.arg.cca_ch_dis = 1;
-  value.arg.ccs_ch_dis = 1;
+  value.raw = this->getRegister(QN_SYSTEM1);  // Gets the current value of SYSTEM1 register
+  value.arg.rxreq = 0;
   value.arg.txreq = 1;
   this->setRegister(QN_SYSTEM1, value.raw);
 }
+
+/**
+ * @brief convert a given frequency to a channel
+ * @details By programming channel index RXCH[9:0] or TXCH[9:0], the RF channel can be set to any frequency between 60 MHz ~ 108 MHz in 50 kHz steps. 
+ * @details The channel index and RF frequency have the following relationship: FRF = (60 + 0.05 x Channel Index), where FRF is the RF frequency in MHz.
+ * @param frequency 
+ */
+void QN8066::setChannel(float frequency) {
+  uint16_t channel = (uint16_t) (round((frequency - 64) / 0.05f)) ;
+
+  qn8066_int_ctrl value = this->getRegister(QN_INT_CTRL);
+  value.arg.TXCH = (channel >> 8);
+  this->setRegister(QN_INT_CTRL, value.raw);
+  this->setRegister(QN_TXCH, ( channel & 0xFF) );
+}
+
+
