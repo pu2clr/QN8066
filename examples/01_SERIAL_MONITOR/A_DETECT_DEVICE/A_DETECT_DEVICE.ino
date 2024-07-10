@@ -11,7 +11,7 @@ void setup() {
     Serial.begin(9600);
     while(!Serial);
 
-    Serial.println("\nStart communication...");    
+    Serial.println("\n******\nStart communication...\n");    
 
     if ( dv.detectDevice() ) { 
         Serial.println("Device QN8066 detected");
@@ -23,8 +23,8 @@ void setup() {
     deviceCount = dv.scanI2CBus(deviceList);
     if ( deviceCount > 0  ) { 
         for ( uint8_t  i = 0; i < deviceCount; i++ ) { 
-            Serial.print("\nDevice fount  at: ");
-            Serial.print(deviceList[i]);
+            sprintf(str,"\nDevice found  at: %x in HEX - %d in DEC", deviceList[i], deviceList[i]);
+            Serial.print(str);
         }
     }
 
