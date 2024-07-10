@@ -32,6 +32,9 @@ void setup() {
     Serial.print(str);
 
     
+    sprintf(str,"\n\nCheck SUSTEM1: %b ", dv.getRegister(QN_SYSTEM1));
+    Serial.print(str);
+
 
 }
 

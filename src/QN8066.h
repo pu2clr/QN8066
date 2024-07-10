@@ -752,13 +752,16 @@ class QN8066 {
 private:
   uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
 
+
 protected:
+
 public:
   bool detectDevice();
   uint8_t scanI2CBus(uint8_t *device);
 
   uint8_t getRegister(uint8_t registerNumber);
   void setRegister(uint8_t registerNumber, uint8_t value);
+
 
   inline qn8066_cid1 getDeviceProductID() {
     qn8066_cid1 value;
@@ -771,6 +774,17 @@ public:
     value.raw = this->getRegister(QN_CID2);
     return value;
   }
+
+
+  /**
+   * @brief SYSTEM1 SETUP
+   * 
+   */
+  void setRX(); 
+  void setTX(); 
+
+
+
 
   void setResetDelay(uint16_t delayAfterReset) {
     this->resetDelay = delayAfterReset;
