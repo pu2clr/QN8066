@@ -92,6 +92,7 @@ void QN8066::setRX() {
 void QN8066::setTX() {
   qn8066_system1 value;
   value.raw = this->getRegister(QN_SYSTEM1);  // Gets the current value of SYSTEM1 register
+  value.arg.stnby = 0;
   value.arg.rxreq = 0;
   value.arg.txreq = 1;
   this->setRegister(QN_SYSTEM1, value.raw);
@@ -112,5 +113,17 @@ void QN8066::setChannel(float frequency) {
   this->setRegister(QN_INT_CTRL, value.raw);
   this->setRegister(QN_TXCH, (uint8_t) (channel & 0xFF) );
 }
+
+/**
+ * @brief PA output power target control.
+ * @details PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
+ * @param pacValue 
+ */
+void QN8066::setPAC(uint8_t PA_TRGT) {
+    qn8066_pac value; 
+    value.arg.PA_TRGT = PA_TRGT; 
+    this->setRegister(QN_PAC, value.raw);
+}
+ 
 
 

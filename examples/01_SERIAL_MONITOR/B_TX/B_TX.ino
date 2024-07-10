@@ -34,9 +34,10 @@ void setup() {
     }
 
     dv.setTX();
-    sprintf(str,"\n\nBroadcasting on 106.7 MHz frequency");
+    dv.setPAC(45); // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
+    sprintf(str,"\n\nBroadcasting on 106.7 MHz");
     Serial.print(str);
-    // dv.setFrequency(FREQ);
+    dv.setFrequency(FREQ);
 
     analogWrite(9, 100);
 

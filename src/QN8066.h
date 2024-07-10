@@ -791,11 +791,14 @@ public:
   void setResetDelay(uint16_t delayAfterReset) {
     this->resetDelay = delayAfterReset;
   };
-  
+
   void setup();
   void reset();
   void stopTransmitting();
   void startTransmitting();
+
+
+  void setPAC(uint8_t PA_TRGT);
 
   inline void setFrequency(float frequency) { setChannel(frequency);};
 
