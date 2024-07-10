@@ -777,6 +777,10 @@ public:
     return value;
   }
 
+  qn8066_status1 getStatus1();
+  qn8066_status2 getStatus2();
+  qn8066_status3 getStatus3();
+
 
   /**
    * @brief SYSTEM1 SETUP

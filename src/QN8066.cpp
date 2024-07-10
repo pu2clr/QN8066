@@ -53,7 +53,10 @@ uint8_t QN8066::scanI2CBus(uint8_t *device) {
   return idxDevice;
 }
 
-void QN8066::setup() {}
+void QN8066::setup() {
+  delay(600);       // Chip power-up time 
+
+}
 
 uint8_t QN8066::getRegister(uint8_t registerNumber) {
 
@@ -74,6 +77,26 @@ void QN8066::setRegister(uint8_t registerNumber, uint8_t value) {
   Wire.endTransmission();
   delayMicroseconds(QN8066_DELAY_COMMAND);
 }
+
+  qn8066_status1 QN8066::getStatus1() {
+    qn8066_status1 value;
+    value.raw = this->getRegister(QN_STATUS1); 
+    return value;
+  }
+
+  qn8066_status2 QN8066::getStatus2() {
+    qn8066_status2 value;
+    value.raw = this->getRegister(QN_STATUS2); 
+    return value;
+  }
+  
+  qn8066_status3 QN8066::getStatus3() {
+    qn8066_status3 value;
+    value.raw = this->getRegister(QN_STATUS3); 
+    return value;
+
+  }
+
 
 /**
  * @brief sets the devive to RX
@@ -96,6 +119,7 @@ void QN8066::setTX() {
   value.arg.rxreq = 0;
   value.arg.txreq = 1;
   this->setRegister(QN_SYSTEM1, value.raw);
+  delay(200);
 }
 
 /**
@@ -112,6 +136,7 @@ void QN8066::setChannel(float frequency) {
   value.arg.TXCH = (channel >> 8);
   this->setRegister(QN_INT_CTRL, value.raw);
   this->setRegister(QN_TXCH, (uint8_t) (channel & 0xFF) );
+  delay(100); // Channel switching - From any channel to any channel.
 }
 
 /**
