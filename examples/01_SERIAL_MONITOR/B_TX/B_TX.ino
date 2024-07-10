@@ -1,6 +1,6 @@
 #include <QN8066.h>
 
-#define FREQ 106.1
+#define FREQ 106.7
 
 QN8066  dv; 
 
@@ -8,6 +8,7 @@ QN8066  dv;
 
 void setup() {
 
+    uint8_t deviceList[5], deviceCount = 0;
     char str[80];
 
     Serial.begin(9600);
@@ -17,10 +18,25 @@ void setup() {
     pinMode(9, OUTPUT);
 
 
-    sprintf(str,"\n\nBroadcasting on 106.1 MHz frequency");
-    Serial.print(str);
+    if ( dv.detectDevice() ) { 
+        Serial.println("Device QN8066 detected");
+    } else {
+      Serial.println("Device QN8066 not detected");  
+      while(1);
+    }
 
-    dv.setFrequency(FREQ);
+    deviceCount = dv.scanI2CBus(deviceList);
+    if ( deviceCount > 0  ) { 
+        for ( uint8_t  i = 0; i < deviceCount; i++ ) { 
+            sprintf(str,"\nDevice found  at: %x in HEX - %d in DEC", deviceList[i], deviceList[i]);
+            Serial.print(str);
+        }
+    }
+
+    dv.setTX();
+    sprintf(str,"\n\nBroadcasting on 106.7 MHz frequency");
+    Serial.print(str);
+    // dv.setFrequency(FREQ);
 
     analogWrite(9, 100);
 
