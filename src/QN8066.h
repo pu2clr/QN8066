@@ -754,7 +754,6 @@ private:
   uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
 
   void setChannel(float frequency);
-  inline void setFrequency(float frequency) { setChannel(frequency);};
 
 protected:
 
@@ -792,11 +791,15 @@ public:
   void setResetDelay(uint16_t delayAfterReset) {
     this->resetDelay = delayAfterReset;
   };
+  
   void setup();
   void reset();
   void stopTransmitting();
   void startTransmitting();
-  void setFrequency(uint16_t frequency);
+
+  inline void setFrequency(float frequency) { setChannel(frequency);};
+
+
 };
 
 #endif // _QN8066_H
