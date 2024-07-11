@@ -113,6 +113,7 @@ void QN8066::setRegister(uint8_t registerNumber, uint8_t value) {
  }
 
 
+
 /**
  * @brief sets the devive to RX
  */
@@ -130,8 +131,10 @@ void QN8066::setTX(float frequency) {
 
   // Setup the reference clock source, Image Rejection and the threshold to check valid channel
   this->setRegister(QN_CCA, 0B00010000); 
-  this->setRegister(QN_XTAL_DIV0, 0B11101000); 
-  this->setRegister(QN_XTAL_DIV1, 0B00001011); 
+
+  // Sets the crystal oscillator divider 
+  this->setRegister(QN_XTAL_DIV0, this->xtal_div & 0xFF);  // Lower 8 bits of xtal_div[10:0].
+  this->setRegister(QN_XTAL_DIV1, (this->xtal_div >> 8) | 0B0001000 );  // Higher 3 bits of xtal_div[10:0].
 
   // Set frequency 
   int16_t auxFreq = (int16_t) (( frequency - 60) / 0.05 ); 

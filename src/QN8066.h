@@ -752,6 +752,7 @@ typedef union {
 class QN8066 {
 private:
   uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
+  uint16_t xtal_div = 1000;      
 
   void setChannel(float frequency);
 
@@ -805,6 +806,14 @@ public:
   void reset();
   void stopTransmitting();
   void startTransmitting();
+
+  /**
+   * @brief Set the Crystal Frequency object
+   * @details Based on the external crystal oscillator, calculates the divider parameter (xtal_div). See registers XTAL_DIV0 and XTAL_DIV1
+   * @param value 
+   */
+ void setCrystalFrequency(uint32_t value) { xtal_div = value / 32768; }; 
+
 
   void setPAC(uint8_t PA_TRGT);
 
