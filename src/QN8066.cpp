@@ -166,9 +166,11 @@ void QN8066::setChannel(float frequency) {
  * @param pacValue 
  */
 void QN8066::setPAC(uint8_t PA_TRGT) {
-    qn8066_pac value; 
-    value.arg.PA_TRGT = PA_TRGT; 
-    this->setRegister(QN_PAC, value.raw);
+
+  //Reset aud_pk
+ this->setRegister(QN_PAC, 0b10000000 | PA_TRGT );
+ this->setRegister(QN_PAC, 0b00000000 | PA_TRGT );
+
 }
  
 
