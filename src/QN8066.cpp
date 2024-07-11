@@ -127,9 +127,11 @@ void QN8066::setRX() {
 void QN8066::setTX(float frequency) {
   this->setRegister(QN_SYSTEM1, 0B11100011);  // RESET the SYSTEM
   delay(200);
+
   // Setup the reference clock source, Image Rejection and the threshold to check valid channel
-  this->setRegister(QN_XTAL_DIV0, 0B00010000); 
-  this->setRegister(QN_XTAL_DIV1, 0b11101000); 
+  this->setRegister(QN_CCA, 0B00010000); 
+  this->setRegister(QN_XTAL_DIV0, 0B11101000); 
+  this->setRegister(QN_XTAL_DIV0, 0B00001011); 
 
   // Set frequency 
   int16_t auxFreq = (int16_t) (( frequency - 60) / 0.05 ); 
