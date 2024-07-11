@@ -97,6 +97,18 @@ void QN8066::setRegister(uint8_t registerNumber, uint8_t value) {
 
   }
 
+ qn8066_system1  QN8066::getSystem1() {
+    qn8066_system1 value;
+    value.raw = this->getRegister(QN_SYSTEM1); 
+    return value;
+ }
+
+ qn8066_system2  QN8066::getSystem2() {
+    qn8066_system2 value;
+    value.raw = this->getRegister(QN_SYSTEM2); 
+    return value;
+ }
+
 
 /**
  * @brief sets the devive to RX

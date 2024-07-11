@@ -16,7 +16,6 @@
 #define QN8066_RESET_DELAY 1000   // Delay after reset in us
 #define QN8066_DELAY_COMMAND 2500 // Delay after command
 
-
 /**
  * @brief QN8066 Register addresses
  *
@@ -206,7 +205,8 @@ typedef union {
 typedef union {
   struct {
     uint8_t CID2 : 2; //!<  Chip ID for minor revision: 1~4
-    uint8_t CID1 : 3; //!<  Chip ID for product family: 000 = FM; others Reserved
+    uint8_t
+        CID1 : 3; //!<  Chip ID for product family: 000 = FM; others Reserved
     uint8_t RSVD : 3; //!<  Reserved
   } arg;
   uint8_t raw;
@@ -312,10 +312,10 @@ typedef union {
     uint8_t
         RXAGCSET : 1; //!<< RX AGC Settling status. 0 = Not settled; 1 = Settled
     uint8_t rxcca_fail : 1; //!<< RXCCA status flag. To indicate whether a valid
-                            //!<channel is found during RX CCA. 0 = RX CCA
-                            //!<success to find a valid channel; 1 = RX CCA fail
-                            //!<to find a valid channel
-    uint8_t FSM : 4;        //!<< Top FSM state code
+                            //!< channel is found during RX CCA. 0 = RX CCA
+                            //!< success to find a valid channel; 1 = RX CCA
+                            //!< fail to find a valid channel
+    uint8_t FSM : 4; //!<< Top FSM state code
   } arg;
   uint8_t raw;
 } qn8066_status1;
@@ -756,14 +756,12 @@ private:
   void setChannel(float frequency);
 
 protected:
-
 public:
   bool detectDevice();
   uint8_t scanI2CBus(uint8_t *device);
 
   uint8_t getRegister(uint8_t registerNumber);
   void setRegister(uint8_t registerNumber, uint8_t value);
-
 
   inline qn8066_cid1 getDeviceProductID() {
     qn8066_cid1 value;
@@ -781,16 +779,15 @@ public:
   qn8066_status2 getStatus2();
   qn8066_status3 getStatus3();
 
+  qn8066_system1 getSystem1();
+  qn8066_system2 getSystem2();
 
   /**
    * @brief SYSTEM1 SETUP
-   * 
+   *
    */
-  void setRX(); 
-  void setTX(); 
-
-
-
+  void setRX();
+  void setTX();
 
   void setResetDelay(uint16_t delayAfterReset) {
     this->resetDelay = delayAfterReset;
@@ -801,12 +798,9 @@ public:
   void stopTransmitting();
   void startTransmitting();
 
-
   void setPAC(uint8_t PA_TRGT);
 
-  inline void setFrequency(float frequency) { setChannel(frequency);};
-
-
+  inline void setFrequency(float frequency) { setChannel(frequency); };
 };
 
 #endif // _QN8066_H
