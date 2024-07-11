@@ -39,6 +39,8 @@ uint8_t QN8066::scanI2CBus(uint8_t *device) {
   uint8_t error, address;
   uint8_t idxDevice = 0;
 
+  Wire.begin();
+
   for (address = 1; address < 127; address++) {
     Wire.beginTransmission(address);
     error = Wire.endTransmission();
@@ -55,6 +57,7 @@ uint8_t QN8066::scanI2CBus(uint8_t *device) {
 
 void QN8066::setup() {
   delay(600);       // Chip power-up time 
+  Wire.begin();
 
 }
 
@@ -114,25 +117,31 @@ void QN8066::setRegister(uint8_t registerNumber, uint8_t value) {
  * @brief sets the devive to RX
  */
 void QN8066::setRX() {
-  qn8066_system1 value;
-  value.raw = this->getRegister(QN_SYSTEM1);  // Gets the current value of SYSTEM1 register
-  value.arg.rxreq = 1;
-  value.arg.txreq = 0;
-  this->setRegister(QN_SYSTEM1, value.raw);
+  uint8_t value = 0B11100011;
+  this->setRegister(QN_SYSTEM1, value);
 }
 
 /**
  * @brief sets the devive to TX
  */
-void QN8066::setTX() {
-  qn8066_system1 value;
-  value.raw = this->getRegister(QN_SYSTEM1);  // Gets the current value of SYSTEM1 register
-  value.arg.stnby = 0;
-  value.arg.rxreq = 0;
-  value.arg.txreq = 1;
-  this->setRegister(QN_SYSTEM1, value.raw);
+void QN8066::setTX(float frequency) {
+  this->setRegister(QN_SYSTEM1, 0B11100011);  // RESET the SYSTEM
+  delay(200);
+  // Setup the reference clock source, Image Rejection and the threshold to check valid channel
+  this->setRegister(QN_XTAL_DIV0, 0B00010000); 
+  this->setRegister(QN_XTAL_DIV1, 0b11101000); 
+
+  // Set frequency 
+  int16_t auxFreq = (int16_t) (( frequency - 60) / 0.05 ); 
+  this->setRegister(QN_INT_CTRL, 0B00100000 | auxFreq>>8);
+  this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
+
+  // Exit standby, enter TX
+  this->setRegister(QN_SYSTEM1, 0b00001011);
   delay(200);
 }
+
+
 
 /**
  * @brief convert a given frequency to a channel

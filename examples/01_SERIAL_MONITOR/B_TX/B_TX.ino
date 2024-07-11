@@ -38,11 +38,10 @@ void setup() {
   dv.setup();
   showStatus();
   showSystem();
-  dv.setTX();
+  dv.setTX(FREQ);
   dv.setPAC(55);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
-  sprintf(str, "\n\nBroadcasting on 106.7 MHz");
+  sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
-  dv.setFrequency(FREQ);
   TCCR1B = TCCR1B & B11111000 | B00000001;  // Set PWM frequency to about 31 kHz
   analogWrite(9, 100);
   showStatus();
