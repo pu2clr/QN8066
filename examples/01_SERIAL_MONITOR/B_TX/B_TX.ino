@@ -35,9 +35,6 @@ void setup() {
     }
   }
 
-  // dv.setup();
-  // showStatus();
-  // showSystem();
   dv.setup();
   delay(2000);
   dv.setTX(FREQ);
@@ -47,86 +44,11 @@ void setup() {
   TCCR1B = TCCR1B & B11111000 | B00000001;  // Set PWM frequency to about 31 kHz
   analogWrite(9, 220); 
 
-
-
   sprintf(str, "\n\nSYSTEM1: %d \nCCA: %d \nXTAL_DIV0: %d\nXTAL_DIV1: %d", dv.getRegister(QN_SYSTEM1), dv.getRegister(QN_CCA), dv.getRegister(QN_XTAL_DIV0),  dv.getRegister(QN_XTAL_DIV1));
   Serial.print(str);
 
-  // showStatus();
-  // showSystem();
-
 }
 
-
-void showStatus() {
-  qn8066_status1 s1 = dv.getStatus1();
-  qn8066_status2 s2 = dv.getStatus2();
-  qn8066_status3 s3 = dv.getStatus3();
-
-  Serial.print("\n******* STATUS 1 ***************\n");
-  sprintf(str,"\nStereo receiving status...........: %d", s1.arg.ST_MO_RX);
-  Serial.print(str);
-  sprintf(str,"\nRX Status.........................: %d", s1.arg.RXSTATUS);
-  Serial.print(str);
-  sprintf(str,"\nRX AGC Settling status............: %d", s1.arg.RXAGCSET);
-  Serial.print(str);
-  sprintf(str,"\nRXCCA status flag.................: %d", s1.arg.rxcca_fail);
-  Serial.print(str);
-  sprintf(str,"\nFSM...............................: %d", s1.arg.FSM);
-  Serial.print(str);
-
-
-  Serial.print("\n******* STATUS 2 ***************\n");
-  sprintf(str,"\nRDS RX............................: %d", s2.raw);
-  Serial.print(str);
-
-  Serial.print("\n******* STATUS 3 ***************\n");
-  sprintf(str,"\nRXAGC Error Flag...................: %d", s3.arg.rxagcerr);
-  Serial.print(str);
-  sprintf(str,"\nRDS TX.............................: %d", s3.arg.RDS_TXUPD);
-  Serial.print(str);
-  sprintf(str,"\nAudio peak value at ADC input....: %d", s3.arg.aud_pk);
-  Serial.print(str);
-  sprintf(str,"\nLarge CAP short detection flag....: %d", s3.arg.aud_pk);
-  Serial.print(str);
-
-}
-
-
-void showSystem() {
-  
-  qn8066_system1 s1 = dv.getSystem1();
-  qn8066_system2 s2 = dv.getSystem2();
-
-
-  Serial.print("\n******* SYSTEM 1 ***************\n");
-  sprintf(str,"\nCH (internal CCA).............: %d", s1.arg.cca_ch_dis);
-  Serial.print(str);
-  sprintf(str,"\nCH (internal CCS).............: %d", s1.arg.ccs_ch_dis);
-  Serial.print(str);
-  sprintf(str,"\nChannel Scan mode enable......: %d", s1.arg.chsc);
-  Serial.print(str);
-  sprintf(str,"\nTransmission request..........: %d", s1.arg.txreq);
-  Serial.print(str);
-  sprintf(str,"\nReceiving reques..............: %d", s1.arg.rxreq);
-  Serial.print(str);
-  sprintf(str,"\nStandby mode..................: %d", s1.arg.stnby);
-  Serial.print(str);
-  sprintf(str,"\nSYSTEM 1 Register.............: %d", s1.raw);
-  Serial.print(str);  
-
-
-  Serial.print("\n******* SYSTEM 2 ***************\n");
-  sprintf(str,"\nPre-emphasis..................: %d", s2.arg.tc);
-  Serial.print(str);
-  sprintf(str,"\nRDS transmitting ready........: %d", s2.arg.rdsrdy);
-  Serial.print(str);
-  sprintf(str,"\nTX audio mute enabel..........: %d", s2.arg.tx_mute);
-  Serial.print(str);
-  sprintf(str,"\nSYSTEM 2 Register.............: %d", s2.raw);
-  Serial.print(str);    
-
-}
 
 
 

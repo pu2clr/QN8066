@@ -315,7 +315,7 @@ typedef union {
                             //!< channel is found during RX CCA. 0 = RX CCA
                             //!< success to find a valid channel; 1 = RX CCA
                             //!< fail to find a valid channel
-    uint8_t FSM : 4; //!<< Top FSM state code
+    uint8_t FSM : 4;        //!<< Top FSM state code
   } arg;
   uint8_t raw;
 } qn8066_status1;
@@ -752,9 +752,9 @@ typedef union {
 class QN8066 {
 private:
   uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
-  uint16_t xtal_div = 1000;      
+  uint16_t xtal_div = 1000;
 
-  void setChannel(float frequency);
+  void setTxChannel(float frequency);
 
 protected:
 public:
@@ -780,23 +780,23 @@ public:
   qn8066_status2 getStatus2();
   qn8066_status3 getStatus3();
 
-  qn8066_system1 getSystem1();
-  qn8066_system2 getSystem2();
 
   /**
    * @brief SYSTEM1 SETUP
    *
    */
   void setRX();
-  void setTX(float frequency); // RESET the system and set to TX mode at a given frequency
+  void setTX(float frequency); // RESET the system and set to TX mode at a given
+                               // frequency
   /**
    * @brief   Set to TX mode with custom parameters
-   * @details Switch to TX mode by using custom parameters (see SYSTEM1 register and  qn8066_system1 structure data type)
+   * @details Switch to TX mode by using custom parameters (see SYSTEM1 register
+   * and  qn8066_system1 structure data type)
    * @param parameters (qn8066_system1 structure data type)
    */
-  inline void setTX(qn8066_system1 parameters) { this->setRegister(QN_SYSTEM1, parameters.raw);}; 
-
-
+  inline void setTX(qn8066_system1 parameters) {
+    this->setRegister(QN_SYSTEM1, parameters.raw);
+  };
 
   void setResetDelay(uint16_t delayAfterReset) {
     this->resetDelay = delayAfterReset;
@@ -809,15 +809,14 @@ public:
 
   /**
    * @brief Set the Crystal Frequency object
-   * @details Based on the external crystal oscillator, calculates the divider parameter (xtal_div). See registers XTAL_DIV0 and XTAL_DIV1
-   * @param value 
+   * @details Based on the external crystal oscillator, calculates the divider
+   * parameter (xtal_div). See registers XTAL_DIV0 and XTAL_DIV1
+   * @param value
    */
- void setCrystalFrequency(uint32_t value) { xtal_div = value / 32768; }; 
-
-
+  void setCrystalFrequency(uint32_t value) { xtal_div = value / 32768; };
   void setPAC(uint8_t PA_TRGT);
 
-  inline void setFrequency(float frequency) { setChannel(frequency); };
+  inline void setTxFrequency(float frequency) { setTxChannel(frequency); };
 };
 
 #endif // _QN8066_H
