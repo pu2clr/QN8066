@@ -125,6 +125,15 @@ Functions</h2></td></tr>
 <tr class="memitem:gade021b98b99e9239c390461d22020c4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gade021b98b99e9239c390461d22020c4e">QN8066::setAudioTxDiff</a> (bool value)</td></tr>
 <tr class="memdesc:gade021b98b99e9239c390461d22020c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tx audio input mode selection.  <br /></td></tr>
 <tr class="separator:gade021b98b99e9239c390461d22020c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga751bb2147b6355745b261cc8f86a017c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga751bb2147b6355745b261cc8f86a017c">QN8066::setTxInputImpedance</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga751bb2147b6355745b261cc8f86a017c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX mode input impedance for both L/R channels.  <br /></td></tr>
+<tr class="separator:ga751bb2147b6355745b261cc8f86a017c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8eb4772b22c08ce7b44e52b01af342f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga8eb4772b22c08ce7b44e52b01af342f5">QN8066::setTxDigitalGain</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga8eb4772b22c08ce7b44e52b01af342f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX digital gain.  <br /></td></tr>
+<tr class="separator:ga8eb4772b22c08ce7b44e52b01af342f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09843594c1c9203a738c3a18cbc78403"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga09843594c1c9203a738c3a18cbc78403"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX input buffer gain.  <br /></td></tr>
+<tr class="separator:ga09843594c1c9203a738c3a18cbc78403"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga90eeea994b03d7c31ac09426982884c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga90eeea994b03d7c31ac09426982884c0">QN8066::setPAC</a> (uint8_t PA_TRGT)</td></tr>
 <tr class="memdesc:ga90eeea994b03d7c31ac09426982884c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">PA output power target control.  <br /></td></tr>
 <tr class="separator:ga90eeea994b03d7c31ac09426982884c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -362,6 +371,133 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ga751bb2147b6355745b261cc8f86a017c" name="ga751bb2147b6355745b261cc8f86a017c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga751bb2147b6355745b261cc8f86a017c">&#9670;&#160;</a></span>setTxInputImpedance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxInputImpedance </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX mode input impedance for both L/R channels. </p>
+<p>Sets the imput impedance Left and Rihgt channels</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">RIN Value   </th><th class="markdownTableHeadNone">Input impedance (k)    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">00 (0)   </td><td class="markdownTableBodyNone">10    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">01 (1)   </td><td class="markdownTableBodyNone">20    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">10 (2)   </td><td class="markdownTableBodyNone">40    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">11 (3)   </td><td class="markdownTableBodyNone">80   </td></tr>
+</table>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(true or false) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Data Sheet - Quintic - <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> - Digital FM Transceiver for Portable Devices, pag. 35 </dd></dl>
+
+</div>
+</div>
+<a id="ga8eb4772b22c08ce7b44e52b01af342f5" name="ga8eb4772b22c08ce7b44e52b01af342f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8eb4772b22c08ce7b44e52b01af342f5">&#9670;&#160;</a></span>setTxDigitalGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxDigitalGain </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX digital gain. </p>
+<p>TX digital gain</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">TXAGC_GDB   </th><th class="markdownTableHeadNone">Digital gain    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">00 (0)   </td><td class="markdownTableBodyNone">0 dB    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">01 (1)   </td><td class="markdownTableBodyNone">1 dB    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">10 (2)   </td><td class="markdownTableBodyNone">2 dB    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">11 (3)   </td><td class="markdownTableBodyNone">Reserved   </td></tr>
+</table>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Data Sheet - Quintic - <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> - Digital FM Transceiver for Portable Devices, pag. 35 </dd></dl>
+
+</div>
+</div>
+<a id="ga09843594c1c9203a738c3a18cbc78403" name="ga09843594c1c9203a738c3a18cbc78403"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga09843594c1c9203a738c3a18cbc78403">&#9670;&#160;</a></span>setTxInputBufferGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxInputBufferGain </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX input buffer gain. </p>
+<p>Sets TX input buffer gain </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">TXAGC_GVGA   </th><th class="markdownTableHeadNone">Attenuation depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">0 - 000   </td><td class="markdownTableBodyNone">3; -3; -9; -15    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">1 - 001   </td><td class="markdownTableBodyNone">6; 0; -6; -12    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">2 - 010   </td><td class="markdownTableBodyNone">9; 3; -3; -9    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">3 - 011   </td><td class="markdownTableBodyNone">12; 6; 0; -6    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">4 - 100   </td><td class="markdownTableBodyNone">15; 9; 3; -3    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">5 - 101   </td><td class="markdownTableBodyNone">18; 12; 6; 0    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Others   </td><td class="markdownTableBodyNone">Reserved   </td></tr>
+</table>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Data Sheet - Quintic - <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> - Digital FM Transceiver for Portable Devices, pag. 35 </dd></dl>
 
 </div>
 </div>

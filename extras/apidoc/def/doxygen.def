@@ -435,6 +435,112 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group03_1ga751bb2147b6355745b261cc8f86a017c';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setTxInputImpedance';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'value';
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
+      sec-mem-desc-line = '809';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+TX mode input impedance for both L/R channels.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ Sets the imput impedance  Left and Rihgt channels
+
+<table class="markdownTable">
+  <tr class="markdownTableHead">    <th class="markdownTableHeadNone"> RIN Value \ilinebr </th>    <th class="markdownTableHeadNone"> Input impedance (k) \ilinebr </th>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 00  (0) \ilinebr </td>    <td class="markdownTableBodyNone"> 10 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 01  (1) \ilinebr </td>    <td class="markdownTableBodyNone"> 20 \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 10  (2) \ilinebr </td>    <td class="markdownTableBodyNone"> 40 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 11  (3) \ilinebr </td>    <td class="markdownTableBodyNone"> 80 \ilinebr </td>  </tr></table>
+
+@param value  (true or false)
+@see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
+Devices, pag. 35
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group03_1ga8eb4772b22c08ce7b44e52b01af342f5';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setTxDigitalGain';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'value';
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
+      sec-mem-desc-line = '810';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+TX digital gain.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ TX digital gain
+
+<table class="markdownTable">
+  <tr class="markdownTableHead">    <th class="markdownTableHeadNone"> TXAGC_GDB \ilinebr </th>    <th class="markdownTableHeadNone"> Digital gain \ilinebr </th>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 00  (0) \ilinebr </td>    <td class="markdownTableBodyNone"> 0 dB \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 01  (1) \ilinebr </td>    <td class="markdownTableBodyNone"> 1 dB \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 10  (2) \ilinebr </td>    <td class="markdownTableBodyNone"> 2 dB \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 11  (3) \ilinebr </td>    <td class="markdownTableBodyNone"> Reserved \ilinebr </td>  </tr></table>
+
+@param value  <br>
+@see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
+Devices, pag. 35
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group03_1ga09843594c1c9203a738c3a18cbc78403';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setTxInputBufferGain';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'value';
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
+      sec-mem-desc-line = '811';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+TX input buffer gain.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ Sets TX input buffer gain
+<table class="markdownTable">
+  <tr class="markdownTableHead">    <th class="markdownTableHeadNone"> TXAGC_GVGA \ilinebr </th>    <th class="markdownTableHeadNone"> Attenuation depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY \ilinebr </th>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 0 - 000 \ilinebr </td>    <td class="markdownTableBodyNone"> 3; -3; -9; -15 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 1 - 001 \ilinebr </td>    <td class="markdownTableBodyNone"> 6;  0; -6; -12 \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 2 - 010 \ilinebr </td>    <td class="markdownTableBodyNone"> 9;  3; -3; -9 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 3 - 011 \ilinebr </td>    <td class="markdownTableBodyNone"> 12;  6;  0; -6 \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 4 - 100 \ilinebr </td>    <td class="markdownTableBodyNone"> 15;  9;  3; -3 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 5 - 101 \ilinebr </td>    <td class="markdownTableBodyNone"> 18; 12;  6;  0 \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> Others \ilinebr </td>    <td class="markdownTableBodyNone"> Reserved \ilinebr </td>  </tr></table>
+@param value  <br>
+@see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
+Devices, pag. 35
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
       sec-mem-id   = 'group__group01_1gadb1e44acd6a0d6a8f29dfaedef86a7e3';
       sec-mem-virt = normal;
       sec-mem-prot = public;
@@ -449,7 +555,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'parameters';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '817';
+      sec-mem-desc-line = '821';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set to TX mode with custom parameters.
 _EnD_oF_dEf_TeXt_;
@@ -475,7 +581,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'delayAfterReset';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '821';
+      sec-mem-desc-line = '825';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -493,7 +599,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setup';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '825';
+      sec-mem-desc-line = '829';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Device initial configuration.
 _EnD_oF_dEf_TeXt_;
@@ -511,7 +617,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'reset';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '826';
+      sec-mem-desc-line = '830';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -529,7 +635,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'stopTransmitting';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '827';
+      sec-mem-desc-line = '831';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -547,7 +653,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'startTransmitting';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '828';
+      sec-mem-desc-line = '832';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -571,7 +677,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '837';
+      sec-mem-desc-line = '841';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the Crystal Frequency object.
 _EnD_oF_dEf_TeXt_;
@@ -597,7 +703,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'PA_TRGT';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '838';
+      sec-mem-desc-line = '842';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 PA output power target control.
 _EnD_oF_dEf_TeXt_;
@@ -623,7 +729,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'frequency';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '840';
+      sec-mem-desc-line = '844';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
