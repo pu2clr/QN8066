@@ -1,9 +1,14 @@
-# QN8066
-RX and TX FM DSP Transmitter 
+# QN8066 RX and TX FM DSP Transmitter 
 
-UNDER CONSTRUCTION ...
+This library is intended to provide an easy-to-use interface for controlling the QN8066 FM transceiver. 
 
-![UNDER CONSTRUCTION ...](./extra/images/under_construction.png)
+
+
+This library can be freely distributed using the MIT Free Software model. 
+By using or installing Library you are agreeing to the terms of the [MIT licence](https://pu2clr.github.io/SI4735/#mit-license).
+
+[Copyright (c) 2024 Ricardo Lima Caratti](https://pu2clr.github.io/QN8066/#mit-license). 
+
 
 
 
@@ -144,6 +149,31 @@ The images below show the DIY Kit 5W-7W FM Transceiver available on AliExpress.
 ![DIY Kit 5W-7W FM Transceiver 02](./extra/images/KIT_ALIEXPRESS_02.jpg)
 
 
+
+
+## MIT License 
+
+Copyright (c) 2019 Ricardo Lima Caratti
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+<BR>
 
 
 ## References 
