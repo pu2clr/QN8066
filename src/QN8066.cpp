@@ -294,6 +294,83 @@ void QN8066::setAudioTxDiff(bool value) {
   this->setRegister(QN_VOL_CTL, vol_ctl.raw);
 }
 
+
+/**
+ * @ingroup group03  TX Setup
+ * @brief TX mode input impedance for both L/R channels
+ * @details Sets the imput impedance  Left and Rihgt channels
+ * 
+ * | RIN Value |  Input impedance (k) | 
+ * | --------- | -------------------- |
+ * |  00  (0)  |          10          | 
+ * |  01  (1)  |          20          |
+ * |  10  (2)  |          40          | 
+ * |  11  (3)  |          80          | 
+ *
+ * @param value  (true or false)
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
+ * Devices, pag. 35
+ */
+void QN8066::setTxInputImpedance(uint8_t value) {
+  qn8066_reg_vga reg_vga; 
+
+  reg_vga.raw = this->getRegister(QN_REG_VGA);
+  reg_vga.arg.RIN = value;
+  this->setRegister(QN_REG_VGA, reg_vga.raw);
+}
+
+
+/**
+ * @ingroup group03  TX Setup
+ * @brief TX digital gain
+ * @details TX digital gain
+ * 
+ * | TXAGC_GDB |  Digital gain        | 
+ * | --------- | -------------------- |
+ * |  00  (0)  |          0 dB        | 
+ * |  01  (1)  |          1 dB        |
+ * |  10  (2)  |          2 dB        | 
+ * |  11  (3)  |         Reserved     | 
+ *
+ * @param value  
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
+ * Devices, pag. 35
+ */
+void QN8066::setTxDigitalGain(uint8_t value) {
+  qn8066_reg_vga reg_vga; 
+
+  reg_vga.raw = this->getRegister(QN_REG_VGA);
+  reg_vga.arg.TXAGC_GDB = value;
+  this->setRegister(QN_REG_VGA, reg_vga.raw);
+}
+
+
+/**
+ * @ingroup group03  TX Setup
+ * @brief TX input buffer gain
+ * @details Sets TX input buffer gain
+ * | TXAGC_GVGA  | Attenuation depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY  |
+ * | ----------  | ---------------------------------------------------------- |
+ * |  0 - 000    |  3; -3; -9; -15   |
+ * |  1 - 001    |  6;  0; -6; -12   |
+ * |  2 - 010    |  9;  3; -3; -9    |
+ * |  3 - 011    | 12;  6;  0; -6    |
+ * |  4 - 100    | 15;  9;  3; -3    |
+ * |  5 - 101    | 18; 12;  6;  0    |
+ * |  Others     | Reserved |
+ * @param value  
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
+ * Devices, pag. 35
+ */
+void QN8066::setTxInputBufferGain(uint8_t value) {
+  qn8066_reg_vga reg_vga; 
+
+  reg_vga.raw = this->getRegister(QN_REG_VGA);
+  reg_vga.arg.TXAGC_GVGA = value;
+  this->setRegister(QN_REG_VGA, reg_vga.raw);
+}
+
+
 /**
  * @ingroup group03 TX Channel
  * @brief convert a given frequency to a channel

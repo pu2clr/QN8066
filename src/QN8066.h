@@ -806,6 +806,10 @@ public:
   void setAudioDigitalGain(uint8_t value);
   void setAudioDacHold(bool value);  
   void setAudioTxDiff(bool value);
+  void setTxInputImpedance(uint8_t value);
+  void setTxDigitalGain(uint8_t value);
+  void setTxInputBufferGain(uint8_t value);
+
 
   /**
    * @ingroup group01
