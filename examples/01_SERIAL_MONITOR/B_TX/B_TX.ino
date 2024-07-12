@@ -51,6 +51,10 @@ void setup() {
   sprintf(str, "SYSTEM2 (Stereo/Mono and Pre-emphasis): %x", dv.getRegister(QN_SYSTEM2));
   Serial.print(str);
 
+
+  dv.setTxInputImpedance(0); // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
+
+
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
   TCCR1B = TCCR1B & B11111000 | B00000001;  // Set PWM frequency to about 31 kHz
