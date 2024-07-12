@@ -372,6 +372,16 @@ void QN8066::setTxInputBufferGain(uint8_t value) {
 
 
 /**
+ * @ingroup group03  TX Setup
+ * @brief Specify total TX frequency deviation.
+ * @details TX frequency deviation = 0.69KHz*TX_FEDV. The default value is 108 (Binary: 01101100)
+ * @param value  
+ */
+ void QN8066::setTxFrequencyDerivation(uint8_t value) {
+  this->setRegister(QN_FDEV, value );
+ }
+
+/**
  * @ingroup group03 TX Channel
  * @brief convert a given frequency to a channel
  * @details By programming channel index RXCH[9:0] or TXCH[9:0], the RF channel

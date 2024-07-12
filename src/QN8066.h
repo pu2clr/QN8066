@@ -809,6 +809,7 @@ public:
   void setTxInputImpedance(uint8_t value);
   void setTxDigitalGain(uint8_t value);
   void setTxInputBufferGain(uint8_t value);
+  void setTxFrequencyDerivation(uint8_t value);
 
 
   /**

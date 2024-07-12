@@ -54,7 +54,7 @@ void setup() {
 
   dv.setTxInputImpedance(0); // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
   dv.setTxDigitalGain(2); // TX digital gain => 2 = 2dB  (default is 0 dB)
-
+  dv.setTxFrequencyDerivation(127); // Valid valued from 0 to 255
 
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
