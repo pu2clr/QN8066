@@ -798,6 +798,9 @@ public:
   void setTX(float frequency); // RESET the system and set to TX mode at a given
                                // frequency
 
+  void setTxStereo(bool value = true);  
+  void setTxPreEmphasis( uint8_t value = 75);
+
   void setTxPilotGain(uint8_t value);
   void setAudioAnalogGain(uint8_t value);
   void setAudioDigitalGain(uint8_t value);

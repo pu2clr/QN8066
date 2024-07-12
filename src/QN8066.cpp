@@ -182,6 +182,35 @@ void QN8066::setTX(float frequency) {
   delay(200);
 }
 
+
+/**
+ * @ingroup group03  TX Setup
+ * @brief Set TX Stereo or Mono
+ * @details  
+ * @param value (true = stereo; false = mono)
+ */
+void QN8066::setTxStereo( bool value ) {
+  qn8066_system2 system2;
+  system2.raw = this->getRegister(QN_SYSTEM2);
+  system2.arg.tx_mono = !value;
+  this->setRegister(QN_SYSTEM2, system2.raw);
+}
+
+
+/**
+ * @ingroup group03  TX Setup
+ * @brief   Pre-emphasis and de-emphasis time constant
+ * @details The valid values are 50 and 75. Any value not equal to 75 sets the Pre-emphasis to 50. 
+ * @param value (valids values:  50 or 75);
+ */
+void QN8066::setTxPreEmphasis( uint8_t value ) {
+  qn8066_system2 system2;
+  system2.raw = this->getRegister(QN_SYSTEM2);
+  system2.arg.tc = (value == 75);
+  this->setRegister(QN_SYSTEM2, system2.raw);
+}
+
+
 /**
  * @ingroup group03  TX Setup
  * @brief Gain of TX pilot to adjust pilot frequency deviation.
@@ -250,7 +279,6 @@ void QN8066::setAudioDacHold(bool value) {
   this->setRegister(QN_VOL_CTL, vol_ctl.raw);
 }
 
-
 /**
  * @ingroup group03  TX Setup
  * @brief Tx audio input mode selection
@@ -265,7 +293,6 @@ void QN8066::setAudioTxDiff(bool value) {
   vol_ctl.arg.DAC_HOLD = value;
   this->setRegister(QN_VOL_CTL, vol_ctl.raw);
 }
-
 
 /**
  * @ingroup group03 TX Channel

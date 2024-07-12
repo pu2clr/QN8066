@@ -40,9 +40,16 @@ void setup() {
   dv.setTX(FREQ);
   dv.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
 
-  dv.setAudioAnalogGain(0); // Em binário é 010 => -30dB
-  dv.setAudioDigitalGain(0);
-  // dv.setTxPilotGain(10);
+  // dv.setAudioAnalogGain(0); // Em binário é 010 => -30dB
+  // dv.setAudioDigitalGain(0);
+  dv.setTxPilotGain(10);
+  sprintf(str, "GPLT (setTxPilotGain): %x", dv.getRegister(QN_GPLT));
+  Serial.print(str);
+
+  dv.setTxStereo(false);
+  dv.setTxPreEmphasis(75);
+  sprintf(str, "SYSTEM2 (Stereo/Mono and Pre-emphasis): %x", dv.getRegister(QN_SYSTEM2));
+  Serial.print(str);
 
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
