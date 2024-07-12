@@ -1,9 +1,15 @@
 /**
  * @brief QN8066 ARDUINO LIBRARY
  *
+ * @details This is an Arduino library for the QN8066 FM RX/TX device (Digital FM Transceiver for Portable Devices). 
+ * @details The communication used by this library is I2C.
+ * @details This file contains: const (#define), Defined Data type and Methods declarations
+ * @details You can see a complete documentation on <https://github.com/pu2clr/QN8066>
+ * @details There are examples that can help you in your project on <https://github.com/pu2clr/QN8066/tree/master/examples>
+ * @see [General Documentation](https://pu2clr.github.io/QN8066/)
  *
  * @author PU2CLR - Ricardo Lima Caratti
- * @date  2024-06
+ * @date  2024
  */
 
 #ifndef _QN8066_H // Prevent this file from being compiled more than once
@@ -66,7 +72,7 @@
 #define QN_GPLT 0x27     // Transmitter soft chip threshold, gain of TX pilot.
 #define QN_REG_VGA 0x28  // TX AGC gain.
 
-/** @defgroup group01 Union, Struct and Defined Data Types
+/** @defgroup group00 Union, Struct and Defined Data Types
  * @section group01 Data Types
  *
  * @brief QN8066 data representation
@@ -76,7 +82,7 @@
  */
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief System1 - Sets device modes (Address: 00h)
  *
@@ -111,7 +117,7 @@ typedef union {
 } qn8066_system1;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief System2 - Sets device modes (Address: 01h)
  *
@@ -144,7 +150,7 @@ typedef union {
 } qn8066_system2;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief CCA - Sets CCA parameters ( Address: 02h)
  *
@@ -165,7 +171,7 @@ typedef union {
 } qn8066_cca;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief SRN - Estimate RF input CNR value( Address: 03h - Read Only)
  * @details Estimated RF input SNR.
@@ -179,7 +185,7 @@ typedef union {
 } qn8066_srn;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief RSSISIG - In-band signal RSSI (Received signal strength indicator)
  * dBuV value. dBuV=RSSI-49( Address: 04h - Read Only)
@@ -194,7 +200,7 @@ typedef union {
 } qn8066_rssisig;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief CID1 - Device ID numbers ( Address: 05h - Read Only)
  *
@@ -213,7 +219,7 @@ typedef union {
 } qn8066_cid1;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief CID2 - Device ID numbers ( Address: 06h - Read Only)
  *
@@ -231,7 +237,7 @@ typedef union {
 } qn8066_cid2;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief XTAL_DIV0 - Frequency select of reference clock source (Lower bits -
  * Address: 07h - Write Only)
@@ -247,7 +253,7 @@ typedef union {
 } qn8066_xtal_div0;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief XTAL_DIV1 - Frequency select of reference clock source (Lower bits -
  * Address: 08h - Write Only)
@@ -266,7 +272,7 @@ typedef union {
 } qn8066_xtal_div1;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief XTAL_DIV2 - Frequency select of reference clock source (Lower bits -
  * Address: 09h - Write Only)
@@ -281,7 +287,7 @@ typedef union {
 } qn8066_xtal_div2;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief STATUS1 -  System status ( Address: 0Ah - Read Only)
  *
@@ -321,7 +327,7 @@ typedef union {
 } qn8066_status1;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief   RX_CH - Lower 8 bit of 10-bit receiver channel index (Address: 0Bh -
  * Write Only)
@@ -343,7 +349,7 @@ typedef union {
 } qn8066_rx_ch;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief CH_START - Lower 8 bits of 10-bit CCA(channel scan) start channel
  * index (Address: 0Ch - Write Only)
@@ -358,7 +364,7 @@ typedef union {
 } qn8066_ch_start;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief CH_STOP - Lower 8 bits of 10-bit channel scan stop channel index
  * (Address: 0Dh - Write Only)
@@ -373,7 +379,7 @@ typedef union {
 } qn8066_ch_stop;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief CH_STEP - Channel scan frequency step (Address: 0Eh - Write Only)
  *
@@ -396,7 +402,7 @@ typedef union {
 } qn8066_ch_step;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief RDS - RDS data byte 0 to byte 7 (Address: 0Fh to 16h - Read Only)
  *
@@ -419,7 +425,7 @@ typedef union {
 } qn8066_rx_rds;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief STATUS2 - Receiver RDS status indicators (Address: 17h - Read Only)
  *
@@ -453,7 +459,7 @@ typedef union {
 } qn8066_status2;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief VOL_CT -  Audio volume control (Address: 18h - Write Only)
  *
@@ -477,7 +483,7 @@ typedef union {
 } qn8066_vol_ctl;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief INT_CTRL -  Receiver RDS control (Address: 19h - Write Only)
  *
@@ -513,7 +519,7 @@ typedef union {
 } qn8066_int_ctrl;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief STATUS3 -  Receiver audio peak level and AGC status (Address: 1Ah -
  * Read Only)
@@ -542,7 +548,7 @@ typedef union {
 } qn8066_status3;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief TXCH - Lower 8 bit of 10-bit transmitter channel index (Address: 1Bh -
  * Read and Write)
@@ -564,7 +570,7 @@ typedef union {
 } qn8066_tx_ch;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief RDS - RDS tx data from byte 0 to byte 7 (Address: 1Ch to 23h - Write
  * Only)
@@ -588,7 +594,7 @@ typedef union {
 } qn8066_tx_rds;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief PAC - PA output power target control (Address: 24h - Write Only)
  * @details  PA_TRGT  - PA output power target is 0.91*PA_TRGT+70.2dBu. Valid
@@ -613,7 +619,7 @@ typedef union {
 } qn8066_pac;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief FDEV - Specify total TX frequency deviation (Address: 25h - Write
  * Only)
@@ -630,7 +636,7 @@ typedef union {
 } qn8066_fdev;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief RDS - Specify transmit RDS frequency deviation (Address: 26h - Write
  * Only)
@@ -654,7 +660,7 @@ typedef union {
 } qn8066_rds;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief GPLT - Transmitter soft chip threshold, gain of TX pilot (Address: 27h
  * - Write Only)
@@ -697,7 +703,7 @@ typedef union {
 } qn8066_gplt;
 
 /**
- * @ingroup group01
+ * @ingroup group00
  *
  * @brief REG_VGA - X AGC gain (Address: 28h - Read and Write)
  *
@@ -789,6 +795,7 @@ public:
   void setTX(float frequency); // RESET the system and set to TX mode at a given
                                // frequency
   /**
+   * @ingroup group01
    * @brief   Set to TX mode with custom parameters
    * @details Switch to TX mode by using custom parameters (see SYSTEM1 register
    * and  qn8066_system1 structure data type)
@@ -808,6 +815,7 @@ public:
   void startTransmitting();
 
   /**
+   * @ingroup group01
    * @brief Set the Crystal Frequency object
    * @details Based on the external crystal oscillator, calculates the divider
    * parameter (xtal_div). See registers XTAL_DIV0 and XTAL_DIV1
