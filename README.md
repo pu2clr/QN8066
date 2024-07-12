@@ -20,8 +20,8 @@ I hold a Master's degree in Educational Technology from the Federal University o
 ## Contents
 
 1. [Technical Overview of the QN8066 RX/TX Device (IC)](./#technical-overview-of-the-qn8066-rxtx-device-ic)
-2. [QN8066 Functional Blocks]()
-3. [QN8066 PINOUT]()
+2. [QN8066 Functional Blocks](./#qn8066-functional-blocks)
+3. [QN8066 PINOUT](qn8066-pinout)
 4. [QN8066 Summary of User Control Registers]()
 5. [DIY Kit 5W-7W FM Transceiver]()
 
@@ -72,7 +72,7 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 
 ## QN8066 PINOUT 
 
-![QN8066 PINOUT](./extra/images/QN8066_PINOUT.png)
+![QN8066 PINOUT](./extrasimages/QN8066_PINOUT.png)
 
 ## QN8066 Pin Descriptions
 
@@ -155,12 +155,12 @@ The images below show the DIY Kit 5W-7W FM Transceiver available on AliExpress.
 
 ### DIY Kit 5W-7W FM Transceiver assembled without the RF final amplifier 
 
-![DIY Kit 5W-7W FM Transceiver 01](./extra/images/KIT_ALIEXPRESS_01.jpg)
+![DIY Kit 5W-7W FM Transceiver 01](./extras/images/KIT_ALIEXPRESS_01.jpg)
 
 
 ### DIY Kit 5W-7W FM Transceiver assembled in a homemade case
 
-![DIY Kit 5W-7W FM Transceiver 02](./extra/images/KIT_ALIEXPRESS_02.jpg)
+![DIY Kit 5W-7W FM Transceiver 02](./extras/images/KIT_ALIEXPRESS_02.jpg)
 
 
 
