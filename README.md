@@ -5,10 +5,10 @@ This library is intended to provide an easy-to-use interface for controlling the
 The primary goal of this Arduino library project for the QN8066 is to simplify the development of robust applications using this device. I hope that hobbyists, electronics technicians, radio amateurs, and others interested in this work will find success in their projects.
 
 
-This library can be freely distributed using the [MIT Free Software model](./#mit-license). 
-By using or installing Library you are agreeing to the terms of the [MIT licence](./#mit-license).
+This library can be freely distributed using the [MIT Free Software model](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
+By using or installing Library you are agreeing to the terms of the [MIT licence](https://github.com/pu2clr/QN8066/blob/main/LICENSE).
 
-[Copyright (c) 2024 Ricardo Lima Caratti](https://pu2clr.github.io/QN8066/#mit-license). 
+[Copyright (c) 2024 Ricardo Lima Caratti](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
 
 
 ## About the Author
@@ -19,7 +19,7 @@ I hold a Master's degree in Educational Technology from the Federal University o
 
 ## Contents
 
-1. [Technical Overview of the QN8066 RX/TX Device (IC)]()
+1. [Technical Overview of the QN8066 RX/TX Device (IC)](./#technical-overview-of-the-qn8066-rxtx-device-ic)
 2. [QN8066 Functional Blocks]()
 3. [QN8066 PINOUT]()
 4. [QN8066 Summary of User Control Registers]()
@@ -163,31 +163,6 @@ The images below show the DIY Kit 5W-7W FM Transceiver available on AliExpress.
 ![DIY Kit 5W-7W FM Transceiver 02](./extra/images/KIT_ALIEXPRESS_02.jpg)
 
 
-
-
-## MIT License 
-
-Copyright (c) 2019 Ricardo Lima Caratti
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-<BR>
 
 
 ## References 
