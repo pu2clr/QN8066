@@ -61,7 +61,7 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 ## QN8066 Functional Blocks
 
 
-![Functional Blocks](./extra/images/BLOCK_DIA.png)
+![Functional Blocks](./extras/images/BLOCK_DIA.png)
 
 
 1. **RF Front-End**: The RF front-end is designed to efficiently capture and process FM signals, ensuring minimal loss and high-quality signal reception.
@@ -73,7 +73,7 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 
 ## QN8066 PINOUT 
 
-![QN8066 PINOUT](./extrasimages/QN8066_PINOUT.png)
+![QN8066 PINOUT](./extras/images/QN8066_PINOUT.png)
 
 ### QN8066 Pin Descriptions
 
