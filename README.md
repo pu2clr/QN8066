@@ -11,7 +11,7 @@ By using or installing Library you are agreeing to the terms of the [MIT licence
 [Copyright (c) 2024 Ricardo Lima Caratti](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
 
 
-## About the Author
+## About Me
 
 I hold a Master's degree in Educational Technology from the Federal University of Ceará, where I delved into the ways technology can enhance learning experiences. My passion for computer science led me to specialize in it, focusing on Distributed Systems Development with an Object-Oriented approach, at the University of Brasília. My academic journey began with a Bachelor's degree in Information Systems from the União Pioneira de Integração Social (UPIS-Brasília). Outside the classroom, my main hobbies are electronics and Amateur Radio. 
 
@@ -21,9 +21,9 @@ I hold a Master's degree in Educational Technology from the Federal University o
 
 1. [Technical Overview of the QN8066 RX/TX Device (IC)](./#technical-overview-of-the-qn8066-rxtx-device-ic)
 2. [QN8066 Functional Blocks](./#qn8066-functional-blocks)
-3. [QN8066 PINOUT](qn8066-pinout)
-4. [QN8066 Summary of User Control Registers]()
-5. [DIY Kit 5W-7W FM Transceiver]()
+3. [QN8066 PINOUT](./#qn8066-pinout)
+4. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
+5. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
 
 
 ## Technical Overview of the QN8066 RX/TX Device (IC)
@@ -74,7 +74,7 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 
 ![QN8066 PINOUT](./extrasimages/QN8066_PINOUT.png)
 
-## QN8066 Pin Descriptions
+### QN8066 Pin Descriptions
 
 | SSOP16 PIN | NAME | DESCRIPTION |
 | ------- | ---- | ----------- |
