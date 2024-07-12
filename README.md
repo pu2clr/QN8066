@@ -1,16 +1,29 @@
-# QN8066 RX and TX FM DSP Transmitter 
+# QN8066 RX and TX FM DSP Transmitter Arduino Library
 
 This library is intended to provide an easy-to-use interface for controlling the QN8066 FM transceiver. 
 
+The primary goal of this Arduino library project for the QN8066 is to simplify the development of robust applications using this device. I hope that hobbyists, electronics technicians, radio amateurs, and others interested in this work will find success in their projects.
 
 
-This library can be freely distributed using the MIT Free Software model. 
-By using or installing Library you are agreeing to the terms of the [MIT licence](https://pu2clr.github.io/SI4735/#mit-license).
+This library can be freely distributed using the [MIT Free Software model](./#mit-license). 
+By using or installing Library you are agreeing to the terms of the [MIT licence](./#mit-license).
 
 [Copyright (c) 2024 Ricardo Lima Caratti](https://pu2clr.github.io/QN8066/#mit-license). 
 
 
+## About the Author
 
+I hold a Master's degree in Educational Technology from the Federal University of Ceará, where I delved into the ways technology can enhance learning experiences. My passion for computer science led me to specialize in it, focusing on Distributed Systems Development with an Object-Oriented approach, at the University of Brasília. My academic journey began with a Bachelor's degree in Information Systems from the União Pioneira de Integração Social (UPIS-Brasília). Outside the classroom, my main hobbies are electronics and Amateur Radio. 
+
+
+
+## Contents
+
+1. [Technical Overview of the QN8066 RX/TX Device (IC)]()
+2. [QN8066 Functional Blocks]()
+3. [QN8066 PINOUT]()
+4. [QN8066 Summary of User Control Registers]()
+5. [DIY Kit 5W-7W FM Transceiver]()
 
 
 ## Technical Overview of the QN8066 RX/TX Device (IC)
@@ -37,7 +50,14 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 - **Modulation Modes**: Supports various modulation modes including mono, stereo, and digital audio formats.
 - **Interface**: I2C interface for easy communication with microcontrollers and other digital systems.
 
-#### Functional Blocks
+#### Applications
+
+- **Portable Radios**: Due to its compact size and low power consumption, the QN8066 is ideal for portable radio applications.
+- **Automotive Systems**: The high sensitivity and DSP capabilities make it suitable for in-car entertainment systems.
+- **Multimedia Devices**: Compatible with a variety of audio sources, the QN8066 can be integrated into multimedia devices requiring FM reception and transmission capabilities.
+
+
+## QN8066 Functional Blocks
 
 
 ![Functional Blocks](./extra/images/BLOCK_DIA.png)
@@ -47,12 +67,6 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 2. **PLL Synthesizer**: The phase-locked loop (PLL) synthesizer ensures stable frequency generation and accurate tuning.
 3. **Audio Processing**: Includes both analog and digital audio processing units to enhance sound quality and support various audio formats.
 4. **Power Management**: Advanced power management features optimize power consumption, making the QN8066 ideal for portable applications.
-
-#### Applications
-
-- **Portable Radios**: Due to its compact size and low power consumption, the QN8066 is ideal for portable radio applications.
-- **Automotive Systems**: The high sensitivity and DSP capabilities make it suitable for in-car entertainment systems.
-- **Multimedia Devices**: Compatible with a variety of audio sources, the QN8066 can be integrated into multimedia devices requiring FM reception and transmission capabilities.
 
 
 
