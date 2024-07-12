@@ -42,7 +42,7 @@ void setup() {
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
   TCCR1B = TCCR1B & B11111000 | B00000001;  // Set PWM frequency to about 31 kHz
-  analogWrite(9, 220); 
+  analogWrite(9, 127); 
 
   sprintf(str, "\n\nSYSTEM1: %d \nCCA: %d \nXTAL_DIV0: %d\nXTAL_DIV1: %d", dv.getRegister(QN_SYSTEM1), dv.getRegister(QN_CCA), dv.getRegister(QN_XTAL_DIV0),  dv.getRegister(QN_XTAL_DIV1));
   Serial.print(str);
