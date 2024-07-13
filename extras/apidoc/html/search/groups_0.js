@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['basic_20functions_20_20_3cbr_3e_0',['Basic Functions  &lt;br&gt;',['../group__group02.html',1,'']]]
+  ['basic_20functions_0',['Basic Functions',['../group__group02.html',1,'']]]
 ];

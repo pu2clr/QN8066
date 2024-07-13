@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PU2CLR QN8066 Arduino Library: TX Functions  &lt;br&gt;</title>
+<title>PU2CLR QN8066 Arduino Library: TX Functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -92,7 +92,7 @@ $(document).ready(function(){initNavTree('group__group04.html',''); initResizabl
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">TX Functions &lt;br&gt;</div></div>
+  <div class="headertitle"><div class="title">TX Functions</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
@@ -110,6 +110,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga0664c14d7c23ede48874c9007b157d46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga0664c14d7c23ede48874c9007b157d46">QN8066::writeTxRDSBuffer</a> (char *text)</td></tr>
 <tr class="memdesc:ga0664c14d7c23ede48874c9007b157d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)  <br /></td></tr>
 <tr class="separator:ga0664c14d7c23ede48874c9007b157d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gacb4f89faa8744c4adbf4b3bbfc2412b4">QN8066::setRDSFrequencyDeviation</a> (uint8_t freq)</td></tr>
+<tr class="memdesc:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS frequency deviation.  <br /></td></tr>
+<tr class="separator:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga53969a8d55eb57c9c8d97c5170f5d94b">QN8066::setRDSLineIn</a> (bool value)</td></tr>
+<tr class="memdesc:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio Line-in enable control.  <br /></td></tr>
+<tr class="separator:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -210,6 +216,61 @@ false </dd></dl>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="gacb4f89faa8744c4adbf4b3bbfc2412b4" name="gacb4f89faa8744c4adbf4b3bbfc2412b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacb4f89faa8744c4adbf4b3bbfc2412b4">&#9670;&#160;</a></span>setRDSFrequencyDeviation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setRDSFrequencyDeviation </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>freq</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets RDS frequency deviation. </p>
+<p>RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode.</p>
+<p>RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">freq</td><td>( valid values: from 0 to 127) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Datasheet, register RDS (0x26), page 34. </dd></dl>
+
+</div>
+</div>
+<a id="ga53969a8d55eb57c9c8d97c5170f5d94b" name="ga53969a8d55eb57c9c8d97c5170f5d94b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga53969a8d55eb57c9c8d97c5170f5d94b">&#9670;&#160;</a></span>setRDSLineIn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setRDSLineIn </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Audio Line-in enable control. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(true = enabled; false = disabled) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Datasheet, register RDS (0x26), page 34. </dd></dl>
 
 </div>
 </div>

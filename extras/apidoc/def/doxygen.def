@@ -19,8 +19,7 @@ _EnD_oF_dEf_TeXt_;
 Checks communication with QN8066 via I2C.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- Checks if the QN8066 is available on the I2C bus. Remember that the
-QN8066 responds to the address 0x21
+ Checks if the QN8066 is available on the I2C bus. Remember that the QN8066 responds to the address 0x21
 @return  true or false
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
@@ -45,8 +44,7 @@ _EnD_oF_dEf_TeXt_;
 Scans the I2C bus and returns the addresses of the devices found.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- Searches for devices connected to the I2C bus. The addresses of the
-devices found are stored in the "device" array.
+ Searches for devices connected to the I2C bus. The addresses of the devices found are stored in the "device" array.
 @param device array of device addresses found.
 @return uint8_t number of devices found or 0 if no device found or error.
 _EnD_oF_dEf_TeXt_;
@@ -72,7 +70,7 @@ _EnD_oF_dEf_TeXt_;
 Gets register information.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 67 
+\iline 65 
 
 @param registerNumber
 @return uint8_t Value of the register
@@ -105,7 +103,7 @@ _EnD_oF_dEf_TeXt_;
 Stores a velue to a given register.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 85 
+\iline 83 
 
 @param registerNumber
 @param value
@@ -202,7 +200,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga1c7236e219778ab5a939ff4bd659183b';
-        sec-mem-ref-line = '481';
+        sec-mem-ref-line = '477';
         sec-mem-ref-name = 'getTxRDSUpdated';
     };
     }; /* sec-member */
@@ -327,8 +325,7 @@ _EnD_oF_dEf_TeXt_;
 Gain of TX pilot to adjust pilot frequency deviation.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- Refers to peak frequency deviation of MPX signal when audio input is
-full scale.  Valid values: between 7 and 10.
+ Refers to peak frequency deviation of MPX signal when audio input is full scale.  Valid values: between 7 and 10.
 \ilinebr\ilinebr the frequency deviation is value (%) *  75 kHz.
 @param value
 _EnD_oF_dEf_TeXt_;
@@ -406,8 +403,7 @@ _EnD_oF_dEf_TeXt_;
 DAC output control.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- If value is 0 (false), then "Normal operation"; if true, Hold DAC
-output to a fixed voltage.
+ If value is 0 (false), then "Normal operation"; if true, Hold DAC output to a fixed voltage.
 
 @param value  (true or false)
 _EnD_oF_dEf_TeXt_;
@@ -868,7 +864,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gafcb2a26df67c63e40800a29a559c5505';
-        sec-mem-ref-line = '126';
+        sec-mem-ref-line = '124';
         sec-mem-ref-name = 'getStatus3';
     };
     }; /* sec-member */
@@ -895,6 +891,58 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer.
 @param text (point to array of char with 8 bytes to be loaded into the RDS data buffer)
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group04_1gacb4f89faa8744c4adbf4b3bbfc2412b4';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setRDSFrequencyDeviation';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'freq';
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
+      sec-mem-desc-line = '850';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Sets RDS frequency deviation.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. 
+\ilinebr\ilinebr RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode.
+@param freq ( valid values: from 0 to 127)
+@see Datasheet, register RDS (0x26), page 34. 
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group04_1ga53969a8d55eb57c9c8d97c5170f5d94b';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'setRDSLineIn';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+bool
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'value';
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
+      sec-mem-desc-line = '851';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Audio Line-in enable control.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+@param value (true = enabled; false = disabled)
+@see Datasheet, register RDS (0x26), page 34. 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
