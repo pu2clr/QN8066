@@ -846,7 +846,6 @@ public:
 
   // RDS 
   void setTxRDS(bool value);   
-  void setTxRDS(bool value); 
   void setTxToggleRDSReady();
 
 };

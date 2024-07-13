@@ -90,9 +90,71 @@ $(document).ready(function(){initNavTree('group__group04.html',''); initResizabl
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">TX Functions &lt;br&gt;</div></div>
 </div><!--header-->
 <div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaaad14424c57781256cfbda7accadbd49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaaad14424c57781256cfbda7accadbd49">QN8066::setTxRDS</a> (bool value)</td></tr>
+<tr class="memdesc:gaaad14424c57781256cfbda7accadbd49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmitter RDS enable.  <br /></td></tr>
+<tr class="separator:gaaad14424c57781256cfbda7accadbd49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaba2e2e1f2df33bb652fe36878355bc98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaba2e2e1f2df33bb652fe36878355bc98">QN8066::setTxToggleRDSReady</a> ()</td></tr>
+<tr class="memdesc:gaba2e2e1f2df33bb652fe36878355bc98"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS transmitting ready.  <br /></td></tr>
+<tr class="separator:gaba2e2e1f2df33bb652fe36878355bc98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaaad14424c57781256cfbda7accadbd49" name="gaaad14424c57781256cfbda7accadbd49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaaad14424c57781256cfbda7accadbd49">&#9670;&#160;</a></span>setTxRDS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxRDS </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transmitter RDS enable. </p>
+<p>Enable RDS service </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(true = enabled; false = disabled) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Pages 20 and 21 of the Datasheet (Register SYSTEM2) </dd></dl>
+
+</div>
+</div>
+<a id="gaba2e2e1f2df33bb652fe36878355bc98" name="gaba2e2e1f2df33bb652fe36878355bc98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaba2e2e1f2df33bb652fe36878355bc98">&#9670;&#160;</a></span>setTxToggleRDSReady()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxToggleRDSReady </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RDS transmitting ready. </p>
+<p>If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit.</p>
+<p>description the chip internally will fetch these bytes after completing transmitting of current group. </p><dl class="section see"><dt>See also</dt><dd>Pages 20 and 21 of the Datasheet (Register SYSTEM2) </dd></dl>
+
+</div>
+</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

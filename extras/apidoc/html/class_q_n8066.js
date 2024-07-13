@@ -21,6 +21,7 @@ var class_q_n8066 =
     [ "setTxInputImpedance", "group__group03.html#ga751bb2147b6355745b261cc8f86a017c", null ],
     [ "setTxDigitalGain", "group__group03.html#ga8eb4772b22c08ce7b44e52b01af342f5", null ],
     [ "setTxInputBufferGain", "group__group03.html#ga09843594c1c9203a738c3a18cbc78403", null ],
+    [ "setTxFrequencyDerivation", "group__group03.html#ga88ea23b676feb40a15725b9273eca95b", null ],
     [ "setTX", "group__group01.html#gadb1e44acd6a0d6a8f29dfaedef86a7e3", null ],
     [ "setResetDelay", "class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1", null ],
     [ "setup", "group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f", null ],
@@ -29,5 +30,7 @@ var class_q_n8066 =
     [ "startTransmitting", "class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b", null ],
     [ "setCrystalFrequency", "group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca", null ],
     [ "setPAC", "group__group03.html#ga90eeea994b03d7c31ac09426982884c0", null ],
-    [ "setTxFrequency", "class_q_n8066.html#a8797080798a8710609658b0d270ca914", null ]
+    [ "setTxFrequency", "class_q_n8066.html#a8797080798a8710609658b0d270ca914", null ],
+    [ "setTxRDS", "group__group04.html#gaaad14424c57781256cfbda7accadbd49", null ],
+    [ "setTxToggleRDSReady", "group__group04.html#gaba2e2e1f2df33bb652fe36878355bc98", null ]
 ];
