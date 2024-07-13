@@ -710,7 +710,7 @@ typedef union {
  * @ingroup group00
  *
  * @brief REG_VGA - X AGC gain (Address: 28h - Read and Write)
- *
+ * @details Attenuation/Gain depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY. See tables below. 
  * | RIN        | Input impedance (K Ohoms) |
  * | ---------- | ------------------------- |
  * |  0 - 00    | 10    |
@@ -725,15 +725,16 @@ typedef union {
  * |  2 - 10    | 2 dB |
  * |  3 - 11    | Reserved |
  *
- * | TXAGC_GVGA  | Attenuation depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY  |
+ * | TXAGC_GVGA  | Attenuation/Gain depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY  |
  * | ----------  | ---------------------------------------------------------- |
  * |  0 - 000    |  3; -3; -9; -15   |
  * |  1 - 001    |  6;  0; -6; -12   |
  * |  2 - 010    |  9;  3; -3; -9    |
  * |  3 - 011    | 12;  6;  0; -6    |
  * |  4 - 100    | 15;  9;  3; -3    |
- * |  5 - 101    | 18; 12;  6;  0    |
+ * |  5 - 101    | 18; 12;  6;  0    |  
  * |  Others     | Reserved |
+ * 
  *
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
  * Devices, pag. 35
@@ -809,6 +810,7 @@ public:
   void setTxInputImpedance(uint8_t value);
   void setTxDigitalGain(uint8_t value);
   void setTxInputBufferGain(uint8_t value);
+  void setTxSoftClipping( bool value);
   void setTxFrequencyDerivation(uint8_t value);
 
 

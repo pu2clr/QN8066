@@ -358,6 +358,13 @@ void QN8066::setTxDigitalGain(uint8_t value) {
  * |  4 - 100    | 15;  9;  3; -3    |
  * |  5 - 101    | 18; 12;  6;  0    |
  * |  Others     | Reserved |
+ * @code {.c++}
+ *  QN8066 tx; 
+ *  ...
+ *  tx.setsetTxInputImpedance(0);  // Sets the input impedance to 10 Kohms
+ *  tx.setTxInputBufferGain(5);    // Now the Gain will be 18dB
+ *  ... 
+ * @endcode
  * @param value  
  * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
  * Devices, pag. 35
@@ -368,6 +375,20 @@ void QN8066::setTxInputBufferGain(uint8_t value) {
   reg_vga.raw = this->getRegister(QN_REG_VGA);
   reg_vga.arg.TXAGC_GVGA = value;
   this->setRegister(QN_REG_VGA, reg_vga.raw);
+}
+
+
+/**
+ * @ingroup group03  TX Setup
+ * @brief TX soft clipping enable
+ * @details  
+ * @param value  (true = enabled; false = disabled)
+ */
+void QN8066::setTxSoftClipping( bool value) {
+  qn8066_reg_vga reg_vga; 
+  reg_vga.raw = this->getRegister(QN_REG_VGA);
+  reg_vga.arg.tx_sftclpen = value;
+  this->setRegister(QN_REG_VGA, reg_vga.raw);  
 }
 
 
