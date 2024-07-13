@@ -72,7 +72,7 @@ _EnD_oF_dEf_TeXt_;
 Gets register information.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 66 
+\iline 67 
 
 @param registerNumber
 @return uint8_t Value of the register
@@ -105,7 +105,7 @@ _EnD_oF_dEf_TeXt_;
 Stores a velue to a given register.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 84 
+\iline 85 
 
 @param registerNumber
 @param value
