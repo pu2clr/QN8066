@@ -1,15 +1,11 @@
 /**
  * @brief QN8066 ARDUINO LIBRARY
  *
- * @details This is an Arduino library for the QN8066 FM RX/TX device (Digital
- * FM Transceiver for Portable Devices).
+ * @details This is an Arduino library for the QN8066 FM RX/TX device (Digital FM Transceiver for Portable Devices).
  * @details The communication used by this library is I2C.
- * @details This file contains: const (#define), Defined Data type and Methods
- * declarations
- * @details You can see a complete documentation on
- * <https://github.com/pu2clr/QN8066>
- * @details There are examples that can help you in your project on
- * <https://github.com/pu2clr/QN8066/tree/master/examples>
+ * @details This file contains: const (#define), Defined Data type and Methods declarations 
+ * @details You can see a complete documentation on  <https://github.com/pu2clr/QN8066>
+ * @details There are examples that can help you in your project on  <https://github.com/pu2clr/QN8066/tree/master/examples>
  * @see [General Documentation](https://pu2clr.github.io/QN8066/)
  *
  * @author PU2CLR - Ricardo Lima Caratti
