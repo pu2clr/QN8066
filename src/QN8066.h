@@ -847,6 +847,8 @@ public:
   void setTxToggleRDSReady();
   bool getTxRDSUpdated();
   void writeTxRDSBuffer(char *text);
+  void setRDSFrequencyDeviation(uint8_t freq);
+  void setRDSLineIn(bool value); 
 
 };
 

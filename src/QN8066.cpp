@@ -19,8 +19,7 @@
 /**
  * @ingroup group01 Detect Device
  * @brief   Checks communication with QN8066 via I2C
- * @details Checks if the QN8066 is available on the I2C bus. Remember that the
- * QN8066 responds to the address 0x21
+ * @details Checks if the QN8066 is available on the I2C bus. Remember that the QN8066 responds to the address 0x21
  * @return  true or false
  */
 bool QN8066::detectDevice() {
@@ -34,8 +33,7 @@ bool QN8066::detectDevice() {
 /**
  * @ingroup group01 Scan I2C Devices
  * @brief  Scans the I2C bus and returns the addresses of the devices found.
- * @details Searches for devices connected to the I2C bus. The addresses of the
- * devices found are stored in the "device" array.
+ * @details Searches for devices connected to the I2C bus. The addresses of the devices found are stored in the "device" array.
  * @param device array of device addresses found.
  * @return uint8_t number of devices found or 0 if no device found or error.
  */
@@ -60,7 +58,7 @@ uint8_t QN8066::scanI2CBus(uint8_t *device) {
   return idxDevice;
 }
 
-/** @defgroup group02 Basic Functions  */
+/** @defgroup group02 Basic Functions*/
 
 /**
  * @ingroup group02 I2C
@@ -139,7 +137,7 @@ void QN8066::setup() {
   Wire.begin();
 }
 
-/** @defgroup group03 RX Functions  */
+/** @defgroup group03 RX Functions*/
 
 /**
  * @ingroup group03 RX
@@ -151,7 +149,7 @@ void QN8066::setRX() {
   // TODO...
 }
 
-/** @defgroup group04 TX Functions  */
+/** @defgroup group04 TX Functions*/
 
 /**
  * @ingroup group03 Start TX
@@ -215,8 +213,7 @@ void QN8066::setTxPreEmphasis( uint8_t value ) {
 /**
  * @ingroup group03  TX Setup
  * @brief Gain of TX pilot to adjust pilot frequency deviation.
- * @details Refers to peak frequency deviation of MPX signal when audio input is
- * full scale.  Valid values: between 7 and 10.
+ * @details Refers to peak frequency deviation of MPX signal when audio input is full scale.  Valid values: between 7 and 10.
  * @details the frequency deviation is value (%) *  75 kHz.
  * @param value
  */
@@ -267,8 +264,7 @@ void QN8066::setAudioDigitalGain(uint8_t value) {
 /**
  * @ingroup group03  TX Setup
  * @brief DAC output control
- * @details If value is 0 (false), then "Normal operation"; if true, Hold DAC
- * output to a fixed voltage.
+ * @details If value is 0 (false), then "Normal operation"; if true, Hold DAC output to a fixed voltage.
  *
  * @param value  (true or false)
  */
@@ -439,7 +435,7 @@ void QN8066::setPAC(uint8_t PA_TRGT) {
 
 
 
-/** @defgroup group04 TX RDS Setup */
+/** @defgroup group04 TX RDS Setup*/
 
 /**
  * @ingroup group04 TX RDS
@@ -494,3 +490,30 @@ void QN8066::writeTxRDSBuffer(char *text) {
   }
 }
 
+/**
+ * @ingroup group04 TX RDS
+ * @brief Sets RDS frequency deviation.
+ * @details RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. 
+ * @details RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode.
+ * @param freq ( valid values: from 0 to 127)
+ * @see Datasheet, register RDS (0x26), page 34. 
+ */
+void QN8066::setRDSFrequencyDeviation(uint8_t freq) {
+  qn8066_rds rds;
+  rds.raw = this->getRegister(QN_RDS);
+  rds.arg.RDSFDEV = freq;
+  this->setRegister(QN_RDS, rds.raw);  
+} 
+
+/**
+ * @ingroup group04 TX RDS
+ * @brief Audio Line-in enable control
+ * @param value (true = enabled; false = disabled)
+ * @see Datasheet, register RDS (0x26), page 34. 
+ */
+void QN8066::setRDSLineIn(bool value) {
+  qn8066_rds rds;
+  rds.raw = this->getRegister(QN_RDS);
+  rds.arg.line_in_en = value;
+  this->setRegister(QN_RDS, rds.raw);  
+} 
