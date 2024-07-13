@@ -414,3 +414,35 @@ void QN8066::setPAC(uint8_t PA_TRGT) {
   this->setRegister(QN_PAC, 0b10000000 | PA_TRGT);
   this->setRegister(QN_PAC, 0b00000000 | PA_TRGT);
 }
+
+
+
+/** @defgroup group04 TX RDS Setup */
+
+/**
+ * @ingroup group04 TX RDS
+ * @brief Transmitter RDS enable
+ * @details Enable RDS service 
+ * @param value (true = enabled; false = disabled)
+ * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
+ */
+void QN8066::setTxRDS(bool value) {
+  qn8066_system2 system2;
+  system2.raw = this->getRegister(QN_SYSTEM2);
+  system2.arg.tx_rdsen = value;
+  this->setRegister(QN_SYSTEM2, system2.raw);
+}
+
+/**
+ * @ingroup group04 TX RDS
+ * @brief RDS transmitting ready.
+ * @details If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit. 
+ * @details description the chip internally will fetch these bytes after completing transmitting of current group.
+ * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
+ */
+void QN8066::setTxToggleRDSReady() {
+  qn8066_system2 system2;
+  system2.raw = this->getRegister(QN_SYSTEM2);
+  system2.arg.rdsrdy = !system2.arg.rdsrdy;
+  this->setRegister(QN_SYSTEM2, system2.raw);
+}

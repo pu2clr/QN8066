@@ -843,6 +843,12 @@ public:
   void setPAC(uint8_t PA_TRGT);
 
   inline void setTxFrequency(float frequency) { setTxChannel(frequency); };
+
+  // RDS 
+  void setTxRDS(bool value);   
+  void setTxRDS(bool value); 
+  void setTxToggleRDSReady();
+
 };
 
 #endif // _QN8066_H
