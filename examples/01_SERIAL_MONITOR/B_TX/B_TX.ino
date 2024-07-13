@@ -42,26 +42,26 @@ void setup() {
 
   // dv.setAudioAnalogGain(0); // Em binário é 010 => -30dB
   // dv.setAudioDigitalGain(0);
-  dv.setTxPilotGain(10);
-  sprintf(str, "GPLT (setTxPilotGain): %x", dv.getRegister(QN_GPLT));
-  Serial.print(str);
+  // dv.setTxPilotGain(10);
+  // sprintf(str, "GPLT (setTxPilotGain): %x", dv.getRegister(QN_GPLT));
+  // Serial.print(str);
 
-  dv.setTxStereo(false);
+  dv.setTxStereo(true);
   dv.setTxPreEmphasis(75);
-  sprintf(str, "SYSTEM2 (Stereo/Mono and Pre-emphasis): %x", dv.getRegister(QN_SYSTEM2));
-  Serial.print(str);
+  // sprintf(str, "SYSTEM2 (Stereo/Mono and Pre-emphasis): %x", dv.getRegister(QN_SYSTEM2));
+  // Serial.print(str);
 
 
   dv.setTxInputImpedance(0); // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
-  dv.setTxDigitalGain(2); // TX digital gain => 2 = 2dB  (default is 0 dB)
-  dv.setTxFrequencyDerivation(127); // Valid valued from 0 to 255
+  dv.setTxDigitalGain(0); // TX digital gain => 2 = 2dB  (default is 0 dB)
+  dv.setTxFrequencyDerivation(200); // Valid valued from 0 to 255
 
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
-  TCCR1B = TCCR1B & B11111000 | B00000001;  // Set PWM frequency to about 31 kHz
+
   analogWrite(9, 127); 
 
-  sprintf(str, "\n\nSYSTEM1: %d \nCCA: %d \nXTAL_DIV0: %d\nXTAL_DIV1: %d", dv.getRegister(QN_SYSTEM1), dv.getRegister(QN_CCA), dv.getRegister(QN_XTAL_DIV0),  dv.getRegister(QN_XTAL_DIV1));
+  sprintf(str, "\n\nSYSTEM1: %X (Hex)\nSYSTEM2: %X (Hex)", dv.getRegister(QN_SYSTEM1), dv.getRegister(QN_SYSTEM2));
   Serial.print(str);
 
 }
