@@ -287,7 +287,7 @@ void QN8066::setAudioTxDiff(bool value) {
   qn8066_vol_ctl vol_ctl;
 
   vol_ctl.raw = this->getRegister(QN_VOL_CTL);
-  vol_ctl.arg.DAC_HOLD = value;
+  vol_ctl.arg.TX_DIFF = value;
   this->setRegister(QN_VOL_CTL, vol_ctl.raw);
 }
 
