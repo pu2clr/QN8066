@@ -54,7 +54,8 @@ void setup() {
 
   dv.setTxInputImpedance(0);  // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
   dv.setTxInputBufferGain(5); // With input inpedance  0 (10K), and input buffer 5, the gain shoud be 18dB
-  dv.setTxDigitalGain(0); // TX digital gain => 2 = 2dB  (default is 0 dB)
+  dv.setTxSoftClipping(true);
+  dv.setTxDigitalGain(2); // TX digital gain => 2 = 2dB  (default is 0 dB)
   dv.setTxFrequencyDerivation(200); // Valid valued from 0 to 255
 
   sprintf(str, "\n\nBroadcasting...");
