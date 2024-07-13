@@ -152,7 +152,7 @@ void QN8066::setRX() {
 /** @defgroup group04 TX Functions*/
 
 /**
- * @ingroup group03 Start TX
+ * @ingroup group04 Start TX
  * @brief Sets the TX mode
  * @param frequency - Frequency to be set
  */
@@ -183,7 +183,7 @@ void QN8066::setTX(float frequency) {
 
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief Set TX Stereo or Mono
  * @details  
  * @param value (true = stereo; false = mono)
@@ -197,7 +197,7 @@ void QN8066::setTxStereo( bool value ) {
 
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief   Pre-emphasis and de-emphasis time constant
  * @details The valid values are 50 and 75. Any value not equal to 75 sets the Pre-emphasis to 50. 
  * @param value (valids values:  50 or 75);
@@ -211,7 +211,7 @@ void QN8066::setTxPreEmphasis( uint8_t value ) {
 
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief Gain of TX pilot to adjust pilot frequency deviation.
  * @details Refers to peak frequency deviation of MPX signal when audio input is full scale.  Valid values: between 7 and 10.
  * @details the frequency deviation is value (%) *  75 kHz.
@@ -228,7 +228,7 @@ void QN8066::setTxPilotGain(uint8_t value) {
 }
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief Sets volume control gain of analog portion
  * @details Valid values are 0 to 7.
  *
@@ -245,7 +245,7 @@ void QN8066::setAudioAnalogGain(uint8_t value) {
 }
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief Sets set digital volume gain
  * @details Valid values are 0 to 5.
  *
@@ -262,7 +262,7 @@ void QN8066::setAudioDigitalGain(uint8_t value) {
 }
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief DAC output control
  * @details If value is 0 (false), then "Normal operation"; if true, Hold DAC output to a fixed voltage.
  *
@@ -277,7 +277,7 @@ void QN8066::setAudioDacHold(bool value) {
 }
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief Tx audio input mode selection
  * @details If value is 0 (false), then "Single ended"; if true, Differential
  *
@@ -293,7 +293,7 @@ void QN8066::setAudioTxDiff(bool value) {
 
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief TX mode input impedance for both L/R channels
  * @details Sets the imput impedance  Left and Rihgt channels
  * 
@@ -318,7 +318,7 @@ void QN8066::setTxInputImpedance(uint8_t value) {
 
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief TX digital gain
  * @details TX digital gain
  * 
@@ -343,7 +343,7 @@ void QN8066::setTxDigitalGain(uint8_t value) {
 
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief TX input buffer gain
  * @details Sets TX input buffer gain
  * | TXAGC_GVGA  | Attenuation depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY  |
@@ -376,7 +376,7 @@ void QN8066::setTxInputBufferGain(uint8_t value) {
 
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief TX soft clipping enable
  * @details  
  * @param value  (true = enabled; false = disabled)
@@ -390,7 +390,7 @@ void QN8066::setTxSoftClipping( bool value) {
 
 
 /**
- * @ingroup group03  TX Setup
+ * @ingroup group04  TX Setup
  * @brief Specify total TX frequency deviation.
  * @details TX frequency deviation = 0.69KHz*TX_FEDV. The default value is 108 (Binary: 01101100)
  * @param value  
@@ -400,7 +400,7 @@ void QN8066::setTxSoftClipping( bool value) {
  }
 
 /**
- * @ingroup group03 TX Channel
+ * @ingroup group04 TX Channel
  * @brief convert a given frequency to a channel
  * @details By programming channel index RXCH[9:0] or TXCH[9:0], the RF channel
  * can be set to any frequency between 60 MHz ~ 108 MHz in 50 kHz steps.
@@ -435,10 +435,10 @@ void QN8066::setPAC(uint8_t PA_TRGT) {
 
 
 
-/** @defgroup group04 TX RDS Setup*/
+/** @defgroup group05 TX RDS Setup*/
 
 /**
- * @ingroup group04 TX RDS
+ * @ingroup group05 TX RDS
  * @brief Transmitter RDS enable
  * @details Enable RDS service 
  * @param value (true = enabled; false = disabled)
@@ -452,7 +452,7 @@ void QN8066::setTxRDS(bool value) {
 }
 
 /**
- * @ingroup group04 TX RDS
+ * @ingroup group05 TX RDS
  * @brief RDS transmitting ready.
  * @details If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit. 
  * @details description the chip internally will fetch these bytes after completing transmitting of current group.
@@ -466,7 +466,7 @@ void QN8066::setTxToggleRDSReady() {
 }
 
 /**
- * @ingroup group04 TX RDS
+ * @ingroup group05 TX RDS
  * @brief RDS TX Updated
  * @details To transmit the 8 bytes in RDS0~RDS7, user should toggle the register bit RDSRDY (See SYSTEM2 register).
  * @details Then the chip internally fetches these bytes after completing transmitting of current group.
@@ -479,7 +479,7 @@ bool QN8066::getTxRDSUpdated() {
 }
 
 /**
- * @ingroup group04 TX RDS
+ * @ingroup group05 TX RDS
  * @brief Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)
  * @details The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer.
  * @param text (point to array of char with 8 bytes to be loaded into the RDS data buffer)
@@ -491,7 +491,7 @@ void QN8066::writeTxRDSBuffer(char *text) {
 }
 
 /**
- * @ingroup group04 TX RDS
+ * @ingroup group05 TX RDS
  * @brief Sets RDS frequency deviation.
  * @details RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. 
  * @details RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode.
@@ -506,7 +506,7 @@ void QN8066::setRDSFrequencyDeviation(uint8_t freq) {
 } 
 
 /**
- * @ingroup group04 TX RDS
+ * @ingroup group05 TX RDS
  * @brief Audio Line-in enable control
  * @param value (true = enabled; false = disabled)
  * @see Datasheet, register RDS (0x26), page 34. 

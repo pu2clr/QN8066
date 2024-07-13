@@ -98,179 +98,448 @@ $(document).ready(function(){initNavTree('group__group04.html',''); initResizabl
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:gaaad14424c57781256cfbda7accadbd49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaaad14424c57781256cfbda7accadbd49">QN8066::setTxRDS</a> (bool value)</td></tr>
-<tr class="memdesc:gaaad14424c57781256cfbda7accadbd49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmitter RDS enable.  <br /></td></tr>
-<tr class="separator:gaaad14424c57781256cfbda7accadbd49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaba2e2e1f2df33bb652fe36878355bc98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaba2e2e1f2df33bb652fe36878355bc98">QN8066::setTxToggleRDSReady</a> ()</td></tr>
-<tr class="memdesc:gaba2e2e1f2df33bb652fe36878355bc98"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS transmitting ready.  <br /></td></tr>
-<tr class="separator:gaba2e2e1f2df33bb652fe36878355bc98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1c7236e219778ab5a939ff4bd659183b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga1c7236e219778ab5a939ff4bd659183b">QN8066::getTxRDSUpdated</a> ()</td></tr>
-<tr class="memdesc:ga1c7236e219778ab5a939ff4bd659183b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS TX Updated.  <br /></td></tr>
-<tr class="separator:ga1c7236e219778ab5a939ff4bd659183b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0664c14d7c23ede48874c9007b157d46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga0664c14d7c23ede48874c9007b157d46">QN8066::writeTxRDSBuffer</a> (char *text)</td></tr>
-<tr class="memdesc:ga0664c14d7c23ede48874c9007b157d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)  <br /></td></tr>
-<tr class="separator:ga0664c14d7c23ede48874c9007b157d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gacb4f89faa8744c4adbf4b3bbfc2412b4">QN8066::setRDSFrequencyDeviation</a> (uint8_t freq)</td></tr>
-<tr class="memdesc:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS frequency deviation.  <br /></td></tr>
-<tr class="separator:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga53969a8d55eb57c9c8d97c5170f5d94b">QN8066::setRDSLineIn</a> (bool value)</td></tr>
-<tr class="memdesc:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio Line-in enable control.  <br /></td></tr>
-<tr class="separator:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaff2b3aed1ccecf4dc1a78890751dd3d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaff2b3aed1ccecf4dc1a78890751dd3d9">QN8066::setTX</a> (float frequency)</td></tr>
+<tr class="memdesc:gaff2b3aed1ccecf4dc1a78890751dd3d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TX mode.  <br /></td></tr>
+<tr class="separator:gaff2b3aed1ccecf4dc1a78890751dd3d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7fbea7d2ae6bdf9719ee252e6a612a83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">QN8066::setTxStereo</a> (bool value=true)</td></tr>
+<tr class="memdesc:ga7fbea7d2ae6bdf9719ee252e6a612a83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set TX Stereo or Mono.  <br /></td></tr>
+<tr class="separator:ga7fbea7d2ae6bdf9719ee252e6a612a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab1a0d8a388d2ca976c67b2f31c4d8be1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1">QN8066::setTxPreEmphasis</a> (uint8_t value=75)</td></tr>
+<tr class="memdesc:gab1a0d8a388d2ca976c67b2f31c4d8be1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pre-emphasis and de-emphasis time constant.  <br /></td></tr>
+<tr class="separator:gab1a0d8a388d2ca976c67b2f31c4d8be1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad46b7a63f4c0887a2b0c9b1b068739d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">QN8066::setTxPilotGain</a> (uint8_t value)</td></tr>
+<tr class="memdesc:gad46b7a63f4c0887a2b0c9b1b068739d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gain of TX pilot to adjust pilot frequency deviation.  <br /></td></tr>
+<tr class="separator:gad46b7a63f4c0887a2b0c9b1b068739d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga85384e9b43f34c41e7b9d4699cb6bfc7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7">QN8066::setAudioAnalogGain</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga85384e9b43f34c41e7b9d4699cb6bfc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets volume control gain of analog portion.  <br /></td></tr>
+<tr class="separator:ga85384e9b43f34c41e7b9d4699cb6bfc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4670b899f6f3df01c4d967b7f461318a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga4670b899f6f3df01c4d967b7f461318a">QN8066::setAudioDigitalGain</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga4670b899f6f3df01c4d967b7f461318a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets set digital volume gain.  <br /></td></tr>
+<tr class="separator:ga4670b899f6f3df01c4d967b7f461318a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadfd3134c2de7e8dd2e079e3abfbfe7a0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0">QN8066::setAudioDacHold</a> (bool value)</td></tr>
+<tr class="memdesc:gadfd3134c2de7e8dd2e079e3abfbfe7a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">DAC output control.  <br /></td></tr>
+<tr class="separator:gadfd3134c2de7e8dd2e079e3abfbfe7a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gade021b98b99e9239c390461d22020c4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gade021b98b99e9239c390461d22020c4e">QN8066::setAudioTxDiff</a> (bool value)</td></tr>
+<tr class="memdesc:gade021b98b99e9239c390461d22020c4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tx audio input mode selection.  <br /></td></tr>
+<tr class="separator:gade021b98b99e9239c390461d22020c4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga751bb2147b6355745b261cc8f86a017c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga751bb2147b6355745b261cc8f86a017c">QN8066::setTxInputImpedance</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga751bb2147b6355745b261cc8f86a017c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX mode input impedance for both L/R channels.  <br /></td></tr>
+<tr class="separator:ga751bb2147b6355745b261cc8f86a017c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8eb4772b22c08ce7b44e52b01af342f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5">QN8066::setTxDigitalGain</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga8eb4772b22c08ce7b44e52b01af342f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX digital gain.  <br /></td></tr>
+<tr class="separator:ga8eb4772b22c08ce7b44e52b01af342f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga09843594c1c9203a738c3a18cbc78403"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga09843594c1c9203a738c3a18cbc78403"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX input buffer gain.  <br /></td></tr>
+<tr class="separator:ga09843594c1c9203a738c3a18cbc78403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffd48578af9f8a48405c27fbddbc5c85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaffd48578af9f8a48405c27fbddbc5c85">QN8066::setTxSoftClipping</a> (bool value)</td></tr>
+<tr class="memdesc:gaffd48578af9f8a48405c27fbddbc5c85"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX soft clipping enable.  <br /></td></tr>
+<tr class="separator:gaffd48578af9f8a48405c27fbddbc5c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga88ea23b676feb40a15725b9273eca95b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">QN8066::setTxFrequencyDerivation</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga88ea23b676feb40a15725b9273eca95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specify total TX frequency deviation.  <br /></td></tr>
+<tr class="separator:ga88ea23b676feb40a15725b9273eca95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="gaaad14424c57781256cfbda7accadbd49" name="gaaad14424c57781256cfbda7accadbd49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaaad14424c57781256cfbda7accadbd49">&#9670;&#160;</a></span>setTxRDS()</h2>
+<a id="gaff2b3aed1ccecf4dc1a78890751dd3d9" name="gaff2b3aed1ccecf4dc1a78890751dd3d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaff2b3aed1ccecf4dc1a78890751dd3d9">&#9670;&#160;</a></span>setTX()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void QN8066::setTxRDS </td>
+          <td class="memname">void QN8066::setTX </td>
           <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>frequency</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Transmitter RDS enable. </p>
-<p>Enable RDS service </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">value</td><td>(true = enabled; false = disabled) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>Pages 20 and 21 of the Datasheet (Register SYSTEM2) </dd></dl>
-
-</div>
-</div>
-<a id="gaba2e2e1f2df33bb652fe36878355bc98" name="gaba2e2e1f2df33bb652fe36878355bc98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaba2e2e1f2df33bb652fe36878355bc98">&#9670;&#160;</a></span>setTxToggleRDSReady()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void QN8066::setTxToggleRDSReady </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>RDS transmitting ready. </p>
-<p>If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit.</p>
-<p>description the chip internally will fetch these bytes after completing transmitting of current group. </p><dl class="section see"><dt>See also</dt><dd>Pages 20 and 21 of the Datasheet (Register SYSTEM2) </dd></dl>
-
-</div>
-</div>
-<a id="ga1c7236e219778ab5a939ff4bd659183b" name="ga1c7236e219778ab5a939ff4bd659183b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga1c7236e219778ab5a939ff4bd659183b">&#9670;&#160;</a></span>getTxRDSUpdated()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool QN8066::getTxRDSUpdated </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>RDS TX Updated. </p>
-<p>To transmit the 8 bytes in RDS0~RDS7, user should toggle the register bit RDSRDY (See SYSTEM2 register).</p>
-<p>Then the chip internally fetches these bytes after completing transmitting of current group.</p>
-<p>Once the chip internally fetched these bytes, it will toggle this bit, and user can write in another group. </p><dl class="section return"><dt>Returns</dt><dd>true </dd>
-<dd>
-false </dd></dl>
-
-<p class="reference">References <a class="el" href="group__group02.html#gafcb2a26df67c63e40800a29a559c5505">QN8066::getStatus3()</a>.</p>
-
-</div>
-</div>
-<a id="ga0664c14d7c23ede48874c9007b157d46" name="ga0664c14d7c23ede48874c9007b157d46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0664c14d7c23ede48874c9007b157d46">&#9670;&#160;</a></span>writeTxRDSBuffer()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void QN8066::writeTxRDSBuffer </td>
-          <td>(</td>
-          <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>text</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers) </p>
-<p>The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">text</td><td>(point to array of char with 8 bytes to be loaded into the RDS data buffer) </td></tr>
-  </table>
-  </dd>
-</dl>
-
-</div>
-</div>
-<a id="gacb4f89faa8744c4adbf4b3bbfc2412b4" name="gacb4f89faa8744c4adbf4b3bbfc2412b4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gacb4f89faa8744c4adbf4b3bbfc2412b4">&#9670;&#160;</a></span>setRDSFrequencyDeviation()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void QN8066::setRDSFrequencyDeviation </td>
-          <td>(</td>
-          <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>freq</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Sets RDS frequency deviation. </p>
-<p>RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode.</p>
-<p>RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode. </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">freq</td><td>( valid values: from 0 to 127) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section see"><dt>See also</dt><dd>Datasheet, register RDS (0x26), page 34. </dd></dl>
-
-</div>
-</div>
-<a id="ga53969a8d55eb57c9c8d97c5170f5d94b" name="ga53969a8d55eb57c9c8d97c5170f5d94b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga53969a8d55eb57c9c8d97c5170f5d94b">&#9670;&#160;</a></span>setRDSLineIn()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void QN8066::setRDSLineIn </td>
-          <td>(</td>
-          <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Audio Line-in enable control. </p>
+<p>Sets the TX mode. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
+    <tr><td class="paramname">frequency</td><td>- Frequency to be set </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga7fbea7d2ae6bdf9719ee252e6a612a83" name="ga7fbea7d2ae6bdf9719ee252e6a612a83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7fbea7d2ae6bdf9719ee252e6a612a83">&#9670;&#160;</a></span>setTxStereo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxStereo </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em> = <code>true</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set TX Stereo or Mono. </p>
+<p><br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(true = stereo; false = mono) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gab1a0d8a388d2ca976c67b2f31c4d8be1" name="gab1a0d8a388d2ca976c67b2f31c4d8be1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab1a0d8a388d2ca976c67b2f31c4d8be1">&#9670;&#160;</a></span>setTxPreEmphasis()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxPreEmphasis </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em> = <code>75</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Pre-emphasis and de-emphasis time constant. </p>
+<p>The valid values are 50 and 75. Any value not equal to 75 sets the Pre-emphasis to 50. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(valids values: 50 or 75); </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gad46b7a63f4c0887a2b0c9b1b068739d4" name="gad46b7a63f4c0887a2b0c9b1b068739d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad46b7a63f4c0887a2b0c9b1b068739d4">&#9670;&#160;</a></span>setTxPilotGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxPilotGain </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gain of TX pilot to adjust pilot frequency deviation. </p>
+<p>Refers to peak frequency deviation of MPX signal when audio input is full scale. Valid values: between 7 and 10.</p>
+<p>the frequency deviation is value (%) * 75 kHz. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga85384e9b43f34c41e7b9d4699cb6bfc7" name="ga85384e9b43f34c41e7b9d4699cb6bfc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga85384e9b43f34c41e7b9d4699cb6bfc7">&#9670;&#160;</a></span>setAudioAnalogGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setAudioAnalogGain </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets volume control gain of analog portion. </p>
+<p>Valid values are 0 to 7.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga4670b899f6f3df01c4d967b7f461318a" name="ga4670b899f6f3df01c4d967b7f461318a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4670b899f6f3df01c4d967b7f461318a">&#9670;&#160;</a></span>setAudioDigitalGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setAudioDigitalGain </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets set digital volume gain. </p>
+<p>Valid values are 0 to 5.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gadfd3134c2de7e8dd2e079e3abfbfe7a0" name="gadfd3134c2de7e8dd2e079e3abfbfe7a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadfd3134c2de7e8dd2e079e3abfbfe7a0">&#9670;&#160;</a></span>setAudioDacHold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setAudioDacHold </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>DAC output control. </p>
+<p>If value is 0 (false), then "Normal operation"; if true, Hold DAC output to a fixed voltage.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(true or false) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gade021b98b99e9239c390461d22020c4e" name="gade021b98b99e9239c390461d22020c4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gade021b98b99e9239c390461d22020c4e">&#9670;&#160;</a></span>setAudioTxDiff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setAudioTxDiff </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tx audio input mode selection. </p>
+<p>If value is 0 (false), then "Single ended"; if true, Differential</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(true or false) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga751bb2147b6355745b261cc8f86a017c" name="ga751bb2147b6355745b261cc8f86a017c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga751bb2147b6355745b261cc8f86a017c">&#9670;&#160;</a></span>setTxInputImpedance()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxInputImpedance </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX mode input impedance for both L/R channels. </p>
+<p>Sets the imput impedance Left and Rihgt channels</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">RIN Value   </th><th class="markdownTableHeadNone">Input impedance (k)    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">00 (0)   </td><td class="markdownTableBodyNone">10    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">01 (1)   </td><td class="markdownTableBodyNone">20    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">10 (2)   </td><td class="markdownTableBodyNone">40    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">11 (3)   </td><td class="markdownTableBodyNone">80   </td></tr>
+</table>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(true or false) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Data Sheet - Quintic - <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> - Digital FM Transceiver for Portable Devices, pag. 35 </dd></dl>
+
+</div>
+</div>
+<a id="ga8eb4772b22c08ce7b44e52b01af342f5" name="ga8eb4772b22c08ce7b44e52b01af342f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8eb4772b22c08ce7b44e52b01af342f5">&#9670;&#160;</a></span>setTxDigitalGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxDigitalGain </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX digital gain. </p>
+<p>TX digital gain</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">TXAGC_GDB   </th><th class="markdownTableHeadNone">Digital gain    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">00 (0)   </td><td class="markdownTableBodyNone">0 dB    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">01 (1)   </td><td class="markdownTableBodyNone">1 dB    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">10 (2)   </td><td class="markdownTableBodyNone">2 dB    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">11 (3)   </td><td class="markdownTableBodyNone">Reserved   </td></tr>
+</table>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Data Sheet - Quintic - <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> - Digital FM Transceiver for Portable Devices, pag. 35 </dd></dl>
+
+</div>
+</div>
+<a id="ga09843594c1c9203a738c3a18cbc78403" name="ga09843594c1c9203a738c3a18cbc78403"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga09843594c1c9203a738c3a18cbc78403">&#9670;&#160;</a></span>setTxInputBufferGain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxInputBufferGain </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX input buffer gain. </p>
+<p>Sets TX input buffer gain </p><table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">TXAGC_GVGA   </th><th class="markdownTableHeadNone">Attenuation depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">0 - 000   </td><td class="markdownTableBodyNone">3; -3; -9; -15    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">1 - 001   </td><td class="markdownTableBodyNone">6; 0; -6; -12    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">2 - 010   </td><td class="markdownTableBodyNone">9; 3; -3; -9    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">3 - 011   </td><td class="markdownTableBodyNone">12; 6; 0; -6    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">4 - 100   </td><td class="markdownTableBodyNone">15; 9; 3; -3    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">5 - 101   </td><td class="markdownTableBodyNone">18; 12; 6; 0    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Others   </td><td class="markdownTableBodyNone">Reserved   </td></tr>
+</table>
+<div class="fragment"><div class="line">{.c++}</div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx; </div>
+<div class="line">...</div>
+<div class="line">tx.setsetTxInputImpedance(0);  <span class="comment">// Sets the input impedance to 10 Kohms</span></div>
+<div class="line">tx.<a class="code hl_function" href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">setTxInputBufferGain</a>(5);    <span class="comment">// Now the Gain will be 18dB</span></div>
+<div class="line">... </div>
+<div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:759</div></div>
+<div class="ttc" id="agroup__group04_html_ga09843594c1c9203a738c3a18cbc78403"><div class="ttname"><a href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a></div><div class="ttdeci">void setTxInputBufferGain(uint8_t value)</div><div class="ttdoc">TX input buffer gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:369</div></div>
+</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>Data Sheet - Quintic - <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> - Digital FM Transceiver for Portable Devices, pag. 35 </dd></dl>
+
+</div>
+</div>
+<a id="gaffd48578af9f8a48405c27fbddbc5c85" name="gaffd48578af9f8a48405c27fbddbc5c85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaffd48578af9f8a48405c27fbddbc5c85">&#9670;&#160;</a></span>setTxSoftClipping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxSoftClipping </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX soft clipping enable. </p>
+<p><br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
     <tr><td class="paramname">value</td><td>(true = enabled; false = disabled) </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section see"><dt>See also</dt><dd>Datasheet, register RDS (0x26), page 34. </dd></dl>
+
+</div>
+</div>
+<a id="ga88ea23b676feb40a15725b9273eca95b" name="ga88ea23b676feb40a15725b9273eca95b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga88ea23b676feb40a15725b9273eca95b">&#9670;&#160;</a></span>setTxFrequencyDerivation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxFrequencyDerivation </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Specify total TX frequency deviation. </p>
+<p>TX frequency deviation = 0.69KHz*TX_FEDV. The default value is 108 (Binary: 01101100) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td><br  />
+ </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

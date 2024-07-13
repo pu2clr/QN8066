@@ -1,9 +1,16 @@
 var group__group04 =
 [
-    [ "QN8066::setTxRDS", "group__group04.html#gaaad14424c57781256cfbda7accadbd49", null ],
-    [ "QN8066::setTxToggleRDSReady", "group__group04.html#gaba2e2e1f2df33bb652fe36878355bc98", null ],
-    [ "QN8066::getTxRDSUpdated", "group__group04.html#ga1c7236e219778ab5a939ff4bd659183b", null ],
-    [ "QN8066::writeTxRDSBuffer", "group__group04.html#ga0664c14d7c23ede48874c9007b157d46", null ],
-    [ "QN8066::setRDSFrequencyDeviation", "group__group04.html#gacb4f89faa8744c4adbf4b3bbfc2412b4", null ],
-    [ "QN8066::setRDSLineIn", "group__group04.html#ga53969a8d55eb57c9c8d97c5170f5d94b", null ]
+    [ "QN8066::setTX", "group__group04.html#gaff2b3aed1ccecf4dc1a78890751dd3d9", null ],
+    [ "QN8066::setTxStereo", "group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83", null ],
+    [ "QN8066::setTxPreEmphasis", "group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1", null ],
+    [ "QN8066::setTxPilotGain", "group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4", null ],
+    [ "QN8066::setAudioAnalogGain", "group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7", null ],
+    [ "QN8066::setAudioDigitalGain", "group__group04.html#ga4670b899f6f3df01c4d967b7f461318a", null ],
+    [ "QN8066::setAudioDacHold", "group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0", null ],
+    [ "QN8066::setAudioTxDiff", "group__group04.html#gade021b98b99e9239c390461d22020c4e", null ],
+    [ "QN8066::setTxInputImpedance", "group__group04.html#ga751bb2147b6355745b261cc8f86a017c", null ],
+    [ "QN8066::setTxDigitalGain", "group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5", null ],
+    [ "QN8066::setTxInputBufferGain", "group__group04.html#ga09843594c1c9203a738c3a18cbc78403", null ],
+    [ "QN8066::setTxSoftClipping", "group__group04.html#gaffd48578af9f8a48405c27fbddbc5c85", null ],
+    [ "QN8066::setTxFrequencyDerivation", "group__group04.html#ga88ea23b676feb40a15725b9273eca95b", null ]
 ];
