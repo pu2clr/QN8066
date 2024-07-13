@@ -134,6 +134,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga09843594c1c9203a738c3a18cbc78403"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a> (uint8_t value)</td></tr>
 <tr class="memdesc:ga09843594c1c9203a738c3a18cbc78403"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX input buffer gain.  <br /></td></tr>
 <tr class="separator:ga09843594c1c9203a738c3a18cbc78403"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaffd48578af9f8a48405c27fbddbc5c85"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gaffd48578af9f8a48405c27fbddbc5c85">QN8066::setTxSoftClipping</a> (bool value)</td></tr>
+<tr class="memdesc:gaffd48578af9f8a48405c27fbddbc5c85"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX soft clipping enable.  <br /></td></tr>
+<tr class="separator:gaffd48578af9f8a48405c27fbddbc5c85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga88ea23b676feb40a15725b9273eca95b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga88ea23b676feb40a15725b9273eca95b">QN8066::setTxFrequencyDerivation</a> (uint8_t value)</td></tr>
 <tr class="memdesc:ga88ea23b676feb40a15725b9273eca95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specify total TX frequency deviation.  <br /></td></tr>
 <tr class="separator:ga88ea23b676feb40a15725b9273eca95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -493,7 +496,15 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Others   </td><td class="markdownTableBodyNone">Reserved   </td></tr>
 </table>
-<dl class="params"><dt>Parameters</dt><dd>
+<div class="fragment"><div class="line">{.c++}</div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx; </div>
+<div class="line">...</div>
+<div class="line">tx.setsetTxInputImpedance(0);  <span class="comment">// Sets the input impedance to 10 Kohms</span></div>
+<div class="line">tx.<a class="code hl_function" href="group__group03.html#ga09843594c1c9203a738c3a18cbc78403">setTxInputBufferGain</a>(5);    <span class="comment">// Now the Gain will be 18dB</span></div>
+<div class="line">... </div>
+<div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:763</div></div>
+<div class="ttc" id="agroup__group03_html_ga09843594c1c9203a738c3a18cbc78403"><div class="ttname"><a href="group__group03.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a></div><div class="ttdeci">void setTxInputBufferGain(uint8_t value)</div><div class="ttdoc">TX input buffer gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:372</div></div>
+</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td><br  />
  </td></tr>
@@ -501,6 +512,33 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>Data Sheet - Quintic - <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> - Digital FM Transceiver for Portable Devices, pag. 35 </dd></dl>
+
+</div>
+</div>
+<a id="gaffd48578af9f8a48405c27fbddbc5c85" name="gaffd48578af9f8a48405c27fbddbc5c85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaffd48578af9f8a48405c27fbddbc5c85">&#9670;&#160;</a></span>setTxSoftClipping()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxSoftClipping </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX soft clipping enable. </p>
+<p><br  />
+ </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>(true = enabled; false = disabled) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

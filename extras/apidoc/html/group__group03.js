@@ -12,6 +12,7 @@ var group__group03 =
     [ "QN8066::setTxInputImpedance", "group__group03.html#ga751bb2147b6355745b261cc8f86a017c", null ],
     [ "QN8066::setTxDigitalGain", "group__group03.html#ga8eb4772b22c08ce7b44e52b01af342f5", null ],
     [ "QN8066::setTxInputBufferGain", "group__group03.html#ga09843594c1c9203a738c3a18cbc78403", null ],
+    [ "QN8066::setTxSoftClipping", "group__group03.html#gaffd48578af9f8a48405c27fbddbc5c85", null ],
     [ "QN8066::setTxFrequencyDerivation", "group__group03.html#ga88ea23b676feb40a15725b9273eca95b", null ],
     [ "QN8066::setPAC", "group__group03.html#ga90eeea994b03d7c31ac09426982884c0", null ]
 ];

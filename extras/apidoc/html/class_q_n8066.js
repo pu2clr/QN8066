@@ -21,6 +21,7 @@ var class_q_n8066 =
     [ "setTxInputImpedance", "group__group03.html#ga751bb2147b6355745b261cc8f86a017c", null ],
     [ "setTxDigitalGain", "group__group03.html#ga8eb4772b22c08ce7b44e52b01af342f5", null ],
     [ "setTxInputBufferGain", "group__group03.html#ga09843594c1c9203a738c3a18cbc78403", null ],
+    [ "setTxSoftClipping", "group__group03.html#gaffd48578af9f8a48405c27fbddbc5c85", null ],
     [ "setTxFrequencyDerivation", "group__group03.html#ga88ea23b676feb40a15725b9273eca95b", null ],
     [ "setTX", "group__group01.html#gadb1e44acd6a0d6a8f29dfaedef86a7e3", null ],
     [ "setResetDelay", "class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1", null ],
