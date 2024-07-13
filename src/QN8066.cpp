@@ -468,3 +468,29 @@ void QN8066::setTxToggleRDSReady() {
   system2.arg.rdsrdy = !system2.arg.rdsrdy;
   this->setRegister(QN_SYSTEM2, system2.raw);
 }
+
+/**
+ * @ingroup group04 TX RDS
+ * @brief RDS TX Updated
+ * @details To transmit the 8 bytes in RDS0~RDS7, user should toggle the register bit RDSRDY (See SYSTEM2 register).
+ * @details Then the chip internally fetches these bytes after completing transmitting of current group.
+ * @details Once the chip internally fetched these bytes, it will toggle this bit, and user can write in another group.
+ * @return true 
+ * @return false 
+ */
+bool QN8066::getTxRDSUpdated() { 
+    return this->getStatus3().arg.RDS_TXUPD;
+}
+
+/**
+ * @ingroup group04 TX RDS
+ * @brief Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)
+ * @details The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer.
+ * @param text (point to array of char with 8 bytes to be loaded into the RDS data buffer)
+ */
+void QN8066::writeTxRDSBuffer(char *text) { 
+  for (uint8_t address = QN_TX_RDSD0; address <= QN_TX_RDSD7; address++ ) {
+    this->setRegister(address, *text++);
+  }
+}
+

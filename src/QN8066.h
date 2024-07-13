@@ -842,9 +842,11 @@ public:
 
   inline void setTxFrequency(float frequency) { setTxChannel(frequency); };
 
-  // RDS 
+  // RDS TX
   void setTxRDS(bool value);   
   void setTxToggleRDSReady();
+  bool getTxRDSUpdated();
+  void writeTxRDSBuffer(char *text);
 
 };
 
