@@ -24,7 +24,7 @@ I hold a Master's degree in Educational Technology from the Federal University o
 3. [QN8066 PINOUT](./#qn8066-pinout)
 4. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
 5. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
-6. [API Documentation](./extras/apidoc/html/index.html)
+6. [API Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
 
 
 ## Technical Overview of the QN8066 RX/TX Device (IC)
