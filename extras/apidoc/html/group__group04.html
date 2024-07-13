@@ -104,6 +104,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gaba2e2e1f2df33bb652fe36878355bc98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaba2e2e1f2df33bb652fe36878355bc98">QN8066::setTxToggleRDSReady</a> ()</td></tr>
 <tr class="memdesc:gaba2e2e1f2df33bb652fe36878355bc98"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS transmitting ready.  <br /></td></tr>
 <tr class="separator:gaba2e2e1f2df33bb652fe36878355bc98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1c7236e219778ab5a939ff4bd659183b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga1c7236e219778ab5a939ff4bd659183b">QN8066::getTxRDSUpdated</a> ()</td></tr>
+<tr class="memdesc:ga1c7236e219778ab5a939ff4bd659183b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS TX Updated.  <br /></td></tr>
+<tr class="separator:ga1c7236e219778ab5a939ff4bd659183b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0664c14d7c23ede48874c9007b157d46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga0664c14d7c23ede48874c9007b157d46">QN8066::writeTxRDSBuffer</a> (char *text)</td></tr>
+<tr class="memdesc:ga0664c14d7c23ede48874c9007b157d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)  <br /></td></tr>
+<tr class="separator:ga0664c14d7c23ede48874c9007b157d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -152,6 +158,58 @@ Functions</h2></td></tr>
 <p>RDS transmitting ready. </p>
 <p>If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit.</p>
 <p>description the chip internally will fetch these bytes after completing transmitting of current group. </p><dl class="section see"><dt>See also</dt><dd>Pages 20 and 21 of the Datasheet (Register SYSTEM2) </dd></dl>
+
+</div>
+</div>
+<a id="ga1c7236e219778ab5a939ff4bd659183b" name="ga1c7236e219778ab5a939ff4bd659183b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1c7236e219778ab5a939ff4bd659183b">&#9670;&#160;</a></span>getTxRDSUpdated()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QN8066::getTxRDSUpdated </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RDS TX Updated. </p>
+<p>To transmit the 8 bytes in RDS0~RDS7, user should toggle the register bit RDSRDY (See SYSTEM2 register).</p>
+<p>Then the chip internally fetches these bytes after completing transmitting of current group.</p>
+<p>Once the chip internally fetched these bytes, it will toggle this bit, and user can write in another group. </p><dl class="section return"><dt>Returns</dt><dd>true </dd>
+<dd>
+false </dd></dl>
+
+<p class="reference">References <a class="el" href="group__group02.html#gafcb2a26df67c63e40800a29a559c5505">QN8066::getStatus3()</a>.</p>
+
+</div>
+</div>
+<a id="ga0664c14d7c23ede48874c9007b157d46" name="ga0664c14d7c23ede48874c9007b157d46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0664c14d7c23ede48874c9007b157d46">&#9670;&#160;</a></span>writeTxRDSBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::writeTxRDSBuffer </td>
+          <td>(</td>
+          <td class="paramtype">char *&#160;</td>
+          <td class="paramname"><em>text</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers) </p>
+<p>The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">text</td><td>(point to array of char with 8 bytes to be loaded into the RDS data buffer) </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

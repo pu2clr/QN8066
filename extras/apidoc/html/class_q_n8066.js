@@ -33,5 +33,7 @@ var class_q_n8066 =
     [ "setPAC", "group__group03.html#ga90eeea994b03d7c31ac09426982884c0", null ],
     [ "setTxFrequency", "class_q_n8066.html#a8797080798a8710609658b0d270ca914", null ],
     [ "setTxRDS", "group__group04.html#gaaad14424c57781256cfbda7accadbd49", null ],
-    [ "setTxToggleRDSReady", "group__group04.html#gaba2e2e1f2df33bb652fe36878355bc98", null ]
+    [ "setTxToggleRDSReady", "group__group04.html#gaba2e2e1f2df33bb652fe36878355bc98", null ],
+    [ "getTxRDSUpdated", "group__group04.html#ga1c7236e219778ab5a939ff4bd659183b", null ],
+    [ "writeTxRDSBuffer", "group__group04.html#ga0664c14d7c23ede48874c9007b157d46", null ]
 ];
