@@ -1,4 +1,4 @@
-# QN8066 RX/TX FM DSP Transmitter Arduino Library
+# QN8066 FM DSP RX/TX  Arduino Library
 
 This library is intended to provide an easy-to-use interface for controlling the QN8066 FM transceiver. 
 
