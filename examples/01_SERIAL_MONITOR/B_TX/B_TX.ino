@@ -1,6 +1,6 @@
 #include <QN8066.h>
 
-#define FREQ 106.7
+#define FREQ 106.8
 
 QN8066 dv;
 
@@ -61,7 +61,7 @@ void setup() {
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
 
-  analogWrite(9, 127); 
+  analogWrite(9, 80); 
 
   sprintf(str, "\n\nSYSTEM1: %X (Hex)\nSYSTEM2: %X (Hex)", dv.getRegister(QN_SYSTEM1), dv.getRegister(QN_SYSTEM2));
   Serial.print(str);
