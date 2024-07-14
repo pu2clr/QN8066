@@ -165,17 +165,21 @@ void QN8066::setTX(uint16_t frequency) {
 
   // Setup the reference clock source, Image Rejection and the threshold to
   // check valid channel
-  this->setRegister(QN_CCA, 0B00010000);
+  // this->setRegister(QN_CCA, 0B00010000);
 
   // Sets the crystal oscillator divider
   this->setRegister(QN_XTAL_DIV0, this->xtal_div & 0xFF); // Lower 8 bits of xtal_div[10:0].
   this->setRegister(QN_XTAL_DIV1, (this->xtal_div >> 8) |  0B0001000); // Higher 3 bits of xtal_div[10:0].
+
+  delay(100);
 
   // Set frequency
   int16_t auxFreq = (frequency - 600)  * 2;
   this->setRegister(QN_INT_CTRL, 0B00100000 | auxFreq >> 8);
   this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
 
+  delay(100)
+  
   // Exit standby, enter TX
   this->setRegister(QN_SYSTEM1, 0b00001011);
   delay(200);
@@ -432,7 +436,7 @@ void QN8066::setTxChannel(float frequency) {
 }
 
 /**
- * @ingroup group03 PA Control
+ * @ingroup group04 PA Control
  * @brief PA output power target control.
  * @details PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are
  * 24-56.
