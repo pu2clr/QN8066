@@ -235,7 +235,7 @@ void QN8066::setTxPilotGain(uint8_t value) {
 void QN8066::setTxOffAfterOneMinuteNoAudio(bool value) {
   qn8066_gplt gptl;
   gptl.raw = this->getRegister(QN_GPLT);
-  gptl.arg.t1m_sel = (value)? 3:2;
+  gptl.arg.t1m_sel = (value)? 2:3;
   this->setRegister(QN_GPLT, gptl.raw);
  } 
 
