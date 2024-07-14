@@ -229,6 +229,18 @@ void QN8066::setTxPilotGain(uint8_t value) {
 
 /**
  * @ingroup group04  TX Setup
+ * @brief Set of 1 minute time for PA off when no audio.
+ * @param value (true = Infinity (never turn it off); false = turn it ofafter about 1 minue )
+ */
+void QN8066::setTxOffAfterOneMinuteNoAudio(bool value) {
+  qn8066_gplt gptl;
+  gptl.raw = this->getRegister(QN_GPLT);
+  gptl.arg.t1m_sel = (value)? 3:2;
+  this->setRegister(QN_GPLT, gptl.raw);
+ } 
+
+/**
+ * @ingroup group04  TX Setup
  * @brief Sets volume control gain of analog portion
  * @details Valid values are 0 to 7.
  *

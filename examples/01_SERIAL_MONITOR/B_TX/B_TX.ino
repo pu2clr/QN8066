@@ -38,6 +38,7 @@ void setup() {
   dv.setup();
   delay(2000);
   dv.setTX(FREQ);
+  dv.setTxOffAfterOneMinuteNoAudio(false); // The trasmitter will never sleep.
   dv.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
 
   // dv.setAudioAnalogGain(0); // Em binário é 010 => -30dB
