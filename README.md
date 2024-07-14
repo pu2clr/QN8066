@@ -196,7 +196,7 @@ void setup() {
   delay(1000);      
   dv.setTX(1067); // Set the transmitter to 106.7 MHz 
   dv.setTxStereo(true);
-  analogWrite(9, 50);  // It is about 1/5 of the max power (5˜7W). It is between 1 and 1,4 W
+  analogWrite(9, 50);  // It is about 1/5 of the max power (5~7W). It is between 1 and 1,4 W
   Serial.print("\nBroadcasting...");
 }
 
