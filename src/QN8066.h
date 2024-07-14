@@ -792,8 +792,9 @@ public:
    *
    */
   void setRX();
-  void setTX(float frequency); // RESET the system and set to TX mode at a given
-                               // frequency
+  
+  void setTX(float frequency); // RESET the system and set to TX mode at a given frequency
+
 
   void setTxStereo(bool value = true);  
   void setTxPreEmphasis( uint8_t value = 75);
@@ -810,16 +811,6 @@ public:
   void setTxFrequencyDerivation(uint8_t value);
 
 
-  /**
-   * @ingroup group01
-   * @brief   Set to TX mode with custom parameters
-   * @details Switch to TX mode by using custom parameters (see SYSTEM1 register
-   * and  qn8066_system1 structure data type)
-   * @param parameters (qn8066_system1 structure data type)
-   */
-  inline void setTX(qn8066_system1 parameters) {
-    this->setRegister(QN_SYSTEM1, parameters.raw);
-  };
 
   void setResetDelay(uint16_t delayAfterReset) {
     this->resetDelay = delayAfterReset;
