@@ -36,7 +36,8 @@ void setup() {
   }
 
   dv.setup();
-  delay(2000);
+  Serial.print("\nStarting the system.");
+  delay(4000);
   dv.setTX(FREQ);
   dv.setTxOffAfterOneMinuteNoAudio(false); // The trasmitter will never sleep.
   dv.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
@@ -63,12 +64,10 @@ void setup() {
   Serial.print(str);
 
   analogWrite(9, 50);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
-
-  sprintf(str, "\n\nSYSTEM1: %X (Hex)\nSYSTEM2: %X (Hex)", dv.getRegister(QN_SYSTEM1), dv.getRegister(QN_SYSTEM2));
-  Serial.print(str);
-
 }
 
-
 void loop() {
+    sprintf(str,"\nTop FSM state code: %d", dv.getStatus1().arg.FSM);
+    Serial.print(str);
+    delay(15000);
 }
