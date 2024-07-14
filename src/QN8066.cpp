@@ -154,9 +154,12 @@ void QN8066::setRX() {
 /**
  * @ingroup group04 Start TX
  * @brief Sets the TX mode
+ * @details To avoid working with the float data type, the frequency parameter must be the desired frequency multiplied by 10.
+ * @details For example, if the user wants to tune to 106.7 MHz, the parameter to be sent is 1067.
+ * @details This approach reduces the size of the final code (binary) as well as avoids the inaccuracies of floating-point mathematical operations.
  * @param frequency - Frequency to be set
  */
-void QN8066::setTX(float frequency) {
+void QN8066::setTX(uint16_t frequency) {
   this->setRegister(QN_SYSTEM1, 0B11100011); // RESET the SYSTEM
   delay(200);
 
@@ -165,14 +168,11 @@ void QN8066::setTX(float frequency) {
   this->setRegister(QN_CCA, 0B00010000);
 
   // Sets the crystal oscillator divider
-  this->setRegister(QN_XTAL_DIV0,
-                    this->xtal_div & 0xFF); // Lower 8 bits of xtal_div[10:0].
-  this->setRegister(QN_XTAL_DIV1,
-                    (this->xtal_div >> 8) |
-                        0B0001000); // Higher 3 bits of xtal_div[10:0].
+  this->setRegister(QN_XTAL_DIV0, this->xtal_div & 0xFF); // Lower 8 bits of xtal_div[10:0].
+  this->setRegister(QN_XTAL_DIV1, (this->xtal_div >> 8) |  0B0001000); // Higher 3 bits of xtal_div[10:0].
 
   // Set frequency
-  int16_t auxFreq = (int16_t)((frequency - 60) / 0.05);
+  int16_t auxFreq = (frequency - 600)  * 2;
   this->setRegister(QN_INT_CTRL, 0B00100000 | auxFreq >> 8);
   this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
 

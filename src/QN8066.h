@@ -793,7 +793,7 @@ public:
    */
   void setRX();
   
-  void setTX(float frequency); // RESET the system and set to TX mode at a given frequency
+  void setTX(uint16_t frequency); // RESET the system and set to TX mode at a given frequency
 
 
   void setTxStereo(bool value = true);  
