@@ -164,6 +164,47 @@ The images below show the DIY Kit 5W-7W FM Transceiver available on AliExpress.
 ![DIY Kit 5W-7W FM Transceiver 02](./extras/images/KIT_ALIEXPRESS_02.jpg)
 
 
+### Using the QN8066 Arduino Library with DIY Kit 5W-7W FM Transceiver
+
+The code below is a minimalist sketch example of using this library with the DIY Kit 5W-7W FM  board. 
+
+#### Arduino and the  Kit 5W-7W FM connections
+
+| Anduino Nano or Uno pin | Kit 5W-7W FM  |
+| ----------------------- | ------------- | 
+|          GND            |     GND       | 
+|           D9            |     PWM       | 
+|           A4            |     SDA       | 
+|           A5            |     SCL       | 
+
+
+```cpp
+#include <QN8066.h>
+
+QN8066 dv;
+
+
+void setup() {
+
+  Serial.begin(9600);
+  while (!Serial); 
+
+  pinMode(9, OUTPUT);  // Pin use to PWM power control
+ 
+  dv.setup();
+  Serial.print("\nStarting the system...");
+  delay(1000);      
+  dv.setTX(1067); // Set the transmitter to 106.7 MHz 
+  dv.setTxStereo(true);
+  analogWrite(9, 50);  // It is about 1/5 of the max power (5˜7W). It is between 1 and 1,4 W
+  Serial.print("\nBroadcasting...");
+}
+
+void loop() {
+}
+````
+
+See also [DIY Kit 5W-7W FM example](https://github.com/pu2clr/QN8066/tree/main/examples/01_SERIAL_MONITOR/B_TX)
 
 
 ## References 

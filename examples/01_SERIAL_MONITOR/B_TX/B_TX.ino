@@ -1,3 +1,19 @@
+/**
+
+This  sketch is an example of using this library with the DIY Kit 5W-7W FM  board
+
+| Anduino Nano or Uno pin | Kit 5W-7W FM  |
+| ----------------------- | ------------- | 
+|          GND            |     GND       | 
+|           D9            |     PWM       | 
+|           A4            |     SDA       | 
+|           A5            |     SCL       | 
+
+
+Author: Ricardo Lima Caratti (PU2CLR) - 2024/06/14
+
+*/
+
 #include <QN8066.h>
 
 #define FREQ 1067   // Frequency: 106.7 MHz
