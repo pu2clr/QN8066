@@ -61,7 +61,7 @@ void setup() {
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
 
-  analogWrite(9, 80); 
+  analogWrite(9, 50);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 
   sprintf(str, "\n\nSYSTEM1: %X (Hex)\nSYSTEM2: %X (Hex)", dv.getRegister(QN_SYSTEM1), dv.getRegister(QN_SYSTEM2));
   Serial.print(str);
