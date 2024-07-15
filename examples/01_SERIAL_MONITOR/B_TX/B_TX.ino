@@ -57,12 +57,10 @@ void setup() {
   tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
   tx.setToggleTxPdClear();
 
-  // tx.setAudioAnalogGain(0); // Em binário é 010 => -30dB
-  // tx.setAudioDigitalGain(0);
-  // tx.setTxPilotGain(10);
+  tx.setTxPilotGain(10);
 
   tx.setTxStereo(true);
-  // tx.setTxPreEmphasis(75);
+  tx.setTxPreEmphasis(75);
 
   tx.setTxInputImpedance(0);  // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
   tx.setTxInputBufferGain(5); // With input inpedance  0 (10K), and input buffer 5, the gain shoud be 18dB
