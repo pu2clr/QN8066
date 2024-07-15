@@ -143,6 +143,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga90eeea994b03d7c31ac09426982884c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">QN8066::setPAC</a> (uint8_t PA_TRGT)</td></tr>
 <tr class="memdesc:ga90eeea994b03d7c31ac09426982884c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">PA output power target control.  <br /></td></tr>
 <tr class="separator:ga90eeea994b03d7c31ac09426982884c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf68d40e6fdc7a17cb64d883d93af3886"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a> ()</td></tr>
+<tr class="memdesc:gaf68d40e6fdc7a17cb64d883d93af3886"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX aAudio peak clear signal.  <br /></td></tr>
+<tr class="separator:gaf68d40e6fdc7a17cb64d883d93af3886"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -754,6 +757,37 @@ Functions</h2></td></tr>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
 <div class="ttc" id="agroup__group04_html_ga90eeea994b03d7c31ac09426982884c0"><div class="ttname"><a href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">QN8066::setPAC</a></div><div class="ttdeci">void setPAC(uint8_t PA_TRGT)</div><div class="ttdoc">PA output power target control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:605</div></div>
+</div><!-- fragment --> 
+</div>
+</div>
+<a id="gaf68d40e6fdc7a17cb64d883d93af3886" name="gaf68d40e6fdc7a17cb64d883d93af3886"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf68d40e6fdc7a17cb64d883d93af3886">&#9670;&#160;</a></span>setToggleTxPdClear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setToggleTxPdClear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TX aAudio peak clear signal. </p>
+<p>Audio peak value is max-hold and stored in aud_pk[3:0]. Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again</p>
+<p>Example </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>() {</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>();</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">setToggleTxPdClear</a>();   </div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__group04_html_gaf68d40e6fdc7a17cb64d883d93af3886"><div class="ttname"><a href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a></div><div class="ttdeci">void setToggleTxPdClear()</div><div class="ttdoc">TX aAudio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:631</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
