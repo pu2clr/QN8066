@@ -829,6 +829,7 @@ public:
    */
   void setCrystalFrequency(uint32_t value) { xtal_div = value / 32768; };
   void setPAC(uint8_t PA_TRGT);
+  void setToggleTxPdClear();
 
   // RDS TX
   void setTxRDS(bool value);   
