@@ -18,7 +18,7 @@ Author: Ricardo Lima Caratti (PU2CLR) - 2024/06/14
 
 #define FREQ 1067   // Frequency: 106.7 MHz
 
-QN8066 dv;
+QN8066 tx;
 
 
 char str[80];
@@ -33,7 +33,7 @@ void setup() {
   pinMode(9, OUTPUT);
   delay(2000);
 
-  if (dv.detectDevice()) {
+  if (tx.detectDevice()) {
     Serial.println("\nDevice QN8066 detected");
   } else {
     Serial.println("\nDevice QN8066 not detected");
@@ -41,7 +41,7 @@ void setup() {
       ;
   }
 
-  deviceCount = dv.scanI2CBus(deviceList);
+  deviceCount = tx.scanI2CBus(deviceList);
   if (deviceCount > 0) {
     for (uint8_t i = 0; i < deviceCount; i++) {
       sprintf(str, "\nDevice found  at: %x in HEX - %d in DEC", deviceList[i], deviceList[i]);
@@ -49,25 +49,25 @@ void setup() {
     }
   }
 
-  dv.setup();
+  tx.setup();
   Serial.print("\nStarting the system.");
   delay(4000);
-  dv.setTX(FREQ);
-  // dv.setTxOffAfterOneMinuteNoAudio(false); // The trasmitter will never sleep.
-  dv.setPAC(55);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
+  tx.setTX(FREQ);
+  // tx.setTxOffAfterOneMinuteNoAudio(false); // The trasmitter will never sleep.
+  tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
 
-  // dv.setAudioAnalogGain(0); // Em binário é 010 => -30dB
-  // dv.setAudioDigitalGain(0);
-  // dv.setTxPilotGain(10);
+  // tx.setAudioAnalogGain(0); // Em binário é 010 => -30dB
+  // tx.setAudioDigitalGain(0);
+  // tx.setTxPilotGain(10);
 
-  dv.setTxStereo(true);
-  // dv.setTxPreEmphasis(75);
+  tx.setTxStereo(true);
+  // tx.setTxPreEmphasis(75);
 
-  // dv.setTxInputImpedance(0);  // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
-  // dv.setTxInputBufferGain(5); // With input inpedance  0 (10K), and input buffer 5, the gain shoud be 18dB
-  // dv.setTxSoftClipping(true);
-  //  dv.setTxDigitalGain(2); // TX digital gain => 2 = 2dB  (default is 0 dB)
-  // dv.setTxFrequencyDerivation(200); // Valid valued from 0 to 255
+  tx.setTxInputImpedance(0);  // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
+  // tx.setTxInputBufferGain(5); // With input inpedance  0 (10K), and input buffer 5, the gain shoud be 18dB
+  tx.setTxSoftClipping(true);
+  //  tx.setTxDigitalGain(2); // TX digital gain => 2 = 2dB  (default is 0 dB)
+  tx.setTxFrequencyDerivation(150); // Valid valued from 0 to 255
 
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
@@ -76,7 +76,7 @@ void setup() {
 }
 
 void loop() {
-    sprintf(str,"\nTop FSM state code: %d", dv.getStatus1().arg.FSM);
+    sprintf(str,"\nTop FSM state code: %d", tx.getStatus1().arg.FSM);
     Serial.print(str);
     delay(15000);
 }
