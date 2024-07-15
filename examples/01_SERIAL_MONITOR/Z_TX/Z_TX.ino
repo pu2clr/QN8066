@@ -15,6 +15,9 @@
 QN8066 tx;
 
 void setup() {
+
+  delay(2000);
+  tx.setup();
   delay(1000);  
   Serial.begin(9600);
   while (!Serial);  
@@ -51,7 +54,6 @@ void setup() {
 
 void writeRegister(uint8_t qn_register, uint8_t value) {
     tx.setRegister(qn_register, value ); 
-    delay(100);
 }
 
 void loop() {
