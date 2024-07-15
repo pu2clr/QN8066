@@ -55,6 +55,7 @@ void setup() {
   tx.setTX(FREQ);
   // tx.setTxOffAfterOneMinuteNoAudio(false); // The trasmitter will never sleep.
   tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
+  tx.setToggleTxPdClear();
 
   // tx.setAudioAnalogGain(0); // Em binário é 010 => -30dB
   // tx.setAudioDigitalGain(0);
