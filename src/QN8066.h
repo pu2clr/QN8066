@@ -761,8 +761,6 @@ private:
   uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
   uint16_t xtal_div = 1000;
 
-  void setTxChannel(float frequency);
-
 protected:
 public:
   bool detectDevice();
@@ -831,8 +829,6 @@ public:
    */
   void setCrystalFrequency(uint32_t value) { xtal_div = value / 32768; };
   void setPAC(uint8_t PA_TRGT);
-
-  inline void setTxFrequency(float frequency) { setTxChannel(frequency); };
 
   // RDS TX
   void setTxRDS(bool value);   

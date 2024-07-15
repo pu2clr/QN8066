@@ -161,10 +161,10 @@ void QN8066::setRX() {
  * @details Example
  * @code 
  * #include <QN8066.h>
- * QN8066 qn;
+ * QN8066 tx;
  * void setup() {
- *   qn.setup();
- *   qn.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
  * }
  *
  * void loop() {
@@ -231,8 +231,8 @@ void QN8066::setTxStereo( bool value ) {
  * @brief   Pre-emphasis and de-emphasis time constant
  * @details The valid values are 50 and 75. Any value not equal to 75 sets the Pre-emphasis to 50. 
  * @param value (valids values:  50 or 75);
- * @code 
  * @details Example
+ * @code 
  * #include <QN8066.h>
  * QN8066 tx;
  * void setup() {
@@ -260,6 +260,7 @@ void QN8066::setTxPreEmphasis( uint8_t value ) {
  * @details the frequency deviation is value (%) *  75 kHz.
  * @param value
  * @details Example
+ * @code
  * #include <QN8066.h>
  * QN8066 tx;
  * void setup() {
@@ -287,6 +288,7 @@ void QN8066::setTxPilotGain(uint8_t value) {
  * @brief Set of 1 minute time for PA off when no audio.
  * @param value (true = Infinity (never turn it off); false = turn it ofafter about 1 minue )
  * @details Example
+ * @code
  * #include <QN8066.h>
  * QN8066 tx;
  * void setup() {
@@ -312,6 +314,7 @@ void QN8066::setTxOffAfterOneMinuteNoAudio(bool value) {
  * @details Valid values are 0 to 7.
  * @param value
  * @details Example
+ * @code 
  * #include <QN8066.h>
  * QN8066 tx;
  * void setup() {
@@ -340,6 +343,7 @@ void QN8066::setAudioAnalogGain(uint8_t value) {
  * @details Valid values are 0 to 5.
  * @param value
  * @details Example
+ * @code 
  * #include <QN8066.h>
  * QN8066 tx;
  * void setup() {
@@ -366,8 +370,20 @@ void QN8066::setAudioDigitalGain(uint8_t value) {
  * @ingroup group04  TX Setup
  * @brief DAC output control
  * @details If value is 0 (false), then "Normal operation"; if true, Hold DAC output to a fixed voltage.
- *
  * @param value  (true or false)
+ * @details Example
+ * @code
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setAudioDacHold(false);   // Normal operation
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 void QN8066::setAudioDacHold(bool value) {
   qn8066_vol_ctl vol_ctl;
@@ -381,8 +397,20 @@ void QN8066::setAudioDacHold(bool value) {
  * @ingroup group04  TX Setup
  * @brief Tx audio input mode selection
  * @details If value is 0 (false), then "Single ended"; if true, Differential
- *
  * @param value  (true or false)
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setAudioTxDiff(true);   // Differential
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode    
  */
 void QN8066::setAudioTxDiff(bool value) {
   qn8066_vol_ctl vol_ctl;
@@ -406,8 +434,20 @@ void QN8066::setAudioTxDiff(bool value) {
  * |  11  (3)  |          80          | 
  *
  * @param value  (true or false)
- * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
- * Devices, pag. 35
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 35
+ * @details Example
+ * @code
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxInputImpedance(0);   // 10 K Ohms 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
  */
 void QN8066::setTxInputImpedance(uint8_t value) {
   qn8066_reg_vga reg_vga; 
@@ -431,8 +471,20 @@ void QN8066::setTxInputImpedance(uint8_t value) {
  * |  11  (3)  |         Reserved     | 
  *
  * @param value  
- * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
- * Devices, pag. 35
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 35
+ * @details Example
+ * @code
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxDigitalGain(2);   // 2dB 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 void QN8066::setTxDigitalGain(uint8_t value) {
   qn8066_reg_vga reg_vga; 
@@ -456,16 +508,22 @@ void QN8066::setTxDigitalGain(uint8_t value) {
  * |  4 - 100    | 15;  9;  3; -3    |
  * |  5 - 101    | 18; 12;  6;  0    |
  * |  Others     | Reserved |
- * @code {.c++}
- *  QN8066 tx; 
- *  ...
- *  tx.setsetTxInputImpedance(0);  // Sets the input impedance to 10 Kohms
- *  tx.setTxInputBufferGain(5);    // Now the Gain will be 18dB
- *  ... 
- * @endcode
  * @param value  
- * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable
- * Devices, pag. 35
+ * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable Devices, pag. 35
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setsetTxInputImpedance(0);  // Sets the input impedance to 10 Kohms
+ *   tx.setTxInputBufferGain(5);    // Now the Gain will be 18dB
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode    
  */
 void QN8066::setTxInputBufferGain(uint8_t value) {
   qn8066_reg_vga reg_vga; 
@@ -479,8 +537,20 @@ void QN8066::setTxInputBufferGain(uint8_t value) {
 /**
  * @ingroup group04  TX Setup
  * @brief TX soft clipping enable
- * @details  
  * @param value  (true = enabled; false = disabled)
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxSoftClipping(true);  // Enabled
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode    
  */
 void QN8066::setTxSoftClipping( bool value) {
   qn8066_reg_vga reg_vga; 
@@ -495,37 +565,42 @@ void QN8066::setTxSoftClipping( bool value) {
  * @brief Specify total TX frequency deviation.
  * @details TX frequency deviation = 0.69KHz*TX_FEDV. The default value is 108 (Binary: 01101100)
  * @param value  
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxFrequencyDerivation(120);  // About +- 84 kHz
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode    
  */
  void QN8066::setTxFrequencyDerivation(uint8_t value) {
   this->setRegister(QN_FDEV, value );
  }
 
 /**
- * @ingroup group04 TX Channel
- * @brief convert a given frequency to a channel
- * @details By programming channel index RXCH[9:0] or TXCH[9:0], the RF channel
- * can be set to any frequency between 60 MHz ~ 108 MHz in 50 kHz steps.
- * @details The channel index and RF frequency have the following relationship:
- * FRF = (60 + 0.05 x Channel Index), where FRF is the RF frequency in MHz.
- * @param frequency
- */
-void QN8066::setTxChannel(float frequency) {
-  uint16_t channel = (uint16_t)((frequency - 60) / 0.05);
-
-  qn8066_int_ctrl value;
-  value.raw = this->getRegister(QN_INT_CTRL);
-  value.arg.TXCH = (channel >> 8);
-  this->setRegister(QN_INT_CTRL, value.raw);
-  this->setRegister(QN_TXCH, (uint8_t)(channel & 0xFF));
-  delay(100);
-}
-
-/**
  * @ingroup group04 PA Control
  * @brief PA output power target control.
- * @details PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are
- * 24-56.
+ * @details PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
  * @param pacValue
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setPAC(56);  // 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 void QN8066::setPAC(uint8_t PA_TRGT) {
 
