@@ -26,8 +26,9 @@ I hold a Master's degree in Educational Technology from the Federal University o
 5. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
 6. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
 7. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-8. [Donate](./#donate)
-9. [References](./#references)
+8. [Arduino Sketch examples](./examples/)
+9. [Donate](./#donate)
+10. [References](./#references)
 
 ## Legal Compliance Guidelines
 
