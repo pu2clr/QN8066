@@ -31,7 +31,6 @@ var class_q_n8066 =
     [ "startTransmitting", "class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b", null ],
     [ "setCrystalFrequency", "group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca", null ],
     [ "setPAC", "group__group04.html#ga90eeea994b03d7c31ac09426982884c0", null ],
-    [ "setTxFrequency", "class_q_n8066.html#a8797080798a8710609658b0d270ca914", null ],
     [ "setTxRDS", "group__group05.html#gaaad14424c57781256cfbda7accadbd49", null ],
     [ "setTxToggleRDSReady", "group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98", null ],
     [ "getTxRDSUpdated", "group__group05.html#ga1c7236e219778ab5a939ff4bd659183b", null ],
