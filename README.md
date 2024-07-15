@@ -28,6 +28,22 @@ I hold a Master's degree in Educational Technology from the Federal University o
 7. [Donate](./#donate)
 8. [References](./#references)
 
+## Legal Compliance Guidelines
+
+### Important Notice
+
+Please be aware that the use of FM transmitters is regulated by the laws and regulations of each country. It is crucial to ensure that your use of this transmitter complies with the applicable legal requirements and does not violate any broadcasting regulations.
+
+### Legal Compliance Guidelines
+
+1. **Frequency Range**: Ensure that the frequency range used by your FM transmitter is permitted in your country.
+2. **Transmission Power**: Adhere to the maximum allowed transmission power to avoid interference with licensed broadcasters and other communication services.
+3. **Licensing**: Check if a license is required to operate an FM transmitter in your region. Obtain the necessary permissions if required.
+4. **Interference**: Avoid causing interference with other electronic devices and communication services. Ensure your setup follows the prescribed technical standards.
+5. **Public Safety**: Be mindful of public safety and ensure your use of the FM transmitter does not pose any risks.
+
+By following these guidelines, you can ensure that your use of the FM transmitter respects the laws and regulations of your country and does not result in any legal issues.
+
 
 ## Technical Overview of the QN8066 RX/TX Device (IC)
 
