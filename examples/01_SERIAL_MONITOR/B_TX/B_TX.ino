@@ -71,10 +71,6 @@ void setup() {
 
   tx.setTxFrequencyDerivation(200); // Valid valued from 0 to 255
 
-  // Based on Dynamic_RDS - FM Transmitter Plugin for Falcon Player setup 
-  // "Stop Auto Gain Correction (AGC), which introduces obvious poor sounding audio changes"
-  tx.setRegister(0x6E, 0b10110111);  // 0x6E register is not docummented in Data Sheet.
-
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
 
