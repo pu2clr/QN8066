@@ -158,7 +158,20 @@ void QN8066::setRX() {
  * @details For example, if the user wants to tune to 106.7 MHz, the parameter to be sent is 1067.
  * @details This approach reduces the size of the final code (binary) as well as avoids the inaccuracies of floating-point mathematical operations.
  * @param frequency - Frequency to be set
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 qn;
+ * void setup() {
+ *   qn.setup();
+ *   qn.setTX(1067); // Set the transmitter to 106.7 MHz 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
  */
+
 void QN8066::setTX(uint16_t frequency) {
   this->setRegister(QN_SYSTEM1, 0B11100011); // RESET the SYSTEM
   delay(200);
@@ -191,6 +204,19 @@ void QN8066::setTX(uint16_t frequency) {
  * @brief Set TX Stereo or Mono
  * @details  
  * @param value (true = stereo; false = mono)
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setStereo(true);
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
  */
 void QN8066::setTxStereo( bool value ) {
   qn8066_system2 system2;
@@ -205,6 +231,19 @@ void QN8066::setTxStereo( bool value ) {
  * @brief   Pre-emphasis and de-emphasis time constant
  * @details The valid values are 50 and 75. Any value not equal to 75 sets the Pre-emphasis to 50. 
  * @param value (valids values:  50 or 75);
+ * @code 
+ * @details Example
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxPreEmphasis(75);
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
  */
 void QN8066::setTxPreEmphasis( uint8_t value ) {
   qn8066_system2 system2;
@@ -220,6 +259,18 @@ void QN8066::setTxPreEmphasis( uint8_t value ) {
  * @details Refers to peak frequency deviation of MPX signal when audio input is full scale.  Valid values: between 7 and 10.
  * @details the frequency deviation is value (%) *  75 kHz.
  * @param value
+ * @details Example
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxPilotGain(7);   // 7 * 75 kHz
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
  */
 void QN8066::setTxPilotGain(uint8_t value) {
   qn8066_gplt gptl;
@@ -235,6 +286,18 @@ void QN8066::setTxPilotGain(uint8_t value) {
  * @ingroup group04  TX Setup
  * @brief Set of 1 minute time for PA off when no audio.
  * @param value (true = Infinity (never turn it off); false = turn it ofafter about 1 minue )
+ * @details Example
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxOffAfterOneMinuteNoAudio(false);   // Do not sleep after 1 minute with no audio
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
  */
 void QN8066::setTxOffAfterOneMinuteNoAudio(bool value) {
   qn8066_gplt gptl;
@@ -247,8 +310,19 @@ void QN8066::setTxOffAfterOneMinuteNoAudio(bool value) {
  * @ingroup group04  TX Setup
  * @brief Sets volume control gain of analog portion
  * @details Valid values are 0 to 7.
- *
  * @param value
+ * @details Example
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setAudioAnalogGain(5);   // -24 dB
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
  */
 void QN8066::setAudioAnalogGain(uint8_t value) {
   qn8066_vol_ctl vol_ctl;
@@ -264,8 +338,19 @@ void QN8066::setAudioAnalogGain(uint8_t value) {
  * @ingroup group04  TX Setup
  * @brief Sets set digital volume gain
  * @details Valid values are 0 to 5.
- *
  * @param value
+ * @details Example
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setAudioDigitalGain(3);   // -3 dB
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 void QN8066::setAudioDigitalGain(uint8_t value) {
   qn8066_vol_ctl vol_ctl;
