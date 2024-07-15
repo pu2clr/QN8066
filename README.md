@@ -237,5 +237,6 @@ If you find this project useful, consider making a donation so that the author o
 
 ## References 
 
+* [Data Sheet - QUINTIC QN8066 Digital FM Transceiver for Portable Devices](https://vrtp.ru/index.php?act=Attach&type=post&id=913773)
 * [Dynamic_RDS - FM Transmitter Plugin for Falcon Player](https://github.com/ShadowLight8/Dynamic_RDS)
-* []()
+

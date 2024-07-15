@@ -785,6 +785,9 @@ public:
   qn8066_status2 getStatus2();
   qn8066_status3 getStatus3();
 
+
+
+
   /**
    * @brief SYSTEM1 SETUP
    *
@@ -809,8 +812,6 @@ public:
   void setTxSoftClipping( bool value);
   void setTxFrequencyDerivation(uint8_t value);
 
-
-
   void setResetDelay(uint16_t delayAfterReset) {
     this->resetDelay = delayAfterReset;
   };
@@ -830,6 +831,7 @@ public:
   void setCrystalFrequency(uint32_t value) { xtal_div = value / 32768; };
   void setPAC(uint8_t PA_TRGT);
   void setToggleTxPdClear();
+  void getAudioPeakValue();
 
   // RDS TX
   void setTxRDS(bool value);   

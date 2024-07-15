@@ -613,7 +613,7 @@ void QN8066::setPAC(uint8_t PA_TRGT) {
 /**
  * @ingroup group04 PA Control
  * @brief TX aAudio peak clear signal.
- * @details Audio peak value is max-hold and stored in aud_pk[3:0]. Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again
+ * @details Audio peak value is max-hold and stored in aud_pk (see STATUS register). Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again
  * @details Example
  * @code 
  * #include <QN8066.h>
@@ -635,6 +635,32 @@ void QN8066::setToggleTxPdClear() {
   this->setRegister(QN_PAC, pac.raw );
 
 }
+
+
+
+/**
+ * @ingroup group04 PA Control
+ * @brief Audio peak value at ADC input
+ * @details  Audio peak value at ADC input is aud_pk * 45mV. See STATUS3 register.
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   int audioPeak = tx.getAudioPeakValue();   // Stores the current audio peak value
+ *   ...
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
+ */
+void QN8066::getAudioPeakValue() {
+  return this->getStatus3().arg.aud_pk * 45;
+}
+
 
 
 
