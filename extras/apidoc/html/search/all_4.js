@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['getaudiopeakvalue_0',['getAudioPeakValue',['../group__group04.html#ga30bd7ad9197462360f8afe5abaf00761',1,'QN8066']]],
+  ['getaudiopeakvalue_0',['getAudioPeakValue',['../group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc',1,'QN8066']]],
   ['getdeviceproductfamily_1',['getDeviceProductFamily',['../class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92',1,'QN8066']]],
   ['getdeviceproductid_2',['getDeviceProductID',['../class_q_n8066.html#ae043cf96db238be36b902d97b8c9a1e3',1,'QN8066']]],
   ['getregister_3',['getRegister',['../group__group02.html#ga49c108bf838926f63114cf43468f3595',1,'QN8066']]],

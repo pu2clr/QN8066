@@ -283,6 +283,43 @@ void QN8066::setTxPilotGain(uint8_t value) {
   }
 }
 
+
+/**
+ * @ingroup group04  TX Setup
+ * @brief TX soft clip threshold
+ * @details See table below. 
+
+ * | tx_sftclpth | value |
+ * | ----------  | ----- |
+ * |  0 - 00     | 12’d2051 (3db back off from 0.5v) |
+ * |  1 - 01     | 12’d1725 (4.5db back off from 0.5v) |
+ * |  2 - 10     | 12’d1452 (6db back off from 0.5v) |
+ * |  3 - 11     | 12’d1028 (9db back off from 0.5v) |
+ * @param value
+ * @details Example
+ * @code
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxSoftCliptTreshold(2);   // 2 = 12’d1452 (6db back off from 0.5v) 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
+ */
+void QN8066::setTxSoftCliptTreshold(uint8_t value) {
+  qn8066_gplt gptl;
+  gptl.raw = this->getRegister(QN_GPLT);
+  gptl.arg.tx_sftclpth = value;
+  this->setRegister(QN_GPLT, gptl.raw);
+}
+
+
+
+
 /**
  * @ingroup group04  TX Setup
  * @brief Set of 1 minute time for PA off when no audio.
@@ -545,14 +582,14 @@ void QN8066::setTxInputBufferGain(uint8_t value) {
  * void setup() {
  *   tx.setup();
  *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
- *   tx.setTxSoftClipping(true);  // Enabled
+ *   tx.setTxSoftClippingEnable(true);  // Enabled
  * }
  *
  * void loop() {
  * }
  * @endcode    
  */
-void QN8066::setTxSoftClipping( bool value) {
+void QN8066::setTxSoftClippingEnable( bool value) {
   qn8066_reg_vga reg_vga; 
   reg_vga.raw = this->getRegister(QN_REG_VGA);
   reg_vga.arg.tx_sftclpen = value;
@@ -638,6 +675,8 @@ void QN8066::setToggleTxPdClear() {
 
 
 
+
+
 /**
  * @ingroup group04 PA Control
  * @brief Audio peak value at ADC input
@@ -661,8 +700,6 @@ void QN8066::setToggleTxPdClear() {
 int QN8066::getAudioPeakValue() {
   return this->getStatus3().arg.aud_pk * 45;
 }
-
-
 
 
 /** @defgroup group05 TX RDS Setup*/

@@ -22,11 +22,12 @@ var searchData=
   ['settxpilotgain_19',['setTxPilotGain',['../group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4',1,'QN8066']]],
   ['settxpreemphasis_20',['setTxPreEmphasis',['../group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1',1,'QN8066']]],
   ['settxrds_21',['setTxRDS',['../group__group05.html#gaaad14424c57781256cfbda7accadbd49',1,'QN8066']]],
-  ['settxsoftclipping_22',['setTxSoftClipping',['../group__group04.html#gaffd48578af9f8a48405c27fbddbc5c85',1,'QN8066']]],
-  ['settxstereo_23',['setTxStereo',['../group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83',1,'QN8066']]],
-  ['settxtogglerdsready_24',['setTxToggleRDSReady',['../group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98',1,'QN8066']]],
-  ['setup_25',['setup',['../group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f',1,'QN8066']]],
-  ['snrdb_26',['SNRDB',['../group__group00.html#a40858883345a2297b86e1adfeea40baa',1,'qn8066_srn']]],
-  ['starttransmitting_27',['startTransmitting',['../class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b',1,'QN8066']]],
-  ['stoptransmitting_28',['stopTransmitting',['../class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c',1,'QN8066']]]
+  ['settxsoftclippingenable_22',['setTxSoftClippingEnable',['../group__group04.html#gab21e226857d1b2ac384623fd47784ce5',1,'QN8066']]],
+  ['settxsoftclipttreshold_23',['setTxSoftCliptTreshold',['../group__group04.html#ga0032c60d8038a749f69b7e8508fa014d',1,'QN8066']]],
+  ['settxstereo_24',['setTxStereo',['../group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83',1,'QN8066']]],
+  ['settxtogglerdsready_25',['setTxToggleRDSReady',['../group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98',1,'QN8066']]],
+  ['setup_26',['setup',['../group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f',1,'QN8066']]],
+  ['snrdb_27',['SNRDB',['../group__group00.html#a40858883345a2297b86e1adfeea40baa',1,'qn8066_srn']]],
+  ['starttransmitting_28',['startTransmitting',['../class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b',1,'QN8066']]],
+  ['stoptransmitting_29',['stopTransmitting',['../class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c',1,'QN8066']]]
 ];
