@@ -642,6 +642,7 @@ void QN8066::setToggleTxPdClear() {
  * @ingroup group04 PA Control
  * @brief Audio peak value at ADC input
  * @details  Audio peak value at ADC input is aud_pk * 45mV. See STATUS3 register.
+ * @return integer value result of  aud_pk * 45 (in mV).
  * @details Example
  * @code 
  * #include <QN8066.h>
@@ -657,7 +658,7 @@ void QN8066::setToggleTxPdClear() {
  * }
  * @endcode   
  */
-void QN8066::getAudioPeakValue() {
+int QN8066::getAudioPeakValue() {
   return this->getStatus3().arg.aud_pk * 45;
 }
 
