@@ -10,6 +10,8 @@ By using or installing Library you are agreeing to the terms of the [MIT licence
 
 [Copyright (c) 2024 Ricardo Lima Caratti](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
 
+Contact: __pu2clr@gmail.com__.
+
 
 ## About Me
 
