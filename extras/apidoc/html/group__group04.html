@@ -146,6 +146,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gaf68d40e6fdc7a17cb64d883d93af3886"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a> ()</td></tr>
 <tr class="memdesc:gaf68d40e6fdc7a17cb64d883d93af3886"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX aAudio peak clear signal.  <br /></td></tr>
 <tr class="separator:gaf68d40e6fdc7a17cb64d883d93af3886"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga30bd7ad9197462360f8afe5abaf00761"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga30bd7ad9197462360f8afe5abaf00761">QN8066::getAudioPeakValue</a> ()</td></tr>
+<tr class="memdesc:ga30bd7ad9197462360f8afe5abaf00761"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio peak value at ADC input.  <br /></td></tr>
+<tr class="separator:ga30bd7ad9197462360f8afe5abaf00761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -776,7 +779,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>TX aAudio peak clear signal. </p>
-<p>Audio peak value is max-hold and stored in aud_pk[3:0]. Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again</p>
+<p>Audio peak value is max-hold and stored in aud_pk (see STATUS register). Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again</p>
 <p>Example </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>() {</div>
@@ -789,6 +792,40 @@ Functions</h2></td></tr>
 <div class="line">}</div>
 <div class="ttc" id="agroup__group04_html_gaf68d40e6fdc7a17cb64d883d93af3886"><div class="ttname"><a href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a></div><div class="ttdeci">void setToggleTxPdClear()</div><div class="ttdoc">TX aAudio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:631</div></div>
 </div><!-- fragment --> 
+</div>
+</div>
+<a id="ga30bd7ad9197462360f8afe5abaf00761" name="ga30bd7ad9197462360f8afe5abaf00761"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga30bd7ad9197462360f8afe5abaf00761">&#9670;&#160;</a></span>getAudioPeakValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::getAudioPeakValue </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Audio peak value at ADC input. </p>
+<p>Audio peak value at ADC input is aud_pk * 45mV. See STATUS3 register.</p>
+<p>Example </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>() {</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>();</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  <span class="keywordtype">int</span> audioPeak = tx.<a class="code hl_function" href="group__group04.html#ga30bd7ad9197462360f8afe5abaf00761">getAudioPeakValue</a>();   <span class="comment">// Stores the current audio peak value</span></div>
+<div class="line">  ...</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__group04_html_ga30bd7ad9197462360f8afe5abaf00761"><div class="ttname"><a href="group__group04.html#ga30bd7ad9197462360f8afe5abaf00761">QN8066::getAudioPeakValue</a></div><div class="ttdeci">void getAudioPeakValue()</div><div class="ttdoc">Audio peak value at ADC input.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:660</div></div>
+</div><!-- fragment --> 
+<p class="reference">References <a class="el" href="group__group02.html#gafcb2a26df67c63e40800a29a559c5505">QN8066::getStatus3()</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
