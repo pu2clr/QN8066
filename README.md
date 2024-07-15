@@ -25,6 +25,8 @@ I hold a Master's degree in Educational Technology from the Federal University o
 4. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
 5. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
 6. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+7. [Donate](./#donate)
+8. [References](./#references)
 
 
 ## Technical Overview of the QN8066 RX/TX Device (IC)
@@ -205,6 +207,14 @@ void loop() {
 ````
 
 See also [DIY Kit 5W-7W FM example](https://github.com/pu2clr/QN8066/tree/main/examples/01_SERIAL_MONITOR/B_TX)
+
+
+## Donate 
+
+If you find this project useful, consider making a donation so that the author of this library can purchase components and modules for improvements and testing of this library. [Click here to donate](https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD) or use the QR code below.
+
+
+![Donate](./extras/images/QR_Code.png) 
 
 
 ## References 
