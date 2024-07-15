@@ -6,7 +6,7 @@ var searchData=
   ['setaudiodigitalgain_3',['setAudioDigitalGain',['../group__group04.html#ga4670b899f6f3df01c4d967b7f461318a',1,'QN8066']]],
   ['setaudiotxdiff_4',['setAudioTxDiff',['../group__group04.html#gade021b98b99e9239c390461d22020c4e',1,'QN8066']]],
   ['setcrystalfrequency_5',['setCrystalFrequency',['../group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca',1,'QN8066']]],
-  ['setpac_6',['setPAC',['../group__group03.html#ga90eeea994b03d7c31ac09426982884c0',1,'QN8066']]],
+  ['setpac_6',['setPAC',['../group__group04.html#ga90eeea994b03d7c31ac09426982884c0',1,'QN8066']]],
   ['setrdsfrequencydeviation_7',['setRDSFrequencyDeviation',['../group__group05.html#gacb4f89faa8744c4adbf4b3bbfc2412b4',1,'QN8066']]],
   ['setrdslinein_8',['setRDSLineIn',['../group__group05.html#ga53969a8d55eb57c9c8d97c5170f5d94b',1,'QN8066']]],
   ['setregister_9',['setRegister',['../group__group02.html#ga8c3571a46681a2da4e5dbe0e2ba0b249',1,'QN8066']]],

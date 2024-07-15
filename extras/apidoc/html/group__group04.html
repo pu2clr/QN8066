@@ -140,6 +140,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga88ea23b676feb40a15725b9273eca95b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">QN8066::setTxFrequencyDerivation</a> (uint8_t value)</td></tr>
 <tr class="memdesc:ga88ea23b676feb40a15725b9273eca95b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Specify total TX frequency deviation.  <br /></td></tr>
 <tr class="separator:ga88ea23b676feb40a15725b9273eca95b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga90eeea994b03d7c31ac09426982884c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">QN8066::setPAC</a> (uint8_t PA_TRGT)</td></tr>
+<tr class="memdesc:ga90eeea994b03d7c31ac09426982884c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">PA output power target control.  <br /></td></tr>
+<tr class="separator:ga90eeea994b03d7c31ac09426982884c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -164,11 +167,24 @@ Functions</h2></td></tr>
 <p>For example, if the user wants to tune to 106.7 MHz, the parameter to be sent is 1067.</p>
 <p>This approach reduces the size of the final code (binary) as well as avoids the inaccuracies of floating-point mathematical operations. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">frequency</td><td>- Frequency to be set </td></tr>
+    <tr><td class="paramname">frequency</td><td>- Frequency to be set</td></tr>
   </table>
   </dd>
 </dl>
-
+<p>Example </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> qn;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>() {</div>
+<div class="line">  qn.<a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>();</div>
+<div class="line">  qn.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">}</div>
+<div class="ttc" id="a_q_n8066_8h_html"><div class="ttname"><a href="_q_n8066_8h.html">QN8066.h</a></div></div>
+<div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:759</div></div>
+<div class="ttc" id="agroup__group02_html_ga8eeb0b8b46c2539ce70f304b922c1a8f"><div class="ttname"><a href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">QN8066::setup</a></div><div class="ttdeci">void setup()</div><div class="ttdoc">Device initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:135</div></div>
+<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:175</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="ga7fbea7d2ae6bdf9719ee252e6a612a83" name="ga7fbea7d2ae6bdf9719ee252e6a612a83"></a>
@@ -191,11 +207,21 @@ Functions</h2></td></tr>
 <p><br  />
  </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>(true = stereo; false = mono) </td></tr>
+    <tr><td class="paramname">value</td><td>(true = stereo; false = mono)</td></tr>
   </table>
   </dd>
 </dl>
-
+<p>Example </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>() {</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>();</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.setStereo(<span class="keyword">true</span>);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">}</div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="gab1a0d8a388d2ca976c67b2f31c4d8be1" name="gab1a0d8a388d2ca976c67b2f31c4d8be1"></a>
@@ -217,7 +243,18 @@ Functions</h2></td></tr>
 <p>Pre-emphasis and de-emphasis time constant. </p>
 <p>The valid values are 50 and 75. Any value not equal to 75 sets the Pre-emphasis to 50. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>(valids values: 50 or 75); </td></tr>
+    <tr><td class="paramname">value</td><td>(valids values: 50 or 75); <div class="fragment"><div class="line">@details Example</div>
+<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f">setup</a>() {</div>
+<div class="line">  tx.setup();</div>
+<div class="line">  tx.setTX(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.setTxPreEmphasis(75);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">}</div>
+</div><!-- fragment --> </td></tr>
   </table>
   </dd>
 </dl>
@@ -248,6 +285,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<p>Example #include &lt;<a class="el" href="_q_n8066_8h.html">QN8066.h</a>&gt; <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> tx; void <a class="el" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f" title="Device initial configuration.">setup()</a> { tx.setup(); tx.setTX(1067); // Set the transmitter to 106.7 MHz tx.setTxPilotGain(7); // 7 * 75 kHz }</p>
+<p>void loop() { }  <br  />
+ </p>
 
 </div>
 </div>
@@ -270,10 +310,13 @@ Functions</h2></td></tr>
 <p>Set of 1 minute time for PA off when no audio. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">value</td><td>(true = Infinity (never turn it off); false = turn it ofafter about 1 minue ) </td></tr>
+    <tr><td class="paramname">value</td><td>(true = Infinity (never turn it off); false = turn it ofafter about 1 minue )</td></tr>
   </table>
   </dd>
 </dl>
+<p>Example #include &lt;<a class="el" href="_q_n8066_8h.html">QN8066.h</a>&gt; <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> tx; void <a class="el" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f" title="Device initial configuration.">setup()</a> { tx.setup(); tx.setTX(1067); // Set the transmitter to 106.7 MHz tx.setTxOffAfterOneMinuteNoAudio(false); // Do not sleep after 1 minute with no audio }</p>
+<p>void loop() { }  <br  />
+ </p>
 
 </div>
 </div>
@@ -294,13 +337,15 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets volume control gain of analog portion. </p>
-<p>Valid values are 0 to 7.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Valid values are 0 to 7. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td></td></tr>
   </table>
   </dd>
 </dl>
+<p>Example #include &lt;<a class="el" href="_q_n8066_8h.html">QN8066.h</a>&gt; <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> tx; void <a class="el" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f" title="Device initial configuration.">setup()</a> { tx.setup(); tx.setTX(1067); // Set the transmitter to 106.7 MHz tx.setAudioAnalogGain(5); // -24 dB }</p>
+<p>void loop() { }  <br  />
+ </p>
 
 </div>
 </div>
@@ -321,13 +366,15 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Sets set digital volume gain. </p>
-<p>Valid values are 0 to 5.</p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>Valid values are 0 to 5. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td></td></tr>
   </table>
   </dd>
 </dl>
+<p>Example #include &lt;<a class="el" href="_q_n8066_8h.html">QN8066.h</a>&gt; <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> tx; void <a class="el" href="group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f" title="Device initial configuration.">setup()</a> { tx.setup(); tx.setTX(1067); // Set the transmitter to 106.7 MHz tx.setAudioDigitalGain(3); // -3 dB }</p>
+<p>void loop() { }  <br  />
+ </p>
 
 </div>
 </div>
@@ -507,8 +554,7 @@ Functions</h2></td></tr>
 <div class="line">tx.setsetTxInputImpedance(0);  <span class="comment">// Sets the input impedance to 10 Kohms</span></div>
 <div class="line">tx.<a class="code hl_function" href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">setTxInputBufferGain</a>(5);    <span class="comment">// Now the Gain will be 18dB</span></div>
 <div class="line">... </div>
-<div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:759</div></div>
-<div class="ttc" id="agroup__group04_html_ga09843594c1c9203a738c3a18cbc78403"><div class="ttname"><a href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a></div><div class="ttdeci">void setTxInputBufferGain(uint8_t value)</div><div class="ttdoc">TX input buffer gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:381</div></div>
+<div class="ttc" id="agroup__group04_html_ga09843594c1c9203a738c3a18cbc78403"><div class="ttname"><a href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a></div><div class="ttdeci">void setTxInputBufferGain(uint8_t value)</div><div class="ttdoc">TX input buffer gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:470</div></div>
 </div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">value</td><td><br  />
@@ -568,6 +614,32 @@ Functions</h2></td></tr>
   <table class="params">
     <tr><td class="paramname">value</td><td><br  />
  </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga90eeea994b03d7c31ac09426982884c0" name="ga90eeea994b03d7c31ac09426982884c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga90eeea994b03d7c31ac09426982884c0">&#9670;&#160;</a></span>setPAC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setPAC </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>PA_TRGT</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>PA output power target control. </p>
+<p>PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pacValue</td><td></td></tr>
   </table>
   </dd>
 </dl>

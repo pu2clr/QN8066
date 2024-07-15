@@ -200,7 +200,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga1c7236e219778ab5a939ff4bd659183b';
-        sec-mem-ref-line = '489';
+        sec-mem-ref-line = '578';
         sec-mem-ref-name = 'getTxRDSUpdated';
     };
     }; /* sec-member */
@@ -249,6 +249,18 @@ _EnD_oF_dEf_TeXt_;
 \ilinebr\ilinebr For example, if the user wants to tune to 106.7 MHz, the parameter to be sent is 1067.
 \ilinebr\ilinebr This approach reduces the size of the final code (binary) as well as avoids the inaccuracies of floating-point mathematical operations.
 @param frequency - Frequency to be set
+\ilinebr\ilinebr Example
+@code 
+#include <QN8066.h>
+QN8066 qn;
+void setup() {
+  qn.setup();
+  qn.setTX(1067); // Set the transmitter to 106.7 MHz 
+}
+
+void loop() {
+}
+@endcode 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -277,6 +289,19 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  <br>
 @param value (true = stereo; false = mono)
+\ilinebr\ilinebr Example
+@code 
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  tx.setup();
+  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setStereo(true);
+}
+
+void loop() {
+}
+@endcode 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -305,6 +330,19 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  The valid values are 50 and 75. Any value not equal to 75 sets the Pre-emphasis to 50. 
 @param value (valids values:  50 or 75);
+@code 
+@details Example
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  tx.setup();
+  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTxPreEmphasis(75);
+}
+
+void loop() {
+}
+@endcode 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -329,6 +367,18 @@ Set of 1 minute time for PA off when no audio.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 @param value (true = Infinity (never turn it off); false = turn it ofafter about 1 minue )
+\ilinebr\ilinebr Example
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  tx.setup();
+  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTxOffAfterOneMinuteNoAudio(false);   // Do not sleep after 1 minute with no audio
+}
+
+void loop() {
+}
+@endcode  <br>
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -355,6 +405,18 @@ _EnD_oF_dEf_TeXt_;
  Refers to peak frequency deviation of MPX signal when audio input is full scale.  Valid values: between 7 and 10.
 \ilinebr\ilinebr the frequency deviation is value (%) *  75 kHz.
 @param value
+\ilinebr\ilinebr Example
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  tx.setup();
+  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTxPilotGain(7);   // 7 * 75 kHz
+}
+
+void loop() {
+}
+@endcode  <br>
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -379,8 +441,19 @@ Sets volume control gain of analog portion.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Valid values are 0 to 7.
-
 @param value
+\ilinebr\ilinebr Example
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  tx.setup();
+  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setAudioAnalogGain(5);   // -24 dB
+}
+
+void loop() {
+}
+@endcode  <br>
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -405,8 +478,19 @@ Sets set digital volume gain.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Valid values are 0 to 5.
-
 @param value
+\ilinebr\ilinebr Example
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  tx.setup();
+  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setAudioDigitalGain(3);   // -3 dB
+}
+
+void loop() {
+}
+@endcode   <br>
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -748,7 +832,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group03_1ga90eeea994b03d7c31ac09426982884c0';
+      sec-mem-id   = 'group__group04_1ga90eeea994b03d7c31ac09426982884c0';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
