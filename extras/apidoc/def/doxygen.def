@@ -200,12 +200,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gaee7afb6a9a31a99fc29b8b9d7d0a00bc';
-        sec-mem-ref-line = '700';
+        sec-mem-ref-line = '702';
         sec-mem-ref-name = 'getAudioPeakValue';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga1c7236e219778ab5a939ff4bd659183b';
-        sec-mem-ref-line = '744';
+        sec-mem-ref-line = '746';
         sec-mem-ref-name = 'getTxRDSUpdated';
     };
     }; /* sec-member */
@@ -984,7 +984,7 @@ _EnD_oF_dEf_TeXt_;
 PA output power target control.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
+ PA output power target is 0.91*PA_TRGT+70.2dBu. .
 @param pacValue
 \ilinebr\ilinebr Example
 @code 
