@@ -51,6 +51,11 @@ Please be aware that the use of FM transmitters is regulated by the laws and reg
 
 By following these guidelines, you can ensure that your use of the FM transmitter respects the laws and regulations of your country and does not result in any legal issues.
 
+Acknowledgements
+
+* Mr. Grazianny Carvalho Tavares - I would like to thank Mr. Grazianny Carvalho Tavares, PU7MGR, for introducing me to the QN8066 and encouraging me to develop this library. Mr. Grazianny also played a crucial role in helping me understand various concepts about FM modulation, audio quality criteria, as well as in testing the fundamental functions implemented in this library using equipment for precise value measurements.
+
+
 
 ## Technical Overview of the QN8066 RX/TX Device (IC)
 
