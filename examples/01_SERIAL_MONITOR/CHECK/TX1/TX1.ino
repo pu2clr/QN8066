@@ -44,7 +44,7 @@ void setup() {
   writeRegister(0x49, 0xE8); // ???????  = 11101000 => 
   writeRegister(0x1B, 0xA6); // TXCH => 10100110 
 
-  writeRegister(0x49, 0xDF); // ??? 11011111 
+  writeRegister(0x49, 0xDF); // ??? 
 
   writeRegister(0x6E, 0xFF); // ???  
   writeRegister(0x28, 0x5B); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)

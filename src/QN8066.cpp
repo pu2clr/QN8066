@@ -623,7 +623,7 @@ void QN8066::setTxSoftClippingEnable( bool value) {
 /**
  * @ingroup group04 PA Control
  * @brief PA output power target control.
- * @details PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
+ * @details PA output power target is 0.91*PA_TRGT+70.2dBu. .
  * @param pacValue
  * @details Example
  * @code 
@@ -642,8 +642,10 @@ void QN8066::setTxSoftClippingEnable( bool value) {
 void QN8066::setPAC(uint8_t PA_TRGT) {
 
   // Reset aud_pk
-  this->setRegister(QN_PAC, 0b10000000 | PA_TRGT);
-  this->setRegister(QN_PAC, 0b00000000 | PA_TRGT);
+  if ( PA_TRGT > 23 ) { 
+    this->setRegister(QN_PAC, 0b10000000 | PA_TRGT);
+    this->setRegister(QN_PAC, 0b00000000 | PA_TRGT);
+  }
 }
 
 
