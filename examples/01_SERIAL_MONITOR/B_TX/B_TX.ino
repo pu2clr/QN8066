@@ -82,7 +82,6 @@ void setup() {
 
   tx.setTxFrequencyDerivation(200); // Valid valued from 0 to 255
 
-
   // Check - Undocumented registers in the datasheet that affect audio.
   tx.setRegister(0x49, 223);  // 0B11011111
   tx.setRegister(0x6E, 255 ); // 0B11111111
