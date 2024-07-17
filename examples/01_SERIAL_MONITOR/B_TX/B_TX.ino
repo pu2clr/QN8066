@@ -1,6 +1,12 @@
 /**
+This  sketch is an example of using this library with the DIY Kit 5W-7W FM board.
 
-This  sketch is an example of using this library with the DIY Kit 5W-7W FM  board
+The purpose of this application is to guide developers in using the  functions implemented 
+in this library to develop their own FM transmission station  using  the "KIT DIY 5W-7W FM 
+board based on  QN8066". It  is important  to  emphasize that users should be aware of and 
+comply with the  applicable  laws and  regulations  in  their location  when using this FM 
+transmitter. The  following  table  illustrates  the  connections  between  the  KIT  and 
+the Arduino Uno, Nano, or Pro Mini boards.
 
 | Anduino Nano or Uno pin | Kit 5W-7W FM  |
 | ----------------------- | ------------- | 
@@ -9,17 +15,21 @@ This  sketch is an example of using this library with the DIY Kit 5W-7W FM  boar
 |           A4            |     SDA       | 
 |           A5            |     SCL       | 
 
+Attention: Use the "Serial Monitor" function in the Arduino IDE to monitor the system 
+           initialization process.
 
 Author: Ricardo Lima Caratti (PU2CLR) - 2024/06/14
-
 */
 
 #include <QN8066.h>
 
-#define FREQ 1067   // Frequency: 106.7 MHz
+#define PWM_PIN   9      // Arduino PIN used to control the output power of the transmitter via PWM.
+#define FREQUENCY 1067   // 106.7 MHz - This library does not use floating-point data. 
+                         // This approach helps to save microcontroller memory. 
+                         // Therefore, to represent a frequency in the commercial FM band, 
+                         // multiply the desired frequency by 10. In this case 106.7MHz is 1067.
 
 QN8066 tx;
-
 
 char str[80];
 
@@ -28,17 +38,17 @@ void setup() {
   uint8_t deviceList[5], deviceCount = 0;
 
   Serial.begin(9600);
-  while (!Serial)
-    ;
-  pinMode(9, OUTPUT);
-  delay(2000);
+  while (!Serial) ;
+
+  pinMode(PWM_PIN, OUTPUT); // Sets the Arduino PIN to operate with with PWM
+
+  delay(1000); // Wait a bit while the system stabilizes.
 
   if (tx.detectDevice()) {
     Serial.println("\nDevice QN8066 detected");
   } else {
     Serial.println("\nDevice QN8066 not detected");
-    while (1)
-      ;
+    while (1);
   }
 
   deviceCount = tx.scanI2CBus(deviceList);
@@ -49,10 +59,11 @@ void setup() {
     }
   }
 
-  tx.setup();
+  tx.setup(); // Sets some internal parameters
+
   Serial.print("\nStarting the system.");
-  delay(4000);
-  tx.setTX(FREQ);
+  delay(500);
+  tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
   // tx.setTxOffAfterOneMinuteNoAudio(false); // The trasmitter will never sleep.
   tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
   tx.setToggleTxPdClear();

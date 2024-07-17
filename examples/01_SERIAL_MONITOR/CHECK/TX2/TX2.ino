@@ -11,16 +11,24 @@
 
 #include <QN8066.h>
 
+#define PWM_PIN   9      // Arduino PIN used to control the output power of the transmitter via PWM.
+#define FREQUENCY 1067   // 106.7 MHz - This library does not use floating-point data. 
+                         // This approach helps to save microcontroller memory. 
+                         // Therefore, to represent a frequency in the commercial FM band, 
+                         // multiply the desired frequency by 10. In this case 106.7MHz is 1067.
 
 QN8066 tx;
 
 void setup() {
+  delay(2000);           // Wait a bit while the system stabilizes.
 
-  delay(2000);
-  tx.setup();
-  delay(1000);  
+  tx.setup();            // Sets some internal parameters
+
   Serial.begin(9600);
-  while (!Serial);  
+  while (!Serial); 
+
+  pinMode(PWM_PIN, OUTPUT); // Sets the Arduino PIN to operate with with PWM
+
   Serial.print("\nStarting TX...");
   writeRegister(0x00, 0B11100011); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
   writeRegister(0x01, 0B00000000); // SYSTEM2 => 00000000  => Pre-emphasis and de-emphasis time constant = 50 us
@@ -47,8 +55,15 @@ void setup() {
 
   writeRegister(0x6E, 0B11111111); // ???  
   writeRegister(0x28, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
-  Serial.print("\nTX at 106.7 MHz...");  
 
+  startPWM(50);
+
+  Serial.print("\nnBroadcasting...");  
+
+}
+
+void startPWM(uint8_t power) {
+   analogWrite(9, power);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
 void writeRegister(uint8_t qn_register, uint8_t value) {
