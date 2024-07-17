@@ -58,7 +58,7 @@ void setup() {
 
   startPWM(50);
 
-  Serial.print("\nnBroadcasting...");  
+  Serial.print("\nBroadcasting...");  
 
 }
 
