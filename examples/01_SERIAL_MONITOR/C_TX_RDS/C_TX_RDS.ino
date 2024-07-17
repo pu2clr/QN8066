@@ -77,8 +77,7 @@ void setup() {
 
   // RDS setup
   tx.setTxRDS(true);
-  tx.writeTxRDSBuffer(strSDR);
-  tx.setTxToggleRDSReady();
+  setRDSLineIn(true);
 
   sprintf(str, "\n\nBroadcasting with RDS...");
 
