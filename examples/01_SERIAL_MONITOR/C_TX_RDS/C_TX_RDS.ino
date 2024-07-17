@@ -43,10 +43,6 @@ char strSDR2[] = "LIBRARY.";
 
 void setup() {
 
-
-  Serial.begin(9600);
-  while (!Serial) ;
-
   pinMode(PWM_PIN, OUTPUT); // Sets the Arduino PIN to operate with with PWM
 
   delay(1000); // Wait a bit while the system stabilizes.
@@ -77,7 +73,7 @@ void setup() {
 
   // RDS setup
   tx.setTxRDS(true);
-  setRDSLineIn(true);
+  // tx.setRDSLineIn(true);
 
   sprintf(str, "\n\nBroadcasting with RDS...");
 
