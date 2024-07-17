@@ -37,7 +37,9 @@ Author: Ricardo Lima Caratti (PU2CLR) - 2024/06/17
 QN8066 tx;
 
 char str[80];
-char strSDR[] = "QN8066..";
+char strSDR1[] = "QN8066  ";
+char strSDR2[] = "LIBRARY.";
+
 
 void setup() {
 
@@ -80,11 +82,19 @@ void setup() {
 
   sprintf(str, "\n\nBroadcasting with RDS...");
 
-
   analogWrite(9, 50);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
+bool toggle = true;  
 void loop() {
 
-    delay(15000);
+  if (toggle)
+    tx.writeTxRDSBuffer(strSDR1);
+  else   
+    tx.writeTxRDSBuffer(strSDR2);
+
+  tx.setTxToggleRDSReady();
+  toggle = !toggle;
+
+  delay(15000);
 }
