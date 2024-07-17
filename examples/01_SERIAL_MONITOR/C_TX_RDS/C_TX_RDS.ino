@@ -88,8 +88,10 @@ void loop() {
   else   
     tx.writeTxRDSBuffer(strSDR2);
 
+  while (!tx.getTxRDSUpdated());  
+
   tx.setTxToggleRDSReady();
   toggle = !toggle;
 
-  delay(15000);
+  delay(30000);
 }
