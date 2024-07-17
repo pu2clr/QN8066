@@ -757,6 +757,7 @@ void QN8066::writeTxRDSBuffer(char *text) {
   for (uint8_t address = QN_TX_RDSD0; address <= QN_TX_RDSD7; address++ ) {
     this->setRegister(address, *text++);
   }
+  delay(1);
 }
 
 /**
