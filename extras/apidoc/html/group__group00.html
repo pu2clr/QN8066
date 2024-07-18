@@ -1407,8 +1407,7 @@ Sequency integer values from 0 to 4. </td></tr>
 <td class="fieldname">
 CID3: 6</td>
 <td class="fielddoc">
-<p>Chip ID for product ID. 001101 = Transceiver – <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a>; Others = Reserved unkown </p>
-</td></tr>
+Chip ID for product ID. 001101 = Transceiver – <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a>; Others = Reserved unkown. </td></tr>
 </table>
 
 </div>
@@ -1431,8 +1430,7 @@ CID3: 6</td>
 <td class="fieldname">
 xtal_div: 3</td>
 <td class="fielddoc">
-<p>Higher 3 bits of xtal_div[10:0]. Xtal_div[10:0] = round(freq of xtal/32.768KHz) </p>
-</td></tr>
+Higher 3 bits of xtal_div[10:0]. Xtal_div[10:0] = round(freq of xtal/32.768KHz) </td></tr>
 <tr><td class="fieldtype">
 <a id="aee797e630e8c9933eadccb97722cd586" name="aee797e630e8c9933eadccb97722cd586"></a>uint8_t</td>
 <td class="fieldname">
@@ -1479,8 +1477,7 @@ RXAGCSET: 1</td>
 <td class="fieldname">
 rxcca_fail: 1</td>
 <td class="fielddoc">
-<p>&lt; RXCCA status flag. To indicate whether a valid channel is found during RX CCA. 0 = RX CCA success to find a valid channel; 1 = RX CCA fail to find a valid channel </p>
-</td></tr>
+&lt; RXCCA status flag. To indicate whether a valid channel is found during RX CCA. 0 = RX CCA success to find a valid channel; 1 = RX CCA fail to find a valid channel </td></tr>
 <tr><td class="fieldtype">
 <a id="a7a5912423e6c9aea0b4ddddc7ca8d850" name="a7a5912423e6c9aea0b4ddddc7ca8d850"></a>uint8_t</td>
 <td class="fieldname">
@@ -1509,29 +1506,25 @@ FSM: 4</td>
 <td class="fieldname">
 RXCH: 2</td>
 <td class="fielddoc">
-<p>Highest 2 bits of 10-bit channel index. Channel freq is (60+RXCH*0.05)MHz </p>
-</td></tr>
+Highest 2 bits of 10-bit channel index. Channel freq is (60+RXCH*0.05)MHz. </td></tr>
 <tr><td class="fieldtype">
 <a id="a96100020bc81f0304162cecd7577e085" name="a96100020bc81f0304162cecd7577e085"></a>uint8_t</td>
 <td class="fieldname">
 CH_STA: 2</td>
 <td class="fielddoc">
-<p>Highest 2 bits of 10-bit CCA(channel scan) start channel index. Start freq is (60+RXCH_STA*0.05)MHz </p>
-</td></tr>
+Highest 2 bits of 10-bit CCA(channel scan) start channel index. Start freq is (60+RXCH_STA*0.05)MHz. </td></tr>
 <tr><td class="fieldtype">
 <a id="a8127755c8299870ece17405a2cb7896a" name="a8127755c8299870ece17405a2cb7896a"></a>uint8_t</td>
 <td class="fieldname">
 CH_STP: 2</td>
 <td class="fielddoc">
-<p>Highest 2 bits of 10-bit CCA(channel scan) stop channel index. Stop freq is (60+RXCH_STP*0.05)MHz </p>
-</td></tr>
+Highest 2 bits of 10-bit CCA(channel scan) stop channel index. Stop freq is (60+RXCH_STP*0.05)MHz. </td></tr>
 <tr><td class="fieldtype">
 <a id="ad6886b4b43a5461d4a17adade5ba3113" name="ad6886b4b43a5461d4a17adade5ba3113"></a>uint8_t</td>
 <td class="fieldname">
 CH_FSTEP: 2</td>
 <td class="fielddoc">
-<p>CCA (channel scan) frequency step. 00=50kHz; 01=100kHz; 10 = 200kHz; 11=Reserved </p>
-</td></tr>
+CCA (channel scan) frequency step. 00=50kHz; 01=100kHz; 10 = 200kHz; 11=Reserved. </td></tr>
 </table>
 
 </div>
@@ -1643,29 +1636,25 @@ RDS0ERR: 1</td>
 <td class="fieldname">
 RDSSYNC: 1</td>
 <td class="fielddoc">
-<p>RDS block synchronous indicator. 0 = Non-synchronous; 1 = Synchronous </p>
-</td></tr>
+RDS block synchronous indicator. 0 = Non-synchronous; 1 = Synchronous. </td></tr>
 <tr><td class="fieldtype">
 <a id="a07eb2f4732c32982fa7e91d883c38910" name="a07eb2f4732c32982fa7e91d883c38910"></a>uint8_t</td>
 <td class="fieldname">
 RDSC0C1: 1</td>
 <td class="fielddoc">
-<p>Type indicator of the RDS third block in one group. 0 = C0; 1 = C1 </p>
-</td></tr>
+Type indicator of the RDS third block in one group. 0 = C0; 1 = C1. </td></tr>
 <tr><td class="fieldtype">
 <a id="acba0fd90dfb3d495159387131dc0798d" name="acba0fd90dfb3d495159387131dc0798d"></a>uint8_t</td>
 <td class="fieldname">
 E_DET: 1</td>
 <td class="fielddoc">
-<p>‘E’ block (MMBS block) detected. 0 = Not detected; 1 = Detected </p>
-</td></tr>
+‘E’ block (MMBS block) detected. 0 = Not detected; 1 = Detected </td></tr>
 <tr><td class="fieldtype">
 <a id="a3e77491d7ba19bc75a874ee09e6c49a7" name="a3e77491d7ba19bc75a874ee09e6c49a7"></a>uint8_t</td>
 <td class="fieldname">
 RDS_RXUPD: 1</td>
 <td class="fielddoc">
-<p>RDS received group updated. Each time a new group is received, this bit will be toggled. See comment above. </p>
-</td></tr>
+RDS received group updated. Each time a new group is received, this bit will be toggled. See comment above. </td></tr>
 </table>
 
 </div>
@@ -1688,29 +1677,25 @@ RDS_RXUPD: 1</td>
 <td class="fieldname">
 GAIN_ANA: 3</td>
 <td class="fielddoc">
-<p>set volume control gain of analog portion. From 7 to 0: 111 (7) = 0dB ... 000(0) = -42dB (see Datasheet) </p>
-</td></tr>
+set volume control gain of analog portion. From 0 to 7 </td></tr>
 <tr><td class="fieldtype">
 <a id="a7912d2427f5013dc965d829c756b8a54" name="a7912d2427f5013dc965d829c756b8a54"></a>uint8_t</td>
 <td class="fieldname">
 GAIN_DIG: 3</td>
 <td class="fielddoc">
-<p>set digital volume gain. From 5 to 0; 101 (5) = -5dB ... 000 (0) = 0dB (see Datasheet) </p>
-</td></tr>
+set digital volume gain. From 0 to 5 </td></tr>
 <tr><td class="fieldtype">
 <a id="a46a54161bb2a1e56504f640320ca7b97" name="a46a54161bb2a1e56504f640320ca7b97"></a>uint8_t</td>
 <td class="fieldname">
 DAC_HOLD: 1</td>
 <td class="fielddoc">
-<p>DAC output control. 0 = Normal operation; 1 = Hold DAC output to a fixed voltage. </p>
-</td></tr>
+DAC output control. 0 = Normal operation; 1 = Hold DAC output to a fixed voltage. </td></tr>
 <tr><td class="fieldtype">
 <a id="aa85c5f536bcb0d54e3a3f2e4daea8e65" name="aa85c5f536bcb0d54e3a3f2e4daea8e65"></a>uint8_t</td>
 <td class="fieldname">
 TX_DIFF: 1</td>
 <td class="fielddoc">
-<p>Tx audio input mode selection. 0 = Single ended; 1 = Differential. </p>
-</td></tr>
+Tx audio input mode selection. 0 = Single ended; 1 = Differential. </td></tr>
 </table>
 
 </div>

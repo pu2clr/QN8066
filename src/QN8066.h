@@ -352,14 +352,10 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t RXCH : 2; //!< Highest 2 bits of 10-bit channel index. Channel freq
-                      //!< is (60+RXCH*0.05)MHz
-    uint8_t CH_STA : 2; //!< Highest 2 bits of 10-bit CCA(channel scan) start
-                        //!< channel index. Start freq is (60+RXCH_STA*0.05)MHz
-    uint8_t CH_STP : 2; //!< Highest 2 bits of 10-bit CCA(channel scan) stop
-                        //!< channel index. Stop freq is (60+RXCH_STP*0.05)MHz
-    uint8_t CH_FSTEP : 2; //!< CCA (channel scan) frequency step. 00=50kHz;
-                          //!< 01=100kHz; 10 = 200kHz; 11=Reserved
+    uint8_t RXCH : 2; //!< Highest 2 bits of 10-bit channel index. Channel freq is (60+RXCH*0.05)MHz
+    uint8_t CH_STA : 2; //!< Highest 2 bits of 10-bit CCA(channel scan) start channel index. Start freq is (60+RXCH_STA*0.05)MHz
+    uint8_t CH_STP : 2; //!< Highest 2 bits of 10-bit CCA(channel scan) stop channel index. Stop freq is (60+RXCH_STP*0.05)MHz
+    uint8_t CH_FSTEP : 2; //!< CCA (channel scan) frequency step. 00=50kHz; 01=100kHz; 10 = 200kHz; 11=Reserved
   } arg;
   uint8_t raw;
 } qn8066_ch_step;
@@ -408,15 +404,10 @@ typedef union {
     uint8_t RDS2ERR : 1; //!< 0 = No Error
     uint8_t RDS1ERR : 1; //!< 0 = No Error
     uint8_t RDS0ERR : 1; //!< 0 = No Error
-    uint8_t RDSSYNC : 1; //!< RDS block synchronous indicator. 0 =
-                         //!< Non-synchronous;  1 = Synchronous
-    uint8_t RDSC0C1 : 1; //!< Type indicator of the RDS third block in one
-                         //!< group. 0 = C0; 1 = C1
-    uint8_t E_DET : 1; //!< ‘E’ block (MMBS block) detected. 0 = Not detected; 1
-                       //!< = Detected
-    uint8_t RDS_RXUPD : 1; //!< RDS received group updated. Each time a new
-                           //!< group is received, this bit will be toggled. See
-                           //!< comment above.
+    uint8_t RDSSYNC : 1; //!< RDS block synchronous indicator. 0 =  Non-synchronous;  1 = Synchronous
+    uint8_t RDSC0C1 : 1; //!< Type indicator of the RDS third block in one  group. 0 = C0; 1 = C1
+    uint8_t E_DET : 1; //!< ‘E’ block (MMBS block) detected. 0 = Not detected; 1 = Detected
+    uint8_t RDS_RXUPD : 1; //!< RDS received group updated. Each time a new  group is received, this bit will be toggled. See comment above.
   } arg;
   uint8_t raw;
 } qn8066_status2;
@@ -432,15 +423,10 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t
-        GAIN_ANA : 3; //!< set volume control gain of analog portion. From 7 to
-                      //!< 0:  111 (7) = 0dB ... 000(0) = -42dB (see Datasheet)
-    uint8_t GAIN_DIG : 3; //!< set digital volume gain. From 5 to 0; 101 (5) =
-                          //!< -5dB ... 000 (0) = 0dB  (see Datasheet)
-    uint8_t DAC_HOLD : 1; //!< DAC output control. 0 = Normal operation; 1 =
-                          //!< Hold DAC output to a fixed voltage.
-    uint8_t TX_DIFF : 1; //!< Tx audio input mode selection. 0 = Single ended; 1
-                         //!< = Differential.
+    uint8_t GAIN_ANA : 3; //!< set volume control gain of analog portion. From 0 to 7 
+    uint8_t GAIN_DIG : 3; //!< set digital volume gain. From 0 to 5
+    uint8_t DAC_HOLD : 1; //!< DAC output control. 0 = Normal operation; 1 =  Hold DAC output to a fixed voltage.
+    uint8_t TX_DIFF : 1; //!< Tx audio input mode selection. 0 = Single ended; 1  = Differential.
   } arg;
   uint8_t raw;
 } qn8066_vol_ctl;
