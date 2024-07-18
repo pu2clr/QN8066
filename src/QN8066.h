@@ -564,7 +564,7 @@ typedef union {
 typedef union {
   uint8_t TXCH;
   uint8_t raw;
-} qn8066_tx_ch;
+} qn8066_txch;
 
 /**
  * @ingroup group00
@@ -760,7 +760,13 @@ private:
   qn8066_cca cca;
   qn8066_fdev fdev;
   qn8066_int_ctrl int_ctrl;
-
+  qn8066_txch txch;
+  qn8066_xtal_div0 xtal_div0;
+  qn8066_xtal_div1 xtal_div1;
+  qn8066_xtal_div2 xtal_div2;
+  qn8066_reg_vga reg_vga;
+  qn8066_rds rds;
+  qn8066_pac pac;
 
 
 protected:
@@ -823,7 +829,7 @@ public:
              bool mono = false, bool rds = false, uint8_t PreEmphasis = 0, 
              uint8_t xtalInj = 0, uint8_t imageRejection = 1, 
              uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9 );
-  void reset();
+  void commitTxSetup();
   void stopTransmitting();
   void startTransmitting();
 

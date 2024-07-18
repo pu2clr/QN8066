@@ -4117,7 +4117,7 @@ _EnD_oF_dEf_TeXt_;
 }; /* struct */
 union = {
   cp-id     = 'group__group00';
-  cp-name   = 'qn8066_tx_ch';
+  cp-name   = 'qn8066_txch';
   cp-section = {
     sec-kind = 'public-attrib';
     sec-member = {

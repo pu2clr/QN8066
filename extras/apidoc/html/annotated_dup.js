@@ -37,7 +37,7 @@ var annotated_dup =
     [ "qn8066_system1.arg", "group__group00.html#structqn8066__system1_8arg", "group__group00_structqn8066__system1_8arg" ],
     [ "qn8066_system2", "group__group00.html#unionqn8066__system2", "group__group00_unionqn8066__system2" ],
     [ "qn8066_system2.arg", "group__group00.html#structqn8066__system2_8arg", "group__group00_structqn8066__system2_8arg" ],
-    [ "qn8066_tx_ch", "group__group00.html#unionqn8066__tx__ch", "group__group00_unionqn8066__tx__ch" ],
+    [ "qn8066_txch", "group__group00.html#unionqn8066__tx__ch", "group__group00_unionqn8066__tx__ch" ],
     [ "qn8066_tx_rds", "group__group00.html#unionqn8066__tx__rds", "group__group00_unionqn8066__tx__rds" ],
     [ "qn8066_tx_rds.arg", "group__group00.html#structqn8066__tx__rds_8arg", "group__group00_structqn8066__tx__rds_8arg" ],
     [ "qn8066_vol_ctl", "group__group00.html#unionqn8066__vol__ctl", "group__group00_unionqn8066__vol__ctl" ],

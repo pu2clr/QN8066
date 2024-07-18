@@ -80,7 +80,7 @@ var group__group00 =
       [ "arg", "group__group00.html#a86230cd75fc03ea1a4f1b045501f035e", null ],
       [ "raw", "group__group00.html#a986b72d2c13e8c7fba7eda06956ff1d0", null ]
     ] ],
-    [ "qn8066_tx_ch", "group__group00.html#unionqn8066__tx__ch", [
+    [ "qn8066_txch", "group__group00.html#unionqn8066__tx__ch", [
       [ "TXCH", "group__group00.html#a36d2f5d5769aca0bfdcbe2f8cea81a3b", null ],
       [ "raw", "group__group00.html#a94b679851ce9ffb34a2a8167bd8467b9", null ]
     ] ],

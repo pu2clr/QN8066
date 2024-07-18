@@ -37,7 +37,7 @@ var searchData=
   ['qn8066_5fsystem1_2earg_34',['qn8066_system1.arg',['../group__group00.html#structqn8066__system1_8arg',1,'']]],
   ['qn8066_5fsystem2_35',['qn8066_system2',['../group__group00.html#unionqn8066__system2',1,'']]],
   ['qn8066_5fsystem2_2earg_36',['qn8066_system2.arg',['../group__group00.html#structqn8066__system2_8arg',1,'']]],
-  ['qn8066_5ftx_5fch_37',['qn8066_tx_ch',['../group__group00.html#unionqn8066__tx__ch',1,'']]],
+  ['qn8066_5ftx_5fch_37',['qn8066_txch',['../group__group00.html#unionqn8066__tx__ch',1,'']]],
   ['qn8066_5ftx_5frds_38',['qn8066_tx_rds',['../group__group00.html#unionqn8066__tx__rds',1,'']]],
   ['qn8066_5ftx_5frds_2earg_39',['qn8066_tx_rds.arg',['../group__group00.html#structqn8066__tx__rds_8arg',1,'']]],
   ['qn8066_5fvol_5fctl_40',['qn8066_vol_ctl',['../group__group00.html#unionqn8066__vol__ctl',1,'']]],
