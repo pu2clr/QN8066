@@ -14,6 +14,7 @@ var class_q_n8066 =
     [ "setTxStereo", "group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83", null ],
     [ "setTxPreEmphasis", "group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1", null ],
     [ "setTxOffAfterOneMinuteNoAudio", "group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571", null ],
+    [ "setTxOffAfterOneMinute", "group__group04.html#gad1cad21dc29703b30df776dbbb98a08a", null ],
     [ "setTxPilotGain", "group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4", null ],
     [ "setAudioAnalogGain", "group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7", null ],
     [ "setAudioDigitalGain", "group__group04.html#ga4670b899f6f3df01c4d967b7f461318a", null ],
