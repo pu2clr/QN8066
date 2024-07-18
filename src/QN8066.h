@@ -819,7 +819,10 @@ public:
     this->resetDelay = delayAfterReset;
   };
 
-  void setup(uint16_t xtalDiv = 1000, bool mono = false, bool rds = false, uint8_t PreEmphasis = 0, uint8_t xtalInj = 0, uint8_t imageRejection = 1, uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9 );
+  void setup(uint16_t xtalDiv = 1000, 
+             bool mono = false, bool rds = false, uint8_t PreEmphasis = 0, 
+             uint8_t xtalInj = 0, uint8_t imageRejection = 1, 
+             uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9 );
   void reset();
   void stopTransmitting();
   void startTransmitting();

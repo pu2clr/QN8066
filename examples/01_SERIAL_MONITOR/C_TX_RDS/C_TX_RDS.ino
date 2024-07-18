@@ -65,18 +65,17 @@ void setup() {
   tx.setTX(FREQUENCY);           // Chenge the FREQUENCY constant if you want other value
 
   tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
-  tx.setToggleTxPdClear();
-  tx.setTxPilotGain(10);
-  tx.setTxStereo(true);
-  tx.setTxPreEmphasis(50);
+  // tx.setToggleTxPdClear();
+  // tx.setTxPilotGain(10);
+  // tx.setTxStereo(true);
+  // tx.setTxPreEmphasis(50);
 
-  tx.setTxInputImpedance(1);  // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
-  tx.setAudioTxDiff(true);
-  tx.setTxFrequencyDerivation(120); // Valid valued from 0 to 255
+  // tx.setTxInputImpedance(1);  // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
+  // tx.setAudioTxDiff(true);
+  // tx.setTxFrequencyDerivation(120); // Valid valued from 0 to 255
 
   // RDS setup
-  tx.setTxRDS(true);
-  // tx.setRDSLineIn(true);
+  tx.setRDSLineIn(true);
 
   sprintf(str, "\n\nBroadcasting with RDS...");
 
@@ -97,5 +96,6 @@ void loop() {
   tx.setTxToggleRDSReady();
   toggle = !toggle;
 
-  delay(30000);
+  delay(5000);
+
 }
