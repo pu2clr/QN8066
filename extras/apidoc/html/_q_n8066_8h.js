@@ -44,5 +44,7 @@ var _q_n8066_8h =
     [ "QN_FDEV", "_q_n8066_8h.html#a90d6699f2c1a92da86ee853d9ab7bbef", null ],
     [ "QN_RDS", "_q_n8066_8h.html#ac8f4b3290d2a1c664849d5562b624745", null ],
     [ "QN_GPLT", "_q_n8066_8h.html#acec9e411549c712cdcefbe21603bb21e", null ],
-    [ "QN_REG_VGA", "_q_n8066_8h.html#a593d2d5e6ba6ff00e8d03d75c439f464", null ]
+    [ "QN_REG_VGA", "_q_n8066_8h.html#a593d2d5e6ba6ff00e8d03d75c439f464", null ],
+    [ "QN_REGISTER_6E", "_q_n8066_8h.html#a57a12b88415bba746e0bdd76ef10fdcc", null ],
+    [ "QN_REGISTER_49", "_q_n8066_8h.html#a00230319029aa3f2552c60f4be9dbc53", null ]
 ];
