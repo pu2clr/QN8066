@@ -132,8 +132,34 @@ qn8066_status3 QN8066::getStatus3() {
  * @brief Device initial configuration
  */
 
-void QN8066::setup() {
+void QN8066::setup(uint16_t xtalDiv,  
+                   bool mono, bool rds, 
+                   uint8_t PreEmphasis,  uint8_t xtalInj, uint8_t imageRejection,
+                   uint8_t txSoftClipThreshold,  uint8_t oneMinutOff, uint8_t gainTxPLT ) {
   delay(600); // Chip power-up time
+
+  this->xtal_div = xtalDiv;
+
+  this->system2.raw = this->getRegister(QN_SYSTEM2);
+  this->system2.arg.tx_mono = mono;   // Default stereo
+  this->system2.arg.tx_rdsen = rds;   // Default stereo 
+  this->system2.arg.tc = PreEmphasis; // Default 50
+
+  this->cca.raw = this->getRegister(QN_CCA);
+  this->cca.arg.xtal_inj = xtalInj;
+  this->cca.arg.imr = imageRejection;
+
+  this->gplt.raw = this->getRegister(QN_GPLT);
+  this->gplt.arg.GAIN_TXPLT = gainTxPLT;
+  this->gplt.arg.t1m_sel = oneMinutOff;
+  this->gplt.arg.tx_sftclpth = txSoftClipThreshold; 
+
+  this->fdev.raw = this->getRegister(QN_FDEV);
+
+
+  this->int_ctrl.raw = this->getRegister(QN_INT_CTRL); 
+
+
   Wire.begin();
 }
 
@@ -172,13 +198,13 @@ void QN8066::setRX() {
  * @endcode 
  */
 
-void QN8066::setTX(uint16_t frequency, bool rds,  uint8_t txSoftClipThreshold,   uint8_t oneMinutOff, uint8_t gainTxPLT) {
+void QN8066::setTX(uint16_t frequency) {
   this->setRegister(QN_SYSTEM1, 0B11100011); // RESET the SYSTEM
   delay(200);
 
   // Setup the reference clock source, Image Rejection and the threshold to
   // check valid channel
-  this->setRegister(QN_CCA, 0B00010000);
+  this->setRegister(QN_CCA, this->cca.raw);
 
   // Sets the crystal oscillator divider
   this->setRegister(QN_XTAL_DIV0, this->xtal_div & 0xFF); // Lower 8 bits of xtal_div[10:0].
@@ -193,17 +219,8 @@ void QN8066::setTX(uint16_t frequency, bool rds,  uint8_t txSoftClipThreshold,  
 
   delay(100);
   
-  qn8066_gplt gptl;
-  gptl.arg.GAIN_TXPLT = gainTxPLT;
-  gptl.arg.t1m_sel = oneMinutOff;
-  gptl.arg.tx_sftclpth = txSoftClipThreshold; 
-
-  this->setRegister(QN_GPLT, gptl.raw); 
-
-  qn8066_system2 system2;
-  system2.raw = this->getRegister(QN_SYSTEM2);
-  system2.arg.tx_rdsen = rds;
-  this->setRegister(QN_SYSTEM2, system2.raw);
+  this->setRegister(QN_GPLT, this->gplt.raw); 
+  this->setRegister(QN_SYSTEM2, this->system2.raw);
 
 
   // Exit standby, enter TX

@@ -54,13 +54,15 @@ void setup() {
     while (1);
   }
 
-
-  tx.setup(); // Sets some internal parameters
+  // Sets some internal parameters
+  tx.setup(1000 /* Crystal Divider */,
+           false /* Mono = False => Stereo */,
+           true  /* RDS ON */); 
 
   Serial.print("\nStarting the system.");
   delay(500);
  
-  tx.setTX(FREQUENCY, true);           // Chenge the FREQUENCY constant if you want other value
+  tx.setTX(FREQUENCY);           // Chenge the FREQUENCY constant if you want other value
 
   tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
   tx.setToggleTxPdClear();

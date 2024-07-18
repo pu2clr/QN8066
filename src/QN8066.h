@@ -160,12 +160,9 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t SNR_CCA_TH : 6; //!<  The threshold for determination of whether
-                            //!<  current channel is valid by check its SNR.
-    uint8_t imr : 1; //!<  Image Rejection. 0 = LO<RF, image is in lower side; 1
-                     //!<  = LO>RF, image is in upper side
-    uint8_t xtal_inj : 1; //!<  Select the reference clock source. 0 = Inject
-                          //!<  sine-wave clock; 1 = Inject digital clock
+    uint8_t SNR_CCA_TH : 6; //!<  The threshold for determination of whether  current channel is valid by check its SNR.
+    uint8_t imr : 1;        //!<  Image Rejection. 0 = LO<RF, image is in lower side; 1 = LO>RF, image is in upper side
+    uint8_t xtal_inj : 1;   //!<  Select the reference clock source. 0 = Inject sine-wave clock; 1 = Inject digital clock
   } arg;
   uint8_t raw;
 } qn8066_cca;
@@ -758,6 +755,14 @@ private:
   uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
   uint16_t xtal_div = 1000;
 
+  qn8066_system2 system2;
+  qn8066_gplt gplt;
+  qn8066_cca cca;
+  qn8066_fdev fdev;
+  qn8066_int_ctrl int_ctrl;
+
+
+
 protected:
 public:
   bool detectDevice();
@@ -791,7 +796,7 @@ public:
    */
   void setRX();
   
-  void setTX(uint16_t frequency, bool rds = false, uint8_t txSoftClipThreshold = 0,   uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9); // RESET the system and set to TX mode at a given frequency
+  void setTX(uint16_t frequency); // RESET the system and set to TX mode at a given frequency
 
   void setTxStereo(bool value = true);  
   void setTxPreEmphasis( uint8_t value = 75);
@@ -814,7 +819,7 @@ public:
     this->resetDelay = delayAfterReset;
   };
 
-  void setup();
+  void setup(uint16_t xtalDiv = 1000, bool mono = false, bool rds = false, uint8_t PreEmphasis = 0, uint8_t xtalInj = 0, uint8_t imageRejection = 1, uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9 );
   void reset();
   void stopTransmitting();
   void startTransmitting();
