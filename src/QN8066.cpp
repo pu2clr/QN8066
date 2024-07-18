@@ -193,7 +193,6 @@ void QN8066::setup(uint16_t xtalDiv,
   this->rds.arg.line_in_en = rdsLineIn;
   this->rds.arg.RDSFDEV = rdsFreqDev;
 
-
   this->int_ctrl.raw = this->getRegister(QN_INT_CTRL); 
 
 
