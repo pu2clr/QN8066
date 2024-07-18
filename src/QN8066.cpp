@@ -357,7 +357,7 @@ void QN8066::setTxOffAfterOneMinuteNoAudio(bool value) {
  * void setup() {
  *   tx.setup();
  *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
- *   tx.setTxOffAfterOneMinuteNoAudio(false);   // Do not sleep after 1 minute with no audio
+ *   tx.setTxOffAfterOneMinute(3);   // Never sleep
  * }
  *
  * void loop() {

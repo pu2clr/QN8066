@@ -692,12 +692,9 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t GAIN_TXPLT : 4; //!< Gain of TX pilot to adjust pilot frequency
-                            //!< deviation. Refer to peak frequency deviation of
-                            //!< MPX signal when audio input is full scale.
-    uint8_t
-        t1m_sel : 2; //!< Selection of 1 minute time for PA off when no audio.
-    uint8_t tx_sftclpth : 2; //!< TX soft clip threshold
+    uint8_t GAIN_TXPLT : 4;   //!< Gain of TX pilot to adjust pilot frequency deviation. Refer to peak frequency deviation of MPX signal when audio input is full scale.
+    uint8_t t1m_sel : 2;      //!< Selection of 1 minute time for PA off when no audio.
+    uint8_t tx_sftclpth : 2;  //!< TX soft clip threshold
   } arg;
   uint8_t raw;
 } qn8066_gplt;
