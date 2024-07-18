@@ -27,7 +27,7 @@ var searchData=
   ['settxsoftclipttreshold_24',['setTxSoftCliptTreshold',['../group__group04.html#ga0032c60d8038a749f69b7e8508fa014d',1,'QN8066']]],
   ['settxstereo_25',['setTxStereo',['../group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83',1,'QN8066']]],
   ['settxtogglerdsready_26',['setTxToggleRDSReady',['../group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98',1,'QN8066']]],
-  ['setup_27',['setup',['../group__group02.html#ga09f8ac112ebae77be1b6ddd0b646b67c',1,'QN8066']]],
+  ['setup_27',['setup',['../group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2',1,'QN8066']]],
   ['snrdb_28',['SNRDB',['../group__group00.html#a40858883345a2297b86e1adfeea40baa',1,'qn8066_srn']]],
   ['starttransmitting_29',['startTransmitting',['../class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b',1,'QN8066']]],
   ['stoptransmitting_30',['stopTransmitting',['../class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c',1,'QN8066']]]

@@ -646,12 +646,8 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t
-        RDSFDEV : 7; //!< RDS frequency deviation = 0.35KHz*RDSFDEV in normal
-                     //!< mode. RDS frequency deviation = 0.207KHz*RDSFDEV in 4k
-                     //!< mode and private mode. Values = from 0 to 127
-    uint8_t line_in_en : 1; //!< Audio Line-in enable control. 0 = Disable; 1 =
-                            //!< Enable
+    uint8_t RDSFDEV : 7; //!< RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode. Values = from 0 to 127
+    uint8_t line_in_en : 1; //!< Audio Line-in enable control. 0 = Disable; 1 = Enable
   } arg;
   uint8_t raw;
 } qn8066_rds;
@@ -829,7 +825,8 @@ public:
   void setup(uint16_t xtalDiv = 1000, 
              bool mono = false, bool rds = false, uint8_t PreEmphasis = 0, 
              uint8_t xtalInj = 0, uint8_t imageRejection = 1, 
-             uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9 );
+             uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9,
+             uint8_t txFreqDev = 125, uint8_t rdsLineIn = 0, uint8_t rdsFreqDev = 60 );
   void commitTxSetup();
   void stopTransmitting();
   void startTransmitting();

@@ -146,6 +146,9 @@ qn8066_status3 QN8066::getStatus3() {
  * @param txSoftClipThreshold - TX soft clip threshold. Default 0. See Datasheet page 34.
  * @param oneMinutOff - Selection of 1 minute time for PA off when no audio (3 = Infinity (never); 2=59s; 1=58s; 0=57s).
  * @param gainTxPLT - Gain of TX pilot to adjust pilot frequency deviation. See Datasheet page 34.
+ * @param txFreqDev - Specify total TX frequency deviation. TX frequency deviation = 0.69KHz*TX_FEDV. Default 125.
+ * @param rdsLineIn - Audio Line-in enable control. Default 0  
+ * @param rdsFreqDev - RDS frequency deviation. RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. Default 60
  * @details Example
  * @code 
  * #include <QN8066.h>
@@ -163,14 +166,15 @@ qn8066_status3 QN8066::getStatus3() {
 void QN8066::setup(uint16_t xtalDiv,  
                    bool mono, bool rds, 
                    uint8_t PreEmphasis,  uint8_t xtalInj, uint8_t imageRejection,
-                   uint8_t txSoftClipThreshold,  uint8_t oneMinutOff, uint8_t gainTxPLT ) {
+                   uint8_t txSoftClipThreshold,  uint8_t oneMinutOff, uint8_t gainTxPLT,
+                   uint8_t txFreqDev,  uint8_t rdsLineIn, uint8_t rdsFreqDev ) {
   delay(600); // Chip power-up time
 
   this->xtal_div = xtalDiv;
 
   this->system2.raw = this->getRegister(QN_SYSTEM2);
   this->system2.arg.tx_mono = mono;   // Default stereo
-  this->system2.arg.tx_rdsen = rds;   // RDSON
+  this->system2.arg.tx_rdsen = rds;   // RDS ON
   this->system2.arg.tc = PreEmphasis; // Default 50
 
   this->cca.raw = this->getRegister(QN_CCA);
@@ -182,7 +186,12 @@ void QN8066::setup(uint16_t xtalDiv,
   this->gplt.arg.t1m_sel = oneMinutOff;
   this->gplt.arg.tx_sftclpth = txSoftClipThreshold; 
 
-  this->fdev.raw = 125; // TODO
+  // FDEV register 
+  this->fdev.raw = txFreqDev; 
+
+  // RDS register
+  this->rds.arg.line_in_en = rdsLineIn;
+  this->rds.arg.RDSFDEV = rdsFreqDev;
 
 
   this->int_ctrl.raw = this->getRegister(QN_INT_CTRL); 
@@ -244,7 +253,8 @@ void QN8066::setTX(uint16_t frequency) {
   
   this->setRegister(QN_FDEV, this->fdev.raw);    // FDEV => 01111101 => 125 (Decimal)
 
-  this->setRegister(QN_RDS, 0B00111100);     // RDS => 00111100 => Line_in_en = 0; RDSFDEV = 60 (Decimal) 
+
+  this->setRegister(QN_RDS, this->rds.raw);     // RDS => 00111100 => Line_in_en = 0; RDSFDEV = 60 (Decimal) 
 
   this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
 

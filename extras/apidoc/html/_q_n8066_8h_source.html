@@ -741,216 +741,214 @@ $(document).ready(function(){initNavTree('_q_n8066_8h_source.html',''); initResi
 <div class="line"><a id="l00646" name="l00646"></a><span class="lineno">  646</span> </div>
 <div class="line"><a id="l00647" name="l00647"></a><span class="lineno"><a class="line" href="group__group00.html#unionqn8066__rds">  647</a></span><span class="keyword">typedef</span> <span class="keyword">union</span> {</div>
 <div class="line"><a id="l00648" name="l00648"></a><span class="lineno"><a class="line" href="group__group00.html#structqn8066__rds_8arg">  648</a></span>  <span class="keyword">struct</span> {</div>
-<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>    uint8_t</div>
-<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>        RDSFDEV : 7; <span class="comment">//!&lt; RDS frequency deviation = 0.35KHz*RDSFDEV in normal</span></div>
-<div class="line"><a id="l00651" name="l00651"></a><span class="lineno">  651</span>                     <span class="comment">//!&lt; mode. RDS frequency deviation = 0.207KHz*RDSFDEV in 4k</span></div>
-<div class="line"><a id="l00652" name="l00652"></a><span class="lineno">  652</span>                     <span class="comment">//!&lt; mode and private mode. Values = from 0 to 127</span></div>
-<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>    uint8_t line_in_en : 1; <span class="comment">//!&lt; Audio Line-in enable control. 0 = Disable; 1 =</span></div>
-<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span>                            <span class="comment">//!&lt; Enable</span></div>
-<div class="line"><a id="l00655" name="l00655"></a><span class="lineno"><a class="line" href="group__group00.html#acab282aada4a8fdad313f294f9e70639">  655</a></span>  } arg;</div>
-<div class="line"><a id="l00656" name="l00656"></a><span class="lineno"><a class="line" href="group__group00.html#a849a8b8ac506e73b60a85d105aa9b6c6">  656</a></span>  <a class="code hl_variable" href="group__group00.html#a849a8b8ac506e73b60a85d105aa9b6c6">uint8_t</a> <a class="code hl_variable" href="group__group00.html#a849a8b8ac506e73b60a85d105aa9b6c6">raw</a>;</div>
-<div class="line"><a id="l00657" name="l00657"></a><span class="lineno">  657</span>} qn8066_rds;</div>
-<div class="line"><a id="l00658" name="l00658"></a><span class="lineno">  658</span> </div>
-<div class="line"><a id="l00659" name="l00659"></a><span class="lineno">  659</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  660</span><span class="comment"> * @ingroup group00</span></div>
-<div class="line"><span class="lineno">  661</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  662</span><span class="comment"> * @brief GPLT - Transmitter soft chip threshold, gain of TX pilot (Address: 27h</span></div>
-<div class="line"><span class="lineno">  663</span><span class="comment"> * - Write Only)</span></div>
-<div class="line"><span class="lineno">  664</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  665</span><span class="comment"> * | GAIN_TXPLT | value |</span></div>
-<div class="line"><span class="lineno">  666</span><span class="comment"> * | ---------- | ----- |</span></div>
-<div class="line"><span class="lineno">  667</span><span class="comment"> * |  7 - 0111  | 7% * 75KHz |</span></div>
-<div class="line"><span class="lineno">  668</span><span class="comment"> * |  8 - 1000  | 8% * 75KHz |</span></div>
-<div class="line"><span class="lineno">  669</span><span class="comment"> * |  9 - 1001  | 9% * 75KHz |</span></div>
-<div class="line"><span class="lineno">  670</span><span class="comment"> * | 10 - 1010  | 10% * 75KHz |</span></div>
-<div class="line"><span class="lineno">  671</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  672</span><span class="comment"> * | t1m_sel    | value |</span></div>
-<div class="line"><span class="lineno">  673</span><span class="comment"> * | ---------- | ----- |</span></div>
-<div class="line"><span class="lineno">  674</span><span class="comment"> * |  0 - 00    | 57s |</span></div>
-<div class="line"><span class="lineno">  675</span><span class="comment"> * |  1 - 01    | 58s |</span></div>
-<div class="line"><span class="lineno">  676</span><span class="comment"> * |  2 - 10    | 59s |</span></div>
-<div class="line"><span class="lineno">  677</span><span class="comment"> * |  3 - 11    | Infinity (Never) |</span></div>
-<div class="line"><span class="lineno">  678</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  679</span><span class="comment"> * | tx_sftclpth | value |</span></div>
-<div class="line"><span class="lineno">  680</span><span class="comment"> * | ----------  | ----- |</span></div>
-<div class="line"><span class="lineno">  681</span><span class="comment"> * |  0 - 00     | 12’d2051 (3db back off from 0.5v) |</span></div>
-<div class="line"><span class="lineno">  682</span><span class="comment"> * |  1 - 01     | 12’d1725 (4.5db back off from 0.5v) |</span></div>
-<div class="line"><span class="lineno">  683</span><span class="comment"> * |  2 - 10     | 12’d1452 (6db back off from 0.5v) |</span></div>
-<div class="line"><span class="lineno">  684</span><span class="comment"> * |  3 - 11     | 12’d1028 (9db back off from 0.5v) |</span></div>
-<div class="line"><span class="lineno">  685</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  686</span><span class="comment"> * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable</span></div>
-<div class="line"><span class="lineno">  687</span><span class="comment"> * Devices, pag. 34</span></div>
-<div class="line"><span class="lineno">  688</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span> </div>
-<div class="line"><a id="l00690" name="l00690"></a><span class="lineno"><a class="line" href="group__group00.html#unionqn8066__gplt">  690</a></span><span class="keyword">typedef</span> <span class="keyword">union</span> {</div>
-<div class="line"><a id="l00691" name="l00691"></a><span class="lineno"><a class="line" href="group__group00.html#structqn8066__gplt_8arg">  691</a></span>  <span class="keyword">struct</span> {</div>
-<div class="line"><a id="l00692" name="l00692"></a><span class="lineno">  692</span>    uint8_t GAIN_TXPLT : 4;   <span class="comment">//!&lt; Gain of TX pilot to adjust pilot frequency deviation. Refer to peak frequency deviation of MPX signal when audio input is full scale.</span></div>
-<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>    uint8_t t1m_sel : 2;      <span class="comment">//!&lt; Selection of 1 minute time for PA off when no audio.</span></div>
-<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span>    uint8_t tx_sftclpth : 2;  <span class="comment">//!&lt; TX soft clip threshold</span></div>
-<div class="line"><a id="l00695" name="l00695"></a><span class="lineno"><a class="line" href="group__group00.html#a08225cfe6de01ad8074d1a1da0687568">  695</a></span>  } arg;</div>
-<div class="line"><a id="l00696" name="l00696"></a><span class="lineno"><a class="line" href="group__group00.html#a0e8f32f19b1fbec24ce8364b132a3f47">  696</a></span>  <a class="code hl_variable" href="group__group00.html#a0e8f32f19b1fbec24ce8364b132a3f47">uint8_t</a> <a class="code hl_variable" href="group__group00.html#a0e8f32f19b1fbec24ce8364b132a3f47">raw</a>;</div>
-<div class="line"><a id="l00697" name="l00697"></a><span class="lineno">  697</span>} qn8066_gplt;</div>
-<div class="line"><a id="l00698" name="l00698"></a><span class="lineno">  698</span> </div>
-<div class="line"><a id="l00699" name="l00699"></a><span class="lineno">  699</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  700</span><span class="comment"> * @ingroup group00</span></div>
-<div class="line"><span class="lineno">  701</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  702</span><span class="comment"> * @brief REG_VGA - X AGC gain (Address: 28h - Read and Write)</span></div>
-<div class="line"><span class="lineno">  703</span><span class="comment"> * @details Attenuation/Gain depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY. See tables below. </span></div>
-<div class="line"><span class="lineno">  704</span><span class="comment"> * | RIN        | Input impedance (K Ohoms) |</span></div>
-<div class="line"><span class="lineno">  705</span><span class="comment"> * | ---------- | ------------------------- |</span></div>
-<div class="line"><span class="lineno">  706</span><span class="comment"> * |  0 - 00    | 10    |</span></div>
-<div class="line"><span class="lineno">  707</span><span class="comment"> * |  1 - 01    | 20    |</span></div>
-<div class="line"><span class="lineno">  708</span><span class="comment"> * |  2 - 10    | 40    |</span></div>
-<div class="line"><span class="lineno">  709</span><span class="comment"> * |  3 - 11    | 80    |</span></div>
-<div class="line"><span class="lineno">  710</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  711</span><span class="comment"> * | TXAGC_GDB  | TX digital gain |</span></div>
-<div class="line"><span class="lineno">  712</span><span class="comment"> * | ---------- | ----- |</span></div>
-<div class="line"><span class="lineno">  713</span><span class="comment"> * |  0 - 00    | 0 dB |</span></div>
-<div class="line"><span class="lineno">  714</span><span class="comment"> * |  1 - 01    | 1 dB |</span></div>
-<div class="line"><span class="lineno">  715</span><span class="comment"> * |  2 - 10    | 2 dB |</span></div>
-<div class="line"><span class="lineno">  716</span><span class="comment"> * |  3 - 11    | Reserved |</span></div>
-<div class="line"><span class="lineno">  717</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  718</span><span class="comment"> * | TXAGC_GVGA  | Attenuation/Gain depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY  |</span></div>
-<div class="line"><span class="lineno">  719</span><span class="comment"> * | ----------  | ---------------------------------------------------------- |</span></div>
-<div class="line"><span class="lineno">  720</span><span class="comment"> * |  0 - 000    |  3; -3; -9; -15   |</span></div>
-<div class="line"><span class="lineno">  721</span><span class="comment"> * |  1 - 001    |  6;  0; -6; -12   |</span></div>
-<div class="line"><span class="lineno">  722</span><span class="comment"> * |  2 - 010    |  9;  3; -3; -9    |</span></div>
-<div class="line"><span class="lineno">  723</span><span class="comment"> * |  3 - 011    | 12;  6;  0; -6    |</span></div>
-<div class="line"><span class="lineno">  724</span><span class="comment"> * |  4 - 100    | 15;  9;  3; -3    |</span></div>
-<div class="line"><span class="lineno">  725</span><span class="comment"> * |  5 - 101    | 18; 12;  6;  0    |  </span></div>
-<div class="line"><span class="lineno">  726</span><span class="comment"> * |  Others     | Reserved |</span></div>
-<div class="line"><span class="lineno">  727</span><span class="comment"> * </span></div>
-<div class="line"><span class="lineno">  728</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  729</span><span class="comment"> * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable</span></div>
-<div class="line"><span class="lineno">  730</span><span class="comment"> * Devices, pag. 35</span></div>
-<div class="line"><span class="lineno">  731</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  732</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span> </div>
-<div class="line"><a id="l00734" name="l00734"></a><span class="lineno"><a class="line" href="group__group00.html#unionqn8066__reg__vga">  734</a></span><span class="keyword">typedef</span> <span class="keyword">union</span> {</div>
-<div class="line"><a id="l00735" name="l00735"></a><span class="lineno"><a class="line" href="group__group00.html#structqn8066__reg__vga_8arg">  735</a></span>  <span class="keyword">struct</span> {</div>
-<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    uint8_t RIN : 2; <span class="comment">//!&lt; TX mode input impedance for both L/R channels. See</span></div>
-<div class="line"><a id="l00737" name="l00737"></a><span class="lineno">  737</span>                     <span class="comment">//!&lt; table above</span></div>
-<div class="line"><a id="l00738" name="l00738"></a><span class="lineno">  738</span>    uint8_t TXAGC_GDB : 2;   <span class="comment">//!&lt; TX digital gain. See table above.</span></div>
-<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>    uint8_t TXAGC_GVGA : 3;  <span class="comment">//!&lt; TX input buffer gain. See table above</span></div>
-<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span>    uint8_t tx_sftclpen : 1; <span class="comment">//!&lt; TX soft clipping enable</span></div>
-<div class="line"><a id="l00741" name="l00741"></a><span class="lineno"><a class="line" href="group__group00.html#a14d2c9ed7fc7e3c16d47bb9dc8a3bb3f">  741</a></span>  } arg;</div>
-<div class="line"><a id="l00742" name="l00742"></a><span class="lineno"><a class="line" href="group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8">  742</a></span>  <a class="code hl_variable" href="group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8">uint8_t</a> <a class="code hl_variable" href="group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8">raw</a>;</div>
-<div class="line"><a id="l00743" name="l00743"></a><span class="lineno">  743</span>} qn8066_reg_vga;</div>
-<div class="line"><a id="l00744" name="l00744"></a><span class="lineno">  744</span> </div>
-<div class="line"><a id="l00745" name="l00745"></a><span class="lineno">  745</span><span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  746</span><span class="comment"> * @ingroup  CLASSDEF</span></div>
-<div class="line"><span class="lineno">  747</span><span class="comment"> * @brief QN8066 Class</span></div>
-<div class="line"><span class="lineno">  748</span><span class="comment"> * @details This class implements all functions that will help you to control</span></div>
-<div class="line"><span class="lineno">  749</span><span class="comment"> * the QN8066 devices.</span></div>
-<div class="line"><span class="lineno">  750</span><span class="comment"> *</span></div>
-<div class="line"><span class="lineno">  751</span><span class="comment"> * @author PU2CLR - Ricardo Lima Caratti</span></div>
-<div class="line"><span class="lineno">  752</span><span class="comment"> */</span></div>
-<div class="line"><a id="l00753" name="l00753"></a><span class="lineno"><a class="line" href="class_q_n8066.html">  753</a></span><span class="keyword">class</span> <a class="code hl_class" href="class_q_n8066.html">QN8066</a> {</div>
-<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>  uint16_t resetDelay = 1000; <span class="comment">//!&lt;&lt; Delay after reset (default 1s)</span></div>
-<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>  uint16_t xtal_div = 1000;</div>
-<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span> </div>
-<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>  qn8066_system2 system2;</div>
-<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>  qn8066_gplt gplt;</div>
-<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>  qn8066_cca cca;</div>
-<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>  qn8066_fdev fdev;</div>
-<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>  qn8066_int_ctrl int_ctrl;</div>
-<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>  qn8066_txch txch;</div>
-<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>  qn8066_xtal_div0 xtal_div0;</div>
-<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>  qn8066_xtal_div1 xtal_div1;</div>
-<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>  qn8066_xtal_div2 xtal_div2;</div>
-<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span>  qn8066_reg_vga reg_vga;</div>
-<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span>  qn8066_rds rds;</div>
-<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span>  qn8066_pac pac;</div>
-<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span> </div>
-<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span> </div>
-<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span><span class="keyword">protected</span>:</div>
-<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="group__group01.html#gaa9d2e60da9afa03ecb5974d1afd60d92">detectDevice</a>();</div>
-<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>  <a class="code hl_function" href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">uint8_t</a> <a class="code hl_function" href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">scanI2CBus</a>(<a class="code hl_function" href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">uint8_t</a> *<a class="code hl_function" href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">device</a>);</div>
+<div class="line"><a id="l00649" name="l00649"></a><span class="lineno">  649</span>    uint8_t RDSFDEV : 7; <span class="comment">//!&lt; RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode. Values = from 0 to 127</span></div>
+<div class="line"><a id="l00650" name="l00650"></a><span class="lineno">  650</span>    uint8_t line_in_en : 1; <span class="comment">//!&lt; Audio Line-in enable control. 0 = Disable; 1 = Enable</span></div>
+<div class="line"><a id="l00651" name="l00651"></a><span class="lineno"><a class="line" href="group__group00.html#acab282aada4a8fdad313f294f9e70639">  651</a></span>  } arg;</div>
+<div class="line"><a id="l00652" name="l00652"></a><span class="lineno"><a class="line" href="group__group00.html#a849a8b8ac506e73b60a85d105aa9b6c6">  652</a></span>  <a class="code hl_variable" href="group__group00.html#a849a8b8ac506e73b60a85d105aa9b6c6">uint8_t</a> <a class="code hl_variable" href="group__group00.html#a849a8b8ac506e73b60a85d105aa9b6c6">raw</a>;</div>
+<div class="line"><a id="l00653" name="l00653"></a><span class="lineno">  653</span>} qn8066_rds;</div>
+<div class="line"><a id="l00654" name="l00654"></a><span class="lineno">  654</span> </div>
+<div class="line"><a id="l00655" name="l00655"></a><span class="lineno">  655</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  656</span><span class="comment"> * @ingroup group00</span></div>
+<div class="line"><span class="lineno">  657</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  658</span><span class="comment"> * @brief GPLT - Transmitter soft chip threshold, gain of TX pilot (Address: 27h</span></div>
+<div class="line"><span class="lineno">  659</span><span class="comment"> * - Write Only)</span></div>
+<div class="line"><span class="lineno">  660</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  661</span><span class="comment"> * | GAIN_TXPLT | value |</span></div>
+<div class="line"><span class="lineno">  662</span><span class="comment"> * | ---------- | ----- |</span></div>
+<div class="line"><span class="lineno">  663</span><span class="comment"> * |  7 - 0111  | 7% * 75KHz |</span></div>
+<div class="line"><span class="lineno">  664</span><span class="comment"> * |  8 - 1000  | 8% * 75KHz |</span></div>
+<div class="line"><span class="lineno">  665</span><span class="comment"> * |  9 - 1001  | 9% * 75KHz |</span></div>
+<div class="line"><span class="lineno">  666</span><span class="comment"> * | 10 - 1010  | 10% * 75KHz |</span></div>
+<div class="line"><span class="lineno">  667</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  668</span><span class="comment"> * | t1m_sel    | value |</span></div>
+<div class="line"><span class="lineno">  669</span><span class="comment"> * | ---------- | ----- |</span></div>
+<div class="line"><span class="lineno">  670</span><span class="comment"> * |  0 - 00    | 57s |</span></div>
+<div class="line"><span class="lineno">  671</span><span class="comment"> * |  1 - 01    | 58s |</span></div>
+<div class="line"><span class="lineno">  672</span><span class="comment"> * |  2 - 10    | 59s |</span></div>
+<div class="line"><span class="lineno">  673</span><span class="comment"> * |  3 - 11    | Infinity (Never) |</span></div>
+<div class="line"><span class="lineno">  674</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  675</span><span class="comment"> * | tx_sftclpth | value |</span></div>
+<div class="line"><span class="lineno">  676</span><span class="comment"> * | ----------  | ----- |</span></div>
+<div class="line"><span class="lineno">  677</span><span class="comment"> * |  0 - 00     | 12’d2051 (3db back off from 0.5v) |</span></div>
+<div class="line"><span class="lineno">  678</span><span class="comment"> * |  1 - 01     | 12’d1725 (4.5db back off from 0.5v) |</span></div>
+<div class="line"><span class="lineno">  679</span><span class="comment"> * |  2 - 10     | 12’d1452 (6db back off from 0.5v) |</span></div>
+<div class="line"><span class="lineno">  680</span><span class="comment"> * |  3 - 11     | 12’d1028 (9db back off from 0.5v) |</span></div>
+<div class="line"><span class="lineno">  681</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  682</span><span class="comment"> * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable</span></div>
+<div class="line"><span class="lineno">  683</span><span class="comment"> * Devices, pag. 34</span></div>
+<div class="line"><span class="lineno">  684</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00685" name="l00685"></a><span class="lineno">  685</span> </div>
+<div class="line"><a id="l00686" name="l00686"></a><span class="lineno"><a class="line" href="group__group00.html#unionqn8066__gplt">  686</a></span><span class="keyword">typedef</span> <span class="keyword">union</span> {</div>
+<div class="line"><a id="l00687" name="l00687"></a><span class="lineno"><a class="line" href="group__group00.html#structqn8066__gplt_8arg">  687</a></span>  <span class="keyword">struct</span> {</div>
+<div class="line"><a id="l00688" name="l00688"></a><span class="lineno">  688</span>    uint8_t GAIN_TXPLT : 4;   <span class="comment">//!&lt; Gain of TX pilot to adjust pilot frequency deviation. Refer to peak frequency deviation of MPX signal when audio input is full scale.</span></div>
+<div class="line"><a id="l00689" name="l00689"></a><span class="lineno">  689</span>    uint8_t t1m_sel : 2;      <span class="comment">//!&lt; Selection of 1 minute time for PA off when no audio.</span></div>
+<div class="line"><a id="l00690" name="l00690"></a><span class="lineno">  690</span>    uint8_t tx_sftclpth : 2;  <span class="comment">//!&lt; TX soft clip threshold</span></div>
+<div class="line"><a id="l00691" name="l00691"></a><span class="lineno"><a class="line" href="group__group00.html#a08225cfe6de01ad8074d1a1da0687568">  691</a></span>  } arg;</div>
+<div class="line"><a id="l00692" name="l00692"></a><span class="lineno"><a class="line" href="group__group00.html#a0e8f32f19b1fbec24ce8364b132a3f47">  692</a></span>  <a class="code hl_variable" href="group__group00.html#a0e8f32f19b1fbec24ce8364b132a3f47">uint8_t</a> <a class="code hl_variable" href="group__group00.html#a0e8f32f19b1fbec24ce8364b132a3f47">raw</a>;</div>
+<div class="line"><a id="l00693" name="l00693"></a><span class="lineno">  693</span>} qn8066_gplt;</div>
+<div class="line"><a id="l00694" name="l00694"></a><span class="lineno">  694</span> </div>
+<div class="line"><a id="l00695" name="l00695"></a><span class="lineno">  695</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  696</span><span class="comment"> * @ingroup group00</span></div>
+<div class="line"><span class="lineno">  697</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  698</span><span class="comment"> * @brief REG_VGA - X AGC gain (Address: 28h - Read and Write)</span></div>
+<div class="line"><span class="lineno">  699</span><span class="comment"> * @details Attenuation/Gain depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY. See tables below. </span></div>
+<div class="line"><span class="lineno">  700</span><span class="comment"> * | RIN        | Input impedance (K Ohoms) |</span></div>
+<div class="line"><span class="lineno">  701</span><span class="comment"> * | ---------- | ------------------------- |</span></div>
+<div class="line"><span class="lineno">  702</span><span class="comment"> * |  0 - 00    | 10    |</span></div>
+<div class="line"><span class="lineno">  703</span><span class="comment"> * |  1 - 01    | 20    |</span></div>
+<div class="line"><span class="lineno">  704</span><span class="comment"> * |  2 - 10    | 40    |</span></div>
+<div class="line"><span class="lineno">  705</span><span class="comment"> * |  3 - 11    | 80    |</span></div>
+<div class="line"><span class="lineno">  706</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  707</span><span class="comment"> * | TXAGC_GDB  | TX digital gain |</span></div>
+<div class="line"><span class="lineno">  708</span><span class="comment"> * | ---------- | ----- |</span></div>
+<div class="line"><span class="lineno">  709</span><span class="comment"> * |  0 - 00    | 0 dB |</span></div>
+<div class="line"><span class="lineno">  710</span><span class="comment"> * |  1 - 01    | 1 dB |</span></div>
+<div class="line"><span class="lineno">  711</span><span class="comment"> * |  2 - 10    | 2 dB |</span></div>
+<div class="line"><span class="lineno">  712</span><span class="comment"> * |  3 - 11    | Reserved |</span></div>
+<div class="line"><span class="lineno">  713</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  714</span><span class="comment"> * | TXAGC_GVGA  | Attenuation/Gain depending on RIN - 0, 1, 2 AND 3 RESPECTIVELY  |</span></div>
+<div class="line"><span class="lineno">  715</span><span class="comment"> * | ----------  | ---------------------------------------------------------- |</span></div>
+<div class="line"><span class="lineno">  716</span><span class="comment"> * |  0 - 000    |  3; -3; -9; -15   |</span></div>
+<div class="line"><span class="lineno">  717</span><span class="comment"> * |  1 - 001    |  6;  0; -6; -12   |</span></div>
+<div class="line"><span class="lineno">  718</span><span class="comment"> * |  2 - 010    |  9;  3; -3; -9    |</span></div>
+<div class="line"><span class="lineno">  719</span><span class="comment"> * |  3 - 011    | 12;  6;  0; -6    |</span></div>
+<div class="line"><span class="lineno">  720</span><span class="comment"> * |  4 - 100    | 15;  9;  3; -3    |</span></div>
+<div class="line"><span class="lineno">  721</span><span class="comment"> * |  5 - 101    | 18; 12;  6;  0    |  </span></div>
+<div class="line"><span class="lineno">  722</span><span class="comment"> * |  Others     | Reserved |</span></div>
+<div class="line"><span class="lineno">  723</span><span class="comment"> * </span></div>
+<div class="line"><span class="lineno">  724</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  725</span><span class="comment"> * @see Data Sheet - Quintic - QN8066 - Digital FM Transceiver for Portable</span></div>
+<div class="line"><span class="lineno">  726</span><span class="comment"> * Devices, pag. 35</span></div>
+<div class="line"><span class="lineno">  727</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  728</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00729" name="l00729"></a><span class="lineno">  729</span> </div>
+<div class="line"><a id="l00730" name="l00730"></a><span class="lineno"><a class="line" href="group__group00.html#unionqn8066__reg__vga">  730</a></span><span class="keyword">typedef</span> <span class="keyword">union</span> {</div>
+<div class="line"><a id="l00731" name="l00731"></a><span class="lineno"><a class="line" href="group__group00.html#structqn8066__reg__vga_8arg">  731</a></span>  <span class="keyword">struct</span> {</div>
+<div class="line"><a id="l00732" name="l00732"></a><span class="lineno">  732</span>    uint8_t RIN : 2; <span class="comment">//!&lt; TX mode input impedance for both L/R channels. See</span></div>
+<div class="line"><a id="l00733" name="l00733"></a><span class="lineno">  733</span>                     <span class="comment">//!&lt; table above</span></div>
+<div class="line"><a id="l00734" name="l00734"></a><span class="lineno">  734</span>    uint8_t TXAGC_GDB : 2;   <span class="comment">//!&lt; TX digital gain. See table above.</span></div>
+<div class="line"><a id="l00735" name="l00735"></a><span class="lineno">  735</span>    uint8_t TXAGC_GVGA : 3;  <span class="comment">//!&lt; TX input buffer gain. See table above</span></div>
+<div class="line"><a id="l00736" name="l00736"></a><span class="lineno">  736</span>    uint8_t tx_sftclpen : 1; <span class="comment">//!&lt; TX soft clipping enable</span></div>
+<div class="line"><a id="l00737" name="l00737"></a><span class="lineno"><a class="line" href="group__group00.html#a14d2c9ed7fc7e3c16d47bb9dc8a3bb3f">  737</a></span>  } arg;</div>
+<div class="line"><a id="l00738" name="l00738"></a><span class="lineno"><a class="line" href="group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8">  738</a></span>  <a class="code hl_variable" href="group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8">uint8_t</a> <a class="code hl_variable" href="group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8">raw</a>;</div>
+<div class="line"><a id="l00739" name="l00739"></a><span class="lineno">  739</span>} qn8066_reg_vga;</div>
+<div class="line"><a id="l00740" name="l00740"></a><span class="lineno">  740</span> </div>
+<div class="line"><a id="l00741" name="l00741"></a><span class="lineno">  741</span><span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  742</span><span class="comment"> * @ingroup  CLASSDEF</span></div>
+<div class="line"><span class="lineno">  743</span><span class="comment"> * @brief QN8066 Class</span></div>
+<div class="line"><span class="lineno">  744</span><span class="comment"> * @details This class implements all functions that will help you to control</span></div>
+<div class="line"><span class="lineno">  745</span><span class="comment"> * the QN8066 devices.</span></div>
+<div class="line"><span class="lineno">  746</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  747</span><span class="comment"> * @author PU2CLR - Ricardo Lima Caratti</span></div>
+<div class="line"><span class="lineno">  748</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00749" name="l00749"></a><span class="lineno"><a class="line" href="class_q_n8066.html">  749</a></span><span class="keyword">class</span> <a class="code hl_class" href="class_q_n8066.html">QN8066</a> {</div>
+<div class="line"><a id="l00750" name="l00750"></a><span class="lineno">  750</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00751" name="l00751"></a><span class="lineno">  751</span>  uint16_t resetDelay = 1000; <span class="comment">//!&lt;&lt; Delay after reset (default 1s)</span></div>
+<div class="line"><a id="l00752" name="l00752"></a><span class="lineno">  752</span>  uint16_t xtal_div = 1000;</div>
+<div class="line"><a id="l00753" name="l00753"></a><span class="lineno">  753</span> </div>
+<div class="line"><a id="l00754" name="l00754"></a><span class="lineno">  754</span>  qn8066_system2 system2;</div>
+<div class="line"><a id="l00755" name="l00755"></a><span class="lineno">  755</span>  qn8066_gplt gplt;</div>
+<div class="line"><a id="l00756" name="l00756"></a><span class="lineno">  756</span>  qn8066_cca cca;</div>
+<div class="line"><a id="l00757" name="l00757"></a><span class="lineno">  757</span>  qn8066_fdev fdev;</div>
+<div class="line"><a id="l00758" name="l00758"></a><span class="lineno">  758</span>  qn8066_int_ctrl int_ctrl;</div>
+<div class="line"><a id="l00759" name="l00759"></a><span class="lineno">  759</span>  qn8066_txch txch;</div>
+<div class="line"><a id="l00760" name="l00760"></a><span class="lineno">  760</span>  qn8066_xtal_div0 xtal_div0;</div>
+<div class="line"><a id="l00761" name="l00761"></a><span class="lineno">  761</span>  qn8066_xtal_div1 xtal_div1;</div>
+<div class="line"><a id="l00762" name="l00762"></a><span class="lineno">  762</span>  qn8066_xtal_div2 xtal_div2;</div>
+<div class="line"><a id="l00763" name="l00763"></a><span class="lineno">  763</span>  qn8066_reg_vga reg_vga;</div>
+<div class="line"><a id="l00764" name="l00764"></a><span class="lineno">  764</span>  qn8066_rds rds;</div>
+<div class="line"><a id="l00765" name="l00765"></a><span class="lineno">  765</span>  qn8066_pac pac;</div>
+<div class="line"><a id="l00766" name="l00766"></a><span class="lineno">  766</span>  qn8066_vol_ctl vol_ctl;</div>
+<div class="line"><a id="l00767" name="l00767"></a><span class="lineno">  767</span> </div>
+<div class="line"><a id="l00768" name="l00768"></a><span class="lineno">  768</span> </div>
+<div class="line"><a id="l00769" name="l00769"></a><span class="lineno">  769</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00770" name="l00770"></a><span class="lineno">  770</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00771" name="l00771"></a><span class="lineno">  771</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="group__group01.html#gaa9d2e60da9afa03ecb5974d1afd60d92">detectDevice</a>();</div>
+<div class="line"><a id="l00772" name="l00772"></a><span class="lineno">  772</span>  <a class="code hl_function" href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">uint8_t</a> <a class="code hl_function" href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">scanI2CBus</a>(<a class="code hl_function" href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">uint8_t</a> *<a class="code hl_function" href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">device</a>);</div>
+<div class="line"><a id="l00773" name="l00773"></a><span class="lineno">  773</span> </div>
+<div class="line"><a id="l00774" name="l00774"></a><span class="lineno">  774</span>  <a class="code hl_function" href="group__group02.html#ga49c108bf838926f63114cf43468f3595">uint8_t</a> <a class="code hl_function" href="group__group02.html#ga49c108bf838926f63114cf43468f3595">getRegister</a>(<a class="code hl_function" href="group__group02.html#ga49c108bf838926f63114cf43468f3595">uint8_t</a> <a class="code hl_function" href="group__group02.html#ga49c108bf838926f63114cf43468f3595">registerNumber</a>);</div>
+<div class="line"><a id="l00775" name="l00775"></a><span class="lineno">  775</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga8c3571a46681a2da4e5dbe0e2ba0b249">setRegister</a>(uint8_t registerNumber, uint8_t value);</div>
 <div class="line"><a id="l00776" name="l00776"></a><span class="lineno">  776</span> </div>
-<div class="line"><a id="l00777" name="l00777"></a><span class="lineno">  777</span>  <a class="code hl_function" href="group__group02.html#ga49c108bf838926f63114cf43468f3595">uint8_t</a> <a class="code hl_function" href="group__group02.html#ga49c108bf838926f63114cf43468f3595">getRegister</a>(<a class="code hl_function" href="group__group02.html#ga49c108bf838926f63114cf43468f3595">uint8_t</a> <a class="code hl_function" href="group__group02.html#ga49c108bf838926f63114cf43468f3595">registerNumber</a>);</div>
-<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga8c3571a46681a2da4e5dbe0e2ba0b249">setRegister</a>(uint8_t registerNumber, uint8_t value);</div>
-<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span> </div>
-<div class="line"><a id="l00780" name="l00780"></a><span class="lineno"><a class="line" href="class_q_n8066.html#ae043cf96db238be36b902d97b8c9a1e3">  780</a></span>  <span class="keyword">inline</span> qn8066_cid1 <a class="code hl_function" href="class_q_n8066.html#ae043cf96db238be36b902d97b8c9a1e3">getDeviceProductID</a>() {</div>
-<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>    qn8066_cid1 value;</div>
-<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span>    value.raw = <span class="keyword">this</span>-&gt;getRegister(<a class="code hl_define" href="_q_n8066_8h.html#a85ebc8636defaf30d79e696164ceadb5">QN_CID1</a>);</div>
-<div class="line"><a id="l00783" name="l00783"></a><span class="lineno">  783</span>    <span class="keywordflow">return</span> value;</div>
-<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>  };</div>
-<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span> </div>
-<div class="line"><a id="l00786" name="l00786"></a><span class="lineno"><a class="line" href="class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92">  786</a></span>  <span class="keyword">inline</span> qn8066_cid2 <a class="code hl_function" href="class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92">getDeviceProductFamily</a>() {</div>
-<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>    qn8066_cid2 value;</div>
-<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span>    value.raw = <span class="keyword">this</span>-&gt;getRegister(<a class="code hl_define" href="_q_n8066_8h.html#a51e0a35fdf38cb34c275429833da7158">QN_CID2</a>);</div>
-<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>    <span class="keywordflow">return</span> value;</div>
-<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>  }</div>
-<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span> </div>
-<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span>  qn8066_status1 <a class="code hl_function" href="group__group02.html#ga42fb3ab79849550ce078c5efb591d291">getStatus1</a>();</div>
-<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span>  qn8066_status2 <a class="code hl_function" href="group__group02.html#gac6731edee1a5da425a66878371b1104c">getStatus2</a>();</div>
-<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span>  qn8066_status3 <a class="code hl_function" href="group__group02.html#gafcb2a26df67c63e40800a29a559c5505">getStatus3</a>();</div>
+<div class="line"><a id="l00777" name="l00777"></a><span class="lineno"><a class="line" href="class_q_n8066.html#ae043cf96db238be36b902d97b8c9a1e3">  777</a></span>  <span class="keyword">inline</span> qn8066_cid1 <a class="code hl_function" href="class_q_n8066.html#ae043cf96db238be36b902d97b8c9a1e3">getDeviceProductID</a>() {</div>
+<div class="line"><a id="l00778" name="l00778"></a><span class="lineno">  778</span>    qn8066_cid1 value;</div>
+<div class="line"><a id="l00779" name="l00779"></a><span class="lineno">  779</span>    value.raw = <span class="keyword">this</span>-&gt;getRegister(<a class="code hl_define" href="_q_n8066_8h.html#a85ebc8636defaf30d79e696164ceadb5">QN_CID1</a>);</div>
+<div class="line"><a id="l00780" name="l00780"></a><span class="lineno">  780</span>    <span class="keywordflow">return</span> value;</div>
+<div class="line"><a id="l00781" name="l00781"></a><span class="lineno">  781</span>  };</div>
+<div class="line"><a id="l00782" name="l00782"></a><span class="lineno">  782</span> </div>
+<div class="line"><a id="l00783" name="l00783"></a><span class="lineno"><a class="line" href="class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92">  783</a></span>  <span class="keyword">inline</span> qn8066_cid2 <a class="code hl_function" href="class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92">getDeviceProductFamily</a>() {</div>
+<div class="line"><a id="l00784" name="l00784"></a><span class="lineno">  784</span>    qn8066_cid2 value;</div>
+<div class="line"><a id="l00785" name="l00785"></a><span class="lineno">  785</span>    value.raw = <span class="keyword">this</span>-&gt;getRegister(<a class="code hl_define" href="_q_n8066_8h.html#a51e0a35fdf38cb34c275429833da7158">QN_CID2</a>);</div>
+<div class="line"><a id="l00786" name="l00786"></a><span class="lineno">  786</span>    <span class="keywordflow">return</span> value;</div>
+<div class="line"><a id="l00787" name="l00787"></a><span class="lineno">  787</span>  }</div>
+<div class="line"><a id="l00788" name="l00788"></a><span class="lineno">  788</span> </div>
+<div class="line"><a id="l00789" name="l00789"></a><span class="lineno">  789</span>  qn8066_status1 <a class="code hl_function" href="group__group02.html#ga42fb3ab79849550ce078c5efb591d291">getStatus1</a>();</div>
+<div class="line"><a id="l00790" name="l00790"></a><span class="lineno">  790</span>  qn8066_status2 <a class="code hl_function" href="group__group02.html#gac6731edee1a5da425a66878371b1104c">getStatus2</a>();</div>
+<div class="line"><a id="l00791" name="l00791"></a><span class="lineno">  791</span>  qn8066_status3 <a class="code hl_function" href="group__group02.html#gafcb2a26df67c63e40800a29a559c5505">getStatus3</a>();</div>
+<div class="line"><a id="l00792" name="l00792"></a><span class="lineno">  792</span> </div>
+<div class="line"><a id="l00793" name="l00793"></a><span class="lineno">  793</span> </div>
+<div class="line"><a id="l00794" name="l00794"></a><span class="lineno">  794</span> </div>
 <div class="line"><a id="l00795" name="l00795"></a><span class="lineno">  795</span> </div>
-<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span> </div>
-<div class="line"><a id="l00797" name="l00797"></a><span class="lineno">  797</span> </div>
-<div class="line"><a id="l00798" name="l00798"></a><span class="lineno">  798</span> </div>
-<div class="line"><a id="l00799" name="l00799"></a><span class="lineno">  799</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  800</span><span class="comment">   * @brief SYSTEM1 SETUP</span></div>
-<div class="line"><span class="lineno">  801</span><span class="comment">   *</span></div>
-<div class="line"><span class="lineno">  802</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group03.html#ga0163945d4e150b6a8ff25fd0b5a783f7">setRX</a>();</div>
-<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span> </div>
-<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(uint16_t frequency); <span class="comment">// RESET the system and set to TX mode at a given frequency</span></div>
+<div class="line"><a id="l00796" name="l00796"></a><span class="lineno">  796</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  797</span><span class="comment">   * @brief SYSTEM1 SETUP</span></div>
+<div class="line"><span class="lineno">  798</span><span class="comment">   *</span></div>
+<div class="line"><span class="lineno">  799</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00800" name="l00800"></a><span class="lineno">  800</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group03.html#ga0163945d4e150b6a8ff25fd0b5a783f7">setRX</a>();</div>
+<div class="line"><a id="l00801" name="l00801"></a><span class="lineno">  801</span> </div>
+<div class="line"><a id="l00802" name="l00802"></a><span class="lineno">  802</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(uint16_t frequency); <span class="comment">// RESET the system and set to TX mode at a given frequency</span></div>
+<div class="line"><a id="l00803" name="l00803"></a><span class="lineno">  803</span> </div>
+<div class="line"><a id="l00804" name="l00804"></a><span class="lineno">  804</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">setTxStereo</a>(<span class="keywordtype">bool</span> value = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00805" name="l00805"></a><span class="lineno">  805</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1">setTxPreEmphasis</a>( uint8_t value = 75);</div>
 <div class="line"><a id="l00806" name="l00806"></a><span class="lineno">  806</span> </div>
-<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">setTxStereo</a>(<span class="keywordtype">bool</span> value = <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1">setTxPreEmphasis</a>( uint8_t value = 75);</div>
-<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span> </div>
-<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571">setTxOffAfterOneMinuteNoAudio</a>(<span class="keywordtype">bool</span> value);</div>
-<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gad1cad21dc29703b30df776dbbb98a08a">setTxOffAfterOneMinute</a>(uint8_t value);</div>
-<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">setTxPilotGain</a>(uint8_t value);</div>
-<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7">setAudioAnalogGain</a>(uint8_t value);</div>
-<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga4670b899f6f3df01c4d967b7f461318a">setAudioDigitalGain</a>(uint8_t value);</div>
-<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0">setAudioDacHold</a>(<span class="keywordtype">bool</span> value);</div>
-<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gade021b98b99e9239c390461d22020c4e">setAudioTxDiff</a>(<span class="keywordtype">bool</span> value);</div>
-<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga751bb2147b6355745b261cc8f86a017c">setTxInputImpedance</a>(uint8_t value);</div>
-<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5">setTxDigitalGain</a>(uint8_t value);</div>
-<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">setTxInputBufferGain</a>(uint8_t value);</div>
-<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gab21e226857d1b2ac384623fd47784ce5">setTxSoftClippingEnable</a>( <span class="keywordtype">bool</span> value);</div>
-<div class="line"><a id="l00821" name="l00821"></a><span class="lineno">  821</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga0032c60d8038a749f69b7e8508fa014d">setTxSoftCliptTreshold</a>(uint8_t value);</div>
-<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">setTxFrequencyDerivation</a>(uint8_t value);</div>
-<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span> </div>
-<div class="line"><a id="l00824" name="l00824"></a><span class="lineno"><a class="line" href="class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1">  824</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1">setResetDelay</a>(uint16_t delayAfterReset) {</div>
-<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>    <span class="keyword">this</span>-&gt;resetDelay = delayAfterReset;</div>
-<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>  };</div>
-<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span> </div>
-<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga09f8ac112ebae77be1b6ddd0b646b67c">setup</a>(uint16_t xtalDiv = 1000,</div>
-<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span>             <span class="keywordtype">bool</span> mono = <span class="keyword">false</span>, <span class="keywordtype">bool</span> rds = <span class="keyword">false</span>, uint8_t PreEmphasis = 0,</div>
-<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>             uint8_t xtalInj = 0, uint8_t imageRejection = 1,</div>
-<div class="line"><a id="l00831" name="l00831"></a><span class="lineno">  831</span>             uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9 );</div>
-<div class="line"><a id="l00832" name="l00832"></a><span class="lineno">  832</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga18f9ab880c919dfa86e4863213b23325">commitTxSetup</a>();</div>
-<div class="line"><a id="l00833" name="l00833"></a><span class="lineno"><a class="line" href="class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c">  833</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c">stopTransmitting</a>();</div>
-<div class="line"><a id="l00834" name="l00834"></a><span class="lineno"><a class="line" href="class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b">  834</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b">startTransmitting</a>();</div>
-<div class="line"><a id="l00835" name="l00835"></a><span class="lineno">  835</span> </div>
-<div class="line"><a id="l00836" name="l00836"></a><span class="lineno">  836</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  837</span><span class="comment">   * @ingroup group01</span></div>
-<div class="line"><span class="lineno">  838</span><span class="comment">   * @brief Set the Crystal Frequency object</span></div>
-<div class="line"><span class="lineno">  839</span><span class="comment">   * @details Based on the external crystal oscillator, calculates the divider</span></div>
-<div class="line"><span class="lineno">  840</span><span class="comment">   * parameter (xtal_div). See registers XTAL_DIV0 and XTAL_DIV1</span></div>
-<div class="line"><span class="lineno">  841</span><span class="comment">   * @param value</span></div>
-<div class="line"><span class="lineno">  842</span><span class="comment">   */</span></div>
-<div class="line"><a id="l00843" name="l00843"></a><span class="lineno"><a class="line" href="group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca">  843</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca">setCrystalFrequency</a>(uint32_t value) { xtal_div = value / 32768; };</div>
-<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">setPAC</a>(uint8_t PA_TRGT);</div>
-<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">setToggleTxPdClear</a>();</div>
-<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>  <span class="keywordtype">int</span>  <a class="code hl_function" href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">getAudioPeakValue</a>();</div>
-<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span> </div>
-<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>  <span class="comment">// RDS TX</span></div>
-<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gaaad14424c57781256cfbda7accadbd49">setTxRDS</a>(<span class="keywordtype">bool</span> value);</div>
-<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98">setTxToggleRDSReady</a>();</div>
-<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="group__group05.html#ga1c7236e219778ab5a939ff4bd659183b">getTxRDSUpdated</a>();</div>
-<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga0664c14d7c23ede48874c9007b157d46">writeTxRDSBuffer</a>(<span class="keywordtype">char</span> *text);</div>
-<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gacb4f89faa8744c4adbf4b3bbfc2412b4">setRDSFrequencyDeviation</a>(uint8_t freq);</div>
-<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga53969a8d55eb57c9c8d97c5170f5d94b">setRDSLineIn</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a id="l00807" name="l00807"></a><span class="lineno">  807</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571">setTxOffAfterOneMinuteNoAudio</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a id="l00808" name="l00808"></a><span class="lineno">  808</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gad1cad21dc29703b30df776dbbb98a08a">setTxOffAfterOneMinute</a>(uint8_t value);</div>
+<div class="line"><a id="l00809" name="l00809"></a><span class="lineno">  809</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">setTxPilotGain</a>(uint8_t value);</div>
+<div class="line"><a id="l00810" name="l00810"></a><span class="lineno">  810</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7">setAudioAnalogGain</a>(uint8_t value);</div>
+<div class="line"><a id="l00811" name="l00811"></a><span class="lineno">  811</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga4670b899f6f3df01c4d967b7f461318a">setAudioDigitalGain</a>(uint8_t value);</div>
+<div class="line"><a id="l00812" name="l00812"></a><span class="lineno">  812</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0">setAudioDacHold</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a id="l00813" name="l00813"></a><span class="lineno">  813</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gade021b98b99e9239c390461d22020c4e">setAudioTxDiff</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a id="l00814" name="l00814"></a><span class="lineno">  814</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga751bb2147b6355745b261cc8f86a017c">setTxInputImpedance</a>(uint8_t value);</div>
+<div class="line"><a id="l00815" name="l00815"></a><span class="lineno">  815</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5">setTxDigitalGain</a>(uint8_t value);</div>
+<div class="line"><a id="l00816" name="l00816"></a><span class="lineno">  816</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">setTxInputBufferGain</a>(uint8_t value);</div>
+<div class="line"><a id="l00817" name="l00817"></a><span class="lineno">  817</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gab21e226857d1b2ac384623fd47784ce5">setTxSoftClippingEnable</a>( <span class="keywordtype">bool</span> value);</div>
+<div class="line"><a id="l00818" name="l00818"></a><span class="lineno">  818</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga0032c60d8038a749f69b7e8508fa014d">setTxSoftCliptTreshold</a>(uint8_t value);</div>
+<div class="line"><a id="l00819" name="l00819"></a><span class="lineno">  819</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">setTxFrequencyDerivation</a>(uint8_t value);</div>
+<div class="line"><a id="l00820" name="l00820"></a><span class="lineno">  820</span> </div>
+<div class="line"><a id="l00821" name="l00821"></a><span class="lineno"><a class="line" href="class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1">  821</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1">setResetDelay</a>(uint16_t delayAfterReset) {</div>
+<div class="line"><a id="l00822" name="l00822"></a><span class="lineno">  822</span>    <span class="keyword">this</span>-&gt;resetDelay = delayAfterReset;</div>
+<div class="line"><a id="l00823" name="l00823"></a><span class="lineno">  823</span>  };</div>
+<div class="line"><a id="l00824" name="l00824"></a><span class="lineno">  824</span> </div>
+<div class="line"><a id="l00825" name="l00825"></a><span class="lineno">  825</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2">setup</a>(uint16_t xtalDiv = 1000,</div>
+<div class="line"><a id="l00826" name="l00826"></a><span class="lineno">  826</span>             <span class="keywordtype">bool</span> mono = <span class="keyword">false</span>, <span class="keywordtype">bool</span> rds = <span class="keyword">false</span>, uint8_t PreEmphasis = 0,</div>
+<div class="line"><a id="l00827" name="l00827"></a><span class="lineno">  827</span>             uint8_t xtalInj = 0, uint8_t imageRejection = 1,</div>
+<div class="line"><a id="l00828" name="l00828"></a><span class="lineno">  828</span>             uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9,</div>
+<div class="line"><a id="l00829" name="l00829"></a><span class="lineno">  829</span>             uint8_t txFreqDev = 125, uint8_t rdsLineIn = 0, uint8_t rdsFreqDev = 60 );</div>
+<div class="line"><a id="l00830" name="l00830"></a><span class="lineno">  830</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga18f9ab880c919dfa86e4863213b23325">commitTxSetup</a>();</div>
+<div class="line"><a id="l00831" name="l00831"></a><span class="lineno"><a class="line" href="class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c">  831</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c">stopTransmitting</a>();</div>
+<div class="line"><a id="l00832" name="l00832"></a><span class="lineno"><a class="line" href="class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b">  832</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b">startTransmitting</a>();</div>
+<div class="line"><a id="l00833" name="l00833"></a><span class="lineno">  833</span> </div>
+<div class="line"><a id="l00834" name="l00834"></a><span class="lineno">  834</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  835</span><span class="comment">   * @ingroup group01</span></div>
+<div class="line"><span class="lineno">  836</span><span class="comment">   * @brief Set the Crystal Frequency object</span></div>
+<div class="line"><span class="lineno">  837</span><span class="comment">   * @details Based on the external crystal oscillator, calculates the divider</span></div>
+<div class="line"><span class="lineno">  838</span><span class="comment">   * parameter (xtal_div). See registers XTAL_DIV0 and XTAL_DIV1</span></div>
+<div class="line"><span class="lineno">  839</span><span class="comment">   * @param value</span></div>
+<div class="line"><span class="lineno">  840</span><span class="comment">   */</span></div>
+<div class="line"><a id="l00841" name="l00841"></a><span class="lineno"><a class="line" href="group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca">  841</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca">setCrystalFrequency</a>(uint32_t value) { xtal_div = value / 32768; };</div>
+<div class="line"><a id="l00842" name="l00842"></a><span class="lineno">  842</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">setPAC</a>(uint8_t PA_TRGT);</div>
+<div class="line"><a id="l00843" name="l00843"></a><span class="lineno">  843</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">setToggleTxPdClear</a>();</div>
+<div class="line"><a id="l00844" name="l00844"></a><span class="lineno">  844</span>  <span class="keywordtype">int</span>  <a class="code hl_function" href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">getAudioPeakValue</a>();</div>
+<div class="line"><a id="l00845" name="l00845"></a><span class="lineno">  845</span> </div>
+<div class="line"><a id="l00846" name="l00846"></a><span class="lineno">  846</span>  <span class="comment">// RDS TX</span></div>
+<div class="line"><a id="l00847" name="l00847"></a><span class="lineno">  847</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gaaad14424c57781256cfbda7accadbd49">setTxRDS</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a id="l00848" name="l00848"></a><span class="lineno">  848</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98">setTxToggleRDSReady</a>();</div>
+<div class="line"><a id="l00849" name="l00849"></a><span class="lineno">  849</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="group__group05.html#ga1c7236e219778ab5a939ff4bd659183b">getTxRDSUpdated</a>();</div>
+<div class="line"><a id="l00850" name="l00850"></a><span class="lineno">  850</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga0664c14d7c23ede48874c9007b157d46">writeTxRDSBuffer</a>(<span class="keywordtype">char</span> *text);</div>
+<div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gacb4f89faa8744c4adbf4b3bbfc2412b4">setRDSFrequencyDeviation</a>(uint8_t freq);</div>
+<div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga53969a8d55eb57c9c8d97c5170f5d94b">setRDSLineIn</a>(<span class="keywordtype">bool</span> value);</div>
+<div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span> </div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>};</div>
 <div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span> </div>
-<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>};</div>
-<div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span> </div>
-<div class="line"><a id="l00858" name="l00858"></a><span class="lineno">  858</span><span class="preprocessor">#</span><span class="preprocessor">endif</span> <span class="comment">// _QN8066_H</span></div>
+<div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span><span class="preprocessor">#</span><span class="preprocessor">endif</span> <span class="comment">// _QN8066_H</span></div>
 <div class="ttc" id="a_q_n8066_8h_html_a0fd6103a891427dc8bb3c9c37d78d2d5"><div class="ttname"><a href="_q_n8066_8h.html#a0fd6103a891427dc8bb3c9c37d78d2d5">QN_INT_CTRL</a></div><div class="ttdeci">#define QN_INT_CTRL</div><div class="ttdef"><b>Definition:</b> QN8066.h:58</div></div>
 <div class="ttc" id="a_q_n8066_8h_html_a206019212ffb67958b188358b75698d2"><div class="ttname"><a href="_q_n8066_8h.html#a206019212ffb67958b188358b75698d2">QN_SYSTEM2</a></div><div class="ttdeci">#define QN_SYSTEM2</div><div class="ttdef"><b>Definition:</b> QN8066.h:30</div></div>
 <div class="ttc" id="a_q_n8066_8h_html_a339cd3c7a55649bc071ca984f71709e9"><div class="ttname"><a href="_q_n8066_8h.html#a339cd3c7a55649bc071ca984f71709e9">QN_STATUS2</a></div><div class="ttdeci">#define QN_STATUS2</div><div class="ttdef"><b>Definition:</b> QN8066.h:56</div></div>
@@ -974,14 +972,14 @@ $(document).ready(function(){initNavTree('_q_n8066_8h_source.html',''); initResi
 <div class="ttc" id="a_q_n8066_8h_html_acec9e411549c712cdcefbe21603bb21e"><div class="ttname"><a href="_q_n8066_8h.html#acec9e411549c712cdcefbe21603bb21e">QN_GPLT</a></div><div class="ttdeci">#define QN_GPLT</div><div class="ttdef"><b>Definition:</b> QN8066.h:72</div></div>
 <div class="ttc" id="a_q_n8066_8h_html_af094414dbdb71c51524b35c89ac236c2"><div class="ttname"><a href="_q_n8066_8h.html#af094414dbdb71c51524b35c89ac236c2">QN_CCA</a></div><div class="ttdeci">#define QN_CCA</div><div class="ttdef"><b>Definition:</b> QN8066.h:31</div></div>
 <div class="ttc" id="a_q_n8066_8h_html_afdd7823b8f59d88e390d2f1f15a69051"><div class="ttname"><a href="_q_n8066_8h.html#afdd7823b8f59d88e390d2f1f15a69051">QN8066_I2C_ADDRESS</a></div><div class="ttdeci">#define QN8066_I2C_ADDRESS</div><div class="ttdoc">QN8066 ARDUINO LIBRARY.</div><div class="ttdef"><b>Definition:</b> QN8066.h:21</div></div>
-<div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:753</div></div>
-<div class="ttc" id="aclass_q_n8066_html_a0f742e2c0b420df9d26b83dd6ed43bb1"><div class="ttname"><a href="class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1">QN8066::setResetDelay</a></div><div class="ttdeci">void setResetDelay(uint16_t delayAfterReset)</div><div class="ttdef"><b>Definition:</b> QN8066.h:824</div></div>
-<div class="ttc" id="aclass_q_n8066_html_a7ea04cd950a6627cd494c7cd48abbe92"><div class="ttname"><a href="class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92">QN8066::getDeviceProductFamily</a></div><div class="ttdeci">qn8066_cid2 getDeviceProductFamily()</div><div class="ttdef"><b>Definition:</b> QN8066.h:786</div></div>
+<div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:749</div></div>
+<div class="ttc" id="aclass_q_n8066_html_a0f742e2c0b420df9d26b83dd6ed43bb1"><div class="ttname"><a href="class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1">QN8066::setResetDelay</a></div><div class="ttdeci">void setResetDelay(uint16_t delayAfterReset)</div><div class="ttdef"><b>Definition:</b> QN8066.h:821</div></div>
+<div class="ttc" id="aclass_q_n8066_html_a7ea04cd950a6627cd494c7cd48abbe92"><div class="ttname"><a href="class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92">QN8066::getDeviceProductFamily</a></div><div class="ttdeci">qn8066_cid2 getDeviceProductFamily()</div><div class="ttdef"><b>Definition:</b> QN8066.h:783</div></div>
 <div class="ttc" id="aclass_q_n8066_html_a801b74d0c6d39c9c828f20a46fb3ce7c"><div class="ttname"><a href="class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c">QN8066::stopTransmitting</a></div><div class="ttdeci">void stopTransmitting()</div></div>
 <div class="ttc" id="aclass_q_n8066_html_a8f5f8f73c0d0f1faa96a6b5bb8bde49b"><div class="ttname"><a href="class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b">QN8066::startTransmitting</a></div><div class="ttdeci">void startTransmitting()</div></div>
-<div class="ttc" id="aclass_q_n8066_html_ae043cf96db238be36b902d97b8c9a1e3"><div class="ttname"><a href="class_q_n8066.html#ae043cf96db238be36b902d97b8c9a1e3">QN8066::getDeviceProductID</a></div><div class="ttdeci">qn8066_cid1 getDeviceProductID()</div><div class="ttdef"><b>Definition:</b> QN8066.h:780</div></div>
+<div class="ttc" id="aclass_q_n8066_html_ae043cf96db238be36b902d97b8c9a1e3"><div class="ttname"><a href="class_q_n8066.html#ae043cf96db238be36b902d97b8c9a1e3">QN8066::getDeviceProductID</a></div><div class="ttdeci">qn8066_cid1 getDeviceProductID()</div><div class="ttdef"><b>Definition:</b> QN8066.h:777</div></div>
 <div class="ttc" id="agroup__group00_html_a023159fad6682231dd2e7def5453364d"><div class="ttname"><a href="group__group00.html#a023159fad6682231dd2e7def5453364d">qn8066_rx_ch::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:345</div></div>
-<div class="ttc" id="agroup__group00_html_a0e8f32f19b1fbec24ce8364b132a3f47"><div class="ttname"><a href="group__group00.html#a0e8f32f19b1fbec24ce8364b132a3f47">qn8066_gplt::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:696</div></div>
+<div class="ttc" id="agroup__group00_html_a0e8f32f19b1fbec24ce8364b132a3f47"><div class="ttname"><a href="group__group00.html#a0e8f32f19b1fbec24ce8364b132a3f47">qn8066_gplt::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:692</div></div>
 <div class="ttc" id="agroup__group00_html_a16437f62f2ef0bbee00341e1d5eb1ba8"><div class="ttname"><a href="group__group00.html#a16437f62f2ef0bbee00341e1d5eb1ba8">qn8066_ch_start::CH_START</a></div><div class="ttdeci">uint8_t CH_START</div><div class="ttdef"><b>Definition:</b> QN8066.h:359</div></div>
 <div class="ttc" id="agroup__group00_html_a1e18197de0211200a14a9f9f63cc343f"><div class="ttname"><a href="group__group00.html#a1e18197de0211200a14a9f9f63cc343f">qn8066_txch::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:566</div></div>
 <div class="ttc" id="agroup__group00_html_a28708445025a2186233bc5eb3aec825f"><div class="ttname"><a href="group__group00.html#a28708445025a2186233bc5eb3aec825f">qn8066_status2::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:455</div></div>
@@ -998,7 +996,7 @@ $(document).ready(function(){initNavTree('_q_n8066_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group00_html_a6bccf0f19fdf1c6ddfebebd98bc3d703"><div class="ttname"><a href="group__group00.html#a6bccf0f19fdf1c6ddfebebd98bc3d703">qn8066_pac::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:615</div></div>
 <div class="ttc" id="agroup__group00_html_a71ec139018e291d638500f9821b2718f"><div class="ttname"><a href="group__group00.html#a71ec139018e291d638500f9821b2718f">qn8066_rx_ch::RXCH</a></div><div class="ttdeci">uint8_t RXCH</div><div class="ttdef"><b>Definition:</b> QN8066.h:344</div></div>
 <div class="ttc" id="agroup__group00_html_a7cac9f1c43ac9139585df3f46746edae"><div class="ttname"><a href="group__group00.html#a7cac9f1c43ac9139585df3f46746edae">qn8066_status1::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:323</div></div>
-<div class="ttc" id="agroup__group00_html_a849a8b8ac506e73b60a85d105aa9b6c6"><div class="ttname"><a href="group__group00.html#a849a8b8ac506e73b60a85d105aa9b6c6">qn8066_rds::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:656</div></div>
+<div class="ttc" id="agroup__group00_html_a849a8b8ac506e73b60a85d105aa9b6c6"><div class="ttname"><a href="group__group00.html#a849a8b8ac506e73b60a85d105aa9b6c6">qn8066_rds::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:652</div></div>
 <div class="ttc" id="agroup__group00_html_a986b72d2c13e8c7fba7eda06956ff1d0"><div class="ttname"><a href="group__group00.html#a986b72d2c13e8c7fba7eda06956ff1d0">qn8066_status3::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:544</div></div>
 <div class="ttc" id="agroup__group00_html_aa7bb1b6a4183e7a13723a6b2e8ade6fb"><div class="ttname"><a href="group__group00.html#aa7bb1b6a4183e7a13723a6b2e8ade6fb">qn8066_xtal_div0::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:249</div></div>
 <div class="ttc" id="agroup__group00_html_aa9ca38832753bba16465221f780ff741"><div class="ttname"><a href="group__group00.html#aa9ca38832753bba16465221f780ff741">qn8066_fdev::TX_FDEV</a></div><div class="ttdeci">uint8_t TX_FDEV</div><div class="ttdef"><b>Definition:</b> QN8066.h:630</div></div>
@@ -1010,48 +1008,48 @@ $(document).ready(function(){initNavTree('_q_n8066_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group00_html_abf4047e615c2a183e7d8d7a20eb858f8"><div class="ttname"><a href="group__group00.html#abf4047e615c2a183e7d8d7a20eb858f8">qn8066_tx_rds::data</a></div><div class="ttdeci">uint8_t data[8]</div><div class="ttdef"><b>Definition:</b> QN8066.h:590</div></div>
 <div class="ttc" id="agroup__group00_html_ad51b4d4d9ddac0d28a7afa941512bbbd"><div class="ttname"><a href="group__group00.html#ad51b4d4d9ddac0d28a7afa941512bbbd">qn8066_cca::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:167</div></div>
 <div class="ttc" id="agroup__group00_html_adbc7836f00c33603787a5eb363ad6f2c"><div class="ttname"><a href="group__group00.html#adbc7836f00c33603787a5eb363ad6f2c">qn8066_ch_step::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:398</div></div>
-<div class="ttc" id="agroup__group00_html_ae07ddfd42a195723c0b26df33f7c53b8"><div class="ttname"><a href="group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8">qn8066_reg_vga::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:742</div></div>
+<div class="ttc" id="agroup__group00_html_ae07ddfd42a195723c0b26df33f7c53b8"><div class="ttname"><a href="group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8">qn8066_reg_vga::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:738</div></div>
 <div class="ttc" id="agroup__group00_html_ae2b19cce8adf6bde0dffdd109b4f9528"><div class="ttname"><a href="group__group00.html#ae2b19cce8adf6bde0dffdd109b4f9528">qn8066_xtal_div0::xtal_div</a></div><div class="ttdeci">uint8_t xtal_div</div><div class="ttdef"><b>Definition:</b> QN8066.h:247</div></div>
 <div class="ttc" id="agroup__group00_html_ae3108111c9f19c5be3601f89e721dd50"><div class="ttname"><a href="group__group00.html#ae3108111c9f19c5be3601f89e721dd50">qn8066_xtal_div2::pll_dlt</a></div><div class="ttdeci">uint8_t pll_dlt</div><div class="ttdef"><b>Definition:</b> QN8066.h:282</div></div>
 <div class="ttc" id="agroup__group00_html_af3699f0b53e98842177fe5408c1ace25"><div class="ttname"><a href="group__group00.html#af3699f0b53e98842177fe5408c1ace25">qn8066_xtal_div2::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:283</div></div>
 <div class="ttc" id="agroup__group00_html_af4725c9f671bd753098d94bad1bfee83"><div class="ttname"><a href="group__group00.html#af4725c9f671bd753098d94bad1bfee83">qn8066_cid2::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:233</div></div>
 <div class="ttc" id="agroup__group00_html_af7d8f3fcfd89b14f78b089e6e85241e3"><div class="ttname"><a href="group__group00.html#af7d8f3fcfd89b14f78b089e6e85241e3">qn8066_fdev::raw</a></div><div class="ttdeci">uint8_t raw</div><div class="ttdef"><b>Definition:</b> QN8066.h:632</div></div>
-<div class="ttc" id="agroup__group01_html_ga0f7771a1c7fd08c5c832a54cfad4cbca"><div class="ttname"><a href="group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca">QN8066::setCrystalFrequency</a></div><div class="ttdeci">void setCrystalFrequency(uint32_t value)</div><div class="ttdoc">Set the Crystal Frequency object.</div><div class="ttdef"><b>Definition:</b> QN8066.h:843</div></div>
+<div class="ttc" id="agroup__group01_html_ga0f7771a1c7fd08c5c832a54cfad4cbca"><div class="ttname"><a href="group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca">QN8066::setCrystalFrequency</a></div><div class="ttdeci">void setCrystalFrequency(uint32_t value)</div><div class="ttdoc">Set the Crystal Frequency object.</div><div class="ttdef"><b>Definition:</b> QN8066.h:841</div></div>
 <div class="ttc" id="agroup__group01_html_gaa9d2e60da9afa03ecb5974d1afd60d92"><div class="ttname"><a href="group__group01.html#gaa9d2e60da9afa03ecb5974d1afd60d92">QN8066::detectDevice</a></div><div class="ttdeci">bool detectDevice()</div><div class="ttdoc">Checks communication with QN8066 via I2C.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:25</div></div>
 <div class="ttc" id="agroup__group01_html_gaaa669543d461aa2f6817de6a5fea9a85"><div class="ttname"><a href="group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85">QN8066::scanI2CBus</a></div><div class="ttdeci">uint8_t scanI2CBus(uint8_t *device)</div><div class="ttdoc">Scans the I2C bus and returns the addresses of the devices found.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:40</div></div>
-<div class="ttc" id="agroup__group02_html_ga09f8ac112ebae77be1b6ddd0b646b67c"><div class="ttname"><a href="group__group02.html#ga09f8ac112ebae77be1b6ddd0b646b67c">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9)</div><div class="ttdoc">Device initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:163</div></div>
+<div class="ttc" id="agroup__group02_html_ga130d24b7a8f19a2758558b3f28eb03c2"><div class="ttname"><a href="group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60)</div><div class="ttdoc">Device initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:166</div></div>
 <div class="ttc" id="agroup__group02_html_ga42fb3ab79849550ce078c5efb591d291"><div class="ttname"><a href="group__group02.html#ga42fb3ab79849550ce078c5efb591d291">QN8066::getStatus1</a></div><div class="ttdeci">qn8066_status1 getStatus1()</div><div class="ttdoc">Gets the current device Status stored in STATUS1 register.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:102</div></div>
 <div class="ttc" id="agroup__group02_html_ga49c108bf838926f63114cf43468f3595"><div class="ttname"><a href="group__group02.html#ga49c108bf838926f63114cf43468f3595">QN8066::getRegister</a></div><div class="ttdeci">uint8_t getRegister(uint8_t registerNumber)</div><div class="ttdoc">Gets register information.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:70</div></div>
 <div class="ttc" id="agroup__group02_html_ga8c3571a46681a2da4e5dbe0e2ba0b249"><div class="ttname"><a href="group__group02.html#ga8c3571a46681a2da4e5dbe0e2ba0b249">QN8066::setRegister</a></div><div class="ttdeci">void setRegister(uint8_t registerNumber, uint8_t value)</div><div class="ttdoc">Stores a velue to a given register.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:88</div></div>
 <div class="ttc" id="agroup__group02_html_gac6731edee1a5da425a66878371b1104c"><div class="ttname"><a href="group__group02.html#gac6731edee1a5da425a66878371b1104c">QN8066::getStatus2</a></div><div class="ttdeci">qn8066_status2 getStatus2()</div><div class="ttdoc">Gets the current device Status stored in STATUS2 register.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:113</div></div>
 <div class="ttc" id="agroup__group02_html_gafcb2a26df67c63e40800a29a559c5505"><div class="ttname"><a href="group__group02.html#gafcb2a26df67c63e40800a29a559c5505">QN8066::getStatus3</a></div><div class="ttdeci">qn8066_status3 getStatus3()</div><div class="ttdoc">Gets the current device Status stored in STATUS3 register.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:124</div></div>
-<div class="ttc" id="agroup__group03_html_ga0163945d4e150b6a8ff25fd0b5a783f7"><div class="ttname"><a href="group__group03.html#ga0163945d4e150b6a8ff25fd0b5a783f7">QN8066::setRX</a></div><div class="ttdeci">void setRX()</div><div class="ttdoc">SYSTEM1 SETUP.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:200</div></div>
-<div class="ttc" id="agroup__group04_html_ga0032c60d8038a749f69b7e8508fa014d"><div class="ttname"><a href="group__group04.html#ga0032c60d8038a749f69b7e8508fa014d">QN8066::setTxSoftCliptTreshold</a></div><div class="ttdeci">void setTxSoftCliptTreshold(uint8_t value)</div><div class="ttdoc">TX soft clip threshold.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:379</div></div>
-<div class="ttc" id="agroup__group04_html_ga09843594c1c9203a738c3a18cbc78403"><div class="ttname"><a href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a></div><div class="ttdeci">void setTxInputBufferGain(uint8_t value)</div><div class="ttdoc">TX input buffer gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:659</div></div>
-<div class="ttc" id="agroup__group04_html_ga18f9ab880c919dfa86e4863213b23325"><div class="ttname"><a href="group__group04.html#ga18f9ab880c919dfa86e4863213b23325">QN8066::commitTxSetup</a></div><div class="ttdeci">void commitTxSetup()</div><div class="ttdoc">Reset the system kepping the TX current STATUS.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:751</div></div>
-<div class="ttc" id="agroup__group04_html_ga4670b899f6f3df01c4d967b7f461318a"><div class="ttname"><a href="group__group04.html#ga4670b899f6f3df01c4d967b7f461318a">QN8066::setAudioDigitalGain</a></div><div class="ttdeci">void setAudioDigitalGain(uint8_t value)</div><div class="ttdoc">Sets set digital volume gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:490</div></div>
-<div class="ttc" id="agroup__group04_html_ga59c9bd87716f1c0ffb1be2a143a95571"><div class="ttname"><a href="group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571">QN8066::setTxOffAfterOneMinuteNoAudio</a></div><div class="ttdeci">void setTxOffAfterOneMinuteNoAudio(bool value)</div><div class="ttdoc">Set of 1 minute time for PA off when no audio.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:407</div></div>
-<div class="ttc" id="agroup__group04_html_ga751bb2147b6355745b261cc8f86a017c"><div class="ttname"><a href="group__group04.html#ga751bb2147b6355745b261cc8f86a017c">QN8066::setTxInputImpedance</a></div><div class="ttdeci">void setTxInputImpedance(uint8_t value)</div><div class="ttdoc">TX mode input impedance for both L/R channels.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:583</div></div>
-<div class="ttc" id="agroup__group04_html_ga7fbea7d2ae6bdf9719ee252e6a612a83"><div class="ttname"><a href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">QN8066::setTxStereo</a></div><div class="ttdeci">void setTxStereo(bool value=true)</div><div class="ttdoc">Set TX Stereo or Mono.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:287</div></div>
-<div class="ttc" id="agroup__group04_html_ga85384e9b43f34c41e7b9d4699cb6bfc7"><div class="ttname"><a href="group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7">QN8066::setAudioAnalogGain</a></div><div class="ttdeci">void setAudioAnalogGain(uint8_t value)</div><div class="ttdoc">Sets volume control gain of analog portion.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:461</div></div>
-<div class="ttc" id="agroup__group04_html_ga88ea23b676feb40a15725b9273eca95b"><div class="ttname"><a href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">QN8066::setTxFrequencyDerivation</a></div><div class="ttdeci">void setTxFrequencyDerivation(uint8_t value)</div><div class="ttdoc">Specify total TX frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:713</div></div>
-<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:230</div></div>
-<div class="ttc" id="agroup__group04_html_ga8eb4772b22c08ce7b44e52b01af342f5"><div class="ttname"><a href="group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5">QN8066::setTxDigitalGain</a></div><div class="ttdeci">void setTxDigitalGain(uint8_t value)</div><div class="ttdoc">TX digital gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:620</div></div>
-<div class="ttc" id="agroup__group04_html_ga90eeea994b03d7c31ac09426982884c0"><div class="ttname"><a href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">QN8066::setPAC</a></div><div class="ttdeci">void setPAC(uint8_t PA_TRGT)</div><div class="ttdoc">PA output power target control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:736</div></div>
-<div class="ttc" id="agroup__group04_html_gab1a0d8a388d2ca976c67b2f31c4d8be1"><div class="ttname"><a href="group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1">QN8066::setTxPreEmphasis</a></div><div class="ttdeci">void setTxPreEmphasis(uint8_t value=75)</div><div class="ttdoc">Pre-emphasis and de-emphasis time constant.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:314</div></div>
-<div class="ttc" id="agroup__group04_html_gab21e226857d1b2ac384623fd47784ce5"><div class="ttname"><a href="group__group04.html#gab21e226857d1b2ac384623fd47784ce5">QN8066::setTxSoftClippingEnable</a></div><div class="ttdeci">void setTxSoftClippingEnable(bool value)</div><div class="ttdoc">TX soft clipping enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:686</div></div>
-<div class="ttc" id="agroup__group04_html_gad1cad21dc29703b30df776dbbb98a08a"><div class="ttname"><a href="group__group04.html#gad1cad21dc29703b30df776dbbb98a08a">QN8066::setTxOffAfterOneMinute</a></div><div class="ttdeci">void setTxOffAfterOneMinute(uint8_t value)</div><div class="ttdoc">Sets PA Off after 1 minute time when no audio.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:433</div></div>
-<div class="ttc" id="agroup__group04_html_gad46b7a63f4c0887a2b0c9b1b068739d4"><div class="ttname"><a href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">QN8066::setTxPilotGain</a></div><div class="ttdeci">void setTxPilotGain(uint8_t value)</div><div class="ttdoc">Gain of TX pilot to adjust pilot frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:342</div></div>
-<div class="ttc" id="agroup__group04_html_gade021b98b99e9239c390461d22020c4e"><div class="ttname"><a href="group__group04.html#gade021b98b99e9239c390461d22020c4e">QN8066::setAudioTxDiff</a></div><div class="ttdeci">void setAudioTxDiff(bool value)</div><div class="ttdoc">Tx audio input mode selection.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:546</div></div>
-<div class="ttc" id="agroup__group04_html_gadfd3134c2de7e8dd2e079e3abfbfe7a0"><div class="ttname"><a href="group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0">QN8066::setAudioDacHold</a></div><div class="ttdeci">void setAudioDacHold(bool value)</div><div class="ttdoc">DAC output control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:519</div></div>
-<div class="ttc" id="agroup__group04_html_gaee7afb6a9a31a99fc29b8b9d7d0a00bc"><div class="ttname"><a href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">QN8066::getAudioPeakValue</a></div><div class="ttdeci">int getAudioPeakValue()</div><div class="ttdoc">Audio peak value at ADC input.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:841</div></div>
-<div class="ttc" id="agroup__group04_html_gaf68d40e6fdc7a17cb64d883d93af3886"><div class="ttname"><a href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a></div><div class="ttdeci">void setToggleTxPdClear()</div><div class="ttdoc">TX aAudio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:809</div></div>
-<div class="ttc" id="agroup__group05_html_ga0664c14d7c23ede48874c9007b157d46"><div class="ttname"><a href="group__group05.html#ga0664c14d7c23ede48874c9007b157d46">QN8066::writeTxRDSBuffer</a></div><div class="ttdeci">void writeTxRDSBuffer(char *text)</div><div class="ttdoc">Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:895</div></div>
-<div class="ttc" id="agroup__group05_html_ga1c7236e219778ab5a939ff4bd659183b"><div class="ttname"><a href="group__group05.html#ga1c7236e219778ab5a939ff4bd659183b">QN8066::getTxRDSUpdated</a></div><div class="ttdeci">bool getTxRDSUpdated()</div><div class="ttdoc">RDS TX Updated.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:885</div></div>
-<div class="ttc" id="agroup__group05_html_ga53969a8d55eb57c9c8d97c5170f5d94b"><div class="ttname"><a href="group__group05.html#ga53969a8d55eb57c9c8d97c5170f5d94b">QN8066::setRDSLineIn</a></div><div class="ttdeci">void setRDSLineIn(bool value)</div><div class="ttdoc">Audio Line-in enable control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:923</div></div>
-<div class="ttc" id="agroup__group05_html_gaaad14424c57781256cfbda7accadbd49"><div class="ttname"><a href="group__group05.html#gaaad14424c57781256cfbda7accadbd49">QN8066::setTxRDS</a></div><div class="ttdeci">void setTxRDS(bool value)</div><div class="ttdoc">Transmitter RDS enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:855</div></div>
-<div class="ttc" id="agroup__group05_html_gaba2e2e1f2df33bb652fe36878355bc98"><div class="ttname"><a href="group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98">QN8066::setTxToggleRDSReady</a></div><div class="ttdeci">void setTxToggleRDSReady()</div><div class="ttdoc">RDS transmitting ready.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:869</div></div>
-<div class="ttc" id="agroup__group05_html_gacb4f89faa8744c4adbf4b3bbfc2412b4"><div class="ttname"><a href="group__group05.html#gacb4f89faa8744c4adbf4b3bbfc2412b4">QN8066::setRDSFrequencyDeviation</a></div><div class="ttdeci">void setRDSFrequencyDeviation(uint8_t freq)</div><div class="ttdoc">Sets RDS frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:910</div></div>
+<div class="ttc" id="agroup__group03_html_ga0163945d4e150b6a8ff25fd0b5a783f7"><div class="ttname"><a href="group__group03.html#ga0163945d4e150b6a8ff25fd0b5a783f7">QN8066::setRX</a></div><div class="ttdeci">void setRX()</div><div class="ttdoc">SYSTEM1 SETUP.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:209</div></div>
+<div class="ttc" id="agroup__group04_html_ga0032c60d8038a749f69b7e8508fa014d"><div class="ttname"><a href="group__group04.html#ga0032c60d8038a749f69b7e8508fa014d">QN8066::setTxSoftCliptTreshold</a></div><div class="ttdeci">void setTxSoftCliptTreshold(uint8_t value)</div><div class="ttdoc">TX soft clip threshold.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:395</div></div>
+<div class="ttc" id="agroup__group04_html_ga09843594c1c9203a738c3a18cbc78403"><div class="ttname"><a href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a></div><div class="ttdeci">void setTxInputBufferGain(uint8_t value)</div><div class="ttdoc">TX input buffer gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:684</div></div>
+<div class="ttc" id="agroup__group04_html_ga18f9ab880c919dfa86e4863213b23325"><div class="ttname"><a href="group__group04.html#ga18f9ab880c919dfa86e4863213b23325">QN8066::commitTxSetup</a></div><div class="ttdeci">void commitTxSetup()</div><div class="ttdoc">Reset the system kepping the TX current STATUS.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:781</div></div>
+<div class="ttc" id="agroup__group04_html_ga4670b899f6f3df01c4d967b7f461318a"><div class="ttname"><a href="group__group04.html#ga4670b899f6f3df01c4d967b7f461318a">QN8066::setAudioDigitalGain</a></div><div class="ttdeci">void setAudioDigitalGain(uint8_t value)</div><div class="ttdoc">Sets set digital volume gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:510</div></div>
+<div class="ttc" id="agroup__group04_html_ga59c9bd87716f1c0ffb1be2a143a95571"><div class="ttname"><a href="group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571">QN8066::setTxOffAfterOneMinuteNoAudio</a></div><div class="ttdeci">void setTxOffAfterOneMinuteNoAudio(bool value)</div><div class="ttdoc">Set of 1 minute time for PA off when no audio.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:424</div></div>
+<div class="ttc" id="agroup__group04_html_ga751bb2147b6355745b261cc8f86a017c"><div class="ttname"><a href="group__group04.html#ga751bb2147b6355745b261cc8f86a017c">QN8066::setTxInputImpedance</a></div><div class="ttdeci">void setTxInputImpedance(uint8_t value)</div><div class="ttdoc">TX mode input impedance for both L/R channels.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:606</div></div>
+<div class="ttc" id="agroup__group04_html_ga7fbea7d2ae6bdf9719ee252e6a612a83"><div class="ttname"><a href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">QN8066::setTxStereo</a></div><div class="ttdeci">void setTxStereo(bool value=true)</div><div class="ttdoc">Set TX Stereo or Mono.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:300</div></div>
+<div class="ttc" id="agroup__group04_html_ga85384e9b43f34c41e7b9d4699cb6bfc7"><div class="ttname"><a href="group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7">QN8066::setAudioAnalogGain</a></div><div class="ttdeci">void setAudioAnalogGain(uint8_t value)</div><div class="ttdoc">Sets volume control gain of analog portion.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:480</div></div>
+<div class="ttc" id="agroup__group04_html_ga88ea23b676feb40a15725b9273eca95b"><div class="ttname"><a href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">QN8066::setTxFrequencyDerivation</a></div><div class="ttdeci">void setTxFrequencyDerivation(uint8_t value)</div><div class="ttdoc">Specify total TX frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:740</div></div>
+<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:239</div></div>
+<div class="ttc" id="agroup__group04_html_ga8eb4772b22c08ce7b44e52b01af342f5"><div class="ttname"><a href="group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5">QN8066::setTxDigitalGain</a></div><div class="ttdeci">void setTxDigitalGain(uint8_t value)</div><div class="ttdoc">TX digital gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:644</div></div>
+<div class="ttc" id="agroup__group04_html_ga90eeea994b03d7c31ac09426982884c0"><div class="ttname"><a href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">QN8066::setPAC</a></div><div class="ttdeci">void setPAC(uint8_t PA_TRGT)</div><div class="ttdoc">PA output power target control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:764</div></div>
+<div class="ttc" id="agroup__group04_html_gab1a0d8a388d2ca976c67b2f31c4d8be1"><div class="ttname"><a href="group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1">QN8066::setTxPreEmphasis</a></div><div class="ttdeci">void setTxPreEmphasis(uint8_t value=75)</div><div class="ttdoc">Pre-emphasis and de-emphasis time constant.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:328</div></div>
+<div class="ttc" id="agroup__group04_html_gab21e226857d1b2ac384623fd47784ce5"><div class="ttname"><a href="group__group04.html#gab21e226857d1b2ac384623fd47784ce5">QN8066::setTxSoftClippingEnable</a></div><div class="ttdeci">void setTxSoftClippingEnable(bool value)</div><div class="ttdoc">TX soft clipping enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:712</div></div>
+<div class="ttc" id="agroup__group04_html_gad1cad21dc29703b30df776dbbb98a08a"><div class="ttname"><a href="group__group04.html#gad1cad21dc29703b30df776dbbb98a08a">QN8066::setTxOffAfterOneMinute</a></div><div class="ttdeci">void setTxOffAfterOneMinute(uint8_t value)</div><div class="ttdoc">Sets PA Off after 1 minute time when no audio.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:451</div></div>
+<div class="ttc" id="agroup__group04_html_gad46b7a63f4c0887a2b0c9b1b068739d4"><div class="ttname"><a href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">QN8066::setTxPilotGain</a></div><div class="ttdeci">void setTxPilotGain(uint8_t value)</div><div class="ttdoc">Gain of TX pilot to adjust pilot frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:357</div></div>
+<div class="ttc" id="agroup__group04_html_gade021b98b99e9239c390461d22020c4e"><div class="ttname"><a href="group__group04.html#gade021b98b99e9239c390461d22020c4e">QN8066::setAudioTxDiff</a></div><div class="ttdeci">void setAudioTxDiff(bool value)</div><div class="ttdoc">Tx audio input mode selection.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:568</div></div>
+<div class="ttc" id="agroup__group04_html_gadfd3134c2de7e8dd2e079e3abfbfe7a0"><div class="ttname"><a href="group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0">QN8066::setAudioDacHold</a></div><div class="ttdeci">void setAudioDacHold(bool value)</div><div class="ttdoc">DAC output control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:540</div></div>
+<div class="ttc" id="agroup__group04_html_gaee7afb6a9a31a99fc29b8b9d7d0a00bc"><div class="ttname"><a href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">QN8066::getAudioPeakValue</a></div><div class="ttdeci">int getAudioPeakValue()</div><div class="ttdoc">Audio peak value at ADC input.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:876</div></div>
+<div class="ttc" id="agroup__group04_html_gaf68d40e6fdc7a17cb64d883d93af3886"><div class="ttname"><a href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a></div><div class="ttdeci">void setToggleTxPdClear()</div><div class="ttdoc">TX aAudio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:843</div></div>
+<div class="ttc" id="agroup__group05_html_ga0664c14d7c23ede48874c9007b157d46"><div class="ttname"><a href="group__group05.html#ga0664c14d7c23ede48874c9007b157d46">QN8066::writeTxRDSBuffer</a></div><div class="ttdeci">void writeTxRDSBuffer(char *text)</div><div class="ttdoc">Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:929</div></div>
+<div class="ttc" id="agroup__group05_html_ga1c7236e219778ab5a939ff4bd659183b"><div class="ttname"><a href="group__group05.html#ga1c7236e219778ab5a939ff4bd659183b">QN8066::getTxRDSUpdated</a></div><div class="ttdeci">bool getTxRDSUpdated()</div><div class="ttdoc">RDS TX Updated.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:919</div></div>
+<div class="ttc" id="agroup__group05_html_ga53969a8d55eb57c9c8d97c5170f5d94b"><div class="ttname"><a href="group__group05.html#ga53969a8d55eb57c9c8d97c5170f5d94b">QN8066::setRDSLineIn</a></div><div class="ttdeci">void setRDSLineIn(bool value)</div><div class="ttdoc">Audio Line-in enable control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:957</div></div>
+<div class="ttc" id="agroup__group05_html_gaaad14424c57781256cfbda7accadbd49"><div class="ttname"><a href="group__group05.html#gaaad14424c57781256cfbda7accadbd49">QN8066::setTxRDS</a></div><div class="ttdeci">void setTxRDS(bool value)</div><div class="ttdoc">Transmitter RDS enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:890</div></div>
+<div class="ttc" id="agroup__group05_html_gaba2e2e1f2df33bb652fe36878355bc98"><div class="ttname"><a href="group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98">QN8066::setTxToggleRDSReady</a></div><div class="ttdeci">void setTxToggleRDSReady()</div><div class="ttdoc">RDS transmitting ready.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:904</div></div>
+<div class="ttc" id="agroup__group05_html_gacb4f89faa8744c4adbf4b3bbfc2412b4"><div class="ttname"><a href="group__group05.html#gacb4f89faa8744c4adbf4b3bbfc2412b4">QN8066::setRDSFrequencyDeviation</a></div><div class="ttdeci">void setRDSFrequencyDeviation(uint8_t freq)</div><div class="ttdoc">Sets RDS frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:944</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
