@@ -248,7 +248,7 @@ void QN8066::setTX(uint16_t frequency) {
 
   this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
 
-  this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
+  // this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
 
   int16_t auxFreq = (frequency - 600)  * 2;
   this->setRegister(QN_INT_CTRL, 0B00100000 | auxFreq >> 8);
@@ -259,6 +259,9 @@ void QN8066::setTX(uint16_t frequency) {
   // this->setRegister(0x49, 0B11101000); 
   this->setRegister(0x49, 0B11011111); 
   this->setRegister(0x6E, 0B11111111); 
+
+  this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
+
 
   this->setRegister(QN_REG_VGA, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
 
