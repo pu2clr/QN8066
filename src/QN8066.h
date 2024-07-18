@@ -38,13 +38,9 @@
 #define QN_XTAL_DIV2 0x09 // Frequency select of reference clock source.
 #define QN_STATUS1 0x0A   // System status.
 #define QN_RX_CH 0x0B     // Lower 8 bit of 10-bit receiver channel index.
-#define QN_CH_START                                                            \
-  0x0C // Lower 8 bits of 10-bit channel scan start channel index.
-#define QN_CH_STOP                                                             \
-  0x0D // Lower 8 bits of 10-bit channel scan stop channel index.
-#define QN_CH_STEP                                                             \
-  0x0E // Channel scan frequency step. Highest 2 bits of receiver channel
-       // indexes.
+#define QN_CH_START  0x0C // Lower 8 bits of 10-bit channel scan start channel index.
+#define QN_CH_STOP   0x0D // Lower 8 bits of 10-bit channel scan stop channel index.
+#define QN_CH_STEP   0x0E // Channel scan frequency step. Highest 2 bits of receiver channel indexes.
 #define QN_RX_RDSD0 0x0F // RDS data byte 0.
 #define QN_RX_RDSD1 0x10 // RDS data byte 1.
 #define QN_RX_RDSD2 0x11 // RDS data byte 2.
@@ -92,26 +88,14 @@
 
 typedef union {
   struct {
-    uint8_t cca_ch_dis : 1; //!<  0 = RX_CH is decided by internal CCA; 1 =
-                            //!<  RX_CH is decided writing in RX_CH[9:0]
-    uint8_t ccs_ch_dis : 1; //!<  0 = TX_CH is decided by internal CCS; 1 =
-                            //!<  TX_CH is decided writing in TX_CH[9:0]
-    uint8_t chsc : 1;  //!< Channel Scan mode enable - 0 = Normal operation; 1 =
-                       //!< Channel Scan mode operation
-    uint8_t txreq : 1; //!< Transmission request - 0 = Non TX mode; 1 = Enter
-                       //!< transmit mode
-    uint8_t rxreq : 1; //!< Receiving request - 0 = Non RX mode; 1 = Enter
-                       //!< Receiving mode
-    uint8_t stnby : 1; //!< Request Immediately enter Standby mode whatever
-                       //!< state chip is in - 0 = Non standby mode; 1 = Enter
-                       //!< standby mode
-    uint8_t
-        recal : 1; //!< Reset the state to initial states and recalibrate all
-                   //!< blocks - 0 = No action. FSM runs normally;  1 =  Reset
-                   //!< the FSM. After this bit is de-asserted, FSM will go
-                   //!< through all the power up and calibration sequence.
-    uint8_t swrst : 1; //!< Reset all registers to default values; 0 = Keep the
-                       //!< current value; 1 = Reset to default values
+    uint8_t cca_ch_dis : 1; //!<  0 = RX_CH is decided by internal CCA; 1 =  RX_CH is decided writing in RX_CH[9:0]
+    uint8_t ccs_ch_dis : 1; //!<  0 = TX_CH is decided by internal CCS; 1 =  TX_CH is decided writing in TX_CH[9:0]
+    uint8_t chsc : 1;  //!< Channel Scan mode enable - 0 = Normal operation; 1 = Channel Scan mode operation
+    uint8_t txreq : 1; //!< Transmission request - 0 = Non TX mode; 1 = Enter transmit mode
+    uint8_t rxreq : 1; //!< Receiving request - 0 = Non RX mode; 1 = Enter Receiving mode
+    uint8_t stnby : 1; //!< Request Immediately enter Standby mode whatever state chip is in - 0 = Non standby mode; 1 = Enter standby mode
+    uint8_t recal : 1; //!< Reset the state to initial states and recalibrate all blocks - 0 = No action. FSM runs normally;  1 =  Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence. 
+    uint8_t swrst : 1; //!< Reset all registers to default values; 0 = Keep the current value; 1 = Reset to default values
   } arg;
   uint8_t raw;
 } qn8066_system1;
@@ -127,24 +111,14 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t
-        tc : 1; //!<  Pre-emphasis and de-emphasis time constant; 0 = 50; 1 = 75
-    uint8_t rdsrdy : 1;  //!<  RDS transmitting ready; - If user want the chip
-                         //!<  transmitting all the 8 bytes in RDS0~RDS7, user
-                         //!<  should toggle this bit.
-    uint8_t tx_mute : 1; //!<  TX audio mute enabel - 0 = Mute Disabled; 1 =
-                         //!<  Mute Enabled
-    uint8_t rx_mute : 1; //!<  RX audio Mute enable - 0 = Mute Disabled; 1 =
-                         //!<  Mute Enabled
-    uint8_t tx_mono : 1; //!<  TX stereo and mono mode selection; 0 = Stereo;  1
-                         //!<  = Mono
-    uint8_t force_mo : 1; //!<  Force receiver in MONO mode; 0 = Not forced.
-                          //!<  ST/MONO auto selected; Forced in MONO mode
-    uint8_t tx_rdsen : 1; //!<  Transmitter RDS enable; 0 = RDS Disable; 1 = RDS
-                          //!<  Enable
-    uint8_t
-        rx_rdsen : 1; //!<  Receiver RDS enable; 0 = RDS Disable; 1 = RDS Enable
-
+    uint8_t tc : 1;       //!<  Pre-emphasis and de-emphasis time constant; 0 = 50; 1 = 75 
+    uint8_t rdsrdy : 1;   //!<  RDS transmitting ready; - If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user  should toggle this bit.
+    uint8_t tx_mute : 1;  //!<  TX audio mute enabel - 0 = Mute Disabled; 1 = Mute Enabled; 
+    uint8_t rx_mute : 1;  //!<  RX audio Mute enable - 0 = Mute Disabled; 1 = Mute Enabled
+    uint8_t tx_mono : 1;  //!<  TX stereo and mono mode selection; 0 = Stereo;  1 = Mono
+    uint8_t force_mo : 1; //!<  Force receiver in MONO mode; 0 = Not forced. ST/MONO auto selected; Forced in MONO mode
+    uint8_t tx_rdsen : 1; //!<  Transmitter RDS enable; 0 = RDS Disable; 1 = RDS  Enable
+    uint8_t rx_rdsen : 1; //!<  Receiver RDS enable; 0 = RDS Disable; 1 = RDS Enable
   } arg;
   uint8_t raw;
 } qn8066_system2;
@@ -208,8 +182,7 @@ typedef union {
 typedef union {
   struct {
     uint8_t CID2 : 2; //!<  Chip ID for minor revision: 1~4
-    uint8_t
-        CID1 : 3; //!<  Chip ID for product family: 000 = FM; others Reserved
+    uint8_t CID1 : 3; //!<  Chip ID for product family: 000 = FM; others Reserved
     uint8_t RSVD : 3; //!<  Reserved
   } arg;
   uint8_t raw;
@@ -227,8 +200,7 @@ typedef union {
 typedef union {
   struct {
     uint8_t CID4 : 2; //!<  Sequency integer values from 0 to 4.
-    uint8_t CID3 : 6; //!<  Chip ID for product ID. 001101 = Transceiver –
-                      //!<  QN8066; Others = Reserved unkown
+    uint8_t CID3 : 6; //!<  Chip ID for product ID. 001101 = Transceiver –  QN8066; Others = Reserved unkown
   } arg;
   uint8_t raw;
 } qn8066_cid2;
@@ -244,8 +216,7 @@ typedef union {
  */
 
 typedef union {
-  uint8_t xtal_div; // !< Lower 8 bits of xtal_div[10:0]. Xtal_div[10:0] =
-                    // round(freq of xtal/32.768KHz).
+  uint8_t xtal_div; // !< Lower 8 bits of xtal_div[10:0]. Xtal_div[10:0] = round(freq of xtal/32.768KHz).
   uint8_t raw;
 } qn8066_xtal_div0;
 
@@ -261,8 +232,7 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t xtal_div : 3; //!<  Higher 3 bits of xtal_div[10:0]. Xtal_div[10:0]
-                          //!<  = round(freq of xtal/32.768KHz)
+    uint8_t xtal_div : 3; //!<  Higher 3 bits of xtal_div[10:0]. Xtal_div[10:0] = round(freq of xtal/32.768KHz)
     uint8_t pll_dlt : 5;  //!<  Lower 5 bits of pll_dlt[12:0].
   } arg;
   uint8_t raw;
@@ -312,12 +282,8 @@ typedef union {
   struct {
     uint8_t ST_MO_RX : 1; //!<< Stereo receiving status. 0 = Stereo; 1 = Mono
     uint8_t RXSTATUS : 1; //!<< RX Status. 0 = No receiving; 1 = Receiving
-    uint8_t
-        RXAGCSET : 1; //!<< RX AGC Settling status. 0 = Not settled; 1 = Settled
-    uint8_t rxcca_fail : 1; //!<< RXCCA status flag. To indicate whether a valid
-                            //!< channel is found during RX CCA. 0 = RX CCA
-                            //!< success to find a valid channel; 1 = RX CCA
-                            //!< fail to find a valid channel
+    uint8_t RXAGCSET : 1; //!<< RX AGC Settling status. 0 = Not settled; 1 = Settled
+    uint8_t rxcca_fail : 1; //!<< RXCCA status flag. To indicate whether a valid channel is found during RX CCA. 0 = RX CCA success to find a valid channel; 1 = RX CCA fail to find a valid channel
     uint8_t FSM : 4;        //!<< Top FSM state code
   } arg;
   uint8_t raw;
@@ -827,7 +793,7 @@ public:
              uint8_t xtalInj = 0, uint8_t imageRejection = 1, 
              uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9,
              uint8_t txFreqDev = 125, uint8_t rdsLineIn = 0, uint8_t rdsFreqDev = 60 );
-             
+
   void commitTxSetup();
   void stopTransmitting();
   void startTransmitting();

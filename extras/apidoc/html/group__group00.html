@@ -1201,57 +1201,49 @@ raw</td>
 <td class="fieldname">
 cca_ch_dis: 1</td>
 <td class="fielddoc">
-<p>0 = RX_CH is decided by internal CCA; 1 = RX_CH is decided writing in RX_CH[9:0] </p>
-</td></tr>
+0 = RX_CH is decided by internal CCA; 1 = RX_CH is decided writing in RX_CH[9:0] </td></tr>
 <tr><td class="fieldtype">
 <a id="a2dccb9ebc6734a31b57cc8ca55ee18e4" name="a2dccb9ebc6734a31b57cc8ca55ee18e4"></a>uint8_t</td>
 <td class="fieldname">
 ccs_ch_dis: 1</td>
 <td class="fielddoc">
-<p>0 = TX_CH is decided by internal CCS; 1 = TX_CH is decided writing in TX_CH[9:0] </p>
-</td></tr>
+0 = TX_CH is decided by internal CCS; 1 = TX_CH is decided writing in TX_CH[9:0] </td></tr>
 <tr><td class="fieldtype">
 <a id="ac4827e06d0a1d7d1b1d16a8897b46d52" name="ac4827e06d0a1d7d1b1d16a8897b46d52"></a>uint8_t</td>
 <td class="fieldname">
 chsc: 1</td>
 <td class="fielddoc">
-<p>Channel Scan mode enable - 0 = Normal operation; 1 = Channel Scan mode operation </p>
-</td></tr>
+Channel Scan mode enable - 0 = Normal operation; 1 = Channel Scan mode operation. </td></tr>
 <tr><td class="fieldtype">
 <a id="acfa84d1659c9e8d9c4a1046a771f3180" name="acfa84d1659c9e8d9c4a1046a771f3180"></a>uint8_t</td>
 <td class="fieldname">
 txreq: 1</td>
 <td class="fielddoc">
-<p>Transmission request - 0 = Non TX mode; 1 = Enter transmit mode </p>
-</td></tr>
+Transmission request - 0 = Non TX mode; 1 = Enter transmit mode. </td></tr>
 <tr><td class="fieldtype">
 <a id="ad3a08bd6504c3fc6bfee8dbeb1b32847" name="ad3a08bd6504c3fc6bfee8dbeb1b32847"></a>uint8_t</td>
 <td class="fieldname">
 rxreq: 1</td>
 <td class="fielddoc">
-<p>Receiving request - 0 = Non RX mode; 1 = Enter Receiving mode </p>
-</td></tr>
+Receiving request - 0 = Non RX mode; 1 = Enter Receiving mode. </td></tr>
 <tr><td class="fieldtype">
 <a id="a96bff9faf79b589385dd4b2ccce3be40" name="a96bff9faf79b589385dd4b2ccce3be40"></a>uint8_t</td>
 <td class="fieldname">
 stnby: 1</td>
 <td class="fielddoc">
-<p>Request Immediately enter Standby mode whatever state chip is in - 0 = Non standby mode; 1 = Enter standby mode </p>
-</td></tr>
+Request Immediately enter Standby mode whatever state chip is in - 0 = Non standby mode; 1 = Enter standby mode. </td></tr>
 <tr><td class="fieldtype">
 <a id="aa2af66bd7e6480cd335d997faad86ed3" name="aa2af66bd7e6480cd335d997faad86ed3"></a>uint8_t</td>
 <td class="fieldname">
 recal: 1</td>
 <td class="fielddoc">
-<p>Reset the state to initial states and recalibrate all blocks - 0 = No action. FSM runs normally; 1 = Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence. </p>
-</td></tr>
+Reset the state to initial states and recalibrate all blocks - 0 = No action. FSM runs normally; 1 = Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence. </td></tr>
 <tr><td class="fieldtype">
 <a id="a0163e47461ca56feff48a413269f544d" name="a0163e47461ca56feff48a413269f544d"></a>uint8_t</td>
 <td class="fieldname">
 swrst: 1</td>
 <td class="fielddoc">
-<p>Reset all registers to default values; 0 = Keep the current value; 1 = Reset to default values </p>
-</td></tr>
+Reset all registers to default values; 0 = Keep the current value; 1 = Reset to default values. </td></tr>
 </table>
 
 </div>
@@ -1280,43 +1272,37 @@ Pre-emphasis and de-emphasis time constant; 0 = 50; 1 = 75. </td></tr>
 <td class="fieldname">
 rdsrdy: 1</td>
 <td class="fielddoc">
-<p>RDS transmitting ready; - If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit. </p>
-</td></tr>
+RDS transmitting ready; - If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit. </td></tr>
 <tr><td class="fieldtype">
 <a id="a194db9706615552f2cd9a1c79fb53111" name="a194db9706615552f2cd9a1c79fb53111"></a>uint8_t</td>
 <td class="fieldname">
 tx_mute: 1</td>
 <td class="fielddoc">
-<p>TX audio mute enabel - 0 = Mute Disabled; 1 = Mute Enabled </p>
-</td></tr>
+TX audio mute enabel - 0 = Mute Disabled; 1 = Mute Enabled;. </td></tr>
 <tr><td class="fieldtype">
 <a id="a5b727daa91b43bbd84691976860677ef" name="a5b727daa91b43bbd84691976860677ef"></a>uint8_t</td>
 <td class="fieldname">
 rx_mute: 1</td>
 <td class="fielddoc">
-<p>RX audio Mute enable - 0 = Mute Disabled; 1 = Mute Enabled </p>
-</td></tr>
+RX audio Mute enable - 0 = Mute Disabled; 1 = Mute Enabled. </td></tr>
 <tr><td class="fieldtype">
 <a id="ad15421558c80b5c73a545b03dc0d10aa" name="ad15421558c80b5c73a545b03dc0d10aa"></a>uint8_t</td>
 <td class="fieldname">
 tx_mono: 1</td>
 <td class="fielddoc">
-<p>TX stereo and mono mode selection; 0 = Stereo; 1 = Mono </p>
-</td></tr>
+TX stereo and mono mode selection; 0 = Stereo; 1 = Mono. </td></tr>
 <tr><td class="fieldtype">
 <a id="a38b6e4a592c713dde4176894c83b723f" name="a38b6e4a592c713dde4176894c83b723f"></a>uint8_t</td>
 <td class="fieldname">
 force_mo: 1</td>
 <td class="fielddoc">
-<p>Force receiver in MONO mode; 0 = Not forced. ST/MONO auto selected; Forced in MONO mode </p>
-</td></tr>
+Force receiver in MONO mode; 0 = Not forced. ST/MONO auto selected; Forced in MONO mode. </td></tr>
 <tr><td class="fieldtype">
 <a id="acaf416bbbeafc740bddd1085e38e8927" name="acaf416bbbeafc740bddd1085e38e8927"></a>uint8_t</td>
 <td class="fieldname">
 tx_rdsen: 1</td>
 <td class="fielddoc">
-<p>Transmitter RDS enable; 0 = RDS Disable; 1 = RDS Enable </p>
-</td></tr>
+Transmitter RDS enable; 0 = RDS Disable; 1 = RDS Enable. </td></tr>
 <tr><td class="fieldtype">
 <a id="a13a200f2b4592cde4d6f4c2254871008" name="a13a200f2b4592cde4d6f4c2254871008"></a>uint8_t</td>
 <td class="fieldname">
