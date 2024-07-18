@@ -84,11 +84,8 @@ void loop() {
     tx.sendProgramService(strSDR1);
   else   
     tx.sendProgramService(strSDR2);
-
-  delay(100);
-  while (!tx.getTxRDSUpdated());  
-
   tx.setTxToggleRDSReady();
+  while (!tx.getTxRDSUpdated());  
   toggle = !toggle;
 
 

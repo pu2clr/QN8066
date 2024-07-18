@@ -957,7 +957,7 @@ void QN8066::setRDSLineIn(bool value) {
   this->setRegister(QN_RDS, rds.raw);  
 } 
 
-
+/*
 void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD) {
 
   Wire.beginTransmission(QN8066_I2C_ADDRESS);
@@ -975,6 +975,20 @@ void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uin
   Wire.write(blockD & 0xFF);
 
   Wire.endTransmission();
+
+}
+*/
+
+void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD) {
+
+  this->setRegister(QN_TX_RDSD0, blockA>>8 );
+  this->setRegister(QN_TX_RDSD1, blockA & 0xFF);
+  this->setRegister(QN_TX_RDSD2, blockB>>8 );
+  this->setRegister(QN_TX_RDSD3, blockB & 0xFF);
+  this->setRegister(QN_TX_RDSD5, blockC>>8 );
+  this->setRegister(QN_TX_RDSD5, blockC & 0xFF);
+  this->setRegister(QN_TX_RDSD6, blockD>>8 );
+  this->setRegister(QN_TX_RDSD7, blockD & 0xFF);
 
 }
 
