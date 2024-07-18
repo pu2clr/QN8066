@@ -161,9 +161,9 @@ Classes</h2></td></tr>
 <tr class="memitem:unionqn8066__status3"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group00.html#unionqn8066__status3">qn8066_status3</a></td></tr>
 <tr class="memdesc:unionqn8066__status3"><td class="mdescLeft">&#160;</td><td class="mdescRight">STATUS3 - Receiver audio peak level and AGC status (Address: 1Ah - Read Only)  <a href="group__group00.html#unionqn8066__status3">More...</a><br /></td></tr>
 <tr class="separator:unionqn8066__status3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:unionqn8066__tx__ch"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group00.html#unionqn8066__tx__ch">qn8066_txch</a></td></tr>
-<tr class="memdesc:unionqn8066__tx__ch"><td class="mdescLeft">&#160;</td><td class="mdescRight">TXCH - Lower 8 bit of 10-bit transmitter channel index (Address: 1Bh - Read and Write)  <a href="group__group00.html#unionqn8066__tx__ch">More...</a><br /></td></tr>
-<tr class="separator:unionqn8066__tx__ch"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:unionqn8066__txch"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group00.html#unionqn8066__txch">qn8066_txch</a></td></tr>
+<tr class="memdesc:unionqn8066__txch"><td class="mdescLeft">&#160;</td><td class="mdescRight">TXCH - Lower 8 bit of 10-bit transmitter channel index (Address: 1Bh - Read and Write)  <a href="group__group00.html#unionqn8066__txch">More...</a><br /></td></tr>
+<tr class="separator:unionqn8066__txch"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionqn8066__tx__rds"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group00.html#unionqn8066__tx__rds">qn8066_tx_rds</a></td></tr>
 <tr class="memdesc:unionqn8066__tx__rds"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS - RDS tx data from byte 0 to byte 7 (Address: 1Ch to 23h - Write Only)  <a href="group__group00.html#unionqn8066__tx__rds">More...</a><br /></td></tr>
 <tr class="separator:unionqn8066__tx__rds"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -881,8 +881,8 @@ raw</td>
 
 </div>
 </div>
-<a name="unionqn8066__tx__ch" id="unionqn8066__tx__ch"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#unionqn8066__tx__ch">&#9670;&#160;</a></span>qn8066_txch</h2>
+<a name="unionqn8066__txch" id="unionqn8066__txch"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#unionqn8066__txch">&#9670;&#160;</a></span>qn8066_txch</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -899,13 +899,13 @@ raw</td>
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a36d2f5d5769aca0bfdcbe2f8cea81a3b" name="a36d2f5d5769aca0bfdcbe2f8cea81a3b"></a>uint8_t</td>
+<a id="a4dd6233934e3ad24b0da1b7228c37749" name="a4dd6233934e3ad24b0da1b7228c37749"></a>uint8_t</td>
 <td class="fieldname">
 TXCH</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a94b679851ce9ffb34a2a8167bd8467b9" name="a94b679851ce9ffb34a2a8167bd8467b9"></a>uint8_t</td>
+<a id="a1e18197de0211200a14a9f9f63cc343f" name="a1e18197de0211200a14a9f9f63cc343f"></a>uint8_t</td>
 <td class="fieldname">
 raw</td>
 <td class="fielddoc">
@@ -1345,22 +1345,19 @@ Receiver RDS enable; 0 = RDS Disable; 1 = RDS Enable. </td></tr>
 <td class="fieldname">
 SNR_CCA_TH: 6</td>
 <td class="fielddoc">
-<p>The threshold for determination of whether current channel is valid by check its SNR. </p>
-</td></tr>
+The threshold for determination of whether current channel is valid by check its SNR. </td></tr>
 <tr><td class="fieldtype">
 <a id="acf5ed1f35ec8f5264e84b4f63cd708f8" name="acf5ed1f35ec8f5264e84b4f63cd708f8"></a>uint8_t</td>
 <td class="fieldname">
 imr: 1</td>
 <td class="fielddoc">
-<p>Image Rejection. 0 = LO&lt;RF, image is in lower side; 1 = LO&gt;RF, image is in upper side </p>
-</td></tr>
+Image Rejection. 0 = LO&lt;RF, image is in lower side; 1 = LO&gt;RF, image is in upper side. </td></tr>
 <tr><td class="fieldtype">
 <a id="a9a0ed9458874fd7de5f3651d8a83670d" name="a9a0ed9458874fd7de5f3651d8a83670d"></a>uint8_t</td>
 <td class="fieldname">
 xtal_inj: 1</td>
 <td class="fielddoc">
-<p>Select the reference clock source. 0 = Inject sine-wave clock; 1 = Inject digital clock </p>
-</td></tr>
+Select the reference clock source. 0 = Inject sine-wave clock; 1 = Inject digital clock. </td></tr>
 </table>
 
 </div>

@@ -5,5 +5,5 @@ var group__group02 =
     [ "QN8066::getStatus1", "group__group02.html#ga42fb3ab79849550ce078c5efb591d291", null ],
     [ "QN8066::getStatus2", "group__group02.html#gac6731edee1a5da425a66878371b1104c", null ],
     [ "QN8066::getStatus3", "group__group02.html#gafcb2a26df67c63e40800a29a559c5505", null ],
-    [ "QN8066::setup", "group__group02.html#ga8eeb0b8b46c2539ce70f304b922c1a8f", null ]
+    [ "QN8066::setup", "group__group02.html#ga09f8ac112ebae77be1b6ddd0b646b67c", null ]
 ];

@@ -146,6 +146,19 @@ qn8066_status3 QN8066::getStatus3() {
  * @param txSoftClipThreshold - TX soft clip threshold. Default 0. See Datasheet page 34.
  * @param oneMinutOff - Selection of 1 minute time for PA off when no audio (3 = Infinity (never); 2=59s; 1=58s; 0=57s).
  * @param gainTxPLT - Gain of TX pilot to adjust pilot frequency deviation. See Datasheet page 34.
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   // Call setup setting Divider = 1000, Stereo, RDS on and PreEmphasis (tc) 75us
+ *   tx.setup(1000, false, true, 1); 
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
  */
 void QN8066::setup(uint16_t xtalDiv,  
                    bool mono, bool rds, 
@@ -733,10 +746,12 @@ void QN8066::setPAC(uint8_t PA_TRGT) {
  * @ingroup group04 PA Control
  * @brief   Reset the system kepping the TX current STATUS. 
  * @details Some functions do not affect the system when the TX mode is on. In this case, you must use these functions after configuring certain parameters.
+ * @todo Make it work - Under construction
  */
 void QN8066::commitTxSetup() {
 
-   // // Save the current register status 
+   // UNDER CONSTRUCTION... 
+   // Save the current register status 
    this->system2.raw = this->getRegister(QN_SYSTEM2); 
    this->rds.raw = this->getRegister(QN_RDS); 
    this->txch.raw = this->getRegister(QN_TXCH); 
