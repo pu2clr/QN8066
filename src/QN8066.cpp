@@ -241,6 +241,9 @@ void QN8066::setTX(uint16_t frequency) {
   this->setRegister(QN_SYSTEM1, 0B11100011); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
 
   this->setRegister(QN_SYSTEM2, this->system2.raw); 
+  this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy); // Toggle 
+  this->setRegister(QN_SYSTEM2, this->system2.raw); 
+
 
   this->setRegister(QN_CCA, this->cca.raw); // CCA => 01010000 => xtal_inj = 0; imr = 1; SNR_CCA_TH = 010000
 
@@ -253,17 +256,13 @@ void QN8066::setTX(uint16_t frequency) {
   
   this->setRegister(QN_FDEV, this->fdev.raw);    // FDEV => 01111101 => 125 (Decimal)
 
-
   this->setRegister(QN_RDS, this->rds.raw);     // RDS => 00111100 => Line_in_en = 0; RDSFDEV = 60 (Decimal) 
 
   this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
 
-  // this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
-
   int16_t auxFreq = (frequency - 600)  * 2;
   this->setRegister(QN_INT_CTRL, 0B00100000 | auxFreq >> 8);
   this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
-
 
   // Checking unkown registers
   // this->setRegister(0x49, 0B11101000); 
@@ -272,9 +271,7 @@ void QN8066::setTX(uint16_t frequency) {
 
   this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
 
-
   this->setRegister(QN_REG_VGA, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
-
 }
 
 
