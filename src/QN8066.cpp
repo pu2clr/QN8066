@@ -3,7 +3,8 @@
   *
  * @details This is an Arduino library for the QN8066 FM RX/TX device (Digital FM Transceiver for Portable Devices).
  * @details The communication used by this library is I2C. 
- * @details You can see a complete documentation on <https://github.com/pu2clr/QN8066>
+ * @details You can see a complete documentation on <https://github.com/pu2clr/QN8066> or <https://pu2clr.github.io/QN8066/>
+ * @details 
  * @details This library can be freely distributed. This means that you can copy, modify, merge, and redistribute the code for free under the terms of the [MIT License](https://github.com/pu2clr/QN8066/blob/main/LICENSE).   
  * @details There are examples that can help you in your project on <https://github.com/pu2clr/QN8066/tree/master/examples>
  * @see [General Documentation](https://pu2clr.github.io/QN8066/)

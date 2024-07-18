@@ -1,12 +1,12 @@
-# QN8066 FM DSP RX/TX  Arduino Library
+# [QN8066 FM DSP RX/TX  Arduino Library](https://pu2clr.github.io/QN8066/)
 
 This library is intended to provide an easy-to-use interface for controlling the QN8066 FM transceiver. 
 
-The primary goal of this Arduino library project for the QN8066 is to simplify the development of robust applications using this device. I hope that hobbyists, electronics technicians, radio amateurs, and others interested in this work will find success in their projects.
+The primary goal of this Arduino library project for the QN8066 is to simplify the development of robust applications using this device. I hope that hobbyists, electronics technicians, radio amateurs, and others interested in this work will find success in their projects. All the C/C++ funcions and methods are documented [here].(https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
 
 
 This library can be freely distributed using the [MIT Free Software model](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
-By using or installing Library you are agreeing to the terms of the [MIT licence](https://github.com/pu2clr/QN8066/blob/main/LICENSE).
+By using or installing Library you are agreeing to the terms of the [MIT licence](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
 
 [Copyright (c) 2024 Ricardo Lima Caratti](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
 
@@ -20,6 +20,8 @@ I hold a Master's degree in Educational Technology from the Federal University o
 ## Notice to Users Regarding Initial Version of the Library
 
 This library is still in its initial version. Although the implemented functions have been tested, it is possible that in some situations it may present issues or not respond as expected. Therefore, I ask users of this library to contact me (pu2clr@gmail.com) to report any problems. I will do my best to resolve or clarify the issue as quickly as possible. Thank you.
+
+
 
 
 ## Contents
