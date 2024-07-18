@@ -68,7 +68,7 @@ void setup() {
   // tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
   // tx.setTxRDS(true);
   // tx.setRDSLineIn(true);
-  // tx.commitTxSetup();
+  // tx.commitTxSetup(); // Not working so far
 
   sprintf(str, "\n\nBroadcasting with RDS...");
 
