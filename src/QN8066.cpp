@@ -347,6 +347,34 @@ void QN8066::setTxOffAfterOneMinuteNoAudio(bool value) {
 
 /**
  * @ingroup group04  TX Setup
+ * @brief Sets PA Off after  1 minute time  when no audio.
+ * @details do almost the same setTxOffAfterOneMinuteNoAudio
+ * @param value (3 = Infinity (never turn it off); 2 = off after 59s; 1 = off after 58s; 0 = off after 57s  )
+ * @details Example
+ * @code
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxOffAfterOneMinuteNoAudio(false);   // Do not sleep after 1 minute with no audio
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
+ */
+void QN8066::setTxOffAfterOneMinute(uint8_t value) {
+  qn8066_gplt gptl;
+  gptl.raw = this->getRegister(QN_GPLT);
+  gptl.arg.t1m_sel = value;
+  this->setRegister(QN_GPLT, gptl.raw);
+ } 
+
+
+
+/**
+ * @ingroup group04  TX Setup
  * @brief Sets volume control gain of analog portion
  * @details Valid values are 0 to 7.
  * @param value

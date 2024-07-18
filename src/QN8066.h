@@ -801,6 +801,7 @@ public:
   void setTxPreEmphasis( uint8_t value = 75);
 
   void setTxOffAfterOneMinuteNoAudio(bool value);  
+  void setTxOffAfterOneMinute(uint8_t value);
   void setTxPilotGain(uint8_t value);
   void setAudioAnalogGain(uint8_t value);
   void setAudioDigitalGain(uint8_t value);
