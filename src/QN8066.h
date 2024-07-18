@@ -805,6 +805,8 @@ public:
   void writeTxRDSBuffer(char *text);
   void setRDSFrequencyDeviation(uint8_t freq);
   void setRDSLineIn(bool value); 
+  void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
+  void sendProgramService(const char* ps); 
 
 };
 

@@ -70,6 +70,8 @@ void setup() {
   // tx.setRDSLineIn(true);
   // tx.commitTxSetup(); // Not working so far
 
+
+
   sprintf(str, "\n\nBroadcasting with RDS...");
 
   analogWrite(9, 50);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
@@ -79,9 +81,9 @@ bool toggle = true;
 void loop() {
 
   if (toggle)
-    tx.writeTxRDSBuffer(strSDR1);
+    tx.sendProgramService(strSDR1);
   else   
-    tx.writeTxRDSBuffer(strSDR2);
+    tx.sendProgramService(strSDR2);
 
   delay(100);
   // while (!tx.getTxRDSUpdated());  
