@@ -142,7 +142,7 @@ void QN8066::setup(uint16_t xtalDiv,
 
   this->system2.raw = this->getRegister(QN_SYSTEM2);
   this->system2.arg.tx_mono = mono;   // Default stereo
-  this->system2.arg.tx_rdsen = rds;   // Default stereo 
+  this->system2.arg.tx_rdsen = rds;   // RDSON
   this->system2.arg.tc = PreEmphasis; // Default 50
 
   this->cca.raw = this->getRegister(QN_CCA);
@@ -154,7 +154,7 @@ void QN8066::setup(uint16_t xtalDiv,
   this->gplt.arg.t1m_sel = oneMinutOff;
   this->gplt.arg.tx_sftclpth = txSoftClipThreshold; 
 
-  this->fdev.raw = this->getRegister(QN_FDEV);
+  this->fdev.raw = 125; // TODO
 
 
   this->int_ctrl.raw = this->getRegister(QN_INT_CTRL); 
@@ -199,62 +199,37 @@ void QN8066::setRX() {
  */
 
 void QN8066::setTX(uint16_t frequency) {
-  /* UNDER IMPROVEMENT...
-  this->setRegister(QN_SYSTEM1, 0B11100011); // RESET the SYSTEM
-  this->setRegister(QN_SYSTEM2, this->system2.raw);
 
+  this->setRegister(QN_SYSTEM1, 0B11100011); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
 
-  // Setup the reference clock source, Image Rejection and the threshold to
-  // check valid channel
-  this->setRegister(QN_CCA, this->cca.raw);
+  this->setRegister(QN_SYSTEM2, this->system2.raw); // SYSTEM2 => 00000000  => Pre-emphasis and de-emphasis time constant = 50 us
+
+  this->setRegister(QN_CCA, this->cca.raw); // CCA => 01010000 => xtal_inj = 0; imr = 1; SNR_CCA_TH = 010000
 
   // Sets the crystal oscillator divider
   this->setRegister(QN_XTAL_DIV0, this->xtal_div & 0xFF); // Lower 8 bits of xtal_div[10:0].
   this->setRegister(QN_XTAL_DIV1, (this->xtal_div >> 8) |  0B0001000); // Higher 3 bits of xtal_div[10:0].
-
-  // Set frequency
-  int16_t auxFreq = (frequency - 600)  * 2;
-  this->setRegister(QN_INT_CTRL, 0B00100000 | auxFreq >> 8);
-  this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
- 
-
-  this->setRegister(QN_GPLT, this->gplt.raw); 
-
-
-  // Exit standby, enter TX (Set TX On)
-  this->setRegister(QN_SYSTEM1, 0b00001011);
-  delay(200);
-  */ 
-
-  this->setRegister(QN_SYSTEM1, 0B11100011); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
-  this->setRegister(QN_SYSTEM2, 0B00000000); // SYSTEM2 => 00000000  => Pre-emphasis and de-emphasis time constant = 50 us
-  this->setRegister(QN_CCA, 0B01010000); // CCA => 01010000 => xtal_inj = 0; imr = 1; SNR_CCA_TH = 010000
-  this->setRegister(QN_XTAL_DIV0, 0B11101000); // XTAL_DIV0 => 11101000 
-  this->setRegister(QN_XTAL_DIV1, 0B00001011); // XTAL_DIV1 => 00001011 => Divider = 01111101000 => 1000 (em Decimal)
   this->setRegister(QN_XTAL_DIV2, 0B01011100); // XTAL_DIV2 = > 01011100 (It is the default value)
-  this->setRegister(QN_INT_CTRL, 0B00100010); // INT_CTRL => 00100010 (It is the  default value) => TXCH Highest 2 bits = 10
 
   this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => Set TX On
-  this->setRegister(QN_FDEV, 0B01111101);    // FDEV => 01111101 => 125 (Decimal)
+  
+  this->setRegister(QN_FDEV, this->fdev.raw);    // FDEV => 01111101 => 125 (Decimal)
+
   this->setRegister(QN_RDS, 0B00111100);     // RDS => 00111100 => Line_in_en = 0; RDSFDEV = 60 (Decimal) 
-  this->setRegister(QN_GPLT, 0B00111001);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
+
+  this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
 
   this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
 
-  // this->setRegister(0x19, 0B00100011); // INT_CTRL => 00100011 =>  rds_only = 1; TXCH (Highest 2 bits) = 11
-  // this->setRegister(0x1B, 0B10100111); // TXCH => 10100111  => Channel = 1110100111 => 935 =>  Freq = (X - 60) / 0,05 => 935 * 0,05 + 60 = 106,75 MHz
-
   int16_t auxFreq = (frequency - 600)  * 2;
   this->setRegister(QN_INT_CTRL, 0B00100000 | auxFreq >> 8);
   this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
 
+  // Checking unkown registers
+  // this->setRegister(0x49, 0B11101000); 
+  // this->setRegister(0x49, 0B11011111); 
+  // this->setRegister(0x6E, 0B11111111); 
 
-  this->setRegister(0x49, 0B11101000); // ???????  = 11101000 => 
-  // this->setRegister(0x1B, 0B10100110); // TXCH => 10100110 
-
-  this->setRegister(0x49, 0B11011111); // ??? 11011111
-
-  // this->setRegister(0x6E, 0B11111111); // ???  
   this->setRegister(QN_REG_VGA, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
 
 }

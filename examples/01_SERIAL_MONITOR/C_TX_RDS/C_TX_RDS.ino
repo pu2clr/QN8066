@@ -75,6 +75,7 @@ void setup() {
   // tx.setTxFrequencyDerivation(120); // Valid valued from 0 to 255
 
   // RDS setup
+  tx.setTxRDS(true);
   tx.setRDSLineIn(true);
 
   sprintf(str, "\n\nBroadcasting with RDS...");
