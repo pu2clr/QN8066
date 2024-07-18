@@ -172,7 +172,7 @@ void QN8066::setRX() {
  * @endcode 
  */
 
-void QN8066::setTX(uint16_t frequency) {
+void QN8066::setTX(uint16_t frequency, bool rds,  uint8_t txSoftClipThreshold,   uint8_t oneMinutOff, uint8_t gainTxPLT) {
   this->setRegister(QN_SYSTEM1, 0B11100011); // RESET the SYSTEM
   delay(200);
 
@@ -193,6 +193,19 @@ void QN8066::setTX(uint16_t frequency) {
 
   delay(100);
   
+  qn8066_gplt gptl;
+  gptl.arg.GAIN_TXPLT = gainTxPLT;
+  gptl.arg.t1m_sel = oneMinutOff;
+  gptl.arg.tx_sftclpth = txSoftClipThreshold; 
+
+  this->setRegister(QN_GPLT, gptl.raw); 
+
+  qn8066_system2 system2;
+  system2.raw = this->getRegister(QN_SYSTEM2);
+  system2.arg.tx_rdsen = rds;
+  this->setRegister(QN_SYSTEM2, system2.raw);
+
+
   // Exit standby, enter TX
   this->setRegister(QN_SYSTEM1, 0b00001011);
   delay(200);

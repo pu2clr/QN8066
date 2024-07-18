@@ -59,8 +59,9 @@ void setup() {
 
   Serial.print("\nStarting the system.");
   delay(500);
-  tx.setTX(FREQUENCY);           // Chenge the FREQUENCY constant if you want other value
-  tx.setTxOffAfterOneMinute(3);  // The trasmitter will never sleep.
+ 
+  tx.setTX(FREQUENCY, true);           // Chenge the FREQUENCY constant if you want other value
+
   tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
   tx.setToggleTxPdClear();
   tx.setTxPilotGain(10);
@@ -88,7 +89,8 @@ void loop() {
   else   
     tx.writeTxRDSBuffer(strSDR2);
 
-  while (!tx.getTxRDSUpdated());  
+  delay(100);
+  // while (!tx.getTxRDSUpdated());  
 
   tx.setTxToggleRDSReady();
   toggle = !toggle;
