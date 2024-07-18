@@ -19,9 +19,7 @@ I hold a Master's degree in Educational Technology from the Federal University o
 
 ## Notice to Users Regarding Initial Version of the Library
 
-This library is still in its initial version. Although the implemented functions have been tested, it is possible that in some situations it may present issues or not respond as expected. Therefore, I ask users of this library to contact me (pu2clr@gmail.com) to report any problems. I will do my best to resolve or clarify the issue as quickly as possible. Thank you.
-
-
+**This library is still in its initial version. Although the implemented functions have been tested, it is possible that in some situations it may present issues or not respond as expected. Therefore, I ask users of this library to contact me (pu2clr@gmail.com) to report any problems. I will do my best to resolve or clarify the issue as quickly as possible. Thank you.**
 
 
 ## Contents
