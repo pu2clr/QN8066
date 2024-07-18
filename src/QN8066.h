@@ -767,6 +767,7 @@ private:
   qn8066_reg_vga reg_vga;
   qn8066_rds rds;
   qn8066_pac pac;
+  qn8066_vol_ctl vol_ctl;
 
 
 protected:

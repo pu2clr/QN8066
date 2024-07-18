@@ -231,11 +231,7 @@ void QN8066::setTX(uint16_t frequency) {
 
   this->setRegister(QN_SYSTEM1, 0B11100011); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
 
-  // RDS setup
   this->setRegister(QN_SYSTEM2, this->system2.raw); 
-  this->system2.arg.rdsrdy = !this->system2.arg.rdsrdy; // Toggle 
-  this->setRegister(QN_SYSTEM2, this->system2.raw); 
-
 
   this->setRegister(QN_CCA, this->cca.raw); // CCA => 01010000 => xtal_inj = 0; imr = 1; SNR_CCA_TH = 010000
 
@@ -258,11 +254,11 @@ void QN8066::setTX(uint16_t frequency) {
   this->setRegister(QN_INT_CTRL, 0B00100000 | auxFreq >> 8);
   this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
 
+
   // Checking unkown registers
   // this->setRegister(0x49, 0B11101000); 
   this->setRegister(0x49, 0B11011111); 
   this->setRegister(0x6E, 0B11111111); 
-
 
   this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
 
@@ -296,6 +292,7 @@ void QN8066::setTxStereo( bool value ) {
   system2.raw = this->getRegister(QN_SYSTEM2);
   system2.arg.tx_mono = !value;
   this->setRegister(QN_SYSTEM2, system2.raw);
+  this->system2 = system2;
 }
 
 
@@ -323,6 +320,7 @@ void QN8066::setTxPreEmphasis( uint8_t value ) {
   system2.raw = this->getRegister(QN_SYSTEM2);
   system2.arg.tc = (value == 75);
   this->setRegister(QN_SYSTEM2, system2.raw);
+  this->system2 = system2;
 }
 
 
@@ -353,6 +351,7 @@ void QN8066::setTxPilotGain(uint8_t value) {
     gptl.raw = this->getRegister(QN_GPLT);
     gptl.arg.GAIN_TXPLT = value;
     this->setRegister(QN_GPLT, gptl.raw);
+    this->gplt = gptl;
   }
 }
 
@@ -388,6 +387,7 @@ void QN8066::setTxSoftCliptTreshold(uint8_t value) {
   gptl.raw = this->getRegister(QN_GPLT);
   gptl.arg.tx_sftclpth = value;
   this->setRegister(QN_GPLT, gptl.raw);
+  this->gplt = gptl;
 }
 
 
@@ -416,6 +416,7 @@ void QN8066::setTxOffAfterOneMinuteNoAudio(bool value) {
   gptl.raw = this->getRegister(QN_GPLT);
   gptl.arg.t1m_sel = (value)? 2:3;
   this->setRegister(QN_GPLT, gptl.raw);
+  this->gplt = gptl;
  } 
 
 /**
@@ -442,6 +443,7 @@ void QN8066::setTxOffAfterOneMinute(uint8_t value) {
   gptl.raw = this->getRegister(QN_GPLT);
   gptl.arg.t1m_sel = value;
   this->setRegister(QN_GPLT, gptl.raw);
+  this->gplt = gptl;
  } 
 
 
@@ -472,6 +474,7 @@ void QN8066::setAudioAnalogGain(uint8_t value) {
     vol_ctl.raw = this->getRegister(QN_VOL_CTL);
     vol_ctl.arg.GAIN_ANA = value;
     this->setRegister(QN_VOL_CTL, vol_ctl.raw);
+    this->vol_ctl = vol_ctl;
   }
 }
 
@@ -501,6 +504,7 @@ void QN8066::setAudioDigitalGain(uint8_t value) {
     vol_ctl.raw = this->getRegister(QN_VOL_CTL);
     vol_ctl.arg.GAIN_DIG = value;
     this->setRegister(QN_VOL_CTL, vol_ctl.raw);
+    this->vol_ctl = vol_ctl;
   }
 }
 
@@ -529,6 +533,7 @@ void QN8066::setAudioDacHold(bool value) {
   vol_ctl.raw = this->getRegister(QN_VOL_CTL);
   vol_ctl.arg.DAC_HOLD = value;
   this->setRegister(QN_VOL_CTL, vol_ctl.raw);
+  this->vol_ctl = vol_ctl;
 }
 
 /**
@@ -556,6 +561,7 @@ void QN8066::setAudioTxDiff(bool value) {
   vol_ctl.raw = this->getRegister(QN_VOL_CTL);
   vol_ctl.arg.TX_DIFF = value;
   this->setRegister(QN_VOL_CTL, vol_ctl.raw);
+  this->vol_ctl = vol_ctl;
 }
 
 
@@ -593,6 +599,7 @@ void QN8066::setTxInputImpedance(uint8_t value) {
   reg_vga.raw = this->getRegister(QN_REG_VGA);
   reg_vga.arg.RIN = value;
   this->setRegister(QN_REG_VGA, reg_vga.raw);
+  this->reg_vga = reg_vga;
 }
 
 
@@ -630,6 +637,7 @@ void QN8066::setTxDigitalGain(uint8_t value) {
   reg_vga.raw = this->getRegister(QN_REG_VGA);
   reg_vga.arg.TXAGC_GDB = value;
   this->setRegister(QN_REG_VGA, reg_vga.raw);
+  this->reg_vga = reg_vga;
 }
 
 
@@ -669,6 +677,7 @@ void QN8066::setTxInputBufferGain(uint8_t value) {
   reg_vga.raw = this->getRegister(QN_REG_VGA);
   reg_vga.arg.TXAGC_GVGA = value;
   this->setRegister(QN_REG_VGA, reg_vga.raw);
+  this->reg_vga = reg_vga;
 }
 
 
@@ -695,6 +704,7 @@ void QN8066::setTxSoftClippingEnable( bool value) {
   reg_vga.raw = this->getRegister(QN_REG_VGA);
   reg_vga.arg.tx_sftclpen = value;
   this->setRegister(QN_REG_VGA, reg_vga.raw);  
+  this->reg_vga = reg_vga;
 }
 
 
@@ -718,6 +728,7 @@ void QN8066::setTxSoftClippingEnable( bool value) {
  * @endcode    
  */
  void QN8066::setTxFrequencyDerivation(uint8_t value) {
+  this->fdev.raw = value; 
   this->setRegister(QN_FDEV, value );
  }
 
@@ -742,10 +753,12 @@ void QN8066::setTxSoftClippingEnable( bool value) {
  */
 void QN8066::setPAC(uint8_t PA_TRGT) {
 
-  // Reset aud_pk
+  this->pac.raw = this->getRegister(QN_PAC);
+  this->pac.arg.PA_TRGT = PA_TRGT;
+  this->pac.arg.TXPD_CLR = !(this->pac.arg.TXPD_CLR); // Reset aud_pk ( Toggle the value)
+
   if ( PA_TRGT > 23 ) { 
-    this->setRegister(QN_PAC, 0b10000000 | PA_TRGT);
-    this->setRegister(QN_PAC, 0b00000000 | PA_TRGT);
+    this->setRegister(QN_PAC, this->pac.raw );
   }
 }
 
@@ -772,7 +785,6 @@ void QN8066::commitTxSetup() {
    this->gplt.raw = this->getRegister(QN_GPLT);
    this->pac.raw = this->getRegister(QN_PAC);
 
-
    this->setRegister(0x00, 0B11100011); // RESET the system
 
    this->setRegister(QN_SYSTEM2, this->system2.raw);  
@@ -785,13 +797,18 @@ void QN8066::commitTxSetup() {
    this->setRegister(QN_GPLT,this->gplt.raw); 
    this->setRegister(QN_PAC, this->pac.raw);
 
-   this->setRegister(0x00, 0B00001011); // Sets TX on again 
-
    // Sets the previous frequency
 
    this->setRegister(QN_INT_CTRL,this->int_ctrl.raw);
    this->setRegister(QN_TXCH,this->txch.raw);
 
+  // Checking unkown registers
+  // this->setRegister(0x49, 0B11101000); 
+  this->setRegister(0x49, 0B11011111); 
+  this->setRegister(0x6E, 0B11111111); 
+
+  this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
+  this->setRegister(QN_REG_VGA, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
 
 };
 
@@ -818,6 +835,7 @@ void QN8066::setToggleTxPdClear() {
   pac.raw = this->getRegister(QN_PAC);
   pac.arg.TXPD_CLR = !pac.arg.TXPD_CLR;
   this->setRegister(QN_PAC, pac.raw );
+  this->pac = pac;
 
 }
 
@@ -874,10 +892,9 @@ void QN8066::setTxRDS(bool value) {
  * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
  */
 void QN8066::setTxToggleRDSReady() {
-  qn8066_system2 system2;
-  system2.raw = this->getRegister(QN_SYSTEM2);
-  system2.arg.rdsrdy = !system2.arg.rdsrdy;
-  this->setRegister(QN_SYSTEM2, system2.raw);
+  this->system2.raw = this->getRegister(QN_SYSTEM2);
+  this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy);
+  this->setRegister(QN_SYSTEM2, this->system2.raw);
 }
 
 /**
