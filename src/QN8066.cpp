@@ -980,6 +980,19 @@ void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uin
 
 const uint16_t piCode = 0x819B; // Exemplo de código PI
 const uint8_t ptyCode = 2; 
+/*
+void QN8066::sendProgramService(const char* ps) {
+  for (uint8_t i = 0; i < 4; i++) { // Cada caractere é 2 bytes
+    uint16_t blockA = piCode; 
+    uint16_t blockB = (0x0 << 12) | (ptyCode << 5) | (i << 2); // Tipo de Grupo 0A/0B, PTY, índice
+    uint16_t blockC = (ps[i * 2] << 8) | ps[i * 2 + 1]; // 2 caracteres por bloco
+    uint16_t blockD = 0; // Não usado para PS
+
+    sendRDSGroup(blockA, blockB, blockC, blockD);
+    delay(87); // RDS especifica 87.6ms por grupo
+  }
+}
+*/
 
 void QN8066::sendProgramService(const char* ps) {
   for (uint8_t i = 0; i < 4; i++) { // Cada caractere é 2 bytes

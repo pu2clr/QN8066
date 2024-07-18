@@ -86,11 +86,11 @@ void loop() {
     tx.sendProgramService(strSDR2);
 
   delay(100);
-  // while (!tx.getTxRDSUpdated());  
+  while (!tx.getTxRDSUpdated());  
 
   tx.setTxToggleRDSReady();
   toggle = !toggle;
 
-  delay(5000);
+
 
 }
