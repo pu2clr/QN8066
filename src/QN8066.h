@@ -26,47 +26,49 @@
  * @brief QN8066 Register addresses
  *
  */
-#define QN_SYSTEM1 0x00   // Sets device modes.
-#define QN_SYSTEM2 0x01   // Sets external clock type and CCA parameters.
-#define QN_CCA 0x02       // Sets CCA parameters.
-#define QN_SNR 0x03       // Estimate RF input CNR value
-#define QN_RSSISIG 0x04   // In-band signal RSSI dBµ V value.
-#define QN_CID1 0x05      // Device ID numbers.
-#define QN_CID2 0x06      // Device ID numbers.
-#define QN_XTAL_DIV0 0x07 // Frequency select of reference clock source.
-#define QN_XTAL_DIV1 0x08 // Frequency select of reference clock source.
-#define QN_XTAL_DIV2 0x09 // Frequency select of reference clock source.
-#define QN_STATUS1 0x0A   // System status.
-#define QN_RX_CH 0x0B     // Lower 8 bit of 10-bit receiver channel index.
-#define QN_CH_START  0x0C // Lower 8 bits of 10-bit channel scan start channel index.
-#define QN_CH_STOP   0x0D // Lower 8 bits of 10-bit channel scan stop channel index.
-#define QN_CH_STEP   0x0E // Channel scan frequency step. Highest 2 bits of receiver channel indexes.
-#define QN_RX_RDSD0 0x0F // RDS data byte 0.
-#define QN_RX_RDSD1 0x10 // RDS data byte 1.
-#define QN_RX_RDSD2 0x11 // RDS data byte 2.
-#define QN_RX_RDSD3 0x12 // RDS data byte 3.
-#define QN_RX_RDSD4 0x13 // RDS data byte 4.
-#define QN_RX_RDSD5 0x14 // RDS data byte 5.
-#define QN_RX_RDSD6 0x15 // RDS data byte 6.
-#define QN_RX_RDSD7 0x16 // RDS data byte 7.
-#define QN_STATUS2 0x17  // Receiver RDS status indicators.
-#define QN_VOL_CTL 0x18  // Audio volume control.
-#define QN_INT_CTRL 0x19 // Receiver RDS control
-#define QN_STATUS3 0x1A  // Receiver audio peak level and AGC status.
-#define QN_TXCH 0x1B     // Lower 8 bit of 10-bit transmitter channel index.
-#define QN_TX_RDSD0 0x1C // Transmit RDS data byte0.
-#define QN_TX_RDSD1 0x1D // Transmit RDS data byte1.
-#define QN_TX_RDSD2 0x1E // Transmit RDS data byte2.
-#define QN_TX_RDSD3 0x1F // Transmit RDS data byte3.
-#define QN_TX_RDSD4 0x20 // Transmit RDS data byte4
-#define QN_TX_RDSD5 0x21 // Transmit RDS data byte5
-#define QN_TX_RDSD6 0x22 // Transmit RDS data byte6
-#define QN_TX_RDSD7 0x23 // Transmit RDS data byte7
-#define QN_PAC 0x24      // PA output power target control.
-#define QN_FDEV 0x25     // Specify total TX frequency deviation.
-#define QN_RDS 0x26      // Specify transmit RDS frequency deviation.
-#define QN_GPLT 0x27     // Transmitter soft chip threshold, gain of TX pilot.
-#define QN_REG_VGA 0x28  // TX AGC gain.
+#define QN_SYSTEM1 0x00   //<! Sets device modes.
+#define QN_SYSTEM2 0x01   //<! Sets external clock type and CCA parameters.
+#define QN_CCA 0x02       //<! Sets CCA parameters.
+#define QN_SNR 0x03       //<! Estimate RF input CNR value
+#define QN_RSSISIG 0x04   //<! In-band signal RSSI dBµ V value.
+#define QN_CID1 0x05      //<! Device ID numbers.
+#define QN_CID2 0x06      //<! Device ID numbers.
+#define QN_XTAL_DIV0 0x07 //<! Frequency select of reference clock source.
+#define QN_XTAL_DIV1 0x08 //<! Frequency select of reference clock source.
+#define QN_XTAL_DIV2 0x09 //<! Frequency select of reference clock source.
+#define QN_STATUS1 0x0A   //<! System status.
+#define QN_RX_CH 0x0B     //<! Lower 8 bit of 10-bit receiver channel index.
+#define QN_CH_START  0x0C //<! Lower 8 bits of 10-bit channel scan start channel index.
+#define QN_CH_STOP   0x0D //<! Lower 8 bits of 10-bit channel scan stop channel index.
+#define QN_CH_STEP   0x0E //<! Channel scan frequency step. Highest 2 bits of receiver channel indexes.
+#define QN_RX_RDSD0 0x0F //<! RDS data byte 0.
+#define QN_RX_RDSD1 0x10 //<! RDS data byte 1.
+#define QN_RX_RDSD2 0x11 //<! RDS data byte 2.
+#define QN_RX_RDSD3 0x12 //<! RDS data byte 3.
+#define QN_RX_RDSD4 0x13 //<! RDS data byte 4.
+#define QN_RX_RDSD5 0x14 //<! RDS data byte 5.
+#define QN_RX_RDSD6 0x15 //<! RDS data byte 6.
+#define QN_RX_RDSD7 0x16 //<! RDS data byte 7.
+#define QN_STATUS2 0x17  //<! Receiver RDS status indicators.
+#define QN_VOL_CTL 0x18  //<! Audio volume control.
+#define QN_INT_CTRL 0x19 //<! Receiver RDS control
+#define QN_STATUS3 0x1A  //<! Receiver audio peak level and AGC status.
+#define QN_TXCH 0x1B     //<! Lower 8 bit of 10-bit transmitter channel index.
+#define QN_TX_RDSD0 0x1C //<! Transmit RDS data byte0.
+#define QN_TX_RDSD1 0x1D //<! Transmit RDS data byte1.
+#define QN_TX_RDSD2 0x1E //<! Transmit RDS data byte2.
+#define QN_TX_RDSD3 0x1F //<! Transmit RDS data byte3.
+#define QN_TX_RDSD4 0x20 //<! Transmit RDS data byte4
+#define QN_TX_RDSD5 0x21 //<! Transmit RDS data byte5
+#define QN_TX_RDSD6 0x22 //<! Transmit RDS data byte6
+#define QN_TX_RDSD7 0x23 //<! Transmit RDS data byte7
+#define QN_PAC 0x24      //<! PA output power target control.
+#define QN_FDEV 0x25     //<! Specify total TX frequency deviation.
+#define QN_RDS 0x26      //<! Specify transmit RDS frequency deviation.
+#define QN_GPLT 0x27     //<! Transmitter soft chip threshold, gain of TX pilot.
+#define QN_REG_VGA 0x28  //<! TX AGC gain.
+#define QN_REGISTER_6E 0x6E //<! This register is not documented in the Data Sheet. However, according to tests and observations, it seems to affect the quality and stability of the audio.
+#define QN_REGISTER_49 0x49 //<! This register is not documented in the Data Sheet. However, according to observations, it makes the system more stable (not sure)  
 
 /** @defgroup group00 Union, Struct and Defined Data Types
  * @section group01 Data Types
