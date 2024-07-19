@@ -27,6 +27,7 @@ var class_q_n8066 =
     [ "setTxSoftCliptTreshold", "group__group04.html#ga0032c60d8038a749f69b7e8508fa014d", null ],
     [ "setTxFrequencyDerivation", "group__group04.html#ga88ea23b676feb40a15725b9273eca95b", null ],
     [ "setResetDelay", "class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1", null ],
+    [ "begin", "group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93", null ],
     [ "setup", "group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2", null ],
     [ "commitTxSetup", "group__group04.html#ga18f9ab880c919dfa86e4863213b23325", null ],
     [ "stopTransmitting", "class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c", null ],
