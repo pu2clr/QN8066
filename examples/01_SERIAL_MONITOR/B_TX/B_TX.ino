@@ -1,5 +1,6 @@
 /**
 This  sketch is an example of using this library with the DIY Kit 5W-7W FM board.
+It was modified and improved by Mr. Grazianny Carvalho Tavares, PU7MGR.
 
 The purpose of this application is to guide developers in using the  functions implemented 
 in this library to develop their own FM transmission station  using  the "KIT DIY 5W-7W FM 
@@ -18,13 +19,15 @@ the Arduino Uno, Nano, or Pro Mini boards.
 Attention: Use the "Serial Monitor" function in the Arduino IDE to monitor the system 
            initialization process.
 
-Author: Ricardo Lima Caratti (PU2CLR) - 2024/06/14
+Author: Ricardo Lima Caratti (PU2CLR) and 
+Grazianny Carvalho Tavares (PU7MGR) 
+2024-07-19
 */
 
 #include <QN8066.h>
 
 #define PWM_PIN   9      // Arduino PIN used to control the output power of the transmitter via PWM.
-#define FREQUENCY 1067   // 106.7 MHz - This library does not use floating-point data. 
+#define FREQUENCY 1069   // 106.7 MHz - This library does not use floating-point data. 
                          // This approach helps to save microcontroller memory. 
                          // Therefore, to represent a frequency in the commercial FM band, 
                          // multiply the desired frequency by 10. In this case 106.7MHz is 1067.
@@ -35,14 +38,12 @@ char str[80];
 
 void setup() {
 
-  uint8_t deviceList[5], deviceCount = 0;
-
   Serial.begin(9600);
   while (!Serial) ;
 
-  pinMode(PWM_PIN, OUTPUT); // Sets the Arduino PIN to operate with with PWM
+  pinMode(PWM_PIN, OUTPUT);   // Sets the Arduino PIN to operate with with PWM
 
-  delay(1000); // Wait a bit while the system stabilizes.
+  delay(1000);                // Wait a bit while the system stabilizes.
 
   if (tx.detectDevice()) {
     Serial.println("\nDevice QN8066 detected");
@@ -51,45 +52,30 @@ void setup() {
     while (1);
   }
 
-  deviceCount = tx.scanI2CBus(deviceList);
-  if (deviceCount > 0) {
-    for (uint8_t i = 0; i < deviceCount; i++) {
-      sprintf(str, "\nDevice found  at: %x in HEX - %d in DEC", deviceList[i], deviceList[i]);
-      Serial.print(str);
-    }
-  }
-
-  tx.setup(); // Sets some internal parameters
+  tx.setup();      // Sets some internal parameters
 
   Serial.print("\nStarting the system.");
   delay(500);
-  tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
-  // tx.setTxOffAfterOneMinuteNoAudio(false); // The trasmitter will never sleep.
-  tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
-  tx.setToggleTxPdClear();
-
-  tx.setTxPilotGain(10);
-
-  tx.setTxStereo(true);
-  tx.setTxPreEmphasis(75);
-
-  tx.setTxInputImpedance(0);  // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
-  tx.setTxInputBufferGain(5); // With input inpedance  0 (10K), and input buffer 5, the gain shoud be 18dB
-  tx.setTxSoftClippingEnable(false);
-  tx.setTxSoftCliptTreshold(2);
-  tx.setAudioTxDiff(true);
-  tx.setTxDigitalGain(2); // TX digital gain => 2 = 2dB  (default is 0 dB)
-
-  tx.setTxFrequencyDerivation(200); // Valid valued from 0 to 255
-
-  // Check - Undocumented registers in the datasheet that affect audio.
-  tx.setRegister(0x49, 223);  // 0B11011111
-  tx.setRegister(0x6E, 255 ); // 0B11111111
+  
+  tx.setTX(FREQUENCY);          // Chenge the FREQUENCY constant if you want other value
+  tx.setToggleTxPdClear();      // TX aud_pk clear signal. Audio peak value is max-hold and stored
+  tx.setPAC(56);                // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56
+  tx.setTxStereo(true);         // Tx Stereo ON (true)
+  tx.setTxPreEmphasis(75);      // Pre-Emphasis 50us ou 75uS (default is 75uS)
+  tx.setTxOffAfterOneMinuteNoAudio(false);  // Selection of 1 minute time for PA off when no audio
+  tx.setTxFrequencyDerivation(120);     // Specify total TX frequency deviation. TX frequency deviation 
+                                        // 0.69KHz*TX_FEDV 0-255 (default is 108)
+  tx.setTxPilotGain(8);                 // Pilot Again % (9%)
+  tx.setTxSoftCliptTreshold(0);         // TX soft clip threshold (12’d2051 (3db back off from 0.5v) 
+  tx.setTxSoftClippingEnable(false);    // TX soft clipping enable(default is false)
+  tx.setTxInputImpedance(2);            // 0 = 10K; 1 = 20K; 2=40K(default); 3 = 80K 
+  tx.setTxDigitalGain(0);               // TX digital gain => 0 = 0dB (default is 0 dB)
+  tx.setTxInputBufferGain(4);           // TX Input Buffer Gain.  12 6 0 -6 (011)
 
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
 
-  analogWrite(9, 50);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
+  analogWrite(9, 50);                   // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
 void loop() {
