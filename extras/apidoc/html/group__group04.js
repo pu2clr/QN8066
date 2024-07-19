@@ -17,7 +17,7 @@ var group__group04 =
     [ "QN8066::setTxSoftClippingEnable", "group__group04.html#gab21e226857d1b2ac384623fd47784ce5", null ],
     [ "QN8066::setTxFrequencyDerivation", "group__group04.html#ga88ea23b676feb40a15725b9273eca95b", null ],
     [ "QN8066::setPAC", "group__group04.html#ga90eeea994b03d7c31ac09426982884c0", null ],
-    [ "QN8066::commitTxSetup", "group__group04.html#ga18f9ab880c919dfa86e4863213b23325", null ],
+    [ "QN8066::updateTxSetup", "group__group04.html#ga366e4fed2331cd9c22efb4ae555a5c57", null ],
     [ "QN8066::setToggleTxPdClear", "group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886", null ],
     [ "QN8066::getAudioPeakValue", "group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc", null ]
 ];

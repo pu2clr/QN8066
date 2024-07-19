@@ -261,27 +261,18 @@ void QN8066::setRX() {
  */
 
 void QN8066::setTX(uint16_t frequency) {
-
   this->setRegister(QN_SYSTEM1, 0B11100011); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
-
   this->setRegister(QN_SYSTEM2, this->system2.raw); 
   this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy); // Toggle 
   this->setRegister(QN_SYSTEM2, this->system2.raw); 
-
-
   this->setRegister(QN_CCA, this->cca.raw); // CCA => 01010000 => xtal_inj = 0; imr = 1; SNR_CCA_TH = 010000
-
   // Sets the crystal oscillator divider
   this->setRegister(QN_XTAL_DIV0, this->xtal_div & 0xFF); // Lower 8 bits of xtal_div[10:0].
   this->setRegister(QN_XTAL_DIV1, (this->xtal_div >> 8) |  0B0001000); // Higher 3 bits of xtal_div[10:0].
   this->setRegister(QN_XTAL_DIV2, 0B01011100); // XTAL_DIV2 = > 01011100 (It is the default value)
-
   this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => Set TX On
-  
   this->setRegister(QN_FDEV, this->fdev.raw);    // FDEV => 01111101 => 125 (Decimal)
-
   this->setRegister(QN_RDS, this->rds.raw);     // RDS => 00111100 => Line_in_en = 0; RDSFDEV = 60 (Decimal) 
-
   this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
 
   int16_t auxFreq = (frequency - 600)  * 2;
@@ -294,7 +285,6 @@ void QN8066::setTX(uint16_t frequency) {
   this->setRegister(0x6E, 0B11111111); 
 
   this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
-
   this->setRegister(QN_REG_VGA, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
 }
 
@@ -799,7 +789,7 @@ void QN8066::setPAC(uint8_t PA_TRGT) {
  * @details Some functions do not affect the system when the TX mode is on. In this case, you must use these functions after configuring certain parameters.
  * @todo Make it work - Under construction
  */
-void QN8066::commitTxSetup() {
+void QN8066::updateTxSetup() {
 
    // UNDER CONSTRUCTION... 
    // Save the current register status 
@@ -819,14 +809,21 @@ void QN8066::commitTxSetup() {
    this->setRegister(0x00, 0B11100011); // RESET the system
 
    this->setRegister(QN_SYSTEM2, this->system2.raw);  
+   this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy); // Toggle 
+   this->setRegister(QN_SYSTEM2, this->system2.raw); 
+
    this->setRegister(QN_CCA, this->cca.raw);  
-   this->setRegister(QN_XTAL_DIV0, xtal_div0.raw);
-   this->setRegister(QN_XTAL_DIV1, xtal_div1.raw);
-   this->setRegister(QN_XTAL_DIV2, xtal_div2.raw);
+   this->setRegister(QN_XTAL_DIV0, this->xtal_div0.raw);
+   this->setRegister(QN_XTAL_DIV1, this->xtal_div1.raw);
+   this->setRegister(QN_XTAL_DIV2, this->xtal_div2.raw);
+
+   this->setRegister(QN_SYSTEM1, this->system1.raw); 
+
    this->setRegister(QN_FDEV,this->fdev.raw);
    this->setRegister(QN_RDS, this->rds.raw);
    this->setRegister(QN_GPLT,this->gplt.raw); 
-   this->setRegister(QN_PAC, this->pac.raw);
+   
+   // this->setRegister(QN_PAC, this->pac.raw);
 
    // Sets the previous frequency
 

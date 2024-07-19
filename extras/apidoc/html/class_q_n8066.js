@@ -29,7 +29,7 @@ var class_q_n8066 =
     [ "setResetDelay", "class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1", null ],
     [ "begin", "group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93", null ],
     [ "setup", "group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2", null ],
-    [ "commitTxSetup", "group__group04.html#ga18f9ab880c919dfa86e4863213b23325", null ],
+    [ "updateTxSetup", "group__group04.html#ga366e4fed2331cd9c22efb4ae555a5c57", null ],
     [ "stopTransmitting", "class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c", null ],
     [ "startTransmitting", "class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b", null ],
     [ "setCrystalFrequency", "group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca", null ],
