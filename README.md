@@ -39,7 +39,7 @@ I hold a Master's degree in Educational Technology from the Federal University o
 
 ### Important Notice
 
-Please be aware that the use of FM transmitters is regulated by the laws and regulations of each country. It is crucial to ensure that your use of this transmitter complies with the applicable legal requirements and does not violate any broadcasting regulations.
+Please be aware that the use of FM transmitters is regulated by the laws and regulations of each country. **It is crucial to ensure that your use of any FM transmitter complies with the applicable legal requirements and does not violate any broadcasting regulations**.
 
 ### Legal Compliance Guidelines
 

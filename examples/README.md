@@ -6,7 +6,7 @@ This directory presents some examples with the transceiver QN8066
 
 ## Notice to Users Regarding Examples and this library
 
-The examples shown in this library use **106.9 MHz** as the test frequency. Consider changing this frequency to another of your preference. Please be aware that the use of FM transmitters is regulated by the laws and regulations of each country. **It is crucial to ensure that your use of this transmitter complies with the applicable legal requirements and does not violate any broadcasting regulations**.
+The examples shown in this library use **106.9 MHz** as the test frequency. Consider changing this frequency to another of your preference. Please be aware that the use of FM transmitters is regulated by the laws and regulations of each country. **It is crucial to ensure that your use of any FM transmitter complies with the applicable legal requirements and does not violate any broadcasting regulations**.
 
 
 This library is still in its initial version. Although the implemented functions have been tested with the examples, it is possible that in some situations it may present issues or not respond as expected. Therefore, I ask users to contact me (pu2clr@gmail.com) to report any problems. I will do my best to resolve or clarify the issue as quickly as possible. Thank you.
