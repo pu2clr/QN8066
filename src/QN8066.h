@@ -776,6 +776,8 @@ public:
     this->resetDelay = delayAfterReset;
   };
 
+  void begin();
+
   void setup(uint16_t xtalDiv = 1000, 
              bool mono = false, bool rds = false, uint8_t PreEmphasis = 0, 
              uint8_t xtalInj = 0, uint8_t imageRejection = 1, 

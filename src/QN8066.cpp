@@ -133,6 +133,30 @@ qn8066_status3 QN8066::getStatus3() {
  * @brief Device initial configuration
  */
 
+/**
+ * @ingroup group02 Init Device
+ * @brief Starts the  QN8066 instance.  
+ * @details It is a minimalist code to initiate the QN8066 device. Use the function setup if you want more option during the start process.
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   // Call setup setting Divider = 1000, Stereo, RDS on and PreEmphasis (tc) 75us
+ *   tx.begin(); 
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
+ */
+
+void  QN8066::begin() {
+  delay(600); // Chip power-up time
+  Wire.begin();
+}
+
 
 /**
  * @ingroup group02 Init Device

@@ -24,10 +24,10 @@ Author: Ricardo Lima Caratti (PU2CLR) - 2024/06/14
 #include <QN8066.h>
 
 #define PWM_PIN   9      // Arduino PIN used to control the output power of the transmitter via PWM.
-#define FREQUENCY 1067   // 106.7 MHz - This library does not use floating-point data. 
+#define FREQUENCY 1069   // 106.7 MHz - This library does not use floating-point data. 
                          // This approach helps to save microcontroller memory. 
                          // Therefore, to represent a frequency in the commercial FM band, 
-                         // multiply the desired frequency by 10. In this case 106.7MHz is 1067.
+                         // multiply the desired frequency by 10. In this case 109.7MHz is 1069.
 
 QN8066 tx;
 
