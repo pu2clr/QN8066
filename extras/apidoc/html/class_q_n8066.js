@@ -40,5 +40,7 @@ var class_q_n8066 =
     [ "getTxRDSUpdated", "group__group05.html#ga1c7236e219778ab5a939ff4bd659183b", null ],
     [ "writeTxRDSBuffer", "group__group05.html#ga0664c14d7c23ede48874c9007b157d46", null ],
     [ "setRDSFrequencyDeviation", "group__group05.html#gacb4f89faa8744c4adbf4b3bbfc2412b4", null ],
-    [ "setRDSLineIn", "group__group05.html#ga53969a8d55eb57c9c8d97c5170f5d94b", null ]
+    [ "setRDSLineIn", "group__group05.html#ga53969a8d55eb57c9c8d97c5170f5d94b", null ],
+    [ "sendRDSGroup", "class_q_n8066.html#a628b20fde963e0b48a7404f817c23ec2", null ],
+    [ "sendProgramService", "class_q_n8066.html#a0414074e15ad0b9d717cd907481ac185", null ]
 ];

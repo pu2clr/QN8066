@@ -1,5 +1,10 @@
 var NAVTREEINDEX1 =
 {
+"group__group00.html#unionqn8066__tx__rds":[2,5,21],
+"group__group00.html#unionqn8066__txch":[2,5,20],
+"group__group00.html#unionqn8066__vol__ctl":[2,5,17],
+"group__group00.html#unionqn8066__xtal__div0":[2,5,7],
+"group__group00.html#unionqn8066__xtal__div1":[2,5,8],
 "group__group00.html#unionqn8066__xtal__div2":[2,5,9],
 "group__group01.html":[2,1],
 "group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca":[2,1,0],
@@ -42,8 +47,8 @@ var NAVTREEINDEX1 =
 "group__group05.html#gaaad14424c57781256cfbda7accadbd49":[2,4,0],
 "group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98":[2,4,1],
 "group__group05.html#gacb4f89faa8744c4adbf4b3bbfc2412b4":[2,4,4],
-"index.html":[0],
 "index.html":[],
+"index.html":[0],
 "modules.html":[2],
 "pages.html":[],
 "todo.html":[1]

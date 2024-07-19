@@ -287,7 +287,7 @@ void QN8066::setTX(uint16_t frequency) {
  * void setup() {
  *   tx.setup();
  *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
- *   tx.setStereo(true);
+ *   tx.setTxStereo(true);
  * }
  *
  * void loop() {
