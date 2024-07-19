@@ -822,12 +822,10 @@ void QN8066::updateTxSetup() {
 
    this->setRegister(QN_FDEV,this->fdev.raw);
    this->setRegister(QN_RDS, this->rds.raw);
-   this->setRegister(QN_GPLT,this->gplt.raw); 
-   
-   // this->setRegister(QN_PAC, this->pac.raw);
+   this->setRegister(QN_GPLT,this->gplt.raw);   
+   this->setRegister(QN_PAC, this->pac.raw);
 
    // Sets the previous frequency
-
    this->setRegister(QN_INT_CTRL,this->int_ctrl.raw);
    this->setRegister(QN_TXCH,this->txch.raw);
 
