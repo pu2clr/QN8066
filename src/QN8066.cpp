@@ -157,7 +157,6 @@ void  QN8066::begin() {
   Wire.begin();
 }
 
-
 /**
  * @ingroup group02 Init Device
  * @brief QN8066 initial configuration
@@ -221,7 +220,6 @@ void QN8066::setup(uint16_t xtalDiv,
 
   this->int_ctrl.raw = this->getRegister(QN_INT_CTRL); 
 
-
   Wire.begin();
 }
 
@@ -260,7 +258,6 @@ void QN8066::setRX() {
  * @endcode 
  * @todo Under improvements 
  */
-
 void QN8066::setTX(uint16_t frequency) {
   this->setRegister(QN_SYSTEM1, 0B11100011); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
   this->setRegister(QN_SYSTEM2, this->system2.raw); 
@@ -317,7 +314,6 @@ void QN8066::setTxStereo( bool value ) {
   this->system2 = system2;
 }
 
-
 /**
  * @ingroup group04  TX Setup
  * @brief   Pre-emphasis and de-emphasis time constant
@@ -344,7 +340,6 @@ void QN8066::setTxPreEmphasis( uint8_t value ) {
   this->setRegister(QN_SYSTEM2, system2.raw);
   this->system2 = system2;
 }
-
 
 /**
  * @ingroup group04  TX Setup
@@ -376,7 +371,6 @@ void QN8066::setTxPilotGain(uint8_t value) {
     this->gplt = gptl;
   }
 }
-
 
 /**
  * @ingroup group04  TX Setup
@@ -411,9 +405,6 @@ void QN8066::setTxSoftCliptTreshold(uint8_t value) {
   this->setRegister(QN_GPLT, gptl.raw);
   this->gplt = gptl;
 }
-
-
-
 
 /**
  * @ingroup group04  TX Setup
@@ -467,8 +458,6 @@ void QN8066::setTxOffAfterOneMinute(uint8_t value) {
   this->setRegister(QN_GPLT, gptl.raw);
   this->gplt = gptl;
  } 
-
-
 
 /**
  * @ingroup group04  TX Setup
