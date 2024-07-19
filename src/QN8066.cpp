@@ -197,6 +197,7 @@ void QN8066::setup(uint16_t xtalDiv,
 
   this->xtal_div = xtalDiv;
 
+  this->system1.raw = this->getRegister(QN_SYSTEM1);
   this->system2.raw = this->getRegister(QN_SYSTEM2);
   this->system2.arg.tx_mono = mono;   // Default stereo
   this->system2.arg.tx_rdsen = rds;   // RDS ON
@@ -806,7 +807,7 @@ void QN8066::updateTxSetup() {
    this->gplt.raw = this->getRegister(QN_GPLT);
    this->pac.raw = this->getRegister(QN_PAC);
 
-   this->setRegister(0x00, 0B11100011); // RESET the system
+   this->setRegister(QN_SYSTEM1, this->system1.raw); // RESET the system
 
    this->setRegister(QN_SYSTEM2, this->system2.raw);  
    this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy); // Toggle 
@@ -835,8 +836,8 @@ void QN8066::updateTxSetup() {
   this->setRegister(0x49, 0B11011111); 
   this->setRegister(0x6E, 0B11111111); 
 
-  this->setRegister(QN_SYSTEM1, 0B00001011); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
-  this->setRegister(QN_REG_VGA, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
+  this->setRegister(QN_SYSTEM1, this->system1.raw); 
+  this->setRegister(QN_REG_VGA, this->reg_vga.raw); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
 
 };
 

@@ -705,6 +705,7 @@ private:
   uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
   uint16_t xtal_div = 1000;
 
+  qn8066_system2 system1;
   qn8066_system2 system2;
   qn8066_gplt gplt;
   qn8066_cca cca;
