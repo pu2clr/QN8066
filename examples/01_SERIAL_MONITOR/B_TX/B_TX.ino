@@ -45,9 +45,7 @@ void setup() {
 
   delay(1000);                // Wait a bit while the system stabilizes.
 
-  if (tx.detectDevice()) {
-    Serial.println("\nDevice QN8066 detected");
-  } else {
+  if (!tx.detectDevice()) {
     Serial.println("\nDevice QN8066 not detected");
     while (1);
   }
