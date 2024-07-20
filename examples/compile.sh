@@ -10,5 +10,8 @@
 
 echo "Arduino ATmega328 based board"
 
+arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/A_MINIMALIST_TX --output-dir ~/Downloads/hex/atmega/A_MINIMALIST_TX
+arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/A_TX --output-dir ~/Downloads/hex/atmega/A_TX
 arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/B_TX --output-dir ~/Downloads/hex/atmega/B_TX
 arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/C_TX_RDS --output-dir ~/Downloads/hex/atmega/C_TX_RDS
+
