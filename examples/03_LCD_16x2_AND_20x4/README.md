@@ -13,8 +13,8 @@ The following schematic illustrates the connections between the Arduino Nano, th
 ## Wire up on Arduino UNO, Nano or Pro mini
 
 
-  | Device name               | Device Pin / Description  |  Arduino Pin  |
-  | --------------------------| --------------------      | ------------  |
+  | Device name               | Device Pin / Label        |  Arduino Pin  |
+  | ------------------------- | ------------------------- | ------------  |
   |    LCD 16x2 or 20x4       |                           |               |
   |                           | D4                        |     D7        |
   |                           | D5                        |     D6        |
@@ -25,8 +25,8 @@ The following schematic illustrates the connections between the Arduino Nano, th
   |                           | RW & VSS & K (16)         |    GND        |
   |                           | A (15) & VDD              |    +Vcc       |
   | --------------------------| ------------------------- | --------------|
+  | DIY KIT 5˜7W              |                           |               | 
   | QN8066                    |                           |               |
-  | DIY KIT 5˜7W              | ------------------------- | --------------|
   |                           | SDA                       |     A4        |
   |                           | SCLK                      |     A5        |
   |                           | PWM                       |     D9        |
@@ -38,4 +38,3 @@ The following schematic illustrates the connections between the Arduino Nano, th
   |                           | RESET                     |      3        |
   | --------------------------| --------------------------|---------------|
 
-  
