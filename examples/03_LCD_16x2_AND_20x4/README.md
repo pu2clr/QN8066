@@ -12,11 +12,11 @@ The following schematic illustrates the connections between the Arduino Nano, th
 
 ## Wire up on Arduino UNO, Nano or Pro mini
 
+### LCD 16x2 or 20x4  
 
-  | Device name               | Device Pin / Label        |  Arduino Pin  |
+  | LCD                       | Device Pin / Label        |  Arduino Pin  |
   | ------------------------- | ------------------------- | ------------  |
-  |    LCD 16x2 or 20x4       |                           |               |
-  |                           | D4                        |     D7        |
+  | LCD 16x2 or 20x4          | D4                        |     D7        |
   |                           | D5                        |     D6        |
   |                           | D6                        |     D5        |
   |                           | D7                        |     D4        |
@@ -24,17 +24,22 @@ The following schematic illustrates the connections between the Arduino Nano, th
   |                           | E/ENA                     |     D13       |
   |                           | RW & VSS & K (16)         |    GND        |
   |                           | A (15) & VDD              |    +Vcc       |
+
+### DIY KIT 5˜7W FM TRANSMITTER
+
+  | DIY KIT 5˜7W FM TRANSM.   | Device Pin / Label        |  Arduino Pin  |
   | --------------------------| ------------------------- | --------------|
-  | DIY KIT 5˜7W              |                           |               | 
-  | QN8066                    |                           |               |
-  |                           | SDA                       |     A4        |
+  | QN8066 BOARD              | SDA                       |     A4        |
   |                           | SCLK                      |     A5        |
   |                           | PWM                       |     D9        |
-  | --------------------------| --------------------------| --------------|
-  | Buttons                   |                           |               |
+
+### Buttons 
+  
+  | Buttons                   | Device Pin / Label        |  Arduino Pin  |
+  | ------------------------- | ------------------------- | --------------|
   |                           | Menu                      |      8        |
   |                           | Left (Down / -)           |     10        |
   |                           | Right (Up / + )           |     11        |
   |                           | RESET                     |      3        |
-  | --------------------------| --------------------------|---------------|
+
 
