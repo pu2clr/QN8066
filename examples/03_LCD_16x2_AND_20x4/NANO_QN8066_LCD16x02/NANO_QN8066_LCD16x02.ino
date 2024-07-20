@@ -82,8 +82,6 @@ long storeTime = millis();
 // Encoder control variables
 volatile int encoderCount = 0;
 
-// Encoder control
-Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
 // LCD display
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
@@ -99,11 +97,10 @@ QN8066 tx;
 
 void setup() {
 
-  showSplash();
+  lcd.begin(16, 2);
 
-  // Encoder interrupt
-  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
-  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+  showSplash();
+  while(1);
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id) {
@@ -115,7 +112,7 @@ void setup() {
 
   tx.setup();
 
-  tx.setTX(frequency);
+  tx.setTX(txFrequency);
 
   lcd.clear();
   showStatus();
@@ -141,19 +138,11 @@ void readAllReceiverInformation() {
   // TODO
 }
 
-/*
-    Reads encoder via interrupt
-    Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
-*/
-void rotaryEncoder() {  // rotary encoder events
-  uint8_t encoderStatus = encoder.process();
-  if (encoderStatus)
-    encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
-}
 
 void showSplash() {
   lcd.setCursor(0, 0);
   lcd.print("PU2CLR-QN8066");
+  delay(2000);
   lcd.setCursor(0, 1);
   lcd.print("Arduino Library");
   lcd.display();
@@ -204,7 +193,6 @@ void doStereo() {
 void doRds() {
   bRds = !bRds;
   showRds();
-  resetEepromDelay();
 }
 
 void loop() {
@@ -216,7 +204,7 @@ void loop() {
       // tx.setFrequencyUp();
     } else {
       // TODO
-      tx.setFrequencyDown();
+      // tx.setFrequencyDown();
     }
     showStatus();
     bShow = true;
