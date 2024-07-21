@@ -63,30 +63,35 @@
 
 // Enconder PINs
 
-#define BT_RESET    3
-#define BT_MENU     8
-#define BT_UP      10
-#define BT_DOWN    11
-#define PWM_PA      9
+#define BT_RESET 3
+#define BT_MENU 8
+#define BT_UP 10
+#define BT_DOWN 11
+#define PWM_PA 9
 
+#define STEP_FREQ 100;
 
 #define PUSH_MIN_DELAY 300
+
+
+uint8_t menuLevel = 0;
+int8_t upDown = 0;
 
 const uint8_t app_id = 43;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
-// Menu 
-const char *menu[] = {"Frequency", "Power", "Stereo/Mono", "RDS", "Inpedance", "TX Gain", "TX OFF"};
+// Menu
+const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "RDS", "Inpedance", "TX Gain", "TX OFF" };
 int8_t menuIdx = 0;
 const int lastMenu = 6;
 int8_t currentMenuCmd = -1;
 
 uint8_t frequencyStep = 100;
-// The PWM duty can be set from 25 to 255 where 255 is the max power (7W) . 
+// The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
 // So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
-uint8_t pwmPowerDuty = 25; // Minimal power/duty.
-uint8_t pwmDutyStep  = 25;       
+uint8_t pwmPowerDuty = 25;  // Minimal power/duty.
+uint8_t pwmDutyStep = 25;
 
 // Tables and parameter values
 
@@ -94,41 +99,41 @@ uint8_t pwmDutyStep  = 25;
 // Ordering by bandwidth values.
 typedef struct
 {
-  uint8_t idx;      // SI473X device bandwidth index value
-  const char *desc; // bandwidth description
+  uint8_t idx;       // SI473X device bandwidth index value
+  const char *desc;  // bandwidth description
 } TableValue;
 
 int8_t idxImpedance = 1;
 TableValue tabImpedance[] = {
-    {0, "10K"}, // 0
-    {1, "20K"}, // 1
-    {2, "40K"}, // 2
-    {3, "80K"} // 3
-};  
+  { 0, "10K" },  // 0
+  { 1, "20K" },  // 1
+  { 2, "40K" },  // 2
+  { 3, "80K" }   // 3
+};
 
 int8_t idxGainTxPilot = 7;
 TableValue tabGainTxPilot[] = {
-    {7, "7% * 75KHz"}, // 0
-    {8, "8% * 75KHz"}, // 1
-    {9, "9% * 75KHz"}, // 2
-    {10, "10% * 75KHz"} // 3
-}; 
+  { 7, "7% * 75KHz" },   // 0
+  { 8, "8% * 75KHz" },   // 1
+  { 9, "9% * 75KHz" },   // 2
+  { 10, "10% * 75KHz" }  // 3
+};
 
 
 int8_t idxTxSoftClip = 0;
 TableValue tabTxSoftClip[] = {
-    {0, "12'd2051 (3dB"}, // 0
-    {1, "12'd1725 (4.5dB)"}, // 1
-    {2, "12'd1452 (6dB)"}, // 2
-    {3, "12'd1028 (9dB)"} // 3
-}; 
+  { 0, "12'd2051 (3dB" },     // 0
+  { 1, "12'd1725 (4.5dB)" },  // 1
+  { 2, "12'd1452 (6dB)" },    // 2
+  { 3, "12'd1028 (9dB)" }     // 3
+};
 
 
-// 
+//
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 bool bRds = false;
 bool bStereo = true;
-uint8_t inputInpedance = 2; // Default 20 KOhms
+uint8_t inputInpedance = 2;  // Default 20 KOhms
 
 bool bShow = false;
 
@@ -138,7 +143,7 @@ LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 void setup() {
 
-  pinMode(PWM_PA, OUTPUT); // Sets the Arduino PIN to operate with with PWM
+  pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
 
   lcd.begin(16, 2);
 
@@ -150,13 +155,14 @@ void setup() {
   if (!tx.detectDevice()) {
     lcd.setCursor(0, 0);
     lcd.print("No QN8066 found!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id) {
     // readAllReceiverInformation();
-  } 
+  }
 
   tx.setup();
 
@@ -170,7 +176,7 @@ void setup() {
 void saveAllReceiverInformation() {
   // The update function/method writes data only if the current data is not equal to the stored data.
   EEPROM.update(eeprom_address, app_id);
-  EEPROM.update(eeprom_address + 1, inputInpedance);           // stores the current inputInpedance
+  EEPROM.update(eeprom_address + 1, inputInpedance);      // stores the current inputInpedance
   EEPROM.update(eeprom_address + 2, txFrequency >> 8);    // stores the current Frequency HIGH byte for the band
   EEPROM.update(eeprom_address + 3, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
   EEPROM.update(eeprom_address + 4, (uint8_t)bRds);
@@ -180,7 +186,7 @@ void saveAllReceiverInformation() {
 }
 
 void readAllReceiverInformation() {
-  inputInpedance =  EEPROM.read(eeprom_address + 1);
+  inputInpedance = EEPROM.read(eeprom_address + 1);
   txFrequency = EEPROM.read(eeprom_address + 2) << 8;
   txFrequency |= EEPROM.read(eeprom_address + 3);
   bRds = (bool)EEPROM.read(eeprom_address + 4);
@@ -204,8 +210,10 @@ void showSplash() {
    Shows frequency information on Display
 */
 void showFrequency() {
-  // TODO
-  lcd.setCursor(0, 0);
+  char strFrequency[7];
+  tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
+  lcd.setCursor(0, 1);
+  lcd.print(strFrequency);
   lcd.display();
 }
 
@@ -215,9 +223,9 @@ void showFrequency() {
 void showStatus() {
   char strFrequency[7];
 
-  tx.convertToChar(txFrequency, strFrequency, 4, 3, ','); // Convert the selected frequency a array of char 
+  tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
 
-  lcd.setCursor(0,0);
+  lcd.setCursor(0, 0);
   lcd.print("TXing: ");
   lcd.print(strFrequency);
   lcd.print(" MHz");
@@ -239,6 +247,7 @@ void showRds() {
 }
 
 
+
 /*********************************************************
 
  *********************************************************/
@@ -254,7 +263,91 @@ void doRds() {
   showRds();
 }
 
+void showMenu() {
+  lcd.clear();
+  lcd.setCursor(0, 0);
+  lcd.print(menu[menuIdx]);
+}
+
+void doFrequency() {
+  if (upDown > 0) {
+    if (txFrequency < 10790)
+      txFrequency += STEP_FREQ;
+  } else if (upDown < 0) {
+    if (txFrequency > 6410)
+      txFrequency -= STEP_FREQ;
+  }
+  showFrequency();
+}
+
+
+void doMenu() {
+
+  switch (menuIdx) {
+    case 0:
+      doFrequency();
+      break;
+    case 1:
+      break;
+    case 2:
+      break;
+    case 3:
+      break;
+    case 4:
+      break;
+    case 5:
+      break;
+    case 6:
+      break;
+    case 7:
+      break;
+    case 8:
+      break;
+    default:
+      showStatus();
+      break;
+  }
+}
+
+
 void loop() {
+
+  bool btUp = digitalRead(BT_UP);
+  bool btDown = digitalRead(BT_DOWN);
+
+  if (btUp || btDown) {
+
+    if (btUp == LOW)
+      upDown = 1;
+    else if (btDown == LOW)
+      upDown = -1;
+    else
+      upDown = 0;
+
+    if ( menuLevel == 1) { 
+      menuIdx +=  upDown;
+      if (menuIdx < 0 )
+         menuIdx = lastMenu; 
+      else if ( menuIdx > lastMenu )
+         menuIdx = 0;   
+    }  
+  }
+
+
+  if (menuLevel == 1) {
+    showMenu();
+  } else if (menuLevel == 2) {
+    doMenu();
+  } else if (menuLevel == 3) {  // if so ENTER with new values.
+    tx.setTX(txFrequency);
+    menuLevel = 0;
+  }
+
+  if (digitalRead(BT_MENU) == LOW) {
+    menuLevel++;
+    if (menuLevel > 3) menuLevel = 0;
+  }
+
 
 
   delay(5);
