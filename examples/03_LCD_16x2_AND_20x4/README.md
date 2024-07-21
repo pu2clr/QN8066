@@ -46,4 +46,4 @@ The following schematic illustrates the connections between the Arduino Nano, th
 
 ### IMPORTANT
 
-The DIY 5~7W Kit provides a 3.7V power source, which is not sufficient to  power the Arduino Nano (5V) and the LCD 16x2. Here are a few solutions to address this issue: 1) power the A rduino  with  an  external  source; 2)  derive a 5V output from the Kit.
+The DIY 5~7W Kit provides a 3.7V power source, which is not sufficient to  power the Arduino Nano (5V) and the LCD 16x2. Here are a few solutions to address this issue: 1) power the A rduino  with  an  external  source; 2)  derive a 5V output from the Kit; 3) utilize the 12V power supply from the Kit and use a voltage regulator to convert it to 5V, and then power the Arduino.
