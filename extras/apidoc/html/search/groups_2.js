@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rx_20functions_0',['RX Functions',['../group__group03.html',1,'']]]
+  ['helper_20and_20tools_20functions_0',['Helper and Tools functions',['../group__group99.html',1,'']]]
 ];

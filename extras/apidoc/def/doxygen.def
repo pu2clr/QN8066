@@ -1491,6 +1491,88 @@ _EnD_oF_dEf_TeXt_;
 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'function';
+      sec-mem-id   = 'group__group99_1ga2a96d812724a3f6394f6419e2712d6d8';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+void
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'convertToChar';
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint16_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'value';
+      }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+char *
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'strValue';
+      }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'len';
+      }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'dot';
+      }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'separator';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+'.'
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+bool
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'remove_leading_zeros';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+true
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
+      sec-mem-desc-line = '815';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+Converts a number to a char array.
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ It is useful to mitigate memory space used by functions like sprintf or other generic similar functions
+\ilinebr\ilinebr You can use it to format frequency using decimal or thousand separator and also to convert small numbers.
+
+@param value  value to be converted
+@param strValue char array that will be receive the converted value
+@param len final string size (in bytes)
+@param dot the decimal or thousand separator position
+@param separator symbol "." or ","
+@param remove_leading_zeros if true removes up to two leading zeros (default is true)
+@code 
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  char strFrequency[7];
+  tx.setup();
+  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTxFrequencyDerivation(120);  // About +- 84 kHz
+  tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert 1067 to a array of char "106.7"
+}
+
+void loop() {
+}
+@endcode
+_EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
   }; /* cp-section */
   cp-section = {
     sec-kind = 'private-attrib';

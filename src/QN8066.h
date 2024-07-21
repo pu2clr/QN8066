@@ -811,6 +811,9 @@ public:
   void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void sendProgramService(const char* ps); 
 
+
+  void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator = '.', bool remove_leading_zeros = true);
+
 };
 
 #endif // _QN8066_H

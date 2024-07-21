@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['tx_20functions_0',['TX Functions',['../group__group04.html',1,'']]],
-  ['tx_20rds_20setup_1',['TX RDS Setup',['../group__group05.html',1,'']]]
+  ['rx_20functions_0',['RX Functions',['../group__group03.html',1,'']]]
 ];

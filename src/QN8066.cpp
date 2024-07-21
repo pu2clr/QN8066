@@ -1029,3 +1029,64 @@ void QN8066::sendProgramService(const char* ps) {
     delay(87); // RDS especifica 87.6ms por grupo
   }
 }
+
+
+/** @defgroup group99 Helper and Tools functions*/
+
+/**
+ * @ingroup group99 Covert numbers to char array
+ * @brief Converts a number to a char array
+ * @details It is useful to mitigate memory space used by functions like sprintf or other generic similar functions
+ * @details You can use it to format frequency using decimal or thousand separator and also to convert small numbers.
+ *
+ * @param value  value to be converted
+ * @param strValue char array that will be receive the converted value
+ * @param len final string size (in bytes)
+ * @param dot the decimal or thousand separator position
+ * @param separator symbol "." or ","
+ * @param remove_leading_zeros if true removes up to two leading zeros (default is true)
+ * @code
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   char strFrequency[7];
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxFrequencyDerivation(120);  // About +- 84 kHz
+ *   tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert 1067 to a array of char "106.7"
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode
+ * 
+ */
+void QN8066::convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator, bool remove_leading_zeros)
+{
+    char d;
+    for (int i = (len - 1); i >= 0; i--)
+    {
+        d = value % 10;
+        value = value / 10;
+        strValue[i] = d + 48;
+    }
+    strValue[len] = '\0';
+    if (dot > 0)
+    {
+        for (int i = len; i >= dot; i--)
+        {
+            strValue[i + 1] = strValue[i];
+        }
+        strValue[dot] = separator;
+    }
+
+    if (remove_leading_zeros)
+    {
+        if (strValue[0] == '0')
+        {
+            strValue[0] = ' ';
+            if (strValue[1] == '0')
+                strValue[1] = ' ';
+        }
+    }
+}

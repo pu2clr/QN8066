@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['detectdevice_0',['detectDevice',['../group__group01.html#gaa9d2e60da9afa03ecb5974d1afd60d92',1,'QN8066']]]
+  ['converttochar_0',['convertToChar',['../group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8',1,'QN8066']]]
 ];

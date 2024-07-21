@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['union_2c_20struct_20and_20defined_20data_20types_0',['Union, Struct and Defined Data Types',['../group__group00.html',1,'']]]
+  ['tx_20functions_0',['TX Functions',['../group__group04.html',1,'']]],
+  ['tx_20rds_20setup_1',['TX RDS Setup',['../group__group05.html',1,'']]]
 ];

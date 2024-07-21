@@ -8,7 +8,7 @@
   For this reason, this sketch tries to avoid unnecessary writes into the eeprom.
   This firmware saves the latest setup parameters.
 
-  TO RESET the EEPROM: Turn your receiver on with the encoder push button pressed.
+  TO RESET the EEPROM: Turn your receiver on with the MENU push button pressed.
 
   Read more on https://pu2clr.github.io/QN8066/
 
@@ -78,11 +78,6 @@ const uint8_t app_id = 43;  // Useful to check the EEPROM content before process
 const int eeprom_address = 0;
 long storeTime = millis();
 
-
-// Encoder control variables
-volatile int encoderCount = 0;
-
-
 // LCD display
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
@@ -100,15 +95,11 @@ void setup() {
   lcd.begin(16, 2);
 
   showSplash();
-  while(1);
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id) {
     readAllReceiverInformation();
-  } else {
-    // Default values
-
-  }
+  } 
 
   tx.setup();
 
@@ -162,6 +153,14 @@ void showFrequency() {
     Show some basic information on display
 */
 void showStatus() {
+  char strFrequency[7];
+
+  tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert the selected frequency a array of char 
+
+  lcd.setCursor(0,0);
+  lcd.print("TXing at ");
+  lcd.print(strFrequency);
+  lcd.print("MHz");
 
   lcd.display();
 }
@@ -197,20 +196,6 @@ void doRds() {
 
 void loop() {
 
-  // Check if the encoder has moved.
-  if (encoderCount != 0) {
-    if (encoderCount == 1) {
-      // TODO
-      // tx.setFrequencyUp();
-    } else {
-      // TODO
-      // tx.setFrequencyDown();
-    }
-    showStatus();
-    bShow = true;
-    encoderCount = 0;
-    storeTime = millis();
-  }
 
   delay(5);
 }

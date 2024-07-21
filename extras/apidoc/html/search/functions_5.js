@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['writetxrdsbuffer_0',['writeTxRDSBuffer',['../group__group05.html#ga0664c14d7c23ede48874c9007b157d46',1,'QN8066']]]
+  ['updatetxsetup_0',['updateTxSetup',['../group__group04.html#ga366e4fed2331cd9c22efb4ae555a5c57',1,'QN8066']]]
 ];
