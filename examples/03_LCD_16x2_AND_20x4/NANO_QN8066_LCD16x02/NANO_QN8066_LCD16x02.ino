@@ -320,6 +320,7 @@ void doMenu() {
 
 void loop() {
 
+  /* UNDER CONSTRUCTION 
   bool btUp = digitalRead(BT_UP);
   bool btDown = digitalRead(BT_DOWN);
 
@@ -356,7 +357,7 @@ void loop() {
     if (menuLevel > 3) menuLevel = 0;
   }
 
-
+  */
 
   delay(200);
 }
