@@ -144,6 +144,10 @@ LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 void setup() {
 
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
+  pinMode(BT_RESET, INPUT_PULLUP); 
+  pinMode(BT_MENU, INPUT_PULLUP);
+  pinMode(BT_UP, INPUT_PULLUP);
+  pinMode(BT_DOWN, INPUT_PULLUP);
 
   lcd.begin(16, 2);
 
@@ -350,5 +354,5 @@ void loop() {
 
 
 
-  delay(5);
+  delay(200);
 }
