@@ -5,8 +5,6 @@
 
   ABOUT THE ATMEGA328 EEPROM and saving the receiver current information
   ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.
-  For this reason, this sketch tries to avoid unnecessary writes into the eeprom.
-  This firmware saves the latest setup parameters.
 
   TO RESET the EEPROM: Turn your receiver on with the MENU push button pressed.
 
@@ -78,9 +76,21 @@ const uint8_t app_id = 43;  // Useful to check the EEPROM content before process
 const int eeprom_address = 0;
 long storeTime = millis();
 
-// LCD display
-LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+// Menu 
+const char *menu[] = {"Frequency", "Power", "Stereo/Mono", "RDS", "Inpedance", "TX Gain", "TX OFF"};
+int8_t menuIdx = 0;
+const int lastMenu = 6;
+int8_t currentMenuCmd = -1;
 
+uint8_t frequencyStep = 100;
+// The PWM duty can be set from 25 to 255 where 255 is the max power (7W) . 
+// So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
+uint8_t pwmPowerDuty = 25; // Minimal power/duty.
+uint8_t pwmDutyStep  = 25;       
+
+
+
+// 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 bool bRds = false;
 bool bStereo = true;
@@ -88,25 +98,39 @@ uint8_t inputInpedance = 2; // Default 20 KOhms
 
 bool bShow = false;
 
+// TX board interface
 QN8066 tx;
+LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 void setup() {
+
+  pinMode(PWM_PA, OUTPUT); // Sets the Arduino PIN to operate with with PWM
 
   lcd.begin(16, 2);
 
   showSplash();
+  delay(3000);
+
+  lcd.clear();
+
+  if (!tx.detectDevice()) {
+    lcd.setCursor(0, 0);
+    lcd.print("No QN8066 found!");
+    while (1);
+  }
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id) {
-    readAllReceiverInformation();
+    // readAllReceiverInformation();
   } 
 
   tx.setup();
 
   tx.setTX(txFrequency);
-
   lcd.clear();
   showStatus();
+  delay(500);
+  analogWrite(PWM_PA, pwmPowerDuty);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
 void saveAllReceiverInformation() {
@@ -117,6 +141,7 @@ void saveAllReceiverInformation() {
   EEPROM.update(eeprom_address + 3, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
   EEPROM.update(eeprom_address + 4, (uint8_t)bRds);
   EEPROM.update(eeprom_address + 5, (uint8_t)bStereo);
+  EEPROM.update(eeprom_address + 6, pwmPowerDuty);
   // TODO
 }
 
@@ -126,6 +151,7 @@ void readAllReceiverInformation() {
   txFrequency |= EEPROM.read(eeprom_address + 3);
   bRds = (bool)EEPROM.read(eeprom_address + 4);
   bStereo = (bool)EEPROM.read(eeprom_address + 5);
+  pwmPowerDuty = EEPROM.read(eeprom_address + 6);
   // TODO
 }
 
@@ -133,7 +159,7 @@ void readAllReceiverInformation() {
 void showSplash() {
   lcd.setCursor(0, 0);
   lcd.print("PU2CLR-QN8066");
-  delay(2000);
+  delay(1000);
   lcd.setCursor(0, 1);
   lcd.print("Arduino Library");
   lcd.display();
@@ -155,12 +181,12 @@ void showFrequency() {
 void showStatus() {
   char strFrequency[7];
 
-  tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert the selected frequency a array of char 
+  tx.convertToChar(txFrequency, strFrequency, 4, 3, ','); // Convert the selected frequency a array of char 
 
   lcd.setCursor(0,0);
-  lcd.print("TXing at ");
+  lcd.print("TXing: ");
   lcd.print(strFrequency);
-  lcd.print("MHz");
+  lcd.print(" MHz");
 
   lcd.display();
 }
