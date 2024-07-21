@@ -88,6 +88,40 @@ uint8_t frequencyStep = 100;
 uint8_t pwmPowerDuty = 25; // Minimal power/duty.
 uint8_t pwmDutyStep  = 25;       
 
+// Tables and parameter values
+
+// Datatype to deal with bandwidth on AM, SSB and FM in numerical order.
+// Ordering by bandwidth values.
+typedef struct
+{
+  uint8_t idx;      // SI473X device bandwidth index value
+  const char *desc; // bandwidth description
+} TableValue;
+
+int8_t idxImpedance = 1;
+TableValue tabImpedance[] = {
+    {0, "10K"}, // 0
+    {1, "20K"}, // 1
+    {2, "40K"}, // 2
+    {3, "80K"} // 3
+};  
+
+int8_t idxGainTxPilot = 7;
+TableValue tabGainTxPilot[] = {
+    {7, "7% * 75KHz"}, // 0
+    {8, "8% * 75KHz"}, // 1
+    {9, "9% * 75KHz"}, // 2
+    {10, "10% * 75KHz"} // 3
+}; 
+
+
+int8_t idxTxSoftClip = 0;
+TableValue tabTxSoftClip[] = {
+    {0, "12'd2051 (3dB"}, // 0
+    {1, "12'd1725 (4.5dB)"}, // 1
+    {2, "12'd1452 (6dB)"}, // 2
+    {3, "12'd1028 (9dB)"} // 3
+}; 
 
 
 // 
