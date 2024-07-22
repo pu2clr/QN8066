@@ -202,6 +202,13 @@ void setup() {
   analogWrite(PWM_PA, pwmPowerDuty);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
+void showDebug(char *msg, int value) {
+  char str[40];
+  sprintf(str, "%s-%d", msg, value);
+  lcd.setCursor(7, 1);
+  lcd.print(str);
+}
+
 void saveAllReceiverInformation() {
   // The update function/method writes data only if the current data is not equal to the stored data.
   EEPROM.update(eeprom_address, app_id);
@@ -286,6 +293,20 @@ void showRds() {
 
 
 
+int8_t browseParameter() {
+  do {
+    uint8_t browse = (digitalRead(BT_UP) << 1) | (digitalRead(BT_DOWN));
+    if (browse == 1)  // Down/Left pressed
+      return -1;
+    else if (browse == 2)  // Up/Right pressed
+      return 1;
+    delay(PUSH_MIN_DELAY);
+  } while (digitalRead(BT_MENU) == HIGH);
+  return 0;
+}
+
+
+
 /*********************************************************
 
  *********************************************************/
@@ -307,25 +328,32 @@ void showMenu(uint8_t idx) {
   lcd.print(menu[idx]);
 }
 
-void doFrequency(int8_t cmdUpDown) {
-  if (cmdUpDown > 0) {
-    if (txFrequency < 10790)
-      txFrequency += STEP_FREQ;
-  } else if (cmdUpDown < 0) {
-    if (txFrequency > 6410)
-      txFrequency -= STEP_FREQ;
-  }
-  // if (cmdUpDown != 0)
-  switchTxFrequency(txFrequency);
+void doFrequency() {
   showFrequency();
+  int8_t key = browseParameter();
+  while (key != 0) {
+    if (key == -1) {
+      txFrequency -= STEP_FREQ;
+    }
+    else if (key == 1) {
+      txFrequency += STEP_FREQ;
+    }
+    switchTxFrequency(txFrequency);
+    showFrequency();
+    key = browseParameter();
+  }
+  menuLevel = 0;
 }
 
 
 void doMenu(uint8_t idxMenu) {
 
+
+  if (idxMenu > lastUpDown) return;
+
   switch (idxMenu) {
     case 0:
-      doFrequency(lastUpDown);
+      doFrequency();
       break;
     case 1:
       break;
@@ -344,9 +372,9 @@ void doMenu(uint8_t idxMenu) {
     case 8:
       break;
     default:
-      showStatus();
       break;
   }
+  showStatus();
 }
 
 
@@ -371,11 +399,10 @@ void loop() {
         menuIdx = lastMenu;
       else if (menuIdx > lastMenu)
         menuIdx = 0;
-    } else if ( menuLevel == 2) {
-      doMenu(menuIdx - 1);
+    } else if (menuLevel == 2) {
+      doMenu(menuIdx);
     }
 
-    lastUpDown = upDown;
   }
 
   if (digitalRead(BT_MENU) == LOW) {
@@ -387,5 +414,5 @@ void loop() {
   }
 
 
-  delay(200);
+  delay(300);
 }
