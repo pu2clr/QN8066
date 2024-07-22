@@ -94,7 +94,7 @@ int8_t currentMenuCmd = -1;
 uint8_t frequencyStep = 100;
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
 // So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
-uint8_t pwmPowerDuty = 25;  // Minimal power/duty.
+uint8_t pwmPowerDuty = 50;  // Minimal power/duty.
 uint8_t pwmDutyStep = 25;
 
 // Tables and parameter values
@@ -175,6 +175,7 @@ void setup() {
   tx.setup();
 
   tx.setTX(txFrequency);
+  showStatus();
   lcd.clear();
   showStatus();
   delay(500);
@@ -285,8 +286,9 @@ void doFrequency() {
     if (txFrequency > 6410)
       txFrequency -= STEP_FREQ;
   }
-  showFrequency();
   tx.setTX(txFrequency);
+  showFrequency();
+  delay(500);
 
 }
 
@@ -319,10 +321,50 @@ void doMenu() {
   }
 }
 
-
+int count = 0;
 void loop() {
 
+  // UNDER CONSTRUCTION.... TEST
+  delay(10000);
+  txFrequency = 1072;
+  analogWrite(PWM_PA, 0);
+  delay(200);
+  tx.setTX(txFrequency);
+  delay(200); 
+  analogWrite(PWM_PA, pwmPowerDuty);
+  delay(200); 
+  showStatus();
+
+
+  delay(10000);
+  txFrequency = 1075;
+  analogWrite(PWM_PA, 0);
+  delay(200);
+  tx.setTX(txFrequency);
+  delay(200); 
+  analogWrite(PWM_PA, pwmPowerDuty);
+  delay(200); 
+  showStatus();
+
+
+  delay(10000);
+  txFrequency = 1069;
+  analogWrite(PWM_PA, 0);
+  delay(200);
+  tx.setTX(txFrequency);
+  delay(200); 
+  analogWrite(PWM_PA, pwmPowerDuty);
+  delay(200); 
+  showStatus();
+
+  delay(500);
+  lcd.setCursor(0,1);
+  lcd.print(++count);
+  
+
+
   /* UNDER CONSTRUCTION */
+  /*
   bool btUp = digitalRead(BT_UP);
   bool btDown = digitalRead(BT_DOWN);
 
@@ -335,6 +377,7 @@ void loop() {
     else
       upDown = 0;
 
+    doFrequency();  
     if ( menuLevel == 1) { 
       menuIdx +=  upDown;
       if (menuIdx < 0 )
@@ -344,13 +387,12 @@ void loop() {
     }  
   }
 
-
   if (menuLevel == 1) {
     showMenu();
   } else if (menuLevel == 2) {
     doMenu();
   } else if (menuLevel == 3) {  // if so ENTER with new values.
-    tx.setTX(txFrequency);
+    // åtx.setTX(txFrequency);
     menuLevel = 0;
   }
 
@@ -358,6 +400,7 @@ void loop() {
     menuLevel++;
     if (menuLevel > 3) menuLevel = 0;
   }
+  */
 
   delay(200);
 }
