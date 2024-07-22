@@ -37,12 +37,31 @@
   |                           | RESET                     |      3        |
   | --------------------------| --------------------------|---------------|
 
-  ATENTION: The DIY 5~7W Kit provides a 3.7V power source, which is not sufficient to 
-            power the Arduino Nano (5V) and the LCD 16x2. Here are a few solutions to 
-            address this issue: 1) power the A rduino  with  an  external  source; 2) 
-            derive a 5V output from the Kit.
+  IMPORTANT: 
+  There are some important considerations when using a microcontroller like the 
+  Arduino Nano with the "DIY 5~7W FM Transmitter Kit". This kit is designed to 
+  work with a 3.3V controller, meaning the I2C bus is configured with pull-up 
+  resistors connected to the board's power supply. However, the Arduino Nano 
+  operates at 5V, producing a 5V signal on the I2C bus, which can cause 
+  instability in I2C communication. Additionally, the Arduino Nano will not 
+  operate stably when powered by a 3.7V supply (provided by the kit).
 
-  See user_manual.txt
+  The most straightforward and suitable solution, though not very practical, would 
+  be to modify the Arduino Nano to operate at 3.3V (by changing the crystal to 8MHz,
+  among other modifications, including changing the bootloader). The most viable 
+  solution would be to use an "Arduino Pro Mini 3.3V". This way, no changes or 
+  adaptations would be necessary to connect the kit to the microcontroller.
+
+  For the Arduino Nano, the adaptation used in this example involves using a 3.3V to 
+  5V voltage converter to power the Arduino and placing two 150-ohm resistors in series 
+  with the I2C bus. Although this is not best practice, it works to some extent. 
+  If you insist in using a Arduino Nano, a more appropriate solution would be to use a 
+  bidirectional I2C level shifter to make the I2C communication compatible with both 
+  the Arduino Nano and the kit**.
+
+  Finally, the Arduino Nano was used in this example because it is widely used by most 
+  hobbyists. It's likely that many already have one at home, or even an Arduino Uno,
+  which shares the same architecture.
 
   Prototype documentation: https://pu2clr.github.io/RDA5807/
   PU2CLR RDA5807 API documentation: https://pu2clr.github.io/RDA5807/extras/apidoc/html/
