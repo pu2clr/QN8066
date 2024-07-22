@@ -282,13 +282,13 @@ void doRds() {
   showRds();
 }
 
-void showMenu() {
+void showMenu(uint8_t idx) {
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print(menu[menuIdx]);
+  lcd.print(menu[idx]);
 }
 
-void doFrequency( int8_t cmdUpDown) {
+void doFrequency(int8_t cmdUpDown) {
   if (cmdUpDown > 0) {
     if (txFrequency < 10790)
       txFrequency += STEP_FREQ;
@@ -297,8 +297,8 @@ void doFrequency( int8_t cmdUpDown) {
       txFrequency -= STEP_FREQ;
   }
   // if (cmdUpDown != 0)
-    switchTxFrequency(txFrequency);
-  showFrequency();  
+  switchTxFrequency(txFrequency);
+  showFrequency();
 }
 
 
@@ -334,36 +334,34 @@ void doMenu(uint8_t idxMenu) {
 void loop() {
 
   /* UNDER CONSTRUCTION */
-  bool btUp = digitalRead(BT_UP) == LOW;
-  bool btDown = digitalRead(BT_DOWN) == LOW ;
 
-  if (btUp || btDown) {
+  if (menuLevel > 0) {
+    uint8_t browse = (digitalRead(BT_UP) << 1) | (digitalRead(BT_DOWN));
 
-    if (btUp == LOW)
+    if (browse == 1)  // Down/Left pressed
       upDown = 1;
-    else if (btDown == LOW)
+    else if (browse == 2)  // Up/Right pressed
       upDown = -1;
     else
       upDown = 0;
 
     if (menuLevel == 1) {
+      showMenu(menuIdx);
       menuIdx += upDown;
       if (menuIdx < 0)
         menuIdx = lastMenu;
       else if (menuIdx > lastMenu)
         menuIdx = 0;
-      showMenu();
+    } else if ( menuLevel == 2) {
+      doMenu(menuIdx - 1);
     }
+
     lastUpDown = upDown;
   }
 
   if (digitalRead(BT_MENU) == LOW) {
     menuLevel++;
-    if (menuLevel == 1) {
-      showMenu();
-    } else if (menuLevel == 2) {
-      doMenu( (menuIdx > 0)? (menuIdx- 1):0 );
-    } else if (menuLevel == 3) {
+    if (menuLevel == 3) {
       menuLevel = 0;
       showStatus();
     }
