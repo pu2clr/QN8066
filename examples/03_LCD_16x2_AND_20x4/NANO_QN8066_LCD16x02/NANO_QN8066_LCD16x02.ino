@@ -286,7 +286,6 @@ void doFrequency() {
       txFrequency -= STEP_FREQ;
   }
   showFrequency();
-  tx.setup();
   tx.setTX(txFrequency);
 
 }
