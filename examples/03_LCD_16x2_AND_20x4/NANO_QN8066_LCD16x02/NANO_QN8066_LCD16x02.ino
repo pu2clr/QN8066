@@ -73,7 +73,7 @@
 #define BT_DOWN 11
 #define PWM_PA 9
 
-#define STEP_FREQ 100;
+#define STEP_FREQ 1;
 
 #define PUSH_MIN_DELAY 300
 
@@ -286,6 +286,9 @@ void doFrequency() {
       txFrequency -= STEP_FREQ;
   }
   showFrequency();
+  tx.setup();
+  tx.setTX(txFrequency);
+
 }
 
 
@@ -320,7 +323,7 @@ void doMenu() {
 
 void loop() {
 
-  /* UNDER CONSTRUCTION 
+  /* UNDER CONSTRUCTION */
   bool btUp = digitalRead(BT_UP);
   bool btDown = digitalRead(BT_DOWN);
 
@@ -356,8 +359,6 @@ void loop() {
     menuLevel++;
     if (menuLevel > 3) menuLevel = 0;
   }
-
-  */
 
   delay(200);
 }
