@@ -80,6 +80,7 @@
 
 uint8_t menuLevel = 0;
 int8_t upDown = 0;
+int8_t lastUpDown = 0;
 
 const uint8_t app_id = 43;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
@@ -148,7 +149,7 @@ LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 void setup() {
 
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
-  pinMode(BT_RESET, INPUT_PULLUP); 
+  pinMode(BT_RESET, INPUT_PULLUP);
   pinMode(BT_MENU, INPUT_PULLUP);
   pinMode(BT_UP, INPUT_PULLUP);
   pinMode(BT_DOWN, INPUT_PULLUP);
@@ -204,6 +205,15 @@ void readAllReceiverInformation() {
   // TODO
 }
 
+
+void switchTxFrequency(uint16_t freq) {
+  analogWrite(PWM_PA, 0);  // Turn PA off
+  delay(200);
+  tx.setTX(txFrequency = freq);
+  delay(200);
+  analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
+  showFrequency();
+}
 
 void showSplash() {
   lcd.setCursor(0, 0);
@@ -278,26 +288,25 @@ void showMenu() {
   lcd.print(menu[menuIdx]);
 }
 
-void doFrequency() {
-  if (upDown > 0) {
+void doFrequency( int8_t cmdUpDown) {
+  if (cmdUpDown > 0) {
     if (txFrequency < 10790)
       txFrequency += STEP_FREQ;
-  } else if (upDown < 0) {
+  } else if (cmdUpDown < 0) {
     if (txFrequency > 6410)
       txFrequency -= STEP_FREQ;
   }
-  tx.setTX(txFrequency);
-  showFrequency();
-  delay(500);
-
+  // if (cmdUpDown != 0)
+    switchTxFrequency(txFrequency);
+  showFrequency();  
 }
 
 
-void doMenu() {
+void doMenu(uint8_t idxMenu) {
 
-  switch (menuIdx) {
+  switch (idxMenu) {
     case 0:
-      doFrequency();
+      doFrequency(lastUpDown);
       break;
     case 1:
       break;
@@ -321,52 +330,12 @@ void doMenu() {
   }
 }
 
-int count = 0;
+
 void loop() {
 
-  // UNDER CONSTRUCTION.... TEST
-  delay(10000);
-  txFrequency = 1072;
-  analogWrite(PWM_PA, 0);
-  delay(200);
-  tx.setTX(txFrequency);
-  delay(200); 
-  analogWrite(PWM_PA, pwmPowerDuty);
-  delay(200); 
-  showStatus();
-
-
-  delay(10000);
-  txFrequency = 1075;
-  analogWrite(PWM_PA, 0);
-  delay(200);
-  tx.setTX(txFrequency);
-  delay(200); 
-  analogWrite(PWM_PA, pwmPowerDuty);
-  delay(200); 
-  showStatus();
-
-
-  delay(10000);
-  txFrequency = 1069;
-  analogWrite(PWM_PA, 0);
-  delay(200);
-  tx.setTX(txFrequency);
-  delay(200); 
-  analogWrite(PWM_PA, pwmPowerDuty);
-  delay(200); 
-  showStatus();
-
-  delay(500);
-  lcd.setCursor(0,1);
-  lcd.print(++count);
-  
-
-
   /* UNDER CONSTRUCTION */
-  /*
-  bool btUp = digitalRead(BT_UP);
-  bool btDown = digitalRead(BT_DOWN);
+  bool btUp = digitalRead(BT_UP) == LOW;
+  bool btDown = digitalRead(BT_DOWN) == LOW ;
 
   if (btUp || btDown) {
 
@@ -377,30 +346,29 @@ void loop() {
     else
       upDown = 0;
 
-    doFrequency();  
-    if ( menuLevel == 1) { 
-      menuIdx +=  upDown;
-      if (menuIdx < 0 )
-         menuIdx = lastMenu; 
-      else if ( menuIdx > lastMenu )
-         menuIdx = 0;   
-    }  
-  }
-
-  if (menuLevel == 1) {
-    showMenu();
-  } else if (menuLevel == 2) {
-    doMenu();
-  } else if (menuLevel == 3) {  // if so ENTER with new values.
-    // åtx.setTX(txFrequency);
-    menuLevel = 0;
+    if (menuLevel == 1) {
+      menuIdx += upDown;
+      if (menuIdx < 0)
+        menuIdx = lastMenu;
+      else if (menuIdx > lastMenu)
+        menuIdx = 0;
+      showMenu();
+    }
+    lastUpDown = upDown;
   }
 
   if (digitalRead(BT_MENU) == LOW) {
     menuLevel++;
-    if (menuLevel > 3) menuLevel = 0;
+    if (menuLevel == 1) {
+      showMenu();
+    } else if (menuLevel == 2) {
+      doMenu( (menuIdx > 0)? (menuIdx- 1):0 );
+    } else if (menuLevel == 3) {
+      menuLevel = 0;
+      showStatus();
+    }
   }
-  */
+
 
   delay(200);
 }
