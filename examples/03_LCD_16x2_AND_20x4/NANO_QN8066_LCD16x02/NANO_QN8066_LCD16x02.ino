@@ -371,11 +371,15 @@ void doPower() {
   int8_t key = browseParameter();
   while (key != 0) {
     if (key == -1) {
-      if ( pwmPowerDuty >=50 )
-        pwmPowerDuty -= pwmDutyStep;          
+      if ( pwmPowerDuty >=25 )
+        pwmPowerDuty -= pwmDutyStep; 
+      else 
+        pwmPowerDuty = 0;       
     } else if (key == 1) {
       if (pwmPowerDuty <= 225 )
-        pwmPowerDuty += pwmDutyStep;    
+        pwmPowerDuty += pwmDutyStep;   
+      else 
+       pwmPowerDuty = 255;
     }
     analogWrite(PWM_PA, pwmPowerDuty); 
     showPower();
