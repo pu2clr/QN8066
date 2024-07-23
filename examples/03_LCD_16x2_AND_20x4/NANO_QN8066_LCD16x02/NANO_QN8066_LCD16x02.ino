@@ -290,9 +290,9 @@ void showStatus() {
 void showStereoMono() {
   lcd.setCursor(0, 1);
   if (bStereo) {
-    lcd.print("ST");
+    lcd.print("STEREO");
   } else {
-    lcd.print("MO");
+    lcd.print("MONO");
   }
 }
 
@@ -322,10 +322,17 @@ int8_t browseParameter() {
  *********************************************************/
 
 void doStereo() {
-  bStereo = !bStereo;
-  bShow = true;
+
+  showStereoMono();
+  int8_t key = browseParameter();
+  while (key !=0) {
+    bStereo = !bStereo;
+    key = browseParameter();
+  }
+  tx.setTxStereo(bStereo);
   showStereoMono();
 }
+
 
 void doRds() {
   bRds = !bRds;
