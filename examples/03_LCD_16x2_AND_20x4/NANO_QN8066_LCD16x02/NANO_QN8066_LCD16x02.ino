@@ -292,7 +292,7 @@ void showStereoMono() {
   if (bStereo) {
     lcd.print("STEREO");
   } else {
-    lcd.print("MONO");
+    lcd.print("MONO  ");
   }
 }
 
@@ -300,6 +300,11 @@ void showRds() {
   // TODO
 }
 
+
+void showImpedance(uint8_t idx) {
+  lcd.setCursor(0,1);
+  lcd.print(tabImpedance[idx].desc);
+} 
 
 
 int8_t browseParameter() {
@@ -330,6 +335,7 @@ void doStereo() {
   }
   tx.setTxStereo(bStereo);
   showStereoMono();
+  menuLevel = 0;
 }
 
 
@@ -376,6 +382,22 @@ void doPower() {
     key = browseParameter();
   }
   menuLevel = 0;  
+}
+
+void doInpedance() {
+  showImpedance(idxImpedance);
+  int8_t key = browseParameter();
+  while (key != 0) {
+    if (key == -1) {
+      idxImpedance = (idxImpedance > 0)? (idxImpedance - 1):3;         
+    } else if (key == 1) {
+      idxImpedance = (idxImpedance < 3)? (idxImpedance + 1):0; 
+    }
+    tx.setTxInputImpedance(tabImpedance[idxImpedance].idx); 
+    showImpedance(idxImpedance);
+    key = browseParameter();
+  }
+  menuLevel = 0;        
 }
 
 void doMenu(uint8_t idxMenu) {
