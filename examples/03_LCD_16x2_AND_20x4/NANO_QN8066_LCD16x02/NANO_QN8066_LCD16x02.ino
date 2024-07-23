@@ -460,7 +460,6 @@ void loop() {
     }
     menuLevel = 2;
   } else if (menuLevel == 2) {
-    showDebug("CHK", menuIdx);
     doMenu(menuIdx);
     menuLevel = 0;
   }
