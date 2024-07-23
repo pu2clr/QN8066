@@ -331,10 +331,10 @@ void doStereo() {
   int8_t key = browseParameter();
   while (key !=0) {
     bStereo = !bStereo;
+    tx.setTxStereo(bStereo);
+    showStereoMono();    
     key = browseParameter();
   }
-  tx.setTxStereo(bStereo);
-  showStereoMono();
   menuLevel = 0;
 }
 
