@@ -44,7 +44,7 @@
   resistors connected to the board's power supply. However, the Arduino Nano 
   operates at 5V, producing a 5V signal on the I2C bus, which can cause 
   instability in I2C communication. Additionally, the Arduino Nano will not 
-  operate stably when powered by a 3.7V supply (provided by the kit).
+  operate stably when powered by a 3.3V supply (provided by the kit).
 
   The most straightforward and suitable solution, though not very practical, would 
   be to modify the Arduino Nano to operate at 3.3V (by changing the crystal to 8MHz,
