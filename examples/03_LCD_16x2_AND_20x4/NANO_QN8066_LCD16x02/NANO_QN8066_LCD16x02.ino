@@ -165,6 +165,11 @@ TableValue tabPreEmphasis[] = {
   { 75, "75 us" }    // 1
 };
 
+int8_t idxRDS = 0;
+TableValue tabRDS[] = {
+  { 0, "ON " },     // 0
+  { 1, "OFF" }      // 1
+};
 
 //
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
@@ -316,7 +321,8 @@ void showStereoMono() {
 }
 
 void showRds() {
-  // TODO
+  lcd.setCursor(0,1);
+  lcd.print(tabRDS[idxRDS].desc);  
 }
 
 
@@ -367,12 +373,6 @@ void doStereo() {
     key = browseParameter();
   }
   menuLevel = 0;
-}
-
-
-void doRds() {
-  bRds = !bRds;
-  showRds();
 }
 
 void showMenu(uint8_t idx) {
@@ -482,6 +482,20 @@ void doSoftClipThreshold() {
   menuLevel = 0;  
 }
 
+
+void doRds() {
+  showRds();
+  int8_t key = browseParameter();
+  while (key != 0) {
+    idxRDS = (key == 1)? 1:0;
+    tx.setTxRDS(tabRDS[idxRDS].idx);
+    showRds();
+    key = browseParameter();
+  }
+  menuLevel = 0;   
+}
+
+
 void doMenu(uint8_t idxMenu) {
 
   switch (idxMenu) {
@@ -498,6 +512,7 @@ void doMenu(uint8_t idxMenu) {
       doPreEmphasis();
       break;
     case 4:
+      doRds();
       break;
     case 5:
       doInpedance();
