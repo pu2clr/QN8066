@@ -262,6 +262,15 @@ void showFrequency() {
   lcd.display();
 }
 
+void showPower() {
+  char strPower[7];
+  uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
+  sprintf(strPower, "%d W");
+  lcd.setCursor(0, 1);
+  lcd.print(strPower);
+  lcd.display();
+}
+
 /*
     Show some basic information on display
 */
@@ -295,6 +304,7 @@ void showRds() {
 
 int8_t browseParameter() {
   do {
+    delay(PUSH_MIN_DELAY);
     uint8_t browse = (digitalRead(BT_UP) << 1) | (digitalRead(BT_DOWN));
     if (browse == 1)  // Down/Left pressed
       return -1;
@@ -334,8 +344,7 @@ void doFrequency() {
   while (key != 0) {
     if (key == -1) {
       txFrequency -= STEP_FREQ;
-    }
-    else if (key == 1) {
+    } else if (key == 1) {
       txFrequency += STEP_FREQ;
     }
     switchTxFrequency(txFrequency);
@@ -345,17 +354,33 @@ void doFrequency() {
   menuLevel = 0;
 }
 
+void doPower() {
+  showPower();
+  int8_t key = browseParameter();
+  while (key != 0) {
+    if (key == -1) {
+      if ( pwmPowerDuty >=50 )
+        pwmPowerDuty -= pwmDutyStep;          
+    } else if (key == 1) {
+      if (pwmPowerDuty <= 225 )
+        pwmPowerDuty += pwmDutyStep;    
+    }
+    analogWrite(PWM_PA, pwmPowerDuty); 
+    showPower();
+    key = browseParameter();
+  }
+  menuLevel = 0;  
+}
 
 void doMenu(uint8_t idxMenu) {
-
-
-  if (idxMenu > lastUpDown) return;
 
   switch (idxMenu) {
     case 0:
       doFrequency();
       break;
     case 1:
+      showDebug("PA", idxMenu);
+      doPower();
       break;
     case 2:
       break;
@@ -379,40 +404,39 @@ void doMenu(uint8_t idxMenu) {
 
 
 void loop() {
+  // UNDER CONSTRUCTION...
+  int8_t key;
 
-  /* UNDER CONSTRUCTION */
-
-  if (menuLevel > 0) {
-    uint8_t browse = (digitalRead(BT_UP) << 1) | (digitalRead(BT_DOWN));
-
-    if (browse == 1)  // Down/Left pressed
-      upDown = 1;
-    else if (browse == 2)  // Up/Right pressed
-      upDown = -1;
-    else
-      upDown = 0;
-
-    if (menuLevel == 1) {
+  if (menuLevel == 0) {
+    while (digitalRead(BT_MENU) == HIGH)
+      ;
+      menuIdx = 0;
+    menuLevel = 1;
+  } else if (menuLevel == 1) {
+    showMenu(menuIdx);
+    key = browseParameter();
+    while (key != 0) {
+      if (key == -1) {
+        if (menuIdx == 0)
+          menuIdx = lastMenu;
+        else
+          menuIdx--;
+      } else if (key == 1) {
+        if (menuIdx == lastMenu)
+          menuIdx = 0;
+        else
+          menuIdx++;
+      }
       showMenu(menuIdx);
-      menuIdx += upDown;
-      if (menuIdx < 0)
-        menuIdx = lastMenu;
-      else if (menuIdx > lastMenu)
-        menuIdx = 0;
-    } else if (menuLevel == 2) {
-      doMenu(menuIdx);
+      key = browseParameter();
     }
-
-  }
-
-  if (digitalRead(BT_MENU) == LOW) {
-    menuLevel++;
-    if (menuLevel == 3) {
-      menuLevel = 0;
-      showStatus();
-    }
+    menuLevel = 2;
+  } else if (menuLevel == 2) {
+    showDebug("CHK", menuIdx);
+    doMenu(menuIdx);
+    menuLevel = 0;
   }
 
 
-  delay(300);
+  delay(PUSH_MIN_DELAY);
 }
