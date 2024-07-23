@@ -265,7 +265,7 @@ void showFrequency() {
 void showPower() {
   char strPower[7];
   uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
-  sprintf(strPower, "%d W");
+  sprintf(strPower, "%d W", currentPower);
   lcd.setCursor(0, 1);
   lcd.print(strPower);
   lcd.display();

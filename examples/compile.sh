@@ -14,4 +14,5 @@ arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/A_MINIMALIS
 arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/A_TX --output-dir ~/Downloads/hex/atmega/A_TX
 arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/B_TX --output-dir ~/Downloads/hex/atmega/B_TX
 arduino-cli compile -b arduino:avr:nano ./examples/99_UNDER_CONSTRUCTION/C_TX_RDS --output-dir ~/Downloads/hex/atmega/C_TX_RDS
+arduino-cli compile -b arduino:avr:nano ./examples/03_LCD_16x2_AND_20x4/NANO_QN8066_LCD16x02/ --output-dir ~/Downloads/hex/atmega/LCD16x
 
