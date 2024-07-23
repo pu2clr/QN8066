@@ -106,9 +106,9 @@ const int eeprom_address = 0;
 long storeTime = millis();
 
 // Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "RDS", "Inpedance", "TX Gain", "TX OFF" };
+const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance", "TX Gain", "TX OFF" };
 int8_t menuIdx = 0;
-const int lastMenu = 6;
+const int lastMenu = 7;
 int8_t currentMenuCmd = -1;
 
 uint8_t frequencyStep = 100;
@@ -150,6 +150,12 @@ TableValue tabTxSoftClip[] = {
   { 1, "12'd1725 (4.5dB)" },  // 1
   { 2, "12'd1452 (6dB)" },    // 2
   { 3, "12'd1028 (9dB)" }     // 3
+};
+
+int8_t idxPreEmphasis = 0;
+TableValue tabPreEmphasis[] = {
+  { 50, "50 us" },   // 0
+  { 75, "75 us" }    // 1
 };
 
 
@@ -268,6 +274,12 @@ void showPower() {
   sprintf(strPower, "%d W", currentPower);
   lcd.setCursor(0, 1);
   lcd.print(strPower);
+  lcd.display();
+}
+
+void showPreEmphasis() {
+  lcd.setCursor(0, 1);
+  lcd.print(tabPreEmphasis[idxPreEmphasis].desc);
   lcd.display();
 }
 
@@ -404,6 +416,19 @@ void doInpedance() {
   menuLevel = 0;        
 }
 
+void doPreEmphasis() {
+  showPreEmphasis();
+  int8_t key = browseParameter();
+  while (key != 0) {
+    idxPreEmphasis = (key == 1)? 1:0;
+    tx.setTxPreEmphasis(tabImpedance[idxPreEmphasis].idx); 
+    showPreEmphasis();
+    key = browseParameter();
+  }
+  menuLevel = 0;    
+
+}
+
 void doMenu(uint8_t idxMenu) {
 
   switch (idxMenu) {
@@ -417,10 +442,12 @@ void doMenu(uint8_t idxMenu) {
       doStereo();
       break;
     case 3:
+      doPreEmphasis();
       break;
     case 4:
       break;
     case 5:
+      doInpedance();
       break;
     case 6:
       break;
