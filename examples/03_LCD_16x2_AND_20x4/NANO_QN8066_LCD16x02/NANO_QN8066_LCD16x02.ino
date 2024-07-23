@@ -106,9 +106,9 @@ const int eeprom_address = 0;
 long storeTime = millis();
 
 // Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance", "Soft Clip Thre.",  "TX Gain", "TX OFF" };
+const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "TX Gain", "TX OFF" };
 int8_t menuIdx = 0;
-const int lastMenu = 8;
+const int lastMenu = 9;
 int8_t currentMenuCmd = -1;
 
 uint8_t frequencyStep = 100;
@@ -141,6 +141,13 @@ TableValue tabGainTxPilot[] = {
   { 8, "8% * 75KHz" },   // 1
   { 9, "9% * 75KHz" },   // 2
   { 10, "10% * 75KHz" }  // 3
+};
+
+
+int8_t idxTxSoftClipEnable = 0;
+TableValue tabTxSoftClipEnable[] = {
+  { 0, "Enable " },     // 0
+  { 1, "Disable" }      // 1
 };
 
 
@@ -323,6 +330,11 @@ void showSoftClipThreshold() {
   lcd.print(tabTxSoftClipThreshold[idxTxSoftClipThreshold].desc);
 }
 
+void showSoftClipEnable() {
+  lcd.setCursor(0,1);
+  lcd.print(tabTxSoftClipEnable[idxTxSoftClipEnable].desc);
+}
+
 
 int8_t browseParameter() {
   do {
@@ -435,6 +447,19 @@ void doPreEmphasis() {
   menuLevel = 0;    
 }
 
+void doSoftClipEnable() {
+  showSoftClipEnable();
+  int8_t key = browseParameter();
+  while (key != 0) {
+    idxTxSoftClipEnable = (key == 1)? 1:0;
+    tx.setTxSoftClippingEnable(tabTxSoftClipEnable[idxTxSoftClipEnable].idx);
+    showSoftClipEnable();
+    key = browseParameter();
+  }
+  menuLevel = 0;     
+}
+
+
 void doSoftClipThreshold() {
   showSoftClipThreshold();
   int8_t key = browseParameter();
@@ -478,9 +503,10 @@ void doMenu(uint8_t idxMenu) {
       doInpedance();
       break;
     case 6:
-      doSoftClipThreshold();
+      doSoftClipEnable();
       break;
     case 7:
+      doSoftClipThreshold();
       break;
     case 8:
       break;
