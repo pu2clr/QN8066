@@ -322,7 +322,6 @@ int8_t browseParameter() {
  *********************************************************/
 
 void doStereo() {
-
   showStereoMono();
   int8_t key = browseParameter();
   while (key !=0) {
@@ -386,10 +385,10 @@ void doMenu(uint8_t idxMenu) {
       doFrequency();
       break;
     case 1:
-      showDebug("PA", idxMenu);
       doPower();
       break;
     case 2:
+      doStereo();
       break;
     case 3:
       break;
