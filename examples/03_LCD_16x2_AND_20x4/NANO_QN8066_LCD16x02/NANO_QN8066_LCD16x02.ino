@@ -146,8 +146,8 @@ TableValue tabGainTxPilot[] = {
 
 int8_t idxTxSoftClipEnable = 0;
 TableValue tabTxSoftClipEnable[] = {
-  { 0, "Enable " },     // 0
-  { 1, "Disable" }      // 1
+  { 0, "Disable " },     // 0
+  { 1, "Enable  " }      // 1
 };
 
 
@@ -167,9 +167,11 @@ TableValue tabPreEmphasis[] = {
 
 int8_t idxRDS = 0;
 TableValue tabRDS[] = {
-  { 0, "ON " },     // 0
-  { 1, "OFF" }      // 1
+  { 0, "Disable" },     // 0
+  { 1, "Enable " }      // 1
 };
+
+
 
 //
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
@@ -282,8 +284,9 @@ void showFrequency() {
 
 void showPower() {
   char strPower[7];
-  uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
-  sprintf(strPower, "%d W", currentPower);
+  // uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
+  uint16_t currentPower = (uint16_t)(pwmPowerDuty * 100 / 255) ;
+  sprintf(strPower, "%d%%  ", currentPower);
   lcd.setCursor(0, 1);
   lcd.print(strPower);
   lcd.display();
@@ -301,10 +304,11 @@ void showPreEmphasis() {
 void showStatus() {
   char strFrequency[7];
 
+  lcd.clear();
+
   tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
 
   lcd.setCursor(0, 0);
-  lcd.print("TXing: ");
   lcd.print(strFrequency);
   lcd.print(" MHz");
 
