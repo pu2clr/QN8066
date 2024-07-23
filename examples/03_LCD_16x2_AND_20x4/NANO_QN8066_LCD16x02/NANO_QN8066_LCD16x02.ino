@@ -106,9 +106,9 @@ const int eeprom_address = 0;
 long storeTime = millis();
 
 // Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance", "TX Gain", "TX OFF" };
+const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance", "Soft Clip Thre.",  "TX Gain", "TX OFF" };
 int8_t menuIdx = 0;
-const int lastMenu = 7;
+const int lastMenu = 8;
 int8_t currentMenuCmd = -1;
 
 uint8_t frequencyStep = 100;
@@ -144,8 +144,8 @@ TableValue tabGainTxPilot[] = {
 };
 
 
-int8_t idxTxSoftClip = 0;
-TableValue tabTxSoftClip[] = {
+int8_t idxTxSoftClipThreshold = 0;
+TableValue tabTxSoftClipThreshold[] = {
   { 0, "12'd2051 (3dB" },     // 0
   { 1, "12'd1725 (4.5dB)" },  // 1
   { 2, "12'd1452 (6dB)" },    // 2
@@ -318,6 +318,11 @@ void showImpedance(uint8_t idx) {
   lcd.print(tabImpedance[idx].desc);
 } 
 
+void showSoftClipThreshold() {
+  lcd.setCursor(0,1);
+  lcd.print(tabTxSoftClipThreshold[idxTxSoftClipThreshold].desc);
+}
+
 
 int8_t browseParameter() {
   do {
@@ -331,6 +336,8 @@ int8_t browseParameter() {
   } while (digitalRead(BT_MENU) == HIGH);
   return 0;
 }
+
+
 
 
 
@@ -426,7 +433,28 @@ void doPreEmphasis() {
     key = browseParameter();
   }
   menuLevel = 0;    
+}
 
+void doSoftClipThreshold() {
+  showSoftClipThreshold();
+  int8_t key = browseParameter();
+  while (key != 0) {
+    if  ( key ==  1) { 
+        if (idxTxSoftClipThreshold == 3) 
+           idxTxSoftClipThreshold = 0;
+        else 
+           idxTxSoftClipThreshold++;  
+    } else {
+        if (idxTxSoftClipThreshold == 0) 
+           idxTxSoftClipThreshold = 3;
+        else 
+           idxTxSoftClipThreshold--;  
+    }
+    tx.setTxSoftCliptTreshold(tabTxSoftClipThreshold[idxTxSoftClipThreshold].idx);
+    showSoftClipThreshold();
+    key = browseParameter();
+  }
+  menuLevel = 0;  
 }
 
 void doMenu(uint8_t idxMenu) {
@@ -450,6 +478,7 @@ void doMenu(uint8_t idxMenu) {
       doInpedance();
       break;
     case 6:
+      doSoftClipThreshold();
       break;
     case 7:
       break;
