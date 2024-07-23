@@ -94,7 +94,7 @@
 
 #define STEP_FREQ 1;
 
-#define PUSH_MIN_DELAY 300
+#define PUSH_MIN_DELAY 200
 
 
 uint8_t menuLevel = 0;
