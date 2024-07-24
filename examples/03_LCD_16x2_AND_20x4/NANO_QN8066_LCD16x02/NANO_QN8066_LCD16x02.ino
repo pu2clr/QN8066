@@ -86,7 +86,6 @@
 
 // Enconder PINs
 
-#define BT_RESET 3
 #define BT_MENU 8
 #define BT_UP 10
 #define BT_DOWN 11
@@ -188,7 +187,7 @@ LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 void setup() {
 
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
-  pinMode(BT_RESET, INPUT_PULLUP);
+
   pinMode(BT_MENU, INPUT_PULLUP);
   pinMode(BT_UP, INPUT_PULLUP);
   pinMode(BT_DOWN, INPUT_PULLUP);
@@ -260,6 +259,18 @@ void switchTxFrequency(uint16_t freq) {
   analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
   showFrequency();
 }
+
+void updateTx() {
+
+  analogWrite(PWM_PA, 0);  // Turn PA off
+  delay(200);
+  tx.updateTxSetup();
+  delay(200);
+  analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
+  showFrequency();
+
+}
+
 
 void showSplash() {
   lcd.setCursor(0, 0);
@@ -502,6 +513,12 @@ void doRds() {
 
 void doMenu(uint8_t idxMenu) {
 
+// It is necessary to turn off the PWM to change parameters.
+// The PWM seems to interfere with the communication with the QN8066.
+
+  analogWrite(PWM_PA, 0);  // Turn PA off
+  delay(200);
+
   switch (idxMenu) {
     case 0:
       doFrequency();
@@ -532,6 +549,11 @@ void doMenu(uint8_t idxMenu) {
     default:
       break;
   }
+
+  // Turn the PWM on again. 
+  delay(200);
+  analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
+
   showStatus();
 }
 
