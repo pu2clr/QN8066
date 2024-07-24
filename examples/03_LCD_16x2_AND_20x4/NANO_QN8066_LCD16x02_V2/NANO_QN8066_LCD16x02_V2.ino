@@ -107,7 +107,7 @@ long storeTime = millis();
 // Menu
 const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "TX OFF" };
 int8_t menuIdx = 0;
-const int lastMenu = 10;
+const int lastMenu = 9;
 int8_t currentMenuCmd = -1;
 
 uint8_t frequencyStep = 100;
