@@ -29,9 +29,9 @@ The following schematic illustrates the connections between the Arduino Nano, th
 
   | DIY KIT 5˜7W FM TRANSM.   | Device Pin / Label        |  Arduino Pin  |
   | --------------------------| ------------------------- | --------------|
-  | QN8066 BOARD              | SDA                       |     A4        |
-  |                           | SCLK                      |     A5        |
-  |                           | PWM                       |     D9        |
+  | QN8066 BOARD              | SDA  (*2)                 |     A4        |
+  |                           | SCLK (*2)                 |     A5        |
+  |                           | PWM  (*1)                 |     D9        |
 
 ### Buttons 
   
@@ -43,8 +43,13 @@ The following schematic illustrates the connections between the Arduino Nano, th
   |                           | RESET                     |      3        |
 
 
-
 ### IMPORTANT
+
+#### (1) Communication Problem Between the KIT and the Microcontroller with PWM
+
+**During various experiments, it was observed that several commands sent to the QN8066 (via I2C) had no effect. For instance, attempts to switch from "Stereo" to "Mono" mode, change the transmission frequency, among other commands, did not alter the transmitter's status. To work around this issue, the PWM must be disabled first, meaning it should not generate a pulse (0% duty cycle). After the command is sent, the PWM signal can be re-enabled.**
+
+#### (2) Compatibility Between the KIT and 5V Microcontroller Such as the Arduino Nano
 
 **There are some important considerations when using a microcontroller like the Arduino Nano with the "DIY 5~7W FM Transmitter Kit". This kit is designed to work with a 3.3V controller, meaning the I2C bus is configured with pull-up resistors connected to the board's power supply. However, the Arduino Nano operates at 5V, producing a 5V signal on the I2C bus, which can cause instability in I2C communication. Additionally, the Arduino Nano will not operate stably when powered by a 3.3V supply (provided by the kit)**.
 
