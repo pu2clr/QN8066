@@ -498,6 +498,30 @@ void doSoftClipThreshold() {
 }
 
 
+void runAction( void (*showFunc)(uint8_t), uint8_t idxMenu, void (*funcQN8066)(uint8_t), TableValue *tab, uint8_t *idx, uint8_t step,  uint8_t min, uint8_t max ) {
+  showFunc(idxMenu);
+  int8_t key = browseParameter();
+  while (key != 0) {
+    if  ( key ==  1) { 
+        if ( *idx == max) 
+           *idx = min;
+        else 
+           *idx = *idx + step;  
+    } else {
+        if (*idx == min) 
+           *idx = max;
+        else 
+           *idx = *idx - step;  
+    }
+    funcQN8066(tab[*idx].idx);
+    showFunc(idxMenu);
+    key = browseParameter();
+  }
+  menuLevel = 0;    
+
+}
+
+
 void doRds() {
   showRds();
   int8_t key = browseParameter();
