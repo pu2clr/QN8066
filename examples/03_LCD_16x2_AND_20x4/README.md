@@ -29,9 +29,9 @@ The following schematic illustrates the connections between the Arduino Nano, th
 
   | DIY KIT 5˜7W FM TRANSM.   | Device Pin / Label        |  Arduino Pin  |
   | --------------------------| ------------------------- | --------------|
-  | QN8066 BOARD              | SDA  (*2)                 |     A4        |
-  |                           | SCLK (*2)                 |     A5        |
-  |                           | PWM  (*1)                 |     D9        |
+  | QN8066 BOARD              | SDA  (see *2)             |     A4        |
+  |                           | SCLK (see *2)             |     A5        |
+  |                           | PWM  (see *1)             |     D9        |
 
 ### Buttons 
   

@@ -205,9 +205,14 @@ The code below is a minimalist sketch example of using this library with the DIY
 | Anduino Nano or Uno pin | Kit 5W-7W FM  |
 | ----------------------- | ------------- | 
 |          GND            |     GND       | 
-|           D9            |     PWM       | 
-|           A4            |     SDA       | 
-|           A5            |     SCL       | 
+|           D9            |     PWM (*1)  | 
+|           A4            |     SDA (*2)  | 
+|           A5            |     SCL (*2)  | 
+
+
+##### (1) Communication Issue During PWM Signal Generation 
+
+During experiments, commands sent to the QN8066 via I2C often had no effect, such as switching from "Stereo" to "Mono" or changing the transmission frequency. To resolve this, disable the PWM (0% duty cycle) before sending commands and re-enable it afterward.
 
 
 ```cpp
@@ -228,13 +233,33 @@ void setup() {
   delay(1000);      
   dv.setTX(1067); // Set the transmitter to 106.7 MHz 
   dv.setTxStereo(true);
+
+  // Now you can start PWM
   analogWrite(9, 50);  // It is about 1/5 of the max power (5~7W). It is between 1 and 1,4 W
   Serial.print("\nBroadcasting...");
+
+  // Turning the Stereo OFF
+  analogWrite(9, 0); // Disable PWM
+  dv.setTxStereo(false);
+  analogWrite(9, 50); // Enable PWM
+
+
 }
 
 void loop() {
 }
-````
+```
+
+##### (2) Compatibility Between the KIT and 5V Microcontroller Such as the Arduino Nano
+
+The "DIY 5~7W FM Transmitter Kit" is designed for 3.3V controllers and has I2C pull-up resistors connected to its 3.3V power supply. However, the Arduino Nano operates at 5V, producing 5V signals on the I2C bus, which can cause communication instability. Additionally, the Nano cannot run stably on a 3.3V supply from the kit.
+
+The simplest, but impractical, solution is to modify the Arduino Nano to run at 3.3V by changing its crystal to 8MHz and updating the bootloader. A better option is to use an **Arduino Pro Mini 3.3V** for direct compatibility.
+
+In some examples using the Arduino Nano, a 3.3V to 5V voltage converter was added for power, along with two 150-ohm resistors in series with the I2C bus and two 10K resistors as pull-ups. While not ideal, this method works. A more appropriate solution would be to use a bidirectional I2C level shifter for compatibility.
+
+The Arduino Nano is used in some examples in this library because it's popular among hobbyists, many of whom already have one or an Arduino Uno with the same architecture. Most other examples use 3.3V microcontrollers that do not require any modifications.
+
 
 See also [DIY Kit 5W-7W FM example](https://github.com/pu2clr/QN8066/tree/main/examples/01_SERIAL_MONITOR/B_TX)
 
