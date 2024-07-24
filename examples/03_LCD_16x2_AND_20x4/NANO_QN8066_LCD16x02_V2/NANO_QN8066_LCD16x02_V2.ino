@@ -513,7 +513,7 @@ void doMenu(uint8_t idxMenu) {
       runAction(showSoftClipThreshold, [&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, tabTxSoftClipThreshold, & idxTxSoftClipThreshold, 1, 0, 3);
       break;
     case 8:
-      runAction(showGainPilot, [&tx](uint8_t value) { tx.setTxPilotGain(value); }, tabGainTxPilot, & idxGainTxPilot, 1, 7, 10);
+      runAction(showGainPilot, [&tx](uint8_t value) { tx.setTxPilotGain(value); }, tabGainTxPilot, & idxGainTxPilot, 1, 0, 3);
       break;
     default:
       break;
