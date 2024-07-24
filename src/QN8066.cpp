@@ -306,13 +306,40 @@ void QN8066::setTX(uint16_t frequency) {
  * }
  * @endcode 
  */
-void QN8066::setTxStereo( bool value ) {
+void  QN8066::setTxStereo( bool value ) {
   qn8066_system2 system2;
   system2.raw = this->getRegister(QN_SYSTEM2);
   system2.arg.tx_mono = !value;
   this->setRegister(QN_SYSTEM2, system2.raw);
   this->system2 = system2;
 }
+
+/**
+ * @ingroup group04  TX Setup
+ * @brief Set TX Stereo or Mono (Same setTxStereo )
+ * @details  
+ * @param value (1 = Mono, 0 = Stereo )
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setTxMono(0); // Sets Stereo
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
+ */
+void  QN8066::setTxMono(uint8_t value) {
+  qn8066_system2 system2;
+  system2.raw = this->getRegister(QN_SYSTEM2);
+  system2.arg.tx_mono = value;
+  this->setRegister(QN_SYSTEM2, system2.raw);
+  this->system2 = system2;  
+} 
 
 /**
  * @ingroup group04  TX Setup
@@ -337,6 +364,34 @@ void QN8066::setTxPreEmphasis( uint8_t value ) {
   qn8066_system2 system2;
   system2.raw = this->getRegister(QN_SYSTEM2);
   system2.arg.tc = (value == 75);
+  this->setRegister(QN_SYSTEM2, system2.raw);
+  this->system2 = system2;
+}
+
+
+/**
+ * @ingroup group04  TX Setup
+ * @brief   Pre-emphasis and de-emphasis time constant - Same setTxPreEmphasis.
+ * @details The valid values are 0 and 1. 
+ * @param value (valids values:  0 = 50us or 1 = 75us );
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.setPreEmphasis(1); // 75 us
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
+ */
+void QN8066::setPreEmphasis( uint8_t value ) {
+  qn8066_system2 system2;
+  system2.raw = this->getRegister(QN_SYSTEM2);
+  system2.arg.tc = value;
   this->setRegister(QN_SYSTEM2, system2.raw);
   this->system2 = system2;
 }

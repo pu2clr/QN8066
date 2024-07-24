@@ -756,8 +756,11 @@ public:
   
   void setTX(uint16_t frequency); // RESET the system and set to TX mode at a given frequency
 
-  void setTxStereo(bool value = true);  
+  void  setTxStereo(bool value = true);  
+  void  setTxMono(uint8_t value = 0); // Default stereo
   void setTxPreEmphasis( uint8_t value = 75);
+  void setPreEmphasis(uint8_t value = 1);
+
 
   void setTxOffAfterOneMinuteNoAudio(bool value);  
   void setTxOffAfterOneMinute(uint8_t value);

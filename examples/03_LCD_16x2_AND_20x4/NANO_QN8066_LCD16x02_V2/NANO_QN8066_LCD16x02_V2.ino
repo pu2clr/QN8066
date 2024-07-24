@@ -160,8 +160,8 @@ TableValue tabTxSoftClipThreshold[] = {
 
 int8_t idxPreEmphasis = 0;
 TableValue tabPreEmphasis[] = {
-  { 50, "50 us" },   // 0
-  { 75, "75 us" }    // 1
+  { 0, "50 us" },   // 0
+  { 1, "75 us" }    // 1
 };
 
 int8_t idxRDS = 0;
@@ -170,6 +170,11 @@ TableValue tabRDS[] = {
   { 1, "Enable " }      // 1
 };
 
+int8_t idxStereoMono = 0;
+TableValue tabMonoStereo [] = {
+  { 0, "Stereo" },     // 0
+  { 1, "Mono  " }      // 1 - See QN8066 data sheet
+};
 
 
 //
@@ -300,13 +305,11 @@ void showPower() {
   sprintf(strPower, "%d%%  ", currentPower);
   lcd.setCursor(0, 1);
   lcd.print(strPower);
-  lcd.display();
 }
 
-void showPreEmphasis() {
+void showPreEmphasis(uint8_t idx) {
   lcd.setCursor(0, 1);
-  lcd.print(tabPreEmphasis[idxPreEmphasis].desc);
-  lcd.display();
+  lcd.print(tabPreEmphasis[idx].desc);
 }
 
 /*
@@ -326,18 +329,14 @@ void showStatus() {
   lcd.display();
 }
 
-void showStereoMono() {
+void showStereoMono(uint8_t idx) {
   lcd.setCursor(0, 1);
-  if (bStereo) {
-    lcd.print("STEREO");
-  } else {
-    lcd.print("MONO  ");
-  }
+  lcd.print(tabMonoStereo[idx].desc);
 }
 
-void showRds() {
+void showRds(uint8_t idx) {
   lcd.setCursor(0,1);
-  lcd.print(tabRDS[idxRDS].desc);  
+  lcd.print(tabRDS[idx].desc);  
 }
 
 
@@ -378,17 +377,6 @@ int8_t browseParameter() {
 
  *********************************************************/
 
-void doStereo() {
-  showStereoMono();
-  int8_t key = browseParameter();
-  while (key !=0) {
-    bStereo = !bStereo;
-    tx.setTxStereo(bStereo);
-    showStereoMono();    
-    key = browseParameter();
-  }
-  menuLevel = 0;
-}
 
 void showMenu(uint8_t idx) {
   lcd.clear();
@@ -434,72 +422,23 @@ void doPower() {
   menuLevel = 0;  
 }
 
-void doInpedance() {
-  showImpedance(idxImpedance);
-  int8_t key = browseParameter();
-  while (key != 0) {
-    if (key == -1) {
-      idxImpedance = (idxImpedance > 0)? (idxImpedance - 1):3;         
-    } else if (key == 1) {
-      idxImpedance = (idxImpedance < 3)? (idxImpedance + 1):0; 
-    }
-    tx.setTxInputImpedance(tabImpedance[idxImpedance].idx); 
-    showImpedance(idxImpedance);
-    key = browseParameter();
-  }
-  menuLevel = 0;        
-}
-
-void doPreEmphasis() {
-  showPreEmphasis();
-  int8_t key = browseParameter();
-  while (key != 0) {
-    idxPreEmphasis = (key == 1)? 1:0;
-    tx.setTxPreEmphasis(tabImpedance[idxPreEmphasis].idx); 
-    showPreEmphasis();
-    key = browseParameter();
-  }
-  menuLevel = 0;    
-}
-
-void doSoftClipEnable() {
-  showSoftClipEnable();
-  int8_t key = browseParameter();
-  while (key != 0) {
-    idxTxSoftClipEnable = (key == 1)? 1:0;
-    tx.setTxSoftClippingEnable(tabTxSoftClipEnable[idxTxSoftClipEnable].idx);
-    showSoftClipEnable();
-    key = browseParameter();
-  }
-  menuLevel = 0;     
-}
-
-
-void doSoftClipThreshold() {
-  showSoftClipThreshold();
-  int8_t key = browseParameter();
-  while (key != 0) {
-    if  ( key ==  1) { 
-        if (idxTxSoftClipThreshold == 3) 
-           idxTxSoftClipThreshold = 0;
-        else 
-           idxTxSoftClipThreshold++;  
-    } else {
-        if (idxTxSoftClipThreshold == 0) 
-           idxTxSoftClipThreshold = 3;
-        else 
-           idxTxSoftClipThreshold--;  
-    }
-    tx.setTxSoftCliptTreshold(tabTxSoftClipThreshold[idxTxSoftClipThreshold].idx);
-    showSoftClipThreshold();
-    key = browseParameter();
-  }
-  menuLevel = 0;  
-}
-
-
-void runAction( void (*showFunc)(uint8_t), uint8_t idxMenu, void (*funcQN8066)(uint8_t), TableValue *tab, uint8_t *idx, uint8_t step,  uint8_t min, uint8_t max ) {
-  showFunc(idxMenu);
+/**
+ * @brief Runs the action menu to modify the given parameter.
+ * @details This function generalizes the menu functions that modify the transmitter parameter values.
+ * @details For this purpose, it receives as parameters pointers to functions that will be executed (depending on what needs to be modified).
+ * @param showFunc    Pointer to the function that displays the parameter.
+ * @param actionFunc  Pointer to the function that modifies the parameter.
+ * @param tab         Table (see TableValue) that contains the set of valid parameters.
+ * @param idx         Pointer to the index variable that indicates the table position.
+ * @param step        Step (increment) used for the parameter.
+ * @param min         Minimum valid value.
+ * @param max         Maximum valid value.
+ * @see C/C++: Syntax for declaring function pointers; Assigning functions to function pointers; Calling functions through function pointers.
+ * @see C/C++: Passing function pointers as arguments to other functions; Understanding how to use function pointers for callback mechanisms.
+ * @see   C++: Capturing variables in lambdas and their usage as function pointers; Understanding lambda expressions in C++ and how they relate to function pointers  
+ */
+void runAction( void (*showFunc)(uint8_t), void (*actionFunc)(uint8_t), TableValue *tab, int8_t *idx, uint8_t step,  uint8_t min, uint8_t max ) {
+  showFunc(*idx);
   int8_t key = browseParameter();
   while (key != 0) {
     if  ( key ==  1) { 
@@ -513,26 +452,13 @@ void runAction( void (*showFunc)(uint8_t), uint8_t idxMenu, void (*funcQN8066)(u
         else 
            *idx = *idx - step;  
     }
-    funcQN8066(tab[*idx].idx);
-    showFunc(idxMenu);
+    actionFunc(tab[*idx].idx);
+    showFunc(*idx);
     key = browseParameter();
   }
   menuLevel = 0;    
-
 }
 
-
-void doRds() {
-  showRds();
-  int8_t key = browseParameter();
-  while (key != 0) {
-    idxRDS = (key == 1)? 1:0;
-    tx.setTxRDS(tabRDS[idxRDS].idx);
-    showRds();
-    key = browseParameter();
-  }
-  menuLevel = 0;   
-}
 
 
 void doMenu(uint8_t idxMenu) {
@@ -551,22 +477,22 @@ void doMenu(uint8_t idxMenu) {
       doPower();
       break;
     case 2:
-      doStereo();
+      runAction(showStereoMono, [&tx](uint8_t value) { tx.setTxMono(value); }, tabMonoStereo, & idxStereoMono, 1, 0, 1);
       break;
     case 3:
-      doPreEmphasis();
+      runAction(showPreEmphasis, [&tx](uint8_t value) { tx.setPreEmphasis(value); }, tabPreEmphasis, & idxPreEmphasis, 1, 0, 1);
       break;
     case 4:
-      doRds();
+      runAction(showRds, [&tx](uint8_t value) { tx.setTxRDS(value); }, tabRDS, & idxRDS, 1, 0, 1);
       break;
     case 5:
-      doInpedance();
+      runAction(showImpedance, [&tx](uint8_t value) { tx.setTxInputImpedance(value); }, tabImpedance, & idxImpedance, 1, 0, 3);
       break;
     case 6:
-      doSoftClipEnable();
+      runAction(showSoftClipEnable, [&tx](uint8_t value) { tx.setTxSoftClippingEnable(value); }, tabTxSoftClipEnable, & idxTxSoftClipEnable, 1, 0, 1);
       break;
     case 7:
-      doSoftClipThreshold();
+      runAction(showSoftClipThreshold, [&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, tabTxSoftClipThreshold, & idxTxSoftClipThreshold, 1, 0, 3);
       break;
     case 8:
       break;
