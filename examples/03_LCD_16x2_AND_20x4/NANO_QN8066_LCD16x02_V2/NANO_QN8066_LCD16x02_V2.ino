@@ -105,9 +105,9 @@ const int eeprom_address = 0;
 long storeTime = millis();
 
 // Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "TX Gain", "TX OFF" };
+const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "TX OFF" };
 int8_t menuIdx = 0;
-const int lastMenu = 9;
+const int lastMenu = 10;
 int8_t currentMenuCmd = -1;
 
 uint8_t frequencyStep = 100;
@@ -134,7 +134,7 @@ TableValue tabImpedance[] = {
   { 3, "80K" }   // 3
 };
 
-int8_t idxGainTxPilot = 7;
+int8_t idxGainTxPilot = 9;
 TableValue tabGainTxPilot[] = {
   { 7, "7% * 75KHz" },   // 0
   { 8, "8% * 75KHz" },   // 1
@@ -143,7 +143,7 @@ TableValue tabGainTxPilot[] = {
 };
 
 
-int8_t idxTxSoftClipEnable = 0;
+int8_t idxTxSoftClipEnable = 1;
 TableValue tabTxSoftClipEnable[] = {
   { 0, "Disable " },     // 0
   { 1, "Enable  " }      // 1
@@ -158,7 +158,7 @@ TableValue tabTxSoftClipThreshold[] = {
   { 3, "12'd1028 (9dB)" }     // 3
 };
 
-int8_t idxPreEmphasis = 0;
+int8_t idxPreEmphasis = 1;
 TableValue tabPreEmphasis[] = {
   { 0, "50 us" },   // 0
   { 1, "75 us" }    // 1
@@ -207,13 +207,24 @@ void setup() {
   if (!tx.detectDevice()) {
     lcd.setCursor(0, 0);
     lcd.print("No QN8066 found!");
-    while (1)
+    while (1) 
       ;
   }
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id) {
     // readAllReceiverInformation();
+  } else { 
+    // Defult values
+    txFrequency = 1069;
+    pwmPowerDuty = 50;
+    tx.setTxInputImpedance(idxImpedance = 1);
+    tx.setTxPilotGain(idxGainTxPilot = 9);
+    tx.setTxSoftClippingEnable(idxTxSoftClipEnable = 1);
+    tx.setTxSoftCliptTreshold(idxTxSoftClipThreshold = 0);
+    tx.setPreEmphasis(idxPreEmphasis = 1);
+    tx.setTxRDS(idxRDS = 0);
+    tx.setTxMono(idxStereoMono = 0); // Sets to stereo mode
   }
 
   tx.setup();
@@ -226,12 +237,6 @@ void setup() {
   analogWrite(PWM_PA, pwmPowerDuty);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
-void showDebug(char *msg, int value) {
-  char str[40];
-  sprintf(str, "%s-%d", msg, value);
-  lcd.setCursor(7, 1);
-  lcd.print(str);
-}
 
 void saveAllReceiverInformation() {
   // The update function/method writes data only if the current data is not equal to the stored data.
@@ -321,10 +326,16 @@ void showStatus() {
   lcd.clear();
 
   tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
-
   lcd.setCursor(0, 0);
   lcd.print(strFrequency);
   lcd.print(" MHz");
+
+  lcd.setCursor(0, 9);
+  lcd.print( (tx.getTxMono() == 1)? "M":"S" );
+
+  lcd.setCursor(0, 1);
+  lcd.print(tx.getAudioPeakValue());
+  lcd.print(" mV");
 
   lcd.display();
 }
@@ -345,15 +356,22 @@ void showImpedance(uint8_t idx) {
   lcd.print(tabImpedance[idx].desc);
 } 
 
-void showSoftClipThreshold() {
+void showSoftClipThreshold(uint8_t idx) {
   lcd.setCursor(0,1);
-  lcd.print(tabTxSoftClipThreshold[idxTxSoftClipThreshold].desc);
+  lcd.print(tabTxSoftClipThreshold[idx].desc);
 }
 
-void showSoftClipEnable() {
+void showSoftClipEnable(uint8_t idx) {
   lcd.setCursor(0,1);
-  lcd.print(tabTxSoftClipEnable[idxTxSoftClipEnable].desc);
+  lcd.print(tabTxSoftClipEnable[idx].desc);
 }
+
+void showGainPilot(uint8_t idx) {
+  lcd.setCursor(0,1);
+  lcd.print(tabGainTxPilot[idx].desc);
+}
+
+
 
 
 int8_t browseParameter() {
@@ -495,6 +513,7 @@ void doMenu(uint8_t idxMenu) {
       runAction(showSoftClipThreshold, [&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, tabTxSoftClipThreshold, & idxTxSoftClipThreshold, 1, 0, 3);
       break;
     case 8:
+      runAction(showGainPilot, [&tx](uint8_t value) { tx.setTxPilotGain(value); }, tabGainTxPilot, & idxGainTxPilot, 1, 7, 10);
       break;
     default:
       break;

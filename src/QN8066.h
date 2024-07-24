@@ -758,6 +758,7 @@ public:
 
   void  setTxStereo(bool value = true);  
   void  setTxMono(uint8_t value = 0); // Default stereo
+  uint8_t getTxMono();
   void setTxPreEmphasis( uint8_t value = 75);
   void setPreEmphasis(uint8_t value = 1);
 

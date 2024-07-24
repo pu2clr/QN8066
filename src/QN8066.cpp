@@ -343,6 +343,31 @@ void  QN8066::setTxMono(uint8_t value) {
 
 /**
  * @ingroup group04  TX Setup
+ * @brief Gets TX Stereo or Mono setup
+ * @return uint8_t -  1 = Mono; 0 = Stereo
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   if ( tx.getTxMono() ) {
+ *      // It is in mono mode
+ *   }
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
+ */
+uint8_t QN8066::getTxMono() {
+  return this->system2.arg.tx_mono;
+} 
+
+
+/**
+ * @ingroup group04  TX Setup
  * @brief   Pre-emphasis and de-emphasis time constant
  * @details The valid values are 50 and 75. Any value not equal to 75 sets the Pre-emphasis to 50. 
  * @param value (valids values:  50 or 75);
