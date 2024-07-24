@@ -113,7 +113,7 @@ int8_t currentMenuCmd = -1;
 uint8_t frequencyStep = 100;
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
 // So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
-uint8_t pwmPowerDuty = 50;  // Minimal power/duty.
+uint8_t pwmPowerDuty = 50;  // Initial power/duty.
 uint8_t pwmDutyStep = 25;
 
 // Tables and parameter values
@@ -556,7 +556,6 @@ void doMenu(uint8_t idxMenu) {
 
   showStatus();
 }
-
 
 void loop() {
   // UNDER CONSTRUCTION...
