@@ -112,12 +112,10 @@ uint8_t pwmDutyStep = 25;
 
 // Tables and parameter values
 
-// Datatype to deal with bandwidth on AM, SSB and FM in numerical order.
-// Ordering by bandwidth values.
 typedef struct
 {
-  uint8_t idx;       // SI473X device bandwidth index value
-  const char *desc;  // bandwidth description
+  uint8_t idx;       // Value of the parameter
+  const char *desc;  // Description
 } TableValue;
 
 int8_t idxImpedance = 2;
@@ -188,15 +186,11 @@ TableValue tabMonoStereo [] = {
   { 1, "Mono  " }      // 1 - See QN8066 data sheet
 };
 
-// Datatype to deal with bandwidth on AM, SSB and FM in numerical order.
-// Ordering by bandwidth values.
 typedef struct
 {
-  int8_t menuIdx;
-  char   *menuDesc; 
-  uint8_t idx;       // SI473X device bandwidth index value
-  const char *desc;  // bandwidth description
-} Menu;
+  uint8_t idx;       // Value of the parameter
+  const char *desc;  // Description
+} TableValue;
 
 
 // Menu
