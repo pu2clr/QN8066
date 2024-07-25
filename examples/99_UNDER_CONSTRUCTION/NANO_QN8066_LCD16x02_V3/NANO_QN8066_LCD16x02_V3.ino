@@ -71,6 +71,7 @@
 
 #include <QN8066.h>
 #include <EEPROM.h>
+#include "MENU_LCD.h"
 #include <LiquidCrystal.h>
 
 // LCD 16x02 or LCD20x4 PINs
@@ -91,34 +92,8 @@
 #define BT_DOWN 11
 #define PWM_PA 9
 
-#define STEP_FREQ 1;
-
-#define PUSH_MIN_DELAY 200
-
-
-uint8_t menuLevel = 0;
-int8_t upDown = 0;
-int8_t lastUpDown = 0;
-
-const uint8_t app_id = 43;  // Useful to check the EEPROM content before processing useful data
-const int eeprom_address = 0;
-long storeTime = millis();
-
-uint8_t frequencyStep = 100;
-// The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
-// So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
-uint8_t pwmPowerDuty = 50;  // Initial power/duty.
-uint8_t pwmDutyStep = 25;
-
-// Tables and parameter values
-
-typedef struct
-{
-  uint8_t idx;       // Value of the parameter
-  const char *desc;  // Description
-} TableValue;
-
-int8_t idxImpedance = 2;
+// BEGIN MENU DATA
+uint8_t idxImpedance = 2;
 TableValue tabImpedance[] = {
   { 0, "10K" },  // 0
   { 1, "20K" },  // 1
@@ -126,7 +101,7 @@ TableValue tabImpedance[] = {
   { 3, "80K" }   // 3
 };
 
-int8_t idxGainTxPilot = 2;
+uint8_t idxGainTxPilot = 2;
 TableValue tabGainTxPilot[] = {
   { 7, "7% * 75KHz" },   // 0
   { 8, "8% * 75KHz" },   // 1
@@ -134,13 +109,13 @@ TableValue tabGainTxPilot[] = {
   { 10, "10% * 75KHz" }  // 3
 };
 
-int8_t idxTxSoftClipEnable = 1;
+uint8_t idxTxSoftClipEnable = 1;
 TableValue tabTxSoftClipEnable[] = {
   { 0, "Disable " },     // 0
   { 1, "Enable  " }      // 1
 };
 
-int8_t idxTxSoftClipThreshold = 0;
+uint8_t idxTxSoftClipThreshold = 0;
 TableValue tabTxSoftClipThreshold[] = {
   { 0, "12'd2051 (3dB" },     // 0
   { 1, "12'd1725 (4.5dB)" },  // 1
@@ -148,7 +123,7 @@ TableValue tabTxSoftClipThreshold[] = {
   { 3, "12'd1028 (9dB)" }     // 3
 };
 
-int8_t idxTxFrequencyDeviation = 2;
+uint8_t idxTxFrequencyDeviation = 2;
 TableValue tabTxFrequencyDeviation[] = {
   {  60, " 41,40kHz"},  // 0
   {  87, " 60,03kHz"},  // 1
@@ -158,7 +133,7 @@ TableValue tabTxFrequencyDeviation[] = {
   { 160, "110,40kHz"}   // 5
 };
 
-int8_t idxTxBufferGain = 1;
+uint8_t idxTxBufferGain = 1;
 TableValue tabTxBufferGain[] = {
   {  0, "3dB"},  // 0
   {  1, "6dB"},  // 1
@@ -168,38 +143,35 @@ TableValue tabTxBufferGain[] = {
   {  5, "18dB"}   // 5
 };
 
-int8_t idxPreEmphasis = 1;
+uint8_t idxPreEmphasis = 1;
 TableValue tabPreEmphasis[] = {
   { 0, "50 us" },   // 0
   { 1, "75 us" }    // 1
 };
 
-int8_t idxRDS = 0;
+uint8_t idxRDS = 0;
 TableValue tabRDS[] = {
   { 0, "Disable" },     // 0
   { 1, "Enable " }      // 1
 };
 
-int8_t idxStereoMono = 0;
+uint8_t idxStereoMono = 0;
 TableValue tabMonoStereo [] = {
   { 0, "Stereo" },     // 0
   { 1, "Mono  " }      // 1 - See QN8066 data sheet
 };
 
-typedef struct
-{
-  uint8_t idx;       // Value of the parameter
-  const char *desc;  // Description
-} TableValue;
+// END MENU DATA
 
+const uint8_t app_id = 43;  // Useful to check the EEPROM content before processing useful data
+const int eeprom_address = 0;
+long storeTime = millis();
 
-// Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "Freq. Deriv.", "Buffer gain" };
-int8_t menuIdx = 0;
-const int lastMenu = 10;
-
-TableValue  table[] = {NULL, NULL, &tabMonoStereo, &tabPreEmphasis, &tabRDS, &tabImpedance, &tabTxSoftClipEnable, &tabTxSoftClipThreshold, &tabGainTxPilot, &tabTxFrequencyDeviation, &tabTxBufferGain};
-int8_t* idxTab[] = {NULL,NULL, &idxStereoMono, &idxPreEmphasis, &idxRDS, &idxImpedance, &idxTxSoftClipEnable, &idxTxSoftClipThreshold, &idxGainTxPilot, &idxTxFrequencyDeviation, &idxTxBufferGain}; 
+const uint8_t frequencyStep = 1;
+// The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
+// So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
+uint8_t pwmPowerDuty = 50;  // Initial power/duty.
+const uint8_t pwmDutyStep = 25;
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 bool bRds = false;
@@ -207,11 +179,30 @@ bool bStereo = true;
 uint8_t inputInpedance = 2;  // Default 20 KOhms
 bool bShow = false;
 
+
 // TX board interface
 QN8066 tx;
+
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
+MENU_LCD menuTX(BT_MENU, BT_UP, BT_DOWN, &lcd);
+
+
 void setup() {
+
+  menuTX.addItem((char *) "Frequency", NULL, 0, 0);
+  menuTX.addItem((char *) "Power", NULL, 0, 255);
+  menuTX.addItem((char *) "Stereo/Mono", tabMonoStereo, idxStereoMono, 1);
+  menuTX.addItem((char *) "Pre-emphasis", tabPreEmphasis, idxPreEmphasis, 1);
+  menuTX.addItem((char *) "RDS", tabRDS, idxRDS, 1);
+  menuTX.addItem((char *) "Inpedance", tabImpedance, idxImpedance, 3);
+  menuTX.addItem((char *) "Sft Clip. Enable", tabTxSoftClipEnable, idxTxSoftClipEnable, 1);
+  menuTX.addItem((char *) "Sft Clip. Thres." , tabTxSoftClipThreshold, idxTxSoftClipThreshold, 3);
+  menuTX.addItem((char *) "Gain Pilot", tabGainTxPilot, idxGainTxPilot, 3);
+  menuTX.addItem((char *) "Freq. Deriv", tabTxFrequencyDeviation, idxTxFrequencyDeviation, 5);  
+  menuTX.addItem((char *)  "Buffer gain", tabTxBufferGain, idxTxBufferGain, 5);  
+  
+
 
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
 
@@ -250,6 +241,19 @@ void setup() {
     tx.setTxInputBufferGain(idxTxBufferGain = 1);
   }
 
+  // Load MENU DATA
+  menuTX.addItem((char *) "Frequency", NULL, 0, 0);
+  menuTX.addItem((char *) "Power", NULL, 0, 255);
+  menuTX.addItem((char *) "Stereo/Mono", tabMonoStereo, idxStereoMono, 1);
+  menuTX.addItem((char *) "Pre-emphasis", tabPreEmphasis, idxPreEmphasis, 1);
+  menuTX.addItem((char *) "RDS", tabRDS, idxRDS, 1);
+  menuTX.addItem((char *) "Inpedance", tabImpedance, idxImpedance, 3);
+  menuTX.addItem((char *) "Sft Clip. Enable", tabTxSoftClipEnable, idxTxSoftClipEnable, 1);
+  menuTX.addItem((char *) "Sft Clip. Thres." , tabTxSoftClipThreshold, idxTxSoftClipThreshold, 3);
+  menuTX.addItem((char *) "Gain Pilot", tabGainTxPilot, idxGainTxPilot, 3);
+  menuTX.addItem((char *) "Freq. Deriv", tabTxFrequencyDeviation, idxTxFrequencyDeviation, 5);  
+  menuTX.addItem((char *)  "Buffer gain", tabTxBufferGain, idxTxBufferGain, 5);  
+
   tx.setup();
 
   tx.setTX(txFrequency);
@@ -282,15 +286,6 @@ void readAllReceiverInformation() {
   // TODO
 }
 
-void switchTxFrequency(uint16_t freq) {
-  analogWrite(PWM_PA, 0);  // Turn PA off
-  delay(200);
-  tx.setTX(txFrequency = freq);
-  delay(200);
-  analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
-  showFrequency();
-}
-
 
 void showSplash() {
   lcd.setCursor(0, 0);
@@ -302,22 +297,6 @@ void showSplash() {
   delay(1000);
 }
 
-void showFrequency() {
-  char strFrequency[7];
-  tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
-  lcd.setCursor(0, 1);
-  lcd.print(strFrequency);
-  lcd.display();
-}
-
-void showPower() {
-  char strPower[7];
-  // uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
-  uint16_t currentPower = (uint16_t)(pwmPowerDuty * 100 / 255) ;
-  sprintf(strPower, "%d%%  ", currentPower);
-  lcd.setCursor(0, 1);
-  lcd.print(strPower);
-}
 
 void showStatus() {
   char strFrequency[7];
@@ -342,53 +321,31 @@ void showStatus() {
   lcd.display();
 }
 
-void showParameter(int8_t idx) {
-  
-  TableValue aux = table[idx];
-  pidx = idxTab[idx];
-  
-  lcd.setCursor(0,1);
-  
-  lcd.print( aux[*pidx].desc  ); 
+
+void showFrequency() {
+  char strFrequency[7];
+  tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
+  lcd.setCursor(0, 1);
+  lcd.print(strFrequency);
+  lcd.display();
 }
 
-int8_t browseParameter() {
-  do {
-    delay(PUSH_MIN_DELAY);
-    uint8_t browse = (digitalRead(BT_UP) << 1) | (digitalRead(BT_DOWN));
-    if (browse == 1)  // Down/Left pressed
-      return -1;
-    else if (browse == 2)  // Up/Right pressed
-      return 1;
-    delay(PUSH_MIN_DELAY);
-  } while (digitalRead(BT_MENU) == HIGH);
-  return 0;
+void doTxFrequency(uint16_t freq) {
+  tx.setTX(txFrequency = freq);
 }
 
 
-void showMenu(uint8_t idx) {
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print(menu[idx]);
-}
-
-void doFrequency() {
-  showFrequency();
-  int8_t key = browseParameter();
-  while (key != 0) {
-    if (key == -1) {
-      txFrequency -= STEP_FREQ;
-    } else if (key == 1) {
-      txFrequency += STEP_FREQ;
-    }
-    switchTxFrequency(txFrequency);
-    showFrequency();
-    key = browseParameter();
-  }
-  menuLevel = 0;
+void showPower() {
+  char strPower[7];
+  // uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
+  uint16_t currentPower = (uint16_t)(pwmPowerDuty * 100 / 255) ;
+  sprintf(strPower, "%d%%  ", currentPower);
+  lcd.setCursor(0, 1);
+  lcd.print(strPower);
 }
 
 void doPower() {
+  /*
   showPower();
   int8_t key = browseParameter();
   while (key != 0) {
@@ -407,56 +364,18 @@ void doPower() {
     showPower();
     key = browseParameter();
   }
-  menuLevel = 0;  
-}
-
-/**
- * @brief Runs the action menu to modify the given parameter.
- * @details This function generalizes the menu functions that modify the transmitter parameter values.
- * @details For this purpose, it receives as parameters pointers to functions that will be executed (depending on what needs to be modified).
- * @param showFunc    Pointer to the function that displays the parameter.
- * @param actionFunc  Pointer to the function that modifies the parameter.
- * @param tab         Table (see TableValue) that contains the set of valid parameters.
- * @param idx         Pointer to the index variable that indicates the table position.
- * @param step        Step (increment) used for the parameter.
- * @param min         Minimum valid value.
- * @param max         Maximum valid value.
- * @see C/C++: Syntax for declaring function pointers; Assigning functions to function pointers; Calling functions through function pointers.
- * @see C/C++: Passing function pointers as arguments to other functions; Understanding how to use function pointers for callback mechanisms.
- * @see   C++: Capturing variables in lambdas and their usage as function pointers; Understanding lambda expressions in C++ and how they relate to function pointers  
- */
-void runAction(void (*actionFunc)(uint8_t), int8_t *idx, uint8_t step,  uint8_t min, uint8_t max ) {  
-  showParameter(*idx);
-  int8_t key = browseParameter();
-  while (key != 0) {
-    if  ( key ==  1) { 
-        if ( *idx == max) 
-           *idx = min;
-        else 
-           *idx = *idx + step;  
-    } else {
-        if (*idx == min) 
-           *idx = max;
-        else 
-           *idx = *idx - step;  
-    }
-    actionFunc(tab[*idx].idx);
-    showParameter(*idx);
-    key = browseParameter();
-  }
-  menuLevel = 0;    
+  */
 }
 
 
-
-void doMenu(uint8_t idxMenu) {
+void doAction(uint8_t idxMenu) {
 
 // It is necessary to turn off the PWM to change parameters.
 // The PWM seems to interfere with the communication with the QN8066.
 
   analogWrite(PWM_PA, 0);  // Turn PA off
   delay(200);
-
+  /*
   switch (idxMenu) {
     case 0:
       doFrequency();
@@ -495,6 +414,8 @@ void doMenu(uint8_t idxMenu) {
       break;
   }
 
+  */
+
   // Turn the PWM on again. 
   delay(200);
   analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
@@ -503,36 +424,16 @@ void doMenu(uint8_t idxMenu) {
 }
 
 void loop() {
-  // UNDER CONSTRUCTION...
-  int8_t key;
-
-  if (menuLevel == 0) {
-    while (digitalRead(BT_MENU) == HIGH)
-      ;
-      menuIdx = 0;
-    menuLevel = 1;
-  } else if (menuLevel == 1) {
-    showMenu(menuIdx);
-    key = browseParameter();
-    while (key != 0) {
-      if (key == -1) {
-        if (menuIdx == 0)
-          menuIdx = lastMenu;
-        else
-          menuIdx--;
-      } else if (key == 1) {
-        if (menuIdx == lastMenu)
-          menuIdx = 0;
-        else
-          menuIdx++;
-      }
-      showMenu(menuIdx);
-      key = browseParameter();
-    }
-    menuLevel = 2;
-  } else if (menuLevel == 2) {
-    doMenu(menuIdx);
-    menuLevel = 0;
+  uint8_t currentItem;
+  if (menuTX.getCurrentMenuLevel() == 0) {
+     menuTX.waitMenuAction();
+     menuTX.setCurrentMenuLevel(1);
+  } else if (menuTX.getCurrentMenuLevel() == 1) {
+     currentItem = menuTX.browse();
+     menuTX.setCurrentMenuLevel(2);
+  } else if (menuTX.getCurrentMenuLevel() == 2) {
+     doAction(currentItem);
+     menuTX.setCurrentMenuLevel(0);
   }
-  delay(PUSH_MIN_DELAY);
+  delay(10);
 }
