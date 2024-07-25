@@ -100,7 +100,7 @@ uint8_t menuLevel = 0;
 int8_t upDown = 0;
 int8_t lastUpDown = 0;
 
-const uint8_t app_id = 43;  // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 86;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -192,8 +192,7 @@ TableValue tabMonoStereo [] = {
 };
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
-bool bRds = false;
-bool bStereo = true;
+
 uint8_t inputInpedance = 2;  // Default 20 KOhms
 bool bShow = false;
 
@@ -211,6 +210,17 @@ void setup() {
 
   lcd.begin(16, 2);
 
+
+  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  if (digitalRead(BT_MENU) == LOW) {
+    lcd.clear();
+    EEPROM.write(eeprom_address, 0);
+    lcd.setCursor(0, 0);
+    lcd.print("RESET TO DEFAULT");
+    delay(4000);
+    lcd.clear();
+  }
+
   showSplash();
   delay(3000);
 
@@ -224,25 +234,38 @@ void setup() {
   }
 
   // Checking the EEPROM content
-  if (EEPROM.read(eeprom_address) == app_id) {
-    // readAllReceiverInformation();
+  if (EEPROM.read(eeprom_address) == app_id) {  
+    readAllTransmitterInformation();
   } else { 
     // Defult values
     txFrequency = 1069;
     pwmPowerDuty = 50;
-    tx.setTxInputImpedance(idxImpedance = 2); // 40Kohm
-    tx.setTxPilotGain(idxGainTxPilot = 2);
-    tx.setTxSoftClippingEnable(idxTxSoftClipEnable = 1);
-    tx.setTxSoftCliptTreshold(idxTxSoftClipThreshold = 0);
-    tx.setPreEmphasis(idxPreEmphasis = 1);
-    tx.setTxRDS(idxRDS = 0);
-    tx.setTxMono(idxStereoMono = 0); // Sets to stereo mode
-    tx.setTxInputBufferGain(idxTxBufferGain = 1);
+    idxImpedance = 2; // 40Kohm
+    idxGainTxPilot = 2;
+    idxTxSoftClipEnable = 1;
+    idxTxSoftClipThreshold = 0;
+    idxPreEmphasis = 1;
+    idxRDS = 0;
+    idxStereoMono = 0; // Sets to stereo mode
+    idxTxBufferGain = 1;
+
+    saveAllTransmitterInformation();
   }
 
   tx.setup();
-
   tx.setTX(txFrequency);
+
+  analogWrite(PWM_PA, 0); // Disable PWM
+
+  tx.setTxInputImpedance(idxImpedance); // 40Kohm
+  tx.setTxPilotGain(idxGainTxPilot);
+  tx.setTxSoftClippingEnable(idxTxSoftClipEnable);
+  tx.setTxSoftCliptTreshold(idxTxSoftClipThreshold);
+  tx.setPreEmphasis(idxPreEmphasis);
+  tx.setTxRDS(idxRDS);
+  tx.setTxMono(idxStereoMono); 
+  tx.setTxInputBufferGain(idxTxBufferGain);
+  
   showStatus();
   lcd.clear();
   showStatus();
@@ -250,26 +273,46 @@ void setup() {
   analogWrite(PWM_PA, pwmPowerDuty);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
-void saveAllReceiverInformation() {
+void saveAllTransmitterInformation() {
   // The update function/method writes data only if the current data is not equal to the stored data.
   EEPROM.update(eeprom_address, app_id);
   EEPROM.update(eeprom_address + 1, inputInpedance);      // stores the current inputInpedance
   EEPROM.update(eeprom_address + 2, txFrequency >> 8);    // stores the current Frequency HIGH byte for the band
   EEPROM.update(eeprom_address + 3, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
-  EEPROM.update(eeprom_address + 4, (uint8_t)bRds);
-  EEPROM.update(eeprom_address + 5, (uint8_t)bStereo);
+  EEPROM.update(eeprom_address + 4, idxRDS);
+  EEPROM.update(eeprom_address + 5, idxStereoMono);
   EEPROM.update(eeprom_address + 6, pwmPowerDuty);
-  // TODO
+
+  EEPROM.update(eeprom_address + 7, idxStereoMono);
+  EEPROM.update(eeprom_address + 8, idxPreEmphasis);
+  EEPROM.update(eeprom_address + 9, idxRDS);
+  EEPROM.update(eeprom_address +10, idxImpedance);
+  EEPROM.update(eeprom_address +11, idxTxSoftClipEnable);
+  EEPROM.update(eeprom_address +12, idxTxSoftClipThreshold);
+  EEPROM.update(eeprom_address +13, idxGainTxPilot);
+  EEPROM.update(eeprom_address +14, idxTxFrequencyDeviation);
+  EEPROM.update(eeprom_address +15, idxTxBufferGain);
 }
 
-void readAllReceiverInformation() {
+
+void readAllTransmitterInformation() {
   inputInpedance = EEPROM.read(eeprom_address + 1);
   txFrequency = EEPROM.read(eeprom_address + 2) << 8;
   txFrequency |= EEPROM.read(eeprom_address + 3);
-  bRds = (bool)EEPROM.read(eeprom_address + 4);
-  bStereo = (bool)EEPROM.read(eeprom_address + 5);
+  idxRDS = EEPROM.read(eeprom_address + 4);
+  idxStereoMono = EEPROM.read(eeprom_address + 5);
   pwmPowerDuty = EEPROM.read(eeprom_address + 6);
-  // TODO
+
+  idxStereoMono = EEPROM.read(eeprom_address + 7);
+  idxPreEmphasis = EEPROM.read(eeprom_address + 8);
+  idxRDS = EEPROM.read(eeprom_address + 9);
+  idxImpedance = EEPROM.read(eeprom_address +10);
+  idxTxSoftClipEnable = EEPROM.read(eeprom_address +11);
+  idxTxSoftClipThreshold = EEPROM.read(eeprom_address +12);
+  idxGainTxPilot = EEPROM.read(eeprom_address +13);
+  idxTxFrequencyDeviation = EEPROM.read(eeprom_address +14);
+  idxTxBufferGain = EEPROM.read(eeprom_address +15);
+
 }
 
 void switchTxFrequency(uint16_t freq) {
@@ -493,6 +536,8 @@ void doMenu(uint8_t idxMenu) {
   // Turn the PWM on again. 
   delay(200);
   analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
+
+  saveAllTransmitterInformation();
 
   showStatus();
 }
