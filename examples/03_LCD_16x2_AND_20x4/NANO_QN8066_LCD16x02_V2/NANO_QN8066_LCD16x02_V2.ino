@@ -105,9 +105,9 @@ const int eeprom_address = 0;
 long storeTime = millis();
 
 // Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "TX OFF" };
+const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "Freq. Deriv.", "Buffer gain" };
 int8_t menuIdx = 0;
-const int lastMenu = 9;
+const int lastMenu = 10;
 
 uint8_t frequencyStep = 100;
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
@@ -141,13 +141,11 @@ TableValue tabGainTxPilot[] = {
   { 10, "10% * 75KHz" }  // 3
 };
 
-
 int8_t idxTxSoftClipEnable = 1;
 TableValue tabTxSoftClipEnable[] = {
   { 0, "Disable " },     // 0
   { 1, "Enable  " }      // 1
 };
-
 
 int8_t idxTxSoftClipThreshold = 0;
 TableValue tabTxSoftClipThreshold[] = {
@@ -155,6 +153,26 @@ TableValue tabTxSoftClipThreshold[] = {
   { 1, "12'd1725 (4.5dB)" },  // 1
   { 2, "12'd1452 (6dB)" },    // 2
   { 3, "12'd1028 (9dB)" }     // 3
+};
+
+int8_t idxTxFrequencyDeviation = 2;
+TableValue tabTxFrequencyDeviation[] = {
+  {  60, " 41,40kHz"},  // 0
+  {  87, " 60,03kHz"},  // 1
+  { 108, " 74,52kHz"},  // 2
+  { 120, " 92,80kHz"},  // 3
+  { 140, " 96,60kHz"},  // 4
+  { 160, "110,40kHz"}   // 5
+};
+
+int8_t idxTxBufferGain = 1;
+TableValue tabTxBufferGain[] = {
+  {  0, "3dB"},  // 0
+  {  1, "6dB"},  // 1
+  {  2, "9dB"},  // 2
+  {  3, "12dB"},  // 3
+  {  4, "15dB"},  // 4
+  {  5, "18dB"}   // 5
 };
 
 int8_t idxPreEmphasis = 1;
@@ -175,13 +193,10 @@ TableValue tabMonoStereo [] = {
   { 1, "Mono  " }      // 1 - See QN8066 data sheet
 };
 
-
-//
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 bool bRds = false;
 bool bStereo = true;
 uint8_t inputInpedance = 2;  // Default 20 KOhms
-
 bool bShow = false;
 
 // TX board interface
@@ -224,6 +239,7 @@ void setup() {
     tx.setPreEmphasis(idxPreEmphasis = 1);
     tx.setTxRDS(idxRDS = 0);
     tx.setTxMono(idxStereoMono = 0); // Sets to stereo mode
+    tx.setTxInputBufferGain(idxTxBufferGain = 1);
   }
 
   tx.setup();
@@ -235,7 +251,6 @@ void setup() {
   delay(500);
   analogWrite(PWM_PA, pwmPowerDuty);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
-
 
 void saveAllReceiverInformation() {
   // The update function/method writes data only if the current data is not equal to the stored data.
@@ -259,7 +274,6 @@ void readAllReceiverInformation() {
   // TODO
 }
 
-
 void switchTxFrequency(uint16_t freq) {
   analogWrite(PWM_PA, 0);  // Turn PA off
   delay(200);
@@ -280,7 +294,6 @@ void updateTx() {
 
 }
 
-
 void showSplash() {
   lcd.setCursor(0, 0);
   lcd.print("PU2CLR-QN8066");
@@ -291,9 +304,6 @@ void showSplash() {
   delay(1000);
 }
 
-/*
-   Shows frequency information on Display
-*/
 void showFrequency() {
   char strFrequency[7];
   tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
@@ -311,14 +321,6 @@ void showPower() {
   lcd.print(strPower);
 }
 
-void showPreEmphasis(uint8_t idx) {
-  lcd.setCursor(0, 1);
-  lcd.print(tabPreEmphasis[idx].desc);
-}
-
-/*
-    Show some basic information on display
-*/
 void showStatus() {
   char strFrequency[7];
 
@@ -327,51 +329,25 @@ void showStatus() {
   tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
   lcd.setCursor(0, 0);
   lcd.print(strFrequency);
-  lcd.print(" MHz");
+  lcd.print("MHz");
 
-  lcd.setCursor(0, 9);
-  lcd.print( (tx.getTxMono() == 1)? "M":"S" );
+  lcd.setCursor(10, 0);
+  lcd.print(  tabMonoStereo[idxStereoMono].desc );
 
   lcd.setCursor(0, 1);
   lcd.print(tx.getAudioPeakValue());
-  lcd.print(" mV");
+  lcd.print("mV");
 
+  lcd.setCursor(7, 1);
+  lcd.print( tabTxFrequencyDeviation[idxTxFrequencyDeviation].desc  );
+   
   lcd.display();
 }
 
-void showStereoMono(uint8_t idx) {
-  lcd.setCursor(0, 1);
-  lcd.print(tabMonoStereo[idx].desc);
-}
-
-void showRds(uint8_t idx) {
+void showParameter(char *desc) {
   lcd.setCursor(0,1);
-  lcd.print(tabRDS[idx].desc);  
+  lcd.print(desc); 
 }
-
-
-void showImpedance(uint8_t idx) {
-  lcd.setCursor(0,1);
-  lcd.print(tabImpedance[idx].desc);
-} 
-
-void showSoftClipThreshold(uint8_t idx) {
-  lcd.setCursor(0,1);
-  lcd.print(tabTxSoftClipThreshold[idx].desc);
-}
-
-void showSoftClipEnable(uint8_t idx) {
-  lcd.setCursor(0,1);
-  lcd.print(tabTxSoftClipEnable[idx].desc);
-}
-
-void showGainPilot(uint8_t idx) {
-  lcd.setCursor(0,1);
-  lcd.print(tabGainTxPilot[idx].desc);
-}
-
-
-
 
 int8_t browseParameter() {
   do {
@@ -385,14 +361,6 @@ int8_t browseParameter() {
   } while (digitalRead(BT_MENU) == HIGH);
   return 0;
 }
-
-
-
-
-
-/*********************************************************
-
- *********************************************************/
 
 
 void showMenu(uint8_t idx) {
@@ -454,8 +422,8 @@ void doPower() {
  * @see C/C++: Passing function pointers as arguments to other functions; Understanding how to use function pointers for callback mechanisms.
  * @see   C++: Capturing variables in lambdas and their usage as function pointers; Understanding lambda expressions in C++ and how they relate to function pointers  
  */
-void runAction( void (*showFunc)(uint8_t), void (*actionFunc)(uint8_t), TableValue *tab, int8_t *idx, uint8_t step,  uint8_t min, uint8_t max ) {
-  showFunc(*idx);
+void runAction(void (*actionFunc)(uint8_t), TableValue *tab, int8_t *idx, uint8_t step,  uint8_t min, uint8_t max ) {  
+  showParameter(tab[*idx].desc);
   int8_t key = browseParameter();
   while (key != 0) {
     if  ( key ==  1) { 
@@ -470,7 +438,7 @@ void runAction( void (*showFunc)(uint8_t), void (*actionFunc)(uint8_t), TableVal
            *idx = *idx - step;  
     }
     actionFunc(tab[*idx].idx);
-    showFunc(*idx);
+    showParameter(tab[*idx].desc);
     key = browseParameter();
   }
   menuLevel = 0;    
@@ -494,26 +462,32 @@ void doMenu(uint8_t idxMenu) {
       doPower();
       break;
     case 2:
-      runAction(showStereoMono, [&tx](uint8_t value) { tx.setTxMono(value); }, tabMonoStereo, & idxStereoMono, 1, 0, 1);
+      runAction([&tx](uint8_t value) { tx.setTxMono(value); }, tabMonoStereo, & idxStereoMono, 1, 0, 1);
       break;
     case 3:
-      runAction(showPreEmphasis, [&tx](uint8_t value) { tx.setPreEmphasis(value); }, tabPreEmphasis, & idxPreEmphasis, 1, 0, 1);
+      runAction([&tx](uint8_t value) { tx.setPreEmphasis(value); }, tabPreEmphasis, & idxPreEmphasis, 1, 0, 1);
       break;
     case 4:
-      runAction(showRds, [&tx](uint8_t value) { tx.setTxRDS(value); }, tabRDS, & idxRDS, 1, 0, 1);
+      runAction([&tx](uint8_t value) { tx.setTxRDS(value); }, tabRDS, & idxRDS, 1, 0, 1);
       break;
     case 5:
-      runAction(showImpedance, [&tx](uint8_t value) { tx.setTxInputImpedance(value); }, tabImpedance, & idxImpedance, 1, 0, 3);
+      runAction([&tx](uint8_t value) { tx.setTxInputImpedance(value); }, tabImpedance, & idxImpedance, 1, 0, 3);
       break;
     case 6:
-      runAction(showSoftClipEnable, [&tx](uint8_t value) { tx.setTxSoftClippingEnable(value); }, tabTxSoftClipEnable, & idxTxSoftClipEnable, 1, 0, 1);
+      runAction([&tx](uint8_t value) { tx.setTxSoftClippingEnable(value); }, tabTxSoftClipEnable, & idxTxSoftClipEnable, 1, 0, 1);
       break;
     case 7:
-      runAction(showSoftClipThreshold, [&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, tabTxSoftClipThreshold, & idxTxSoftClipThreshold, 1, 0, 3);
+      runAction([&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, tabTxSoftClipThreshold, & idxTxSoftClipThreshold, 1, 0, 3);
       break;
     case 8:
-      runAction(showGainPilot, [&tx](uint8_t value) { tx.setTxPilotGain(value); }, tabGainTxPilot, & idxGainTxPilot, 1, 0, 3);
+      runAction([&tx](uint8_t value) { tx.setTxPilotGain(value); }, tabGainTxPilot, & idxGainTxPilot, 1, 0, 3);
       break;
+      case 9:
+      runAction([&tx](uint8_t value) { tx.setTxFrequencyDerivation(value); }, tabTxFrequencyDeviation, & idxTxFrequencyDeviation, 1, 0, 5);
+      break;  
+      case 10:
+      runAction([&tx](uint8_t value) { tx.setTxInputBufferGain(value); }, tabTxBufferGain, & idxTxBufferGain, 1, 0, 5);
+      break;        
     default:
       break;
   }
@@ -557,7 +531,5 @@ void loop() {
     doMenu(menuIdx);
     menuLevel = 0;
   }
-
-
   delay(PUSH_MIN_DELAY);
 }
