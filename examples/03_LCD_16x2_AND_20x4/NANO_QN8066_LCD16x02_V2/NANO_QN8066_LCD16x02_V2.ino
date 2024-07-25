@@ -125,7 +125,7 @@ typedef struct
   const char *desc;  // bandwidth description
 } TableValue;
 
-int8_t idxImpedance = 1;
+int8_t idxImpedance = 2;
 TableValue tabImpedance[] = {
   { 0, "10K" },  // 0
   { 1, "20K" },  // 1
