@@ -108,7 +108,6 @@ long storeTime = millis();
 const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "TX OFF" };
 int8_t menuIdx = 0;
 const int lastMenu = 9;
-int8_t currentMenuCmd = -1;
 
 uint8_t frequencyStep = 100;
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
@@ -134,7 +133,7 @@ TableValue tabImpedance[] = {
   { 3, "80K" }   // 3
 };
 
-int8_t idxGainTxPilot = 9;
+int8_t idxGainTxPilot = 2;
 TableValue tabGainTxPilot[] = {
   { 7, "7% * 75KHz" },   // 0
   { 8, "8% * 75KHz" },   // 1
@@ -218,8 +217,8 @@ void setup() {
     // Defult values
     txFrequency = 1069;
     pwmPowerDuty = 50;
-    tx.setTxInputImpedance(idxImpedance = 1);
-    tx.setTxPilotGain(idxGainTxPilot = 9);
+    tx.setTxInputImpedance(idxImpedance = 2); // 40Kohm
+    tx.setTxPilotGain(idxGainTxPilot = 2);
     tx.setTxSoftClippingEnable(idxTxSoftClipEnable = 1);
     tx.setTxSoftCliptTreshold(idxTxSoftClipThreshold = 0);
     tx.setPreEmphasis(idxPreEmphasis = 1);
