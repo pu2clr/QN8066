@@ -93,7 +93,7 @@
 
 #define STEP_FREQ 1;
 
-#define PUSH_MIN_DELAY 200
+#define PUSH_MIN_DELAY 150
 
 #define TIME_PAGE 5000
 
@@ -130,7 +130,7 @@ typedef struct
     TableValue *value;
 } KeyValue;
 
-int8_t idxImpedance = 2;
+
 TableValue tabImpedance[] = {
   { 0, "10K" },  // 0
   { 1, "20K" },  // 1
@@ -138,7 +138,7 @@ TableValue tabImpedance[] = {
   { 3, "80K" }   // 3
 };
 
-int8_t idxGainTxPilot = 2;
+
 TableValue tabGainTxPilot[] = {
   { 7, "7% * 75KHz" },   // 0
   { 8, "8% * 75KHz" },   // 1
@@ -146,13 +146,13 @@ TableValue tabGainTxPilot[] = {
   { 10, "10% * 75KHz" }  // 3
 };
 
-int8_t idxTxSoftClipEnable = 1;
+
 TableValue tabTxSoftClipEnable[] = {
   { 0, "Disable " },     // 0
   { 1, "Enable  " }      // 1
 };
 
-int8_t idxTxSoftClipThreshold = 0;
+
 TableValue tabTxSoftClipThreshold[] = {
   { 0, "12'd2051 (3dB" },     // 0
   { 1, "12'd1725 (4.5dB)" },  // 1
@@ -160,7 +160,7 @@ TableValue tabTxSoftClipThreshold[] = {
   { 3, "12'd1028 (9dB)" }     // 3
 };
 
-int8_t idxTxFrequencyDeviation = 2;
+
 TableValue tabTxFrequencyDeviation[] = {
   {  60, " 41,40kHz"},  // 0
   {  87, " 60,03kHz"},  // 1
@@ -170,7 +170,7 @@ TableValue tabTxFrequencyDeviation[] = {
   { 160, "110,40kHz"}   // 5
 };
 
-int8_t idxTxBufferGain = 1;
+
 TableValue tabTxBufferGain[] = {
   {  0, "3dB"},  // 0
   {  1, "6dB"},  // 1
@@ -180,44 +180,52 @@ TableValue tabTxBufferGain[] = {
   {  5, "18dB"}   // 5
 };
 
-int8_t idxPreEmphasis = 1;
 TableValue tabPreEmphasis[] = {
   { 0, "50 us" },   // 0
   { 1, "75 us" }    // 1
 };
 
-int8_t idxRDS = 0;
+
 TableValue tabRDS[] = {
   { 0, "Disable" },     // 0
   { 1, "Enable " }      // 1
 };
 
-int8_t idxStereoMono = 0;
 TableValue tabMonoStereo [] = {
   { 0, "Stereo" },     // 0
   { 1, "Mono  " }      // 1 - See QN8066 data sheet
 };
 
+#define KEY_FREQUENCIA  0
+#define KEY_POWER 1
+#define KEY_MONO_ESTEREO 2
+#define KEY_PRE_EMPHASIS 3
+#define KEY_RDS 4
+#define KEY_INPEDANCE 5
+#define KEY_SOFT_CLIP_ENABLE 6
+#define KEY_SOFT_CLIP_THRESHOLD 7
+#define KEY_GAIN_PILOT 8
+#define KEY_FREQ_DERIVATION 9
+#define KEY_BUFFER_GAIN 10 
 
 KeyValue keyValue[] = { 
   {0,  NULL },    // Frequency
   {0,  NULL },    // Power
-  {idxStereoMono, tabMonoStereo }, 
-  {idxPreEmphasis, tabPreEmphasis},
-  {idxRDS, tabRDS }, 
-  {idxImpedance, tabImpedance},
-  {idxTxSoftClipEnable, tabTxSoftClipEnable},
-  {idxTxSoftClipThreshold, tabTxSoftClipThreshold},
-  {idxGainTxPilot, tabGainTxPilot},
-  {idxTxFrequencyDeviation, tabTxFrequencyDeviation},
-  {idxTxBufferGain, tabTxBufferGain }, 
+  {0, tabMonoStereo }, 
+  {1, tabPreEmphasis},
+  {0, tabRDS }, 
+  {2, tabImpedance},
+  {1, tabTxSoftClipEnable},
+  {0, tabTxSoftClipThreshold},
+  {2, tabGainTxPilot},
+  {2, tabTxFrequencyDeviation},
+  {1, tabTxBufferGain }, 
   {0, NULL }
 };
 
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 
-uint8_t inputInpedance = 2;  // Default 20 KOhms
 bool bShow = false;
 
 // TX board interface
@@ -264,15 +272,6 @@ void setup() {
     // Defult values
     txFrequency = 1069;
     pwmPowerDuty = 50;
-    idxImpedance = 2; // 40Kohm
-    idxGainTxPilot = 2;
-    idxTxSoftClipEnable = 1;
-    idxTxSoftClipThreshold = 0;
-    idxPreEmphasis = 1;
-    idxRDS = 0;
-    idxStereoMono = 0; // Sets to stereo mode
-    idxTxBufferGain = 1;
-
     saveAllTransmitterInformation();
   }
 
@@ -281,14 +280,14 @@ void setup() {
 
   analogWrite(PWM_PA, 0); // Disable PWM
 
-  tx.setTxInputImpedance(idxImpedance); // 40Kohm
-  tx.setTxPilotGain(idxGainTxPilot);
-  tx.setTxSoftClippingEnable(idxTxSoftClipEnable);
-  tx.setTxSoftCliptTreshold(idxTxSoftClipThreshold);
-  tx.setPreEmphasis(idxPreEmphasis);
-  tx.setTxRDS(idxRDS);
-  tx.setTxMono(idxStereoMono); 
-  tx.setTxInputBufferGain(idxTxBufferGain);
+  tx.setTxInputImpedance(keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].idx); // 40Kohm
+  tx.setTxPilotGain(keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].idx);
+  tx.setTxSoftClippingEnable(keyValue[KEY_SOFT_CLIP_ENABLE].value[keyValue[KEY_SOFT_CLIP_ENABLE].key].idx);
+  tx.setTxSoftCliptTreshold( keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
+  tx.setPreEmphasis(keyValue[KEY_PRE_EMPHASIS].value[keyValue[KEY_PRE_EMPHASIS].key].idx);
+  tx.setTxRDS(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
+  tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx); 
+  tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
   showStatus(lcdPage);
   lcd.clear();
   delay(500);
@@ -298,46 +297,41 @@ void setup() {
 void saveAllTransmitterInformation() {
   // The update function/method writes data only if the current data is not equal to the stored data.
   EEPROM.update(eeprom_address, app_id);
-  EEPROM.update(eeprom_address + 1, inputInpedance);      // stores the current inputInpedance
-  EEPROM.update(eeprom_address + 2, txFrequency >> 8);    // stores the current Frequency HIGH byte for the band
-  EEPROM.update(eeprom_address + 3, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
-  EEPROM.update(eeprom_address + 4, idxRDS);
-  EEPROM.update(eeprom_address + 5, idxStereoMono);
-  EEPROM.update(eeprom_address + 6, pwmPowerDuty);
+  EEPROM.update(eeprom_address + 1, txFrequency >> 8);    // stores the current Frequency HIGH byte for the band
+  EEPROM.update(eeprom_address + 2, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
+  EEPROM.update(eeprom_address + 3, pwmPowerDuty);
 
-  EEPROM.update(eeprom_address + 7, idxStereoMono);
-  EEPROM.update(eeprom_address + 8, idxPreEmphasis);
-  EEPROM.update(eeprom_address + 9, idxRDS);
-  EEPROM.update(eeprom_address +10, idxImpedance);
-  EEPROM.update(eeprom_address +11, idxTxSoftClipEnable);
-  EEPROM.update(eeprom_address +12, idxTxSoftClipThreshold);
-  EEPROM.update(eeprom_address +13, idxGainTxPilot);
-  EEPROM.update(eeprom_address +14, idxTxFrequencyDeviation);
-  EEPROM.update(eeprom_address +15, idxTxBufferGain);
+  EEPROM.update(eeprom_address + 4, keyValue[KEY_MONO_ESTEREO].key);
+  EEPROM.update(eeprom_address + 5, keyValue[KEY_PRE_EMPHASIS].key);
+  EEPROM.update(eeprom_address + 6, keyValue[KEY_RDS].key);
+  EEPROM.update(eeprom_address + 7, keyValue[KEY_INPEDANCE].key);
+  EEPROM.update(eeprom_address + 8, keyValue[KEY_SOFT_CLIP_ENABLE].key );
+  EEPROM.update(eeprom_address + 9, keyValue[KEY_SOFT_CLIP_THRESHOLD].key);
+  EEPROM.update(eeprom_address +10, keyValue[KEY_GAIN_PILOT].key);
+  EEPROM.update(eeprom_address +11, keyValue[KEY_FREQ_DERIVATION].key);
+  EEPROM.update(eeprom_address +12, keyValue[KEY_BUFFER_GAIN].key);
 }
 
 
 void readAllTransmitterInformation() {
-  inputInpedance = EEPROM.read(eeprom_address + 1);
-  txFrequency = EEPROM.read(eeprom_address + 2) << 8;
-  txFrequency |= EEPROM.read(eeprom_address + 3);
-  idxRDS = EEPROM.read(eeprom_address + 4);
-  idxStereoMono = EEPROM.read(eeprom_address + 5);
-  pwmPowerDuty = EEPROM.read(eeprom_address + 6);
+  txFrequency = EEPROM.read(eeprom_address + 1) << 8;
+  txFrequency |= EEPROM.read(eeprom_address + 2);
+  pwmPowerDuty = EEPROM.read(eeprom_address + 3);
 
-  idxStereoMono = EEPROM.read(eeprom_address + 7);
-  idxPreEmphasis = EEPROM.read(eeprom_address + 8);
-  idxRDS = EEPROM.read(eeprom_address + 9);
-  idxImpedance = EEPROM.read(eeprom_address +10);
-  idxTxSoftClipEnable = EEPROM.read(eeprom_address +11);
-  idxTxSoftClipThreshold = EEPROM.read(eeprom_address +12);
-  idxGainTxPilot = EEPROM.read(eeprom_address +13);
-  idxTxFrequencyDeviation = EEPROM.read(eeprom_address +14);
-  idxTxBufferGain = EEPROM.read(eeprom_address +15);
+  keyValue[KEY_MONO_ESTEREO].key = EEPROM.read(eeprom_address + 4);
+  keyValue[KEY_PRE_EMPHASIS].key = EEPROM.read(eeprom_address + 5);
+  keyValue[KEY_RDS].key = EEPROM.read(eeprom_address + 6);
+  keyValue[KEY_INPEDANCE].key = EEPROM.read(eeprom_address + 7);
+  keyValue[KEY_SOFT_CLIP_ENABLE].key  = EEPROM.read(eeprom_address +8);
+  keyValue[KEY_SOFT_CLIP_THRESHOLD].key  = EEPROM.read(eeprom_address +9);
+  keyValue[KEY_GAIN_PILOT].key  = EEPROM.read(eeprom_address +10);
+  keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address +11);
+  keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address +15);
 
 }
 
 void enablePWM(uint8_t value) {
+  delay(200);
   analogWrite(PWM_PA, value);  // Turn PA off
   delay(200);
 }
@@ -388,7 +382,8 @@ void showStatus(uint8_t page) {
 
   if ( page == 0) { 
      lcd.setCursor(10, 0);
-     lcd.print(  tabMonoStereo[idxStereoMono].desc );
+     // lcd.print(  tabMonoStereo[idxStereoMono].desc );
+     lcd.print( keyValue[2].value[keyValue[2].key].desc ); // Mono Stereo
      lcd.setCursor(0, 1);
      lcd.print(tx.getAudioPeakValue());
      lcd.print("mV");
@@ -397,20 +392,21 @@ void showStatus(uint8_t page) {
      lcd.print(str);
   }
   else if (page == 1) {     
-      sprintf(str,"RIN:%s", tabImpedance[idxImpedance].desc);   
+      // sprintf(str,"RIN:%s", tabImpedance[idxImpedance].desc);   
+      sprintf(str,"RIN:%s", keyValue[5].value[keyValue[5].key].desc);   
       lcd.setCursor(9, 0);
       lcd.print(str);
       lcd.setCursor(0, 1);
-      sprintf(str,"DEV.: %s", tabTxFrequencyDeviation[idxTxFrequencyDeviation].desc);  
+      sprintf(str,"DEV.: %s", keyValue[9].value[keyValue[9].key].desc);  
       lcd.print(str);
 
   }
   else {
-      sprintf(str,"BG:%s", tabTxBufferGain[idxTxBufferGain].desc);   
+      sprintf(str,"BG:%s", keyValue[10].value[keyValue[10].key].desc);   
       lcd.setCursor(9, 0);
       lcd.print(str);
       lcd.setCursor(0, 1);
-      sprintf(str,"PIL.:%s", tabGainTxPilot[idxGainTxPilot].desc);  
+      sprintf(str,"PIL.:%s", keyValue[8].value[keyValue[8].key].desc);  
       lcd.print(str);
    }   
     
@@ -445,7 +441,12 @@ void showMenu(uint8_t idx) {
   if (keyValue[idx].value != NULL ) {
     lcd.setCursor(0, 1);
     lcd.print(keyValue[idx].value[keyValue[idx].key].desc);
+  } else if (idx == 0) {
+    showFrequency();
+  } else if (idx == 1) {
+    showPower();
   }
+
 }
 
 void doFrequency() {
@@ -529,15 +530,16 @@ uint8_t doMenu(uint8_t idxMenu) {
 
 // It is necessary to turn off the PWM to change parameters.
 // The PWM seems to interfere with the communication with the QN8066.
-
-  analogWrite(PWM_PA, 0);  // Turn PA off
-  delay(200);
-
+  enablePWM(0);
   switch (idxMenu) {
     case 0:
+      lcd.setCursor(9,1);
+      lcd.print("<<"); 
       doFrequency();
       break;
     case 1:
+      lcd.setCursor(9,1);
+      lcd.print("<<"); 
       doPower();
       break;
     case 2:
@@ -574,8 +576,7 @@ uint8_t doMenu(uint8_t idxMenu) {
   }
 
   // Turn the PWM on again. 
-  delay(200);
-  analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
+  enablePWM(pwmPowerDuty);
 
   saveAllTransmitterInformation();
 
@@ -622,5 +623,5 @@ void loop() {
     menuLevel = doMenu(menuIdx);
   }
 
-  delay(PUSH_MIN_DELAY);
+  delay(10);
 }
