@@ -419,7 +419,9 @@ void showStatus(uint8_t page) {
 
 void showParameter(char *desc) {
   lcd.setCursor(0,1);
-  lcd.print(desc); 
+  lcd.print(">");
+  lcd.print(desc);
+  lcd.print("<"); 
 }
 
 int8_t browseParameter() {
@@ -440,9 +442,10 @@ void showMenu(uint8_t idx) {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(menu[idx]);
-
-  lcd.setCursor(0, 1);
-  lcd.print(keyValue[idx].value[keyValue[idx].key].desc);
+  if (keyValue[idx].value != NULL ) {
+    lcd.setCursor(0, 1);
+    lcd.print(keyValue[idx].value[keyValue[idx].key].desc);
+  }
 }
 
 void doFrequency() {
