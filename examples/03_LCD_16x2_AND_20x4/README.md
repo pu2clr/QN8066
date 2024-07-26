@@ -58,7 +58,7 @@ The following schematic illustrates the connections between the Arduino Nano, th
 **Finally, the Arduino Nano was used in this example because it is widely used by most hobbyists. It's likely that many already have one at home, or even an Arduino Uno, which shares the same architecture**.
 
 
-## Pro mini schematic 
+## Arduino Pro mini schematic 
 
 ![Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic](./schematic_arduino_pro_mini_version.png)
 
