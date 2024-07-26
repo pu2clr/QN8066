@@ -64,9 +64,16 @@ The following schematic illustrates the connections between the Arduino Nano, th
 **Finally, the Arduino Nano was used in this example because it is widely used by most hobbyists. It's likely that many already have one at home, or even an Arduino Uno, which shares the same architecture**.
 
 
+#### An alternative of connecting Arduino Nano and the KIT 
+
+An alternative version that worked in my experiments, using a makeshift adaptation, does not follow the best practices for compatibility.
+
+![An alternative version that works, using a makeshift adaptation, that does not follow the best practices for compatibility](./schematic_alternative_i2c_connection.png)
+
+
 ## Arduino Pro mini schematic 
 
-In this circuit diagram, note that the LCD16x02 is a 3.3V version. You can purchase the LCD in this version or modify a 5V one as shown below.
+An alternative version that worked in my experiments uses a makeshift adaptation and does not follow best practices for compatibility.
 
 
 ![Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic](./schematic_arduino_pro_mini_version.png)
@@ -91,7 +98,7 @@ The IC labeled "7660 AIBAZ DNY17P" is commonly known as the ICL7660. It is a DC-
          [C1]         [C2]
 
           |            |
-          
+
          GND          GND
 
 C1 and C2 are 10µF capacitors.
