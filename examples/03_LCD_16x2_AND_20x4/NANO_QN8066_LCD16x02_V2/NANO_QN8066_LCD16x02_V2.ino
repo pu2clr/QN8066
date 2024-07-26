@@ -95,19 +95,20 @@
 
 #define PUSH_MIN_DELAY 200
 
+#define TIME_PAGE 5000;
+
+uint32_t timePage = millis();
+uint8_t lcdPage = 0;
 
 uint8_t menuLevel = 0;
-int8_t upDown = 0;
-int8_t lastUpDown = 0;
 
 const uint8_t app_id = 86;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
-long storeTime = millis();
 
 // Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "Freq. Deriv.", "Buffer gain" };
+const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "Freq. Deriv.", "Buffer gain", "Main Screen" };
 int8_t menuIdx = 0;
-const int lastMenu = 10;
+const int lastMenu = 11;
 
 uint8_t frequencyStep = 100;
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
@@ -265,10 +266,8 @@ void setup() {
   tx.setTxRDS(idxRDS);
   tx.setTxMono(idxStereoMono); 
   tx.setTxInputBufferGain(idxTxBufferGain);
-  
-  showStatus();
+  showStatus(lcdPage);
   lcd.clear();
-  showStatus();
   delay(500);
   analogWrite(PWM_PA, pwmPowerDuty);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
@@ -315,24 +314,16 @@ void readAllTransmitterInformation() {
 
 }
 
-void switchTxFrequency(uint16_t freq) {
-  analogWrite(PWM_PA, 0);  // Turn PA off
+void enablePWM(uint8_t value) {
+  analogWrite(PWM_PA, value);  // Turn PA off
   delay(200);
-  tx.setTX(txFrequency = freq);
-  delay(200);
-  analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
-  showFrequency();
 }
 
-void updateTx() {
-
-  analogWrite(PWM_PA, 0);  // Turn PA off
-  delay(200);
-  tx.updateTxSetup();
-  delay(200);
-  analogWrite(PWM_PA, pwmPowerDuty);  // Turn PA on
+void switchTxFrequency(uint16_t freq) {
+  enablePWM(0); // Duty - PWM disabled
+  tx.setTX(txFrequency = freq);
+  enablePWM(pwmPowerDuty);
   showFrequency();
-
 }
 
 void showSplash() {
@@ -362,8 +353,9 @@ void showPower() {
   lcd.print(strPower);
 }
 
-void showStatus() {
+void showStatus(uint8_t page) {
   char strFrequency[7];
+  char str[20];
 
   lcd.clear();
 
@@ -372,15 +364,33 @@ void showStatus() {
   lcd.print(strFrequency);
   lcd.print("MHz");
 
-  lcd.setCursor(10, 0);
-  lcd.print(  tabMonoStereo[idxStereoMono].desc );
-
-  lcd.setCursor(0, 1);
-  lcd.print(tx.getAudioPeakValue());
-  lcd.print("mV");
-
-  lcd.setCursor(7, 1);
-  lcd.print( tabTxFrequencyDeviation[idxTxFrequencyDeviation].desc  );
+  if ( page == 0) { 
+     lcd.setCursor(10, 0);
+     lcd.print(  tabMonoStereo[idxStereoMono].desc );
+     lcd.setCursor(0, 1);
+     lcd.print(tx.getAudioPeakValue());
+     lcd.print("mV");
+     lcd.setCursor(7, 1);
+     sprintf(str,"%d%%",pwmPowerDuty );
+     lcd.print(str);
+  }
+  else if (page == 1) {     
+      sprintf(str,"RIN:%s", tabImpedance[idxImpedance].desc);   
+      lcd.setCursor(9, 0);
+      lcd.print(str);
+      lcd.setCursor(0, 1);
+      sprintf(str,"DEV.:%s", tabTxFrequencyDeviation[idxTxFrequencyDeviation].desc);  
+      lcd.print(str);
+  }
+  else {
+      sprintf(str,"BG:%s", tabTxBufferGain[idxTxBufferGain].desc);   
+      lcd.setCursor(9, 0);
+      lcd.print(str);
+      lcd.setCursor(0, 1);
+      sprintf(str,"PIL.:%s", tabGainTxPilot[idxGainTxPilot].desc);  
+      lcd.print(str);
+   }   
+  
    
   lcd.display();
 }
@@ -464,7 +474,7 @@ void doPower() {
  * @see   C++: Capturing variables in lambdas and their usage as function pointers; Understanding lambda expressions in C++ and how they relate to function pointers  
  */
 void runAction(void (*actionFunc)(uint8_t), TableValue *tab, int8_t *idx, uint8_t step,  uint8_t min, uint8_t max ) {  
-  showParameter(tab[*idx].desc);
+  showParameter((char *) tab[*idx].desc);
   int8_t key = browseParameter();
   while (key != 0) {
     if  ( key ==  1) { 
@@ -479,7 +489,7 @@ void runAction(void (*actionFunc)(uint8_t), TableValue *tab, int8_t *idx, uint8_
            *idx = *idx - step;  
     }
     actionFunc(tab[*idx].idx);
-    showParameter(tab[*idx].desc);
+    showParameter((char *) tab[*idx].desc);
     key = browseParameter();
   }
   menuLevel = 0;    
@@ -487,7 +497,7 @@ void runAction(void (*actionFunc)(uint8_t), TableValue *tab, int8_t *idx, uint8_
 
 
 
-void doMenu(uint8_t idxMenu) {
+uint8_t doMenu(uint8_t idxMenu) {
 
 // It is necessary to turn off the PWM to change parameters.
 // The PWM seems to interfere with the communication with the QN8066.
@@ -523,12 +533,14 @@ void doMenu(uint8_t idxMenu) {
     case 8:
       runAction([&tx](uint8_t value) { tx.setTxPilotGain(value); }, tabGainTxPilot, & idxGainTxPilot, 1, 0, 3);
       break;
-      case 9:
+    case 9:
       runAction([&tx](uint8_t value) { tx.setTxFrequencyDerivation(value); }, tabTxFrequencyDeviation, & idxTxFrequencyDeviation, 1, 0, 5);
       break;  
-      case 10:
+    case 10:
       runAction([&tx](uint8_t value) { tx.setTxInputBufferGain(value); }, tabTxBufferGain, & idxTxBufferGain, 1, 0, 5);
-      break;        
+      break;   
+    case 11:
+      return 0;       
     default:
       break;
   }
@@ -539,17 +551,25 @@ void doMenu(uint8_t idxMenu) {
 
   saveAllTransmitterInformation();
 
-  showStatus();
+  return 1;
 }
 
+
+
 void loop() {
-  // UNDER CONSTRUCTION...
+  
   int8_t key;
 
   if (menuLevel == 0) {
-    while (digitalRead(BT_MENU) == HIGH)
-      ;
-      menuIdx = 0;
+    showStatus(lcdPage);
+    while (digitalRead(BT_MENU) == HIGH) {
+      if ( (millis() - timePage) > TIME_PAGE ) {
+        lcdPage++; 
+        if (lcdPage > 2) lcdPage = 0; 
+        showStatus(lcdPage); 
+        timePage = TIME_PAGE;
+      }
+    }
     menuLevel = 1;
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
@@ -571,8 +591,8 @@ void loop() {
     }
     menuLevel = 2;
   } else if (menuLevel == 2) {
-    doMenu(menuIdx);
-    menuLevel = 0;
+    menuLevel = doMenu(menuIdx);
   }
+
   delay(PUSH_MIN_DELAY);
 }
