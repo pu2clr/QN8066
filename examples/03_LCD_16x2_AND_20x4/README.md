@@ -8,10 +8,10 @@ The following schematic illustrates the connections between the Arduino Nano, th
 ![Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic](./schematic_nano.png)
 
 
-### Regular LCD16x03 (5V) 
+### Regular LCD16x02 (5V) 
 
 
-![Regular LCD16x03 (5V)](./../../extras/images/lcd16x02_regular_version.jpg)
+![Regular LCD16x02 (5V)](./../../extras/images/lcd16x02_regular_version.jpg)
 
 
 ## Wire up on Arduino UNO, Nano or Pro mini
@@ -85,9 +85,13 @@ The IC labeled "7660 AIBAZ DNY17P" is commonly known as the ICL7660. It is a DC-
 
 
   3.3V ---+---[7660]---+----> +6.6V (VOUT)
+
           |            |
+
          [C1]         [C2]
+
           |            |
+          
          GND          GND
 
 C1 and C2 are 10µF capacitors.
