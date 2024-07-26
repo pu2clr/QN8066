@@ -95,7 +95,7 @@
 
 #define PUSH_MIN_DELAY 200
 
-#define TIME_PAGE 5000;
+#define TIME_PAGE 5000
 
 uint32_t timePage = millis();
 uint8_t lcdPage = 0;
@@ -564,7 +564,7 @@ void loop() {
     showStatus(lcdPage);
     while (digitalRead(BT_MENU) == HIGH) {
       if ( (millis() - timePage) > TIME_PAGE ) {
-        lcdPage++; 
+         lcdPage++; 
         if (lcdPage > 2) lcdPage = 0; 
         showStatus(lcdPage); 
         timePage = TIME_PAGE;
