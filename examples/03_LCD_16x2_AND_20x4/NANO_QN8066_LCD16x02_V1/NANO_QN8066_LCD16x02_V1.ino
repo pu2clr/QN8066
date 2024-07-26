@@ -1,5 +1,4 @@
 /*
-  UNDER CONSTRUCTION... 
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
   This sketch uses an Arduino Nano with LCD16X02.
 
@@ -9,6 +8,13 @@
   TO RESET the EEPROM: Turn your receiver on with the MENU push button pressed.
 
   Read more on https://pu2clr.github.io/QN8066/
+
+  ATTENTION: Preferably use an Arduino that operates at 3.3V instead of an 
+             Arduino that operates at 5V. Consider adding two 10K pull-up 
+             resistors to the I2C bus to improve system stability.
+             If you are using a 5V Arduino, consider adding two more 150R r
+             esistors in series with the I2C bus. See the 'schematic diagram' 
+             posted in this repository for this example for more details.
 
   Wire up on Arduino UNO, Nano or Pro mini
 
@@ -91,7 +97,7 @@
 #define BT_DOWN 11
 #define PWM_PA 9
 
-#define STEP_FREQ 1;
+#define STEP_FREQ 1
 
 #define PUSH_MIN_DELAY 200
 
@@ -104,22 +110,20 @@ const uint8_t app_id = 43;  // Useful to check the EEPROM content before process
 const int eeprom_address = 0;
 long storeTime = millis();
 
-// Menu
+// Menu Itens
 const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "TX Gain", "TX OFF" };
 int8_t menuIdx = 0;
 const int lastMenu = 9;
-int8_t currentMenuCmd = -1;
 
-uint8_t frequencyStep = 100;
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
 // So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
 uint8_t pwmPowerDuty = 50;  // Initial power/duty.
-uint8_t pwmDutyStep = 25;
+uint8_t pwmDutyStep = 25;   // pwm Duty increment and decrement step
 
-// Tables and parameter values
+// Tables and parameter values 
 typedef struct
 {
-  uint8_t idx;       // Value of the parameter
+  uint8_t idx;       // Value of the parameter (QN8066 register value and description)
   const char *desc;  // Description
 } TableValue;
 
@@ -139,13 +143,11 @@ TableValue tabGainTxPilot[] = {
   { 10, "10% * 75KHz" }  // 3
 };
 
-
 int8_t idxTxSoftClipEnable = 0;
 TableValue tabTxSoftClipEnable[] = {
   { 0, "Disable " },     // 0
   { 1, "Enable  " }      // 1
 };
-
 
 int8_t idxTxSoftClipThreshold = 0;
 TableValue tabTxSoftClipThreshold[] = {
@@ -167,15 +169,10 @@ TableValue tabRDS[] = {
   { 1, "Enable " }      // 1
 };
 
-
-
-//
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 bool bRds = false;
 bool bStereo = true;
 uint8_t inputInpedance = 2;  // Default 20 KOhms
-
-bool bShow = false;
 
 // TX board interface
 QN8066 tx;

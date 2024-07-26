@@ -1,14 +1,20 @@
 /*
-  UNDER CONSTRUCTION... 
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
   This sketch uses an Arduino Nano with LCD16X02.
 
   ABOUT THE ATMEGA328 EEPROM and saving the receiver current information
   ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.
 
-  TO RESET the EEPROM: Turn your receiver on with the MENU push button pressed.
+  ATTENTION: TO RESET the EEPROM: Turn your receiver on with the MENU push button pressed.
 
-  Read more on https://pu2clr.github.io/QN8066/
+  Read more at https://pu2clr.github.io/QN8066/
+
+  ATTENTION: Preferably use an Arduino that operates at 3.3V instead of an 
+             Arduino that operates at 5V. Consider adding two 10K pull-up 
+             resistors to the I2C bus to improve system stability.
+             If you are using a 5V Arduino, consider adding two more 150R r
+             esistors in series with the I2C bus. See the 'schematic diagram' 
+             posted in this repository for this example for more details.
 
   Wire up on Arduino UNO, Nano or Pro mini
 
@@ -63,8 +69,8 @@
   hobbyists. It's likely that many already have one at home, or even an Arduino Uno,
   which shares the same architecture.
 
-  Prototype documentation: https://pu2clr.github.io/RDA5807/
-  PU2CLR RDA5807 API documentation: https://pu2clr.github.io/RDA5807/extras/apidoc/html/
+  Prototype documentation: https://pu2clr.github.io/QN8066/
+  PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
 
   By PU2CLR, Ricardo,  Feb  2023.
 */
@@ -81,17 +87,13 @@
 #define LCD_RS 12
 #define LCD_E 13
 
-#define COLOR_BLACK 0x0000
-#define COLOR_WHITE 0xFFFF
-
 // Enconder PINs
-
 #define BT_MENU 8
 #define BT_UP 10
 #define BT_DOWN 11
 #define PWM_PA 9
 
-#define STEP_FREQ 1;
+#define STEP_FREQ 1
 
 #define PUSH_MIN_DELAY 150
 
@@ -105,22 +107,15 @@ uint8_t menuLevel = 0;
 const uint8_t app_id = 86;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 
-// Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "Freq. Deriv.", "Buffer gain", "Main Screen" };
-int8_t menuIdx = 0;
-const int lastMenu = ( sizeof(menu) / sizeof(menu[0]) ) - 1; // Laste menu item position
-
-uint8_t frequencyStep = 100;
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
 // So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
 uint8_t pwmPowerDuty = 50;  // Initial power/duty.
-uint8_t pwmDutyStep = 25;
+uint8_t pwmDutyStep = 25;   // PWM Duty increment and decrement step
 
-// Tables and parameter values
-
+// Tables and parameter values based on QN8066 register (see datasheet)
 typedef struct
 {
-  uint8_t idx;       // Value of the parameter
+  uint8_t idx;       // Value of the parameter (QN8066 register value and description)
   const char *desc;  // Description
 } TableValue;
 
@@ -130,14 +125,12 @@ typedef struct
     TableValue *value;
 } KeyValue;
 
-
 TableValue tabImpedance[] = {
   { 0, "10K" },  // 0
   { 1, "20K" },  // 1
   { 2, "40K" },  // 2
   { 3, "80K" }   // 3
 };
-
 
 TableValue tabGainTxPilot[] = {
   { 7, "7% * 75KHz" },   // 0
@@ -146,12 +139,10 @@ TableValue tabGainTxPilot[] = {
   { 10, "10% * 75KHz" }  // 3
 };
 
-
 TableValue tabTxSoftClipEnable[] = {
   { 0, "Disable " },     // 0
   { 1, "Enable  " }      // 1
 };
-
 
 TableValue tabTxSoftClipThreshold[] = {
   { 0, "12'd2051 (3dB" },     // 0
@@ -159,7 +150,6 @@ TableValue tabTxSoftClipThreshold[] = {
   { 2, "12'd1452 (6dB)" },    // 2
   { 3, "12'd1028 (9dB)" }     // 3
 };
-
 
 TableValue tabTxFrequencyDeviation[] = {
   {  60, " 41,40kHz"},  // 0
@@ -169,7 +159,6 @@ TableValue tabTxFrequencyDeviation[] = {
   { 140, " 96,60kHz"},  // 4
   { 160, "110,40kHz"}   // 5
 };
-
 
 TableValue tabTxBufferGain[] = {
   {  0, "3dB"},  // 0
@@ -185,7 +174,6 @@ TableValue tabPreEmphasis[] = {
   { 1, "75 us" }    // 1
 };
 
-
 TableValue tabRDS[] = {
   { 0, "Disable" },     // 0
   { 1, "Enable " }      // 1
@@ -196,37 +184,54 @@ TableValue tabMonoStereo [] = {
   { 1, "Mono  " }      // 1 - See QN8066 data sheet
 };
 
-#define KEY_FREQUENCIA  0
-#define KEY_POWER 1
-#define KEY_MONO_ESTEREO 2
-#define KEY_PRE_EMPHASIS 3
-#define KEY_RDS 4
-#define KEY_INPEDANCE 5
-#define KEY_SOFT_CLIP_ENABLE 6
-#define KEY_SOFT_CLIP_THRESHOLD 7
-#define KEY_GAIN_PILOT 8
-#define KEY_FREQ_DERIVATION 9
-#define KEY_BUFFER_GAIN 10 
+// Menu Itens
+const char *menu[] = { "Frequency", 
+                      "Power", 
+                      "Stereo/Mono",
+                      "Pre-emphasis", 
+                      "RDS", 
+                      "Inpedance",
+                      "Sft Clip. Enable", 
+                      "Sft Clip. Thres.",  
+                      "Gain Pilot", 
+                      "Freq. Deriv.", 
+                      "Buffer gain",
+                      "Main Screen" };
+int8_t menuIdx = 0;
+const int lastMenu = ( sizeof(menu) / sizeof(menu[0]) ) - 1; // Laste menu item position
 
-KeyValue keyValue[] = { 
-  {0,  NULL },    // Frequency
-  {0,  NULL },    // Power
-  {0, tabMonoStereo }, 
-  {1, tabPreEmphasis},
-  {0, tabRDS }, 
-  {2, tabImpedance},
-  {1, tabTxSoftClipEnable},
-  {0, tabTxSoftClipThreshold},
-  {2, tabGainTxPilot},
-  {2, tabTxFrequencyDeviation},
-  {1, tabTxBufferGain }, 
-  {0, NULL }
+// Define the enum with the corresponding Menu Itens QN8066 register values
+enum MenuKeys {
+    KEY_FREQUENCIA,           // 0
+    KEY_POWER,                // 1
+    KEY_MONO_ESTEREO,         // 2
+    KEY_PRE_EMPHASIS,         // 3
+    KEY_RDS,                  // 4
+    KEY_INPEDANCE,            // 5
+    KEY_SOFT_CLIP_ENABLE,     // 6  
+    KEY_SOFT_CLIP_THRESHOLD,  // 7
+    KEY_GAIN_PILOT,           // 8
+    KEY_FREQ_DERIVATION,      // 9
+    KEY_BUFFER_GAIN,          // 10
+    KEY_MAIN_SCREEN           // 11
 };
 
+KeyValue keyValue[] = { 
+  {0,  NULL },                 // KEY_FREQUENCIA
+  {0,  NULL },                 // KEY_POWER
+  {0, tabMonoStereo },         // KEY_MONO_ESTEREO
+  {1, tabPreEmphasis},         // KEY_PRE_EMPHASIS
+  {0, tabRDS },                // KEY_RDS
+  {2, tabImpedance},           // KEY_INPEDANCE
+  {1, tabTxSoftClipEnable},    // KEY_SOFT_CLIP_ENABLE
+  {0, tabTxSoftClipThreshold}, // KEY_SOFT_CLIP_THRESHOLD
+  {2, tabGainTxPilot},         // KEY_GAIN_PILOT
+  {2, tabTxFrequencyDeviation},// KEY_FREQ_DERIVATION 
+  {1, tabTxBufferGain },       // KEY_BUFFER_GAIN 
+  {0, NULL }                   // KEY_MAIN_SCREEN 
+};
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
-
-bool bShow = false;
 
 // TX board interface
 QN8066 tx;
@@ -235,37 +240,34 @@ LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 void setup() {
 
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
-
   pinMode(BT_MENU, INPUT_PULLUP);
   pinMode(BT_UP, INPUT_PULLUP);
   pinMode(BT_DOWN, INPUT_PULLUP);
 
   lcd.begin(16, 2);
 
-
-  // If you want to reset the eeprom, keep the VOLUME_UP button pressed during statup
+  // If you want to reset the eeprom, keep the BT_MENU button pressed during statup
   if (digitalRead(BT_MENU) == LOW) {
     lcd.clear();
     EEPROM.write(eeprom_address, 0);
     lcd.setCursor(0, 0);
     lcd.print("RESET TO DEFAULT");
-    delay(4000);
+    delay(3000);
     lcd.clear();
   }
 
   showSplash();
-  delay(3000);
+  delay(2000);
 
   lcd.clear();
 
   if (!tx.detectDevice()) {
     lcd.setCursor(0, 0);
     lcd.print("No QN8066 found!");
-    while (1) 
-      ;
+    while (1);
   }
 
-  // Checking the EEPROM content
+  // Check the EEPROM content. If it contains valid data, read it (previous setup).
   if (EEPROM.read(eeprom_address) == app_id) {  
     readAllTransmitterInformation();
   } else { 
@@ -278,8 +280,11 @@ void setup() {
   tx.setup();
   tx.setTX(txFrequency);
 
-  analogWrite(PWM_PA, 0); // Disable PWM
+  // Due to the architecture of the KIT, the PWM interferes with I2C communication. 
+  // Therefore, before changing the transmitter's configuration parameters, it must be disabled (Duty 0).
+  enablePWM(0);  // PWM disable
 
+  // Sets the transmitter with the previous setup parameters  
   tx.setTxInputImpedance(keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].idx); // 40Kohm
   tx.setTxPilotGain(keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].idx);
   tx.setTxSoftClippingEnable(keyValue[KEY_SOFT_CLIP_ENABLE].value[keyValue[KEY_SOFT_CLIP_ENABLE].key].idx);
@@ -288,19 +293,21 @@ void setup() {
   tx.setTxRDS(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
   tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx); 
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
+
   showStatus(lcdPage);
   lcd.clear();
   delay(500);
-  analogWrite(PWM_PA, pwmPowerDuty);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
+
+  enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
 }
 
+// Saves current transmitter setup
 void saveAllTransmitterInformation() {
   // The update function/method writes data only if the current data is not equal to the stored data.
   EEPROM.update(eeprom_address, app_id);
   EEPROM.update(eeprom_address + 1, txFrequency >> 8);    // stores the current Frequency HIGH byte for the band
   EEPROM.update(eeprom_address + 2, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
   EEPROM.update(eeprom_address + 3, pwmPowerDuty);
-
   EEPROM.update(eeprom_address + 4, keyValue[KEY_MONO_ESTEREO].key);
   EEPROM.update(eeprom_address + 5, keyValue[KEY_PRE_EMPHASIS].key);
   EEPROM.update(eeprom_address + 6, keyValue[KEY_RDS].key);
@@ -311,13 +318,11 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address +11, keyValue[KEY_FREQ_DERIVATION].key);
   EEPROM.update(eeprom_address +12, keyValue[KEY_BUFFER_GAIN].key);
 }
-
-
+// Read the previous transmitter setup
 void readAllTransmitterInformation() {
   txFrequency = EEPROM.read(eeprom_address + 1) << 8;
   txFrequency |= EEPROM.read(eeprom_address + 2);
   pwmPowerDuty = EEPROM.read(eeprom_address + 3);
-
   keyValue[KEY_MONO_ESTEREO].key = EEPROM.read(eeprom_address + 4);
   keyValue[KEY_PRE_EMPHASIS].key = EEPROM.read(eeprom_address + 5);
   keyValue[KEY_RDS].key = EEPROM.read(eeprom_address + 6);
@@ -327,22 +332,22 @@ void readAllTransmitterInformation() {
   keyValue[KEY_GAIN_PILOT].key  = EEPROM.read(eeprom_address +10);
   keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address +11);
   keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address +15);
-
 }
 
+// Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
   delay(200);
   analogWrite(PWM_PA, value);  // Turn PA off
   delay(200);
 }
-
+// Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
-  enablePWM(0); // Duty - PWM disabled
+  enablePWM(0);                 // PWM duty cycle disabled
   tx.setTX(txFrequency = freq);
-  enablePWM(pwmPowerDuty);
+  enablePWM(pwmPowerDuty);      // PWM duty cycle anable  
   showFrequency();
 }
-
+// Shows the first message after turn the transmitter on
 void showSplash() {
   lcd.setCursor(0, 0);
   lcd.print("PU2CLR-QN8066");
@@ -352,7 +357,7 @@ void showSplash() {
   lcd.display();
   delay(1000);
 }
-
+// Show the current frequency
 void showFrequency() {
   char strFrequency[7];
   tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
@@ -360,7 +365,7 @@ void showFrequency() {
   lcd.print(strFrequency);
   lcd.display();
 }
-
+// Shows the current power in percent (duty cycle) 
 void showPower() {
   char strPower[7];
   // uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
@@ -369,7 +374,7 @@ void showPower() {
   lcd.setCursor(0, 1);
   lcd.print(strPower);
 }
-
+// Shows the general current transmitter status
 void showStatus(uint8_t page) {
   char strFrequency[7];
   char str[20];
@@ -408,18 +413,18 @@ void showStatus(uint8_t page) {
       lcd.setCursor(0, 1);
       sprintf(str,"PIL.:%s", keyValue[8].value[keyValue[8].key].desc);  
       lcd.print(str);
-   }   
-    
+   }     
   lcd.display();
 }
-
+// Shows the given parameter to be updated 
 void showParameter(char *desc) {
   lcd.setCursor(0,1);
   lcd.print(">");
   lcd.print(desc);
   lcd.print("<"); 
+  lcd.display();
 }
-
+// Browse the parameters by polling the navigator buttons returns -1 (left/down), 0 (if Menu pressed), 1 (right/up).  
 int8_t browseParameter() {
   do {
     delay(PUSH_MIN_DELAY);
@@ -432,8 +437,7 @@ int8_t browseParameter() {
   } while (digitalRead(BT_MENU) == HIGH);
   return 0;
 }
-
-
+// Shows current menu data 
 void showMenu(uint8_t idx) {
   lcd.clear();
   lcd.setCursor(0, 0);
@@ -448,15 +452,21 @@ void showMenu(uint8_t idx) {
   }
 
 }
-
+// Processes the change to a new frequency
 void doFrequency() {
   showFrequency();
   int8_t key = browseParameter();
   while (key != 0) {
     if (key == -1) {
-      txFrequency -= STEP_FREQ;
+      if (txFrequency < 64)
+          txFrequency = 108;
+       else    
+          txFrequency -= STEP_FREQ;
     } else if (key == 1) {
-      txFrequency += STEP_FREQ;
+      if (txFrequency > 108)
+         txFrequency = 64; 
+       else 
+        txFrequency += STEP_FREQ;
     }
     switchTxFrequency(txFrequency);
     showFrequency();
@@ -464,7 +474,7 @@ void doFrequency() {
   }
   menuLevel = 0;
 }
-
+// // Processes the change to a new power (PWM duty cycle)
 void doPower() {
   showPower();
   int8_t key = browseParameter();
@@ -486,15 +496,13 @@ void doPower() {
   }
   menuLevel = 0;  
 }
-
 /**
  * @brief Runs the action menu to modify the given parameter.
  * @details This function generalizes the menu functions that modify the transmitter parameter values.
  * @details For this purpose, it receives as parameters pointers to functions that will be executed (depending on what needs to be modified).
  * @param showFunc    Pointer to the function that displays the parameter.
  * @param actionFunc  Pointer to the function that modifies the parameter.
- * @param tab         Table (see TableValue) that contains the set of valid parameters.
- * @param idx         Pointer to the index variable that indicates the table position.
+ * @param tab         Table (see KeyValue) that contains the set of valid parameters.
  * @param step        Step (increment) used for the parameter.
  * @param min         Minimum valid value.
  * @param max         Maximum valid value.
@@ -523,23 +531,18 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step,  uint8_
   }
   menuLevel = 0;    
 }
-
-
-
+// // Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
-
-// It is necessary to turn off the PWM to change parameters.
-// The PWM seems to interfere with the communication with the QN8066.
-  enablePWM(0);
+  enablePWM(0); // The PWM seems to interfere with the communication with the QN8066.
   switch (idxMenu) {
     case 0:
       lcd.setCursor(9,1);
-      lcd.print("<<"); 
+      lcd.print("<<");    // it just indicates the edit mode
       doFrequency();
       break;
     case 1:
       lcd.setCursor(9,1);
-      lcd.print("<<"); 
+      lcd.print("<<");    // it just indicates the edit mode
       doPower();
       break;
     case 2:
@@ -574,21 +577,13 @@ uint8_t doMenu(uint8_t idxMenu) {
     default:
       break;
   }
-
-  // Turn the PWM on again. 
-  enablePWM(pwmPowerDuty);
-
-  saveAllTransmitterInformation();
-
+  enablePWM(pwmPowerDuty); // Turn the PWM on again. 
+  saveAllTransmitterInformation(); // Saves the current modified data to the EEPROM
   return 1;
 }
-
-
-
+// Main loop
 void loop() {
-  
   int8_t key;
-
   if (menuLevel == 0) {
     showStatus(lcdPage);
     while (digitalRead(BT_MENU) == HIGH) {
@@ -622,6 +617,5 @@ void loop() {
   } else if (menuLevel == 2) {
     menuLevel = doMenu(menuIdx);
   }
-
-  delay(10);
+  delay(5);
 }

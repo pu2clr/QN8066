@@ -223,7 +223,7 @@ void QN8066::setup(uint16_t xtalDiv,
   Wire.begin();
 }
 
-/** @defgroup group03 RX Functions*/
+/** @defgroup group03 RX Functions (Under construction...)*/
 
 /**
  * @ingroup group03 RX

@@ -8,12 +8,15 @@
 #                         content will be preserved. 
 # Ricardo Lima Caratti Mar 2024
 
-echo "Arduino ATmega328 based board"
-
+echo "**** Arduino ATmega328 based board ***"
+echo "---> A_MINIMALIST_TX"
 arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/A_MINIMALIST_TX --output-dir ~/Downloads/hex/atmega/A_MINIMALIST_TX
+echo "---> A_TX"
 arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/A_TX --output-dir ~/Downloads/hex/atmega/A_TX
+echo "---> B_TX"
 arduino-cli compile -b arduino:avr:nano ./examples/01_SERIAL_MONITOR/B_TX --output-dir ~/Downloads/hex/atmega/B_TX
-arduino-cli compile -b arduino:avr:nano ./examples/99_UNDER_CONSTRUCTION/C_TX_RDS --output-dir ~/Downloads/hex/atmega/C_TX_RDS
-arduino-cli compile -b arduino:avr:nano ./examples/03_LCD_16x2_AND_20x4/NANO_QN8066_LCD16x02_V1/ --output-dir ~/Downloads/hex/atmega/LCD16xV1
-arduino-cli compile -b arduino:avr:nano ./examples/03_LCD_16x2_AND_20x4/NANO_QN8066_LCD16x02_V2/ --output-dir ~/Downloads/hex/atmega/LCD16xV2
+echo "---> TX_RDS"
+arduino-cli compile -b arduino:avr:nano ./examples/02_RDS/TX_RDS --output-dir ~/Downloads/hex/atmega/TX_RDS
+echo "---> NANO_QN8066_LCD16x02_V3"   
+arduino-cli compile -b arduino:avr:nano ./examples/03_LCD_16x2_AND_20x4/NANO_QN8066_LCD16x02_V3/ --output-dir ~/Downloads/hex/atmega/LCD16xV3
 
