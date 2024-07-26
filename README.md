@@ -266,11 +266,11 @@ See also [DIY Kit 5W-7W FM example](https://github.com/pu2clr/QN8066/tree/main/e
 
 ## DIY Kit 5W-7W FM connected with Arduino Pro Mini
 
-The following figure shows the "DIY Kit 5W-7W FM TRANSMITTER" connected to the Arduino Pro Mini. The following link provides more operational details. (Click here to watch the video.)[https://youtu.be/3V40yuwN-Vk?si=-umWUd4IRooRauze]
+The following figure shows the "DIY Kit 5W-7W FM TRANSMITTER" connected to the Arduino Pro Mini. The following link provides more operational details. [Click here to watch the video.](https://youtu.be/3V40yuwN-Vk?si=-umWUd4IRooRauze)
 
 
 ![DIY Kit 5W-7W FM Transceiver 02](./extras/images/QN8066_KIT_ARDUINO_CRTL_01.jpg)
-
+[Click here to see the source code and schematic](https://github.com/pu2clr/QN8066/tree/main/examples/03_LCD_16x2_AND_20x4)
 
 
 ## Donate 
