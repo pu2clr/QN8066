@@ -358,7 +358,6 @@ void showStatus(uint8_t page) {
   char str[20];
 
   lcd.clear();
-
   tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
   lcd.setCursor(0, 0);
   lcd.print(strFrequency);
@@ -370,8 +369,8 @@ void showStatus(uint8_t page) {
      lcd.setCursor(0, 1);
      lcd.print(tx.getAudioPeakValue());
      lcd.print("mV");
-     lcd.setCursor(7, 1);
-     sprintf(str,"%d%%",pwmPowerDuty );
+     lcd.setCursor(9, 1);
+     sprintf(str,"PA:%d%%", pwmPowerDuty * 100 / 255 );
      lcd.print(str);
   }
   else if (page == 1) {     
@@ -379,8 +378,9 @@ void showStatus(uint8_t page) {
       lcd.setCursor(9, 0);
       lcd.print(str);
       lcd.setCursor(0, 1);
-      sprintf(str,"DEV.:%s", tabTxFrequencyDeviation[idxTxFrequencyDeviation].desc);  
+      sprintf(str,"DEV.: %s", tabTxFrequencyDeviation[idxTxFrequencyDeviation].desc);  
       lcd.print(str);
+
   }
   else {
       sprintf(str,"BG:%s", tabTxBufferGain[idxTxBufferGain].desc);   
@@ -390,8 +390,7 @@ void showStatus(uint8_t page) {
       sprintf(str,"PIL.:%s", tabGainTxPilot[idxGainTxPilot].desc);  
       lcd.print(str);
    }   
-  
-   
+    
   lcd.display();
 }
 
@@ -564,10 +563,10 @@ void loop() {
     showStatus(lcdPage);
     while (digitalRead(BT_MENU) == HIGH) {
       if ( (millis() - timePage) > TIME_PAGE ) {
-         lcdPage++; 
         if (lcdPage > 2) lcdPage = 0; 
         showStatus(lcdPage); 
-        timePage = TIME_PAGE;
+        lcdPage++;
+        timePage = millis();
       }
     }
     menuLevel = 1;
