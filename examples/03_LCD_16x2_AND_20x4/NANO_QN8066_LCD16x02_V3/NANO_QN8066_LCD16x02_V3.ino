@@ -94,9 +94,7 @@
 #define PWM_PA 9
 
 #define STEP_FREQ 1
-
-#define PUSH_MIN_DELAY 150
-
+#define PUSH_MIN_DELAY 125
 #define TIME_PAGE 5000
 
 uint32_t timePage = millis();
@@ -336,9 +334,9 @@ void readAllTransmitterInformation() {
 
 // Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
-  delay(200);
+  delay(300);
   analogWrite(PWM_PA, value);  // Turn PA off
-  delay(200);
+  delay(300);
 }
 // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
@@ -525,7 +523,7 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step,  uint8_
         else 
            tab->key = tab->key - step;  
     }
-    actionFunc(tab->key);
+    actionFunc(tab->value[tab->key].idx);
     showParameter((char *) tab->value[tab->key].desc);
     key = browseParameter();
   }
