@@ -8,6 +8,12 @@ The following schematic illustrates the connections between the Arduino Nano, th
 ![Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic](./schematic_nano.png)
 
 
+### Regular LCD16x03 (5V) 
+
+
+![Regular LCD16x03 (5V)](./../../extras/images/lcd16x02_regular_version.jpg)
+
+
 ## Wire up on Arduino UNO, Nano or Pro mini
 
 ### LCD 16x2 or 20x4  
@@ -60,7 +66,31 @@ The following schematic illustrates the connections between the Arduino Nano, th
 
 ## Arduino Pro mini schematic 
 
+In this circuit diagram, note that the LCD16x02 is a 3.3V version. You can purchase the LCD in this version or modify a 5V one as shown below.
+
+
 ![Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic](./schematic_arduino_pro_mini_version.png)
+
+
+### LCD16x02 3.3V Version
+
+![LCD16x02 3.3V Version - 01](./../../extras/images/lcd16x02_3V3.jpg)
+
+### LCD16x02 5V modified to operate with 3.3V
+
+![LCD16x02 3.3V Version - 01](./../../extras/images/lcd16x02_3V3_modification.jpg)
+
+
+The IC labeled "7660 AIBAZ DNY17P" is commonly known as the ICL7660. It is a DC-DC voltage converter that functions as a voltage inverter, converting a positive voltage to a negative voltage. This chip is widely used in applications where a negative voltage is needed from a positive power supply. In this case, you use it as a Voltage Doubler. 
+
+
+  3.3V ---+---[7660]---+----> +6.6V (VOUT)
+          |            |
+         [C1]         [C2]
+          |            |
+         GND          GND
+
+C1 and C2 are 10µF capacitors.
 
 
 
