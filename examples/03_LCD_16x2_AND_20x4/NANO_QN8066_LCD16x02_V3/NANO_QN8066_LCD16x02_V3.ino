@@ -501,23 +501,23 @@ void doPower() {
  * @see C/C++: Passing function pointers as arguments to other functions; Understanding how to use function pointers for callback mechanisms.
  * @see   C++: Capturing variables in lambdas and their usage as function pointers; Understanding lambda expressions in C++ and how they relate to function pointers  
  */
-void runAction(void (*actionFunc)(uint8_t), TableValue *tab, int8_t *idx, uint8_t step,  uint8_t min, uint8_t max ) {  
-  showParameter((char *) tab[*idx].desc);
+void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step,  uint8_t min, uint8_t max ) {  
+  showParameter((char *) tab->value[tab->key].desc);
   int8_t key = browseParameter();
   while (key != 0) {
     if  ( key ==  1) { 
-        if ( *idx == max) 
-           *idx = min;
+        if ( tab->key == max) 
+           tab->key = min;
         else 
-           *idx = *idx + step;  
+           tab->key = tab->key + step;  
     } else {
-        if (*idx == min) 
-           *idx = max;
+        if (tab->key == min) 
+           tab->key = max;
         else 
-           *idx = *idx - step;  
+           tab->key = tab->key - step;  
     }
-    actionFunc(tab[*idx].idx);
-    showParameter((char *) tab[*idx].desc);
+    actionFunc(tab->key);
+    showParameter((char *) tab->value[tab->key].desc);
     key = browseParameter();
   }
   menuLevel = 0;    
@@ -541,31 +541,31 @@ uint8_t doMenu(uint8_t idxMenu) {
       doPower();
       break;
     case 2:
-      runAction([&tx](uint8_t value) { tx.setTxMono(value); }, tabMonoStereo, & idxStereoMono, 1, 0, 1);
+      runAction([&tx](uint8_t value) { tx.setTxMono(value); }, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 3:
-      runAction([&tx](uint8_t value) { tx.setPreEmphasis(value); }, tabPreEmphasis, & idxPreEmphasis, 1, 0, 1);
+      runAction([&tx](uint8_t value) { tx.setPreEmphasis(value); }, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 4:
-      runAction([&tx](uint8_t value) { tx.setTxRDS(value); }, tabRDS, & idxRDS, 1, 0, 1);
+      runAction([&tx](uint8_t value) { tx.setTxRDS(value); },  &keyValue[idxMenu], 1, 0, 1);
       break;
     case 5:
-      runAction([&tx](uint8_t value) { tx.setTxInputImpedance(value); }, tabImpedance, & idxImpedance, 1, 0, 3);
+      runAction([&tx](uint8_t value) { tx.setTxInputImpedance(value); }, &keyValue[idxMenu] , 1, 0, 3);
       break;
     case 6:
-      runAction([&tx](uint8_t value) { tx.setTxSoftClippingEnable(value); }, tabTxSoftClipEnable, & idxTxSoftClipEnable, 1, 0, 1);
+      runAction([&tx](uint8_t value) { tx.setTxSoftClippingEnable(value); }, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 7:
-      runAction([&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, tabTxSoftClipThreshold, & idxTxSoftClipThreshold, 1, 0, 3);
+      runAction([&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 8:
-      runAction([&tx](uint8_t value) { tx.setTxPilotGain(value); }, tabGainTxPilot, & idxGainTxPilot, 1, 0, 3);
+      runAction([&tx](uint8_t value) { tx.setTxPilotGain(value); }, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 9:
-      runAction([&tx](uint8_t value) { tx.setTxFrequencyDerivation(value); }, tabTxFrequencyDeviation, & idxTxFrequencyDeviation, 1, 0, 5);
+      runAction([&tx](uint8_t value) { tx.setTxFrequencyDerivation(value); }, &keyValue[idxMenu], 1, 0, 5);
       break;  
     case 10:
-      runAction([&tx](uint8_t value) { tx.setTxInputBufferGain(value); }, tabTxBufferGain, & idxTxBufferGain, 1, 0, 5);
+      runAction([&tx](uint8_t value) { tx.setTxInputBufferGain(value); }, &keyValue[idxMenu], 1, 0, 5);
       break;   
     case 11:
       return 0;       
