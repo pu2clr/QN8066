@@ -546,31 +546,31 @@ uint8_t doMenu(uint8_t idxMenu) {
       doPower();
       break;
     case 2:
-      runAction([&tx](uint8_t value) { tx.setTxMono(value); }, &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) { tx.setTxMono(value); }, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 3:
-      runAction([&tx](uint8_t value) { tx.setPreEmphasis(value); }, &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) { tx.setPreEmphasis(value); }, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 4:
-      runAction([&tx](uint8_t value) { tx.setTxRDS(value); },  &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) { tx.setTxRDS(value); },  &keyValue[idxMenu], 1, 0, 1);
       break;
     case 5:
-      runAction([&tx](uint8_t value) { tx.setTxInputImpedance(value); }, &keyValue[idxMenu] , 1, 0, 3);
+      runAction([](uint8_t value) { tx.setTxInputImpedance(value); }, &keyValue[idxMenu] , 1, 0, 3);
       break;
     case 6:
-      runAction([&tx](uint8_t value) { tx.setTxSoftClippingEnable(value); }, &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) { tx.setTxSoftClippingEnable(value); }, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 7:
-      runAction([&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 8:
-      runAction([&tx](uint8_t value) { tx.setTxPilotGain(value); }, &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) { tx.setTxPilotGain(value); }, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 9:
-      runAction([&tx](uint8_t value) { tx.setTxFrequencyDerivation(value); }, &keyValue[idxMenu], 1, 0, 5);
+      runAction([](uint8_t value) { tx.setTxFrequencyDerivation(value); }, &keyValue[idxMenu], 1, 0, 5);
       break;  
     case 10:
-      runAction([&tx](uint8_t value) { tx.setTxInputBufferGain(value); }, &keyValue[idxMenu], 1, 0, 5);
+      runAction([](uint8_t value) { tx.setTxInputBufferGain(value); }, &keyValue[idxMenu], 1, 0, 5);
       break;   
     case 11:
       return 0;       
