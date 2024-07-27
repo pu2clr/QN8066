@@ -23,6 +23,18 @@ the Arduino Uno, Nano, or Pro Mini boards.
 Attention: Use the "Serial Monitor" function in the Arduino IDE to monitor the system 
            initialization process.
 
+IMPORTANT: 
+
+Regarding the "KIT DIY 5~7W FM TRANSMITTER,"  during  experiments, it was  observed that the 
+PWM signal disrupts the I2C communication significantly. This is likely due to the proximity 
+of the PWM conductor to the bus. To  send commands to  the QN8066, the  PWM is  disabled and 
+re-enabled after the  command is  sent; this was  the method  found to  make the KIT receive 
+commands. However,  with RDS  operation, there is  a  constant need  to send new information, 
+requiring frequent stops in transmission. At the time of writing this text, some changes are 
+being planned:  1) introducing  a resistor  (possibly 1K or more)  in  series  with  the PWM 
+conductor; 2) connecting the PWM directly to the power controller input, distancing  it from 
+the I2C bus, and if possible, removing the PCB trace that is near the bus.
+
 Author: Ricardo Lima Caratti (PU2CLR) - 2024/06/17
 */
 
