@@ -275,12 +275,13 @@ void setup() {
     saveAllTransmitterInformation();
   }
 
+  enablePWM(0);  // PWM disable
+
   tx.setup();
   tx.setTX(txFrequency);
 
   // Due to the architecture of the KIT, the PWM interferes with I2C communication. 
   // Therefore, before changing the transmitter's configuration parameters, it must be disabled (Duty 0).
-  enablePWM(0);  // PWM disable
 
   // Sets the transmitter with the previous setup parameters  
   tx.setTxInputImpedance(keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].idx); // 40Kohm
