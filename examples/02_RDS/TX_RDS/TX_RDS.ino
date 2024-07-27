@@ -79,7 +79,7 @@ void setup() {
 
 bool toggle = true;  
 void loop() {
-
+  tx.setTxToggleRDSReady();
   if (toggle)
     tx.sendProgramService(strSDR1);
   else   
@@ -88,6 +88,6 @@ void loop() {
   while (!tx.getTxRDSUpdated());  
   toggle = !toggle;
 
-
+  delay(10000);
 
 }
