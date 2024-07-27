@@ -74,7 +74,7 @@ void setup() {
 
   sprintf(str, "\n\nBroadcasting with RDS...");
 
-  analogWrite(9, 50);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
+  analogWrite(9, 0);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
 bool toggle = true;  
