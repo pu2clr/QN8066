@@ -231,6 +231,10 @@ KeyValue keyValue[] = {
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 
+char *rdsStationName = (char *) "QN8066TX";
+long rdsTime = millis();
+
+
 // TX board interface
 QN8066 tx;
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
@@ -292,6 +296,13 @@ void setup() {
   tx.setTxRDS(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
   tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx); 
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
+
+
+  // Checking RDS... UNDER CONSTRUCTION...
+  // if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
+  //        tx.sendStationName(rdsStationName);
+  // }
+
 
   showStatus(lcdPage);
   lcd.clear();
@@ -592,6 +603,14 @@ void loop() {
         lcdPage++;
         timePage = millis();
       }
+
+      if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
+        if ( (millis() - rdsTime) > 60000 ) {
+          tx.sendStationName(rdsStationName);
+          rdsTime = millis();
+        }
+      }
+
     }
     menuLevel = 1;
   } else if (menuLevel == 1) {
@@ -616,5 +635,7 @@ void loop() {
   } else if (menuLevel == 2) {
     menuLevel = doMenu(menuIdx);
   }
+ 
+
   delay(5);
 }

@@ -814,7 +814,9 @@ public:
   void setRDSLineIn(bool value); 
   void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void sendProgramService(const char* ps); 
-
+  void sendStationName(const char* ps);
+  void sendBlock( uint8_t rdsRegister, const uint16_t block); 
+  uint16_t calcRdsChecksum(uint16_t block);
 
   void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator = '.', bool remove_leading_zeros = true);
 
