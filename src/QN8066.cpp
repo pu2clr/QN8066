@@ -1018,6 +1018,7 @@ void QN8066::writeTxRDSBuffer(char *text) {
   for (uint8_t address = QN_TX_RDSD0; address <= QN_TX_RDSD7; address++ ) {
     this->setRegister(address, *text++);
   }
+  this->setTxToggleRDSReady();
   delay(1);
 }
 
@@ -1049,43 +1050,6 @@ void QN8066::setRDSLineIn(bool value) {
   this->setRegister(QN_RDS, rds.raw);  
 } 
 
-/*
-void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD) {
-
-  Wire.beginTransmission(QN8066_I2C_ADDRESS);
-  Wire.write(QN_TX_RDSD0);
-  Wire.write(blockA>>8);
-  Wire.write(blockA & 0xFF);
-
-  Wire.write(blockB);
-  Wire.write(blockB & 0xFF);
-
-  Wire.write(blockC);
-  Wire.write(blockC & 0xFF);
-
-  Wire.write(blockD);  
-  Wire.write(blockD & 0xFF);
-
-  Wire.endTransmission();
-
-}
-*/
-
-void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD) {
-
-  this->setRegister(QN_TX_RDSD0, blockA>>8 );
-  this->setRegister(QN_TX_RDSD1, blockA & 0xFF);
-  this->setRegister(QN_TX_RDSD2, blockB>>8 );
-  this->setRegister(QN_TX_RDSD3, blockB & 0xFF);
-  this->setRegister(QN_TX_RDSD5, blockC>>8 );
-  this->setRegister(QN_TX_RDSD5, blockC & 0xFF);
-  this->setRegister(QN_TX_RDSD6, blockD>>8 );
-  this->setRegister(QN_TX_RDSD7, blockD & 0xFF);
-
-  this->setTxToggleRDSReady();
-  delay(87);  
-
-}
 
 const uint16_t piCode = 0x819B; // Exemplo de código PI
 const uint8_t ptyCode = 2; 
@@ -1103,71 +1067,43 @@ void QN8066::sendProgramService(const char* ps) {
 }
 
 
-uint16_t QN8066::calcRdsChecksum(uint16_t block) {
 
-    const uint16_t DS_POLYNOMIAL = 0x5B9; // Generator polynomial for RDS
-    uint32_t blockWithZeros = block << 10; // Append 10 zeros to the end
-    uint32_t mask = (uint32_t) 1 << 25; // Set the mask to the highest bit position within 32 bits
+void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD) {
 
-    while (mask > 0x200) { // While mask is more than the polynomial
-        if (blockWithZeros & mask) {
-            blockWithZeros ^= DS_POLYNOMIAL << (25 - 10); // Align the polynomial with the current highest bit
-        }
-        mask >>= 1; // Shift the mask to the next lower bit
-    }
+  this->setRegister(QN_TX_RDSD0, blockA>>8 );
+  this->setRegister(QN_TX_RDSD1, blockA & 0xFF);
+  this->setRegister(QN_TX_RDSD2, blockB>>8 );
+  this->setRegister(QN_TX_RDSD3, blockB & 0xFF);
+  this->setRegister(QN_TX_RDSD4, blockC>>8 );
+  this->setRegister(QN_TX_RDSD5, blockC & 0xFF);
+  this->setRegister(QN_TX_RDSD6, blockD>>8 );
+  this->setRegister(QN_TX_RDSD7, blockD & 0xFF);
 
-    return blockWithZeros & 0x3FF; // Return the 10-bit checksum
+  this->setTxToggleRDSReady();
+  delay(87);  
+
 }
 
 
-void QN8066::sendBlock( uint8_t rdsRegister, const uint16_t block) {
-    this->setRegister(rdsRegister, block>>8);  
-    this->setRegister(rdsRegister, block & 0xFF);
-    this->setTxToggleRDSReady();
-    delay(87);
-} 
 
 void QN8066::sendStationName(const char* stationName) {
 
   // Temporary 
   const uint16_t cPI = 0x1234;
-  const uint8_t cPTY = 0x01;
+  const uint8_t cPTY = 29; // Documentary
   const uint8_t cTP = 0;
-
 
   for (uint8_t i = 0; i < 4; i++) { 
     uint16_t block1 = cPI;
     uint16_t block2 = (cPTY << 5) | (cTP << 4) | (0 << 3) | (0 << 2) | (0 << 1) | 1; // Version B
+    // uint16_t block2 = (cPTY << 5) | (cTP << 4) | (0 << 3) | (0 << 2) | (0 << 1) | 0; // Version A
     uint16_t block3 = cPI; // PI code repetition
-    uint16_t block4 = (stationName[i * 2] << 8) | stationName[i * 2 + 1];
-
-    // block1 = (block1 << 10) | calcRdsChecksum(block1);
-    // block2 = (block2 << 10) | calcRdsChecksum(block2);
-    // block3 = (block3 << 10) | calcRdsChecksum(block3);
-    // block4 = (block4 << 10) | calcRdsChecksum(block4);
-
-
-    this->sendRDSGroup(block1, block2, block3, block4); 
-    // this->sendBlock(QN_TX_RDSD0, block1 ); 
-    // this->sendBlock(QN_TX_RDSD0, block2 ); 
-    // this->sendBlock(QN_TX_RDSD0, block3 ); 
-    // this->sendBlock(QN_TX_RDSD0, block4 ); 
-
+    uint16_t block4 = ( (uint16_t) (stationName[i * 2] << 8) ) | stationName[i * 2 + 1];
+    this->sendRDSGroup(block1, block2, block3, block4);  
   }
-}
-/*
-void QN8066::sendProgramService(const char* ps) {
-  for (uint8_t i = 0; i < 4; i++) { // Cada caractere é 2 bytes
-    uint16_t blockA = piCode; 
-    uint16_t blockB = (0x0 << 12) | (ptyCode << 5) | (i << 2); // Tipo de Grupo 0A/0B, PTY, índice
-    uint16_t blockC = (ps[i * 2] << 8) | ps[i * 2 + 1]; // 2 caracteres por bloco
-    uint16_t blockD = 0; // Não usado para PS
 
-    sendRDSGroup(blockA, blockB, blockC, blockD);
-    delay(87); // RDS especifica 87.6ms por grupo
-  }
 }
-*/
+
 
 
 /** @defgroup group99 Helper and Tools functions*/

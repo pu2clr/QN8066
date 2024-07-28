@@ -692,6 +692,40 @@ typedef union {
   uint8_t raw;
 } qn8066_reg_vga;
 
+
+/**
+ * @ingroup group05 TX RDS
+ * @brief RDS - First block 
+ * 
+ */
+typedef union { 
+  struct {
+    uint8_t reference : 7 ;
+    uint8_t programId : 4 ;
+    uint8_t countryId : 4 ;
+  } block1;
+  uint16_t raw;   // pi Code
+} RDS_B1;
+
+
+/**
+ * @ingroup group05 TX RDS
+ * @brief RDS - Block two
+ * 
+ */
+typedef union { 
+  struct {
+    uint8_t groupType : 4 ;         //!< Group Type Code - Specifies the type of RDS group (e.g., 0A, 0B, etc.)
+    uint8_t versionCode : 1;        //!< Version Code - Specifies the version of the RDS group (0 for version A, 1 for version B)
+    uint8_t programType : 5;        //!< Program Type (PTY) - Specifies the type of program content (e.g., News, Sports)
+    uint8_t trafficProgram: 1;      //!< Traffic Program (TP) - A flag indicating if the station broadcasts traffic announcements (0 = no, 1 = yes)
+    uint8_t trafficAnnouncement:5;  //!< Traffic Announcement (TA) - A flag indicating if a traffic announcement is currently being broadcast (0 = no, 1 = yes)
+  } block2;
+  uint16_t  raw;
+} RDS_B2;
+
+
+
 /**
  * @ingroup  CLASSDEF
  * @brief QN8066 Class
@@ -702,7 +736,7 @@ typedef union {
  */
 class QN8066 {
 private:
-  uint16_t resetDelay = 1000; //!<< Delay after reset (default 1s)
+  uint16_t resetDelay = 1000;   //!<< Delay after reset (default 1s)
   uint16_t xtal_div = 1000;
 
   qn8066_system2 system1;
@@ -815,8 +849,6 @@ public:
   void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void sendProgramService(const char* ps); 
   void sendStationName(const char* ps);
-  void sendBlock( uint8_t rdsRegister, const uint16_t block); 
-  uint16_t calcRdsChecksum(uint16_t block);
 
   void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator = '.', bool remove_leading_zeros = true);
 

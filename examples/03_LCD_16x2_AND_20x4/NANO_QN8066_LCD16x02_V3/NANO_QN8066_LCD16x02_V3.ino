@@ -299,9 +299,9 @@ void setup() {
 
 
   // Checking RDS... UNDER CONSTRUCTION...
-  // if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-  //        tx.sendStationName(rdsStationName);
-  // }
+  if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
+      tx.sendStationName(rdsStationName);
+  }
 
 
   showStatus(lcdPage);
@@ -603,13 +603,14 @@ void loop() {
         lcdPage++;
         timePage = millis();
       }
-
+      // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
           tx.sendStationName(rdsStationName);
           rdsTime = millis();
         }
-      }
+      } 
+
 
     }
     menuLevel = 1;
