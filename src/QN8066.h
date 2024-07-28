@@ -841,7 +841,7 @@ public:
 
   // RDS TX
   void setTxRDS(bool value);   
-  void setTxToggleRDSReady();
+  uint8_t setTxToggleRDSReady();
   bool getTxRDSUpdated();
   void writeTxRDSBuffer(char *text);
   void setRDSFrequencyDeviation(uint8_t freq);

@@ -989,10 +989,11 @@ void QN8066::setTxRDS(bool value) {
  * @details description the chip internally will fetch these bytes after completing transmitting of current group.
  * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
  */
-void QN8066::setTxToggleRDSReady() {
+uint8_t QN8066::setTxToggleRDSReady() {
   this->system2.raw = this->getRegister(QN_SYSTEM2);
   this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy);
   this->setRegister(QN_SYSTEM2, this->system2.raw);
+  return this->system2.arg.rdsrdy;
 }
 
 /**
@@ -1055,6 +1056,10 @@ const uint16_t piCode = 0x819B; // Exemplo de código PI
 const uint8_t ptyCode = 2; 
 
 void QN8066::sendProgramService(const char* ps) {
+
+  RDS_B1 b1;
+  
+
   for (uint8_t i = 0; i < 4; i++) { // Cada caractere é 2 bytes
     uint16_t blockA = piCode; 
     uint16_t blockB = (0x0 << 12) | (ptyCode << 5) | (i << 2); // Tipo de Grupo 0A/0B, PTY, índice
@@ -1070,6 +1075,9 @@ void QN8066::sendProgramService(const char* ps) {
 
 void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD) {
 
+  uint8_t toggle; 
+  uint8_t count = 0;
+
   this->setRegister(QN_TX_RDSD0, blockA>>8 );
   this->setRegister(QN_TX_RDSD1, blockA & 0xFF);
   this->setRegister(QN_TX_RDSD2, blockB>>8 );
@@ -1079,8 +1087,13 @@ void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uin
   this->setRegister(QN_TX_RDSD6, blockD>>8 );
   this->setRegister(QN_TX_RDSD7, blockD & 0xFF);
 
-  this->setTxToggleRDSReady();
+  toggle = this->setTxToggleRDSReady();
   delay(87);  
+
+  while ( this->getTxRDSUpdated() == toggle  && count < 10) { 
+    delay(1);
+    count++;
+  }
 
 }
 
