@@ -695,36 +695,113 @@ typedef union {
 
 /**
  * @ingroup group05 TX RDS
- * @brief RDS - First block 
- * 
+ * @brief RDS - First block (RDS_BLOCK1 datatype)
+ * @details PI Code Function: Identifies the radio station. This code is essential 
+ * @details for allowing receivers to identify the source of the radio signal.
  */
 typedef union { 
   struct {
     uint8_t reference : 7 ;
     uint8_t programId : 4 ;
     uint8_t countryId : 4 ;
-  } block1;
-  uint16_t raw;   // pi Code
-} RDS_B1;
+  } field;
+  uint16_t pi;   // pi Code
+} RDS_BLOCK1;
+
 
 
 /**
  * @ingroup group05 TX RDS
- * @brief RDS - Block two
- * 
+ *
+ * @brief Block 2 (RDS_BLOCK2 data type)
+ * @details Specifies the type of data being transmitted and includes information such as 
+ * @details program type (e.g., news, music) and whether the station transmits traffic information.
+ * @details The table below show some program types you can use  to check your transmitter.
+ * | PTY Code	 | Program Type |
+ * | ----------| ------------ |  
+ * | 0	| No PTY (undefined)  | 
+ * | 1	| News | 
+ * | 3	| Information | 
+ * | 4	| Sport | 
+ * | 5	| Education | 
+ * | 7	| Culture | 
+ * | 8	| Science |
+ * | 10	| Pop Music | 
+ * | 11	| Rock Music |
+ * | 15	| Other Music |
+ * | 16	| Weather |
+ * | 17	| Finance |
+ * | 18	| Children's Programs |
+ * | 20	| Religion |
+ * | 24	| Jazz Music |
+ * | 25	| Country Music |
+ * | 26	| National Music |
+ * | 27	| Oldies Music |
+ * | 28	| Folk Music |
+ * | 29	| Documentary |
+ * | 31	| Alarm |
+ *
+ * @details For GCC on System-V ABI on 386-compatible (32-bit processors), the following stands:
+ * 1) Bit-fields are allocated from right to left (least to most significant).
+ * 2) A bit-field must entirely reside in a storage unit appropriate for its declared type.
+ *    Thus a bit-field never crosses its unit boundary.
+ * 3) Bit-fields may share a storage unit with other struct/union members, including members that are not bit-fields.
+ *    Of course, struct members occupy different parts of the storage unit.
+ * 4) Unnamed bit-fields' types do not affect the alignment of a structure or union, although individual
+ *    bit-fields' member offsets obey the alignment constraints.
+ * @see also https://en.wikipedia.org/wiki/Radio_Data_System
+ *
  */
-typedef union { 
-  struct {
-    uint8_t groupType : 4 ;         //!< Group Type Code - Specifies the type of RDS group (e.g., 0A, 0B, etc.)
-    uint8_t versionCode : 1;        //!< Version Code - Specifies the version of the RDS group (0 for version A, 1 for version B)
-    uint8_t programType : 5;        //!< Program Type (PTY) - Specifies the type of program content (e.g., News, Sports)
-    uint8_t trafficProgram: 1;      //!< Traffic Program (TP) - A flag indicating if the station broadcasts traffic announcements (0 = no, 1 = yes)
-    uint8_t trafficAnnouncement:5;  //!< Traffic Announcement (TA) - A flag indicating if a traffic announcement is currently being broadcast (0 = no, 1 = yes)
-  } block2;
-  uint16_t  raw;
-} RDS_B2;
+
+typedef union
+{
+    struct
+    {
+        uint16_t additionalData : 5;         //!< Additional data bits, depending on the group.
+        uint16_t programType : 5;            //!< PTY (Program Type) code
+        uint16_t trafficProgramCode : 1;     //!< (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint16_t versionCode : 1;            //!< (B0) => 0=A; 1=B
+        uint16_t groupType : 4;              //!< Group Type code.
+    } commonFields;
+
+    struct
+    {
+        uint16_t address : 2;                //!< Depends on Group Type and Version codes. If 0A or 0B it is the Text Segment Address.
+        uint16_t DI : 1;                     //!< Decoder Control bit
+        uint16_t MS : 1;                     //!< Music/Speech
+        uint16_t TA : 1;                     //!< Traffic Announcement
+        uint16_t programType : 5;            //!< PTY (Program Type) code
+        uint16_t trafficProgramCode : 1;     //!< (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint16_t versionCode : 1;            //!< (B0) => 0=A; 1=B
+        uint16_t groupType : 4;              //!< Group Type code.
+    } group0Field;
+
+    struct
+    {
+        uint16_t address : 4;                //!< Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
+        uint16_t textABFlag : 1;             //!< Do something if it changes from binary "0" to binary "1" or vice-versa
+        uint16_t programType : 5;            //!< PTY (Program Type) code
+        uint16_t trafficProgramCode : 1;     //!< (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
+        uint16_t versionCode : 1;            //!< (B0) => 0=A; 1=B
+        uint16_t groupType : 4;              //!< Group Type code.
+    } group2Field;
+    uint16_t raw;                            //!< Raw 16-bit representation
+} RDS_BLOCK2;
 
 
+typedef union {
+    struct {
+      unsigned char content[2];
+    } field;
+    uint16_t raw;
+} RDS_BLOCK3;
+
+typedef union {
+    struct {
+      unsigned char content[2];
+    } field;
+    uint16_t raw;
+} RDS_BLOCK4;
 
 /**
  * @ingroup  CLASSDEF
@@ -753,6 +830,11 @@ private:
   qn8066_rds rds;
   qn8066_pac pac;
   qn8066_vol_ctl vol_ctl;
+
+
+  uint16_t rdsPI = 33179;    //!< Default value for piCode (0x819B)
+  uint8_t rdsPTY = 5;       //!< Default program type (PTY) 5 is "Education"
+  uint8_t rdsTP = 0;        //!< Traffic Program (TP)
 
 
 protected:
@@ -849,6 +931,27 @@ public:
   void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void sendProgramService(const char* ps); 
   void sendStationName(const char* ps);
+
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Sets the Program Identification (PI)
+  * @param pi - PI Code
+  */
+  void setRdsPI(uint16_t pi) {this->rdsPI = pi;};
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Sets the Program Type (PTY)
+  * @param pty - Program type
+  */
+  void setRdsPTY(uint16_t pty) {this->rdsPTY = pty;};
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Sets the Traffic Program.
+  * @param tp - tp Code
+  */
+  void setRdsTP(uint16_t tp) {this->rdsTP = tp;};
+
+
 
   void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator = '.', bool remove_leading_zeros = true);
 

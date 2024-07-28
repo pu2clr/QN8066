@@ -1052,26 +1052,6 @@ void QN8066::setRDSLineIn(bool value) {
 } 
 
 
-const uint16_t piCode = 0x819B; // Exemplo de código PI
-const uint8_t ptyCode = 2; 
-
-void QN8066::sendProgramService(const char* ps) {
-
-  RDS_B1 b1;
-  
-
-  for (uint8_t i = 0; i < 4; i++) { // Cada caractere é 2 bytes
-    uint16_t blockA = piCode; 
-    uint16_t blockB = (0x0 << 12) | (ptyCode << 5) | (i << 2); // Tipo de Grupo 0A/0B, PTY, índice
-    uint16_t blockC = (ps[i * 2] << 8) | ps[i * 2 + 1]; // 2 caracteres por bloco
-    uint16_t blockD = 0; // Não usado para PS
-
-    sendRDSGroup(blockA, blockB, blockC, blockD);
-    delay(87); // RDS especifica 87.6ms por grupo
-  }
-}
-
-
 
 void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD) {
 
@@ -1101,20 +1081,39 @@ void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uin
 
 void QN8066::sendStationName(const char* stationName) {
 
-  // Temporary 
-  const uint16_t cPI = 0x1234;
-  const uint8_t cPTY = 29; // Documentary
-  const uint8_t cTP = 0;
+  RDS_BLOCK1 b1;
+  RDS_BLOCK2 b2;
+  RDS_BLOCK4 b4;
 
-  for (uint8_t i = 0; i < 4; i++) { 
-    uint16_t block1 = cPI;
-    uint16_t block2 = (cPTY << 5) | (cTP << 4) | (0 << 3) | (0 << 2) | (0 << 1) | 1; // Version B
+  b1.pi = this->rdsPI;
+  b2.raw = 0;
+  b2.commonFields.programType = this->rdsPTY;
+  b2.commonFields.trafficProgramCode = this->rdsTP;
+  b2.commonFields.versionCode = 1; // Version B 
+
+  for (uint8_t i = 0; i < 8; i+=2) { 
+    // uint16_t block1 = this->rdsPI;
+    // uint16_t block2 = (rdsPTY << 5) | (rdsTP << 4) | (0 << 3) | (0 << 2) | (0 << 1) | 1; // Version B
     // uint16_t block2 = (cPTY << 5) | (cTP << 4) | (0 << 3) | (0 << 2) | (0 << 1) | 0; // Version A
-    uint16_t block3 = cPI; // PI code repetition
-    uint16_t block4 = ( (uint16_t) (stationName[i * 2] << 8) ) | stationName[i * 2 + 1];
-    this->sendRDSGroup(block1, block2, block3, block4);  
+    // uint16_t block3 = rdsPI; // PI code repetition
+    // uint16_t block4 = ( (uint16_t) (stationName[i * 2] << 8) ) | stationName[i * 2 + 1];
+    b4.field.content[0] = stationName[i];
+    b4.field.content[1] = stationName[i+1];
+    this->sendRDSGroup(b1.pi, b2.raw, b1.pi, b4.raw);  
   }
 
+}
+
+void QN8066::sendProgramService(const char* ps) {
+
+  for (uint8_t i = 0; i < 4; i++) { // Cada caractere é 2 bytes
+    uint16_t block1 = rdsPI; 
+    uint16_t block2 = (0x0 << 12) | (rdsPTY << 5) | (i << 2); // Tipo de Grupo 0A/0B, PTY, índice
+    uint16_t block3 = (ps[i * 2] << 8) | ps[i * 2 + 1]; // 2 caracteres por bloco
+    uint16_t block4 = 0; // Não usado para PS
+
+    sendRDSGroup(block1, block2, block3, block4);
+  }
 }
 
 
