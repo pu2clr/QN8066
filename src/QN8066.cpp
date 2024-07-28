@@ -1015,7 +1015,7 @@ bool QN8066::getTxRDSUpdated() {
  * @details The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer.
  * @param text (point to array of char with 8 bytes to be loaded into the RDS data buffer)
  */
-void QN8066::writeTxRDSBuffer(char *text) { 
+void QN8066::writeTxRDSBuffer(const char *text) { 
   for (uint8_t address = QN_TX_RDSD0; address <= QN_TX_RDSD7; address++ ) {
     this->setRegister(address, *text++);
   }
@@ -1052,67 +1052,99 @@ void QN8066::setRDSLineIn(bool value) {
 } 
 
 
-
-void QN8066::sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD) {
-
+void QN8066::setRdsBlock(uint8_t rdsRegister, uint16_t block) {
   uint8_t toggle; 
   uint8_t count = 0;
-
-  this->setRegister(QN_TX_RDSD0, blockA>>8 );
-  this->setRegister(QN_TX_RDSD1, blockA & 0xFF);
-  this->setRegister(QN_TX_RDSD2, blockB>>8 );
-  this->setRegister(QN_TX_RDSD3, blockB & 0xFF);
-  this->setRegister(QN_TX_RDSD4, blockC>>8 );
-  this->setRegister(QN_TX_RDSD5, blockC & 0xFF);
-  this->setRegister(QN_TX_RDSD6, blockD>>8 );
-  this->setRegister(QN_TX_RDSD7, blockD & 0xFF);
+  
+  this->setRegister(rdsRegister, block>>8 );
+  this->setRegister(rdsRegister, block & 0xFF);
 
   toggle = this->setTxToggleRDSReady();
   delay(87);  
 
   while ( this->getTxRDSUpdated() == toggle  && count < 10) { 
-    delay(1);
+    delay(2);
+    count++;
+  }
+
+} 
+
+
+void QN8066::sendRDSGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
+
+  uint8_t toggle; 
+  uint8_t count = 0;
+ 
+  this->setRegister(QN_TX_RDSD0, block1>>8 );
+  this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
+  this->setRegister(QN_TX_RDSD2, block2>>8 );
+  this->setRegister(QN_TX_RDSD3, block2 & 0xFF);
+  this->setRegister(QN_TX_RDSD4, block3>>8 );
+  this->setRegister(QN_TX_RDSD5, block4 & 0xFF);
+  this->setRegister(QN_TX_RDSD6, block4>>8 );
+  this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
+  
+
+  toggle = this->setTxToggleRDSReady();
+  delay(87);  
+
+  while ( this->getTxRDSUpdated() == toggle  && count < 10) { 
+    delay(2);
     count++;
   }
 
 }
 
+/**
+ * @ingroup group05 TX RDS
+ * @brief Sets the station name 
+ * 
+ * @param stationName 
+ */
+void QN8066::setRdsStationName(char *stationName) { 
+  strncpy(this->rdsStationName,stationName,8);
+  rdsStationName[8] = '\0';
+}
 
 
 void QN8066::sendStationName(const char* stationName) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
+  // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
   b1.pi = this->rdsPI;
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 1; // Version B 
+  b2.commonFields.versionCode = 0; // Version A 
 
-  for (uint8_t i = 0; i < 8; i+=2) { 
-    // uint16_t block1 = this->rdsPI;
-    // uint16_t block2 = (rdsPTY << 5) | (rdsTP << 4) | (0 << 3) | (0 << 2) | (0 << 1) | 1; // Version B
-    // uint16_t block2 = (cPTY << 5) | (cTP << 4) | (0 << 3) | (0 << 2) | (0 << 1) | 0; // Version A
-    // uint16_t block3 = rdsPI; // PI code repetition
-    // uint16_t block4 = ( (uint16_t) (stationName[i * 2] << 8) ) | stationName[i * 2 + 1];
+  for (uint8_t i = 0; i < 8; i+=2) { // Cada caractere é 2 bytes
     b4.field.content[0] = stationName[i];
-    b4.field.content[1] = stationName[i+1];
-    this->sendRDSGroup(b1.pi, b2.raw, b1.pi, b4.raw);  
+    b4.field.content[1] = stationName[i+1];    
+    this->sendRDSGroup(b1.pi, b2.raw, b1.pi, b4.raw);
   }
 
 }
 
 void QN8066::sendProgramService(const char* ps) {
 
-  for (uint8_t i = 0; i < 4; i++) { // Cada caractere é 2 bytes
-    uint16_t block1 = rdsPI; 
-    uint16_t block2 = (0x0 << 12) | (rdsPTY << 5) | (i << 2); // Tipo de Grupo 0A/0B, PTY, índice
-    uint16_t block3 = (ps[i * 2] << 8) | ps[i * 2 + 1]; // 2 caracteres por bloco
-    uint16_t block4 = 0; // Não usado para PS
+  RDS_BLOCK1 b1;
+  RDS_BLOCK2 b2;
+  RDS_BLOCK3 b3;
+  // RDS_BLOCK4 b4;
 
-    sendRDSGroup(block1, block2, block3, block4);
+  b1.pi = this->rdsPI;
+  b2.raw = 0;
+  b2.commonFields.programType = this->rdsPTY;
+  b2.commonFields.trafficProgramCode = this->rdsTP;
+  b2.commonFields.versionCode = 1; // Version B   
+
+  for (uint8_t i = 0; i < 8; i+=2) { // Cada caractere é 2 bytes
+    b3.field.content[0] = ps[i];
+    b3.field.content[1] = ps[i+1];    
+    sendRDSGroup(b1.pi, b2.raw, b3.raw, 0);
   }
 }
 

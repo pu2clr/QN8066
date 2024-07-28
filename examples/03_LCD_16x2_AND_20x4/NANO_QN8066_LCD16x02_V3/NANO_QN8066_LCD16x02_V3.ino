@@ -300,6 +300,7 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
+      tx.setRdsPTY(8); // Science
       tx.sendStationName(rdsStationName);
   }
 
@@ -606,7 +607,7 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
-          tx.sendStationName(rdsStationName);
+          tx.sendProgramService(rdsStationName);
           rdsTime = millis();
         }
       } 

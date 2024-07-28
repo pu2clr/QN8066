@@ -803,6 +803,9 @@ typedef union {
     uint16_t raw;
 } RDS_BLOCK4;
 
+
+
+
 /**
  * @ingroup  CLASSDEF
  * @brief QN8066 Class
@@ -832,6 +835,7 @@ private:
   qn8066_vol_ctl vol_ctl;
 
 
+  char rdsStationName[9]; 
   uint16_t rdsPI = 33179;    //!< Default value for piCode (0x819B)
   uint8_t rdsPTY = 5;       //!< Default program type (PTY) 5 is "Education"
   uint8_t rdsTP = 0;        //!< Traffic Program (TP)
@@ -925,12 +929,15 @@ public:
   void setTxRDS(bool value);   
   uint8_t setTxToggleRDSReady();
   bool getTxRDSUpdated();
-  void writeTxRDSBuffer(char *text);
+  void writeTxRDSBuffer(const char *text);
   void setRDSFrequencyDeviation(uint8_t freq);
   void setRDSLineIn(bool value); 
   void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void sendProgramService(const char* ps); 
   void sendStationName(const char* ps);
+
+  void setRdsStationName(char *stationName);
+  void setRdsBlock(uint8_t rdsRegister, uint16_t block); 
 
   /**
   * @ingroup group05 TX RDS
