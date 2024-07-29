@@ -1089,9 +1089,11 @@ void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
  */
 void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
 
-  uint8_t toggle; 
+  uint8_t toggle  = this->rdsGetTxUpdated(); 
   uint8_t count = 0;
- 
+
+  this->rdsSendError = 0;
+
   this->setRegister(QN_TX_RDSD0, block1>>8 );
   this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
 
@@ -1104,14 +1106,15 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
   
-
-  toggle = this->rdsSetTxToggle();
   delay(88);  
 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(2);
     count++;
   }
+
+  if (count >= 10 ) 
+    this->rdsSendError = 1;
 
 }
 

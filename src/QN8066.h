@@ -840,6 +840,7 @@ private:
   uint16_t rdsPI = 33179;    //!< Default value for piCode (0x819B)
   uint8_t rdsPTY = 5;       //!< Default program type (PTY) 5 is "Education"
   uint8_t rdsTP = 0;        //!< Traffic Program (TP)
+  uint8_t rdsSendError = 0;
 
 
 protected:
@@ -963,6 +964,11 @@ public:
   * @param tp - tp Code
   */
   void rdsSetTP(uint16_t tp) {this->rdsTP = tp;};
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Gets TX RDS error setup
+  */
+  uint8_t rdsGetSendError() {return this->rdsSendError;};
 
 
 

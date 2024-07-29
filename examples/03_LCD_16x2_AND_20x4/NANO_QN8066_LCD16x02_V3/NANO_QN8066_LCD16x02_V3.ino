@@ -609,8 +609,8 @@ void loop() {
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
           tx.rdsSetPTY(29); // Document.
-          // tx.rdsSendStationName();
-          tx.rdsSendProgramService(rdsStationName);
+          tx.rdsSendStationName("TEST");
+          //tx.rdsSendProgramService(rdsStationName);
           rdsTime = millis();
         }
       } 
