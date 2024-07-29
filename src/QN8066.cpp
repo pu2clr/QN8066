@@ -972,8 +972,9 @@ int QN8066::getAudioPeakValue() {
 void QN8066::rdsInitTx() {
   
   this->rdsSetTxLineIn(true);
-  this->rdsSetFrequencyDerivation(120);
-
+  // this->rdsSetFrequencyDerivation(120);
+  // this->rdsSendGroup(0,0,0,0);
+  delay(100);
 }
 
 
@@ -1109,7 +1110,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   delay(88);  
 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
-    delay(2);
+    delay(5);
     count++;
   }
 
@@ -1137,17 +1138,19 @@ void QN8066::rdsSendStationName(const char* stationName) {
   // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
+  this->rdsSetStationName((char *) stationName);
+  // this->rdsSendGroup(0,0,0,0);
+
   b1.pi = this->rdsPI;
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 1; // Version B 
+  b2.commonFields.versionCode = 0; // Version A 
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = stationName[i];
     b4.field.content[1] = stationName[i+1];    
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
-    // b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
   }
 
 }
@@ -1164,7 +1167,7 @@ void QN8066::rdsSendStationName() {
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 1; // Version B
+  b2.commonFields.versionCode = 0; // Version A
 
   for (uint8_t i = 0; i < 8; i+=4) { 
     b3.field.content[0] = this->rdsStationName[i];
@@ -1172,7 +1175,6 @@ void QN8066::rdsSendStationName() {
     b4.field.content[0] = this->rdsStationName[i+2];
     b4.field.content[1] = this->rdsStationName[i+3];    
     this->rdsSendGroup(b1.pi, b2.raw, b3.raw, b4.raw);
-    b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
   }
 
 }
