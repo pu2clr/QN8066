@@ -607,7 +607,8 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
-          tx.sendProgramService(rdsStationName);
+          tx.setRdsPTY(29); // Document.
+          tx.sendStationName();
           rdsTime = millis();
         }
       } 

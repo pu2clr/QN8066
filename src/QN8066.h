@@ -835,7 +835,7 @@ private:
   qn8066_vol_ctl vol_ctl;
 
 
-  char rdsStationName[9]; 
+  char rdsStationName[9] = " QN8066 "; 
   uint16_t rdsPI = 33179;    //!< Default value for piCode (0x819B)
   uint8_t rdsPTY = 5;       //!< Default program type (PTY) 5 is "Education"
   uint8_t rdsTP = 0;        //!< Traffic Program (TP)
@@ -935,6 +935,7 @@ public:
   void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void sendProgramService(const char* ps); 
   void sendStationName(const char* ps);
+  void sendStationName();
 
   void setRdsStationName(char *stationName);
   void setRdsBlock(uint8_t rdsRegister, uint16_t block); 
