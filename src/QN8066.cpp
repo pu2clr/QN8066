@@ -1095,8 +1095,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
 
-  this->rdsSetTxToggle();
-  
+
   delay(87); 
   
   while ( this->rdsGetTxUpdated() == toggle  && count < 50) { 
@@ -1107,6 +1106,8 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   if (count >= 50 ) 
     this->rdsSendError = 1;
   
+  this->rdsSetTxToggle();  
+
 }
 
 /**
