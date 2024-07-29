@@ -1145,6 +1145,9 @@ void QN8066::rdsSendStationName(const char* stationName) {
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
   }
 
+  this->rdsSetTxToggle();
+
+
 }
 
 
