@@ -970,10 +970,10 @@ int QN8066::getAudioPeakValue() {
 
 
 void QN8066::rdsInitTx() {
-  
-  this->rdsSetTxLineIn(true);
-  // this->rdsSetFrequencyDerivation(120);
-  // this->rdsSendGroup(0,0,0,0);
+  this->rdsTxEnable(true);
+  this->rdsSetTxLineIn(false);
+  this->rdsSetFrequencyDerivation(6);
+  this->rdsSendGroup(0,0,0,0);
   delay(100);
 }
 
@@ -1063,20 +1063,8 @@ void QN8066::rdsSetTxLineIn(bool value) {
 
 
 void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
-  uint8_t toggle; 
-  uint8_t count = 0;
-  
   this->setRegister(rdsRegister, block>>8 );
   this->setRegister(rdsRegister, block & 0xFF);
-
-  toggle = this->rdsSetTxToggle();
-  delay(87);  
-
-  while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
-    delay(2);
-    count++;
-  }
-
 } 
 
 /**
@@ -1090,8 +1078,8 @@ void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
  */
 void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
 
-  uint8_t toggle  = this->rdsGetTxUpdated(); 
-  uint8_t count = 0;
+  // uint8_t toggle  = this->rdsGetTxUpdated(); 
+  // uint8_t count = 0;
 
   this->rdsSendError = 0;
 
@@ -1107,16 +1095,16 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
   
-  delay(88);  
-
+  delay(87); 
+  /* 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
-    delay(5);
+    delay(1);
     count++;
   }
 
   if (count >= 10 ) 
     this->rdsSendError = 1;
-
+  */
 }
 
 /**
@@ -1138,14 +1126,14 @@ void QN8066::rdsSendStationName(const char* stationName) {
   // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
-  this->rdsSetStationName((char *) stationName);
+  // this->rdsSetStationName((char *) stationName);
   // this->rdsSendGroup(0,0,0,0);
 
   b1.pi = this->rdsPI;
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 0; // Version A 
+  b2.commonFields.versionCode = 0; // Version A
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = stationName[i];
@@ -1184,20 +1172,21 @@ void QN8066::rdsSendProgramService(const char* ps) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
-  RDS_BLOCK3 b3;
-  // RDS_BLOCK4 b4;
+  // RDS_BLOCK3 b3;
+  RDS_BLOCK4 b4;
 
   b1.pi = this->rdsPI;
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 1; // Version B   
+  b2.commonFields.versionCode = 1; // B   
 
-  for (uint8_t i = 0; i < 8; i+=2) { // Cada caractere é 2 bytes
-    b3.field.content[0] = ps[i];
-    b3.field.content[1] = ps[i+1];    
-    rdsSendGroup(b1.pi, b2.raw, b3.raw, 0);
+  for (uint8_t i = 0; i < 8; i+=2) { 
+    b4.field.content[0] = ps[i];
+    b4.field.content[1] = ps[i+1];    
+    this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
   }
+
 }
 
 

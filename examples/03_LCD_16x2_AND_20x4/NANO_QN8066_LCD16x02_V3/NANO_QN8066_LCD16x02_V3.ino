@@ -300,7 +300,8 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-      tx.rdsInitTx();
+      // delay(200);
+      // tx.rdsInitTx();
       tx.rdsSetPTY(8); // Science
       tx.rdsSendStationName(rdsStationName);
   }
@@ -617,10 +618,11 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 61000 ) {
+          tx.rdsTxEnable(false);
+          delay(200);
+          tx.rdsTxEnable(true); 
           tx.rdsSetPTY(29); // Document.
-          // tx.rdsSendStationName(rdsStationName);
-          tx.rdsSendStationName();
-          //tx.rdsSendProgramService(rdsStationName);
+          tx.rdsSendProgramService(rdsStationName);
           rdsTime = millis();
         }
       } 
