@@ -971,9 +971,9 @@ int QN8066::getAudioPeakValue() {
 
 void QN8066::rdsInitTx() {
   this->rdsTxEnable(true);
-  this->rdsSetTxLineIn(false);
-  this->rdsSetFrequencyDerivation(6);
-  this->rdsSendGroup(0,0,0,0);
+  // this->rdsSetTxLineIn(false);
+  // this->rdsSetFrequencyDerivation(6);
+  // this->rdsSendGroup(0,0,0,0);
   delay(100);
 }
 
@@ -1095,7 +1095,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
   
-  delay(87); 
+  delay(90); 
   /* 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(1);

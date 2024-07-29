@@ -618,9 +618,6 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 61000 ) {
-          tx.rdsTxEnable(false);
-          delay(200);
-          tx.rdsTxEnable(true); 
           tx.rdsSetPTY(29); // Document.
           tx.rdsSendProgramService(rdsStationName);
           rdsTime = millis();
