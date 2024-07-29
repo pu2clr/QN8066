@@ -480,13 +480,13 @@ void doFrequency() {
   int8_t key = browseParameter();
   while (key != 0) {
     if (key == -1) {
-      if (txFrequency < 64)
-          txFrequency = 108;
+      if (txFrequency < 640)
+          txFrequency = 1080;
        else    
           txFrequency -= STEP_FREQ;
     } else if (key == 1) {
-      if (txFrequency > 108)
-         txFrequency = 64; 
+      if (txFrequency > 1080)
+         txFrequency = 640; 
        else 
         txFrequency += STEP_FREQ;
     }
