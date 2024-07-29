@@ -343,7 +343,7 @@ void readAllTransmitterInformation() {
   keyValue[KEY_SOFT_CLIP_THRESHOLD].key  = EEPROM.read(eeprom_address +9);
   keyValue[KEY_GAIN_PILOT].key  = EEPROM.read(eeprom_address +10);
   keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address +11);
-  keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address +15);
+  keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address +12);
 }
 
 // Enable or disable PWM duty cycle
