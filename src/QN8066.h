@@ -757,7 +757,8 @@ typedef union
 {
     struct
     {
-        uint16_t additionalData : 5;         //!< Additional data bits, depending on the group.
+        uint16_t additionalData : 4;         //!< Additional data bits, depending on the group.
+        uint16_t textABFlag : 1;             //!< Do something if it chanhes from binary "0" to binary "1" or vice-versa
         uint16_t programType : 5;            //!< PTY (Program Type) code
         uint16_t trafficProgramCode : 1;     //!< (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
         uint16_t versionCode : 1;            //!< (B0) => 0=A; 1=B
