@@ -1136,7 +1136,8 @@ void QN8066::rdsSendStationName(const char* stationName) {
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 0; // A
+  b2.commonFields.versionCode = 1; 
+  b2.commonFields.groupType = 0;
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = stationName[i];
@@ -1158,13 +1159,11 @@ void QN8066::rdsSendStationName() {
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 0; // Version A
+  b2.commonFields.versionCode = 0; 
+  b2.commonFields.groupType = 0;
 
   for (uint8_t i = 0; i < 8; i+=4) { 
-    b3.field.content[0] = this->rdsStationName[i];
-    b3.field.content[1] = this->rdsStationName[i+1];
-    b4.field.content[0] = this->rdsStationName[i+2];
-    b4.field.content[1] = this->rdsStationName[i+3];    
+    // TODO
     this->rdsSendGroup(b1.pi, b2.raw, b3.raw, b4.raw);
   }
 
@@ -1182,7 +1181,8 @@ void QN8066::rdsSendProgramService(const char* ps) {
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 1; // B   
+  b2.commonFields.versionCode = 1; 
+  b2.commonFields.groupType = 0;
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = ps[i];
