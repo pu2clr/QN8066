@@ -300,7 +300,7 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-      tx.rdsInitTx();
+      // tx.rdsInitTx();
       tx.rdsSetPTY(8); // Science
       tx.rdsSendStationName(rdsStationName);
   }
@@ -609,7 +609,7 @@ void loop() {
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
           tx.rdsSetPTY(29); // Document.
-          tx.rdsSendStationName("TEST");
+          tx.rdsSendStationName(rdsStationName);
           //tx.rdsSendProgramService(rdsStationName);
           rdsTime = millis();
         }
