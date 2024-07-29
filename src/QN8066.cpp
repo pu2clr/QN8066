@@ -969,9 +969,9 @@ int QN8066::getAudioPeakValue() {
 /** @defgroup group05 TX RDS Setup - UNDER CONSTRUCTION...*/
 
 
-void QN8066::txRdsInit() {
+void QN8066::rdsInitTx() {
   
-  this->setRDSLineIn(true);
+  this->rdsSetTxLineIn(true);
 
 }
 
@@ -983,7 +983,7 @@ void QN8066::txRdsInit() {
  * @param value (true = enabled; false = disabled)
  * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
  */
-void QN8066::setTxRDS(bool value) {
+void QN8066::rdsTxEnable(bool value) {
   qn8066_system2 system2;
   system2.raw = this->getRegister(QN_SYSTEM2);
   system2.arg.tx_rdsen = value;
@@ -997,7 +997,7 @@ void QN8066::setTxRDS(bool value) {
  * @details description the chip internally will fetch these bytes after completing transmitting of current group.
  * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
  */
-uint8_t QN8066::setTxToggleRDSReady() {
+uint8_t QN8066::rdsSetTxToggle() {
   this->system2.raw = this->getRegister(QN_SYSTEM2);
   this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy);
   this->setRegister(QN_SYSTEM2, this->system2.raw);
@@ -1013,7 +1013,7 @@ uint8_t QN8066::setTxToggleRDSReady() {
  * @return true 
  * @return false 
  */
-bool QN8066::getTxRDSUpdated() { 
+bool QN8066::rdsGetTxUpdated() { 
     return this->getStatus3().arg.RDS_TXUPD;
 }
 
@@ -1023,11 +1023,11 @@ bool QN8066::getTxRDSUpdated() {
  * @details The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer.
  * @param text (point to array of char with 8 bytes to be loaded into the RDS data buffer)
  */
-void QN8066::writeTxRDSBuffer(const char *text) { 
+void QN8066::rdsWriteTxBuffer(const char *text) { 
   for (uint8_t address = QN_TX_RDSD0; address <= QN_TX_RDSD7; address++ ) {
     this->setRegister(address, *text++);
   }
-  this->setTxToggleRDSReady();
+  this->rdsSetTxToggle();
   delay(1);
 }
 
@@ -1039,7 +1039,7 @@ void QN8066::writeTxRDSBuffer(const char *text) {
  * @param freq ( valid values: from 0 to 127)
  * @see Datasheet, register RDS (0x26), page 34. 
  */
-void QN8066::setRDSFrequencyDeviation(uint8_t freq) {
+void QN8066::rdsSetFrequencyDerivation(uint8_t freq) {
   qn8066_rds rds;
   rds.raw = this->getRegister(QN_RDS);
   rds.arg.RDSFDEV = freq;
@@ -1052,7 +1052,7 @@ void QN8066::setRDSFrequencyDeviation(uint8_t freq) {
  * @param value (true = enabled; false = disabled)
  * @see Datasheet, register RDS (0x26), page 34. 
  */
-void QN8066::setRDSLineIn(bool value) {
+void QN8066::rdsSetTxLineIn(bool value) {
   qn8066_rds rds;
   rds.raw = this->getRegister(QN_RDS);
   rds.arg.line_in_en = value;
@@ -1060,17 +1060,17 @@ void QN8066::setRDSLineIn(bool value) {
 } 
 
 
-void QN8066::setRdsBlock(uint8_t rdsRegister, uint16_t block) {
+void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
   uint8_t toggle; 
   uint8_t count = 0;
   
   this->setRegister(rdsRegister, block>>8 );
   this->setRegister(rdsRegister, block & 0xFF);
 
-  toggle = this->setTxToggleRDSReady();
+  toggle = this->rdsSetTxToggle();
   delay(87);  
 
-  while ( this->getTxRDSUpdated() == toggle  && count < 10) { 
+  while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(2);
     count++;
   }
@@ -1086,7 +1086,7 @@ void QN8066::setRdsBlock(uint8_t rdsRegister, uint16_t block) {
  * @param block3 
  * @param block4 
  */
-void QN8066::sendRDSGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
+void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
 
   uint8_t toggle; 
   uint8_t count = 0;
@@ -1104,10 +1104,10 @@ void QN8066::sendRDSGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
   
 
-  toggle = this->setTxToggleRDSReady();
+  toggle = this->rdsSetTxToggle();
   delay(88);  
 
-  while ( this->getTxRDSUpdated() == toggle  && count < 10) { 
+  while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(2);
     count++;
   }
@@ -1120,13 +1120,13 @@ void QN8066::sendRDSGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
  * 
  * @param stationName 
  */
-void QN8066::setRdsStationName(char *stationName) { 
+void QN8066::rdsSetStationName(char *stationName) { 
   strncpy(this->rdsStationName,stationName,8);
   rdsStationName[8] = '\0';
 }
 
 
-void QN8066::sendStationName(const char* stationName) {
+void QN8066::rdsSendStationName(const char* stationName) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
@@ -1142,14 +1142,14 @@ void QN8066::sendStationName(const char* stationName) {
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = stationName[i];
     b4.field.content[1] = stationName[i+1];    
-    this->sendRDSGroup(b1.pi, b2.raw, b1.pi, b4.raw);
+    this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
     // b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
   }
 
 }
 
 
-void QN8066::sendStationName() {
+void QN8066::rdsSendStationName() {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
@@ -1167,14 +1167,14 @@ void QN8066::sendStationName() {
     b3.field.content[1] = this->rdsStationName[i+1];
     b4.field.content[0] = this->rdsStationName[i+2];
     b4.field.content[1] = this->rdsStationName[i+3];    
-    this->sendRDSGroup(b1.pi, b2.raw, b3.raw, b4.raw);
+    this->rdsSendGroup(b1.pi, b2.raw, b3.raw, b4.raw);
     b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
   }
 
 }
 
 
-void QN8066::sendProgramService(const char* ps) {
+void QN8066::rdsSendProgramService(const char* ps) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
@@ -1190,7 +1190,7 @@ void QN8066::sendProgramService(const char* ps) {
   for (uint8_t i = 0; i < 8; i+=2) { // Cada caractere é 2 bytes
     b3.field.content[0] = ps[i];
     b3.field.content[1] = ps[i+1];    
-    sendRDSGroup(b1.pi, b2.raw, b3.raw, 0);
+    rdsSendGroup(b1.pi, b2.raw, b3.raw, 0);
   }
 }
 

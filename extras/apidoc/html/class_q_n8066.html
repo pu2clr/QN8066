@@ -216,28 +216,49 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gaee7afb6a9a31a99fc29b8b9d7d0a00bc"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">getAudioPeakValue</a> ()</td></tr>
 <tr class="memdesc:gaee7afb6a9a31a99fc29b8b9d7d0a00bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio peak value at ADC input.  <br /></td></tr>
 <tr class="separator:gaee7afb6a9a31a99fc29b8b9d7d0a00bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaaad14424c57781256cfbda7accadbd49"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gaaad14424c57781256cfbda7accadbd49">setTxRDS</a> (bool value)</td></tr>
-<tr class="memdesc:gaaad14424c57781256cfbda7accadbd49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmitter RDS enable.  <br /></td></tr>
-<tr class="separator:gaaad14424c57781256cfbda7accadbd49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaba2e2e1f2df33bb652fe36878355bc98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gaba2e2e1f2df33bb652fe36878355bc98">setTxToggleRDSReady</a> ()</td></tr>
-<tr class="memdesc:gaba2e2e1f2df33bb652fe36878355bc98"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS transmitting ready.  <br /></td></tr>
-<tr class="separator:gaba2e2e1f2df33bb652fe36878355bc98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga1c7236e219778ab5a939ff4bd659183b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga1c7236e219778ab5a939ff4bd659183b">getTxRDSUpdated</a> ()</td></tr>
-<tr class="memdesc:ga1c7236e219778ab5a939ff4bd659183b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS TX Updated.  <br /></td></tr>
-<tr class="separator:ga1c7236e219778ab5a939ff4bd659183b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0664c14d7c23ede48874c9007b157d46"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0664c14d7c23ede48874c9007b157d46">writeTxRDSBuffer</a> (char *text)</td></tr>
-<tr class="memdesc:ga0664c14d7c23ede48874c9007b157d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)  <br /></td></tr>
-<tr class="separator:ga0664c14d7c23ede48874c9007b157d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gacb4f89faa8744c4adbf4b3bbfc2412b4">setRDSFrequencyDeviation</a> (uint8_t freq)</td></tr>
-<tr class="memdesc:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS frequency deviation.  <br /></td></tr>
-<tr class="separator:gacb4f89faa8744c4adbf4b3bbfc2412b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga53969a8d55eb57c9c8d97c5170f5d94b">setRDSLineIn</a> (bool value)</td></tr>
-<tr class="memdesc:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio Line-in enable control.  <br /></td></tr>
-<tr class="separator:ga53969a8d55eb57c9c8d97c5170f5d94b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a628b20fde963e0b48a7404f817c23ec2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a628b20fde963e0b48a7404f817c23ec2">sendRDSGroup</a> (uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD)</td></tr>
-<tr class="separator:a628b20fde963e0b48a7404f817c23ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0414074e15ad0b9d717cd907481ac185"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a0414074e15ad0b9d717cd907481ac185">sendProgramService</a> (const char *ps)</td></tr>
-<tr class="separator:a0414074e15ad0b9d717cd907481ac185"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ded90fbd1cab1eac0e3eae363ab3a84"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a6ded90fbd1cab1eac0e3eae363ab3a84">rdsInitTx</a> ()</td></tr>
+<tr class="separator:a6ded90fbd1cab1eac0e3eae363ab3a84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2d13af3ea121fee09799cc0277da0dc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">rdsTxEnable</a> (bool value)</td></tr>
+<tr class="memdesc:ga2d13af3ea121fee09799cc0277da0dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmitter RDS enable.  <br /></td></tr>
+<tr class="separator:ga2d13af3ea121fee09799cc0277da0dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8c9d2b0e96785ff740ec0046a7bfe1d7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7">rdsSetTxToggle</a> ()</td></tr>
+<tr class="memdesc:ga8c9d2b0e96785ff740ec0046a7bfe1d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS transmitting ready.  <br /></td></tr>
+<tr class="separator:ga8c9d2b0e96785ff740ec0046a7bfe1d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gab18543166cfd0ca104df9a269a990552"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gab18543166cfd0ca104df9a269a990552">rdsGetTxUpdated</a> ()</td></tr>
+<tr class="memdesc:gab18543166cfd0ca104df9a269a990552"><td class="mdescLeft">&#160;</td><td class="mdescRight">RDS TX Updated.  <br /></td></tr>
+<tr class="separator:gab18543166cfd0ca104df9a269a990552"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gad08b61283a37563712c2b6b8f59e5046"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gad08b61283a37563712c2b6b8f59e5046">rdsWriteTxBuffer</a> (const char *text)</td></tr>
+<tr class="memdesc:gad08b61283a37563712c2b6b8f59e5046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)  <br /></td></tr>
+<tr class="separator:gad08b61283a37563712c2b6b8f59e5046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac065cafa8060f52483dbbd00b9955331"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gac065cafa8060f52483dbbd00b9955331">rdsSetFrequencyDerivation</a> (uint8_t freq)</td></tr>
+<tr class="memdesc:gac065cafa8060f52483dbbd00b9955331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS frequency deviation.  <br /></td></tr>
+<tr class="separator:gac065cafa8060f52483dbbd00b9955331"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga783662032ee4eaaca5b6fab64142e1e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga783662032ee4eaaca5b6fab64142e1e8">rdsSetTxLineIn</a> (bool value)</td></tr>
+<tr class="memdesc:ga783662032ee4eaaca5b6fab64142e1e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio Line-in enable control.  <br /></td></tr>
+<tr class="separator:ga783662032ee4eaaca5b6fab64142e1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga39b9317f050108e7cd4d8695953acd95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga39b9317f050108e7cd4d8695953acd95">rdsSendGroup</a> (uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD)</td></tr>
+<tr class="memdesc:ga39b9317f050108e7cd4d8695953acd95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a RDS group (four blocks) to the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a>.  <br /></td></tr>
+<tr class="separator:ga39b9317f050108e7cd4d8695953acd95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae5b749f51450ef09065338de557399a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#ae5b749f51450ef09065338de557399a8">rdsSendProgramService</a> (const char *ps)</td></tr>
+<tr class="separator:ae5b749f51450ef09065338de557399a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42f1e00674ead2cb6bd5252a969086b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a42f1e00674ead2cb6bd5252a969086b4">rdsSendStationName</a> (const char *ps)</td></tr>
+<tr class="separator:a42f1e00674ead2cb6bd5252a969086b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a416e9831b26324bf351981998d34feca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a416e9831b26324bf351981998d34feca">rdsSendStationName</a> ()</td></tr>
+<tr class="separator:a416e9831b26324bf351981998d34feca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f">rdsSetStationName</a> (char *stationName)</td></tr>
+<tr class="memdesc:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the station name.  <br /></td></tr>
+<tr class="separator:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f0428bf860631dc7169c6def5d5f2b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3">rdsWriteBlock</a> (uint8_t rdsRegister, uint16_t block)</td></tr>
+<tr class="separator:a6f0428bf860631dc7169c6def5d5f2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga504d4b02523d6aeebf9ad51180924353"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga504d4b02523d6aeebf9ad51180924353">setRdsPI</a> (uint16_t pi)</td></tr>
+<tr class="memdesc:ga504d4b02523d6aeebf9ad51180924353"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Program Identification (PI)  <br /></td></tr>
+<tr class="separator:ga504d4b02523d6aeebf9ad51180924353"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacda2fbb04f951301660ed34a812d3777"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gacda2fbb04f951301660ed34a812d3777">setRdsPTY</a> (uint16_t pty)</td></tr>
+<tr class="memdesc:gacda2fbb04f951301660ed34a812d3777"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Program Type (PTY)  <br /></td></tr>
+<tr class="separator:gacda2fbb04f951301660ed34a812d3777"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga9be98b9bb2737f6cb234fd5590ecda1f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga9be98b9bb2737f6cb234fd5590ecda1f">setRdsTP</a> (uint16_t tp)</td></tr>
+<tr class="memdesc:ga9be98b9bb2737f6cb234fd5590ecda1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the Traffic Program.  <br /></td></tr>
+<tr class="separator:ga9be98b9bb2737f6cb234fd5590ecda1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2a96d812724a3f6394f6419e2712d6d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8">convertToChar</a> (uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator='.', bool remove_leading_zeros=true)</td></tr>
 <tr class="memdesc:ga2a96d812724a3f6394f6419e2712d6d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a number to a char array.  <br /></td></tr>
 <tr class="separator:ga2a96d812724a3f6394f6419e2712d6d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -357,58 +378,100 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a628b20fde963e0b48a7404f817c23ec2" name="a628b20fde963e0b48a7404f817c23ec2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a628b20fde963e0b48a7404f817c23ec2">&#9670;&#160;</a></span>sendRDSGroup()</h2>
+<a id="a6ded90fbd1cab1eac0e3eae363ab3a84" name="a6ded90fbd1cab1eac0e3eae363ab3a84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ded90fbd1cab1eac0e3eae363ab3a84">&#9670;&#160;</a></span>rdsInitTx()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void QN8066::sendRDSGroup </td>
+          <td class="memname">void QN8066::rdsInitTx </td>
           <td>(</td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>blockA</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>blockB</em>, </td>
         </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="group__group05.html#ga783662032ee4eaaca5b6fab64142e1e8">rdsSetTxLineIn()</a>.</p>
+
+</div>
+</div>
+<a id="ae5b749f51450ef09065338de557399a8" name="ae5b749f51450ef09065338de557399a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5b749f51450ef09065338de557399a8">&#9670;&#160;</a></span>rdsSendProgramService()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
         <tr>
-          <td class="paramkey"></td>
+          <td class="memname">void QN8066::rdsSendProgramService </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>ps</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>blockC</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
-          <td class="paramname"><em>blockD</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a0414074e15ad0b9d717cd907481ac185" name="a0414074e15ad0b9d717cd907481ac185"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0414074e15ad0b9d717cd907481ac185">&#9670;&#160;</a></span>sendProgramService()</h2>
+<a id="a42f1e00674ead2cb6bd5252a969086b4" name="a42f1e00674ead2cb6bd5252a969086b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42f1e00674ead2cb6bd5252a969086b4">&#9670;&#160;</a></span>rdsSendStationName() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void QN8066::sendProgramService </td>
+          <td class="memname">void QN8066::rdsSendStationName </td>
           <td>(</td>
           <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>ps</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a416e9831b26324bf351981998d34feca" name="a416e9831b26324bf351981998d34feca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a416e9831b26324bf351981998d34feca">&#9670;&#160;</a></span>rdsSendStationName() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::rdsSendStationName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6f0428bf860631dc7169c6def5d5f2b3" name="a6f0428bf860631dc7169c6def5d5f2b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f0428bf860631dc7169c6def5d5f2b3">&#9670;&#160;</a></span>rdsWriteBlock()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::rdsWriteBlock </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>rdsRegister</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>block</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">

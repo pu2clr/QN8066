@@ -928,21 +928,21 @@ public:
 
   // RDS TX
 
-  void txRdsInit();
-  void setTxRDS(bool value);   
-  uint8_t setTxToggleRDSReady();
-  bool getTxRDSUpdated();
-  void writeTxRDSBuffer(const char *text);
-  void setRDSFrequencyDeviation(uint8_t freq);
-  void setRDSLineIn(bool value); 
+  void rdsInitTx();
+  void rdsTxEnable(bool value);   
+  uint8_t rdsSetTxToggle();
+  bool rdsGetTxUpdated();
+  void rdsWriteTxBuffer(const char *text);
+  void rdsSetFrequencyDerivation(uint8_t freq);
+  void rdsSetTxLineIn(bool value); 
 
-  void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
-  void sendProgramService(const char* ps); 
-  void sendStationName(const char* ps);
-  void sendStationName();
+  void rdsSendGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
+  void rdsSendProgramService(const char* ps); 
+  void rdsSendStationName(const char* ps);
+  void rdsSendStationName();
 
-  void setRdsStationName(char *stationName);
-  void setRdsBlock(uint8_t rdsRegister, uint16_t block); 
+  void rdsSetStationName(char *stationName);
+  void rdsWriteBlock(uint8_t rdsRegister, uint16_t block); 
 
   /**
   * @ingroup group05 TX RDS

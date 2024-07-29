@@ -1,6 +1,20 @@
 var _q_n8066_8h =
 [
+    [ "RDS_BLOCK3", "_q_n8066_8h.html#union_r_d_s___b_l_o_c_k3", [
+      [ "field", "_q_n8066_8h.html#a0bb3021673101192811b976a2ec2b072", null ],
+      [ "raw", "_q_n8066_8h.html#acc355db97b5103c63bf904af56077f37", null ]
+    ] ],
+    [ "RDS_BLOCK4", "_q_n8066_8h.html#union_r_d_s___b_l_o_c_k4", [
+      [ "field", "_q_n8066_8h.html#a41f25faa667e66e3e9cd8c07585503e0", null ],
+      [ "raw", "_q_n8066_8h.html#a10f3f208449a1ffe5de720ac90513710", null ]
+    ] ],
     [ "QN8066", "class_q_n8066.html", "class_q_n8066" ],
+    [ "RDS_BLOCK3.field", "_q_n8066_8h.html#struct_r_d_s___b_l_o_c_k3_8field", [
+      [ "content", "_q_n8066_8h.html#af8b7e60d8c0d932df07b78d23e369723", null ]
+    ] ],
+    [ "RDS_BLOCK4.field", "_q_n8066_8h.html#struct_r_d_s___b_l_o_c_k4_8field", [
+      [ "content", "_q_n8066_8h.html#af8b7e60d8c0d932df07b78d23e369723", null ]
+    ] ],
     [ "QN8066_I2C_ADDRESS", "_q_n8066_8h.html#afdd7823b8f59d88e390d2f1f15a69051", null ],
     [ "QN8066_RESET_DELAY", "_q_n8066_8h.html#aead9915b3f68765817e6d8bc6122d9e3", null ],
     [ "QN8066_DELAY_COMMAND", "_q_n8066_8h.html#a5028d25f8fc86e6f7ec7ebcf63585805", null ],

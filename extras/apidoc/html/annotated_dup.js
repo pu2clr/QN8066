@@ -45,5 +45,15 @@ var annotated_dup =
     [ "qn8066_xtal_div0", "group__group00.html#unionqn8066__xtal__div0", "group__group00_unionqn8066__xtal__div0" ],
     [ "qn8066_xtal_div1", "group__group00.html#unionqn8066__xtal__div1", "group__group00_unionqn8066__xtal__div1" ],
     [ "qn8066_xtal_div1.arg", "group__group00.html#structqn8066__xtal__div1_8arg", "group__group00_structqn8066__xtal__div1_8arg" ],
-    [ "qn8066_xtal_div2", "group__group00.html#unionqn8066__xtal__div2", "group__group00_unionqn8066__xtal__div2" ]
+    [ "qn8066_xtal_div2", "group__group00.html#unionqn8066__xtal__div2", "group__group00_unionqn8066__xtal__div2" ],
+    [ "RDS_BLOCK1", "group__group05.html#union_r_d_s___b_l_o_c_k1", "group__group05_union_r_d_s___b_l_o_c_k1" ],
+    [ "RDS_BLOCK1.field", "group__group05.html#struct_r_d_s___b_l_o_c_k1_8field", "group__group05_struct_r_d_s___b_l_o_c_k1_8field" ],
+    [ "RDS_BLOCK2", "group__group05.html#union_r_d_s___b_l_o_c_k2", "group__group05_union_r_d_s___b_l_o_c_k2" ],
+    [ "RDS_BLOCK2.commonFields", "group__group05.html#struct_r_d_s___b_l_o_c_k2_8common_fields", "group__group05_struct_r_d_s___b_l_o_c_k2_8common_fields" ],
+    [ "RDS_BLOCK2.group0Field", "group__group05.html#struct_r_d_s___b_l_o_c_k2_8group0_field", "group__group05_struct_r_d_s___b_l_o_c_k2_8group0_field" ],
+    [ "RDS_BLOCK2.group2Field", "group__group05.html#struct_r_d_s___b_l_o_c_k2_8group2_field", "group__group05_struct_r_d_s___b_l_o_c_k2_8group2_field" ],
+    [ "RDS_BLOCK3", "_q_n8066_8h.html#union_r_d_s___b_l_o_c_k3", "_q_n8066_8h_union_r_d_s___b_l_o_c_k3" ],
+    [ "RDS_BLOCK3.field", "_q_n8066_8h.html#struct_r_d_s___b_l_o_c_k3_8field", "_q_n8066_8h_struct_r_d_s___b_l_o_c_k3_8field" ],
+    [ "RDS_BLOCK4", "_q_n8066_8h.html#union_r_d_s___b_l_o_c_k4", "_q_n8066_8h_union_r_d_s___b_l_o_c_k4" ],
+    [ "RDS_BLOCK4.field", "_q_n8066_8h.html#struct_r_d_s___b_l_o_c_k4_8field", "_q_n8066_8h_struct_r_d_s___b_l_o_c_k4_8field" ]
 ];

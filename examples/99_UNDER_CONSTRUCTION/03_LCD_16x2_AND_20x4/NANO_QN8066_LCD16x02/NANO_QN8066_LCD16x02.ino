@@ -503,7 +503,7 @@ void doRds() {
   int8_t key = browseParameter();
   while (key != 0) {
     idxRDS = (key == 1)? 1:0;
-    tx.setTxRDS(tabRDS[idxRDS].idx);
+    tx.rdsTxEnable(tabRDS[idxRDS].idx);
     showRds();
     key = browseParameter();
   }

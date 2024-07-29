@@ -293,16 +293,16 @@ void setup() {
   tx.setTxSoftClippingEnable(keyValue[KEY_SOFT_CLIP_ENABLE].value[keyValue[KEY_SOFT_CLIP_ENABLE].key].idx);
   tx.setTxSoftCliptTreshold( keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
   tx.setPreEmphasis(keyValue[KEY_PRE_EMPHASIS].value[keyValue[KEY_PRE_EMPHASIS].key].idx);
-  tx.setTxRDS(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
+  tx.rdsTxEnable(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
   tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx); 
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
 
 
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-      tx.txRdsInit();
+      tx.rdsInitTx();
       tx.setRdsPTY(8); // Science
-      tx.sendStationName(rdsStationName);
+      tx.rdsSendStationName(rdsStationName);
   }
 
 
@@ -564,7 +564,7 @@ uint8_t doMenu(uint8_t idxMenu) {
       runAction([](uint8_t value) { tx.setPreEmphasis(value); }, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 4:
-      runAction([](uint8_t value) { tx.setTxRDS(value); },  &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) { tx.rdsTxEnable(value); },  &keyValue[idxMenu], 1, 0, 1);
       break;
     case 5:
       runAction([](uint8_t value) { tx.setTxInputImpedance(value); }, &keyValue[idxMenu] , 1, 0, 3);
@@ -609,8 +609,8 @@ void loop() {
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
           tx.setRdsPTY(29); // Document.
-          // tx.sendStationName();
-          tx.sendProgramService(rdsStationName);
+          // tx.rdsSendStationName();
+          tx.rdsSendProgramService(rdsStationName);
           rdsTime = millis();
         }
       } 

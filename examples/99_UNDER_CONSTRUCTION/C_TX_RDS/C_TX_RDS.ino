@@ -66,8 +66,8 @@ void setup() {
   tx.setTX(FREQUENCY);           // Chenge the FREQUENCY constant if you want other value
 
   // tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
-  // tx.setTxRDS(true);
-  // tx.setRDSLineIn(true);
+  // tx.rdsTxEnable(true);
+  // tx.rdsSetTxLineIn(true);
   // tx.updateTxSetup(); // Not working so far
 
 
@@ -81,11 +81,11 @@ bool toggle = true;
 void loop() {
 
   if (toggle)
-    tx.sendProgramService(strSDR1);
+    tx.rdsSendProgramService(strSDR1);
   else   
-    tx.sendProgramService(strSDR2);
-  tx.setTxToggleRDSReady();
-  while (!tx.getTxRDSUpdated());  
+    tx.rdsSendProgramService(strSDR2);
+  tx.rdsSetTxToggle();
+  while (!tx.rdsGetTxUpdated());  
   toggle = !toggle;
 
 
