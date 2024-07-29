@@ -300,6 +300,7 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
+      tx.txRdsInit();
       tx.setRdsPTY(8); // Science
       tx.sendStationName(rdsStationName);
   }

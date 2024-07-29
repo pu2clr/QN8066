@@ -968,6 +968,14 @@ int QN8066::getAudioPeakValue() {
 
 /** @defgroup group05 TX RDS Setup - UNDER CONSTRUCTION...*/
 
+
+void QN8066::txRdsInit() {
+  
+  this->setRDSLineIn(true);
+
+}
+
+
 /**
  * @ingroup group05 TX RDS
  * @brief Transmitter RDS enable
@@ -1069,7 +1077,15 @@ void QN8066::setRdsBlock(uint8_t rdsRegister, uint16_t block) {
 
 } 
 
-
+/**
+ * @ingroup group05 TX RDS
+ * @brief Sends a RDS group (four blocks)  to the QN8066
+ * @details Each block is packaged in 16 bits word (two bytes)
+ * @param block1 
+ * @param block2 
+ * @param block3 
+ * @param block4 
+ */
 void QN8066::sendRDSGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
 
   uint8_t toggle; 
@@ -1077,13 +1093,13 @@ void QN8066::sendRDSGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
  
   this->setRegister(QN_TX_RDSD0, block1>>8 );
   this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
-    delay(87);  
+
   this->setRegister(QN_TX_RDSD2, block2>>8 );
   this->setRegister(QN_TX_RDSD3, block2 & 0xFF);
-    delay(87);  
+  
   this->setRegister(QN_TX_RDSD4, block3>>8 );
   this->setRegister(QN_TX_RDSD5, block3 & 0xFF);
-    delay(87);  
+  
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
   

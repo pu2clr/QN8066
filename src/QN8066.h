@@ -927,12 +927,15 @@ public:
   int  getAudioPeakValue();
 
   // RDS TX
+
+  void txRdsInit();
   void setTxRDS(bool value);   
   uint8_t setTxToggleRDSReady();
   bool getTxRDSUpdated();
   void writeTxRDSBuffer(const char *text);
   void setRDSFrequencyDeviation(uint8_t freq);
   void setRDSLineIn(bool value); 
+
   void sendRDSGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void sendProgramService(const char* ps); 
   void sendStationName(const char* ps);
