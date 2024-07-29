@@ -1080,7 +1080,7 @@ void QN8066::sendRDSGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD2, block2>>8 );
   this->setRegister(QN_TX_RDSD3, block2 & 0xFF);
   this->setRegister(QN_TX_RDSD4, block3>>8 );
-  this->setRegister(QN_TX_RDSD5, block4 & 0xFF);
+  this->setRegister(QN_TX_RDSD5, block3 & 0xFF);
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
   
