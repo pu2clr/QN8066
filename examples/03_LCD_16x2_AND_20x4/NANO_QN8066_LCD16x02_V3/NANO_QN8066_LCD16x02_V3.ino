@@ -418,14 +418,20 @@ void showStatus(uint8_t page) {
       lcd.print(str);
 
   }
-  else {
+  else if (page == 2) {
       sprintf(str,"BG:%s", keyValue[10].value[keyValue[10].key].desc);   
       lcd.setCursor(9, 0);
       lcd.print(str);
       lcd.setCursor(0, 1);
       sprintf(str,"PIL.:%s", keyValue[8].value[keyValue[8].key].desc);  
       lcd.print(str);
-   }     
+   } 
+   else {
+      sprintf(str,"PS: %s  PTY: %d", tx.rdsGetPS(), tx.rdsGetPTY());
+      lcd.setCursor(0, 1);
+      lcd.print(str); 
+      sprintf(str,"RDS ERR: %d", tx.rdsGetError() );
+   }    
   lcd.display();
 }
 // Shows the given parameter to be updated 
@@ -600,7 +606,7 @@ void loop() {
     showStatus(lcdPage);
     while (digitalRead(BT_MENU) == HIGH) {
       if ( (millis() - timePage) > TIME_PAGE ) {
-        if (lcdPage > 2) lcdPage = 0; 
+        if (lcdPage > 3) lcdPage = 0; 
         showStatus(lcdPage); 
         lcdPage++;
         timePage = millis();

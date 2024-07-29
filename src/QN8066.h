@@ -952,23 +952,56 @@ public:
   * @param pi - PI Code
   */
   void rdsSetPI(uint16_t pi) {this->rdsPI = pi;};
+
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Gets the Program Identification (PI)
+  * @param pi - PI Code
+  */
+  uint8_t rdsGetPI() {return this->rdsPI;};
+
   /**
   * @ingroup group05 TX RDS
   * @brief Sets the Program Type (PTY)
   * @param pty - Program type
   */
   void rdsSetPTY(uint16_t pty) {this->rdsPTY = pty;};
+
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Gets the Program Type (PTY)
+  * @param pty - Program type
+  */
+  uint8_t rdsGetPTY() {return this->rdsPTY;};
+
+
   /**
   * @ingroup group05 TX RDS
   * @brief Sets the Traffic Program.
   * @param tp - tp Code
   */
   void rdsSetTP(uint16_t tp) {this->rdsTP = tp;};
+
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Sets the Traffic Program.
+  * @param tp - tp Code
+  */
+  uint8_t rdsGetTP() {return this->rdsTP;};
+
+
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Gets the Program Station (Station Name).
+  */
+  char* rdsGetPS() {return this->rdsStationName;};
+
+
   /**
   * @ingroup group05 TX RDS
   * @brief Gets TX RDS error setup
   */
-  uint8_t rdsGetSendError() {return this->rdsSendError;};
+  uint8_t rdsGetError() {return this->rdsSendError;};
 
 
 
