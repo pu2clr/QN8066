@@ -473,14 +473,14 @@ void QN8066::setTxPilotGain(uint8_t value) {
  * void setup() {
  *   tx.setup();
  *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
- *   tx.setTxSoftCliptTreshold(2);   // 2 = 12’d1452 (6db back off from 0.5v) 
+ *   tx.setTxSoftClipThreshold(2);   // 2 = 12’d1452 (6db back off from 0.5v) 
  * }
  *
  * void loop() {
  * }
  * @endcode  
  */
-void QN8066::setTxSoftCliptTreshold(uint8_t value) {
+void QN8066::setTxSoftClipThreshold(uint8_t value) {
   qn8066_gplt gptl;
   gptl.raw = this->getRegister(QN_GPLT);
   gptl.arg.tx_sftclpth = value;

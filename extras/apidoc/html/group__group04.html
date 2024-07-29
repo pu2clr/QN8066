@@ -119,9 +119,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gad46b7a63f4c0887a2b0c9b1b068739d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">QN8066::setTxPilotGain</a> (uint8_t value)</td></tr>
 <tr class="memdesc:gad46b7a63f4c0887a2b0c9b1b068739d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gain of TX pilot to adjust pilot frequency deviation.  <br /></td></tr>
 <tr class="separator:gad46b7a63f4c0887a2b0c9b1b068739d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0032c60d8038a749f69b7e8508fa014d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga0032c60d8038a749f69b7e8508fa014d">QN8066::setTxSoftCliptTreshold</a> (uint8_t value)</td></tr>
-<tr class="memdesc:ga0032c60d8038a749f69b7e8508fa014d"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX soft clip threshold.  <br /></td></tr>
-<tr class="separator:ga0032c60d8038a749f69b7e8508fa014d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7e51f19bfb612210c48d3e1e85b7b426"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426">QN8066::setTxSoftClipThreshold</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga7e51f19bfb612210c48d3e1e85b7b426"><td class="mdescLeft">&#160;</td><td class="mdescRight">TX soft clip threshold.  <br /></td></tr>
+<tr class="separator:ga7e51f19bfb612210c48d3e1e85b7b426"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga59c9bd87716f1c0ffb1be2a143a95571"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571">QN8066::setTxOffAfterOneMinuteNoAudio</a> (bool value)</td></tr>
 <tr class="memdesc:ga59c9bd87716f1c0ffb1be2a143a95571"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set of 1 minute time for PA off when no audio.  <br /></td></tr>
 <tr class="separator:ga59c9bd87716f1c0ffb1be2a143a95571"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -433,14 +433,14 @@ Functions</h2></td></tr>
 </div><!-- fragment --> 
 </div>
 </div>
-<a id="ga0032c60d8038a749f69b7e8508fa014d" name="ga0032c60d8038a749f69b7e8508fa014d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga0032c60d8038a749f69b7e8508fa014d">&#9670;&#160;</a></span>setTxSoftCliptTreshold()</h2>
+<a id="ga7e51f19bfb612210c48d3e1e85b7b426" name="ga7e51f19bfb612210c48d3e1e85b7b426"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7e51f19bfb612210c48d3e1e85b7b426">&#9670;&#160;</a></span>setTxSoftClipThreshold()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void QN8066::setTxSoftCliptTreshold </td>
+          <td class="memname">void QN8066::setTxSoftClipThreshold </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
@@ -474,12 +474,12 @@ Functions</h2></td></tr>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2">setup</a>();</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga0032c60d8038a749f69b7e8508fa014d">setTxSoftCliptTreshold</a>(2);   <span class="comment">// 2 = 12’d1452 (6db back off from 0.5v) </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426">setTxSoftClipThreshold</a>(2);   <span class="comment">// 2 = 12’d1452 (6db back off from 0.5v) </span></div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga0032c60d8038a749f69b7e8508fa014d"><div class="ttname"><a href="group__group04.html#ga0032c60d8038a749f69b7e8508fa014d">QN8066::setTxSoftCliptTreshold</a></div><div class="ttdeci">void setTxSoftCliptTreshold(uint8_t value)</div><div class="ttdoc">TX soft clip threshold.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:483</div></div>
+<div class="ttc" id="agroup__group04_html_ga7e51f19bfb612210c48d3e1e85b7b426"><div class="ttname"><a href="group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426">QN8066::setTxSoftClipThreshold</a></div><div class="ttdeci">void setTxSoftClipThreshold(uint8_t value)</div><div class="ttdoc">TX soft clip threshold.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:483</div></div>
 </div><!-- fragment --> 
 </div>
 </div>

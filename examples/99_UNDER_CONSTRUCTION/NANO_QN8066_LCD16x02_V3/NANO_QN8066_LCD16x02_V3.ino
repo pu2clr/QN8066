@@ -234,7 +234,7 @@ void setup() {
     tx.setTxInputImpedance(idxImpedance = 2); // 40Kohm
     tx.setTxPilotGain(idxGainTxPilot = 2);
     tx.setTxSoftClippingEnable(idxTxSoftClipEnable = 1);
-    tx.setTxSoftCliptTreshold(idxTxSoftClipThreshold = 0);
+    tx.setTxSoftClipThreshold(idxTxSoftClipThreshold = 0);
     tx.setPreEmphasis(idxPreEmphasis = 1);
     tx.rdsTxEnable(idxRDS = 0);
     tx.setTxMono(idxStereoMono = 0); // Sets to stereo mode
@@ -399,7 +399,7 @@ void doAction(uint8_t idxMenu) {
       runAction([&tx](uint8_t value) { tx.setTxSoftClippingEnable(value); }, & idxTxSoftClipEnable, 1, 0, 1);
       break;
     case 7:
-      runAction([&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, & idxTxSoftClipThreshold, 1, 0, 3);
+      runAction([&tx](uint8_t value) { tx.setTxSoftClipThreshold(value); }, & idxTxSoftClipThreshold, 1, 0, 3);
       break;
     case 8:
       runAction([&tx](uint8_t value) { tx.setTxPilotGain(value); }, & idxGainTxPilot, 1, 0, 3);

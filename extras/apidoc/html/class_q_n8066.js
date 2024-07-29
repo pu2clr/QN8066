@@ -27,7 +27,7 @@ var class_q_n8066 =
     [ "setTxDigitalGain", "group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5", null ],
     [ "setTxInputBufferGain", "group__group04.html#ga09843594c1c9203a738c3a18cbc78403", null ],
     [ "setTxSoftClippingEnable", "group__group04.html#gab21e226857d1b2ac384623fd47784ce5", null ],
-    [ "setTxSoftCliptTreshold", "group__group04.html#ga0032c60d8038a749f69b7e8508fa014d", null ],
+    [ "setTxSoftClipThreshold", "group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426", null ],
     [ "setTxFrequencyDerivation", "group__group04.html#ga88ea23b676feb40a15725b9273eca95b", null ],
     [ "setResetDelay", "class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1", null ],
     [ "begin", "group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93", null ],
@@ -53,7 +53,12 @@ var class_q_n8066 =
     [ "rdsSetStationName", "group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f", null ],
     [ "rdsWriteBlock", "class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3", null ],
     [ "rdsSetPI", "group__group05.html#gabff1b72ccfef9356650ad42beb41f62c", null ],
+    [ "rdsGetPI", "group__group05.html#gad3065e17bdc43e22833cf509f4002f0e", null ],
     [ "rdsSetPTY", "group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b", null ],
+    [ "rdsGetPTY", "group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24", null ],
     [ "rdsSetTP", "group__group05.html#gaa49bb620515b40371af65135ad35a759", null ],
+    [ "rdsGetTP", "group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80", null ],
+    [ "rdsGetPS", "group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0", null ],
+    [ "rdsGetError", "group__group05.html#ga39fca640c878f92ed9c15f000620161e", null ],
     [ "convertToChar", "group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8", null ]
 ];

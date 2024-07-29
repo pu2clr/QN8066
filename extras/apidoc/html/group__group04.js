@@ -7,7 +7,7 @@ var group__group04 =
     [ "QN8066::setTxPreEmphasis", "group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1", null ],
     [ "QN8066::setPreEmphasis", "group__group04.html#ga70f715c1483a62426d8368c1defa93dd", null ],
     [ "QN8066::setTxPilotGain", "group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4", null ],
-    [ "QN8066::setTxSoftCliptTreshold", "group__group04.html#ga0032c60d8038a749f69b7e8508fa014d", null ],
+    [ "QN8066::setTxSoftClipThreshold", "group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426", null ],
     [ "QN8066::setTxOffAfterOneMinuteNoAudio", "group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571", null ],
     [ "QN8066::setTxOffAfterOneMinute", "group__group04.html#gad1cad21dc29703b30df776dbbb98a08a", null ],
     [ "QN8066::setAudioAnalogGain", "group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7", null ],

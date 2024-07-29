@@ -23,7 +23,7 @@ var searchData=
   ['settxpilotgain_20',['setTxPilotGain',['../group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4',1,'QN8066']]],
   ['settxpreemphasis_21',['setTxPreEmphasis',['../group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1',1,'QN8066']]],
   ['settxsoftclippingenable_22',['setTxSoftClippingEnable',['../group__group04.html#gab21e226857d1b2ac384623fd47784ce5',1,'QN8066']]],
-  ['settxsoftclipttreshold_23',['setTxSoftCliptTreshold',['../group__group04.html#ga0032c60d8038a749f69b7e8508fa014d',1,'QN8066']]],
+  ['settxsoftclipthreshold_23',['setTxSoftClipThreshold',['../group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426',1,'QN8066']]],
   ['settxstereo_24',['setTxStereo',['../group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83',1,'QN8066']]],
   ['setup_25',['setup',['../group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2',1,'QN8066']]],
   ['snrdb_26',['SNRDB',['../group__group00.html#a40858883345a2297b86e1adfeea40baa',1,'qn8066_srn']]],

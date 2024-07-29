@@ -64,7 +64,7 @@ void setup() {
   tx.setTxFrequencyDerivation(120);     // Specify total TX frequency deviation. TX frequency deviation 
                                         // 0.69KHz*TX_FEDV 0-255 (default is 108)
   tx.setTxPilotGain(8);                 // Pilot Again % (9%)
-  tx.setTxSoftCliptTreshold(0);         // TX soft clip threshold (12’d2051 (3db back off from 0.5v) 
+  tx.setTxSoftClipThreshold(0);         // TX soft clip threshold (12’d2051 (3db back off from 0.5v) 
   tx.setTxSoftClippingEnable(false);    // TX soft clipping enable(default is false)
   tx.setTxInputImpedance(2);            // 0 = 10K; 1 = 20K; 2=40K(default); 3 = 80K 
   tx.setTxDigitalGain(0);               // TX digital gain => 0 = 0dB (default is 0 dB)

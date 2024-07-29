@@ -291,7 +291,7 @@ void setup() {
   tx.setTxInputImpedance(keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].idx); // 40Kohm
   tx.setTxPilotGain(keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].idx);
   tx.setTxSoftClippingEnable(keyValue[KEY_SOFT_CLIP_ENABLE].value[keyValue[KEY_SOFT_CLIP_ENABLE].key].idx);
-  tx.setTxSoftCliptTreshold( keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
+  tx.setTxSoftClipThreshold( keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
   tx.setPreEmphasis(keyValue[KEY_PRE_EMPHASIS].value[keyValue[KEY_PRE_EMPHASIS].key].idx);
   tx.rdsTxEnable(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
   tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx); 
@@ -583,7 +583,7 @@ uint8_t doMenu(uint8_t idxMenu) {
       runAction([](uint8_t value) { tx.setTxSoftClippingEnable(value); }, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 7:
-      runAction([](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) { tx.setTxSoftClipThreshold(value); }, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 8:
       runAction([](uint8_t value) { tx.setTxPilotGain(value); }, &keyValue[idxMenu], 1, 0, 3);

@@ -42,8 +42,13 @@ var group__group05 =
       [ "groupType", "group__group05.html#a19223bd3731a4215ead3ba6a1eb8bbe8", null ]
     ] ],
     [ "QN8066::rdsSetPI", "group__group05.html#gabff1b72ccfef9356650ad42beb41f62c", null ],
+    [ "QN8066::rdsGetPI", "group__group05.html#gad3065e17bdc43e22833cf509f4002f0e", null ],
     [ "QN8066::rdsSetPTY", "group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b", null ],
+    [ "QN8066::rdsGetPTY", "group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24", null ],
     [ "QN8066::rdsSetTP", "group__group05.html#gaa49bb620515b40371af65135ad35a759", null ],
+    [ "QN8066::rdsGetTP", "group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80", null ],
+    [ "QN8066::rdsGetPS", "group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0", null ],
+    [ "QN8066::rdsGetError", "group__group05.html#ga39fca640c878f92ed9c15f000620161e", null ],
     [ "QN8066::rdsTxEnable", "group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1", null ],
     [ "QN8066::rdsSetTxToggle", "group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7", null ],
     [ "QN8066::rdsGetTxUpdated", "group__group05.html#gab18543166cfd0ca104df9a269a990552", null ],

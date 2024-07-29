@@ -235,7 +235,7 @@ void setup() {
     tx.setTxInputImpedance(idxImpedance = 2);                 // 2 (40K (default)
     tx.setTxPilotGain(idxGainTxPilot = 2);                    // 2 ("9% * 75KHz" default)
     tx.setTxSoftClippingEnable(idxTxSoftClipEnable = 0);      // 0 (disable)
-    tx.setTxSoftCliptTreshold(idxTxSoftClipThreshold = 0);    // 0 (default)
+    tx.setTxSoftClipThreshold(idxTxSoftClipThreshold = 0);    // 0 (default)
     tx.setPreEmphasis(idxPreEmphasis = 1);                    // 0 (default 50uS)
     tx.rdsTxEnable(idxRDS = 0);                                  // 0 (disable)
     tx.setTxMono(idxStereoMono = 0);                          // 0 (stereo)   
@@ -495,7 +495,7 @@ void doMenu(uint8_t idxMenu) {
       runAction([&tx](uint8_t value) { tx.setTxSoftClippingEnable(value); }, tabTxSoftClipEnable, & idxTxSoftClipEnable, 1, 0, 1);
       break;
     case 7:
-      runAction([&tx](uint8_t value) { tx.setTxSoftCliptTreshold(value); }, tabTxSoftClipThreshold, & idxTxSoftClipThreshold, 1, 0, 3);
+      runAction([&tx](uint8_t value) { tx.setTxSoftClipThreshold(value); }, tabTxSoftClipThreshold, & idxTxSoftClipThreshold, 1, 0, 3);
       break;
     case 8:
       runAction([&tx](uint8_t value) { tx.setTxPilotGain(value); }, tabGainTxPilot, & idxGainTxPilot, 1, 0, 3);

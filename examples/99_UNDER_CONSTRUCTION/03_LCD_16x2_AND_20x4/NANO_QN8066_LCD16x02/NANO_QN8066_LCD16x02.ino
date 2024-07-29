@@ -490,7 +490,7 @@ void doSoftClipThreshold() {
         else 
            idxTxSoftClipThreshold--;  
     }
-    tx.setTxSoftCliptTreshold(tabTxSoftClipThreshold[idxTxSoftClipThreshold].idx);
+    tx.setTxSoftClipThreshold(tabTxSoftClipThreshold[idxTxSoftClipThreshold].idx);
     showSoftClipThreshold();
     key = browseParameter();
   }

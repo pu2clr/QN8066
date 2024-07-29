@@ -896,7 +896,7 @@ public:
   void setTxDigitalGain(uint8_t value);
   void setTxInputBufferGain(uint8_t value);
   void setTxSoftClippingEnable( bool value);
-  void setTxSoftCliptTreshold(uint8_t value);
+  void setTxSoftClipThreshold(uint8_t value);
   void setTxFrequencyDerivation(uint8_t value);
 
   void setResetDelay(uint16_t delayAfterReset) {
