@@ -1078,8 +1078,8 @@ void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
  */
 void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
 
-  // uint8_t toggle  = this->rdsGetTxUpdated(); 
-  // uint8_t count = 0;
+  uint8_t toggle  = this->rdsGetTxUpdated(); 
+  uint8_t count = 0;
 
   this->rdsSendError = 0;
 
@@ -1094,17 +1094,19 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
+
+  this->rdsSetTxToggle();
   
-  delay(90); 
-  /* 
-  while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
+  delay(87); 
+  
+  while ( this->rdsGetTxUpdated() == toggle  && count < 50) { 
     delay(1);
     count++;
   }
 
-  if (count >= 10 ) 
+  if (count >= 50 ) 
     this->rdsSendError = 1;
-  */
+  
 }
 
 /**
@@ -1114,7 +1116,8 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
  * @param stationName 
  */
 void QN8066::rdsSetStationName(char *stationName) { 
-  strncpy(this->rdsStationName,stationName,8);
+  strncpy(this->rdsStationName,stationName,7);
+  rdsStationName[7] = '\r'; // carriage return (ASCII - 13)
   rdsStationName[8] = '\0';
 }
 
