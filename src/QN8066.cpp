@@ -986,7 +986,7 @@ void QN8066::rdsSetMode(uint8_t mode) {
 void QN8066::rdsInitTx() {
   this->rdsTxEnable(true);
   this->rdsSetTxLineIn(1);
-  this->rdsSetFrequencyDerivation(30);
+  // this->rdsSetFrequencyDerivation(30);
   this->rdsSendGroup(0,0,0,0);
   delay(100);
 }
