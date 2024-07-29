@@ -972,6 +972,7 @@ int QN8066::getAudioPeakValue() {
 void QN8066::rdsInitTx() {
   
   this->rdsSetTxLineIn(true);
+  this->rdsSetFrequencyDerivation(120);
 
 }
 
