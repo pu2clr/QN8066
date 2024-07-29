@@ -929,6 +929,7 @@ public:
 
   // RDS TX
 
+  void rdsSetMode(uint8_t mode); 
   void rdsInitTx();
 
   void rdsTxEnable(bool value);   

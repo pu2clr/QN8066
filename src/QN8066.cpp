@@ -968,6 +968,20 @@ int QN8066::getAudioPeakValue() {
 
 /** @defgroup group05 TX RDS Setup - UNDER CONSTRUCTION...*/
 
+/**
+ * @ingroup group05 TX RDS 
+ * @brief Sets RDS Mode Selection.
+ * @details if 0, Received bit-stream have both RDS and MMBS blocks (‘E’ block); 
+ * @details if 1, Received bit-stream has RDS block only, no MMBS block (‘E’ block)
+ * @param mode 
+ */
+void QN8066::rdsSetMode(uint8_t mode) {
+  qn8066_int_ctrl int_ctrl;
+  int_ctrl.raw = this->getRegister(QN_INT_CTRL);
+  int_ctrl.arg.rds_only = mode;
+  this->setRegister(QN_INT_CTRL, int_ctrl.raw );
+}
+
 
 void QN8066::rdsInitTx() {
   this->rdsTxEnable(true);
