@@ -1142,7 +1142,7 @@ void QN8066::rdsSendStationName(const char* stationName) {
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = stationName[i];
     b4.field.content[1] = stationName[i+1];    
-    this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
+    this->rdsSendGroup(b1.pi, b2.raw,  b4.raw, b1.pi);
   }
 
 }
