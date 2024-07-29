@@ -973,7 +973,7 @@ void QN8066::rdsInitTx() {
   this->rdsTxEnable(true);
   // this->rdsSetTxLineIn(false);
   // this->rdsSetFrequencyDerivation(6);
-  // this->rdsSendGroup(0,0,0,0);
+  this->rdsSendGroup(0,0,0,0);
   delay(100);
 }
 
