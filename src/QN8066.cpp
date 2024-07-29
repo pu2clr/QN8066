@@ -1077,16 +1077,19 @@ void QN8066::sendRDSGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
  
   this->setRegister(QN_TX_RDSD0, block1>>8 );
   this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
+    delay(87);  
   this->setRegister(QN_TX_RDSD2, block2>>8 );
   this->setRegister(QN_TX_RDSD3, block2 & 0xFF);
+    delay(87);  
   this->setRegister(QN_TX_RDSD4, block3>>8 );
   this->setRegister(QN_TX_RDSD5, block3 & 0xFF);
+    delay(87);  
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
   
 
   toggle = this->setTxToggleRDSReady();
-  delay(87);  
+  delay(88);  
 
   while ( this->getTxRDSUpdated() == toggle  && count < 10) { 
     delay(2);
@@ -1124,7 +1127,7 @@ void QN8066::sendStationName(const char* stationName) {
     b4.field.content[0] = stationName[i];
     b4.field.content[1] = stationName[i+1];    
     this->sendRDSGroup(b1.pi, b2.raw, b1.pi, b4.raw);
-    b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
+    // b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
   }
 
 }
