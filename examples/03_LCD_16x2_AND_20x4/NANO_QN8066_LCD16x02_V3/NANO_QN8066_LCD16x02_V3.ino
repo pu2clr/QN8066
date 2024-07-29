@@ -480,12 +480,12 @@ void doFrequency() {
   int8_t key = browseParameter();
   while (key != 0) {
     if (key == -1) {
-      if (txFrequency < 640)
-          txFrequency = 1080;
+      if (txFrequency < 640)    // If less than 64 MHz
+          txFrequency = 1080;       
        else    
           txFrequency -= STEP_FREQ;
     } else if (key == 1) {
-      if (txFrequency > 1080)
+      if (txFrequency > 1080)   // if more than 108 MHz
          txFrequency = 640; 
        else 
         txFrequency += STEP_FREQ;
