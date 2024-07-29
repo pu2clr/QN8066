@@ -604,6 +604,7 @@ uint8_t doMenu(uint8_t idxMenu) {
   return 1;
 }
 // Main loop
+uint8_t pty = 1;
 void loop() {
   int8_t key;
   if (menuLevel == 0) {
@@ -618,7 +619,8 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 61000 ) {
-          tx.rdsSetPTY(29); // Document.
+          tx.rdsSetPTY(pty++); // Document.
+          if (pty > 30 ) pty = 1;
           tx.rdsSendProgramService(rdsStationName);
           rdsTime = millis();
         }
