@@ -1136,7 +1136,7 @@ void QN8066::rdsSendStationName(const char* stationName) {
   b2.raw = 0;
   b2.commonFields.programType = this->rdsPTY;
   b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 1; // B
+  b2.commonFields.versionCode = 0; // A
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = stationName[i];
