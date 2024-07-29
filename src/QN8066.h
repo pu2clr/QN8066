@@ -949,19 +949,19 @@ public:
   * @brief Sets the Program Identification (PI)
   * @param pi - PI Code
   */
-  void setRdsPI(uint16_t pi) {this->rdsPI = pi;};
+  void rdsSetPI(uint16_t pi) {this->rdsPI = pi;};
   /**
   * @ingroup group05 TX RDS
   * @brief Sets the Program Type (PTY)
   * @param pty - Program type
   */
-  void setRdsPTY(uint16_t pty) {this->rdsPTY = pty;};
+  void rdsSetPTY(uint16_t pty) {this->rdsPTY = pty;};
   /**
   * @ingroup group05 TX RDS
   * @brief Sets the Traffic Program.
   * @param tp - tp Code
   */
-  void setRdsTP(uint16_t tp) {this->rdsTP = tp;};
+  void rdsSetTP(uint16_t tp) {this->rdsTP = tp;};
 
 
 

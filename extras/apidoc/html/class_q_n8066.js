@@ -52,8 +52,8 @@ var class_q_n8066 =
     [ "rdsSendStationName", "class_q_n8066.html#a416e9831b26324bf351981998d34feca", null ],
     [ "rdsSetStationName", "group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f", null ],
     [ "rdsWriteBlock", "class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3", null ],
-    [ "setRdsPI", "group__group05.html#ga504d4b02523d6aeebf9ad51180924353", null ],
-    [ "setRdsPTY", "group__group05.html#gacda2fbb04f951301660ed34a812d3777", null ],
-    [ "setRdsTP", "group__group05.html#ga9be98b9bb2737f6cb234fd5590ecda1f", null ],
+    [ "rdsSetPI", "group__group05.html#gabff1b72ccfef9356650ad42beb41f62c", null ],
+    [ "rdsSetPTY", "group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b", null ],
+    [ "rdsSetTP", "group__group05.html#gaa49bb620515b40371af65135ad35a759", null ],
     [ "convertToChar", "group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8", null ]
 ];
