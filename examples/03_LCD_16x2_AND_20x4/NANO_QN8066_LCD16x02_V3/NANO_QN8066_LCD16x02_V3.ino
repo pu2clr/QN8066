@@ -100,7 +100,7 @@
 #define BT_MENU_PRESSED 3
 
 #define STEP_FREQ 1
-#define PUSH_MIN_DELAY 50
+#define PUSH_MIN_DELAY 100
 
 uint8_t lcdPage = 0;
 
@@ -325,8 +325,7 @@ void setup() {
 
 
   showStatus(lcdPage);
-  lcd.clear();
-  delay(500);
+  delay(100);
 
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
 }

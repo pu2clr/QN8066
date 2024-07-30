@@ -192,7 +192,7 @@ void QN8066::setup(uint16_t xtalDiv,
                    uint8_t PreEmphasis,  uint8_t xtalInj, uint8_t imageRejection,
                    uint8_t txSoftClipThreshold,  uint8_t oneMinutOff, uint8_t gainTxPLT,
                    uint8_t txFreqDev,  uint8_t rdsLineIn, uint8_t rdsFreqDev ) {
-  delay(600); // Chip power-up time
+  delay(200); // Chip power-up time
 
   this->xtal_div = xtalDiv;
 
