@@ -50,7 +50,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_q_n8066_8cpp.html",
-"group__group00.html#unionqn8066__rssisig"
+"group__group00.html#unionqn8066__rx__ch"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

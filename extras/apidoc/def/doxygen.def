@@ -1675,13 +1675,13 @@ _EnD_oF_dEf_TeXt_;
 Sends the Program Service Message.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
- Like rdsSendStationName is method sends the Station Name or other 8 char message.
+ Like rdsSendStationName this method sends the Station Name or other 8 char message.
 @param ps 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'class_q_n8066_1a42f1e00674ead2cb6bd5252a969086b4';
+      sec-mem-id   = 'group__group05_1ga42f1e00674ead2cb6bd5252a969086b4';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -1693,14 +1693,16 @@ _EnD_oF_dEf_TeXt_;
 const char *
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'ps';
+        sec-mem-param-defname = 'stationName';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
       sec-mem-desc-line = '944';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Sends the Program Service Message.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
+ Like rdsSendPS this method sends the Station Name or other 8 char message.
+@param ps 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -1769,7 +1771,7 @@ _EnD_oF_dEf_TeXt_;
 Sends RDS Radio Text Message.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1222 
+\iline 1227 
 
 @param rt 
 _EnD_oF_dEf_TeXt_;

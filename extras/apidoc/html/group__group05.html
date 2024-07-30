@@ -167,6 +167,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f">QN8066::rdsSetStationName</a> (char *stationName)</td></tr>
 <tr class="memdesc:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the station name.  <br /></td></tr>
 <tr class="separator:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga42f1e00674ead2cb6bd5252a969086b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga42f1e00674ead2cb6bd5252a969086b4">QN8066::rdsSendStationName</a> (const char *ps)</td></tr>
+<tr class="memdesc:ga42f1e00674ead2cb6bd5252a969086b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the Program Service Message.  <br /></td></tr>
+<tr class="separator:ga42f1e00674ead2cb6bd5252a969086b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gae0360959213bed25638c463c85a451d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gae0360959213bed25638c463c85a451d3">QN8066::rdsSendPS</a> (const char *ps)</td></tr>
 <tr class="memdesc:gae0360959213bed25638c463c85a451d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the Program Service Message.  <br /></td></tr>
 <tr class="separator:gae0360959213bed25638c463c85a451d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -1024,6 +1027,32 @@ false </dd></dl>
 
 </div>
 </div>
+<a id="ga42f1e00674ead2cb6bd5252a969086b4" name="ga42f1e00674ead2cb6bd5252a969086b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga42f1e00674ead2cb6bd5252a969086b4">&#9670;&#160;</a></span>rdsSendStationName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::rdsSendStationName </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>stationName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sends the Program Service Message. </p>
+<p>Like rdsSendPS this method sends the Station Name or other 8 char message. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ps</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="gae0360959213bed25638c463c85a451d3" name="gae0360959213bed25638c463c85a451d3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#gae0360959213bed25638c463c85a451d3">&#9670;&#160;</a></span>rdsSendPS()</h2>
 
@@ -1041,7 +1070,7 @@ false </dd></dl>
 </div><div class="memdoc">
 
 <p>Sends the Program Service Message. </p>
-<p>Like rdsSendStationName is method sends the Station Name or other 8 char message. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Like rdsSendStationName this method sends the Station Name or other 8 char message. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ps</td><td></td></tr>
   </table>

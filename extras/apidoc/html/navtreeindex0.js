@@ -63,7 +63,6 @@ var NAVTREEINDEX0 =
 "class_q_n8066.html":[3,0,0],
 "class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1":[3,0,0,29],
 "class_q_n8066.html#a416e9831b26324bf351981998d34feca":[3,0,0,50],
-"class_q_n8066.html#a42f1e00674ead2cb6bd5252a969086b4":[3,0,0,49],
 "class_q_n8066.html#a6ded90fbd1cab1eac0e3eae363ab3a84":[3,0,0,40],
 "class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3":[3,0,0,53],
 "class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92":[3,0,0,5],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "group__group00.html#unionqn8066__int__ctrl":[2,6,18],
 "group__group00.html#unionqn8066__pac":[2,6,22],
 "group__group00.html#unionqn8066__rds":[2,6,24],
-"group__group00.html#unionqn8066__reg__vga":[2,6,26]
+"group__group00.html#unionqn8066__reg__vga":[2,6,26],
+"group__group00.html#unionqn8066__rssisig":[2,6,4]
 };
