@@ -93,11 +93,15 @@
 #define BT_DOWN 11
 #define PWM_PA 9
 
-#define STEP_FREQ 1
-#define PUSH_MIN_DELAY 125
-#define TIME_PAGE 5000
 
-uint32_t timePage = millis();
+#define BT_NO_PRESSED 7
+#define BT_DOWN_PRESSED 6
+#define BT_UP_PRESSED 5
+#define BT_MENU_PRESSED 3
+
+#define STEP_FREQ 1
+#define PUSH_MIN_DELAY 50
+
 uint8_t lcdPage = 0;
 
 uint8_t menuLevel = 0;
@@ -616,19 +620,25 @@ uint8_t doMenu(uint8_t idxMenu) {
   saveAllTransmitterInformation(); // Saves the current modified data to the EEPROM
   return 1;
 }
+
+/*
+ Returns:
+          7 if no key is pressed. -  111 - BT_NO_PRESSED
+          6 if BT_DOWN is pressed -  110 - BT_DOWN_PRESSED 
+          5 if BT_UP is pressed   -  101 - BT_UP_PRESSED 
+          3 if BT_MENU is pressed -  011 - BT_MENU_PRESSED
+*/           
+int8_t checkButton() {
+    return digitalRead(BT_MENU) << 2 | digitalRead(BT_UP) << 1 | digitalRead(BT_DOWN) ; 
+}
+
 // Main loop
 uint8_t pty = 0;
 void loop() {
   int8_t key;
   if (menuLevel == 0) {
     showStatus(lcdPage);
-    while (digitalRead(BT_MENU) == HIGH) {
-      if ( (millis() - timePage) > TIME_PAGE ) {
-        if (lcdPage > 3) lcdPage = 0; 
-        showStatus(lcdPage); 
-        lcdPage++;
-        timePage = millis();
-      }
+    while ( (key = checkButton()) == BT_NO_PRESSED )  {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 61000 ) {
@@ -638,11 +648,23 @@ void loop() {
           // tx.rdsSendPS(rdsStationName);
           rdsTime = millis();
         }
-      } 
-
-
-    }
-    menuLevel = 1;
+      }
+    } 
+    if ( key == BT_DOWN_PRESSED ) { // Down Pressed
+      if (lcdPage == 0 ) 
+        lcdPage = 3;
+      else 
+        lcdPage--;
+      showStatus(lcdPage); 
+    } else if (key == BT_UP_PRESSED ) { // Up Pressed
+      if ( lcdPage == 3) 
+        lcdPage = 0;
+      else
+       lcdPage++;     
+      showStatus(lcdPage); 
+    } else {  // Menu Pressed
+        menuLevel = 1;
+    } 
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
     key = browseParameter();
