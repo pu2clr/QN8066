@@ -49,6 +49,7 @@ var group__group05 =
     [ "QN8066::rdsGetTP", "group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80", null ],
     [ "QN8066::rdsGetPS", "group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0", null ],
     [ "QN8066::rdsGetError", "group__group05.html#ga39fca640c878f92ed9c15f000620161e", null ],
+    [ "QN8066::rdsSetMode", "group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a", null ],
     [ "QN8066::rdsTxEnable", "group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1", null ],
     [ "QN8066::rdsSetTxToggle", "group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7", null ],
     [ "QN8066::rdsGetTxUpdated", "group__group05.html#gab18543166cfd0ca104df9a269a990552", null ],
@@ -56,5 +57,6 @@ var group__group05 =
     [ "QN8066::rdsSetFrequencyDerivation", "group__group05.html#gac065cafa8060f52483dbbd00b9955331", null ],
     [ "QN8066::rdsSetTxLineIn", "group__group05.html#ga783662032ee4eaaca5b6fab64142e1e8", null ],
     [ "QN8066::rdsSendGroup", "group__group05.html#ga39b9317f050108e7cd4d8695953acd95", null ],
-    [ "QN8066::rdsSetStationName", "group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f", null ]
+    [ "QN8066::rdsSetStationName", "group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f", null ],
+    [ "QN8066::rdsSendPS", "group__group05.html#gae0360959213bed25638c463c85a451d3", null ]
 ];
