@@ -51,6 +51,9 @@ Please, be aware that the use of FM transmitters is regulated by the laws and re
 
 By following these guidelines, you can ensure that your use of the FM transmitter respects the laws and regulations of your country and does not result in any legal issues.
 
+# Groups and Forums
+
+There is a Facebook group called [QN80XX FM Transmitters & Receivers Enthusiasts](https://www.facebook.com/groups/qn80xx)  where the purpose is exchanging experiences with projects based on Quintic QN80XX IC family. You will be welcome there.
 
 
 ## Acknowledgements
