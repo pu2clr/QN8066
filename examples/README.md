@@ -1,7 +1,9 @@
 # QN8066 Arduino Library Examples 
 
-
 This directory presents some examples with the transceiver QN8066 
+
+
+There is a Facebook group called [QN80XX FM Transmitters & Receivers Enthusiasts](https://www.facebook.com/groups/qn80xx)  where the purpose is exchanging experiences with projects based on Quintic QN80XX IC family. You will be welcome there.
 
 
 ## Notice to Users Regarding Examples and this library
