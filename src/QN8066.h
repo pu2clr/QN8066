@@ -945,6 +945,7 @@ public:
   void rdsSendStationName();
 
   void rdsSetStationName(char *stationName);
+  void rdsSendRTMessage(char *rtText);
   void rdsWriteBlock(uint8_t rdsRegister, uint16_t block); 
 
   /**

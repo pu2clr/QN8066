@@ -1210,6 +1210,37 @@ void QN8066::rdsSendProgramService(const char* ps) {
 
 }
 
+void QN8066::rdsSendRTMessage(char *rtText) {
+    int textLen = strlen(rtText);
+    int numGroups = (textLen + 3) / 4; // Each group can contain 4 characters
+    RDS_BLOCK1 block1;
+    block1.pi = this->rdsPI;
+
+    for (uint8_t i = 0; i < numGroups; i++) {
+       
+        RDS_BLOCK2 block2 = {
+            .group2Field = {
+                .address = i,
+                .textABFlag = 0, // Set as needed
+                .programType = this->rdsPTY,
+                .trafficProgramCode = this->rdsTP,
+                .versionCode = 0, // Version A
+                .groupType = 2    // Group 2
+            }
+        };
+        RDS_BLOCK3 block3; 
+        block3.raw  = (rtText[i * 4] << 8) | rtText[i * 4 + 1];
+        RDS_BLOCK4 block4;
+        block4.raw = (rtText[i * 4 + 2] << 8) | rtText[i * 4 + 3];
+        this->rdsSendGroup(block1.pi, block2.raw, block3.raw, block4.raw);
+    }
+}
+
+void sendBlock(uint16_t block) {
+    // Function implementation to send a data block
+}
+
+
 
 
 /** @defgroup group99 Helper and Tools functions*/
