@@ -1434,7 +1434,7 @@ _EnD_oF_dEf_TeXt_;
 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
-        sec-mem-ref-id = '_q_n8066_8cpp_1ga783662032ee4eaaca5b6fab64142e1e8';
+        sec-mem-ref-id = '_q_n8066_8cpp_1ga27d182aa90e915b86139d0ae63350fc8';
         sec-mem-ref-line = '1071';
         sec-mem-ref-name = 'rdsSetTxLineIn';
     };
@@ -1549,7 +1549,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group05_1gac065cafa8060f52483dbbd00b9955331';
+      sec-mem-id   = 'group__group05_1ga662a1d34329657b1d2fbb93f44901bab';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -1561,6 +1561,9 @@ _EnD_oF_dEf_TeXt_;
 uint8_t
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'freq';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+6
+_EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
       sec-mem-desc-line = '939';
@@ -1576,7 +1579,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group05_1ga783662032ee4eaaca5b6fab64142e1e8';
+      sec-mem-id   = 'group__group05_1ga27d182aa90e915b86139d0ae63350fc8';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -1588,6 +1591,9 @@ _EnD_oF_dEf_TeXt_;
 bool
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+0
+_EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
       sec-mem-desc-line = '940';

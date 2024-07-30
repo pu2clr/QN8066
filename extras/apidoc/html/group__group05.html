@@ -155,12 +155,12 @@ Functions</h2></td></tr>
 <tr class="memitem:gad08b61283a37563712c2b6b8f59e5046"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gad08b61283a37563712c2b6b8f59e5046">QN8066::rdsWriteTxBuffer</a> (const char *text)</td></tr>
 <tr class="memdesc:gad08b61283a37563712c2b6b8f59e5046"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)  <br /></td></tr>
 <tr class="separator:gad08b61283a37563712c2b6b8f59e5046"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gac065cafa8060f52483dbbd00b9955331"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gac065cafa8060f52483dbbd00b9955331">QN8066::rdsSetFrequencyDerivation</a> (uint8_t freq)</td></tr>
-<tr class="memdesc:gac065cafa8060f52483dbbd00b9955331"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS frequency deviation.  <br /></td></tr>
-<tr class="separator:gac065cafa8060f52483dbbd00b9955331"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga783662032ee4eaaca5b6fab64142e1e8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga783662032ee4eaaca5b6fab64142e1e8">QN8066::rdsSetTxLineIn</a> (bool value)</td></tr>
-<tr class="memdesc:ga783662032ee4eaaca5b6fab64142e1e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio Line-in enable control.  <br /></td></tr>
-<tr class="separator:ga783662032ee4eaaca5b6fab64142e1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga662a1d34329657b1d2fbb93f44901bab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga662a1d34329657b1d2fbb93f44901bab">QN8066::rdsSetFrequencyDerivation</a> (uint8_t freq=6)</td></tr>
+<tr class="memdesc:ga662a1d34329657b1d2fbb93f44901bab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS frequency deviation.  <br /></td></tr>
+<tr class="separator:ga662a1d34329657b1d2fbb93f44901bab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga27d182aa90e915b86139d0ae63350fc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga27d182aa90e915b86139d0ae63350fc8">QN8066::rdsSetTxLineIn</a> (bool value=0)</td></tr>
+<tr class="memdesc:ga27d182aa90e915b86139d0ae63350fc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Audio Line-in enable control.  <br /></td></tr>
+<tr class="separator:ga27d182aa90e915b86139d0ae63350fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga39b9317f050108e7cd4d8695953acd95"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga39b9317f050108e7cd4d8695953acd95">QN8066::rdsSendGroup</a> (uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD)</td></tr>
 <tr class="memdesc:ga39b9317f050108e7cd4d8695953acd95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a RDS group (four blocks) to the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a>.  <br /></td></tr>
 <tr class="separator:ga39b9317f050108e7cd4d8695953acd95"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -893,8 +893,8 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="gac065cafa8060f52483dbbd00b9955331" name="gac065cafa8060f52483dbbd00b9955331"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gac065cafa8060f52483dbbd00b9955331">&#9670;&#160;</a></span>rdsSetFrequencyDerivation()</h2>
+<a id="ga662a1d34329657b1d2fbb93f44901bab" name="ga662a1d34329657b1d2fbb93f44901bab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga662a1d34329657b1d2fbb93f44901bab">&#9670;&#160;</a></span>rdsSetFrequencyDerivation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -903,7 +903,7 @@ false </dd></dl>
           <td class="memname">void QN8066::rdsSetFrequencyDerivation </td>
           <td>(</td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>freq</em></td><td>)</td>
+          <td class="paramname"><em>freq</em> = <code>6</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -921,8 +921,8 @@ false </dd></dl>
 
 </div>
 </div>
-<a id="ga783662032ee4eaaca5b6fab64142e1e8" name="ga783662032ee4eaaca5b6fab64142e1e8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga783662032ee4eaaca5b6fab64142e1e8">&#9670;&#160;</a></span>rdsSetTxLineIn()</h2>
+<a id="ga27d182aa90e915b86139d0ae63350fc8" name="ga27d182aa90e915b86139d0ae63350fc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga27d182aa90e915b86139d0ae63350fc8">&#9670;&#160;</a></span>rdsSetTxLineIn()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -931,7 +931,7 @@ false </dd></dl>
           <td class="memname">void QN8066::rdsSetTxLineIn </td>
           <td>(</td>
           <td class="paramtype">bool&#160;</td>
-          <td class="paramname"><em>value</em></td><td>)</td>
+          <td class="paramname"><em>value</em> = <code>0</code></td><td>)</td>
           <td></td>
         </tr>
       </table>
