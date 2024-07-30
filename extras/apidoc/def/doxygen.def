@@ -1749,7 +1749,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'class_q_n8066_1a085fa9c2b4753a7f7135bd0e7c9b7852';
+      sec-mem-id   = 'group__group05_1ga085fa9c2b4753a7f7135bd0e7c9b7852';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -1761,14 +1761,17 @@ _EnD_oF_dEf_TeXt_;
 char *
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'rtText';
+        sec-mem-param-defname = 'rt';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
       sec-mem-desc-line = '948';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+Sends RDS Radio Text Message.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+\iline 1222 
 
+@param rt 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
