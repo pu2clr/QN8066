@@ -26,6 +26,7 @@ I hold a Master's degree in Educational Technology from the Federal University o
 
 1. [Legal Compliance Guidelines](./#legal-compliance-guidelines)
 2. [Technical Overview of the QN8066 RX/TX Device (IC)](./#technical-overview-of-the-qn8066-rxtx-device-ic)
+3. [Groups and Forums](./#groups-and-forums)
 3. [QN8066 Functional Blocks](./#qn8066-functional-blocks)
 4. [QN8066 PINOUT](./#qn8066-pinout)
 5. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
