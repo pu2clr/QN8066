@@ -1136,7 +1136,12 @@ void QN8066::rdsSetStationName(char *stationName) {
   rdsStationName[8] = '\0';
 }
 
-
+/**
+ * @ingroup group05 TX RDS
+ * @brief Sends the Program Service Message
+ * @details Like rdsSendPS this method sends the Station Name or other 8 char message.
+ * @param ps 
+ */
 void QN8066::rdsSendStationName(const char* stationName) {
 
   RDS_BLOCK1 b1;
@@ -1192,7 +1197,7 @@ void QN8066::rdsSendStationName() {
 /**
  * @ingroup group05 TX RDS
  * @brief Sends the Program Service Message
- * @details Like rdsSendStationName is method sends the Station Name or other 8 char message.
+ * @details Like rdsSendStationName this method sends the Station Name or other 8 char message.
  * @param ps 
  */
 void QN8066::rdsSendPS(const char* ps) {
