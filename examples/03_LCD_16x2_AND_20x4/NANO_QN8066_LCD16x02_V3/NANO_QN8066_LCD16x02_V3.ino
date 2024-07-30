@@ -123,6 +123,12 @@ typedef struct
     TableValue *value;
 } KeyValue;
 
+/*
+  TRANSMITTER PARAMETERS 
+  The following tables represent the possible values allowed for each transmission parameter
+  and correspond to the menu item. 
+*/
+
 TableValue tabImpedance[] = {
   { 0, "10K" },  // 0
   { 1, "20K" },  // 1
@@ -214,6 +220,12 @@ enum MenuKeys {
     KEY_MAIN_SCREEN           // 11
 };
 
+/*
+  The following table represents an "array" of default values (default position) for each transmitter parameter. 
+  Thus, by default, the position ("key") points to the table position that corresponds to the parameter to be 
+  configured for the transmitter. Complex? Yes, a bit. But this helps to write less code in C/C++ in case more 
+  parameters are added to the system. See KeyValue datatype above.
+*/
 KeyValue keyValue[] = { 
   {0,  NULL },                 // KEY_FREQUENCIA
   {0,  NULL },                 // KEY_POWER
