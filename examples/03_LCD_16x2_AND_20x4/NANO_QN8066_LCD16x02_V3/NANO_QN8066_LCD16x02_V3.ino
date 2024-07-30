@@ -302,7 +302,7 @@ void setup() {
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
       // delay(200);
       tx.rdsInitTx();
-      tx.rdsSetMode(1); // Received bit-stream have both RDS and MMBS blocks (‘E’ block) 
+      tx.rdsSetMode(0); // Received bit-stream have both RDS and MMBS blocks (‘E’ block) 
       tx.rdsSetPTY(8); // Science
       tx.rdsSendStationName(rdsStationName);
   }
@@ -605,7 +605,7 @@ uint8_t doMenu(uint8_t idxMenu) {
   return 1;
 }
 // Main loop
-uint8_t pty = 1;
+uint8_t pty = 0;
 void loop() {
   int8_t key;
   if (menuLevel == 0) {
@@ -620,7 +620,7 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 61000 ) {
-          tx.rdsSetPTY(pty++); // Document.
+          tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
           tx.rdsSendRTMessage((char *) "PU2CLR QN8066 Arduino Library");
           // tx.rdsSendProgramService(rdsStationName);

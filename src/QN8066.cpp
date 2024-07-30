@@ -1153,10 +1153,12 @@ void QN8066::rdsSendStationName(const char* stationName) {
   b2.commonFields.trafficProgramCode = this->rdsTP;
   b2.commonFields.versionCode = 1; 
   b2.commonFields.groupType = 0;
+  b2.commonFields.textABFlag = 1;
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = stationName[i];
-    b4.field.content[1] = stationName[i+1];    
+    b4.field.content[1] = stationName[i+1];  
+    b2.commonFields.textABFlag = !b2.commonFields.textABFlag;  
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
   }
 
@@ -1215,13 +1217,14 @@ void QN8066::rdsSendRTMessage(char *rtText) {
     int numGroups = (textLen + 3) / 4; // Each group can contain 4 characters
     RDS_BLOCK1 block1;
     block1.pi = this->rdsPI;
+    bool toggle = false;
 
     for (uint8_t i = 0; i < numGroups; i++) {
-       
+        toggle = !toggle;
         RDS_BLOCK2 block2 = {
             .group2Field = {
                 .address = i,
-                .textABFlag = 0, // Set as needed
+                .textABFlag = toggle, 
                 .programType = this->rdsPTY,
                 .trafficProgramCode = this->rdsTP,
                 .versionCode = 0, // Version A
@@ -1235,11 +1238,6 @@ void QN8066::rdsSendRTMessage(char *rtText) {
         this->rdsSendGroup(block1.pi, block2.raw, block3.raw, block4.raw);
     }
 }
-
-void sendBlock(uint16_t block) {
-    // Function implementation to send a data block
-}
-
 
 
 
