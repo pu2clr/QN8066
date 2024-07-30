@@ -936,8 +936,8 @@ public:
   uint8_t rdsSetTxToggle();
   bool rdsGetTxUpdated();
   void rdsWriteTxBuffer(const char *text);
-  void rdsSetFrequencyDerivation(uint8_t freq);
-  void rdsSetTxLineIn(bool value); 
+  void rdsSetFrequencyDerivation(uint8_t freq = 6);
+  void rdsSetTxLineIn(bool value = 0); 
 
   void rdsSendGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void rdsSendPS(const char* ps); 
