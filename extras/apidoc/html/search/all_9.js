@@ -19,7 +19,7 @@ var searchData=
   ['rdsgettxupdated_16',['rdsGetTxUpdated',['../group__group05.html#gab18543166cfd0ca104df9a269a990552',1,'QN8066']]],
   ['rdsinittx_17',['rdsInitTx',['../class_q_n8066.html#a6ded90fbd1cab1eac0e3eae363ab3a84',1,'QN8066']]],
   ['rdssendgroup_18',['rdsSendGroup',['../group__group05.html#ga39b9317f050108e7cd4d8695953acd95',1,'QN8066']]],
-  ['rdssendprogramservice_19',['rdsSendProgramService',['../class_q_n8066.html#ae5b749f51450ef09065338de557399a8',1,'QN8066']]],
+  ['rdsSendPS_19',['rdsSendPS',['../class_q_n8066.html#ae5b749f51450ef09065338de557399a8',1,'QN8066']]],
   ['rdssendstationname_20',['rdsSendStationName',['../class_q_n8066.html#a42f1e00674ead2cb6bd5252a969086b4',1,'QN8066::rdsSendStationName(const char *ps)'],['../class_q_n8066.html#a416e9831b26324bf351981998d34feca',1,'QN8066::rdsSendStationName()']]],
   ['rdssetfrequencyderivation_21',['rdsSetFrequencyDerivation',['../group__group05.html#gac065cafa8060f52483dbbd00b9955331',1,'QN8066']]],
   ['rdssetpi_22',['rdsSetPI',['../group__group05.html#gabff1b72ccfef9356650ad42beb41f62c',1,'QN8066']]],

@@ -1189,8 +1189,13 @@ void QN8066::rdsSendStationName() {
 
 }
 
-
-void QN8066::rdsSendProgramService(const char* ps) {
+/**
+ * @ingroup group05 TX RDS
+ * @brief Sends the Program Service Message
+ * @details Like rdsSendStationName is method sends the Station Name or other 8 char message.
+ * @param ps 
+ */
+void QN8066::rdsSendPS(const char* ps) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;

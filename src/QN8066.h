@@ -940,7 +940,7 @@ public:
   void rdsSetTxLineIn(bool value); 
 
   void rdsSendGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
-  void rdsSendProgramService(const char* ps); 
+  void rdsSendPS(const char* ps); 
   void rdsSendStationName(const char* ps);
   void rdsSendStationName();
 

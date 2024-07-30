@@ -93,9 +93,9 @@ bool toggle = true;
 void loop() {
   // tx.rdsSetTxToggle();
   // if (toggle)
-    tx.rdsSendProgramService(strSDR1);
+    tx.rdsSendPS(strSDR1);
   // else   
-   // tx.rdsSendProgramService(strSDR2);
+   // tx.rdsSendPS(strSDR2);
   tx.rdsSetTxToggle();
   while (!tx.rdsGetTxUpdated());  
   toggle = !toggle;

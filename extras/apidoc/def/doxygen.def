@@ -1626,7 +1626,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
 void
 _EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'rdsSendProgramService';
+      sec-mem-name = 'rdsSendPS';
       sec-mem-param = {
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
 const char *

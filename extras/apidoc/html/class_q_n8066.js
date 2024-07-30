@@ -47,7 +47,7 @@ var class_q_n8066 =
     [ "rdsSetFrequencyDerivation", "group__group05.html#gac065cafa8060f52483dbbd00b9955331", null ],
     [ "rdsSetTxLineIn", "group__group05.html#ga783662032ee4eaaca5b6fab64142e1e8", null ],
     [ "rdsSendGroup", "group__group05.html#ga39b9317f050108e7cd4d8695953acd95", null ],
-    [ "rdsSendProgramService", "class_q_n8066.html#ae5b749f51450ef09065338de557399a8", null ],
+    [ "rdsSendPS", "class_q_n8066.html#ae5b749f51450ef09065338de557399a8", null ],
     [ "rdsSendStationName", "class_q_n8066.html#a42f1e00674ead2cb6bd5252a969086b4", null ],
     [ "rdsSendStationName", "class_q_n8066.html#a416e9831b26324bf351981998d34feca", null ],
     [ "rdsSetStationName", "group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f", null ],
