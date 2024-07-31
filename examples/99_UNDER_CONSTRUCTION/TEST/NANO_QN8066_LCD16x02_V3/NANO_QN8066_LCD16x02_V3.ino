@@ -111,13 +111,13 @@
 #define PWM_PA 9
 
 
-#define BT_NO_PRESSED 7     // 111
-#define BT_DOWN_PRESSED 6   // 110
-#define BT_UP_PRESSED 5     // 101
-#define BT_MENU_PRESSED 3   // 011
+#define BT_NO_PRESSED 7
+#define BT_DOWN_PRESSED 6
+#define BT_UP_PRESSED 5
+#define BT_MENU_PRESSED 3
 
 #define STEP_FREQ 1
-#define PUSH_MIN_DELAY 110
+#define PUSH_MIN_DELAY 200
 
 uint8_t lcdPage = 0;
 
@@ -496,15 +496,15 @@ void showParameter(char *desc) {
 }
 // Browse the parameters by polling the navigator buttons returns -1 (left/down), 0 (if Menu pressed), 1 (right/up).  
 int8_t browseParameter() {
+  uint8_t browse; 
   do {
-    delay(PUSH_MIN_DELAY);
-    uint8_t browse = (digitalRead(BT_UP) << 1) | (digitalRead(BT_DOWN));
-    if (browse == 1)  // Down/Left pressed
+    browse = checkButton();
+    if (browse == BT_DOWN_PRESSED)  // Down/Left pressed
       return -1;
-    else if (browse == 2)  // Up/Right pressed
+    else if (browse == BT_UP_PRESSED)  // Up/Right pressed
       return 1;
     delay(PUSH_MIN_DELAY);
-  } while (digitalRead(BT_MENU) == HIGH);
+  } while (browse == BT_NO_PRESSED);
   return 0;
 }
 // Shows current menu data 
@@ -663,14 +663,17 @@ uint8_t doMenu(uint8_t idxMenu) {
           6 if BT_DOWN is pressed -  110 - BT_DOWN_PRESSED 
           5 if BT_UP is pressed   -  101 - BT_UP_PRESSED 
           3 if BT_MENU is pressed -  011 - BT_MENU_PRESSED
-  // TODO - Debounce process 
 */           
 int8_t checkButton() {
+    const uint8_t debounceDelay = 100;
+    static long lastTimeDebounce = millis();
     uint8_t button;
-    for (uint8_t i = 0; i < 5; i++) {
-      button = digitalRead(BT_MENU) << 2 | digitalRead(BT_UP) << 1 | digitalRead(BT_DOWN) ; 
-      delay(30);
-    }
+    if ( ( (millis() -  debounceDelay) - lastTimeDebounce)  > debounceDelay ) { 
+      button = digitalRead(BT_MENU) << 2 | digitalRead(BT_UP) << 1 | digitalRead(BT_DOWN);    
+    } else { 
+      button = BT_DOWN_PRESSED;
+    } 
+    lastTimeDebounce = millis();
     return button;
 }
 
