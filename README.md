@@ -277,6 +277,18 @@ The following figure shows the "DIY Kit 5W-7W FM TRANSMITTER" connected to the A
 [Click here to see the source code and schematic](https://github.com/pu2clr/QN8066/tree/main/examples/03_LCD_16x2_AND_20x4)
 
 
+### Some personal considerations about this KIT
+
+Before presenting some observations that I consider important, it is worth highlighting that the following information may not reflect the reality in other environments or with other kits. The goal here is not to judge the quality of the kit or its architecture. However, these observations may explain some phenomena you might experience during the development of your project and help you mitigate these issues.
+
+Based on several experiments I conducted with this kit, I observed instability in the communication between the microcontroller and the QN8066 via the I2C bus in the following situations:
+
+1. **PWM Line Interference**: When the PWM line to control the transmitter's power is active, communication failures and even unavailability of the QN8066 to respond to new commands are common. One solution to this problem was to disable the PWM signal every time a command is sent to the system and re-enable the PWM signal afterward. It is important to note that this behavior hinders or limits, to some extent, a more dynamic use of RDS services.
+   
+2. **High Power Transmission**: When the transmitter is configured to transmit at higher power levels, approaching its upper limit of 7W, the communication also becomes unstable, and the QN8066 stops responding to the microcontroller, even though it continues to transmit.
+
+It is important to highlight that this library was not developed exclusively to work with this kit. In fact, it was designed to work with any architecture involving the QN8066 via the I2C protocol. That said, it is crucial for the designer or experimenter to keep in mind the necessary precautions to provide a stable system. There are various literatures that can help follow the best design practices involving I2C communication.
+
 ## Donate 
 
 If you find this project useful, consider making a donation so that the author of this library can purchase components and modules for improvements and testing of this library. [Click here to donate](https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD) or use the QR code below.
