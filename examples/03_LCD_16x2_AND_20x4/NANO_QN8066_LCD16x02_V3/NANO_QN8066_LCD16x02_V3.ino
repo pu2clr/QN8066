@@ -496,15 +496,14 @@ void showParameter(char *desc) {
 }
 // Browse the parameters by polling the navigator buttons returns -1 (left/down), 0 (if Menu pressed), 1 (right/up).  
 int8_t browseParameter() {
+  uint8_t browse;
   do {
-    delay(PUSH_MIN_DELAY);
-    uint8_t browse = (digitalRead(BT_UP) << 1) | (digitalRead(BT_DOWN));
-    if (browse == 1)  // Down/Left pressed
+    browse = checkButton();
+    if (browse == BT_DOWN_PRESSED)  // Down/Left pressed
       return -1;
-    else if (browse == 2)  // Up/Right pressed
+    else if (browse == BT_UP_PRESSED)  // Up/Right pressed
       return 1;
-    delay(PUSH_MIN_DELAY);
-  } while (digitalRead(BT_MENU) == HIGH);
+  } while (browse == BT_NO_PRESSED);
   return 0;
 }
 // Shows current menu data 
