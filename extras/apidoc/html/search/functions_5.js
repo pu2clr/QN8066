@@ -25,7 +25,7 @@ var searchData=
   ['settxsoftclippingenable_22',['setTxSoftClippingEnable',['../group__group04.html#gab21e226857d1b2ac384623fd47784ce5',1,'QN8066']]],
   ['settxsoftclipthreshold_23',['setTxSoftClipThreshold',['../group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426',1,'QN8066']]],
   ['settxstereo_24',['setTxStereo',['../group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83',1,'QN8066']]],
-  ['setup_25',['setup',['../group__group02.html#ga130d24b7a8f19a2758558b3f28eb03c2',1,'QN8066']]],
+  ['setup_25',['setup',['../group__group02.html#gacc2e79aa0134a657191485184b2b603b',1,'QN8066']]],
   ['starttransmitting_26',['startTransmitting',['../class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b',1,'QN8066']]],
   ['stoptransmitting_27',['stopTransmitting',['../class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c',1,'QN8066']]]
 ];

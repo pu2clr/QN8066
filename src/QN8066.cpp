@@ -226,8 +226,12 @@ void QN8066::setup(uint16_t xtalDiv,
   this->int_ctrl.raw = this->getRegister(QN_INT_CTRL); 
 
   // REG_VGA
-  this->reg_vga.raw = this->getRegister(QN_REG_VGA);
-  
+  // this->reg_vga.raw = this->getRegister(QN_REG_VGA);
+  this->reg_vga.arg.RIN = inInpedance;
+  this->reg_vga.arg.TXAGC_GDB = txAgcDig; 
+  this->reg_vga.arg.TXAGC_GVGA = txAgcBuffer;
+  this->reg_vga.arg.tx_sftclpen = txSoftClip;
+
 
   Wire.begin();
 }
