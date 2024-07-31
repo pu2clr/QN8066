@@ -117,7 +117,7 @@
 #define BT_MENU_PRESSED 3
 
 #define STEP_FREQ 1
-#define PUSH_MIN_DELAY 100
+#define PUSH_MIN_DELAY 110
 
 uint8_t lcdPage = 0;
 
@@ -209,6 +209,15 @@ TableValue tabMonoStereo [] = {
   { 1, "Mono  " }      // 1 - See QN8066 data sheet
 };
 
+
+TableValue txRdsFreqDev[] = {
+  {  13, " 4,55kHz"},   // 0
+  {  26, " 9,10kHz"},   // 1
+  {  39, "13,65kHz"},   // 2
+  {  52, "18,20kHz"}    // 3
+};
+
+
 // Menu Itens
 const char *menu[] = { "Frequency", 
                       "Power", 
@@ -221,6 +230,7 @@ const char *menu[] = { "Frequency",
                       "Gain Pilot", 
                       "Freq. Deriv.", 
                       "Buffer gain",
+                      "RDS Freq. Dev.",
                       "Main Screen" };
 int8_t menuIdx = 0;
 const int lastMenu = ( sizeof(menu) / sizeof(menu[0]) ) - 1; // Laste menu item position
@@ -238,7 +248,8 @@ enum MenuKeys {
     KEY_GAIN_PILOT,           // 8
     KEY_FREQ_DERIVATION,      // 9
     KEY_BUFFER_GAIN,          // 10
-    KEY_MAIN_SCREEN           // 11
+    KEY_RDS_FREQ_DEV,         // 11
+    KEY_MAIN_SCREEN           // 12
 };
 
 /*
@@ -259,6 +270,7 @@ KeyValue keyValue[] = {
   {2, tabGainTxPilot},         // KEY_GAIN_PILOT
   {2, tabTxFrequencyDeviation},// KEY_FREQ_DERIVATION 
   {1, tabTxBufferGain },       // KEY_BUFFER_GAIN 
+  {0, txRdsFreqDev},           // KEY_RDS_FREQ_DEV 
   {0, NULL }                   // KEY_MAIN_SCREEN 
 };
 
@@ -329,6 +341,7 @@ void setup() {
   tx.rdsTxEnable(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
   tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx); 
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
+  tx.rdsSetFrequencyDerivation(keyValue[KEY_RDS_FREQ_DEV].value[keyValue[KEY_RDS_FREQ_DEV].key].idx);
 
 
   // Checking RDS... UNDER CONSTRUCTION...
@@ -363,6 +376,7 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address +10, keyValue[KEY_GAIN_PILOT].key);
   EEPROM.update(eeprom_address +11, keyValue[KEY_FREQ_DERIVATION].key);
   EEPROM.update(eeprom_address +12, keyValue[KEY_BUFFER_GAIN].key);
+  EEPROM.update(eeprom_address +13, keyValue[KEY_RDS_FREQ_DEV].key);
 }
 // Read the previous transmitter setup
 void readAllTransmitterInformation() {
@@ -378,6 +392,7 @@ void readAllTransmitterInformation() {
   keyValue[KEY_GAIN_PILOT].key  = EEPROM.read(eeprom_address +10);
   keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address +11);
   keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address +12);
+  keyValue[KEY_RDS_FREQ_DEV].key = EEPROM.read(eeprom_address +13);
 }
 
 // Enable or disable PWM duty cycle
@@ -628,7 +643,12 @@ uint8_t doMenu(uint8_t idxMenu) {
       runAction([](uint8_t value) { tx.setTxInputBufferGain(value); }, &keyValue[idxMenu], 1, 0, 5);
       break;   
     case 11:
-      return 0;       
+      runAction([](uint8_t value) { tx.rdsSetFrequencyDerivation(value); }, &keyValue[idxMenu], 1, 0, 3);
+      break;   
+    case 12:
+      enablePWM(pwmPowerDuty); // Turn the PWM on again. 
+      return 0;
+      break;       
     default:
       break;
   }
