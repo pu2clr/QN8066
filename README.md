@@ -293,6 +293,11 @@ Based on several experiments I conducted with this kit, I observed instability i
 
 It is important to highlight that this library was not developed exclusively to work with this kit. In fact, it was designed to work with any architecture involving the QN8066 via the I2C protocol. That said, it is crucial for the designer or experimenter to keep in mind the necessary precautions to provide a stable system. There are various literatures that can help follow the best design practices involving I2C communication.
 
+### Considerations
+
+In a new project involving the QN8066, I believe a more stable approach would be not to work with power levels above ½W on the same board. An additional amplification module could be added separately from the QN8066 circuit. The organization of the printed circuit board is also a determining factor in improving the stability of the system. Preferably, the communication circuit of the microcontroller with the QN8066 should be as far away as possible from the RF circuit. The appropriate values for the pull-up resistors for the I2C bus is a variable that deserves attention. These values may depend on the length of the bus and other I2C devices that may be connected to the circuit. In my experiments, I used 10K pull-up resistors. However, lower resistance values can be tested and may further improve the stability of the system. Consider shielding the Display and microcontroller circuit so that unwanted signals and interference do not propagate to the QN8066 circuit.
+
+
 ## Donate 
 
 If you find this project useful, consider making a donation so that the author of this library can purchase components and modules for improvements and testing of this library. [Click here to donate](https://www.paypal.com/donate/?business=LLV4PHKTXC4JW&no_recurring=0&item_name=Consider+making+a+donation.+So%2C+I+can+purchase+components+and+modules+for+improvements+and+testing+of+this+library.&currency_code=USD) or use the QR code below.
