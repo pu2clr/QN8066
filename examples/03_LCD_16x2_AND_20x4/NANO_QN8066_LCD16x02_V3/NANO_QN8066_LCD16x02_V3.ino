@@ -119,7 +119,7 @@
 #define STEP_FREQ 1
 #define PUSH_MIN_DELAY 110
 
-uint8_t lcdPage = 0;
+int8_t lcdPage = 0;
 
 uint8_t menuLevel = 0;
 
@@ -265,8 +265,8 @@ KeyValue keyValue[] = {
   {1, tabPreEmphasis},         // KEY_PRE_EMPHASIS
   {0, tabRDS },                // KEY_RDS
   {2, tabImpedance},           // KEY_INPEDANCE
-  {1, tabTxSoftClipEnable},    // KEY_SOFT_CLIP_ENABLE
-  {0, tabTxSoftClipThreshold}, // KEY_SOFT_CLIP_THRESHOLD
+  {0, tabTxSoftClipEnable},    // KEY_SOFT_CLIP_ENABLE
+  {1, tabTxSoftClipThreshold}, // KEY_SOFT_CLIP_THRESHOLD
   {2, tabGainTxPilot},         // KEY_GAIN_PILOT
   {2, tabTxFrequencyDeviation},// KEY_FREQ_DERIVATION 
   {1, tabTxBufferGain },       // KEY_BUFFER_GAIN 
@@ -668,7 +668,8 @@ uint8_t doMenu(uint8_t idxMenu) {
 int8_t checkButton() {
     uint8_t button;
     for (uint8_t i = 0; i < 5; i++) {
-      button = digitalRead(BT_MENU) << 2 | digitalRead(BT_UP) << 1 | digitalRead(BT_DOWN) ; 
+      // Please... check it out later
+      button = digitalRead(BT_MENU) << 2 |  digitalRead(BT_DOWN) << 1| digitalRead(BT_UP) ; 
       delay(30);
     }
     return button;
@@ -693,16 +694,12 @@ void loop() {
       }
     } 
     if ( key == BT_DOWN_PRESSED ) { // Down Pressed
-      if (lcdPage == 0 ) 
-        lcdPage = 3;
-      else 
-        lcdPage--;
+      lcdPage--;
+      if (lcdPage < 0) lcdPage = 3; 
       showStatus(lcdPage); 
     } else if (key == BT_UP_PRESSED ) { // Up Pressed
-      if ( lcdPage == 3) 
-        lcdPage = 0;
-      else
-       lcdPage++;     
+       lcdPage++; 
+       if ( lcdPage > 3) lcdPage = 0;    
       showStatus(lcdPage); 
     } else {  // Menu Pressed
         menuLevel = 1;
