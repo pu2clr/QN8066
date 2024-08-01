@@ -931,7 +931,9 @@ public:
   // RDS TX
 
   void rdsSetMode(uint8_t mode); 
+  void rdsSet4KMode(uint8_t value);
   void rdsInitTx();
+  void rdsSetInterrupt(uint8_t value);
 
   void rdsTxEnable(bool value);   
   uint8_t rdsSetTxToggle();
@@ -939,6 +941,8 @@ public:
   void rdsWriteTxBuffer(const char *text);
   void rdsSetFrequencyDerivation(uint8_t freq = 6);
   void rdsSetTxLineIn(bool value = 0); 
+
+  uint16_t calcChecksum(uint16_t block);
 
   void rdsSendGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void rdsSendPS(const char* ps); 

@@ -995,6 +995,34 @@ void QN8066::rdsSetMode(uint8_t mode) {
   this->setRegister(QN_INT_CTRL, int_ctrl.raw );
 }
 
+/**
+ * @ingroup group05 TX RDS 
+ * @brief Sets RDS 4K Mode .
+ * @details Enable RDS RX/TX 4k Mode: with or without the privacy mode (audio scramble and RDS encryption)
+ * @param value 0 or 1 
+ */
+void QN8066::rdsSet4KMode(uint8_t value) {
+  qn8066_int_ctrl int_ctrl;
+  int_ctrl.raw = this->getRegister(QN_INT_CTRL);
+  int_ctrl.arg.rds_4k_mode = value;
+  this->setRegister(QN_INT_CTRL, int_ctrl.raw );
+}
+
+/**
+ * @ingroup group05 TX RDS 
+ * @brief Sets RDS interrupt
+ * @details RDS RX interrupt enable. When RDS_INT_EN=1, a 4.5ms low pulse will be output from pad din (RX mode)
+ * @details when a new group data is received and stored into RDS0~RDS7 (RX mode).
+ * @param value 0 or 1 
+ */
+void QN8066::rdsSetInterrupt(uint8_t value) {
+  qn8066_int_ctrl int_ctrl;
+  int_ctrl.raw = this->getRegister(QN_INT_CTRL);
+  int_ctrl.arg.rds_int_en = value;
+  this->setRegister(QN_INT_CTRL, int_ctrl.raw );
+}
+
+
 
 void QN8066::rdsInitTx() {
   this->rdsTxEnable(true);
@@ -1089,6 +1117,21 @@ void QN8066::rdsSetTxLineIn(bool value) {
 } 
 
 
+// Function to calculate the checksum for each block
+uint16_t QN8066::calcChecksum(uint16_t block) {
+    uint16_t polynomial = 0x5B9;
+    uint16_t crc = block;
+    for (int i = 0; i < 10; i++) {
+        if (crc & 0x8000) {
+            crc = (crc << 1) ^ polynomial;
+        } else {
+            crc <<= 1;
+        }
+    }
+    return crc & 0x3FF;  // Return only the 10-bit checksum
+}
+
+
 void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
   this->setRegister(rdsRegister, block>>8 );
   this->setRegister(rdsRegister, block & 0xFF);
@@ -1110,6 +1153,13 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
 
   this->rdsSendError = 0;
 
+  /*
+  block1 = (block1 << 10) | calcChecksum(block1);
+  block2 = (block2 << 10) | calcChecksum(block2);
+  block3 = (block3 << 10) | calcChecksum(block3);
+  block4 = (block4 << 10) | calcChecksum(block4);
+  */
+
   this->setRegister(QN_TX_RDSD0, block1>>8 );
   this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
 
@@ -1122,9 +1172,10 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
 
-
+  this->rdsSetTxToggle();  
   delay(87); 
   
+
   while ( this->rdsGetTxUpdated() == toggle  && count < 50) { 
     delay(1);
     count++;
@@ -1133,7 +1184,6 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   if (count >= 50 ) 
     this->rdsSendError = 1;
   
-  this->rdsSetTxToggle();  
 
 }
 
@@ -1170,12 +1220,14 @@ void QN8066::rdsSendPS(const char* ps) {
   b2.commonFields.trafficProgramCode = this->rdsTP;
   b2.commonFields.versionCode = 1; 
   b2.commonFields.groupType = 0;
-
+  b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
+  b2.group0Field.address = 0; 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = ps[i];
     b4.field.content[1] = ps[i+1];    
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
   }
+
 
 }
 
