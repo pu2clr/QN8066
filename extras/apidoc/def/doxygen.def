@@ -251,7 +251,7 @@ Sets the TX mode.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  To avoid working with the float data type, the frequency parameter must be the desired frequency multiplied by 10.
-\ilinebr\ilinebr For example, if the user wants to tune to 106.7 MHz, the parameter to be sent is 1067.
+\ilinebr\ilinebr For example, if the user wants to tune to 106.9 MHz, the parameter to be sent is 1067.
 \ilinebr\ilinebr This approach reduces the size of the final code (binary) as well as avoids the inaccuracies of floating-point mathematical operations.
 @param frequency - Frequency to be set
 \ilinebr\ilinebr Example
@@ -260,7 +260,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
 }
 
 void loop() {
@@ -301,7 +301,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxStereo(true);
 }
 
@@ -342,7 +342,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxMono(0); // Sets Stereo
 }
 
@@ -373,7 +373,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   if ( tx.getTxMono() ) {
      // It is in mono mode
   }
@@ -416,7 +416,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxPreEmphasis(75);
 }
 
@@ -457,7 +457,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setPreEmphasis(1); // 75 us
 }
 
@@ -494,7 +494,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxOffAfterOneMinuteNoAudio(false);   // Do not sleep after 1 minute with no audio
 }
 
@@ -532,7 +532,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxOffAfterOneMinute(3);   // Never sleep
 }
 
@@ -571,7 +571,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxPilotGain(7);   // 7 * 75 kHz
 }
 
@@ -609,7 +609,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setAudioAnalogGain(5);   // -24 dB
 }
 
@@ -647,7 +647,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setAudioDigitalGain(3);   // -3 dB
 }
 
@@ -685,7 +685,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setAudioDacHold(false);   // Normal operation
 }
 
@@ -723,7 +723,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setAudioTxDiff(true);   // Differential
 }
 
@@ -770,7 +770,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxInputImpedance(0);   // 10 K Ohms 
 }
 
@@ -817,7 +817,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxDigitalGain(2);   // 2dB 
 }
 
@@ -865,7 +865,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setsetTxInputImpedance(0);  // Sets the input impedance to 10 Kohms
   tx.setTxInputBufferGain(5);    // Now the Gain will be 18dB
 }
@@ -903,7 +903,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxSoftClippingEnable(true);  // Enabled
 }
 
@@ -948,7 +948,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxSoftClipThreshold(2);   // 2 = 12’d1452 (6db back off from 0.5v) 
 }
 
@@ -986,7 +986,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxFrequencyDerivation(120);  // About +- 84 kHz
 }
 
@@ -1043,7 +1043,7 @@ QN8066 tx;
 void setup() {
   // Call setup setting Divider = 1000, Stereo, RDS on and PreEmphasis (tc) 75us
   tx.begin(); 
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
 }
 
 void loop() {
@@ -1234,7 +1234,7 @@ QN8066 tx;
 void setup() {
   // Call setup setting Divider = 1000, Stereo, RDS on and PreEmphasis (tc) 75us
   tx.setup(1000, false, true, 1); 
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
 }
 
 void loop() {
@@ -1352,7 +1352,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setPAC(56);  // 
 }
 
@@ -1383,7 +1383,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setToggleTxPdClear();   
 }
 
@@ -1415,7 +1415,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   int audioPeak = tx.getAudioPeakValue();   // Stores the current audio peak value
   ...
 }
@@ -1459,7 +1459,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsSetMode(0);
 }
 
@@ -1496,7 +1496,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsSet4KMode(0);
 }
 
@@ -1525,7 +1525,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsInitTx();
 }
 
@@ -1573,7 +1573,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsSetInterrupt(0);
 }
 
@@ -1611,7 +1611,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsTxEnable(true);
 }
 
@@ -1648,7 +1648,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsTxEnable(true);
   ...
   tx.rdsSetTxToggle();
@@ -1684,7 +1684,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsTxEnable(true); 
   ...
   tx.rdsGetTxUpdated();
@@ -1728,7 +1728,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsTxEnable(true);
   tx.rdsWriteTxBuffer();
 }
@@ -1771,7 +1771,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsTxEnable(true);
   tx.rdsSetFrequencyDerivation();
 }
@@ -1812,7 +1812,7 @@ _EnD_oF_dEf_TeXt_;
 QN8066 tx;
 void setup() {
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsTxEnable(true);
   tx.rdsSetTxLineIn 
 }
@@ -2243,7 +2243,7 @@ QN8066 tx;
 void setup() {
   char strFrequency[7];
   tx.setup();
-  tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.setTxFrequencyDerivation(120);  // About +- 84 kHz
   tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert 1067 to a array of char "106.7"
 }

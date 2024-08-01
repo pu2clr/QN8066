@@ -13,7 +13,7 @@ void setup() {
   dv.setup();
   Serial.print("\nStarting the system...");
   delay(1000);      
-  dv.setTX(1069); // Set the transmitter to 106.7 MHz 
+  dv.setTX(1069); // Set the transmitter to 106.9 MHz 
   dv.setTxStereo(true);
 
   // Now you can start PWM

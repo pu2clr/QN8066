@@ -188,7 +188,7 @@ Functions</h2></td></tr>
 
 <p>Sets the TX mode. </p>
 <p>To avoid working with the float data type, the frequency parameter must be the desired frequency multiplied by 10.</p>
-<p>For example, if the user wants to tune to 106.7 MHz, the parameter to be sent is 1067.</p>
+<p>For example, if the user wants to tune to 106.9 MHz, the parameter to be sent is 1067.</p>
 <p>This approach reduces the size of the final code (binary) as well as avoids the inaccuracies of floating-point mathematical operations. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">frequency</td><td>- Frequency to be set</td></tr>
@@ -199,7 +199,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
@@ -240,7 +240,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">setTxStereo</a>(<span class="keyword">true</span>);</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -278,7 +278,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga469cbfe6404a8ef59a98e805fb5095fb">setTxMono</a>(0); <span class="comment">// Sets Stereo</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -309,7 +309,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  <span class="keywordflow">if</span> ( tx.<a class="code hl_function" href="group__group04.html#ga859311799654c9a914daa41c74c7bfcd">getTxMono</a>() ) {</div>
 <div class="line">     <span class="comment">// It is in mono mode</span></div>
 <div class="line">  }</div>
@@ -348,7 +348,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1">setTxPreEmphasis</a>(75);</div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -385,7 +385,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga70f715c1483a62426d8368c1defa93dd">setPreEmphasis</a>(1); <span class="comment">// 75 us</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -423,7 +423,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">setTxPilotGain</a>(7);   <span class="comment">// 7 * 75 kHz</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -473,7 +473,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426">setTxSoftClipThreshold</a>(2);   <span class="comment">// 2 = 12’d1452 (6db back off from 0.5v) </span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -510,7 +510,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571">setTxOffAfterOneMinuteNoAudio</a>(<span class="keyword">false</span>);   <span class="comment">// Do not sleep after 1 minute with no audio</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -547,7 +547,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#gad1cad21dc29703b30df776dbbb98a08a">setTxOffAfterOneMinute</a>(3);   <span class="comment">// Never sleep</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -584,7 +584,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7">setAudioAnalogGain</a>(5);   <span class="comment">// -24 dB</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -621,7 +621,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga4670b899f6f3df01c4d967b7f461318a">setAudioDigitalGain</a>(3);   <span class="comment">// -3 dB</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -658,7 +658,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0">setAudioDacHold</a>(<span class="keyword">false</span>);   <span class="comment">// Normal operation</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -695,7 +695,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#gade021b98b99e9239c390461d22020c4e">setAudioTxDiff</a>(<span class="keyword">true</span>);   <span class="comment">// Differential</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -746,7 +746,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga751bb2147b6355745b261cc8f86a017c">setTxInputImpedance</a>(0);   <span class="comment">// 10 K Ohms </span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -798,7 +798,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5">setTxDigitalGain</a>(2);   <span class="comment">// 2dB </span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -855,7 +855,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.setsetTxInputImpedance(0);  <span class="comment">// Sets the input impedance to 10 Kohms</span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">setTxInputBufferGain</a>(5);    <span class="comment">// Now the Gain will be 18dB</span></div>
 <div class="line">}</div>
@@ -893,7 +893,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#gab21e226857d1b2ac384623fd47784ce5">setTxSoftClippingEnable</a>(<span class="keyword">true</span>);  <span class="comment">// Enabled</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -931,7 +931,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">setTxFrequencyDerivation</a>(120);  <span class="comment">// About +- 84 kHz</span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -968,7 +968,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">setPAC</a>(56);  <span class="comment">// </span></div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -1019,7 +1019,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">setToggleTxPdClear</a>();   </div>
 <div class="line">}</div>
 <div class="line"> </div>
@@ -1050,7 +1050,7 @@ Functions</h2></td></tr>
 <div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
 <div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1067); <span class="comment">// Set the transmitter to 106.7 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  <span class="keywordtype">int</span> audioPeak = tx.<a class="code hl_function" href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">getAudioPeakValue</a>();   <span class="comment">// Stores the current audio peak value</span></div>
 <div class="line">  ...</div>
 <div class="line">}</div>
