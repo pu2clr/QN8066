@@ -1149,68 +1149,12 @@ void QN8066::rdsSetStationName(char *stationName) {
   rdsStationName[8] = '\0';
 }
 
+
+
 /**
  * @ingroup group05 TX RDS
  * @brief Sends the Program Service Message
  * @details Like rdsSendPS this method sends the Station Name or other 8 char message.
- * @param ps 
- */
-void QN8066::rdsSendStationName(const char* stationName) {
-
-  RDS_BLOCK1 b1;
-  RDS_BLOCK2 b2;
-  // RDS_BLOCK3 b3;
-  RDS_BLOCK4 b4;
-
-  // this->rdsSetStationName((char *) stationName);
-  // this->rdsSendGroup(0,0,0,0);
-
-  b1.pi = this->rdsPI;
-  b2.raw = 0;
-  b2.commonFields.programType = this->rdsPTY;
-  b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 1; 
-  b2.commonFields.groupType = 0;
-  b2.commonFields.textABFlag = 1;
-
-  for (uint8_t i = 0; i < 8; i+=2) { 
-    b4.field.content[0] = stationName[i];
-    b4.field.content[1] = stationName[i+1];  
-    b2.commonFields.textABFlag = !b2.commonFields.textABFlag;  
-    this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
-  }
-
-  this->rdsSetTxToggle();
-
-
-}
-
-
-void QN8066::rdsSendStationName() {
-
-  RDS_BLOCK1 b1;
-  RDS_BLOCK2 b2;
-  RDS_BLOCK3 b3;
-  RDS_BLOCK4 b4;
-
-  b1.pi = this->rdsPI;
-  b2.raw = 0;
-  b2.commonFields.programType = this->rdsPTY;
-  b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 0; 
-  b2.commonFields.groupType = 0;
-
-  for (uint8_t i = 0; i < 8; i+=4) { 
-    // TODO
-    this->rdsSendGroup(b1.pi, b2.raw, b3.raw, b4.raw);
-  }
-
-}
-
-/**
- * @ingroup group05 TX RDS
- * @brief Sends the Program Service Message
- * @details Like rdsSendStationName this method sends the Station Name or other 8 char message.
  * @param ps 
  */
 void QN8066::rdsSendPS(const char* ps) {

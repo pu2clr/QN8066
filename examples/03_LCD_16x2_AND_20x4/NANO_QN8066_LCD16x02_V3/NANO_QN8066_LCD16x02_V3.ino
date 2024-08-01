@@ -350,7 +350,7 @@ void setup() {
       tx.rdsInitTx();
       tx.rdsSetMode(0); // Received bit-stream have both RDS and MMBS blocks (‘E’ block) 
       tx.rdsSetPTY(8); // Science
-      tx.rdsSendStationName(rdsStationName);
+      tx.rdsSendPS(rdsStationName);
   }
 
 
