@@ -143,6 +143,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga0ae8735b4150105b54fc9ace31788e9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a">QN8066::rdsSetMode</a> (uint8_t mode)</td></tr>
 <tr class="memdesc:ga0ae8735b4150105b54fc9ace31788e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS Mode Selection.  <br /></td></tr>
 <tr class="separator:ga0ae8735b4150105b54fc9ace31788e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae77d8522db113f8fa9d44ec14f2c3534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534">QN8066::rdsSet4KMode</a> (uint8_t value)</td></tr>
+<tr class="memdesc:gae77d8522db113f8fa9d44ec14f2c3534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS 4K Mode .  <br /></td></tr>
+<tr class="separator:gae77d8522db113f8fa9d44ec14f2c3534"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga0783a3be6aacd1bbff0e5abdfc78d04c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c">QN8066::rdsSetInterrupt</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga0783a3be6aacd1bbff0e5abdfc78d04c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS interrupt.  <br /></td></tr>
+<tr class="separator:ga0783a3be6aacd1bbff0e5abdfc78d04c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga2d13af3ea121fee09799cc0277da0dc1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">QN8066::rdsTxEnable</a> (bool value)</td></tr>
 <tr class="memdesc:ga2d13af3ea121fee09799cc0277da0dc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmitter RDS enable.  <br /></td></tr>
 <tr class="separator:ga2d13af3ea121fee09799cc0277da0dc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -782,6 +788,59 @@ Group Type code. </td></tr>
 <p>if 1, Received bit-stream has RDS block only, no MMBS block (‘E’ block) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">mode</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="gae77d8522db113f8fa9d44ec14f2c3534" name="gae77d8522db113f8fa9d44ec14f2c3534"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae77d8522db113f8fa9d44ec14f2c3534">&#9670;&#160;</a></span>rdsSet4KMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::rdsSet4KMode </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets RDS 4K Mode . </p>
+<p>Enable RDS RX/TX 4k Mode: with or without the privacy mode (audio scramble and RDS encryption) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>0 or 1 </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga0783a3be6aacd1bbff0e5abdfc78d04c" name="ga0783a3be6aacd1bbff0e5abdfc78d04c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0783a3be6aacd1bbff0e5abdfc78d04c">&#9670;&#160;</a></span>rdsSetInterrupt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::rdsSetInterrupt </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets RDS interrupt. </p>
+<p>RDS RX interrupt enable. When RDS_INT_EN=1, a 4.5ms low pulse will be output from pad din (RX mode)</p>
+<p>when a new group data is received and stored into RDS0~RDS7 (RX mode). </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>0 or 1 </td></tr>
   </table>
   </dd>
 </dl>
