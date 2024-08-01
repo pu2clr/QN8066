@@ -41,7 +41,7 @@ var class_q_n8066 =
     [ "getAudioPeakValue", "group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc", null ],
     [ "rdsSetMode", "group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a", null ],
     [ "rdsSet4KMode", "group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534", null ],
-    [ "rdsInitTx", "class_q_n8066.html#a6ded90fbd1cab1eac0e3eae363ab3a84", null ],
+    [ "rdsInitTx", "group__group05.html#ga6ded90fbd1cab1eac0e3eae363ab3a84", null ],
     [ "rdsSetInterrupt", "group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c", null ],
     [ "rdsTxEnable", "group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1", null ],
     [ "rdsSetTxToggle", "group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7", null ],

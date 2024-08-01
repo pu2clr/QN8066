@@ -108,6 +108,24 @@ var group__group00 =
       [ "arg", "group__group00.html#a14d2c9ed7fc7e3c16d47bb9dc8a3bb3f", null ],
       [ "raw", "group__group00.html#ae07ddfd42a195723c0b26df33f7c53b8", null ]
     ] ],
+    [ "RDS_BLOCK1", "group__group00.html#union_r_d_s___b_l_o_c_k1", [
+      [ "field", "group__group00.html#abcfff81b9d651be4633d5e61e57b4131", null ],
+      [ "pi", "group__group00.html#a01d9896fe5e526cc8e82195b32676a13", null ]
+    ] ],
+    [ "RDS_BLOCK2", "group__group00.html#union_r_d_s___b_l_o_c_k2", [
+      [ "commonFields", "group__group00.html#ab960defd859ad8b1d7a7165739cde506", null ],
+      [ "group0Field", "group__group00.html#aec33fd5c5672242fb1c7abb9068d64fe", null ],
+      [ "group2Field", "group__group00.html#ae19e33640ad8b4e2712ca19eca8026e4", null ],
+      [ "raw", "group__group00.html#a71e553256561663d8d0b66823288f2e1", null ]
+    ] ],
+    [ "RDS_BLOCK3", "group__group00.html#union_r_d_s___b_l_o_c_k3", [
+      [ "field", "group__group00.html#a0bb3021673101192811b976a2ec2b072", null ],
+      [ "raw", "group__group00.html#acc355db97b5103c63bf904af56077f37", null ]
+    ] ],
+    [ "RDS_BLOCK4", "group__group00.html#union_r_d_s___b_l_o_c_k4", [
+      [ "field", "group__group00.html#a41f25faa667e66e3e9cd8c07585503e0", null ],
+      [ "raw", "group__group00.html#a10f3f208449a1ffe5de720ac90513710", null ]
+    ] ],
     [ "qn8066_system1.arg", "group__group00.html#structqn8066__system1_8arg", [
       [ "cca_ch_dis", "group__group00.html#ab065ee68283e70568b234ad8876844dc", null ],
       [ "ccs_ch_dis", "group__group00.html#a2dccb9ebc6734a31b57cc8ca55ee18e4", null ],
@@ -229,5 +247,42 @@ var group__group00 =
       [ "TXAGC_GDB", "group__group00.html#a047097b6b1341bb00bda2d07a12ff1e1", null ],
       [ "TXAGC_GVGA", "group__group00.html#ab3117d1e91af6b34a372106a36a08289", null ],
       [ "tx_sftclpen", "group__group00.html#a9f909e129f8a3b117e2a8fb97b72ead1", null ]
+    ] ],
+    [ "RDS_BLOCK1.field", "group__group00.html#struct_r_d_s___b_l_o_c_k1_8field", [
+      [ "reference", "group__group00.html#ab8af13ea9c8fe890c9979a1fa8dbde22", null ],
+      [ "programId", "group__group00.html#abf3a71e7cddc7588fea0ba70124ab275", null ],
+      [ "countryId", "group__group00.html#a04727cea908ef532ffca814a6835f9ae", null ]
+    ] ],
+    [ "RDS_BLOCK2.commonFields", "group__group00.html#struct_r_d_s___b_l_o_c_k2_8common_fields", [
+      [ "additionalData", "group__group00.html#ac0ef1caccaa00b325c3206759def2800", null ],
+      [ "textABFlag", "group__group00.html#a652bfdc159637b708ac6e6f92d7650bc", null ],
+      [ "programType", "group__group00.html#a264bd2c2ca8c895803767b0d39ff4a09", null ],
+      [ "trafficProgramCode", "group__group00.html#a59e69d63ce38754ea53c4461b5cba1e2", null ],
+      [ "versionCode", "group__group00.html#a20583dcf173525a78f726ef45329c5ae", null ],
+      [ "groupType", "group__group00.html#a19223bd3731a4215ead3ba6a1eb8bbe8", null ]
+    ] ],
+    [ "RDS_BLOCK2.group0Field", "group__group00.html#struct_r_d_s___b_l_o_c_k2_8group0_field", [
+      [ "address", "group__group00.html#a884d9804999fc47a3c2694e49ad2536a", null ],
+      [ "DI", "group__group00.html#aa1b1c0cd777edd2e5cfcaf8e2e7dcab8", null ],
+      [ "MS", "group__group00.html#a7a663caea1b722a63dc2868158ed584d", null ],
+      [ "TA", "group__group00.html#a890a10788493e3d572586e991cd43543", null ],
+      [ "programType", "group__group00.html#a264bd2c2ca8c895803767b0d39ff4a09", null ],
+      [ "trafficProgramCode", "group__group00.html#a59e69d63ce38754ea53c4461b5cba1e2", null ],
+      [ "versionCode", "group__group00.html#a20583dcf173525a78f726ef45329c5ae", null ],
+      [ "groupType", "group__group00.html#a19223bd3731a4215ead3ba6a1eb8bbe8", null ]
+    ] ],
+    [ "RDS_BLOCK2.group2Field", "group__group00.html#struct_r_d_s___b_l_o_c_k2_8group2_field", [
+      [ "address", "group__group00.html#a884d9804999fc47a3c2694e49ad2536a", null ],
+      [ "textABFlag", "group__group00.html#a652bfdc159637b708ac6e6f92d7650bc", null ],
+      [ "programType", "group__group00.html#a264bd2c2ca8c895803767b0d39ff4a09", null ],
+      [ "trafficProgramCode", "group__group00.html#a59e69d63ce38754ea53c4461b5cba1e2", null ],
+      [ "versionCode", "group__group00.html#a20583dcf173525a78f726ef45329c5ae", null ],
+      [ "groupType", "group__group00.html#a19223bd3731a4215ead3ba6a1eb8bbe8", null ]
+    ] ],
+    [ "RDS_BLOCK3.field", "group__group00.html#struct_r_d_s___b_l_o_c_k3_8field", [
+      [ "content", "group__group00.html#af8b7e60d8c0d932df07b78d23e369723", null ]
+    ] ],
+    [ "RDS_BLOCK4.field", "group__group00.html#struct_r_d_s___b_l_o_c_k4_8field", [
+      [ "content", "group__group00.html#af8b7e60d8c0d932df07b78d23e369723", null ]
     ] ]
 ];

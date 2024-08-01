@@ -694,7 +694,7 @@ typedef union {
 
 
 /**
- * @ingroup group05 TX RDS
+ * @ingroup group00 RDS
  * @brief RDS - First block (RDS_BLOCK1 datatype)
  * @details PI Code Function: Identifies the radio station. This code is essential 
  * @details for allowing receivers to identify the source of the radio signal.
@@ -711,7 +711,7 @@ typedef union {
 
 
 /**
- * @ingroup group05 TX RDS
+ * @ingroup group00 RDS
  *
  * @brief Block 2 (RDS_BLOCK2 data type)
  * @details Specifies the type of data being transmitted and includes information such as 
@@ -789,7 +789,10 @@ typedef union
     uint16_t raw;                            //!< Raw 16-bit representation
 } RDS_BLOCK2;
 
-
+/**
+ * @ingroup group00 RDS
+ * @brief Block 3 (RDS_BLOCK3 data type)
+ */
 typedef union {
     struct {
       unsigned char content[2];
@@ -797,13 +800,16 @@ typedef union {
     uint16_t raw;
 } RDS_BLOCK3;
 
+/**
+ * @ingroup group00 RDS
+ * @brief Block 4 (RDS_BLOCK4 data type)
+ */
 typedef union {
     struct {
       unsigned char content[2];
     } field;
     uint16_t raw;
 } RDS_BLOCK4;
-
 
 
 

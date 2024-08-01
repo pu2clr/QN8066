@@ -8,6 +8,6 @@ var searchData=
   ['getstatus2_5',['getStatus2',['../group__group02.html#gac6731edee1a5da425a66878371b1104c',1,'QN8066']]],
   ['getstatus3_6',['getStatus3',['../group__group02.html#gafcb2a26df67c63e40800a29a559c5505',1,'QN8066']]],
   ['gettxmono_7',['getTxMono',['../group__group04.html#ga859311799654c9a914daa41c74c7bfcd',1,'QN8066']]],
-  ['group0field_8',['group0Field',['../group__group05.html#aec33fd5c5672242fb1c7abb9068d64fe',1,'RDS_BLOCK2']]],
-  ['group2field_9',['group2Field',['../group__group05.html#ae19e33640ad8b4e2712ca19eca8026e4',1,'RDS_BLOCK2']]]
+  ['group0field_8',['group0Field',['../group__group00.html#aec33fd5c5672242fb1c7abb9068d64fe',1,'RDS_BLOCK2']]],
+  ['group2field_9',['group2Field',['../group__group00.html#ae19e33640ad8b4e2712ca19eca8026e4',1,'RDS_BLOCK2']]]
 ];

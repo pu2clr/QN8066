@@ -987,6 +987,18 @@ int QN8066::getAudioPeakValue() {
  * @details if 0, Received bit-stream have both RDS and MMBS blocks (‘E’ block); 
  * @details if 1, Received bit-stream has RDS block only, no MMBS block (‘E’ block)
  * @param mode 
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsSetMode(0);
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
  */
 void QN8066::rdsSetMode(uint8_t mode) {
   qn8066_int_ctrl int_ctrl;
@@ -1000,6 +1012,18 @@ void QN8066::rdsSetMode(uint8_t mode) {
  * @brief Sets RDS 4K Mode .
  * @details Enable RDS RX/TX 4k Mode: with or without the privacy mode (audio scramble and RDS encryption)
  * @param value 0 or 1 
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsSet4KMode(0);
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
  */
 void QN8066::rdsSet4KMode(uint8_t value) {
   qn8066_int_ctrl int_ctrl;
@@ -1014,6 +1038,18 @@ void QN8066::rdsSet4KMode(uint8_t value) {
  * @details RDS RX interrupt enable. When RDS_INT_EN=1, a 4.5ms low pulse will be output from pad din (RX mode)
  * @details when a new group data is received and stored into RDS0~RDS7 (RX mode).
  * @param value 0 or 1 
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsSetInterrupt(0);
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 void QN8066::rdsSetInterrupt(uint8_t value) {
   qn8066_int_ctrl int_ctrl;
@@ -1023,7 +1059,22 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
 }
 
 
-
+/**
+ * @ingroup group05 TX RDS 
+ * @brief Sets some RDS setup
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsInitTx();
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
+ */
 void QN8066::rdsInitTx() {
   this->rdsTxEnable(true);
   this->rdsSetTxLineIn(0);
@@ -1039,6 +1090,18 @@ void QN8066::rdsInitTx() {
  * @details Enable RDS service 
  * @param value (true = enabled; false = disabled)
  * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsTxEnable(true);
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 void QN8066::rdsTxEnable(bool value) {
   qn8066_system2 system2;
@@ -1053,6 +1116,20 @@ void QN8066::rdsTxEnable(bool value) {
  * @details If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit. 
  * @details description the chip internally will fetch these bytes after completing transmitting of current group.
  * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsTxEnable(true);
+ *   ...
+ *   tx.rdsSetTxToggle();
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode    
  */
 uint8_t QN8066::rdsSetTxToggle() {
   this->system2.raw = this->getRegister(QN_SYSTEM2);
@@ -1069,6 +1146,20 @@ uint8_t QN8066::rdsSetTxToggle() {
  * @details Once the chip internally fetched these bytes, it will toggle this bit, and user can write in another group.
  * @return true 
  * @return false 
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsTxEnable(true); 
+ *   ...
+ *   tx.rdsGetTxUpdated();
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 bool QN8066::rdsGetTxUpdated() { 
     return this->getStatus3().arg.RDS_TXUPD;
@@ -1079,6 +1170,19 @@ bool QN8066::rdsGetTxUpdated() {
  * @brief Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)
  * @details The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer.
  * @param text (point to array of char with 8 bytes to be loaded into the RDS data buffer)
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsTxEnable(true);
+ *   tx.rdsWriteTxBuffer();
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 void QN8066::rdsWriteTxBuffer(const char *text) { 
   for (uint8_t address = QN_TX_RDSD0; address <= QN_TX_RDSD7; address++ ) {
@@ -1095,6 +1199,19 @@ void QN8066::rdsWriteTxBuffer(const char *text) {
  * @details RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode.
  * @param freq ( valid values: from 0 to 127)
  * @see Datasheet, register RDS (0x26), page 34. 
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsTxEnable(true);
+ *   tx.rdsSetFrequencyDerivation();
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode    
  */
 void QN8066::rdsSetFrequencyDerivation(uint8_t freq) {
   qn8066_rds rds;
@@ -1108,6 +1225,19 @@ void QN8066::rdsSetFrequencyDerivation(uint8_t freq) {
  * @brief Audio Line-in enable control
  * @param value (true = enabled; false = disabled)
  * @see Datasheet, register RDS (0x26), page 34. 
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1067); // Set the transmitter to 106.7 MHz 
+ *   tx.rdsTxEnable(true);
+ *   tx.rdsSetTxLineIn 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 void QN8066::rdsSetTxLineIn(bool value) {
   qn8066_rds rds;
@@ -1144,7 +1274,7 @@ void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
  * @param block1 
  * @param block2 
  * @param block3 
- * @param block4 
+ * @param block4  
  */
 void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
 
@@ -1192,6 +1322,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
  * @brief Sets the station name 
  * 
  * @param stationName 
+ 
  */
 void QN8066::rdsSetStationName(char *stationName) { 
   strncpy(this->rdsStationName,stationName,7);
