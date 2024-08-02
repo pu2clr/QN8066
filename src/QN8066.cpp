@@ -925,7 +925,7 @@ void QN8066::updateTxSetup() {
 
 /**
  * @ingroup group04 PA Control
- * @brief TX aAudio peak clear signal.
+ * @brief TX Audio peak clear signal.
  * @details Audio peak value is max-hold and stored in aud_pk (see STATUS register). Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again
  * @details Example
  * @code 
@@ -947,7 +947,6 @@ void QN8066::setToggleTxPdClear() {
   pac.arg.TXPD_CLR = !pac.arg.TXPD_CLR;
   this->setRegister(QN_PAC, pac.raw );
   this->pac = pac;
-
 }
 
 
@@ -1302,7 +1301,9 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
 
-  delay(87); 
+  this->rdsSetTxToggle();  
+
+  delay(89); 
 
   while ( this->rdsGetTxUpdated() == toggle  && count < 50) { 
     delay(1);
@@ -1311,8 +1312,6 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
 
   if (count >= 50 ) 
     this->rdsSendError = 1;
-  
-  this->rdsSetTxToggle();  
 
 }
 
@@ -1361,9 +1360,8 @@ void QN8066::rdsSendPS(char* ps) {
     b4.field.content[1] = str[i+1];    
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
     b2.group0Field.address++; 
-    b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
+    // b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
   }
-
 
 }
 

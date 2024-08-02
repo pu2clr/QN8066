@@ -931,7 +931,29 @@ public:
    */
   void setCrystalFrequency(uint32_t value) { xtal_div = value / 32768; };
   void setPAC(uint8_t PA_TRGT);
+  
   void setToggleTxPdClear();
+
+  /**
+   * @ingroup group04 PA Control
+   * @brief TX Audio peak clear signal.
+   * @details Same setToggleTxPdClear (synonym)
+   * @details Audio peak value is max-hold and stored in aud_pk (see STATUS register). Once TXPD_CLR is toggled, the aud_pk value is cleared and restarted again
+   * @details Example
+   * @code 
+   * #include <QN8066.h>
+   * QN8066 tx;
+   * void setup() {
+   *   tx.setup();
+   *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+   *   ...
+   *   tx.resetAudioPeak();   
+   * }
+   * void loop() {
+   * }
+   * @endcode  
+   */
+  inline void resetAudioPeak() {this->setToggleTxPdClear();};
   int  getAudioPeakValue();
 
   // RDS TX

@@ -348,6 +348,8 @@ void setup() {
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
       // delay(200);
       // tx.rdsInitTx();
+      tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)
+      tx.resetAudioPeak();
       tx.rdsSetPTY(8); // Science
       tx.rdsSendPS(rdsStationName);
       // tx.rdsSendPS();
