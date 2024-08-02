@@ -1302,9 +1302,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
 
-  this->rdsSetTxToggle();  
   delay(87); 
-  
 
   while ( this->rdsGetTxUpdated() == toggle  && count < 50) { 
     delay(1);
@@ -1352,7 +1350,7 @@ void QN8066::rdsSendPS(char* ps) {
 
   b2.raw = 0; // Starts block2
   b2.group0Field.address = 0;
-  b2.group0Field.DI = 1;
+  b2.group0Field.DI = 0;
   b2.group0Field.programType = this->rdsPTY;
   b2.group0Field.trafficProgramCode = this->rdsTP;  
   b2.group0Field.versionCode = 1; // 0B
