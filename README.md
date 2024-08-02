@@ -308,6 +308,7 @@ If you find this project useful, consider making a donation so that the author o
 
 ## References 
 
+* [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
 * [Data Sheet - QUINTIC QN8066 Digital FM Transceiver for Portable Devices](https://vrtp.ru/index.php?act=Attach&type=post&id=913773)
 * [RDS Encoder Version 1.5 Implementation Manual](https://www.pira.cz/rds/readbest.pdf)
 * [Dynamic_RDS - FM Transmitter Plugin for Falcon Player](https://github.com/ShadowLight8/Dynamic_RDS)

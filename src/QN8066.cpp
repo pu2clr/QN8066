@@ -1346,17 +1346,20 @@ void QN8066::rdsSendPS(const char* ps) {
   RDS_BLOCK4 b4;
 
   b1.pi = this->rdsPI;
-  b2.raw = 0;
-  b2.commonFields.programType = this->rdsPTY;
-  b2.commonFields.trafficProgramCode = this->rdsTP;
-  b2.commonFields.versionCode = 1; 
-  b2.commonFields.groupType = 0;
+
+  b2.group0Field.address = 0;
+  b2.group0Field.DI = 0;
+  b2.group0Field.programType = this->rdsPTY;
+  b2.group0Field.trafficProgramCode = this->rdsTP;  
+  b2.group0Field.versionCode = 1; // 0B
+  b2.commonFields.groupType = 0;  
   b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
-  b2.group0Field.address = 0; 
+
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = ps[i];
     b4.field.content[1] = ps[i+1];    
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
+    (b2.commonFields.groupType)++; 
   }
 
 
