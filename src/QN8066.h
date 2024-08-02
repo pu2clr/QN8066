@@ -951,7 +951,7 @@ public:
   uint16_t calcChecksum(uint16_t block);
 
   void rdsSendGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
-  void rdsSendPS(const char* ps); 
+  void rdsSendPS(char* ps = NULL); 
 
 
   void rdsSetStationName(char *stationName);

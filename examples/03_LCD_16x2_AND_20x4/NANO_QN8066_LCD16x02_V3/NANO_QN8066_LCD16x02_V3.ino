@@ -347,10 +347,10 @@ void setup() {
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
       // delay(200);
-      tx.rdsInitTx();
-      tx.rdsSetMode(0); // Received bit-stream have both RDS and MMBS blocks (‘E’ block) 
+      // tx.rdsInitTx();
       tx.rdsSetPTY(8); // Science
       tx.rdsSendPS(rdsStationName);
+      // tx.rdsSendPS();
   }
 
 

@@ -1314,6 +1314,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   if (count >= 50 ) 
     this->rdsSendError = 1;
   
+  this->rdsSetTxToggle();  
 
 }
 
@@ -1338,12 +1339,14 @@ void QN8066::rdsSetStationName(char *stationName) {
  * @details Like rdsSendPS this method sends the Station Name or other 8 char message.
  * @param ps 
  */
-void QN8066::rdsSendPS(const char* ps) {
+void QN8066::rdsSendPS(char* ps) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
   // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
+
+  char *str = (ps == NULL)?  this->rdsStationName: ps; 
 
   b1.pi = this->rdsPI;
 
@@ -1357,8 +1360,8 @@ void QN8066::rdsSendPS(const char* ps) {
   b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
 
   for (uint8_t i = 0; i < 8; i+=2) { 
-    b4.field.content[0] = ps[i];
-    b4.field.content[1] = ps[i+1];    
+    b4.field.content[0] = str[i];
+    b4.field.content[1] = str[i+1];    
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
     b2.group0Field.address++; 
   }
