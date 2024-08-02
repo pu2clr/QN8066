@@ -685,8 +685,8 @@ void loop() {
         if ( (millis() - rdsTime) > 61000 ) {
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
-          tx.rdsSendRTMessage((char *) "PU2CLR QN8066 Arduino Library");
-          // tx.rdsSendPS(rdsStationName);
+          // tx.rdsSendRTMessage((char *) "PU2CLR QN8066 Arduino Library");
+          tx.rdsSendPS(rdsStationName);
           rdsTime = millis();
         }
       }
