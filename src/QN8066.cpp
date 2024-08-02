@@ -1347,6 +1347,7 @@ void QN8066::rdsSendPS(const char* ps) {
 
   b1.pi = this->rdsPI;
 
+  b2.raw = 0; // Starts block2
   b2.group0Field.address = 0;
   b2.group0Field.DI = 1;
   b2.group0Field.programType = this->rdsPTY;

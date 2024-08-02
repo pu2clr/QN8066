@@ -276,7 +276,7 @@ KeyValue keyValue[] = {
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 
-char *rdsStationName = (char *) "QN8066TX";
+char *rdsStationName = (char *) "QN8066T\r";
 long rdsTime = millis();
 
 
@@ -348,6 +348,7 @@ void setup() {
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
       // delay(200);
       tx.rdsInitTx();
+      tx.rdsSetMode(0); // Received bit-stream have both RDS and MMBS blocks (‘E’ block) 
       tx.rdsSetPTY(8); // Science
       tx.rdsSendPS(rdsStationName);
   }
