@@ -1357,13 +1357,13 @@ void QN8066::rdsSendPS(char* ps) {
   b2.group0Field.trafficProgramCode = this->rdsTP;  
   b2.group0Field.versionCode = 1; // 0B
   b2.commonFields.groupType = 0;  
-  b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = str[i];
     b4.field.content[1] = str[i+1];    
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
     b2.group0Field.address++; 
+    b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
   }
 
 
