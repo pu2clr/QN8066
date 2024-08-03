@@ -275,8 +275,14 @@ KeyValue keyValue[] = {
 };
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
-
-char *rdsStationName[] = {(char *) "PU2CLR..", (char *) "ARDUINO.", (char *) "QN8066.."};
+// Station Name (PS) message
+char *rdsPSmsg[] = {(char *) "PU2CLR  ", 
+                    (char *) "ARDUINO ", 
+                    (char *) "QN8066  "};
+// Radio Text (RT) message
+char *rdsRTmsg[] = {(char *) "PU2CLR QN8066 ARDUINO LIBRARY.",
+                    (char *) "QN8066 FM TRANSMITTER WITH RDS SERVICE.",
+                    (char *) "MORE DETAILS: https://github.com/pu2clr/QN8066"};
 uint8_t idxPS = 0;
 long rdsTime = millis();
 
@@ -292,7 +298,7 @@ void setup() {
   pinMode(BT_UP, INPUT_PULLUP);
   pinMode(BT_DOWN, INPUT_PULLUP);
 
-  tx.setI2CLowSpeedMode();
+  tx.setI2CFastMode();
 
   lcd.begin(16, 2);
 
@@ -358,9 +364,9 @@ void setup() {
       tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)  
 
       tx.rdsSetPTY(8); // Science
-      tx.rdsSendRTMessage((char *) "ARDUINO AND QN8066 FM TRANSMITTER!");    
+      tx.rdsSendRTMessage(rdsRTmsg[idxPS]);    
       delay(300);
-      tx.rdsSendPS(rdsStationName[idxPS]);
+      tx.rdsSendPS(rdsPSmsg[idxPS]);
       // tx.rdsSendPS();
   }
 
@@ -698,11 +704,10 @@ void loop() {
         if ( (millis() - rdsTime) > 61000 ) {
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
-          tx.rdsSendRTMessage((char *) "PU2CLR QN8066 Arduino Library");
+          if (++idxPS > 2) idxPS = 0;
+          tx.rdsSendRTMessage(rdsRTmsg[idxPS]);   
           delay(300);
-          tx.rdsSendPS(rdsStationName[idxPS]);
-          idxPS++; 
-          if (idxPS > 2) idxPS = 0;
+          tx.rdsSendPS(rdsPSmsg[idxPS]);
           rdsTime = millis();
         }
       }
