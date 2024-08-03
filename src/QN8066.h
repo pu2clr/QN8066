@@ -970,8 +970,6 @@ public:
   void rdsSetFrequencyDerivation(uint8_t freq = 6);
   void rdsSetTxLineIn(bool value = 0); 
 
-  uint16_t calcChecksum(uint16_t block);
-
   void rdsSendGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
   void rdsSendPS(char* ps = NULL); 
 

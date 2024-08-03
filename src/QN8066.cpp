@@ -1246,20 +1246,6 @@ void QN8066::rdsSetTxLineIn(bool value) {
 } 
 
 
-// Function to calculate the checksum for each block
-uint16_t QN8066::calcChecksum(uint16_t block) {
-    uint16_t polynomial = 0x5B9;
-    uint16_t crc = block;
-    for (int i = 0; i < 10; i++) {
-        if (crc & 0x8000) {
-            crc = (crc << 1) ^ polynomial;
-        } else {
-            crc <<= 1;
-        }
-    }
-    return crc & 0x3FF;  // Return only the 10-bit checksum
-}
-
 
 void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
   this->setRegister(rdsRegister, block>>8 );
@@ -1281,13 +1267,6 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   uint8_t count = 0;
 
   this->rdsSendError = 0;
-
-  /*
-  block1 = (block1 << 10) | calcChecksum(block1);
-  block2 = (block2 << 10) | calcChecksum(block2);
-  block3 = (block3 << 10) | calcChecksum(block3);
-  block4 = (block4 << 10) | calcChecksum(block4);
-  */
 
   this->setRegister(QN_TX_RDSD0, block1>>8 );
   this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
@@ -1311,7 +1290,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
     count++;
   }
 
-  if (count >= 50 ) 
+  if (count >= 88 ) 
     this->rdsSendError = 1;
 
 }
@@ -1324,8 +1303,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
  
  */
 void QN8066::rdsSetStationName(char *stationName) { 
-  strncpy(this->rdsStationName,stationName,7);
-  rdsStationName[7] = '\r'; // carriage return (ASCII - 13)
+  strncpy(this->rdsStationName,stationName,8);
   rdsStationName[8] = '\0';
 }
 
