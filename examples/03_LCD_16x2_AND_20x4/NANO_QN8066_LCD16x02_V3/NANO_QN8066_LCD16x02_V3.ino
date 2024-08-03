@@ -362,9 +362,10 @@ void setup() {
       tx.rdsInitTx();
       tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)  
       tx.rdsSetPTY(1); // Science
-      tx.rdsSendRTMessage(rdsRTmsg[idxPS]);   
       delay(400); 
       tx.rdsSendPS(rdsPSmsg[idxPS]);
+      delay(200);
+      tx.rdsSendRTMessage(rdsRTmsg[idxPS]);  
   }
 
 
@@ -704,9 +705,9 @@ void loop() {
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
           if (++idxPS > 2) idxPS = 0;
-          tx.rdsSendRTMessage(rdsRTmsg[idxPS]);   
-          delay(200);
           tx.rdsSendPS(rdsPSmsg[idxPS]);
+          delay(200);
+          tx.rdsSendRTMessage(rdsRTmsg[idxPS]);   
           rdsTime = millis();
         }
       }
