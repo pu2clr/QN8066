@@ -1041,10 +1041,7 @@ public:
 
   void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator = '.', bool remove_leading_zeros = true);
 
-};
-
-
-  /*******************************************************************************
+/*******************************************************************************
   * The functions below modify the clock frequency for I2C communication.
   * 100kHz  is usually the baseline.
   * Use one of these funcition if you have a problem on the default configuration.
@@ -1085,6 +1082,10 @@ public:
      * @param value in Hz. For example: The values 500000 sets the bus to 500kHz.
      */
     inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
+
+
+
+};
 
 
 #endif // _QN8066_H
