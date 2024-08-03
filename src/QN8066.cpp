@@ -1282,15 +1282,15 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
 
   this->rdsSetTxToggle();  
 
-  delay(88); 
+  delay(87); 
 
-
-  while ( this->rdsGetTxUpdated() == toggle  && count < 88) { 
+  // Wait for the QN8066 say that the blocks was processed. 
+  while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(1);
     count++;
   }
 
-  if (count >= 88 ) 
+  if (count >= 10 ) 
     this->rdsSendError = 1;
 
 }

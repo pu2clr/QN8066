@@ -280,9 +280,9 @@ char *rdsPSmsg[] = {(char *) "PU2CLR \r",
                     (char *) "ARDUINO\r", 
                     (char *) "QN8066 \r"};
 // Radio Text (RT) message
-char *rdsRTmsg[] = {(char *) "PU2CLR QN8066 ARDUINO LIBRARY.\r",
-                    (char *) "QN8066 FM TRANSMITTER WITH RDS SERVICE.\r",
-                    (char *) "MORE DETAILS: https://github.com/pu2clr/QN8066\r"};
+char *rdsRTmsg[] = {(char *) "PU2CLR QN8066 ARDUINO LIBRARY.",
+                    (char *) "FM TRANSMITTER WITH RDS SERVICE.",
+                    (char *) "https://github.com/pu2clr/QN8066"};
 uint8_t idxPS = 0;
 long rdsTime = millis();
 
@@ -298,7 +298,7 @@ void setup() {
   pinMode(BT_UP, INPUT_PULLUP);
   pinMode(BT_DOWN, INPUT_PULLUP);
 
-  tx.setI2CFastMode();
+  // tx.setI2CFastMode();
 
   lcd.begin(16, 2);
 
@@ -701,7 +701,7 @@ void loop() {
     while ( (key = checkButton()) == BT_NO_PRESSED )  {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-        if ( (millis() - rdsTime) > 61000 ) {
+        if ( (millis() - rdsTime) > 60000 ) {
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
           if (++idxPS > 2) idxPS = 0;
