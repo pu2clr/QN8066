@@ -1341,7 +1341,7 @@ void QN8066::rdsSendPS(char* ps) {
   b2.group0Field.programType = this->rdsPTY;
   b2.group0Field.trafficProgramCode = this->rdsTP;  
   b2.group0Field.versionCode = 1; // 0B - Station Name
-  b2.commonFields.groupType = 0;  
+  b2.group0Field.groupType = 0;  
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = str[i+1];
