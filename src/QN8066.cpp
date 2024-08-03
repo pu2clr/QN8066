@@ -1322,22 +1322,22 @@ void QN8066::rdsSendPS(char* ps) {
   // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
-  static uint8_t flip = 0;
+  static uint8_t flip = 1;
 
   char *str = (ps == NULL)?  this->rdsStationName: ps; 
 
   b1.pi = this->rdsPI;
 
+  flip = !flip;
+
   b2.raw = 0; // Starts block2
   b2.group0Field.address = 0;
+  b2.commonFields.textABFlag = flip;  
   b2.group0Field.DI = 0;
   b2.group0Field.programType = this->rdsPTY;
   b2.group0Field.trafficProgramCode = this->rdsTP;  
-  b2.group0Field.versionCode = 0; // 0B
+  b2.group0Field.versionCode = 1; // 0B
   b2.commonFields.groupType = 0;  
-  // this->rdsSendGroup(b1.pi, b2.raw, b1.pi, 0);  
-  flip = !flip;
-  b2.commonFields.textABFlag = flip;
 
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = str[i+1];
