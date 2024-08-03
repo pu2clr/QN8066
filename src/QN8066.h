@@ -1035,6 +1035,11 @@ public:
   */
   uint8_t rdsGetError() {return this->rdsSendError;};
 
+  /**
+   * @ingroup group05 TX RDS
+   * @brief Clear RDS register (Buffer)
+   */
+  inline void rdsClearBuffer() {this->rdsSendGroup(0,0,0,0);};
 
 
   void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator = '.', bool remove_leading_zeros = true);

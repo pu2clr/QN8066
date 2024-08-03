@@ -1075,11 +1075,11 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * @endcode   
  */
 void QN8066::rdsInitTx() {
-  this->rdsTxEnable(true);
-  this->rdsSetTxLineIn(1);
-  this->rdsSetMode(1);
+  // this->rdsTxEnable(true);
+  // this->rdsSetTxLineIn(0);
+  // this->rdsSetMode(1);
   // this->rdsSetFrequencyDerivation(30);
-  this->rdsSendGroup(0,0,0,0);
+  //this->rdsSendGroup(0,0,0,0);
   delay(100);
 }
 
@@ -1269,6 +1269,14 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
 
   this->rdsSendError = 0;
 
+  // Checking
+  RDS_BLOCK2 aux; 
+  aux.raw = block2;
+
+  // Checking it here
+  if (aux.commonFields.groupType == 2)
+    this->rdsSetTxToggle();
+
   this->setRegister(QN_TX_RDSD0, block1>>8 );
   this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
 
@@ -1281,6 +1289,8 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
 
+  this->rdsSetTxToggle(); 
+
   delay(87); 
 
   // Waits for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
@@ -1292,10 +1302,9 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   if (count >= 10 ) 
     this->rdsSendError = 1;
 
-  
   // toggling the RDSRDY bit in the SYSTEM2 register
-  this->rdsSetTxToggle();    
-
+  // this->rdsSetTxToggle(); 
+ 
 }
 
 /**
@@ -1325,17 +1334,12 @@ void QN8066::rdsSendPS(char* ps) {
   // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
-  static uint8_t flip = 1;
-
   char *str = (ps == NULL)?  this->rdsStationName: ps; 
 
   b1.pi = this->rdsPI;
 
-  flip = !flip;
-
   b2.raw = 0; // Starts block2
   b2.group0Field.address = 0;
-  b2.commonFields.textABFlag = flip;  
   b2.group0Field.DI = 0;
   b2.group0Field.programType = this->rdsPTY;
   b2.group0Field.trafficProgramCode = this->rdsTP;  
@@ -1364,6 +1368,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
     block1.pi = this->rdsPI;
     static bool toggle = false;
     toggle = !toggle;
+
     for (uint8_t i = 0; i < numGroups; i++) {
         
         RDS_BLOCK2 block2 = {

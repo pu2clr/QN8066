@@ -358,15 +358,16 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-      delay(300);
+      delay(400);
+      // tx.rdsClearBuffer();
       tx.rdsInitTx();
       tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)  
-      tx.rdsSetPTY(8); // Science
-      tx.rdsSendRTMessage(rdsRTmsg[idxPS]);    
-      delay(300);
-      tx.rdsSendPS(rdsPSmsg[idxPS]);
-      tx.rdsSendPS(rdsPSmsg[idxPS]);
-      // tx.rdsSendPS();
+      tx.rdsSetPTY(1); // Science
+      // tx.rdsSendRTMessage(rdsRTmsg[idxPS]);    
+      // tx.rdsSendPS(rdsPSmsg[idxPS]);
+      tx.rdsSendPS();
+      delay(100);
+      tx.rdsSendPS();
   }
 
 
@@ -702,12 +703,17 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
+          // tx.rdsClearBuffer();
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
           if (++idxPS > 2) idxPS = 0;
-          tx.rdsSendRTMessage(rdsRTmsg[idxPS]);   
-          delay(100);
+          tx.rdsSendRTMessage(rdsRTmsg[idxPS]); 
+          // delay(100);  
+          // tx.rdsSendRTMessage(rdsRTmsg[idxPS]);   
+          // delay(100);
           tx.rdsSendPS(rdsPSmsg[idxPS]);
+          // delay(100);
+          // tx.rdsSendPS(rdsPSmsg[idxPS]);
           rdsTime = millis();
         }
       }
