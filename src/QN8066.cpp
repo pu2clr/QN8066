@@ -1269,15 +1269,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
 
   this->rdsSendError = 0;
 
-  // Checking
-  RDS_BLOCK2 aux; 
-  aux.raw = block2;
-
-  // Checking it here
-  if (aux.commonFields.groupType == 2)
-    this->rdsSetTxToggle();
-
-  this->setRegister(QN_TX_RDSD0, block1>>8 );
+   this->setRegister(QN_TX_RDSD0, block1>>8 );
   this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
 
   this->setRegister(QN_TX_RDSD2, block2>>8 );
@@ -1289,11 +1281,13 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
 
+  // It should not be here. Judiging by the data sheet, the use must  
+  // wait for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
   this->rdsSetTxToggle(); 
 
   delay(87); 
 
-  // Waits for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
+  // checks for the RDS_TXUPD . 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(1);
     count++;
@@ -1302,7 +1296,7 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   if (count >= 10 ) 
     this->rdsSendError = 1;
 
-  // toggling the RDSRDY bit in the SYSTEM2 register
+  // It should be here.
   // this->rdsSetTxToggle(); 
  
 }
@@ -1349,6 +1343,7 @@ void QN8066::rdsSendPS(char* ps) {
   for (uint8_t i = 0; i < 8; i+=2) { 
     b4.field.content[0] = str[i+1];
     b4.field.content[1] = str[i];    
+    delay(87); 
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
     b2.group0Field.address++; 
   }
@@ -1385,6 +1380,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
         block3.raw  = (rt[i * 4] << 8) | rt[i * 4 + 1];
         RDS_BLOCK4 block4;
         block4.raw = (rt[i * 4 + 2] << 8) | rt[i * 4 + 3];
+        delay(87); 
         this->rdsSendGroup(block1.pi, block2.raw, block3.raw, block4.raw);
     }
 }
