@@ -1076,7 +1076,8 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  */
 void QN8066::rdsInitTx() {
   this->rdsTxEnable(true);
-  this->rdsSetTxLineIn(0);
+  this->rdsSetTxLineIn(1);
+  this->rdsSetMode(1);
   // this->rdsSetFrequencyDerivation(30);
   this->rdsSendGroup(0,0,0,0);
   delay(100);
@@ -1336,7 +1337,7 @@ void QN8066::rdsSendPS(char* ps) {
   b2.group0Field.DI = 0;
   b2.group0Field.programType = this->rdsPTY;
   b2.group0Field.trafficProgramCode = this->rdsTP;  
-  b2.group0Field.versionCode = 1; // 0B
+  b2.group0Field.versionCode = 0; // 0B
   b2.commonFields.groupType = 0;  
 
   for (uint8_t i = 0; i < 8; i+=2) { 

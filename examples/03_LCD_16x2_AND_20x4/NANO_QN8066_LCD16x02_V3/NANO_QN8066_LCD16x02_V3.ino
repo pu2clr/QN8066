@@ -117,7 +117,7 @@
 #define BT_MENU_PRESSED 3   // 011
 
 #define STEP_FREQ 1
-#define PUSH_MIN_DELAY 110
+#define PUSH_MIN_DELAY 200
 
 int8_t lcdPage = 0;
 
@@ -359,13 +359,12 @@ void setup() {
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
       delay(300);
-      // tx.rdsInitTx();
-      tx.rdsSetMode(1);
+      tx.rdsInitTx();
       tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)  
-
       tx.rdsSetPTY(8); // Science
       tx.rdsSendRTMessage(rdsRTmsg[idxPS]);    
       delay(300);
+      tx.rdsSendPS(rdsPSmsg[idxPS]);
       tx.rdsSendPS(rdsPSmsg[idxPS]);
       // tx.rdsSendPS();
   }
@@ -621,6 +620,7 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step,  uint8_
 // // Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
   enablePWM(0); // The PWM seems to interfere with the communication with the QN8066.
+  delay(PUSH_MIN_DELAY);
   switch (idxMenu) {
     case 0:
       lcd.setCursor(9,1);
@@ -702,11 +702,15 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
+          tx.rdsTxEnable(false);
+          delay(300);
+          tx.rdsTxEnable(true);
+          delay(200);
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
           if (++idxPS > 2) idxPS = 0;
           tx.rdsSendRTMessage(rdsRTmsg[idxPS]);   
-          delay(300);
+          delay(100);
           tx.rdsSendPS(rdsPSmsg[idxPS]);
           rdsTime = millis();
         }
