@@ -276,9 +276,9 @@ KeyValue keyValue[] = {
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 // Station Name (PS) message
-char *rdsPSmsg[] = {(char *) "PU2CLR \r", 
-                    (char *) "ARDUINO\r", 
-                    (char *) "QN8066 \r"};
+char *rdsPSmsg[] = {(char *) "PU2CLR  ", 
+                    (char *) "ARDUINO ", 
+                    (char *) "QN8066  "};
 // Radio Text (RT) message
 char *rdsRTmsg[] = {(char *) "PU2CLR QN8066 ARDUINO LIBRARY.",
                     (char *) "FM TRANSMITTER WITH RDS SERVICE.",
@@ -702,10 +702,6 @@ void loop() {
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
         if ( (millis() - rdsTime) > 60000 ) {
-          tx.rdsTxEnable(false);
-          delay(300);
-          tx.rdsTxEnable(true);
-          delay(200);
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
           if (++idxPS > 2) idxPS = 0;

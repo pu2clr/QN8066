@@ -1281,11 +1281,9 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
   this->setRegister(QN_TX_RDSD6, block4>>8 );
   this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
 
-  this->rdsSetTxToggle();  
-
   delay(87); 
 
-  // Wait for the QN8066 say that the blocks was processed. 
+  // Waits for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(1);
     count++;
@@ -1293,6 +1291,10 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
 
   if (count >= 10 ) 
     this->rdsSendError = 1;
+
+  
+  // toggling the RDSRDY bit in the SYSTEM2 register
+  this->rdsSetTxToggle();    
 
 }
 
@@ -1337,7 +1339,7 @@ void QN8066::rdsSendPS(char* ps) {
   b2.group0Field.DI = 0;
   b2.group0Field.programType = this->rdsPTY;
   b2.group0Field.trafficProgramCode = this->rdsTP;  
-  b2.group0Field.versionCode = 0; // 0B
+  b2.group0Field.versionCode = 1; // 0B - Station Name
   b2.commonFields.groupType = 0;  
 
   for (uint8_t i = 0; i < 8; i+=2) { 
