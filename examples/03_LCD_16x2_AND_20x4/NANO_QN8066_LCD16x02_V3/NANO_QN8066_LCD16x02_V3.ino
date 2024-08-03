@@ -119,7 +119,10 @@
 #define STEP_FREQ 1
 #define PUSH_MIN_DELAY 200
 
+#define SHOW_STATUS 5000
+
 int8_t lcdPage = 0;
+long showStatusTime = millis();
 
 uint8_t menuLevel = 0;
 
@@ -358,7 +361,6 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-      // tx.rdsClearBuffer();
       tx.rdsInitTx();
       tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)  
       tx.rdsSetPTY(1); // Science
@@ -471,7 +473,7 @@ void showStatus(uint8_t page) {
      lcd.setCursor(10, 1);
      sprintf(str,"PA:%d%%", pwmPowerDuty * 100 / 255 );
      lcd.print(str);
-     // tx.resetAudioPeak();
+     tx.resetAudioPeak();
   }
   else if (page == 1) {     
       // sprintf(str,"RIN:%s", tabImpedance[idxImpedance].desc);   
@@ -481,7 +483,6 @@ void showStatus(uint8_t page) {
       lcd.setCursor(0, 1);
       sprintf(str,"DEV.: %s", keyValue[9].value[keyValue[9].key].desc);  
       lcd.print(str);
-
   }
   else if (page == 2) {
       sprintf(str,"BG:%s", keyValue[10].value[keyValue[10].key].desc);   
@@ -698,10 +699,12 @@ void loop() {
   if (menuLevel == 0) {
     showStatus(lcdPage);
     while ( (key = checkButton()) == BT_NO_PRESSED )  {
+
       // RDS UNDER CONSTRUCTION...
       if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
+        tx.rdsInitTx();
         if ( (millis() - rdsTime) > 60000 ) {
-          // tx.rdsClearBuffer();
+          tx.rdsClearBuffer();
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
           if (++idxPS > 2) idxPS = 0;
@@ -711,6 +714,13 @@ void loop() {
           rdsTime = millis();
         }
       }
+
+      // Refresh Status
+      if ( (millis() -  showStatusTime) > SHOW_STATUS ) {
+        showStatus(lcdPage);
+        showStatusTime = millis();
+      }
+
     } 
     if ( key == BT_DOWN_PRESSED ) { // Down Pressed
       lcdPage--;

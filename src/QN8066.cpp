@@ -1074,12 +1074,12 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * }
  * @endcode   
  */
-void QN8066::rdsInitTx() {
+void QN8066:: rdsInitTx(uint8_t rdsFreqDev = 0, uint8_t rdsMode = 0) {
   // this->rdsTxEnable(true);
   // this->rdsSetTxLineIn(0);
-  // this->rdsSetMode(1);
-  // this->rdsSetFrequencyDerivation(30);
-  //this->rdsSendGroup(0,0,0,0);
+  this->rdsSetMode(rdsMode);
+  // this->rdsSetFrequencyDerivation(rdsFreqDev);
+  // this->rdsClearBuffer();
   delay(100);
 }
 
@@ -1328,6 +1328,9 @@ void QN8066::rdsSendPS(char* ps) {
   // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
+    // Flushes any previus data
+    this->rdsSetTxToggle();
+
   char *str = (ps == NULL)?  this->rdsStationName: ps; 
 
   b1.pi = this->rdsPI;
@@ -1357,6 +1360,10 @@ void QN8066::rdsSendPS(char* ps) {
  * @param rt 
  */
 void QN8066::rdsSendRTMessage(char *rt) {
+
+    // Flushes any previus data
+    this->rdsSetTxToggle();
+
     int textLen = strlen(rt);
     int numGroups = (textLen + 3) / 4; // Each group can contain 4 characters
     RDS_BLOCK1 block1;

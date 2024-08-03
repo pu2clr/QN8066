@@ -960,7 +960,7 @@ public:
 
   void rdsSetMode(uint8_t mode); 
   void rdsSet4KMode(uint8_t value);
-  void rdsInitTx();
+  void rdsInitTx(uint8_t rdsFreqDev = 0, uint8_t rdsMode = 0);
   void rdsSetInterrupt(uint8_t value);
 
   void rdsTxEnable(bool value);   
