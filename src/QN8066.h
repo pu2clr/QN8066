@@ -1043,4 +1043,48 @@ public:
 
 };
 
+
+  /*******************************************************************************
+  * The functions below modify the clock frequency for I2C communication.
+  * 100kHz  is usually the baseline.
+  * Use one of these funcition if you have a problem on the default configuration.
+  *******************************************************************************/
+
+  /**
+   * @ingroup group99 MCU I2C Speed
+   * @brief Sets I2C bus to 10kHz
+   */
+   inline void setI2CLowSpeedMode(void)
+  {
+       Wire.setClock(10000);
+  };
+
+    /**
+     * @ingroup group99 MCU I2C Speed
+     *
+     * @brief Sets I2C bus to 100kHz
+     */
+    inline void setI2CStandardMode(void) { Wire.setClock(100000); };
+
+    /**
+     * @ingroup group99 MCU I2C Speed
+     *
+     * @brief Sets I2C bus to 400kHz
+     */
+    inline void setI2CFastMode(void)
+    {
+        Wire.setClock(400000);
+    };
+
+    /**
+     * @ingroup group99 MCU I2C Speed
+     *
+     * @brief Sets the I2C bus to a given value.
+     * ATTENTION: use this function with caution
+     *
+     * @param value in Hz. For example: The values 500000 sets the bus to 500kHz.
+     */
+    inline void setI2CFastModeCustom(long value = 500000) { Wire.setClock(value); };
+
+
 #endif // _QN8066_H

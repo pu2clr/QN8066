@@ -292,6 +292,8 @@ void setup() {
   pinMode(BT_UP, INPUT_PULLUP);
   pinMode(BT_DOWN, INPUT_PULLUP);
 
+  tx.setI2CLowSpeedMode();
+
   lcd.begin(16, 2);
 
   // If you want to reset the eeprom, keep the BT_MENU button pressed during statup
