@@ -1303,9 +1303,10 @@ void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uin
 
   this->rdsSetTxToggle();  
 
-  delay(89); 
+  delay(88); 
 
-  while ( this->rdsGetTxUpdated() == toggle  && count < 50) { 
+
+  while ( this->rdsGetTxUpdated() == toggle  && count < 88) { 
     delay(1);
     count++;
   }
@@ -1343,6 +1344,8 @@ void QN8066::rdsSendPS(char* ps) {
   // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
+  static uint8_t flip = 0;
+
   char *str = (ps == NULL)?  this->rdsStationName: ps; 
 
   b1.pi = this->rdsPI;
@@ -1352,15 +1355,17 @@ void QN8066::rdsSendPS(char* ps) {
   b2.group0Field.DI = 0;
   b2.group0Field.programType = this->rdsPTY;
   b2.group0Field.trafficProgramCode = this->rdsTP;  
-  b2.group0Field.versionCode = 1; // 0B
+  b2.group0Field.versionCode = 0; // 0B
   b2.commonFields.groupType = 0;  
+  // this->rdsSendGroup(b1.pi, b2.raw, b1.pi, 0);  
+  flip = !flip;
+  b2.commonFields.textABFlag = flip;
 
   for (uint8_t i = 0; i < 8; i+=2) { 
-    b4.field.content[0] = str[i];
-    b4.field.content[1] = str[i+1];    
+    b4.field.content[0] = str[i+1];
+    b4.field.content[1] = str[i];    
     this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
     b2.group0Field.address++; 
-    // b2.commonFields.textABFlag = !b2.commonFields.textABFlag;
   }
 
 }
@@ -1376,10 +1381,10 @@ void QN8066::rdsSendRTMessage(char *rt) {
     int numGroups = (textLen + 3) / 4; // Each group can contain 4 characters
     RDS_BLOCK1 block1;
     block1.pi = this->rdsPI;
-    bool toggle = false;
-
+    static bool toggle = false;
+    toggle = !toggle;
     for (uint8_t i = 0; i < numGroups; i++) {
-        toggle = !toggle;
+        
         RDS_BLOCK2 block2 = {
             .group2Field = {
                 .address = i,

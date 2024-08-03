@@ -276,7 +276,8 @@ KeyValue keyValue[] = {
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 
-char *rdsStationName = (char *) "QN8066T\r";
+char *rdsStationName[] = {(char *) "PU2CLR..", (char *) "ARDUINO.", (char *) "QN8066.."};
+uint8_t idxPS = 0;
 long rdsTime = millis();
 
 
@@ -328,6 +329,9 @@ void setup() {
 
   tx.setup();
   tx.setTX(txFrequency);
+  delay(500);
+
+  tx.resetAudioPeak();
 
   // Due to the architecture of the KIT, the PWM interferes with I2C communication. 
   // Therefore, before changing the transmitter's configuration parameters, it must be disabled (Duty 0).
@@ -346,12 +350,15 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-      // delay(200);
+      delay(300);
       // tx.rdsInitTx();
-      tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)
-      tx.resetAudioPeak();
+      tx.rdsSetMode(1);
+      tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)  
+
       tx.rdsSetPTY(8); // Science
-      tx.rdsSendPS(rdsStationName);
+      tx.rdsSendRTMessage((char *) "ARDUINO AND QN8066 FM TRANSMITTER!");    
+      delay(300);
+      tx.rdsSendPS(rdsStationName[idxPS]);
       // tx.rdsSendPS();
   }
 
@@ -455,9 +462,10 @@ void showStatus(uint8_t page) {
      lcd.setCursor(0, 1);
      lcd.print(tx.getAudioPeakValue());
      lcd.print("mV");
-     lcd.setCursor(9, 1);
+     lcd.setCursor(10, 1);
      sprintf(str,"PA:%d%%", pwmPowerDuty * 100 / 255 );
      lcd.print(str);
+     // tx.resetAudioPeak();
   }
   else if (page == 1) {     
       // sprintf(str,"RIN:%s", tabImpedance[idxImpedance].desc);   
@@ -688,8 +696,11 @@ void loop() {
         if ( (millis() - rdsTime) > 61000 ) {
           tx.rdsSetPTY(++pty); // Document.
           if (pty > 30 ) pty = 1;
-          // tx.rdsSendRTMessage((char *) "PU2CLR QN8066 Arduino Library");
-          tx.rdsSendPS(rdsStationName);
+          tx.rdsSendRTMessage((char *) "PU2CLR QN8066 Arduino Library");
+          delay(300);
+          tx.rdsSendPS(rdsStationName[idxPS]);
+          idxPS++; 
+          if (idxPS > 2) idxPS = 0;
           rdsTime = millis();
         }
       }
