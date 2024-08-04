@@ -1,5 +1,6 @@
 var group__group04 =
 [
+    [ "QN8066::resetAudioPeak", "group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed", null ],
     [ "QN8066::setTX", "group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa", null ],
     [ "QN8066::setTxStereo", "group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83", null ],
     [ "QN8066::setTxMono", "group__group04.html#ga469cbfe6404a8ef59a98e805fb5095fb", null ],

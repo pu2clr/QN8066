@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rx_20functions_20_28under_20construction_2e_2e_2e_29_0',['RX Functions (Under construction...)',['../group__group03.html',1,'']]]
+  ['qn8066_20fsm_20functions_0',['QN8066 FSM functions',['../group__group10.html',1,'']]]
 ];

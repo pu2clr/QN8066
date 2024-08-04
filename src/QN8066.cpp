@@ -1427,6 +1427,31 @@ void QN8066::rdsSendRTMessage(char *rt) {
 }
 
 
+/** @defgroup group10 QN8066 FSM functions **/
+
+/**
+ * @ingroup group10 FSM Status
+ * @brief Get the FSM State Code 
+ * @return uint8_t - Current FSM code
+ */
+uint8_t QN8066:: getFsmStateCode() {
+  qn8066_status1 s1;
+  s1.raw = this->getRegister(QN_STATUS1);
+  return s1.arg.FSM;
+}
+
+/**
+ * @ingroup group10 FSM RESET
+ * @brief Resets the state to initial states and recalibrate all blocks
+ * @details Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence.
+ */
+void QN8066::resetFsm() {
+  qn8066_system1 system1;
+  system1.raw = this->getRegister(QN_SYSTEM1);
+  system1.arg.recal = 1;
+  this->setRegister(QN_SYSTEM1, system1.raw);
+}
+
 
 /** @defgroup group99 Helper and Tools functions*/
 
