@@ -2409,12 +2409,13 @@ _EnD_oF_dEf_TeXt_;
 @code 
 #include <QN8066.h>
 QN8066 tx;
+char strFrequency[7];
+uint16_t txFrequency = 1069;
 void setup() {
   char strFrequency[7];
   tx.setup();
   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
-  tx.setTxFrequencyDerivation(120);  // About +- 84 kHz
-  tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert 1067 to a array of char "106.7"
+  tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert 1069 to a array of char "106.9"
 }
 
 void loop() {

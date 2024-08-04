@@ -1475,7 +1475,6 @@ uint8_t QN8066:: getFsmStateCode() {
  * @ingroup group10 FSM RESET
  * @brief Resets the state to initial states and recalibrate all blocks
  * @details Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence.
-
  */
 void QN8066::resetFsm() {
   qn8066_system1 system1;
@@ -1502,12 +1501,13 @@ void QN8066::resetFsm() {
  * @code
  * #include <QN8066.h>
  * QN8066 tx;
+ * char strFrequency[7];
+ * uint16_t txFrequency = 1069;
  * void setup() {
  *   char strFrequency[7];
  *   tx.setup();
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
- *   tx.setTxFrequencyDerivation(120);  // About +- 84 kHz
- *   tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert 1067 to a array of char "106.7"
+ *   tx.convertToChar(txFrequency, strFrequency, 5, 3, ','); // Convert 1069 to a array of char "106.9"
  * }
  *
  * void loop() {
