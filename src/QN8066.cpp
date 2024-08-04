@@ -1074,10 +1074,10 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * }
  * @endcode   
  */
-void QN8066:: rdsInitTx(uint8_t rdsFreqDev = 0, uint8_t rdsMode = 0) {
+void QN8066:: rdsInitTx() {
   // this->rdsTxEnable(true);
   // this->rdsSetTxLineIn(0);
-  this->rdsSetMode(rdsMode);
+  this->rdsSetMode(0);
   // this->rdsSetFrequencyDerivation(rdsFreqDev);
   // this->rdsClearBuffer();
   delay(100);
@@ -1255,6 +1255,30 @@ void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
 
 /**
  * @ingroup group05 TX RDS
+ * @brief Clear and Flushes the RDS Buffer
+ * 
+ */
+void QN8066::rdsClearBuffer() {
+
+  uint8_t toggle  = this->rdsGetTxUpdated(); 
+  uint8_t count = 0;  
+
+  this->rdsSendGroup(0,0,0,0);
+  
+  delay(87); 
+  // checks for the RDS_TXUPD . 
+  while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
+    delay(1);
+    count++;
+  }
+
+  if (count >= 10 ) 
+    this->rdsSendError = 1;
+
+};
+
+/**
+ * @ingroup group05 TX RDS
  * @brief Sends a RDS group (four blocks)  to the QN8066
  * @details Each block is packaged in 16 bits word (two bytes)
  * @param block1 
@@ -1328,8 +1352,8 @@ void QN8066::rdsSendPS(char* ps) {
   // RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
-    // Flushes any previus data
-    this->rdsSetTxToggle();
+  // Flushes any previus data
+  //  this->rdsSetTxToggle();
 
   char *str = (ps == NULL)?  this->rdsStationName: ps; 
 

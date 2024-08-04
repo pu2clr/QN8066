@@ -960,7 +960,7 @@ public:
 
   void rdsSetMode(uint8_t mode); 
   void rdsSet4KMode(uint8_t value);
-  void rdsInitTx(uint8_t rdsFreqDev = 0, uint8_t rdsMode = 0);
+  void rdsInitTx();
   void rdsSetInterrupt(uint8_t value);
 
   void rdsTxEnable(bool value);   
@@ -1039,8 +1039,7 @@ public:
    * @ingroup group05 TX RDS
    * @brief Clear RDS register (Buffer)
    */
-  inline void rdsClearBuffer() {this->rdsSendGroup(0,0,0,0);};
-
+  void rdsClearBuffer();
 
   void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator = '.', bool remove_leading_zeros = true);
 
