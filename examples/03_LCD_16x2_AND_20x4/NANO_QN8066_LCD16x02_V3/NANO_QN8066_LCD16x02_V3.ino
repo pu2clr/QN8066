@@ -278,17 +278,22 @@ KeyValue keyValue[] = {
 };
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
-// Station Name (PS) message
-char *rdsPSmsg[] = { (char *)"PU2CLR \r",
+// Station Name (PS) messages
+char *rdsPSmsg[] = { (char *)"PU2CLR  ",
+                     (char *)"QN8066  ",
                      (char *)"ARDUINO ",
-                     (char *)"QN8066 \r" };
-// Radio Text (RT) message
+                     (char *)"LIBRARY ", 
+                     (char *)"FM TX   " };
 
-char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY.  ",
-                     (char *)"FM TRANSMITTER WITH RDS SERVICE.",
-                     (char *)"https://github.com/pu2clr/QN8066" };
+// Radio Text (RT) messages
+char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY   ",
+                     (char *)"FM TRANSMITTER WITH RDS SERVICE ",
+                     (char *)"https://github.com/pu2clr/QN8066", 
+                     (char *)"BE MEMBER  FACEBOOK GROUP QN8066",
+                     (char *)"QN8066 HOMEBREW FM TRANSMITTER "};
 
-uint8_t idxPS = 0;
+uint8_t idxRdsMsg = 0;
+const uint8_t lastRdsMsg = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1; 
 long rdsTime = millis();
 
 
@@ -453,15 +458,15 @@ void showStatus(uint8_t page) {
   char str[20];
 
   lcd.clear();
-  tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
-  lcd.setCursor(0, 0);
-  lcd.print(strFrequency);
-  lcd.print("MHz");
 
   if (page == 0) {
+    tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
+    lcd.setCursor(0, 0);
+    lcd.print(strFrequency);
+    lcd.print("MHz");
     lcd.setCursor(10, 0);
     // lcd.print(  tabMonoStereo[idxStereoMono].desc );
-    lcd.print(keyValue[2].value[keyValue[2].key].desc);  // Mono Stereo
+    lcd.print(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].desc);  // Mono Stereo
     lcd.setCursor(0, 1);
     lcd.print(tx.getAudioPeakValue());
     lcd.print("mV");
@@ -470,19 +475,21 @@ void showStatus(uint8_t page) {
     lcd.print(str);
     tx.resetAudioPeak();
   } else if (page == 1) {
-    // sprintf(str,"RIN:%s", tabImpedance[idxImpedance].desc);
-    sprintf(str, "RIN:%s", keyValue[5].value[keyValue[5].key].desc);
+    lcd.setCursor(0, 0);
+    sprintf(str,"FSM: %d", tx.getFsmStateCode());
+    lcd.print(str);
+    sprintf(str, "RIN:%s", keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].desc);
     lcd.setCursor(9, 0);
     lcd.print(str);
     lcd.setCursor(0, 1);
-    sprintf(str, "DEV.: %s", keyValue[9].value[keyValue[9].key].desc);
+    sprintf(str, "DEV.: %s", keyValue[KEY_FREQ_DERIVATION].value[keyValue[KEY_FREQ_DERIVATION].key].desc);
     lcd.print(str);
   } else if (page == 2) {
-    sprintf(str, "BG:%s", keyValue[10].value[keyValue[10].key].desc);
-    lcd.setCursor(9, 0);
+    sprintf(str, "BG:%s", keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].desc);
+    lcd.setCursor(0, 0);
     lcd.print(str);
     lcd.setCursor(0, 1);
-    sprintf(str, "PIL.:%s", keyValue[8].value[keyValue[8].key].desc);
+    sprintf(str, "PIL.:%s", keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].desc);
     lcd.print(str);
   } else {
     sprintf(str, "%s PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
@@ -699,10 +706,10 @@ void sendRDS() {
   tx.rdsSetPTY(++pty);  // Document.
   if (pty > 30) pty = 1;
   delay(100);
-  if (++idxPS > 2) idxPS = 0;
-  tx.rdsSendPS(rdsPSmsg[idxPS]);
+  if (++idxRdsMsg > lastRdsMsg) idxRdsMsg = 0;
+  tx.rdsSendPS(rdsPSmsg[idxRdsMsg]);
   delay(100);
-  tx.rdsSendRTMessage(rdsRTmsg[idxPS]);
+  tx.rdsSendRTMessage(rdsRTmsg[idxRdsMsg]);
 }
 
 /*
