@@ -111,10 +111,10 @@
 #define PWM_PA 9
 
 
-#define BT_NO_PRESSED 7     // 111
-#define BT_DOWN_PRESSED 6   // 110
-#define BT_UP_PRESSED 5     // 101
-#define BT_MENU_PRESSED 3   // 011
+#define BT_NO_PRESSED 7    // 111
+#define BT_DOWN_PRESSED 6  // 110
+#define BT_UP_PRESSED 5    // 101
+#define BT_MENU_PRESSED 3  // 011
 
 #define STEP_FREQ 1
 #define PUSH_MIN_DELAY 200
@@ -141,10 +141,10 @@ typedef struct
   const char *desc;  // Description
 } TableValue;
 
-typedef struct 
-{ 
-    int8_t key;
-    TableValue *value;
+typedef struct
+{
+  int8_t key;
+  TableValue *value;
 } KeyValue;
 
 /*
@@ -168,8 +168,8 @@ TableValue tabGainTxPilot[] = {
 };
 
 TableValue tabTxSoftClipEnable[] = {
-  { 0, "Disable " },     // 0
-  { 1, "Enable  " }      // 1
+  { 0, "Disable " },  // 0
+  { 1, "Enable  " }   // 1
 };
 
 TableValue tabTxSoftClipThreshold[] = {
@@ -180,79 +180,79 @@ TableValue tabTxSoftClipThreshold[] = {
 };
 
 TableValue tabTxFrequencyDeviation[] = {
-  {  60, " 41,40kHz"},  // 0
-  {  87, " 60,03kHz"},  // 1
-  { 108, " 74,52kHz"},  // 2
-  { 120, " 92,80kHz"},  // 3
-  { 140, " 96,60kHz"},  // 4
-  { 160, "110,40kHz"}   // 5
+  { 60, " 41,40kHz" },   // 0
+  { 87, " 60,03kHz" },   // 1
+  { 108, " 74,52kHz" },  // 2
+  { 120, " 92,80kHz" },  // 3
+  { 140, " 96,60kHz" },  // 4
+  { 160, "110,40kHz" }   // 5
 };
 
 TableValue tabTxBufferGain[] = {
-  {  0, "3dB"},  // 0
-  {  1, "6dB"},  // 1
-  {  2, "9dB"},  // 2
-  {  3, "12dB"},  // 3
-  {  4, "15dB"},  // 4
-  {  5, "18dB"}   // 5
+  { 0, "3dB" },   // 0
+  { 1, "6dB" },   // 1
+  { 2, "9dB" },   // 2
+  { 3, "12dB" },  // 3
+  { 4, "15dB" },  // 4
+  { 5, "18dB" }   // 5
 };
 
 TableValue tabPreEmphasis[] = {
-  { 0, "50 us" },   // 0
-  { 1, "75 us" }    // 1
+  { 0, "50 us" },  // 0
+  { 1, "75 us" }   // 1
 };
 
 TableValue tabRDS[] = {
-  { 0, "Disable" },     // 0
-  { 1, "Enable " }      // 1
+  { 0, "Disable" },  // 0
+  { 1, "Enable " }   // 1
 };
 
-TableValue tabMonoStereo [] = {
-  { 0, "Stereo" },     // 0
-  { 1, "Mono  " }      // 1 - See QN8066 data sheet
+TableValue tabMonoStereo[] = {
+  { 0, "Stereo" },  // 0
+  { 1, "Mono  " }   // 1 - See QN8066 data sheet
 };
 
 
 TableValue txRdsFreqDev[] = {
-  {  13, " 4,55kHz"},   // 0
-  {  26, " 9,10kHz"},   // 1
-  {  39, "13,65kHz"},   // 2
-  {  52, "18,20kHz"}    // 3
+  { 13, " 4,55kHz" },  // 0
+  { 26, " 9,10kHz" },  // 1
+  { 39, "13,65kHz" },  // 2
+  { 52, "18,20kHz" }   // 3
 };
 
 
 // Menu Itens
-const char *menu[] = { "Frequency", 
-                      "Power", 
-                      "Stereo/Mono",
-                      "Pre-emphasis", 
-                      "RDS", 
-                      "Inpedance",
-                      "Sft Clip. Enable", 
-                      "Sft Clip. Thres.",  
-                      "Gain Pilot", 
-                      "Freq. Deriv.", 
-                      "Buffer gain",
-                      "RDS Freq. Dev.",
-                      "Main Screen" };
+const char *menu[] = { "Frequency",
+                       "Power",
+                       "Stereo/Mono",
+                       "Pre-emphasis",
+                       "RDS",
+                       "Inpedance",
+                       "Sft Clip. Enable",
+                       "Sft Clip. Thres.",
+                       "Gain Pilot",
+                       "Freq. Deriv.",
+                       "Buffer gain",
+                       "RDS Freq. Dev.",
+                       "Main Screen" };
 int8_t menuIdx = 0;
-const int lastMenu = ( sizeof(menu) / sizeof(menu[0]) ) - 1; // Laste menu item position
+const int lastMenu = (sizeof(menu) / sizeof(menu[0])) - 1;  // Laste menu item position
 
 // Define the enum with the corresponding Menu Itens QN8066 register values
 enum MenuKeys {
-    KEY_FREQUENCIA,           // 0
-    KEY_POWER,                // 1
-    KEY_MONO_ESTEREO,         // 2
-    KEY_PRE_EMPHASIS,         // 3
-    KEY_RDS,                  // 4
-    KEY_INPEDANCE,            // 5
-    KEY_SOFT_CLIP_ENABLE,     // 6  
-    KEY_SOFT_CLIP_THRESHOLD,  // 7
-    KEY_GAIN_PILOT,           // 8
-    KEY_FREQ_DERIVATION,      // 9
-    KEY_BUFFER_GAIN,          // 10
-    KEY_RDS_FREQ_DEV,         // 11
-    KEY_MAIN_SCREEN           // 12
+  KEY_FREQUENCIA,           // 0
+  KEY_POWER,                // 1
+  KEY_MONO_ESTEREO,         // 2
+  KEY_PRE_EMPHASIS,         // 3
+  KEY_RDS,                  // 4
+  KEY_INPEDANCE,            // 5
+  KEY_SOFT_CLIP_ENABLE,     // 6
+  KEY_SOFT_CLIP_THRESHOLD,  // 7
+  KEY_GAIN_PILOT,           // 8
+  KEY_FREQ_DERIVATION,      // 9
+  KEY_BUFFER_GAIN,          // 10
+  KEY_RDS_FREQ_DEV,         // 11
+  KEY_MAIN_SCREEN           // 12
 };
 
 /*
@@ -261,32 +261,32 @@ enum MenuKeys {
   configured for the transmitter. Complex? Yes, a bit. But this helps to write less code in C/C++ in case more 
   parameters are added to the system. See KeyValue datatype above.
 */
-KeyValue keyValue[] = { 
-  {0,  NULL },                 // KEY_FREQUENCIA
-  {0,  NULL },                 // KEY_POWER
-  {0, tabMonoStereo },         // KEY_MONO_ESTEREO
-  {1, tabPreEmphasis},         // KEY_PRE_EMPHASIS
-  {0, tabRDS },                // KEY_RDS
-  {2, tabImpedance},           // KEY_INPEDANCE
-  {0, tabTxSoftClipEnable},    // KEY_SOFT_CLIP_ENABLE
-  {1, tabTxSoftClipThreshold}, // KEY_SOFT_CLIP_THRESHOLD
-  {2, tabGainTxPilot},         // KEY_GAIN_PILOT
-  {2, tabTxFrequencyDeviation},// KEY_FREQ_DERIVATION 
-  {1, tabTxBufferGain },       // KEY_BUFFER_GAIN 
-  {0, txRdsFreqDev},           // KEY_RDS_FREQ_DEV 
-  {0, NULL }                   // KEY_MAIN_SCREEN 
+KeyValue keyValue[] = {
+  { 0, NULL },                     // KEY_FREQUENCIA
+  { 0, NULL },                     // KEY_POWER
+  { 0, tabMonoStereo },            // KEY_MONO_ESTEREO
+  { 1, tabPreEmphasis },           // KEY_PRE_EMPHASIS
+  { 0, tabRDS },                   // KEY_RDS
+  { 2, tabImpedance },             // KEY_INPEDANCE
+  { 0, tabTxSoftClipEnable },      // KEY_SOFT_CLIP_ENABLE
+  { 1, tabTxSoftClipThreshold },   // KEY_SOFT_CLIP_THRESHOLD
+  { 2, tabGainTxPilot },           // KEY_GAIN_PILOT
+  { 2, tabTxFrequencyDeviation },  // KEY_FREQ_DERIVATION
+  { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN
+  { 0, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
+  { 0, NULL }                      // KEY_MAIN_SCREEN
 };
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 // Station Name (PS) message
-char *rdsPSmsg[] = {(char *) "PU2CLR  ", 
-                    (char *) "ARDUINO ", 
-                    (char *) "QN8066  "};
+char *rdsPSmsg[] = { (char *)"PU2CLR \r",
+                     (char *)"ARDUINO ",
+                     (char *)"QN8066 \r" };
 // Radio Text (RT) message
 
-char *rdsRTmsg[] = {(char *) "PU2CLR QN8066 ARDUINO LIBRARY.  ",
-                    (char *) "FM TRANSMITTER WITH RDS SERVICE.",
-                    (char *) "https://github.com/pu2clr/QN8066"};
+char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY.  ",
+                     (char *)"FM TRANSMITTER WITH RDS SERVICE.",
+                     (char *)"https://github.com/pu2clr/QN8066" };
 
 uint8_t idxPS = 0;
 long rdsTime = millis();
@@ -325,13 +325,14 @@ void setup() {
   if (!tx.detectDevice()) {
     lcd.setCursor(0, 0);
     lcd.print("No QN8066 found!");
-    while (1);
+    while (1)
+      ;
   }
 
   // Check the EEPROM content. If it contains valid data, read it (previous setup).
-  if (EEPROM.read(eeprom_address) == app_id) {  
+  if (EEPROM.read(eeprom_address) == app_id) {
     readAllTransmitterInformation();
-  } else { 
+  } else {
     // Defult values
     txFrequency = 1069;
     pwmPowerDuty = 50;
@@ -346,36 +347,27 @@ void setup() {
 
   tx.resetAudioPeak();
 
-  // Due to the architecture of the KIT, the PWM interferes with I2C communication. 
+  // Due to the architecture of the KIT, the PWM interferes with I2C communication.
   // Therefore, before changing the transmitter's configuration parameters, it must be disabled (Duty 0).
 
-  // Sets the transmitter with the previous setup parameters  
-  tx.setTxInputImpedance(keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].idx); // 40Kohm
+  // Sets the transmitter with the previous setup parameters
+  tx.setTxInputImpedance(keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].idx);  // 40Kohm
   tx.setTxPilotGain(keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].idx);
   tx.setTxSoftClippingEnable(keyValue[KEY_SOFT_CLIP_ENABLE].value[keyValue[KEY_SOFT_CLIP_ENABLE].key].idx);
-  tx.setTxSoftClipThreshold( keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
+  tx.setTxSoftClipThreshold(keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
   tx.setPreEmphasis(keyValue[KEY_PRE_EMPHASIS].value[keyValue[KEY_PRE_EMPHASIS].key].idx);
   tx.rdsTxEnable(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
-  tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx); 
+  tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx);
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
   tx.rdsSetFrequencyDerivation(keyValue[KEY_RDS_FREQ_DEV].value[keyValue[KEY_RDS_FREQ_DEV].key].idx);
 
+  showStatus(lcdPage);
 
   // Checking RDS... UNDER CONSTRUCTION...
-  if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
-      tx.rdsInitTx();
-      tx.setRegister(0x6E, 0B10110111); // TEST - Stop Auto Gain Correction (AGC)  
-      tx.rdsSetPTY(1); // Science
-      delay(400); 
-      tx.rdsSendPS(rdsPSmsg[idxPS]);
-      delay(200);
-      tx.rdsSendRTMessage(rdsRTmsg[idxPS]);  
+  if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
+    delay(1000);
+    sendRDS();
   }
-
-
-  showStatus(lcdPage);
-  delay(100);
-
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
 }
 
@@ -390,12 +382,12 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address + 5, keyValue[KEY_PRE_EMPHASIS].key);
   EEPROM.update(eeprom_address + 6, keyValue[KEY_RDS].key);
   EEPROM.update(eeprom_address + 7, keyValue[KEY_INPEDANCE].key);
-  EEPROM.update(eeprom_address + 8, keyValue[KEY_SOFT_CLIP_ENABLE].key );
+  EEPROM.update(eeprom_address + 8, keyValue[KEY_SOFT_CLIP_ENABLE].key);
   EEPROM.update(eeprom_address + 9, keyValue[KEY_SOFT_CLIP_THRESHOLD].key);
-  EEPROM.update(eeprom_address +10, keyValue[KEY_GAIN_PILOT].key);
-  EEPROM.update(eeprom_address +11, keyValue[KEY_FREQ_DERIVATION].key);
-  EEPROM.update(eeprom_address +12, keyValue[KEY_BUFFER_GAIN].key);
-  EEPROM.update(eeprom_address +13, keyValue[KEY_RDS_FREQ_DEV].key);
+  EEPROM.update(eeprom_address + 10, keyValue[KEY_GAIN_PILOT].key);
+  EEPROM.update(eeprom_address + 11, keyValue[KEY_FREQ_DERIVATION].key);
+  EEPROM.update(eeprom_address + 12, keyValue[KEY_BUFFER_GAIN].key);
+  EEPROM.update(eeprom_address + 13, keyValue[KEY_RDS_FREQ_DEV].key);
 }
 // Read the previous transmitter setup
 void readAllTransmitterInformation() {
@@ -406,12 +398,12 @@ void readAllTransmitterInformation() {
   keyValue[KEY_PRE_EMPHASIS].key = EEPROM.read(eeprom_address + 5);
   keyValue[KEY_RDS].key = EEPROM.read(eeprom_address + 6);
   keyValue[KEY_INPEDANCE].key = EEPROM.read(eeprom_address + 7);
-  keyValue[KEY_SOFT_CLIP_ENABLE].key  = EEPROM.read(eeprom_address +8);
-  keyValue[KEY_SOFT_CLIP_THRESHOLD].key  = EEPROM.read(eeprom_address +9);
-  keyValue[KEY_GAIN_PILOT].key  = EEPROM.read(eeprom_address +10);
-  keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address +11);
-  keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address +12);
-  keyValue[KEY_RDS_FREQ_DEV].key = EEPROM.read(eeprom_address +13);
+  keyValue[KEY_SOFT_CLIP_ENABLE].key = EEPROM.read(eeprom_address + 8);
+  keyValue[KEY_SOFT_CLIP_THRESHOLD].key = EEPROM.read(eeprom_address + 9);
+  keyValue[KEY_GAIN_PILOT].key = EEPROM.read(eeprom_address + 10);
+  keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address + 11);
+  keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address + 12);
+  keyValue[KEY_RDS_FREQ_DEV].key = EEPROM.read(eeprom_address + 13);
 }
 
 // Enable or disable PWM duty cycle
@@ -422,9 +414,9 @@ void enablePWM(uint8_t value) {
 }
 // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
-  enablePWM(0);                 // PWM duty cycle disabled
+  enablePWM(0);  // PWM duty cycle disabled
   tx.setTX(txFrequency = freq);
-  enablePWM(pwmPowerDuty);      // PWM duty cycle anable  
+  enablePWM(pwmPowerDuty);  // PWM duty cycle anable
   showFrequency();
 }
 // Shows the first message after turn the transmitter on
@@ -445,11 +437,11 @@ void showFrequency() {
   lcd.print(strFrequency);
   lcd.display();
 }
-// Shows the current power in percent (duty cycle) 
+// Shows the current power in percent (duty cycle)
 void showPower() {
   char strPower[7];
   // uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
-  uint16_t currentPower = (uint16_t)(pwmPowerDuty * 100 / 255) ;
+  uint16_t currentPower = (uint16_t)(pwmPowerDuty * 100 / 255);
   sprintf(strPower, "%d%%  ", currentPower);
   lcd.setCursor(0, 1);
   lcd.print(strPower);
@@ -465,55 +457,51 @@ void showStatus(uint8_t page) {
   lcd.print(strFrequency);
   lcd.print("MHz");
 
-  if ( page == 0) { 
-     lcd.setCursor(10, 0);
-     // lcd.print(  tabMonoStereo[idxStereoMono].desc );
-     lcd.print( keyValue[2].value[keyValue[2].key].desc ); // Mono Stereo
-     lcd.setCursor(0, 1);
-     lcd.print(tx.getAudioPeakValue());
-     lcd.print("mV");
-     lcd.setCursor(10, 1);
-     sprintf(str,"PA:%d%%", pwmPowerDuty * 100 / 255 );
-     lcd.print(str);
-     tx.resetAudioPeak();
+  if (page == 0) {
+    lcd.setCursor(10, 0);
+    // lcd.print(  tabMonoStereo[idxStereoMono].desc );
+    lcd.print(keyValue[2].value[keyValue[2].key].desc);  // Mono Stereo
+    lcd.setCursor(0, 1);
+    lcd.print(tx.getAudioPeakValue());
+    lcd.print("mV");
+    lcd.setCursor(10, 1);
+    sprintf(str, "PA:%d%%", pwmPowerDuty * 100 / 255);
+    lcd.print(str);
+    tx.resetAudioPeak();
+  } else if (page == 1) {
+    // sprintf(str,"RIN:%s", tabImpedance[idxImpedance].desc);
+    sprintf(str, "RIN:%s", keyValue[5].value[keyValue[5].key].desc);
+    lcd.setCursor(9, 0);
+    lcd.print(str);
+    lcd.setCursor(0, 1);
+    sprintf(str, "DEV.: %s", keyValue[9].value[keyValue[9].key].desc);
+    lcd.print(str);
+  } else if (page == 2) {
+    sprintf(str, "BG:%s", keyValue[10].value[keyValue[10].key].desc);
+    lcd.setCursor(9, 0);
+    lcd.print(str);
+    lcd.setCursor(0, 1);
+    sprintf(str, "PIL.:%s", keyValue[8].value[keyValue[8].key].desc);
+    lcd.print(str);
+  } else {
+    sprintf(str, "%s PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
+    lcd.setCursor(0, 0);
+    lcd.print(str);
+    lcd.setCursor(0, 1);
+    sprintf(str, "RDS ERR: %d", tx.rdsGetError());
+    lcd.print(str);
   }
-  else if (page == 1) {     
-      // sprintf(str,"RIN:%s", tabImpedance[idxImpedance].desc);   
-      sprintf(str,"RIN:%s", keyValue[5].value[keyValue[5].key].desc);   
-      lcd.setCursor(9, 0);
-      lcd.print(str);
-      lcd.setCursor(0, 1);
-      sprintf(str,"DEV.: %s", keyValue[9].value[keyValue[9].key].desc);  
-      lcd.print(str);
-  }
-  else if (page == 2) {
-      sprintf(str,"BG:%s", keyValue[10].value[keyValue[10].key].desc);   
-      lcd.setCursor(9, 0);
-      lcd.print(str);
-      lcd.setCursor(0, 1);
-      sprintf(str,"PIL.:%s", keyValue[8].value[keyValue[8].key].desc);  
-      lcd.print(str);
-   } 
-   else {
-      sprintf(str,"%s PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
-      lcd.setCursor(0, 0);
-      lcd.print(str); 
-      lcd.setCursor(0, 1);
-      sprintf(str,"RDS ERR: %d", tx.rdsGetError() );
-      lcd.print(str); 
-
-   }    
   lcd.display();
 }
-// Shows the given parameter to be updated 
+// Shows the given parameter to be updated
 void showParameter(char *desc) {
-  lcd.setCursor(0,1);
+  lcd.setCursor(0, 1);
   lcd.print(">");
   lcd.print(desc);
-  lcd.print("<"); 
+  lcd.print("<");
   lcd.display();
 }
-// Browse the parameters by polling the navigator buttons returns -1 (left/down), 0 (if Menu pressed), 1 (right/up).  
+// Browse the parameters by polling the navigator buttons returns -1 (left/down), 0 (if Menu pressed), 1 (right/up).
 int8_t browseParameter() {
   uint8_t browse;
   do {
@@ -525,12 +513,12 @@ int8_t browseParameter() {
   } while (browse == BT_NO_PRESSED);
   return 0;
 }
-// Shows current menu data 
+// Shows current menu data
 void showMenu(uint8_t idx) {
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print(menu[idx]);
-  if (keyValue[idx].value != NULL ) {
+  if (keyValue[idx].value != NULL) {
     lcd.setCursor(0, 1);
     lcd.print(keyValue[idx].value[keyValue[idx].key].desc);
   } else if (idx == 0) {
@@ -538,7 +526,6 @@ void showMenu(uint8_t idx) {
   } else if (idx == 1) {
     showPower();
   }
-
 }
 // Processes the change to a new frequency
 void doFrequency() {
@@ -546,14 +533,14 @@ void doFrequency() {
   int8_t key = browseParameter();
   while (key != 0) {
     if (key == -1) {
-      if (txFrequency < 640)    // If less than 64 MHz
-          txFrequency = 1080;       
-       else    
-          txFrequency -= STEP_FREQ;
+      if (txFrequency < 640)  // If less than 64 MHz
+        txFrequency = 1080;
+      else
+        txFrequency -= STEP_FREQ;
     } else if (key == 1) {
-      if (txFrequency > 1080)   // if more than 108 MHz
-         txFrequency = 640; 
-       else 
+      if (txFrequency > 1080)  // if more than 108 MHz
+        txFrequency = 640;
+      else
         txFrequency += STEP_FREQ;
     }
     switchTxFrequency(txFrequency);
@@ -568,21 +555,21 @@ void doPower() {
   int8_t key = browseParameter();
   while (key != 0) {
     if (key == -1) {
-      if ( pwmPowerDuty >=25 )
-        pwmPowerDuty -= pwmDutyStep; 
-      else 
-        pwmPowerDuty = 0;       
+      if (pwmPowerDuty >= 25)
+        pwmPowerDuty -= pwmDutyStep;
+      else
+        pwmPowerDuty = 0;
     } else if (key == 1) {
-      if (pwmPowerDuty <= 225 )
-        pwmPowerDuty += pwmDutyStep;   
-      else 
-       pwmPowerDuty = 255;
+      if (pwmPowerDuty <= 225)
+        pwmPowerDuty += pwmDutyStep;
+      else
+        pwmPowerDuty = 255;
     }
-    analogWrite(PWM_PA, pwmPowerDuty); 
+    analogWrite(PWM_PA, pwmPowerDuty);
     showPower();
     key = browseParameter();
   }
-  menuLevel = 0;  
+  menuLevel = 0;
 }
 /**
  * @brief Runs the action menu to modify the given parameter.
@@ -598,82 +585,124 @@ void doPower() {
  * @see C/C++: Passing function pointers as arguments to other functions; Understanding how to use function pointers for callback mechanisms.
  * @see   C++: Capturing variables in lambdas and their usage as function pointers; Understanding lambda expressions in C++ and how they relate to function pointers  
  */
-void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step,  uint8_t min, uint8_t max ) {  
-  showParameter((char *) tab->value[tab->key].desc);
+void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t min, uint8_t max) {
+  showParameter((char *)tab->value[tab->key].desc);
   int8_t key = browseParameter();
   while (key != 0) {
-    if  ( key ==  1) { 
-        if ( tab->key == max) 
-           tab->key = min;
-        else 
-           tab->key = tab->key + step;  
+    if (key == 1) {
+      if (tab->key == max)
+        tab->key = min;
+      else
+        tab->key = tab->key + step;
     } else {
-        if (tab->key == min) 
-           tab->key = max;
-        else 
-           tab->key = tab->key - step;  
+      if (tab->key == min)
+        tab->key = max;
+      else
+        tab->key = tab->key - step;
     }
     actionFunc(tab->value[tab->key].idx);
-    showParameter((char *) tab->value[tab->key].desc);
+    showParameter((char *)tab->value[tab->key].desc);
     key = browseParameter();
   }
-  menuLevel = 0;    
+  menuLevel = 0;
 }
 // // Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
-  enablePWM(0); // The PWM seems to interfere with the communication with the QN8066.
+  enablePWM(0);  // The PWM seems to interfere with the communication with the QN8066.
   delay(PUSH_MIN_DELAY);
   switch (idxMenu) {
     case 0:
-      lcd.setCursor(9,1);
-      lcd.print("<<");    // it just indicates the edit mode
+      lcd.setCursor(9, 1);
+      lcd.print("<<");  // it just indicates the edit mode
       doFrequency();
       break;
     case 1:
-      lcd.setCursor(9,1);
-      lcd.print("<<");    // it just indicates the edit mode
+      lcd.setCursor(9, 1);
+      lcd.print("<<");  // it just indicates the edit mode
       doPower();
       break;
     case 2:
-      runAction([](uint8_t value) { tx.setTxMono(value); }, &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {
+        tx.setTxMono(value);
+      },
+                &keyValue[idxMenu], 1, 0, 1);
       break;
     case 3:
-      runAction([](uint8_t value) { tx.setPreEmphasis(value); }, &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {
+        tx.setPreEmphasis(value);
+      },
+                &keyValue[idxMenu], 1, 0, 1);
       break;
     case 4:
-      runAction([](uint8_t value) { tx.rdsTxEnable(value); },  &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {
+        tx.rdsTxEnable(value);
+      },
+                &keyValue[idxMenu], 1, 0, 1);
       break;
     case 5:
-      runAction([](uint8_t value) { tx.setTxInputImpedance(value); }, &keyValue[idxMenu] , 1, 0, 3);
+      runAction([](uint8_t value) {
+        tx.setTxInputImpedance(value);
+      },
+                &keyValue[idxMenu], 1, 0, 3);
       break;
     case 6:
-      runAction([](uint8_t value) { tx.setTxSoftClippingEnable(value); }, &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {
+        tx.setTxSoftClippingEnable(value);
+      },
+                &keyValue[idxMenu], 1, 0, 1);
       break;
     case 7:
-      runAction([](uint8_t value) { tx.setTxSoftClipThreshold(value); }, &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {
+        tx.setTxSoftClipThreshold(value);
+      },
+                &keyValue[idxMenu], 1, 0, 3);
       break;
     case 8:
-      runAction([](uint8_t value) { tx.setTxPilotGain(value); }, &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {
+        tx.setTxPilotGain(value);
+      },
+                &keyValue[idxMenu], 1, 0, 3);
       break;
     case 9:
-      runAction([](uint8_t value) { tx.setTxFrequencyDerivation(value); }, &keyValue[idxMenu], 1, 0, 5);
-      break;  
+      runAction([](uint8_t value) {
+        tx.setTxFrequencyDerivation(value);
+      },
+                &keyValue[idxMenu], 1, 0, 5);
+      break;
     case 10:
-      runAction([](uint8_t value) { tx.setTxInputBufferGain(value); }, &keyValue[idxMenu], 1, 0, 5);
-      break;   
+      runAction([](uint8_t value) {
+        tx.setTxInputBufferGain(value);
+      },
+                &keyValue[idxMenu], 1, 0, 5);
+      break;
     case 11:
-      runAction([](uint8_t value) { tx.rdsSetFrequencyDerivation(value); }, &keyValue[idxMenu], 1, 0, 3);
-      break;   
+      runAction([](uint8_t value) {
+        tx.rdsSetFrequencyDerivation(value);
+      },
+                &keyValue[idxMenu], 1, 0, 3);
+      break;
     case 12:
-      enablePWM(pwmPowerDuty); // Turn the PWM on again. 
+      enablePWM(pwmPowerDuty);  // Turn the PWM on again.
       return 0;
-      break;       
+      break;
     default:
       break;
   }
-  enablePWM(pwmPowerDuty); // Turn the PWM on again. 
-  saveAllTransmitterInformation(); // Saves the current modified data to the EEPROM
+  enablePWM(pwmPowerDuty);          // Turn the PWM on again.
+  saveAllTransmitterInformation();  // Saves the current modified data to the EEPROM
   return 1;
+}
+
+uint8_t pty = 0;
+void sendRDS() {
+  tx.setRegister(0x6E, 0B10110111);  // TEST - Stop Auto Gain Correction (AGC)
+  tx.rdsSetPTY(++pty);  // Document.
+  if (pty > 30) pty = 1;
+  delay(100);
+  if (++idxPS > 2) idxPS = 0;
+  tx.rdsSendPS(rdsPSmsg[idxPS]);
+  delay(100);
+  tx.rdsSendRTMessage(rdsRTmsg[idxPS]);
 }
 
 /*
@@ -683,58 +712,50 @@ uint8_t doMenu(uint8_t idxMenu) {
           5 if BT_UP is pressed   -  101 - BT_UP_PRESSED 
           3 if BT_MENU is pressed -  011 - BT_MENU_PRESSED
   // TODO - Debounce process 
-*/           
+*/
 int8_t checkButton() {
-    uint8_t button;
-    for (uint8_t i = 0; i < 5; i++) {
-      // Please... check it out later
-      button = digitalRead(BT_MENU) << 2 |  digitalRead(BT_DOWN) << 1| digitalRead(BT_UP) ; 
-      delay(30);
-    }
-    return button;
+  uint8_t button;
+  for (uint8_t i = 0; i < 5; i++) {
+    // Please... check it out later
+    button = digitalRead(BT_MENU) << 2 | digitalRead(BT_DOWN) << 1 | digitalRead(BT_UP);
+    delay(30);
+  }
+  return button;
 }
 
 // Main loop
-uint8_t pty = 0;
 void loop() {
   int8_t key;
   if (menuLevel == 0) {
     showStatus(lcdPage);
-    while ( (key = checkButton()) == BT_NO_PRESSED )  {
+    while ((key = checkButton()) == BT_NO_PRESSED) {
 
       // RDS UNDER CONSTRUCTION...
-      if ( keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 ) {
+      if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
         tx.rdsInitTx();
-        if ( (millis() - rdsTime) > 60000 ) {
-          tx.rdsClearBuffer();
-          tx.rdsSetPTY(++pty); // Document.
-          if (pty > 30 ) pty = 1;
-          if (++idxPS > 2) idxPS = 0;
-          tx.rdsSendPS(rdsPSmsg[idxPS]);
-          delay(200);
-          tx.rdsSendRTMessage(rdsRTmsg[idxPS]);   
+        if ((millis() - rdsTime) > 60000) {
+          sendRDS();
           rdsTime = millis();
         }
       }
 
       // Refresh Status
-      if ( (millis() -  showStatusTime) > SHOW_STATUS ) {
+      if ((millis() - showStatusTime) > SHOW_STATUS) {
         showStatus(lcdPage);
         showStatusTime = millis();
       }
-
-    } 
-    if ( key == BT_DOWN_PRESSED ) { // Down Pressed
+    }
+    if (key == BT_DOWN_PRESSED) {  // Down Pressed
       lcdPage--;
-      if (lcdPage < 0) lcdPage = 3; 
-      showStatus(lcdPage); 
-    } else if (key == BT_UP_PRESSED ) { // Up Pressed
-       lcdPage++; 
-       if ( lcdPage > 3) lcdPage = 0;    
-      showStatus(lcdPage); 
+      if (lcdPage < 0) lcdPage = 3;
+      showStatus(lcdPage);
+    } else if (key == BT_UP_PRESSED) {  // Up Pressed
+      lcdPage++;
+      if (lcdPage > 3) lcdPage = 0;
+      showStatus(lcdPage);
     } else {  // Menu Pressed
-        menuLevel = 1;
-    } 
+      menuLevel = 1;
+    }
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
     key = browseParameter();
@@ -757,7 +778,7 @@ void loop() {
   } else if (menuLevel == 2) {
     menuLevel = doMenu(menuIdx);
   }
- 
+
 
   delay(5);
 }
