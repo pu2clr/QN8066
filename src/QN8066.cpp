@@ -1378,12 +1378,15 @@ void QN8066::rdsSendPS(char* ps) {
   b2.group0Field.versionCode = 1; // 0B - Station Name
   b2.group0Field.groupType = 0;  
 
-  for (uint8_t i = 0; i < 8; i+=2) { 
-    b4.field.content[0] = ps[i+1];
-    b4.field.content[1] = ps[i];    
-    this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
-    b2.group0Field.address++; 
-  }
+  for ( uint8_t k  = 0; k < 4; k++) { // Just a test. To be removed
+    for (uint8_t i = 0; i < 8; i+=2) { 
+      b4.field.content[0] = ps[i+1];
+      b4.field.content[1] = ps[i];    
+      this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
+      b2.group0Field.address++; 
+    }
+    delay(87);
+  } // To be removed
 
 }
 

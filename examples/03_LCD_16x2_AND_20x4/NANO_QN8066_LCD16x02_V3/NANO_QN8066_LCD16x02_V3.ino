@@ -161,10 +161,10 @@ TableValue tabImpedance[] = {
 };
 
 TableValue tabGainTxPilot[] = {
-  { 7, "7% * 75KHz" },   // 0
-  { 8, "8% * 75KHz" },   // 1
-  { 9, "9% * 75KHz" },   // 2
-  { 10, "10% * 75KHz" }  // 3
+  { 7, "7%" },   // 0
+  { 8, "8%" },   // 1
+  { 9, "9%" },   // 2
+  { 10, "10%" }  // 3
 };
 
 TableValue tabTxSoftClipEnable[] = {
@@ -173,19 +173,19 @@ TableValue tabTxSoftClipEnable[] = {
 };
 
 TableValue tabTxSoftClipThreshold[] = {
-  { 0, "12'd2051 (3dB" },     // 0
-  { 1, "12'd1725 (4.5dB)" },  // 1
-  { 2, "12'd1452 (6dB)" },    // 2
-  { 3, "12'd1028 (9dB)" }     // 3
+  { 0, "3dB" },     // 0
+  { 1, "4.5dB" },  // 1
+  { 2, "6dB" },    // 2
+  { 3, "9dB" }     // 3
 };
 
 TableValue tabTxFrequencyDeviation[] = {
-  { 60, " 41,40kHz" },   // 0
-  { 87, " 60,03kHz" },   // 1
-  { 108, " 74,52kHz" },  // 2
-  { 120, " 92,80kHz" },  // 3
-  { 140, " 96,60kHz" },  // 4
-  { 160, "110,40kHz" }   // 5
+  { 60, " 41,5kHz" },   // 0
+  { 87, " 60,0kHz" },   // 1
+  { 108, " 74,5kHz" },  // 2
+  { 120, " 92,8kHz" },  // 3
+  { 140, " 96,6kHz" },  // 4
+  { 160, "110,4kHz" }   // 5
 };
 
 TableValue tabTxBufferGain[] = {
@@ -214,10 +214,10 @@ TableValue tabMonoStereo[] = {
 
 
 TableValue txRdsFreqDev[] = {
-  { 13, " 4,55kHz" },  // 0
-  { 26, " 9,10kHz" },  // 1
-  { 39, "13,65kHz" },  // 2
-  { 52, "18,20kHz" }   // 3
+  { 13, " 4,5kHz" },  // 0
+  { 26, " 9,1kHz" },  // 1
+  { 39, "13,6kHz" },  // 2
+  { 52, "18,2kHz" }   // 3
 };
 
 
@@ -370,7 +370,6 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    tx.rdsInitTx(0,0,0);
     delay(1000);
     sendRDS();
   }
@@ -701,9 +700,24 @@ uint8_t doMenu(uint8_t idxMenu) {
   return 1;
 }
 
+/**
+1: Stereo = On
+2: Pre-emphasis = 50 us
+3: RDS = Enable
+4: Inpedance = 20K
+5: Sft Clip.. = Disable
+6: Thres = 3dB
+7: Gain Pilot = 10%
+8: Dreq. Deriv. 74.52
+9: Buffer gain = 3dB
+10: RDS Freq. Dev. 4.55kHz
+Only the PI Code left, which is set to "0000"
+*/ 
 uint8_t pty = 0;
 void sendRDS() {
-  tx.rdsSetPTY(++pty);  // Document.
+
+  tx.rdsInitTx(0,0,0);
+  tx.rdsSetPTY(pty++);  // Document.
   if (pty > 30) pty = 1;
   delay(100);
   if (++idxRdsMsg > lastRdsMsg) idxRdsMsg = 0;
@@ -739,8 +753,7 @@ void loop() {
 
       // RDS UNDER CONSTRUCTION...
       if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-        tx.rdsInitTx();
-        if ((millis() - rdsTime) > 60000) {
+        if ((millis() - rdsTime) > 30000) {
           sendRDS();
           rdsTime = millis();
         }
