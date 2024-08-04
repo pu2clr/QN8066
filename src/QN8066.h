@@ -960,7 +960,7 @@ public:
 
   void rdsSetMode(uint8_t mode); 
   void rdsSet4KMode(uint8_t value);
-  void rdsInitTx();
+  void rdsInitTx(uint8_t countryId = 0, uint8_t programId = 0, uint8_t reference = 0);
   void rdsSetInterrupt(uint8_t value);
 
   void rdsTxEnable(bool value);   
@@ -984,6 +984,9 @@ public:
   * @param pi - PI Code
   */
   void rdsSetPI(uint16_t pi) {this->rdsPI = pi;};
+  
+  void rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference = 0) ;
+
 
   /**
   * @ingroup group05 TX RDS

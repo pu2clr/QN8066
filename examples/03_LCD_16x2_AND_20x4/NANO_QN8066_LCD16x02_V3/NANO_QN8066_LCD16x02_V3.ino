@@ -365,6 +365,7 @@ void setup() {
 
   // Checking RDS... UNDER CONSTRUCTION...
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
+    tx.rdsInitTx(0,0,0);
     delay(1000);
     sendRDS();
   }
@@ -695,7 +696,6 @@ uint8_t doMenu(uint8_t idxMenu) {
 
 uint8_t pty = 0;
 void sendRDS() {
-  tx.setRegister(0x6E, 0B10110111);  // TEST - Stop Auto Gain Correction (AGC)
   tx.rdsSetPTY(++pty);  // Document.
   if (pty > 30) pty = 1;
   delay(100);

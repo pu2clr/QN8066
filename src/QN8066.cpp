@@ -1060,7 +1060,10 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
 
 /**
  * @ingroup group05 TX RDS 
- * @brief Sets some RDS setup
+ * @brief Sets some RDS parameters
+ * @param countryId - Country Identifier (First 4 Bits)
+ * @param programId - Program Id code
+ * @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1074,15 +1077,26 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * }
  * @endcode   
  */
-void QN8066::rdsInitTx() {
-  // this->rdsTxEnable(true);
-  // this->rdsSetTxLineIn(0);
-  // this->rdsSetMode(0);
-  // this->rdsSetFrequencyDerivation(rdsFreqDev);
-  // this->rdsClearBuffer();
+void QN8066::rdsInitTx(uint8_t countryId, uint8_t programId, uint8_t reference) {
+  // this->setRegister(0x6E, 0B10110111);  // TEST - Stop Auto Gain Correction (AGC)
+  this->rdsSetPI(countryId, programId, reference );
   delay(100);
 }
 
+/**
+ * @ingroup group05 TX RDS
+ * @brief Sets the Program Identification (PI)
+ * @param countryId - Country Identifier (First 4 Bits)
+ * @param programId - Program Id code
+ * @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
+ */
+void QN8066::rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference) {
+  RDS_BLOCK1 pi; 
+  pi.field.countryId = countryId;
+  pi.field.programId = programId;
+  pi.field.reference = reference;
+  this->rdsPI = pi.pi;
+};
 
 /**
  * @ingroup group05 TX RDS
