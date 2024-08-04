@@ -1433,6 +1433,37 @@ void QN8066::rdsSendRTMessage(char *rt) {
  * @ingroup group10 FSM Status
  * @brief Get the FSM State Code 
  * @return uint8_t - Current FSM code
+ * @details The table below shows the FSM status and description
+ * | FSM Status | Description  |
+ * | ---------- | ------------ |
+ * |  0 - 0000  | STBY         |
+ * |  1 - 0001  | RESET        |
+ * |  2 - 0010  | CALI         |
+ * |  3 - 0011  | IDLE         |
+ * |  4 - 0100  | CALIPLL      |
+ * |  5 - 0101  | Reserved     |
+ * |  6 - 0110  | Reserved     |
+ * |  7 - 0111  | TXPLLC       |
+ * |  8 - 1000  | TX_RSTB      |
+ * |  9 - 1001  | PACAL        |
+ * | 10 - 1010  | TRANSMIT     |
+ * | 11 - 1011  | TXCCA        |
+ * | Others     | Reserved     |
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * int nFSM;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+ *   tx.rdsTxEnable(true);
+ *   nFSM = tx.getFsmStateCode(); 
+ *   ...
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode   
  */
 uint8_t QN8066:: getFsmStateCode() {
   qn8066_status1 s1;
@@ -1444,6 +1475,7 @@ uint8_t QN8066:: getFsmStateCode() {
  * @ingroup group10 FSM RESET
  * @brief Resets the state to initial states and recalibrate all blocks
  * @details Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence.
+
  */
 void QN8066::resetFsm() {
   qn8066_system1 system1;

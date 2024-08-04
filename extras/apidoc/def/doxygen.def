@@ -1956,6 +1956,11 @@ _EnD_oF_dEf_TeXt_;
  Like rdsSendPS this method sends the Station Name or other 8 char message.
 @param ps 
 _EnD_oF_dEf_TeXt_;
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
+        sec-mem-ref-line = '1349';
+        sec-mem-ref-name = 'rdsSetStationName';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
@@ -1982,6 +1987,11 @@ _EnD_oF_dEf_TeXt_;
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
+        sec-mem-ref-line = '1362';
+        sec-mem-ref-name = 'rdsSendPS';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
@@ -2297,6 +2307,37 @@ Get the FSM State Code.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 @return uint8_t - Current FSM code
+\ilinebr\ilinebr The table below shows the FSM status and description
+<table class="markdownTable">
+  <tr class="markdownTableHead">    <th class="markdownTableHeadNone"> FSM Status \ilinebr </th>    <th class="markdownTableHeadNone"> Description \ilinebr </th>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 0 - 0000 \ilinebr </td>    <td class="markdownTableBodyNone"> STBY \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 1 - 0001 \ilinebr </td>    <td class="markdownTableBodyNone"> RESET \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 2 - 0010 \ilinebr </td>    <td class="markdownTableBodyNone"> CALI \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 3 - 0011 \ilinebr </td>    <td class="markdownTableBodyNone"> IDLE \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 4 - 0100 \ilinebr </td>    <td class="markdownTableBodyNone"> CALIPLL \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 5 - 0101 \ilinebr </td>    <td class="markdownTableBodyNone"> Reserved \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 6 - 0110 \ilinebr </td>    <td class="markdownTableBodyNone"> Reserved \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 7 - 0111 \ilinebr </td>    <td class="markdownTableBodyNone"> TXPLLC \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 8 - 1000 \ilinebr </td>    <td class="markdownTableBodyNone"> TX_RSTB \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 9 - 1001 \ilinebr </td>    <td class="markdownTableBodyNone"> PACAL \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 10 - 1010 \ilinebr </td>    <td class="markdownTableBodyNone"> TRANSMIT \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 11 - 1011 \ilinebr </td>    <td class="markdownTableBodyNone"> TXCCA \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> Others \ilinebr </td>    <td class="markdownTableBodyNone"> Reserved \ilinebr </td>  </tr></table>
+@code 
+#include <QN8066.h>
+QN8066 tx;
+int nFSM;
+void setup() {
+  tx.setup();
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+  tx.rdsTxEnable(true);
+  nFSM = tx.getFsmStateCode(); 
+  ...
+}
+
+void loop() {
+}
+@endcode   
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
