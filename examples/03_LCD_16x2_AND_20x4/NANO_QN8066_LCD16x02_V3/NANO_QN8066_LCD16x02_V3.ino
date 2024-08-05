@@ -119,7 +119,8 @@
 #define STEP_FREQ 1
 #define PUSH_MIN_DELAY 200
 
-#define SHOW_STATUS 5000
+#define STATUS_REFRESH_TIME 5000  
+#define RDS_REFRESH_TIME 30000    // Recomended one minute - 600000
 
 int8_t lcdPage = 0;
 long showStatusTime = millis();
@@ -753,14 +754,14 @@ void loop() {
 
       // RDS UNDER CONSTRUCTION...
       if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-        if ((millis() - rdsTime) > 30000) {
+        if ((millis() - rdsTime) > RDS_REFRESH_TIME) {
           sendRDS();
           rdsTime = millis();
         }
       }
 
       // Refresh Status
-      if ((millis() - showStatusTime) > SHOW_STATUS) {
+      if ((millis() - showStatusTime) > STATUS_REFRESH_TIME) {
         showStatus(lcdPage);
         showStatusTime = millis();
       }
