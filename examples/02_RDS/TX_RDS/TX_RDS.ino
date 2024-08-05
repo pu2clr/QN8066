@@ -40,66 +40,113 @@ Author: Ricardo Lima Caratti (PU2CLR) - 2024/06/17
 
 #include <QN8066.h>
 
-#define PWM_PIN   9      // Arduino PIN used to control the output power of the transmitter via PWM.
-#define FREQUENCY 1069   // 106.9 MHz - This library does not use floating-point data. 
-                         // This approach helps to save microcontroller memory. 
-                         // Therefore, to represent a frequency in the commercial FM band, 
-                         // multiply the desired frequency by 10. In this case 106.9MHz is 1069.
+#define PWM_PIN 9       // Arduino PIN used to control the output power of the transmitter via PWM.
+#define FREQUENCY 1069  // 106.9 MHz - This library does not use floating-point data. 
+
+#define RDS_REFRESH_TIME 30000    // Recomended one minute - 600000
 
 QN8066 tx;
 
 char str[80];
-char strSDR1[] = "QN8066  ";
-char strSDR2[] = "LIBRARY.";
 
+// Station Name (PS) messages
+char *rdsPSmsg[] = { (char *)"PU2CLR  ",
+                     (char *)"QN8066  ",
+                     (char *)"ARDUINO ",
+                     (char *)"LIBRARY ",
+                     (char *)"FM TX   " };
+
+// Radio Text (RT) messages
+char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY   ",
+                     (char *)"FM TRANSMITTER WITH RDS SERVICE ",
+                     (char *)"https://github.com/pu2clr/QN8066",
+                     (char *)"BE MEMBER  FACEBOOK GROUP QN8066",
+                     (char *)"QN8066 HOMEBREW FM TRANSMITTER " };
+
+uint8_t idxRdsMsg = 0;
+const uint8_t lastRdsMsg = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1;
+long rdsTime = millis();
+
+uint8_t pty = 0;
 
 void setup() {
 
-  pinMode(PWM_PIN, OUTPUT); // Sets the Arduino PIN to operate with with PWM
+  pinMode(PWM_PIN, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
 
-  delay(1000); // Wait a bit while the system stabilizes.
+  Serial.begin(9600);
+
+
+  delay(1000);  // Wait a bit while the system stabilizes.
 
   if (tx.detectDevice()) {
     Serial.println("\nQN8066 detected");
   } else {
     Serial.println("\nQN8066 not detected");
-    while (1);
+    while (1)
+      ;
   }
 
   // Sets some internal parameters
   tx.setup(1000 /* Crystal Divider */,
            false /* Mono = False => Stereo */,
-           true  /* RDS ON */,
-           1 /*PreEmphasis = 75*/); 
+           true /* RDS ON */,
+           1 /*PreEmphasis = 75*/);
 
   Serial.print("\nStarting the system.");
   delay(500);
- 
-  tx.setTX(FREQUENCY);           // Chenge the FREQUENCY constant if you want other value
+
+  tx.setTX(FREQUENCY);  // Chenge the FREQUENCY constant if you want other value
 
   // tx.setPAC(56);  // PA output power target is 0.91*PA_TRGT+70.2dBu. Valid values are 24-56.
   // tx.rdsTxEnable(true);
   // tx.rdsSetTxLineIn(true);
   // tx.updateTxSetup(); // Not working so far
 
-
+  delay(500);
+  sendRDS();
 
   sprintf(str, "\n\nBroadcasting with RDS...");
 
-  analogWrite(9, 0);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
+  analogWrite(9, 50);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
-bool toggle = true;  
+/**
+1: Stereo = On
+2: Pre-emphasis = 50 us
+3: RDS = Enable
+4: Inpedance = 20K
+5: Sft Clip.. = Disable
+6: Thres = 3dB
+7: Gain Pilot = 10%
+8: Dreq. Deriv. 74.52
+9: Buffer gain = 3dB
+10: RDS Freq. Dev. 4.55kHz
+Only the PI Code left, which is set to "0000"
+*/
+void sendRDS() {
+
+  analogWrite(9, 0);
+  tx.rdsInitTx(0, 0, 0);
+  tx.rdsSetPTY(pty++);  // Document.
+  if (pty > 30) pty = 1;
+  delay(100);
+  if (++idxRdsMsg > lastRdsMsg) idxRdsMsg = 0;
+  tx.rdsSendPS(rdsPSmsg[idxRdsMsg]);
+  delay(100);
+  tx.rdsSendRTMessage(rdsRTmsg[idxRdsMsg]);
+  sprintf(str,"\nStation Name / PS: %s :", rdsPSmsg[idxRdsMsg]);
+  Serial.print(str);
+  sprintf(str,"\nRadio Text/ RT...: %s :", rdsRTmsg[idxRdsMsg]);
+  Serial.print(str);
+  delay(100);
+  analogWrite(9, 50);
+}
+
+
 void loop() {
-  // tx.rdsSetTxToggle();
-  // if (toggle)
-    tx.rdsSendPS(strSDR1);
-  // else   
-   // tx.rdsSendPS(strSDR2);
-  tx.rdsSetTxToggle();
-  while (!tx.rdsGetTxUpdated());  
-  toggle = !toggle;
-
-  delay(10000);
-
+  if ((millis() - rdsTime) > RDS_REFRESH_TIME) {
+    sendRDS();
+    rdsTime = millis();
+  }
+  delay(5);
 }
