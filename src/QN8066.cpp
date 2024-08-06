@@ -1367,7 +1367,7 @@ void QN8066::rdsSendPS(char* ps) {
   this->rdsSetStationName(ps);
 
   // Flushes any previus data
-  this->rdsSetTxToggle();
+  // this->rdsSetTxToggle();
 
   b1.pi = this->rdsPI;
 
