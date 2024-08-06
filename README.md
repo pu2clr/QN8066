@@ -309,7 +309,6 @@ If you find this project useful, consider making a donation so that the author o
 
 ## References 
 
-* [Old Version of this library](https://www.arduino.cc/reference/en/libraries/qn8066/)
 * [Data Sheet - QUINTIC QN8066 Digital FM Transceiver for Portable Devices](https://vrtp.ru/index.php?act=Attach&type=post&id=913773)
 * [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
 * [Best Practices for RDS Subcarrier Injection](https://www.radioworld.com/tech-and-gear/tech-tips/best-practices-for-rds-subcarrier-injection?fbclid=IwY2xjawEcUfVleHRuA2FlbQIxMAABHfP62aaiv6Ba38znsFZP59DjN_w-RoKoq6jDkiMpInU-6RAMLcs9__xXDg_aem_MDCR8KMYVsf8s-j5lSPxbA)
@@ -318,4 +317,7 @@ If you find this project useful, consider making a donation so that the author o
 * [Broadcasting Audio Processing](http://help.stereotool.com/rds_encoder_texts.shtml?fbclid=IwY2xjawEdmv1leHRuA2FlbQIxMAABHelKGZt5WyDJ0g81BjrLtAnVXgE-TYcQrl0ErRSiTGA91CnuzZzSDbDlaQ_aem_3rO_AQELltf5jjZDPrsT3g)
 * [UNIVERSITY COLLEGE LONDON Department of Electronics and Electrical Engineering](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
 * [NATIONAL RADIO SYSTEMS COMMITTEE NRSC-G300-A Radio Data System "RDS" Usage Guideline April 2014](https://www.nrscstandards.org/standards-and-guidelines/documents/archive/nrsc-g300-a.pdf)
+* [Ricardo Lima Caratti's Handy Arduino Library Delivers Easy QN8066-Powered FM Radio Projects](https://www.hackster.io/news/ricardo-lima-caratti-s-handy-arduino-library-delivers-easy-qn8066-powered-fm-radio-projects-474213406313)
+* [Old Version of this library - Source 1](https://www.arduino.cc/reference/en/libraries/qn8066/)
+* [Old Version of this library - Source 2](https://www.arduinolibraries.info/libraries/qn8066)
 
