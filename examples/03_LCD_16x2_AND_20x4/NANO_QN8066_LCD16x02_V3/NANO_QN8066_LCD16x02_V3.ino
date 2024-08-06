@@ -717,7 +717,7 @@ Only the PI Code left, which is set to "0000"
 uint8_t pty = 0;
 void sendRDS() {
 
-  enablePWM(false);
+  enablePWM(0);
 
   tx.rdsInitTx(0,0,0);
   tx.rdsSetPTY(pty++);  // Document.
@@ -728,7 +728,7 @@ void sendRDS() {
   delay(100);
   tx.rdsSendRTMessage(rdsRTmsg[idxRdsMsg]);
 
-  enablePWM(true);
+  enablePWM(pwmPowerDuty);
 }
 
 /*
