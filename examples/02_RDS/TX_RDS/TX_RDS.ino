@@ -102,6 +102,8 @@ void setup() {
   // tx.rdsSetTxLineIn(true);
   // tx.updateTxSetup(); // Not working so far
 
+  tx.rdsSetPI(1069);
+  
   delay(500);
   sendRDS();
 
@@ -139,6 +141,8 @@ void sendRDS() {
   sprintf(str,"\nRadio Text/ RT...: %s :", rdsRTmsg[idxRdsMsg]);
   Serial.print(str);
   delay(100);
+  sprintf(str, "\nPTY.............:%2d - ERROR: %d",tx.rdsGetPTY(), tx.rdsGetError());
+  Serial.print(str);
   analogWrite(9, 50);
 }
 
