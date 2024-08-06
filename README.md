@@ -306,8 +306,10 @@ If you find this project useful, consider making a donation so that the author o
 ![Donate](./extras/images/QR_Code.png) 
 
 
+
 ## References 
 
+* [Old Version of this library](https://www.arduino.cc/reference/en/libraries/qn8066/)
 * [Data Sheet - QUINTIC QN8066 Digital FM Transceiver for Portable Devices](https://vrtp.ru/index.php?act=Attach&type=post&id=913773)
 * [Radio Data System](https://en.wikipedia.org/wiki/Radio_Data_System)
 * [Best Practices for RDS Subcarrier Injection](https://www.radioworld.com/tech-and-gear/tech-tips/best-practices-for-rds-subcarrier-injection?fbclid=IwY2xjawEcUfVleHRuA2FlbQIxMAABHfP62aaiv6Ba38znsFZP59DjN_w-RoKoq6jDkiMpInU-6RAMLcs9__xXDg_aem_MDCR8KMYVsf8s-j5lSPxbA)
