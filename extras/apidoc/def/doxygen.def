@@ -205,7 +205,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gab18543166cfd0ca104df9a269a990552';
-        sec-mem-ref-line = '1178';
+        sec-mem-ref-line = '1183';
         sec-mem-ref-name = 'rdsGetTxUpdated';
     };
     }; /* sec-member */
@@ -1595,10 +1595,15 @@ _EnD_oF_dEf_TeXt_;
 @code 
 #include <QN8066.h>
 QN8066 tx;
+
+uint8_t countryId = 0;
+uint8_t programId = 0;
+uint8_t reference = 0;
+
 void setup() {
   tx.setup();
   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
-  tx.rdsInitTx();
+  tx.rdsInitTx(countryId, programId, reference);
 }
 
 void loop() {
@@ -1958,7 +1963,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
-        sec-mem-ref-line = '1347';
+        sec-mem-ref-line = '1352';
         sec-mem-ref-name = 'rdsSetStationName';
     };
     }; /* sec-member */
@@ -1983,13 +1988,13 @@ _EnD_oF_dEf_TeXt_;
 Sets the station name.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1342 
+\iline 1347 
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
-        sec-mem-ref-line = '1360';
+        sec-mem-ref-line = '1365';
         sec-mem-ref-name = 'rdsSendPS';
     };
     }; /* sec-member */
@@ -2015,7 +2020,7 @@ _EnD_oF_dEf_TeXt_;
 Sends RDS Radio Text Message.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1398 
+\iline 1403 
 
 @param rt 
 _EnD_oF_dEf_TeXt_;
@@ -2270,7 +2275,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Clear and Flushes the RDS Buffer.
 
-\iline 1272 
+\iline 1277 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
