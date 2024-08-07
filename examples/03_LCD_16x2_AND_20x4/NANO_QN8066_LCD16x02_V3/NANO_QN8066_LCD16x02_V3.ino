@@ -120,7 +120,6 @@
 #define PUSH_MIN_DELAY 200
 
 #define STATUS_REFRESH_TIME 5000  
-#define RDS_REFRESH_TIME 30000    // Recomended one minute - 600000
 
 int8_t lcdPage = 0;
 long showStatusTime = millis();
@@ -293,9 +292,17 @@ char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY   ",
                      (char *)"BE MEMBER  FACEBOOK GROUP QN8066",
                      (char *)"QN8066 HOMEBREW FM TRANSMITTER "};
 
-uint8_t idxRdsMsg = 0;
-const uint8_t lastRdsMsg = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1; 
-long rdsTime = millis();
+const uint8_t lastRdsPS = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1; 
+const uint8_t lastRdsRT = (sizeof(rdsRTmsg) / sizeof(rdsRTmsg[0])) - 1; 
+
+uint8_t idxRdsPS = 0;
+uint8_t idxRdsRT = 0;
+
+#define RDS_PS_REFRESH_TIME 5000    
+#define RDS_RT_REFRESH_TIME 20000    
+
+long rdsTimePS = millis(); 
+long rdsTimeRT = millis();
 
 
 // TX board interface
@@ -367,6 +374,8 @@ void setup() {
   // Checking RDS... UNDER CONSTRUCTION...
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
     delay(1000);
+    tx.rdsInitTx(0,0,0);  // Set here the Country and PI
+    tx.rdsSetPTY(1);      // Program Type: set here your Program Type or make it dynamic 
     sendRDS();
   }
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
@@ -719,20 +728,22 @@ uint8_t doMenu(uint8_t idxMenu) {
    9: Buffer gain = 3dB
   10: RDS Freq. Dev. 4.55kHz
 */ 
-uint8_t pty = 0;
+
 void sendRDS() {
 
-  // enablePWM(0);
-  tx.rdsInitTx(0,0,0);  
-  tx.rdsSetPTY(pty++);  // Check the Program Type encoder and decoder
-  if (pty > 30) pty = 1;
-  delay(100);
-  if (++idxRdsMsg > lastRdsMsg) idxRdsMsg = 0;
-  tx.rdsSendPS(rdsPSmsg[idxRdsMsg]);
-  delay(100);
-  tx.rdsSendRTMessage(rdsRTmsg[idxRdsMsg]);
+  // PS refreshing control
+  if ((millis() - rdsTimePS) > RDS_PS_REFRESH_TIME) {
+    if (++idxRdsPS > lastRdsPS) idxRdsPS = 0;
+    tx.rdsSendPS(rdsPSmsg[idxRdsPS]);
+    rdsTimePS = millis();
+  }
 
-  // enablePWM(pwmPowerDuty);
+  // RT refreshing control
+  if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
+    if (++idxRdsRT > lastRdsRT) idxRdsRT = 0;
+    tx.rdsSendRTMessage(rdsPSmsg[idxRdsRT]);
+    rdsTimeRT = millis();
+  }
 }
 
 /*
@@ -762,10 +773,7 @@ void loop() {
 
       // RDS UNDER CONSTRUCTION...
       if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-        if ((millis() - rdsTime) > RDS_REFRESH_TIME) {
           sendRDS();
-          rdsTime = millis();
-        }
       }
 
       // Refresh Status
