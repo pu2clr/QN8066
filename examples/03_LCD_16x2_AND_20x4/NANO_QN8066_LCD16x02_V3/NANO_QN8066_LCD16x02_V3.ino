@@ -328,12 +328,7 @@ void setup() {
 
   lcd.clear();
 
-  if (!tx.detectDevice()) {
-    lcd.setCursor(0, 0);
-    lcd.print("No QN8066 found!");
-    while (1)
-      ;
-  }
+  checkQN8066();
 
   // Check the EEPROM content. If it contains valid data, read it (previous setup).
   if (EEPROM.read(eeprom_address) == app_id) {
@@ -375,6 +370,16 @@ void setup() {
     sendRDS();
   }
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
+}
+
+
+void checkQN8066() {
+  if (!tx.detectDevice()) {
+    lcd.setCursor(0, 0);
+    lcd.print("No QN8066 found!");
+    while (1)
+      ;
+  }
 }
 
 // Saves current transmitter setup
@@ -458,7 +463,7 @@ void showStatus(uint8_t page) {
   char str[20];
 
   lcd.clear();
-
+  checkQN8066();
   if (page == 0) {
     tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
     lcd.setCursor(0, 0);
@@ -717,10 +722,9 @@ Only the PI Code left, which is set to "0000"
 uint8_t pty = 0;
 void sendRDS() {
 
-  enablePWM(0);
-
-  tx.rdsInitTx(0,0,0);
-  tx.rdsSetPTY(pty++);  // Document.
+  // enablePWM(0);
+  tx.rdsInitTx(0,0,0);  
+  tx.rdsSetPTY(pty++);  // Check the Program Type encoder and decoder
   if (pty > 30) pty = 1;
   delay(100);
   if (++idxRdsMsg > lastRdsMsg) idxRdsMsg = 0;
@@ -728,7 +732,7 @@ void sendRDS() {
   delay(100);
   tx.rdsSendRTMessage(rdsRTmsg[idxRdsMsg]);
 
-  enablePWM(pwmPowerDuty);
+  // enablePWM(pwmPowerDuty);
 }
 
 /*
