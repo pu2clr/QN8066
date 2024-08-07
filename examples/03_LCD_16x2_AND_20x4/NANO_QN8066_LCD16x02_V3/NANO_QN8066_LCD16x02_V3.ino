@@ -119,7 +119,7 @@
 #define STEP_FREQ 1
 #define PUSH_MIN_DELAY 200
 
-#define STATUS_REFRESH_TIME 5000  
+#define STATUS_REFRESH_TIME 5000
 
 int8_t lcdPage = 0;
 long showStatusTime = millis();
@@ -173,7 +173,7 @@ TableValue tabTxSoftClipEnable[] = {
 };
 
 TableValue tabTxSoftClipThreshold[] = {
-  { 0, "3dB" },     // 0
+  { 0, "3dB" },    // 0
   { 1, "4.5dB" },  // 1
   { 2, "6dB" },    // 2
   { 3, "9dB" }     // 3
@@ -282,26 +282,26 @@ uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 char *rdsPSmsg[] = { (char *)"PU2CLR  ",
                      (char *)"QN8066  ",
                      (char *)"ARDUINO ",
-                     (char *)"LIBRARY ", 
+                     (char *)"LIBRARY ",
                      (char *)"FM TX   " };
 
 // Radio Text (RT) messages
 char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY   ",
                      (char *)"FM TRANSMITTER WITH RDS SERVICE ",
-                     (char *)"https://github.com/pu2clr/QN8066", 
+                     (char *)"https://github.com/pu2clr/QN8066",
                      (char *)"BE MEMBER  FACEBOOK GROUP QN8066",
-                     (char *)"QN8066 HOMEBREW FM TRANSMITTER "};
+                     (char *)"QN8066 HOMEBREW FM TRANSMITTER " };
 
-const uint8_t lastRdsPS = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1; 
-const uint8_t lastRdsRT = (sizeof(rdsRTmsg) / sizeof(rdsRTmsg[0])) - 1; 
+const uint8_t lastRdsPS = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1;
+const uint8_t lastRdsRT = (sizeof(rdsRTmsg) / sizeof(rdsRTmsg[0])) - 1;
 
 uint8_t idxRdsPS = 0;
 uint8_t idxRdsRT = 0;
 
-#define RDS_PS_REFRESH_TIME 5000    
-#define RDS_RT_REFRESH_TIME 30000    
+#define RDS_PS_REFRESH_TIME 5000
+#define RDS_RT_REFRESH_TIME 15000
 
-long rdsTimePS = millis(); 
+long rdsTimePS = millis();
 long rdsTimeRT = millis();
 
 
@@ -374,9 +374,9 @@ void setup() {
   // Checking RDS... UNDER CONSTRUCTION...
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
     delay(1000);
-    tx.rdsInitTx(0,0,0);  // Set here the countryID, programId and  reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html )
-    tx.rdsSetPTY(1);      // Program Type: set here your Program Type or make it dynamic 
-    sendRDS();
+    tx.rdsInitTx(0, 0, 0);  // Initialize RDS transmission: set countryID, programId, and reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+    tx.rdsSetPTY(1);        // Set Program Type: 1 represents News, modify as needed or make it dynamic
+    sendRDS();              // Control the RDS PS and RT messages with this function
   }
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
 }
@@ -490,7 +490,7 @@ void showStatus(uint8_t page) {
     tx.resetAudioPeak();
   } else if (page == 1) {
     lcd.setCursor(0, 0);
-    sprintf(str,"FSM: %d", tx.getFsmStateCode());
+    sprintf(str, "FSM: %d", tx.getFsmStateCode());
     lcd.print(str);
     sprintf(str, "RIN:%s", keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].desc);
     lcd.setCursor(9, 0);
@@ -727,7 +727,7 @@ uint8_t doMenu(uint8_t idxMenu) {
    8: Dreq. Deriv. 74.52
    9: Buffer gain = 3dB
   10: RDS Freq. Dev. 4.55kHz
-*/ 
+*/
 
 void sendRDS() {
 
@@ -743,7 +743,7 @@ void sendRDS() {
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
     tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);
-    idxRdsRT;
+    idxRdsRT++;
     rdsTimeRT = millis();
   }
 }
@@ -775,7 +775,7 @@ void loop() {
 
       // RDS UNDER CONSTRUCTION...
       if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-          sendRDS();
+        sendRDS();
       }
 
       // Refresh Status
