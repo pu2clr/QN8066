@@ -707,17 +707,17 @@ uint8_t doMenu(uint8_t idxMenu) {
 }
 
 /**
-1: Stereo = On
-2: Pre-emphasis = 50 us
-3: RDS = Enable
-4: Inpedance = 20K
-5: Sft Clip.. = Disable
-6: Thres = 3dB
-7: Gain Pilot = 10%
-8: Dreq. Deriv. 74.52
-9: Buffer gain = 3dB
-10: RDS Freq. Dev. 4.55kHz
-Only the PI Code left, which is set to "0000"
+   Here are some recommended configurations for testing the RDS features
+   1: Stereo = On
+   2: Pre-emphasis = 75 us
+   3: RDS = Enable
+   4: Inpedance = 20K
+   5: Sft Clip.. = Disable
+   6: Thres = 3dB
+   7: Gain Pilot = 10%
+   8: Dreq. Deriv. 74.52
+   9: Buffer gain = 3dB
+  10: RDS Freq. Dev. 4.55kHz
 */ 
 uint8_t pty = 0;
 void sendRDS() {
