@@ -291,6 +291,8 @@ Based on several experiments I conducted with this kit, I observed instability i
 
 4. **Wire-up organization**: Shortening and organizing the I2C bus lines that connect the KIT to the microcontroller significantly improves system stability. 
 
+5. **Good grounding**: Through good grounding, it was possible to make the system stable. It was possible to transmit for several hours without interruption and without communication problems with the I2C.
+
 It is important to highlight that this library was not developed exclusively to work with this kit. In fact, it was designed to work with any architecture involving the QN8066 via the I2C protocol. That said, it is crucial for the designer or experimenter to keep in mind the necessary precautions to provide a stable system. There are various literatures that can help follow the best design practices involving I2C communication.
 
 ### Considerations
