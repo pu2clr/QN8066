@@ -374,7 +374,7 @@ void setup() {
   // Checking RDS... UNDER CONSTRUCTION...
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
     delay(1000);
-    tx.rdsInitTx(0,0,0);  // Set here the Country and PI
+    tx.rdsInitTx(0,0,0);  // Set here the countryID, programId and  reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html )
     tx.rdsSetPTY(1);      // Program Type: set here your Program Type or make it dynamic 
     sendRDS();
   }
@@ -733,15 +733,17 @@ void sendRDS() {
 
   // PS refreshing control
   if ((millis() - rdsTimePS) > RDS_PS_REFRESH_TIME) {
-    if (++idxRdsPS > lastRdsPS) idxRdsPS = 0;
+    if (idxRdsPS > lastRdsPS) idxRdsPS = 0;
     tx.rdsSendPS(rdsPSmsg[idxRdsPS]);
+    idxRdsPS++;
     rdsTimePS = millis();
   }
 
   // RT refreshing control
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
-    if (++idxRdsRT > lastRdsRT) idxRdsRT = 0;
+    if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
     tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);
+    idxRdsRT;
     rdsTimeRT = millis();
   }
 }

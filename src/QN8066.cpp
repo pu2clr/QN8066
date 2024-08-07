@@ -1067,10 +1067,15 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
+ * 
+ * uint8_t countryId = 0;
+ * uint8_t programId = 0;
+ * uint8_t reference = 0;
+ * 
  * void setup() {
  *   tx.setup();
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
- *   tx.rdsInitTx();
+ *   tx.rdsInitTx(countryId, programId, reference);
  * }
  *
  * void loop() {
