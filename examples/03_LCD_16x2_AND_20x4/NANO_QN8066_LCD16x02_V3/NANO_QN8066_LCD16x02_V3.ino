@@ -299,7 +299,7 @@ uint8_t idxRdsPS = 0;
 uint8_t idxRdsRT = 0;
 
 #define RDS_PS_REFRESH_TIME 5000    
-#define RDS_RT_REFRESH_TIME 20000    
+#define RDS_RT_REFRESH_TIME 30000    
 
 long rdsTimePS = millis(); 
 long rdsTimeRT = millis();
@@ -741,7 +741,7 @@ void sendRDS() {
   // RT refreshing control
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (++idxRdsRT > lastRdsRT) idxRdsRT = 0;
-    tx.rdsSendRTMessage(rdsPSmsg[idxRdsRT]);
+    tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);
     rdsTimeRT = millis();
   }
 }
