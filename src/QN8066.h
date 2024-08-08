@@ -786,6 +786,7 @@ typedef union
         uint16_t versionCode : 1;            //!< (B0) => 0=A; 1=B
         uint16_t groupType : 4;              //!< Group Type code.
     } group2Field;
+    
     uint16_t raw;                            //!< Raw 16-bit representation
 } RDS_BLOCK2;
 

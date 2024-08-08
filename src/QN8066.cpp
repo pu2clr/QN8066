@@ -1388,8 +1388,8 @@ void QN8066::rdsSendPS(char* ps) {
 
   for ( uint8_t k  = 0; k < 3; k++) { // Just a test. To be removed
     for (uint8_t i = 0; i < 8; i+=2) { 
-      b4.field.content[0] = ps[i+1];
       b4.field.content[1] = ps[i]; 
+      b4.field.content[0] = ps[i+1];
       this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
       b2.group0Field.address++; 
     }
@@ -1402,7 +1402,7 @@ void QN8066::rdsSendPS(char* ps) {
  * @ingroup group05 TX RDS
  * @brief Sends RDS Radio Text Message
  * 
- * @param rt 
+ * @param rt - Radio Text (string of 32 character)
  */
 void QN8066::rdsSendRTMessage(char *rt) {
 
@@ -1414,8 +1414,6 @@ void QN8066::rdsSendRTMessage(char *rt) {
     RDS_BLOCK1 block1;
     block1.pi = this->rdsPI;
     static bool toggle = false;
-    toggle = !toggle;
-
     RDS_BLOCK2 block2; 
     block2.raw = 0;
     block2.group2Field.textABFlag = toggle;
@@ -1427,12 +1425,15 @@ void QN8066::rdsSendRTMessage(char *rt) {
     for (uint8_t i = 0; i < numGroups; i++) {
         block2.group2Field.address = i; 
         RDS_BLOCK3 block3; 
-        block3.raw  = (rt[i * 4] << 8) | rt[i * 4 + 1];
+        block3.field.content[1] = rt[i * 4];
+        block3.field.content[0] = rt[i * 4 + 1];
         RDS_BLOCK4 block4;
-        block4.raw = (rt[i * 4 + 2] << 8) | rt[i * 4 + 3];
+        block4.field.content[1] = rt[i * 4 + 2];
+        block4.field.content[0] = rt[i * 4 + 3]; 
         this->rdsSendGroup(block1.pi, block2.raw, block3.raw, block4.raw);
         delay(50);
     }
+    toggle = !toggle;
 }
 
 
