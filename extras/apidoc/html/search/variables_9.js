@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xtal_5fdiv_0',['xtal_div',['../group__group00.html#ae2b19cce8adf6bde0dffdd109b4f9528',1,'qn8066_xtal_div0']]]
+  ['tx_5ffdev_0',['TX_FDEV',['../group__group00.html#aa9ca38832753bba16465221f780ff741',1,'qn8066_fdev']]],
+  ['txch_1',['TXCH',['../group__group00.html#a4dd6233934e3ad24b0da1b7228c37749',1,'qn8066_txch']]]
 ];

@@ -53,7 +53,5 @@ var annotated_dup =
     [ "RDS_BLOCK2.group0Field", "group__group00.html#struct_r_d_s___b_l_o_c_k2_8group0_field", "group__group00_struct_r_d_s___b_l_o_c_k2_8group0_field" ],
     [ "RDS_BLOCK2.group2Field", "group__group00.html#struct_r_d_s___b_l_o_c_k2_8group2_field", "group__group00_struct_r_d_s___b_l_o_c_k2_8group2_field" ],
     [ "RDS_BLOCK3", "group__group00.html#union_r_d_s___b_l_o_c_k3", "group__group00_union_r_d_s___b_l_o_c_k3" ],
-    [ "RDS_BLOCK3.field", "group__group00.html#struct_r_d_s___b_l_o_c_k3_8field", "group__group00_struct_r_d_s___b_l_o_c_k3_8field" ],
-    [ "RDS_BLOCK4", "group__group00.html#union_r_d_s___b_l_o_c_k4", "group__group00_union_r_d_s___b_l_o_c_k4" ],
-    [ "RDS_BLOCK4.field", "group__group00.html#struct_r_d_s___b_l_o_c_k4_8field", "group__group00_struct_r_d_s___b_l_o_c_k4_8field" ]
+    [ "RDS_BLOCK4", "group__group00.html#union_r_d_s___b_l_o_c_k4", "group__group00_union_r_d_s___b_l_o_c_k4" ]
 ];

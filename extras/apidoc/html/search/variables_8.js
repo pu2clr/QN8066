@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['tx_5ffdev_0',['TX_FDEV',['../group__group00.html#aa9ca38832753bba16465221f780ff741',1,'qn8066_fdev']]],
-  ['txch_1',['TXCH',['../group__group00.html#a4dd6233934e3ad24b0da1b7228c37749',1,'qn8066_txch']]]
+  ['snrdb_0',['SNRDB',['../group__group00.html#a40858883345a2297b86e1adfeea40baa',1,'qn8066_srn']]]
 ];

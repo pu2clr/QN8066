@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['pi_0',['pi',['../group__group00.html#a01d9896fe5e526cc8e82195b32676a13',1,'RDS_BLOCK1']]],
-  ['pll_5fdlt_1',['pll_dlt',['../group__group00.html#ae3108111c9f19c5be3601f89e721dd50',1,'qn8066_xtal_div2']]]
+  ['group0field_0',['group0Field',['../group__group00.html#aec33fd5c5672242fb1c7abb9068d64fe',1,'RDS_BLOCK2']]],
+  ['group2field_1',['group2Field',['../group__group00.html#ae19e33640ad8b4e2712ca19eca8026e4',1,'RDS_BLOCK2']]]
 ];

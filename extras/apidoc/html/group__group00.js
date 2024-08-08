@@ -110,20 +110,22 @@ var group__group00 =
     ] ],
     [ "RDS_BLOCK1", "group__group00.html#union_r_d_s___b_l_o_c_k1", [
       [ "field", "group__group00.html#abcfff81b9d651be4633d5e61e57b4131", null ],
+      [ "byteContent", "group__group00.html#a5b495a338a1373a95d2a744bc259df0e", null ],
       [ "pi", "group__group00.html#a01d9896fe5e526cc8e82195b32676a13", null ]
     ] ],
     [ "RDS_BLOCK2", "group__group00.html#union_r_d_s___b_l_o_c_k2", [
       [ "commonFields", "group__group00.html#ab960defd859ad8b1d7a7165739cde506", null ],
       [ "group0Field", "group__group00.html#aec33fd5c5672242fb1c7abb9068d64fe", null ],
       [ "group2Field", "group__group00.html#ae19e33640ad8b4e2712ca19eca8026e4", null ],
+      [ "byteContent", "group__group00.html#ac38071e5081a5747ecfb56b889c218f0", null ],
       [ "raw", "group__group00.html#a71e553256561663d8d0b66823288f2e1", null ]
     ] ],
     [ "RDS_BLOCK3", "group__group00.html#union_r_d_s___b_l_o_c_k3", [
-      [ "field", "group__group00.html#a0bb3021673101192811b976a2ec2b072", null ],
+      [ "byteContent", "group__group00.html#ace9d490a7f406f5b4dc1cb800067ff0c", null ],
       [ "raw", "group__group00.html#acc355db97b5103c63bf904af56077f37", null ]
     ] ],
     [ "RDS_BLOCK4", "group__group00.html#union_r_d_s___b_l_o_c_k4", [
-      [ "field", "group__group00.html#a41f25faa667e66e3e9cd8c07585503e0", null ],
+      [ "byteContent", "group__group00.html#a2ebd666d81ec4045210e00afb9358f4f", null ],
       [ "raw", "group__group00.html#a10f3f208449a1ffe5de720ac90513710", null ]
     ] ],
     [ "qn8066_system1.arg", "group__group00.html#structqn8066__system1_8arg", [
@@ -278,11 +280,5 @@ var group__group00 =
       [ "trafficProgramCode", "group__group00.html#a59e69d63ce38754ea53c4461b5cba1e2", null ],
       [ "versionCode", "group__group00.html#a20583dcf173525a78f726ef45329c5ae", null ],
       [ "groupType", "group__group00.html#a19223bd3731a4215ead3ba6a1eb8bbe8", null ]
-    ] ],
-    [ "RDS_BLOCK3.field", "group__group00.html#struct_r_d_s___b_l_o_c_k3_8field", [
-      [ "content", "group__group00.html#af8b7e60d8c0d932df07b78d23e369723", null ]
-    ] ],
-    [ "RDS_BLOCK4.field", "group__group00.html#struct_r_d_s___b_l_o_c_k4_8field", [
-      [ "content", "group__group00.html#af8b7e60d8c0d932df07b78d23e369723", null ]
     ] ]
 ];

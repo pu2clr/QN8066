@@ -50,7 +50,7 @@ var class_q_n8066 =
     [ "rdsWriteTxBuffer", "group__group05.html#gad08b61283a37563712c2b6b8f59e5046", null ],
     [ "rdsSetFrequencyDerivation", "group__group05.html#ga662a1d34329657b1d2fbb93f44901bab", null ],
     [ "rdsSetTxLineIn", "group__group05.html#ga27d182aa90e915b86139d0ae63350fc8", null ],
-    [ "rdsSendGroup", "group__group05.html#ga39b9317f050108e7cd4d8695953acd95", null ],
+    [ "rdsSendGroup", "group__group05.html#ga57ee54e06de2618ec40cddde6b62560c", null ],
     [ "rdsSendPS", "group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b", null ],
     [ "rdsSetStationName", "group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f", null ],
     [ "rdsSendRTMessage", "group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852", null ],

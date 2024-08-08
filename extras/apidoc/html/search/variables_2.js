@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['data_0',['data',['../group__group00.html#a5003ea927f86afd0aa81bbc159eac8e8',1,'qn8066_rx_rds::data()'],['../group__group00.html#abf4047e615c2a183e7d8d7a20eb858f8',1,'qn8066_tx_rds::data()']]]
+  ['ch_5fstart_0',['CH_START',['../group__group00.html#a16437f62f2ef0bbee00341e1d5eb1ba8',1,'qn8066_ch_start']]],
+  ['ch_5fstop_1',['CH_STOP',['../group__group00.html#a44e27149c1e64df123dd840e1237a1f9',1,'qn8066_ch_stop']]],
+  ['commonfields_2',['commonFields',['../group__group00.html#ab960defd859ad8b1d7a7165739cde506',1,'RDS_BLOCK2']]]
 ];

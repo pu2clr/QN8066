@@ -14,7 +14,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'detectDevice';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '854';
+      sec-mem-desc-line = '852';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Checks communication with QN8066 via I2C.
 _EnD_oF_dEf_TeXt_;
@@ -39,7 +39,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'device';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '855';
+      sec-mem-desc-line = '853';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Scans the I2C bus and returns the addresses of the devices found.
 _EnD_oF_dEf_TeXt_;
@@ -65,7 +65,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'registerNumber';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '857';
+      sec-mem-desc-line = '855';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets register information.
 _EnD_oF_dEf_TeXt_;
@@ -98,7 +98,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '858';
+      sec-mem-desc-line = '856';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Stores a velue to a given register.
 _EnD_oF_dEf_TeXt_;
@@ -119,7 +119,7 @@ qn8066_cid1
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getDeviceProductID';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '860';
+      sec-mem-desc-line = '858';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -137,7 +137,7 @@ qn8066_cid2
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getDeviceProductFamily';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '866';
+      sec-mem-desc-line = '864';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -155,7 +155,7 @@ qn8066_status1
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatus1';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '872';
+      sec-mem-desc-line = '870';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current device Status stored in STATUS1 register.
 _EnD_oF_dEf_TeXt_;
@@ -173,7 +173,7 @@ qn8066_status2
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatus2';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '873';
+      sec-mem-desc-line = '871';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current device Status stored in STATUS2 register.
 _EnD_oF_dEf_TeXt_;
@@ -191,7 +191,7 @@ qn8066_status3
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getStatus3';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '874';
+      sec-mem-desc-line = '872';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the current device Status stored in STATUS3 register.
 _EnD_oF_dEf_TeXt_;
@@ -219,14 +219,14 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setRX';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '883';
+      sec-mem-desc-line = '881';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 SYSTEM1 SETUP.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 sets the devive to RX
 
-\iline 880 
+\iline 878 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -245,7 +245,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'frequency';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '885';
+      sec-mem-desc-line = '883';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the TX mode.
 _EnD_oF_dEf_TeXt_;
@@ -288,7 +288,7 @@ true
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '887';
+      sec-mem-desc-line = '885';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set TX Stereo or Mono.
 _EnD_oF_dEf_TeXt_;
@@ -329,7 +329,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '888';
+      sec-mem-desc-line = '886';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set TX Stereo or Mono (Same setTxStereo )
 _EnD_oF_dEf_TeXt_;
@@ -361,7 +361,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getTxMono';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '889';
+      sec-mem-desc-line = '887';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets TX Stereo or Mono setup.
 _EnD_oF_dEf_TeXt_;
@@ -403,7 +403,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '890';
+      sec-mem-desc-line = '888';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Pre-emphasis and de-emphasis time constant.
 _EnD_oF_dEf_TeXt_;
@@ -444,7 +444,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '891';
+      sec-mem-desc-line = '889';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Pre-emphasis and de-emphasis time constant - Same setTxPreEmphasis.
 _EnD_oF_dEf_TeXt_;
@@ -482,7 +482,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '894';
+      sec-mem-desc-line = '892';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set of 1 minute time for PA off when no audio.
 _EnD_oF_dEf_TeXt_;
@@ -519,7 +519,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '895';
+      sec-mem-desc-line = '893';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets PA Off after  1 minute time  when no audio.
 _EnD_oF_dEf_TeXt_;
@@ -557,7 +557,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '896';
+      sec-mem-desc-line = '894';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gain of TX pilot to adjust pilot frequency deviation.
 _EnD_oF_dEf_TeXt_;
@@ -596,7 +596,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '897';
+      sec-mem-desc-line = '895';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets volume control gain of analog portion.
 _EnD_oF_dEf_TeXt_;
@@ -634,7 +634,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '898';
+      sec-mem-desc-line = '896';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets set digital volume gain.
 _EnD_oF_dEf_TeXt_;
@@ -672,7 +672,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '899';
+      sec-mem-desc-line = '897';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 DAC output control.
 _EnD_oF_dEf_TeXt_;
@@ -710,7 +710,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '900';
+      sec-mem-desc-line = '898';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Tx audio input mode selection.
 _EnD_oF_dEf_TeXt_;
@@ -748,7 +748,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '901';
+      sec-mem-desc-line = '899';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 TX mode input impedance for both L/R channels.
 _EnD_oF_dEf_TeXt_;
@@ -795,7 +795,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '902';
+      sec-mem-desc-line = '900';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 TX digital gain.
 _EnD_oF_dEf_TeXt_;
@@ -842,7 +842,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '903';
+      sec-mem-desc-line = '901';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 TX input buffer gain.
 _EnD_oF_dEf_TeXt_;
@@ -891,7 +891,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '904';
+      sec-mem-desc-line = '902';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 TX soft clipping enable.
 _EnD_oF_dEf_TeXt_;
@@ -928,7 +928,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '905';
+      sec-mem-desc-line = '903';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 TX soft clip threshold.
 _EnD_oF_dEf_TeXt_;
@@ -973,7 +973,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '906';
+      sec-mem-desc-line = '904';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Specify total TX frequency deviation.
 _EnD_oF_dEf_TeXt_;
@@ -1011,7 +1011,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'delayAfterReset';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '908';
+      sec-mem-desc-line = '906';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -1029,7 +1029,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'begin';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '912';
+      sec-mem-desc-line = '910';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Device initial configuration.
 _EnD_oF_dEf_TeXt_;
@@ -1205,7 +1205,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '914';
+      sec-mem-desc-line = '912';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 QN8066 initial configuration.
 _EnD_oF_dEf_TeXt_;
@@ -1252,7 +1252,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'updateTxSetup';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '921';
+      sec-mem-desc-line = '919';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Reset the system kepping the TX current STATUS.
 _EnD_oF_dEf_TeXt_;
@@ -1271,7 +1271,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'stopTransmitting';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '922';
+      sec-mem-desc-line = '920';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -1289,7 +1289,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'startTransmitting';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '923';
+      sec-mem-desc-line = '921';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -1313,7 +1313,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '932';
+      sec-mem-desc-line = '930';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Set the Crystal Frequency object.
 _EnD_oF_dEf_TeXt_;
@@ -1339,7 +1339,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'PA_TRGT';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '933';
+      sec-mem-desc-line = '931';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 PA output power target control.
 _EnD_oF_dEf_TeXt_;
@@ -1371,7 +1371,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'setToggleTxPdClear';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '935';
+      sec-mem-desc-line = '933';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 TX Audio peak clear signal.
 _EnD_oF_dEf_TeXt_;
@@ -1393,7 +1393,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8h_1ga78ce701a735ccc6a02fb75a2a51f48ed';
-        sec-mem-ref-line = '956';
+        sec-mem-ref-line = '954';
         sec-mem-ref-name = 'resetAudioPeak';
     };
     }; /* sec-member */
@@ -1407,7 +1407,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'resetAudioPeak';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '956';
+      sec-mem-desc-line = '954';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 TX Audio peak clear signal.
 _EnD_oF_dEf_TeXt_;
@@ -1444,7 +1444,7 @@ int
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getAudioPeakValue';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '957';
+      sec-mem-desc-line = '955';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Audio peak value at ADC input.
 _EnD_oF_dEf_TeXt_;
@@ -1488,7 +1488,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'mode';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '961';
+      sec-mem-desc-line = '959';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RDS Mode Selection.
 _EnD_oF_dEf_TeXt_;
@@ -1526,7 +1526,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '962';
+      sec-mem-desc-line = '960';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RDS 4K Mode .
 _EnD_oF_dEf_TeXt_;
@@ -1584,7 +1584,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '963';
+      sec-mem-desc-line = '961';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets some RDS parameters.
 _EnD_oF_dEf_TeXt_;
@@ -1627,7 +1627,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '964';
+      sec-mem-desc-line = '962';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RDS interrupt.
 _EnD_oF_dEf_TeXt_;
@@ -1665,7 +1665,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'value';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '966';
+      sec-mem-desc-line = '964';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Transmitter RDS enable.
 _EnD_oF_dEf_TeXt_;
@@ -1697,7 +1697,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsSetTxToggle';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '967';
+      sec-mem-desc-line = '965';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RDS transmitting ready.
 _EnD_oF_dEf_TeXt_;
@@ -1731,7 +1731,7 @@ bool
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsGetTxUpdated';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '968';
+      sec-mem-desc-line = '966';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 RDS TX Updated.
 _EnD_oF_dEf_TeXt_;
@@ -1778,7 +1778,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'text';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '969';
+      sec-mem-desc-line = '967';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)
 _EnD_oF_dEf_TeXt_;
@@ -1819,7 +1819,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '970';
+      sec-mem-desc-line = '968';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets RDS frequency deviation.
 _EnD_oF_dEf_TeXt_;
@@ -1862,7 +1862,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '971';
+      sec-mem-desc-line = '969';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Audio Line-in enable control.
 _EnD_oF_dEf_TeXt_;
@@ -1886,7 +1886,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group05_1ga39b9317f050108e7cd4d8695953acd95';
+      sec-mem-id   = 'group__group05_1ga57ee54e06de2618ec40cddde6b62560c';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -1895,34 +1895,34 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsSendGroup';
       sec-mem-param = {
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint16_t
+RDS_BLOCK1
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'blockA';
         sec-mem-param-defname = 'block1';
       }; /*        sec-mem-param--param */
       sec-mem-param = {
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint16_t
+RDS_BLOCK2
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'blockB';
         sec-mem-param-defname = 'block2';
       }; /*        sec-mem-param--param */
       sec-mem-param = {
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint16_t
+RDS_BLOCK3
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'blockC';
         sec-mem-param-defname = 'block3';
       }; /*        sec-mem-param--param */
       sec-mem-param = {
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint16_t
+RDS_BLOCK4
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'blockD';
         sec-mem-param-defname = 'block4';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '973';
+      sec-mem-desc-line = '971';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sends a RDS group (four blocks)  to the QN8066.
 _EnD_oF_dEf_TeXt_;
@@ -1933,6 +1933,26 @@ _EnD_oF_dEf_TeXt_;
 @param block3 
 @param block4  <br>
 _EnD_oF_dEf_TeXt_;
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_q_n8066_8h_1a5b495a338a1373a95d2a744bc259df0e';
+        sec-mem-ref-line = '708';
+        sec-mem-ref-name = 'RDS_BLOCK1::byteContent';
+    };
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_q_n8066_8h_1ac38071e5081a5747ecfb56b889c218f0';
+        sec-mem-ref-line = '790';
+        sec-mem-ref-name = 'RDS_BLOCK2::byteContent';
+    };
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_q_n8066_8h_1ace9d490a7f406f5b4dc1cb800067ff0c';
+        sec-mem-ref-line = '799';
+        sec-mem-ref-name = 'RDS_BLOCK3::byteContent';
+    };
+      sec-mem-referenceto = {
+        sec-mem-ref-id = '_q_n8066_8h_1a2ebd666d81ec4045210e00afb9358f4f';
+        sec-mem-ref-line = '808';
+        sec-mem-ref-name = 'RDS_BLOCK4::byteContent';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
@@ -1953,7 +1973,7 @@ NULL
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '974';
+      sec-mem-desc-line = '972';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sends the Program Service Message.
 _EnD_oF_dEf_TeXt_;
@@ -1963,7 +1983,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
-        sec-mem-ref-line = '1352';
+        sec-mem-ref-line = '1353';
         sec-mem-ref-name = 'rdsSetStationName';
     };
     }; /* sec-member */
@@ -1983,18 +2003,18 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'stationName';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '977';
+      sec-mem-desc-line = '975';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the station name.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1347 
+\iline 1348 
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
-        sec-mem-ref-line = '1365';
+        sec-mem-ref-line = '1366';
         sec-mem-ref-name = 'rdsSendPS';
     };
     }; /* sec-member */
@@ -2015,14 +2035,14 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-defname = 'rt';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '978';
+      sec-mem-desc-line = '976';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sends RDS Radio Text Message.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1403 
+\iline 1405 
 
-@param rt 
+@param rt - Radio Text (string of 32 character)
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -2047,7 +2067,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'block';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '979';
+      sec-mem-desc-line = '977';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2071,7 +2091,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'pi';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '986';
+      sec-mem-desc-line = '984';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Program Identification (PI)
 _EnD_oF_dEf_TeXt_;
@@ -2110,7 +2130,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '988';
+      sec-mem-desc-line = '986';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Program Identification (PI)
 _EnD_oF_dEf_TeXt_;
@@ -2130,7 +2150,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsGetPI';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '996';
+      sec-mem-desc-line = '994';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the Program Identification (PI)
 _EnD_oF_dEf_TeXt_;
@@ -2154,7 +2174,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'pty';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1003';
+      sec-mem-desc-line = '1001';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Program Type (PTY)
 _EnD_oF_dEf_TeXt_;
@@ -2172,7 +2192,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsGetPTY';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1010';
+      sec-mem-desc-line = '1008';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the Program Type (PTY)
 _EnD_oF_dEf_TeXt_;
@@ -2196,7 +2216,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'tp';
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1018';
+      sec-mem-desc-line = '1016';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Traffic Program.
 _EnD_oF_dEf_TeXt_;
@@ -2214,7 +2234,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsGetTP';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1025';
+      sec-mem-desc-line = '1023';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the Traffic Program.
 _EnD_oF_dEf_TeXt_;
@@ -2232,7 +2252,7 @@ char *
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsGetPS';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1032';
+      sec-mem-desc-line = '1030';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets the Program Station (Station Name).
 _EnD_oF_dEf_TeXt_;
@@ -2250,7 +2270,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsGetError';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1039';
+      sec-mem-desc-line = '1037';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Gets TX RDS error setup.
 _EnD_oF_dEf_TeXt_;
@@ -2268,7 +2288,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rdsClearBuffer';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1045';
+      sec-mem-desc-line = '1043';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Clear RDS register (Buffer)
 _EnD_oF_dEf_TeXt_;
@@ -2288,7 +2308,7 @@ void
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'resetFsm';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1047';
+      sec-mem-desc-line = '1045';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Resets the state to initial states and recalibrate all blocks.
 _EnD_oF_dEf_TeXt_;
@@ -2306,7 +2326,7 @@ uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'getFsmStateCode';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1048';
+      sec-mem-desc-line = '1046';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Get the FSM State Code.
 _EnD_oF_dEf_TeXt_;
@@ -2397,7 +2417,7 @@ true
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1050';
+      sec-mem-desc-line = '1048';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Converts a number to a char array.
 _EnD_oF_dEf_TeXt_;
@@ -2443,7 +2463,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1062';
+      sec-mem-desc-line = '1060';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets I2C bus to 10kHz.
 _EnD_oF_dEf_TeXt_;
@@ -2468,7 +2488,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1072';
+      sec-mem-desc-line = '1070';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets I2C bus to 100kHz.
 _EnD_oF_dEf_TeXt_;
@@ -2491,7 +2511,7 @@ void
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1079';
+      sec-mem-desc-line = '1077';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets I2C bus to 400kHz.
 _EnD_oF_dEf_TeXt_;
@@ -2518,13 +2538,13 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '1092';
+      sec-mem-desc-line = '1090';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Sets the I2C bus to a given value.
 ATTENTION: use this function with caution.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1088 
+\iline 1086 
 
 @param value in Hz. For example: The values 500000 sets the bus to 500kHz.
 _EnD_oF_dEf_TeXt_;
@@ -2545,7 +2565,7 @@ _EnD_oF_dEf_TeXt_;
 = 1000
 _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '826';
+      sec-mem-desc-line = '824';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 < Delay after reset (default 1s)
 _EnD_oF_dEf_TeXt_;
@@ -2566,7 +2586,7 @@ _EnD_oF_dEf_TeXt_;
 = 1000
 _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '827';
+      sec-mem-desc-line = '825';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2584,7 +2604,7 @@ qn8066_system2
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'system1';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '829';
+      sec-mem-desc-line = '827';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2602,7 +2622,7 @@ qn8066_system2
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'system2';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '830';
+      sec-mem-desc-line = '828';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2620,7 +2640,7 @@ qn8066_gplt
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'gplt';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '831';
+      sec-mem-desc-line = '829';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2638,7 +2658,7 @@ qn8066_cca
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'cca';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '832';
+      sec-mem-desc-line = '830';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2656,7 +2676,7 @@ qn8066_fdev
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'fdev';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '833';
+      sec-mem-desc-line = '831';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2674,7 +2694,7 @@ qn8066_int_ctrl
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'int_ctrl';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '834';
+      sec-mem-desc-line = '832';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2692,7 +2712,7 @@ qn8066_txch
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'txch';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '835';
+      sec-mem-desc-line = '833';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2710,7 +2730,7 @@ qn8066_xtal_div0
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'xtal_div0';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '836';
+      sec-mem-desc-line = '834';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2728,7 +2748,7 @@ qn8066_xtal_div1
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'xtal_div1';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '837';
+      sec-mem-desc-line = '835';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2746,7 +2766,7 @@ qn8066_xtal_div2
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'xtal_div2';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '838';
+      sec-mem-desc-line = '836';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2764,7 +2784,7 @@ qn8066_reg_vga
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'reg_vga';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '839';
+      sec-mem-desc-line = '837';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2782,7 +2802,7 @@ qn8066_rds
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rds';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '840';
+      sec-mem-desc-line = '838';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2800,7 +2820,7 @@ qn8066_pac
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'pac';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '841';
+      sec-mem-desc-line = '839';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2818,7 +2838,7 @@ qn8066_vol_ctl
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'vol_ctl';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '842';
+      sec-mem-desc-line = '840';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2839,7 +2859,7 @@ _EnD_oF_dEf_TeXt_;
 = " QN8066\r"
 _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '845';
+      sec-mem-desc-line = '843';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2860,7 +2880,7 @@ _EnD_oF_dEf_TeXt_;
 = 33179
 _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '846';
+      sec-mem-desc-line = '844';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Default value for piCode (0x819B)
 _EnD_oF_dEf_TeXt_;
@@ -2881,7 +2901,7 @@ _EnD_oF_dEf_TeXt_;
 = 5
 _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '847';
+      sec-mem-desc-line = '845';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Default program type (PTY) 5 is "Education".
 _EnD_oF_dEf_TeXt_;
@@ -2902,7 +2922,7 @@ _EnD_oF_dEf_TeXt_;
 = 0
 _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '848';
+      sec-mem-desc-line = '846';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Traffic Program (TP)
 _EnD_oF_dEf_TeXt_;
@@ -2923,7 +2943,7 @@ _EnD_oF_dEf_TeXt_;
 = 0
 _EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '849';
+      sec-mem-desc-line = '847';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -2933,7 +2953,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
   cp-filename  = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-  cp-fileline  = '824';
+  cp-fileline  = '822';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 QN8066 Class.
 _EnD_oF_dEf_TeXt_;
@@ -6363,6 +6383,29 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'variable';
+      sec-mem-id   = 'group__group00_1a5b495a338a1373a95d2a744bc259df0e';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+unsigned char
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'byteContent';
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
+      sec-mem-desc-line = '708';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
+        sec-mem-ref-line = '1309';
+        sec-mem-ref-name = 'QN8066::rdsSendGroup';
+    };
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'variable';
       sec-mem-id   = 'group__group00_1a01d9896fe5e526cc8e82195b32676a13';
       sec-mem-virt = normal;
       sec-mem-prot = public;
@@ -6371,7 +6414,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'pi';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '708';
+      sec-mem-desc-line = '709';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -6474,7 +6517,7 @@ struct RDS_BLOCK2::
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'commonFields';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '766';
+      sec-mem-desc-line = '767';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -6492,7 +6535,7 @@ struct RDS_BLOCK2::
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'group0Field';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '778';
+      sec-mem-desc-line = '779';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -6510,13 +6553,36 @@ struct RDS_BLOCK2::
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'group2Field';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '788';
+      sec-mem-desc-line = '789';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
+    }; /* sec-member */
+    sec-member = {
+      sec-mem-kind = 'variable';
+      sec-mem-id   = 'group__group00_1ac38071e5081a5747ecfb56b889c218f0';
+      sec-mem-virt = normal;
+      sec-mem-prot = public;
+      sec-mem-type = <<_EnD_oF_dEf_TeXt_
+unsigned char
+_EnD_oF_dEf_TeXt_;
+      sec-mem-name = 'byteContent';
+      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
+      sec-mem-desc-line = '790';
+      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+
+_EnD_oF_dEf_TeXt_;
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
+        sec-mem-ref-line = '1309';
+        sec-mem-ref-name = 'QN8066::rdsSendGroup';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'variable';
@@ -6528,7 +6594,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'raw';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '789';
+      sec-mem-desc-line = '791';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Raw 16-bit representation.
 _EnD_oF_dEf_TeXt_;
@@ -6538,7 +6604,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
   cp-filename  = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-  cp-fileline  = '756';
+  cp-fileline  = '757';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 Block 2 (RDS_BLOCK2 data type)
 _EnD_oF_dEf_TeXt_;
@@ -6596,7 +6662,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'additionalData';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '760';
+      sec-mem-desc-line = '761';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Additional data bits, depending on the group.
 _EnD_oF_dEf_TeXt_;
@@ -6614,7 +6680,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'textABFlag';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '761';
+      sec-mem-desc-line = '762';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Do something if it chanhes from binary "0" to binary "1" or vice-versa.
 _EnD_oF_dEf_TeXt_;
@@ -6632,7 +6698,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'programType';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '762';
+      sec-mem-desc-line = '763';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 PTY (Program Type) code.
 _EnD_oF_dEf_TeXt_;
@@ -6650,7 +6716,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'trafficProgramCode';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '763';
+      sec-mem-desc-line = '764';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
 _EnD_oF_dEf_TeXt_;
@@ -6668,7 +6734,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'versionCode';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '764';
+      sec-mem-desc-line = '765';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 (B0) => 0=A; 1=B
 _EnD_oF_dEf_TeXt_;
@@ -6686,7 +6752,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'groupType';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '765';
+      sec-mem-desc-line = '766';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Group Type code.
 _EnD_oF_dEf_TeXt_;
@@ -6696,7 +6762,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
   cp-filename  = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-  cp-fileline  = '758';
+  cp-fileline  = '759';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -6719,7 +6785,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'address';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '770';
+      sec-mem-desc-line = '771';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Depends on Group Type and Version codes. If 0A or 0B it is the Text Segment Address.
 _EnD_oF_dEf_TeXt_;
@@ -6737,7 +6803,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'DI';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '771';
+      sec-mem-desc-line = '772';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Decoder Control bit.
 _EnD_oF_dEf_TeXt_;
@@ -6755,7 +6821,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'MS';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '772';
+      sec-mem-desc-line = '773';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Music/Speech.
 _EnD_oF_dEf_TeXt_;
@@ -6773,7 +6839,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'TA';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '773';
+      sec-mem-desc-line = '774';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Traffic Announcement.
 _EnD_oF_dEf_TeXt_;
@@ -6791,7 +6857,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'programType';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '774';
+      sec-mem-desc-line = '775';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 PTY (Program Type) code.
 _EnD_oF_dEf_TeXt_;
@@ -6809,7 +6875,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'trafficProgramCode';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '775';
+      sec-mem-desc-line = '776';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
 _EnD_oF_dEf_TeXt_;
@@ -6827,7 +6893,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'versionCode';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '776';
+      sec-mem-desc-line = '777';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 (B0) => 0=A; 1=B
 _EnD_oF_dEf_TeXt_;
@@ -6845,7 +6911,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'groupType';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '777';
+      sec-mem-desc-line = '778';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Group Type code.
 _EnD_oF_dEf_TeXt_;
@@ -6855,7 +6921,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
   cp-filename  = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-  cp-fileline  = '768';
+  cp-fileline  = '769';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -6878,7 +6944,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'address';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '782';
+      sec-mem-desc-line = '783';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Depends on Group Type and Version codes. If 2A or 2B it is the Text Segment Address.
 _EnD_oF_dEf_TeXt_;
@@ -6896,7 +6962,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'textABFlag';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '783';
+      sec-mem-desc-line = '784';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Do something if it changes from binary "0" to binary "1" or vice-versa.
 _EnD_oF_dEf_TeXt_;
@@ -6914,7 +6980,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'programType';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '784';
+      sec-mem-desc-line = '785';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 PTY (Program Type) code.
 _EnD_oF_dEf_TeXt_;
@@ -6932,7 +6998,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'trafficProgramCode';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '785';
+      sec-mem-desc-line = '786';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 (TP) => 0 = No Traffic Alerts; 1 = Station gives Traffic Alerts
 _EnD_oF_dEf_TeXt_;
@@ -6950,7 +7016,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'versionCode';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '786';
+      sec-mem-desc-line = '787';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 (B0) => 0=A; 1=B
 _EnD_oF_dEf_TeXt_;
@@ -6968,7 +7034,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'groupType';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '787';
+      sec-mem-desc-line = '788';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 Group Type code.
 _EnD_oF_dEf_TeXt_;
@@ -6978,7 +7044,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
   cp-filename  = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-  cp-fileline  = '780';
+  cp-fileline  = '781';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -6993,13 +7059,13 @@ union = {
     sec-kind = 'public-attrib';
     sec-member = {
       sec-mem-kind = 'variable';
-      sec-mem-id   = 'group__group00_1a0bb3021673101192811b976a2ec2b072';
+      sec-mem-id   = 'group__group00_1ace9d490a7f406f5b4dc1cb800067ff0c';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
-struct RDS_BLOCK3::
+unsigned char
 _EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'field';
+      sec-mem-name = 'byteContent';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
       sec-mem-desc-line = '799';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
@@ -7008,6 +7074,11 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
+        sec-mem-ref-line = '1309';
+        sec-mem-ref-name = 'QN8066::rdsSendGroup';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'variable';
@@ -7029,7 +7100,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
   }; /* cp-section */
   cp-filename  = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-  cp-fileline  = '796';
+  cp-fileline  = '798';
   cp-briefdesc = <<_EnD_oF_dEf_TeXt_
 Block 3 (RDS_BLOCK3 data type)
 _EnD_oF_dEf_TeXt_;
@@ -7037,39 +7108,6 @@ _EnD_oF_dEf_TeXt_;
 
 _EnD_oF_dEf_TeXt_;
 }; /* union */
-struct = {
-  cp-id     = 'group__group00';
-  cp-name   = 'RDS_BLOCK3.field';
-  cp-section = {
-    sec-kind = 'public-attrib';
-    sec-member = {
-      sec-mem-kind = 'variable';
-      sec-mem-id   = 'group__group00_1af8b7e60d8c0d932df07b78d23e369723';
-      sec-mem-virt = normal;
-      sec-mem-prot = public;
-      sec-mem-type = <<_EnD_oF_dEf_TeXt_
-unsigned char
-_EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'content';
-      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '798';
-      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* sec-member */
-  }; /* cp-section */
-  cp-filename  = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-  cp-fileline  = '797';
-  cp-briefdesc = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-  cp-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-}; /* struct */
 union = {
   cp-id     = 'group__group00';
   cp-name   = 'RDS_BLOCK4';
@@ -7077,21 +7115,26 @@ union = {
     sec-kind = 'public-attrib';
     sec-member = {
       sec-mem-kind = 'variable';
-      sec-mem-id   = 'group__group00_1a41f25faa667e66e3e9cd8c07585503e0';
+      sec-mem-id   = 'group__group00_1a2ebd666d81ec4045210e00afb9358f4f';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
-struct RDS_BLOCK4::
+unsigned char
 _EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'field';
+      sec-mem-name = 'byteContent';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '810';
+      sec-mem-desc-line = '808';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
+      sec-mem-referencedby = {
+        sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
+        sec-mem-ref-line = '1309';
+        sec-mem-ref-name = 'QN8066::rdsSendGroup';
+    };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'variable';
@@ -7103,7 +7146,7 @@ uint16_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'raw';
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '811';
+      sec-mem-desc-line = '809';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
 
 _EnD_oF_dEf_TeXt_;
@@ -7121,39 +7164,6 @@ _EnD_oF_dEf_TeXt_;
 
 _EnD_oF_dEf_TeXt_;
 }; /* union */
-struct = {
-  cp-id     = 'group__group00';
-  cp-name   = 'RDS_BLOCK4.field';
-  cp-section = {
-    sec-kind = 'public-attrib';
-    sec-member = {
-      sec-mem-kind = 'variable';
-      sec-mem-id   = 'group__group00_1af8b7e60d8c0d932df07b78d23e369723';
-      sec-mem-virt = normal;
-      sec-mem-prot = public;
-      sec-mem-type = <<_EnD_oF_dEf_TeXt_
-unsigned char
-_EnD_oF_dEf_TeXt_;
-      sec-mem-name = 'content';
-      sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-      sec-mem-desc-line = '809';
-      sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-      sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-    }; /* sec-member */
-  }; /* cp-section */
-  cp-filename  = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
-  cp-fileline  = '808';
-  cp-briefdesc = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-  cp-documentation = <<_EnD_oF_dEf_TeXt_
-
-_EnD_oF_dEf_TeXt_;
-}; /* struct */
 file = {
   file-id   = '_q_n8066_8cpp';
   file-name = 'QN8066.cpp';
