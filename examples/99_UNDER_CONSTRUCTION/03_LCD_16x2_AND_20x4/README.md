@@ -1,13 +1,17 @@
 # QN8066 Arduino Library and LCD 16x02 examples
 
-![UNDER CONSTRUCTION...](../../extras/images/under_construction.png)
-
 
 ## Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic
 
 The following schematic illustrates the connections between the Arduino Nano, the "KIT DIY 5~7W FM TRANSMITTER," and either the LCD 16x2 or the LCD 20x4. It is important to note that both the LCD 16x2 and the LCD 20x4 have the same pin configuration. This means that there are no electrical changes when using one or the other.
 
-![Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic](./schematic.png)
+![Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic](./schematic_nano.png)
+
+
+### Regular LCD16x02 (5V) 
+
+
+![Regular LCD16x02 (5V)](./../../extras/images/lcd16x02_regular_version.jpg)
 
 
 ## Wire up on Arduino UNO, Nano or Pro mini
@@ -47,7 +51,7 @@ The following schematic illustrates the connections between the Arduino Nano, th
 
 #### (1) Communication Problem Between the KIT and the Microcontroller with PWM
 
-**During various experiments, it was observed that several commands sent to the QN8066 (via I2C) had no effect. For instance, attempts to switch from "Stereo" to "Mono" mode, change the transmission frequency, among other commands, did not alter the transmitter's status. To work around this issue, the PWM must be disabled first, meaning it should not generate a pulse (0% duty cycle). After the command is sent, the PWM signal can be re-enabled.**
+**During various experiments, it was observed that several commands sent to the QN8066 (via I2C) had no effect. For instance, attempts to switch from "Stereo" to "Mono" mode, change the transmission frequency, among other commands, did not alter the transmitter's status. To work around this issue, the PWM must be disabled first, meaning it should not generate a pulse (0% duty cycle). After the command is sent, the PWM signal can be re-enabled. Doing that the system works well.**
 
 #### (2) Compatibility Between the KIT and 5V Microcontroller Such as the Arduino Nano
 
@@ -55,6 +59,54 @@ The following schematic illustrates the connections between the Arduino Nano, th
 
 **The most straightforward and suitable solution, though not very practical, would be to modify the Arduino Nano to operate at 3.3V (by changing the crystal to 8MHz, among other modifications, including changing the bootloader). The most viable solution would be to use an "Arduino Pro Mini 3.3V". This way, no changes or adaptations would be necessary to connect the kit to the microcontroller**.
 
-**For the Arduino Nano, the adaptation used in this example involves using a 3.3V to 5V voltage converter to power the Arduino and placing two 150-ohm resistors in series with the I2C bus. Although this is not best practice, it works to some extent. If you insist in using a Arduino Nano, a more appropriate solution would be to use a bidirectional I2C level shifter to make the I2C communication compatible with both the Arduino Nano and the kit**.
+**For the Arduino Nano, the adaptation used in this example involves using a 3.3V to 5V voltage converter to power the Arduino and placing two 150-ohm resistors in series with the I2C bus and two pull-up 10K resistors connected to the I2C wires.  Although this is not best practice, it works to some extent. If you insist in using a Arduino Nano, a more appropriate solution would be to use a bidirectional I2C level shifter to make the I2C communication compatible with both the Arduino Nano and the kit**.
 
 **Finally, the Arduino Nano was used in this example because it is widely used by most hobbyists. It's likely that many already have one at home, or even an Arduino Uno, which shares the same architecture**.
+
+
+#### An alternative of connecting Arduino Nano and the KIT 
+
+An alternative version that worked in my experiments, using a makeshift adaptation, does not follow the best practices for compatibility.
+
+![An alternative version that works, using a makeshift adaptation, that does not follow the best practices for compatibility](./schematic_alternative_i2c_connection.png)
+
+
+## Arduino Pro mini schematic 
+
+An alternative version that worked in my experiments uses a makeshift adaptation and does not follow best practices for compatibility.
+
+
+![Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic](./schematic_arduino_pro_mini_version.png)
+
+
+### LCD16x02 3.3V Version
+
+![LCD16x02 3.3V Version - 01](./../../extras/images/lcd16x02_3V3.jpg)
+
+### LCD16x02 5V modified to operate with 3.3V
+
+![LCD16x02 3.3V Version - 01](./../../extras/images/lcd16x02_3V3_modification.jpg)
+
+
+The IC labeled "7660 AIBAZ DNY17P" is commonly known as the ICL7660. It is a DC-DC voltage converter that functions as a voltage inverter, converting a positive voltage to a negative voltage. This chip is widely used in applications where a negative voltage is needed from a positive power supply. In this case, you use it as a Voltage Doubler. 
+
+
+  3.3V ---+---[7660]---+----> +6.6V (VOUT)
+
+          |            |
+
+         [C1]         [C2]
+
+          |            |
+
+         GND          GND
+
+C1 and C2 are 10µF capacitors.
+
+
+
+## Videos related to this example
+
+* [QN8066 Arduino Library by PU2CLR - Part 2](https://youtu.be/3V40yuwN-Vk?si=ZDTcvcty_OK6Nm9N)
+* [QN8066 Arduino Library by PU2CLR - Part 1](https://youtu.be/C69MqLq1cw8?si=xd4P6nIfzfCbaN0_)
+* [QN8066 RX/TX FM DSP Arduino Library](https://youtu.be/cNQA_2QtBZk?si=Li1ocRp1A5LYIRh8)
