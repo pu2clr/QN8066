@@ -705,6 +705,7 @@ typedef union {
     uint8_t programId : 4 ;
     uint8_t countryId : 4 ;
   } field;
+  unsigned char byteContent[2];
   uint16_t pi;   // pi Code
 } RDS_BLOCK1;
 
@@ -786,7 +787,7 @@ typedef union
         uint16_t versionCode : 1;            //!< (B0) => 0=A; 1=B
         uint16_t groupType : 4;              //!< Group Type code.
     } group2Field;
-    
+    unsigned char byteContent[2];
     uint16_t raw;                            //!< Raw 16-bit representation
 } RDS_BLOCK2;
 
@@ -795,10 +796,8 @@ typedef union
  * @brief Block 3 (RDS_BLOCK3 data type)
  */
 typedef union {
-    struct {
-      unsigned char content[2];
-    } field;
-    uint16_t raw;
+  unsigned char byteContent[2];
+  uint16_t raw;
 } RDS_BLOCK3;
 
 /**
@@ -806,10 +805,8 @@ typedef union {
  * @brief Block 4 (RDS_BLOCK4 data type)
  */
 typedef union {
-    struct {
-      unsigned char content[2];
-    } field;
-    uint16_t raw;
+  unsigned char byteContent[2];
+  uint16_t raw;
 } RDS_BLOCK4;
 
 
@@ -971,7 +968,7 @@ public:
   void rdsSetFrequencyDerivation(uint8_t freq = 6);
   void rdsSetTxLineIn(bool value = 0); 
 
-  void rdsSendGroup(uint16_t blockA, uint16_t blockB, uint16_t blockC, uint16_t blockD);
+  void rdsSendGroup(RDS_BLOCK1 blockA, RDS_BLOCK2 blockB, RDS_BLOCK3 blockC, RDS_BLOCK4 blockD);
   void rdsSendPS(char* ps = NULL); 
 
 

@@ -1282,7 +1282,8 @@ void QN8066::rdsClearBuffer() {
   uint8_t toggle  = this->rdsGetTxUpdated(); 
   uint8_t count = 0;  
 
-  this->rdsSendGroup(0,0,0,0);
+  for (uint8_t i = QN_TX_RDSD0; i <= QN_TX_RDSD7; i++ )
+    this->setRegister(i, 0 );
 
   delay(87); 
   // checks for the RDS_TXUPD . 
@@ -1305,24 +1306,24 @@ void QN8066::rdsClearBuffer() {
  * @param block3 
  * @param block4  
  */
-void QN8066::rdsSendGroup(uint16_t block1, uint16_t block2, uint16_t block3, uint16_t block4) {
+void QN8066::rdsSendGroup(RDS_BLOCK1 block1, RDS_BLOCK2 block2, RDS_BLOCK3 block3, RDS_BLOCK4 block4) {
 
   uint8_t toggle  = this->rdsGetTxUpdated(); 
   uint8_t count = 0;
 
   this->rdsSendError = 0;
 
-  this->setRegister(QN_TX_RDSD0, block1>>8 );
-  this->setRegister(QN_TX_RDSD1, block1 & 0xFF);
+  this->setRegister(QN_TX_RDSD0, block1.byteContent[1]); // Most Significant Byte First.
+  this->setRegister(QN_TX_RDSD1, block1.byteContent[0]);
 
-  this->setRegister(QN_TX_RDSD2, block2>>8 );
-  this->setRegister(QN_TX_RDSD3, block2 & 0xFF);
+  this->setRegister(QN_TX_RDSD2, block2.byteContent[1]); // Most Significant Byte First.
+  this->setRegister(QN_TX_RDSD3, block2.byteContent[0]);
   
-  this->setRegister(QN_TX_RDSD4, block3>>8 );
-  this->setRegister(QN_TX_RDSD5, block3 & 0xFF);
+  this->setRegister(QN_TX_RDSD4, block3.byteContent[0]); // First character first 
+  this->setRegister(QN_TX_RDSD5, block3.byteContent[1]);
   
-  this->setRegister(QN_TX_RDSD6, block4>>8 );
-  this->setRegister(QN_TX_RDSD7, block4 & 0xFF);
+  this->setRegister(QN_TX_RDSD6, block4.byteContent[0]);
+  this->setRegister(QN_TX_RDSD7, block4.byteContent[1]);
 
   // It should not be here. Judiging by the data sheet, the use must  
   // wait for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
@@ -1366,7 +1367,7 @@ void QN8066::rdsSendPS(char* ps) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
-  // RDS_BLOCK3 b3;
+  RDS_BLOCK3 b3;
   RDS_BLOCK4 b4;
 
   this->rdsSetStationName(ps);
@@ -1385,12 +1386,13 @@ void QN8066::rdsSendPS(char* ps) {
   b2.group0Field.trafficProgramCode = this->rdsTP;  
   b2.group0Field.versionCode = 1; // 0B - Station Name
   b2.group0Field.groupType = 0;  
+  b3.raw = b1.pi;
 
   for ( uint8_t k  = 0; k < 3; k++) { // Just a test. To be removed
     for (uint8_t i = 0; i < 8; i+=2) { 
-      b4.field.content[1] = ps[i]; 
-      b4.field.content[0] = ps[i+1];
-      this->rdsSendGroup(b1.pi, b2.raw, b1.pi, b4.raw);
+      b4.byteContent[0] = ps[i]; 
+      b4.byteContent[1] = ps[i+1];
+      this->rdsSendGroup(b1, b2, b3, b4);
       b2.group0Field.address++; 
     }
     // delay(87); // to be removed 
@@ -1425,12 +1427,12 @@ void QN8066::rdsSendRTMessage(char *rt) {
     for (uint8_t i = 0; i < numGroups; i++) {
         block2.group2Field.address = i; 
         RDS_BLOCK3 block3; 
-        block3.field.content[1] = rt[i * 4];
-        block3.field.content[0] = rt[i * 4 + 1];
+        block3.byteContent[0] = rt[i * 4];
+        block3.byteContent[1] = rt[i * 4 + 1];
         RDS_BLOCK4 block4;
-        block4.field.content[1] = rt[i * 4 + 2];
-        block4.field.content[0] = rt[i * 4 + 3]; 
-        this->rdsSendGroup(block1.pi, block2.raw, block3.raw, block4.raw);
+        block4.byteContent[0] = rt[i * 4 + 2];
+        block4.byteContent[1] = rt[i * 4 + 3]; 
+        this->rdsSendGroup(block1, block2, block3, block4);
         delay(50);
     }
     toggle = !toggle;
