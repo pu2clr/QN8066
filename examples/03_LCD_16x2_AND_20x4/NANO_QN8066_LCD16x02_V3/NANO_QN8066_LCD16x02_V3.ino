@@ -378,6 +378,10 @@ void setup() {
     tx.rdsSetPTY(1);        // Set Program Type: 1 represents News, modify as needed or make it dynamic
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
+
+  // Adjust clock divider (Timer0) 
+  // TCCR0B = (TCCR0B & 0b11111000) | 0x02; // Increases the clock of PWM to 62.5 kHz.
+
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
 }
 
