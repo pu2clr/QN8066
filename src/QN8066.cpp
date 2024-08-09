@@ -1416,6 +1416,9 @@ void QN8066::rdsSendRTMessage(char *rt) {
     RDS_BLOCK1 block1;
     block1.pi = this->rdsPI;
     static bool toggle = false;
+
+    toggle = !toggle;
+
     RDS_BLOCK2 block2; 
     block2.raw = 0;
     block2.group2Field.textABFlag = toggle;
@@ -1433,9 +1436,8 @@ void QN8066::rdsSendRTMessage(char *rt) {
         block4.byteContent[0] = rt[i * 4 + 2];
         block4.byteContent[1] = rt[i * 4 + 3]; 
         this->rdsSendGroup(block1, block2, block3, block4);
-        delay(50);
+        // delay(50);
     }
-    toggle = !toggle;
 }
 
 
@@ -1493,6 +1495,20 @@ void QN8066::resetFsm() {
   system1.raw = this->getRegister(QN_SYSTEM1);
   system1.arg.recal = 1;
   this->setRegister(QN_SYSTEM1, system1.raw);
+}
+
+/**
+ * @ingroup group10 FSM RESET
+ * @brief Request Immediately enter Standby mode whatever state chip is in.
+ * @details Note: “stnby” has the highest priority. 
+ * @param value - true or false
+ */
+void QN8066::setStnby(bool value) {
+  qn8066_system1 system1;
+  system1.raw = this->getRegister(QN_SYSTEM1);
+  system1.arg.stnby = value;
+  this->setRegister(QN_SYSTEM1, system1.raw);
+
 }
 
 

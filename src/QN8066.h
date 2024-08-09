@@ -954,6 +954,10 @@ public:
   inline void resetAudioPeak() {this->setToggleTxPdClear();};
   int  getAudioPeakValue();
 
+
+  void setStnby(bool value);
+
+
   // RDS TX
 
   void rdsSetMode(uint8_t mode); 
