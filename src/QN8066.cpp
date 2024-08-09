@@ -1328,7 +1328,7 @@ void QN8066::rdsSendGroup(RDS_BLOCK1 block1, RDS_BLOCK2 block2, RDS_BLOCK3 block
   // It should not be here. Judiging by the data sheet, the use must  
   // wait for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
   this->rdsSetTxToggle(); 
-   delay(65); // This time is very critical and may need to be tuned 
+   delay(70); // This time is very critical and may need to be tuned 
   // checks for the RDS_TXUPD . 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(1);

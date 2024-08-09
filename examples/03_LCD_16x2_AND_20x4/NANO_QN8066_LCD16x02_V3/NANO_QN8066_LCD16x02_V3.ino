@@ -738,6 +738,7 @@ void sendRDS() {
   // PS refreshing control
   if ((millis() - rdsTimePS) > RDS_PS_REFRESH_TIME) {
     if (idxRdsPS > lastRdsPS) idxRdsPS = 0;
+    delay(100);
     tx.rdsSendPS(rdsPSmsg[idxRdsPS]);
     idxRdsPS++;
     rdsTimePS = millis();
@@ -746,6 +747,7 @@ void sendRDS() {
   // RT refreshing control
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
+    delay(100);
     tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);
     idxRdsRT++;
     rdsTimeRT = millis();
