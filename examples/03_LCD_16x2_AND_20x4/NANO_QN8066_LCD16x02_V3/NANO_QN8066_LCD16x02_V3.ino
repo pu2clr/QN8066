@@ -279,18 +279,18 @@ KeyValue keyValue[] = {
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 // Station Name (PS) messages
-char *rdsPSmsg[] = { (char *)"PU2CLR  ",
-                     (char *)"QN8066  ",
-                     (char *)"ARDUINO ",
-                     (char *)"LIBRARY ",
-                     (char *)"FM TX   " };
+char *rdsPSmsg[] = { (char *)"PU2CLR \r",
+                     (char *)"QN8066 \r",
+                     (char *)"ARDUINO\r",
+                     (char *)"LIBRARY\r",
+                     (char *)"FM TX  \r" };
 
 // Radio Text (RT) messages
-char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY   ",
-                     (char *)"FM TRANSMITTER WITH RDS SERVICE ",
-                     (char *)"https://github.com/pu2clr/QN8066",
-                     (char *)"BE MEMBER  FACEBOOK GROUP QN8066",
-                     (char *)"QN8066 HOMEBREW FM TRANSMITTER " };
+char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY  \r",
+                     (char *)"FM TRANSMITTER WITH RDS SERVICE\r",
+                     (char *)"github.com/pu2clr/QN8066       \r",
+                     (char *)"BE A MEMBER of QN80XX FM Transmitters & Receivers Enthusiasts\r",
+                     (char *)"QN8066 HOMEBREW FM TRANSMITTER \r" };
 
 const uint8_t lastRdsPS = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1;
 const uint8_t lastRdsRT = (sizeof(rdsRTmsg) / sizeof(rdsRTmsg[0])) - 1;

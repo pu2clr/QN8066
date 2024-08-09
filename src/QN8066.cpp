@@ -1328,7 +1328,7 @@ void QN8066::rdsSendGroup(RDS_BLOCK1 block1, RDS_BLOCK2 block2, RDS_BLOCK3 block
   // It should not be here. Judiging by the data sheet, the use must  
   // wait for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
   this->rdsSetTxToggle(); 
-   delay(70); // This time is very critical and may need to be tuned 
+   delay(50); // This time is very critical and may need to be tuned 
   // checks for the RDS_TXUPD . 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(1);
@@ -1427,6 +1427,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
     block2.group2Field.versionCode = 0; // Version A
     block2.group2Field.groupType = 2;  // Group 2
 
+    for ( uint8_t k  = 0; k < 3; k++) { // Just a test. To be removed
     for (uint8_t i = 0; i < numGroups; i++) {
         block2.group2Field.address = i; 
         RDS_BLOCK3 block3; 
@@ -1436,7 +1437,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
         block4.byteContent[0] = rt[i * 4 + 2];
         block4.byteContent[1] = rt[i * 4 + 3]; 
         this->rdsSendGroup(block1, block2, block3, block4);
-        // delay(50);
+    }
     }
 }
 
