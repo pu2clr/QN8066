@@ -289,7 +289,7 @@ char *rdsPSmsg[] = { (char *)"PU2CLR \r",
 char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY  \r",
                      (char *)"FM TRANSMITTER WITH RDS SERVICE\r",
                      (char *)"github.com/pu2clr/QN8066       \r",
-                     (char *)"BE A MEMBER of QN80XX FM Transmitters & Receivers Enthusiasts\r",
+                     (char *)"FM Transmitters Enthusiasts    \r",
                      (char *)"QN8066 HOMEBREW FM TRANSMITTER \r" };
 
 const uint8_t lastRdsPS = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1;
