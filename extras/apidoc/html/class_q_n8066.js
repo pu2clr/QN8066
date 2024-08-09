@@ -40,6 +40,7 @@ var class_q_n8066 =
     [ "setToggleTxPdClear", "group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886", null ],
     [ "resetAudioPeak", "group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed", null ],
     [ "getAudioPeakValue", "group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc", null ],
+    [ "setStnby", "group__group10.html#gaf5d0674bf9692155c9bc8badb3162c7a", null ],
     [ "rdsSetMode", "group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a", null ],
     [ "rdsSet4KMode", "group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534", null ],
     [ "rdsInitTx", "group__group05.html#ga0811c7b248ce2d5b74f584f35907a455", null ],

@@ -104,6 +104,9 @@ Functions</h2></td></tr>
 <tr class="memitem:ga1cbeccfe43f36b25bf01692b25bd12c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7">QN8066::resetFsm</a> ()</td></tr>
 <tr class="memdesc:ga1cbeccfe43f36b25bf01692b25bd12c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the state to initial states and recalibrate all blocks.  <br /></td></tr>
 <tr class="separator:ga1cbeccfe43f36b25bf01692b25bd12c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaf5d0674bf9692155c9bc8badb3162c7a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group10.html#gaf5d0674bf9692155c9bc8badb3162c7a">QN8066::setStnby</a> (bool value)</td></tr>
+<tr class="memdesc:gaf5d0674bf9692155c9bc8badb3162c7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Request Immediately enter Standby mode whatever state chip is in.  <br /></td></tr>
+<tr class="separator:gaf5d0674bf9692155c9bc8badb3162c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -172,7 +175,7 @@ Functions</h2></td></tr>
 <div class="ttc" id="agroup__group02_html_gacc2e79aa0134a657191485184b2b603b"><div class="ttname"><a href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60, uint8_t inInpedance=1, uint8_t txAgcDig=0, uint8_t txAgcBuffer=1, uint8_t txSoftClip=0)</div><div class="ttdoc">QN8066 initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:194</div></div>
 <div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:274</div></div>
 <div class="ttc" id="agroup__group05_html_ga2d13af3ea121fee09799cc0277da0dc1"><div class="ttname"><a href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">QN8066::rdsTxEnable</a></div><div class="ttdeci">void rdsTxEnable(bool value)</div><div class="ttdoc">Transmitter RDS enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1125</div></div>
-<div class="ttc" id="agroup__group10_html_ga679e38373a2db0083d3f4bde4b6f2f9a"><div class="ttname"><a href="group__group10.html#ga679e38373a2db0083d3f4bde4b6f2f9a">QN8066::getFsmStateCode</a></div><div class="ttdeci">uint8_t getFsmStateCode()</div><div class="ttdoc">Get the FSM State Code.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1480</div></div>
+<div class="ttc" id="agroup__group10_html_ga679e38373a2db0083d3f4bde4b6f2f9a"><div class="ttname"><a href="group__group10.html#ga679e38373a2db0083d3f4bde4b6f2f9a">QN8066::getFsmStateCode</a></div><div class="ttdeci">uint8_t getFsmStateCode()</div><div class="ttdoc">Get the FSM State Code.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1483</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -193,6 +196,32 @@ Functions</h2></td></tr>
 
 <p>Resets the state to initial states and recalibrate all blocks. </p>
 <p>Reset the FSM. After this bit is de-asserted, FSM will go through all the power up and calibration sequence. </p>
+
+</div>
+</div>
+<a id="gaf5d0674bf9692155c9bc8badb3162c7a" name="gaf5d0674bf9692155c9bc8badb3162c7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf5d0674bf9692155c9bc8badb3162c7a">&#9670;&#160;</a></span>setStnby()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setStnby </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Request Immediately enter Standby mode whatever state chip is in. </p>
+<p>Note: “stnby” has the highest priority. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>- true or false </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
