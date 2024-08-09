@@ -286,6 +286,11 @@ char *rdsPSmsg[] = { (char *)"PU2CLR \r",
                      (char *)"FM TX  \r" };
 
 // Radio Text (RT) messages
+// Apparently, some receivers seem to work better when the special character 0xD (\r) 
+// is added at the end of the string (message). Therefore, although it is technically 
+// possible to work with messages up to 64 characters long, it is recommended to keep 
+// the message length within 32 characters by default, reserving the 32nd character for
+// the '\r' as shown below.
 char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY  \r",
                      (char *)"FM TRANSMITTER WITH RDS SERVICE\r",
                      (char *)"github.com/pu2clr/QN8066       \r",
