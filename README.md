@@ -26,16 +26,16 @@ I hold a Master's degree in Educational Technology from the Federal University o
 
 1. [Legal Compliance Guidelines](./#legal-compliance-guidelines)
 2. [Technical Overview of the QN8066 RX/TX Device (IC)](./#technical-overview-of-the-qn8066-rxtx-device-ic)
-4. [Why a QN8066 library for Arduino?](./#why-a-qn8066-library-for-arduino-)
-3. [Groups and Forums](./#groups-and-forums)
-3. [QN8066 Functional Blocks](./#qn8066-functional-blocks)
-4. [QN8066 PINOUT](./#qn8066-pinout)
-5. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
-6. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
-7. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-8. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
-9. [Donate](./#donate)
-10. [References](./#references)
+3. [Why a QN8066 library for Arduino?](./#why-a-qn8066-library-for-arduino)
+4. [Groups and Forums](./#groups-and-forums)
+5. [QN8066 Functional Blocks](./#qn8066-functional-blocks)
+6. [QN8066 PINOUT](./#qn8066-pinout)
+7. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
+8. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
+9. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+10. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
+11. [Donate](./#donate)
+12. [References](./#references)
 
 ## Legal Compliance Guidelines
 
