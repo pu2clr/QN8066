@@ -34,8 +34,9 @@ I hold a Master's degree in Educational Technology from the Federal University o
 8. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
 9. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
 10. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
-11. [Donate](./#donate)
-12. [References](./#references)
+11. [Boards where this library can be compiled](./#boards-where-this-library-can-be-compiled)
+12. [Donate](./#donate)
+13. [References](./#references)
 
 ## Legal Compliance Guidelines
 
@@ -117,6 +118,10 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 2. **PLL Synthesizer**: The phase-locked loop (PLL) synthesizer ensures stable frequency generation and accurate tuning.
 3. **Audio Processing**: Includes both analog and digital audio processing units to enhance sound quality and support various audio formats.
 4. **Power Management**: Advanced power management features optimize power consumption, making the QN8066 ideal for portable applications.
+
+### Attention
+
+* __The Logic signals level of the QN8066 device works from 1.6V to 3.6V (see Datasheet, ELECTRICAL SPECIFICATIONS, section Recommended Operating Conditions). If you are using a 5V Arduino board, that Arduino will send 5V signals to the QN8066 device through the digital pins and the I2C bus. That configuration can make the system unstable or damage the QN8066 device. To fix this, use a logic shifter chip that converts between 3.3V and 5V logic.__  
 
 
 
@@ -313,7 +318,7 @@ It is important to highlight that this library was not developed exclusively to 
 In a new project involving the QN8066, I believe a more stable approach would be not to work with power levels above ½W on the same board. An additional amplification module could be added separately from the QN8066 circuit. The organization of the printed circuit board is also a determining factor in improving the stability of the system. Preferably, the communication circuit of the microcontroller with the QN8066 should be as far away as possible from the RF circuit. The appropriate values for the pull-up resistors for the I2C bus is a variable that deserves attention. These values may depend on the length of the bus and other I2C devices that may be connected to the circuit. In my experiments, I used 10K pull-up resistors. However, lower resistance values can be tested and may further improve the stability of the system. Consider shielding the Display and microcontroller circuit so that unwanted signals and interference do not propagate to the QN8066 circuit.
 
 
-## Boards where this library should be compiled
+## Boards where this library can be compiled
 
 This library can be useful to develop cross-platform software. 
 
