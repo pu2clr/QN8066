@@ -26,6 +26,7 @@ I hold a Master's degree in Educational Technology from the Federal University o
 
 1. [Legal Compliance Guidelines](./#legal-compliance-guidelines)
 2. [Technical Overview of the QN8066 RX/TX Device (IC)](./#technical-overview-of-the-qn8066-rxtx-device-ic)
+4. [Why a QN8066 library for Arduino?](./#why-a-qn8066-library-for-arduino-)
 3. [Groups and Forums](./#groups-and-forums)
 3. [QN8066 Functional Blocks](./#qn8066-functional-blocks)
 4. [QN8066 PINOUT](./#qn8066-pinout)
@@ -61,6 +62,18 @@ There is a Facebook group called [QN80XX FM Transmitters & Receivers Enthusiasts
 
 * __Mr. Grazianny Carvalho Tavares__ - I would like to thank Mr. Grazianny Carvalho Tavares, PU7MGR, for introducing me to the QN8066 and encouraging me to develop this library. Mr. Grazianny also played a crucial role in helping me understand various concepts about FM modulation, audio quality criteria, as well as in testing the fundamental functions implemented in this library using equipment for precise value measurements.
 
+
+## Why a QN8066 library for Arduino?
+
+Technically, no Arduino application strictly requires a library. In some cases, avoiding libraries might even be the right decision. However, there are several compelling reasons to consider using them.
+
+Libraries often simplify the design and maintenance of code, and they can make your projects more portable by implementing the necessary functionality across multiple hardware platforms.
+
+For example, if you want to use an LCD or another display device in a project that monitors temperature and atmospheric pressure, there are many excellent libraries available for Arduino users. These libraries usually include most, if not all, of the features you might need. Re-inventing the wheel by not using a library generally doesn't make sense—unless you need a feature that no existing library supports. Using a library is often the smarter choice, particularly when it can simplify porting your code to different hardware.
+
+Utilizing a library can reduce programming complexity and enhance the robustness of your application. It simplifies life not only for other developers but also for yourself. You don't need to be a software engineer to see the value in this. A library is similar to an integrated circuit (IC); while you could manually implement the functionality of many ICs in a circuit, doing so would significantly increase the cost, complexity, size, and potential for failure of your project. Often, it's better to abstract certain functions inside a ready-made IC. The user only needs to know how to interact with the chip, not how the chip itself is designed.
+
+Finally, if you're already using libraries to handle the I2C bus (Wire.h), TFT or OLED displays, SPI devices, and Serial UART communication, it makes sense to use a library to manage the QN8066 device as well. The QN8066 Arduino Library can add convenience, development speed, and robustness to your project. Unlike closed-source solutions, this library is open-source, allowing you to learn from and modify the code as needed.
 
 
 ## Technical Overview of the QN8066 RX/TX Device (IC)
