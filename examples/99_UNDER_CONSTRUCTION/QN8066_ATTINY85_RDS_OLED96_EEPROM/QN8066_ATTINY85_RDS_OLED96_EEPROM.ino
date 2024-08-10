@@ -1,5 +1,8 @@
 /*
-   
+  This sketch is an example of using the QN8066 library for Arduino to run on the ATtiny85 and OLED. Learn more details below.
+  It is important to highlight some limitations regarding the number of pins available on the ATtiny85. This condition somewhat 
+  restricts the user interface. 
+
   ATtiny85, OLED and QN8066 wireup  
   | Device pin      | Attiny85 REF pin | Physical pin  | 
   | ----------------| -----------------| ------------- | 
@@ -69,85 +72,53 @@ void setup() {
 
   // Restores the latest frequency and audio mute statis saved into the EEPROM
   if (EEPROM.read(0) == VALID_DATA) {
-    currentFrequency = EEPROM.read(1) << 8;
-    currentFrequency |= EEPROM.read(2);
-    currentRDS = EEPROM.read(3);
-    currentMono = EEPROM.read(4);
+     readEEPROM(); 
   } else {
-    
+    writeEEPROM();    // Writes into EEPROM the default values 
   }
   tx.setTX(currentFrequency);
-  tx.setRDS(currentRDS);
+  tx.rdsTxEnable(currentRDS);
+  tx.setTxMono(currentMono);    //  1 = Mono; 0 = Stereo 
 
   showStatus();
 }
 
+// Write/update current information into EEPROM
+void writeEEPROM() {
+    EEPROM.update(0, VALID_DATA);               // Says that a valid frequency will be saved
+    EEPROM.update(1, currentFrequency >> 8);    // stores the current Frequency HIGH byte
+    EEPROM.update(2, currentFrequency & 0xFF);  // stores the current Frequency LOW byte
+    EEPROM.update(3, currentRDS);                
+    EEPROM.update(3, currentMono);                
+}  
+// Rescue the privious information from EEPROM
+void readEEPROM() {
+    currentFrequency = EEPROM.read(1) << 8;
+    currentFrequency |= EEPROM.read(2);
+    currentRDS = EEPROM.read(3);
+    currentMono = EEPROM.read(4);
+}
+
+// Shows the current status
 void showStatus() {
+  char strFrequency[7];
+  tx.convertToChar(currentFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
   oled.clear();
   oled.setCursor(0, 0);
-  oled.print(tx.formatCurrentFrequency());
-  tx.clearRdsBuffer();
-}
-
-void showRdsText(uint8_t col, uint8_t lin, char *rdsInfo) {
-  oled.setCursor(col, lin);
-  oled.clearToEOL();
-  oled.setCursor(col, lin);
-  oled.print(rdsInfo);
-}
-
-/**
- * Processes the RDS Station Name, Station Information, Program information and UTC
- * Runs scrolling to show Station Information and Program information
- */
-void processRdsInfo() {
-
-  long currentmillis = millis();
-  char aux[22];
-
-  // Shows station name on Display each three seconds.
-  if (ps != NULL && (currentmillis - delayPS) > 3000) {
-    showRdsText(60, 0, ps);
-    delayPS = currentmillis;
-  }
-
-  // Shows, with scrolling, station info on display each five seconds.
-  if (rt != NULL && strlen(rt) > 1 && (currentmillis - delayRT) > 1000) {
-    strncpy(aux, &rt[idxrt], 20);
-    aux[20] = 0;
-    showRdsText(0, 1, aux);
-    idxrt += 2;  // shift left two character
-    if (idxrt > 31) idxrt = 0;
-    delayRT = currentmillis;
-  }
-
-  // Shows, with scrolling, the  program information each a half seconds.
-  if (programInfo != NULL && strlen(programInfo) > 1 && (currentmillis - delayProgramInfo) > 500) {
-    // Process scrolling
-    strncpy(aux, &programInfo[idxProgInfo], 20);
-    aux[20] = 0;
-    idxProgInfo += 2;  // shift left two character
-    showRdsText(0, 2, aux);
-    if (idxProgInfo > 60) idxProgInfo = 0;
-    delayProgramInfo = currentmillis;
-  }
-  // Some stations broadcast spurious information. In this case, the displayed time may not make sense.
-  if (utcTime != NULL && strlen(utcTime) > 8 && (currentmillis - delayUtcTime) > 60000) {
-    showRdsText(0, 3, utcTime);
-    delayUtcTime = currentmillis;
-  }
+  oled.print(strFrequency);
 }
 
 void loop() {
+  /* 
   uint8_t bkey;
   bkey = ((digitalRead(CMD_UP) << 2) | (digitalRead(CMD_DOWN) << 1)) | digitalRead(CMD_MENU);  // 3, 5 or 6 (Pressed = 0 - considering just one button pressed)
   if (bkey != 0b111) {                                                                             // if none of them is pressed (not igual to 0b011, 0b101 or 0b110) then do nothing.
     if (bkey == 0b011)                                                                             // 3
-      tx.seek(RDA_SEEK_WRAP, RDA_CMD_UP, showStatus);
+      // UP
     else if (bkey == 0b101)  // 5
-      tx.seek(RDA_SEEK_WRAP, RDA_CMD_DOWN, showStatus);
-    else                          // 6
-      tx.setMute(!tx.isMuted());  // inverts the audio mute status
+      // UP
+    else                     // 6
+      // MENU
     showStatus();
     delay(200);
     // Saves the current frequency if it has changed.
@@ -157,10 +128,7 @@ void loop() {
     EEPROM.update(2, currentFrequency & 0xFF);  // stores the current Frequency LOW byte
     EEPROM.update(3, tx.isMuted());             // Stores the current audio mute status
   }
-
-  // Queries RDS information.
-  if (tx.getRdsAllData(&ps, &rt, &programInfo, &utcTime))
-    processRdsInfo();
+  */
 
   delay(5);
 }
