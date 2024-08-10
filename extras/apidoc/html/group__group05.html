@@ -125,6 +125,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gadae22b8660f72a32479c9fc6c891aff6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gadae22b8660f72a32479c9fc6c891aff6">QN8066::rdsClearBuffer</a> ()</td></tr>
 <tr class="memdesc:gadae22b8660f72a32479c9fc6c891aff6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear RDS register (Buffer)  <br /></td></tr>
 <tr class="separator:gadae22b8660f72a32479c9fc6c891aff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gadf9a03570842fe995bf7594b8964ed91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91">QN8066::rdsSetSyncTime</a> (uint8_t syncTime)</td></tr>
+<tr class="memdesc:gadf9a03570842fe995bf7594b8964ed91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the wait time for the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> to be available to send the next RDS block.  <br /></td></tr>
+<tr class="separator:gadf9a03570842fe995bf7594b8964ed91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0ae8735b4150105b54fc9ace31788e9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a">QN8066::rdsSetMode</a> (uint8_t mode)</td></tr>
 <tr class="memdesc:ga0ae8735b4150105b54fc9ace31788e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS Mode Selection.  <br /></td></tr>
 <tr class="separator:ga0ae8735b4150105b54fc9ace31788e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -445,6 +448,40 @@ Functions</h2></td></tr>
 
 <p>Clear RDS register (Buffer) </p>
 <p>Clear and Flushes the RDS Buffer.</p>
+
+</div>
+</div>
+<a id="gadf9a03570842fe995bf7594b8964ed91" name="gadf9a03570842fe995bf7594b8964ed91"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gadf9a03570842fe995bf7594b8964ed91">&#9670;&#160;</a></span>rdsSetSyncTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::rdsSetSyncTime </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>syncTime</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the wait time for the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> to be available to send the next RDS block. </p>
+<p>The default time is 60ms, but depending on the microcontroller you are using, it may be necessary to reduce this time. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">syncTime</td><td>- time in ms </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -994,7 +1031,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>groupTransmissionCoun</em> = <code>4</code>&#160;</td>
+          <td class="paramname"><em>groupTransmissionCount</em> = <code>4</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1008,7 +1045,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <p>Like rdsSendPS this method sends the Station Name or other 8 char message. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ps</td><td>- String with the name of Station or message limeted to 8 character. </td></tr>
-    <tr><td class="paramname">groupTransmissionCoun</td><td>- number of times the group 2A must be sent to ensure continuous and synchronized transmission (default 4)</td></tr>
+    <tr><td class="paramname">groupTransmissionCount</td><td>- number of times the group 2A must be sent to ensure continuous and synchronized transmission (default 4)</td></tr>
   </table>
   </dd>
 </dl>
@@ -1046,7 +1083,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">uint8_t&#160;</td>
-          <td class="paramname"><em>groupTransmissionCoun</em> = <code>4</code>&#160;</td>
+          <td class="paramname"><em>groupTransmissionCount</em> = <code>4</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1060,7 +1097,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">rt</td><td>- Radio Text (string of 32 character) </td></tr>
-    <tr><td class="paramname">groupTransmissionCoun</td><td>- number of times the group 2A must be sent to ensure continuous and synchronized transmission (default 4)</td></tr>
+    <tr><td class="paramname">groupTransmissionCount</td><td>- number of times the group 2A must be sent to ensure continuous and synchronized transmission (default 4)</td></tr>
   </table>
   </dd>
 </dl>

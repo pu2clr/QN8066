@@ -9,6 +9,7 @@ var group__group05 =
     [ "QN8066::rdsGetPS", "group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0", null ],
     [ "QN8066::rdsGetError", "group__group05.html#ga39fca640c878f92ed9c15f000620161e", null ],
     [ "QN8066::rdsClearBuffer", "group__group05.html#gadae22b8660f72a32479c9fc6c891aff6", null ],
+    [ "QN8066::rdsSetSyncTime", "group__group05.html#gadf9a03570842fe995bf7594b8964ed91", null ],
     [ "QN8066::rdsSetMode", "group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a", null ],
     [ "QN8066::rdsSet4KMode", "group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534", null ],
     [ "QN8066::rdsSetInterrupt", "group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c", null ],

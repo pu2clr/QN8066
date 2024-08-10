@@ -18,12 +18,13 @@ var searchData=
   ['rdssetpi_15',['rdsSetPI',['../group__group05.html#gabff1b72ccfef9356650ad42beb41f62c',1,'QN8066::rdsSetPI(uint16_t pi)'],['../group__group05.html#gae61a8f8f5af9015db21c0e283deaadb7',1,'QN8066::rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference=0)']]],
   ['rdssetpty_16',['rdsSetPTY',['../group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b',1,'QN8066']]],
   ['rdssetstationname_17',['rdsSetStationName',['../group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f',1,'QN8066']]],
-  ['rdssettp_18',['rdsSetTP',['../group__group05.html#gaa49bb620515b40371af65135ad35a759',1,'QN8066']]],
-  ['rdssettxlinein_19',['rdsSetTxLineIn',['../group__group05.html#ga27d182aa90e915b86139d0ae63350fc8',1,'QN8066']]],
-  ['rdssettxtoggle_20',['rdsSetTxToggle',['../group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7',1,'QN8066']]],
-  ['rdstxenable_21',['rdsTxEnable',['../group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1',1,'QN8066']]],
-  ['rdswriteblock_22',['rdsWriteBlock',['../class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3',1,'QN8066']]],
-  ['rdswritetxbuffer_23',['rdsWriteTxBuffer',['../group__group05.html#gad08b61283a37563712c2b6b8f59e5046',1,'QN8066']]],
-  ['resetaudiopeak_24',['resetAudioPeak',['../group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed',1,'QN8066']]],
-  ['resetfsm_25',['resetFsm',['../group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7',1,'QN8066']]]
+  ['rdssetsynctime_18',['rdsSetSyncTime',['../group__group05.html#gadf9a03570842fe995bf7594b8964ed91',1,'QN8066']]],
+  ['rdssettp_19',['rdsSetTP',['../group__group05.html#gaa49bb620515b40371af65135ad35a759',1,'QN8066']]],
+  ['rdssettxlinein_20',['rdsSetTxLineIn',['../group__group05.html#ga27d182aa90e915b86139d0ae63350fc8',1,'QN8066']]],
+  ['rdssettxtoggle_21',['rdsSetTxToggle',['../group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7',1,'QN8066']]],
+  ['rdstxenable_22',['rdsTxEnable',['../group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1',1,'QN8066']]],
+  ['rdswriteblock_23',['rdsWriteBlock',['../class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3',1,'QN8066']]],
+  ['rdswritetxbuffer_24',['rdsWriteTxBuffer',['../group__group05.html#gad08b61283a37563712c2b6b8f59e5046',1,'QN8066']]],
+  ['resetaudiopeak_25',['resetAudioPeak',['../group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed',1,'QN8066']]],
+  ['resetfsm_26',['resetFsm',['../group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7',1,'QN8066']]]
 ];
