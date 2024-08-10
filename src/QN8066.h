@@ -973,11 +973,11 @@ public:
   void rdsSetTxLineIn(bool value = 0); 
 
   void rdsSendGroup(RDS_BLOCK1 blockA, RDS_BLOCK2 blockB, RDS_BLOCK3 blockC, RDS_BLOCK4 blockD);
-  void rdsSendPS(char* ps = NULL); 
+  void rdsSendPS(char* ps = NULL, uint8_t groupTransmissionCount = 4); 
 
 
   void rdsSetStationName(char *stationName);
-  void rdsSendRTMessage(char *rtText);
+  void rdsSendRTMessage(char *rtText,  uint8_t groupTransmissionCount = 4);
   void rdsWriteBlock(uint8_t rdsRegister, uint16_t block); 
 
   /**

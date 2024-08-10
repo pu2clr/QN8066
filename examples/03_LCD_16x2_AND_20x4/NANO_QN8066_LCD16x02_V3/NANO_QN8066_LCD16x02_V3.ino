@@ -653,64 +653,34 @@ uint8_t doMenu(uint8_t idxMenu) {
       doPower();
       break;
     case 2:
-      runAction([](uint8_t value) {
-        tx.setTxMono(value);
-      },
-                &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {tx.setTxMono(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 3:
-      runAction([](uint8_t value) {
-        tx.setPreEmphasis(value);
-      },
-                &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {tx.setPreEmphasis(value);},&keyValue[idxMenu], 1, 0, 1);
       break;
     case 4:
-      runAction([](uint8_t value) {
-        tx.rdsTxEnable(value);
-      },
-                &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {tx.rdsTxEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 5:
-      runAction([](uint8_t value) {
-        tx.setTxInputImpedance(value);
-      },
-                &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.setTxInputImpedance(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 6:
-      runAction([](uint8_t value) {
-        tx.setTxSoftClippingEnable(value);
-      },
-                &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {tx.setTxSoftClippingEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 7:
-      runAction([](uint8_t value) {
-        tx.setTxSoftClipThreshold(value);
-      },
-                &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.setTxSoftClipThreshold(value);},&keyValue[idxMenu], 1, 0, 3);
       break;
     case 8:
-      runAction([](uint8_t value) {
-        tx.setTxPilotGain(value);
-      },
-                &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.setTxPilotGain(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 9:
-      runAction([](uint8_t value) {
-        tx.setTxFrequencyDerivation(value);
-      },
-                &keyValue[idxMenu], 1, 0, 5);
+      runAction([](uint8_t value) {tx.setTxFrequencyDerivation(value);},&keyValue[idxMenu], 1, 0, 5);
       break;
     case 10:
-      runAction([](uint8_t value) {
-        tx.setTxInputBufferGain(value);
-      },
-                &keyValue[idxMenu], 1, 0, 5);
+      runAction([](uint8_t value) {tx.setTxInputBufferGain(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
     case 11:
-      runAction([](uint8_t value) {
-        tx.rdsSetFrequencyDerivation(value);
-      },
-                &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.rdsSetFrequencyDerivation(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 12:
       enablePWM(pwmPowerDuty);  // Turn the PWM on again.

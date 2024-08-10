@@ -1251,7 +1251,7 @@ void QN8066::rdsSetFrequencyDerivation(uint8_t freq) {
  *   tx.setup();
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
  *   tx.rdsTxEnable(true);
- *   tx.rdsSetTxLineIn 
+ *   tx.rdsSetTxLineIn(false); 
  * }
  *
  * void loop() {
@@ -1361,9 +1361,25 @@ void QN8066::rdsSetStationName(char *stationName) {
  * @ingroup group05 TX RDS
  * @brief Sends the Program Service Message
  * @details Like rdsSendPS this method sends the Station Name or other 8 char message.
- * @param ps 
+ * @param ps - String with the name of Station or message limeted to 8 character.
+ * @param groupTransmissionCoun - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+ *   tx.rdsTxEnable(true);
+ *   delay(100);
+ *   tx.rdsSendPS("STATIONX", 3); // transmit STATIONX three times for a short time 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode    
  */
-void QN8066::rdsSendPS(char* ps) {
+void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCoun) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
@@ -1393,7 +1409,7 @@ void QN8066::rdsSendPS(char* ps) {
   // It is important to ensure that the 2A or 2B groups are transmitted continuously and in 
   // sync so that receivers can correctly piece together the parts of the text and display 
   // them to the listener without interruptions.
-  for ( uint8_t k  = 0; k < 3; k++) { // Just a test. To be removed
+  for ( uint8_t k  = 0; k < groupTransmissionCoun; k++) { // Just a test. To be removed
     for (uint8_t i = 0; i < 8; i+=2) { 
       b4.byteContent[0] = ps[i]; 
       b4.byteContent[1] = ps[i+1];
@@ -1406,11 +1422,27 @@ void QN8066::rdsSendPS(char* ps) {
 
 /**
  * @ingroup group05 TX RDS
- * @brief Sends RDS Radio Text Message
+ * @brief Sends RDS Radio Text Message (group 2A)
  * 
  * @param rt - Radio Text (string of 32 character)
+ * @param groupTransmissionCoun - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
+ *
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+ *   tx.rdsTxEnable(true);
+ *   delay(100);
+ *   tx.rdsSendRTMessage("IT IS AN EXAMPLE...", 4); // transmits the message four times for a short time 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
  */
-void QN8066::rdsSendRTMessage(char *rt) {
+void QN8066::rdsSendRTMessage(char *rt, uint8_t groupTransmissionCoun) {
 
     // Flushes any previus data
     this->rdsSetTxToggle();
@@ -1437,7 +1469,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
     // It is important to ensure that the 2A or 2B groups are transmitted continuously and in 
     // sync so that receivers can correctly piece together the parts of the text and display 
     // them to the listener without interruptions.    
-    for ( uint8_t k  = 0; k < 4; k++) { 
+    for ( uint8_t k  = 0; k < groupTransmissionCoun; k++) { 
       for (uint8_t i = 0; i < numGroups; i++) {
           block2.group2Field.address = i; 
           RDS_BLOCK3 block3; 
