@@ -1901,7 +1901,7 @@ void setup() {
   tx.setup();
   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
   tx.rdsTxEnable(true);
-  tx.rdsSetTxLineIn 
+  tx.rdsSetTxLineIn(false); 
 }
 
 void loop() {
@@ -1953,10 +1953,10 @@ Sends a RDS group (four blocks)  to the QN8066.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Each block is packaged in 16 bits word (two bytes)
-@param block1 
-@param block2 
-@param block3 
-@param block4  <br>
+@param block1 - RDS_BLOCK1 datatype
+@param block2 - RDS_BLOCK2 datatype
+@param block3 - RDS_BLOCK3 datatype
+@param block4 - RDS_BLOCK4 datatype 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8h_1a5b495a338a1373a95d2a744bc259df0e';
@@ -1981,7 +1981,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group05_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
+      sec-mem-id   = 'group__group05_1ga71194adfa621d4ff30879ef539dea705';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -1997,6 +1997,16 @@ _EnD_oF_dEf_TeXt_;
 NULL
 _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'groupTransmissionCount';
+        sec-mem-param-defname = 'groupTransmissionCoun';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+4
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
       sec-mem-desc-line = '976';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
@@ -2004,11 +2014,27 @@ Sends the Program Service Message.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Like rdsSendPS this method sends the Station Name or other 8 char message.
-@param ps 
+@param ps - String with the name of Station or message limeted to 8 character.
+@param groupTransmissionCoun - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
+\ilinebr\ilinebr Example
+@code 
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  tx.setup();
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+  tx.rdsTxEnable(true);
+  delay(100);
+  tx.rdsSendPS("STATIONX", 3); // transmit STATIONX three times for a short time 
+}
+
+void loop() {
+}
+@endcode    
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
-        sec-mem-ref-line = '1353';
+        sec-mem-ref-line = '1347';
         sec-mem-ref-name = 'rdsSetStationName';
     };
     }; /* sec-member */
@@ -2033,19 +2059,19 @@ _EnD_oF_dEf_TeXt_;
 Sets the station name.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1348 
+\iline 1343 
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
-        sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
-        sec-mem-ref-line = '1366';
+        sec-mem-ref-id = '_q_n8066_8cpp_1ga71194adfa621d4ff30879ef539dea705';
+        sec-mem-ref-line = '1374';
         sec-mem-ref-name = 'rdsSendPS';
     };
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group05_1ga085fa9c2b4753a7f7135bd0e7c9b7852';
+      sec-mem-id   = 'group__group05_1ga2b4745d58f5a843f208030c52fb3cb22';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -2059,15 +2085,41 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'rtText';
         sec-mem-param-defname = 'rt';
       }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'groupTransmissionCount';
+        sec-mem-param-defname = 'groupTransmissionCoun';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+4
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
       sec-mem-desc-line = '980';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-Sends RDS Radio Text Message.
+Sends RDS Radio Text Message (group 2A)
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1405 
+\iline 1414 
 
 @param rt - Radio Text (string of 32 character)
+@param groupTransmissionCoun - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
+
+@code 
+#include <QN8066.h>
+QN8066 tx;
+void setup() {
+  tx.setup();
+  tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+  tx.rdsTxEnable(true);
+  delay(100);
+  tx.rdsSendRTMessage("IT IS AN EXAMPLE...", 4); // transmits the message four times for a short time 
+}
+
+void loop() {
+}
+@endcode  
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {

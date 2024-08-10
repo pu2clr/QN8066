@@ -22,6 +22,6 @@ var group__group05 =
     [ "QN8066::rdsSetTxLineIn", "group__group05.html#ga27d182aa90e915b86139d0ae63350fc8", null ],
     [ "QN8066::rdsSendGroup", "group__group05.html#ga57ee54e06de2618ec40cddde6b62560c", null ],
     [ "QN8066::rdsSetStationName", "group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f", null ],
-    [ "QN8066::rdsSendPS", "group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b", null ],
-    [ "QN8066::rdsSendRTMessage", "group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852", null ]
+    [ "QN8066::rdsSendPS", "group__group05.html#ga71194adfa621d4ff30879ef539dea705", null ],
+    [ "QN8066::rdsSendRTMessage", "group__group05.html#ga2b4745d58f5a843f208030c52fb3cb22", null ]
 ];

@@ -164,12 +164,12 @@ Functions</h2></td></tr>
 <tr class="memitem:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f">QN8066::rdsSetStationName</a> (char *stationName)</td></tr>
 <tr class="memdesc:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the station name.  <br /></td></tr>
 <tr class="separator:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2beb7d1a42e9aa2ecf72427318b40d1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b">QN8066::rdsSendPS</a> (char *ps=NULL)</td></tr>
-<tr class="memdesc:ga2beb7d1a42e9aa2ecf72427318b40d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the Program Service Message.  <br /></td></tr>
-<tr class="separator:ga2beb7d1a42e9aa2ecf72427318b40d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga085fa9c2b4753a7f7135bd0e7c9b7852"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852">QN8066::rdsSendRTMessage</a> (char *rtText)</td></tr>
-<tr class="memdesc:ga085fa9c2b4753a7f7135bd0e7c9b7852"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends RDS Radio Text Message.  <br /></td></tr>
-<tr class="separator:ga085fa9c2b4753a7f7135bd0e7c9b7852"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga71194adfa621d4ff30879ef539dea705"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga71194adfa621d4ff30879ef539dea705">QN8066::rdsSendPS</a> (char *ps=NULL, uint8_t groupTransmissionCount=4)</td></tr>
+<tr class="memdesc:ga71194adfa621d4ff30879ef539dea705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the Program Service Message.  <br /></td></tr>
+<tr class="separator:ga71194adfa621d4ff30879ef539dea705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b4745d58f5a843f208030c52fb3cb22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga2b4745d58f5a843f208030c52fb3cb22">QN8066::rdsSendRTMessage</a> (char *rtText, uint8_t groupTransmissionCount=4)</td></tr>
+<tr class="memdesc:ga2b4745d58f5a843f208030c52fb3cb22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends RDS Radio Text Message (group 2A)  <br /></td></tr>
+<tr class="separator:ga2b4745d58f5a843f208030c52fb3cb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -887,7 +887,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
 <div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
 <div class="line">  tx.<a class="code hl_function" href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">rdsTxEnable</a>(<span class="keyword">true</span>);</div>
-<div class="line">  tx.<a class="code hl_function" href="group__group05.html#ga27d182aa90e915b86139d0ae63350fc8">rdsSetTxLineIn</a> </div>
+<div class="line">  tx.<a class="code hl_function" href="group__group05.html#ga27d182aa90e915b86139d0ae63350fc8">rdsSetTxLineIn</a>(<span class="keyword">false</span>); </div>
 <div class="line">}</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
@@ -938,11 +938,10 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <p>Sends a RDS group (four blocks) to the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a>. </p>
 <p>Each block is packaged in 16 bits word (two bytes) </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">block1</td><td></td></tr>
-    <tr><td class="paramname">block2</td><td></td></tr>
-    <tr><td class="paramname">block3</td><td></td></tr>
-    <tr><td class="paramname">block4</td><td><br  />
- </td></tr>
+    <tr><td class="paramname">block1</td><td>- <a class="el" href="group__group00.html#union_r_d_s___b_l_o_c_k1" title="RDS - First block (RDS_BLOCK1 datatype)">RDS_BLOCK1</a> datatype </td></tr>
+    <tr><td class="paramname">block2</td><td>- <a class="el" href="group__group00.html#union_r_d_s___b_l_o_c_k2" title="Block 2 (RDS_BLOCK2 data type)">RDS_BLOCK2</a> datatype </td></tr>
+    <tr><td class="paramname">block3</td><td>- <a class="el" href="group__group00.html#union_r_d_s___b_l_o_c_k3" title="Block 3 (RDS_BLOCK3 data type)">RDS_BLOCK3</a> datatype </td></tr>
+    <tr><td class="paramname">block4</td><td>- <a class="el" href="group__group00.html#union_r_d_s___b_l_o_c_k4" title="Block 4 (RDS_BLOCK4 data type)">RDS_BLOCK4</a> datatype </td></tr>
   </table>
   </dd>
 </dl>
@@ -975,12 +974,12 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b">QN8066::rdsSendPS()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="group__group05.html#ga71194adfa621d4ff30879ef539dea705">QN8066::rdsSendPS()</a>.</p>
 
 </div>
 </div>
-<a id="ga2beb7d1a42e9aa2ecf72427318b40d1b" name="ga2beb7d1a42e9aa2ecf72427318b40d1b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga2beb7d1a42e9aa2ecf72427318b40d1b">&#9670;&#160;</a></span>rdsSendPS()</h2>
+<a id="ga71194adfa621d4ff30879ef539dea705" name="ga71194adfa621d4ff30879ef539dea705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga71194adfa621d4ff30879ef539dea705">&#9670;&#160;</a></span>rdsSendPS()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -989,8 +988,18 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
           <td class="memname">void QN8066::rdsSendPS </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>ps</em> = <code>NULL</code></td><td>)</td>
+          <td class="paramname"><em>ps</em> = <code>NULL</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>groupTransmissionCoun</em> = <code>4</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -998,17 +1007,31 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <p>Sends the Program Service Message. </p>
 <p>Like rdsSendPS this method sends the Station Name or other 8 char message. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">ps</td><td></td></tr>
+    <tr><td class="paramname">ps</td><td>- String with the name of Station or message limeted to 8 character. </td></tr>
+    <tr><td class="paramname">groupTransmissionCoun</td><td>- number of times the group 2A must be sent to ensure continuous and synchronized transmission (default 4)</td></tr>
   </table>
   </dd>
 </dl>
-
+<p>Example </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">rdsTxEnable</a>(<span class="keyword">true</span>);</div>
+<div class="line">  delay(100);</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group05.html#ga71194adfa621d4ff30879ef539dea705">rdsSendPS</a>(<span class="stringliteral">&quot;STATIONX&quot;</span>, 3); <span class="comment">// transmit STATIONX three times for a short time </span></div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__group05_html_ga71194adfa621d4ff30879ef539dea705"><div class="ttname"><a href="group__group05.html#ga71194adfa621d4ff30879ef539dea705">QN8066::rdsSendPS</a></div><div class="ttdeci">void rdsSendPS(char *ps=NULL, uint8_t groupTransmissionCount=4)</div><div class="ttdoc">Sends the Program Service Message.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1374</div></div>
+</div><!-- fragment --> 
 <p class="reference">References <a class="el" href="group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f">QN8066::rdsSetStationName()</a>.</p>
 
 </div>
 </div>
-<a id="ga085fa9c2b4753a7f7135bd0e7c9b7852" name="ga085fa9c2b4753a7f7135bd0e7c9b7852"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ga085fa9c2b4753a7f7135bd0e7c9b7852">&#9670;&#160;</a></span>rdsSendRTMessage()</h2>
+<a id="ga2b4745d58f5a843f208030c52fb3cb22" name="ga2b4745d58f5a843f208030c52fb3cb22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2b4745d58f5a843f208030c52fb3cb22">&#9670;&#160;</a></span>rdsSendRTMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1017,20 +1040,44 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
           <td class="memname">void QN8066::rdsSendRTMessage </td>
           <td>(</td>
           <td class="paramtype">char *&#160;</td>
-          <td class="paramname"><em>rt</em></td><td>)</td>
+          <td class="paramname"><em>rt</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>groupTransmissionCoun</em> = <code>4</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sends RDS Radio Text Message. </p>
+<p>Sends RDS Radio Text Message (group 2A) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">rt</td><td>- Radio Text (string of 32 character) </td></tr>
+    <tr><td class="paramname">groupTransmissionCoun</td><td>- number of times the group 2A must be sent to ensure continuous and synchronized transmission (default 4)</td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"><a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Set the transmitter to 106.9 MHz </span></div>
+<div class="line">  tx.<a class="code hl_function" href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">rdsTxEnable</a>(<span class="keyword">true</span>);</div>
+<div class="line">  delay(100);</div>
+<div class="line">  tx.<a class="code hl_function" href="group__group05.html#ga2b4745d58f5a843f208030c52fb3cb22">rdsSendRTMessage</a>(<span class="stringliteral">&quot;IT IS AN EXAMPLE...&quot;</span>, 4); <span class="comment">// transmits the message four times for a short time </span></div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">void</span> loop() {</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__group05_html_ga2b4745d58f5a843f208030c52fb3cb22"><div class="ttname"><a href="group__group05.html#ga2b4745d58f5a843f208030c52fb3cb22">QN8066::rdsSendRTMessage</a></div><div class="ttdeci">void rdsSendRTMessage(char *rtText, uint8_t groupTransmissionCount=4)</div><div class="ttdoc">Sends RDS Radio Text Message (group 2A)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1434</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 </div><!-- contents -->
