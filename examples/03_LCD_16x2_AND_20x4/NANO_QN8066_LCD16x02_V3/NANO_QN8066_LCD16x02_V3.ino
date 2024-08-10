@@ -723,7 +723,7 @@ void sendRDS() {
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
     delay(100);
-    tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);
+    tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     idxRdsRT++;
     rdsTimeRT = millis();
   }

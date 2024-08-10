@@ -840,6 +840,8 @@ private:
   qn8066_vol_ctl vol_ctl;
 
 
+  uint8_t rdsSyncTime = 60;             // Time in ms to wait fro send the next group - Default value is 60 ms 
+
   char rdsStationName[9] = " QN8066\r"; 
   uint16_t rdsPI = 33179;    //!< Default value for piCode (0x819B)
   uint8_t rdsPTY = 5;       //!< Default program type (PTY) 5 is "Education"
@@ -1045,6 +1047,15 @@ public:
    * @brief Clear RDS register (Buffer)
    */
   void rdsClearBuffer();
+
+
+  /**
+  * @ingroup group05 TX RDS
+  * @brief Sets the wait time for the QN8066 to be available to send the next RDS block.
+  * @details The default time is 60ms, but depending on the microcontroller you are using, it may be necessary to reduce this time.
+  * @param syncTime - time in ms 
+  */
+  inline void rdsSetSyncTime(uint8_t syncTime) {this->rdsSyncTime = syncTime; };
 
   void resetFsm();
   uint8_t getFsmStateCode();

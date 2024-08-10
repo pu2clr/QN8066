@@ -1328,7 +1328,7 @@ void QN8066::rdsSendGroup(RDS_BLOCK1 block1, RDS_BLOCK2 block2, RDS_BLOCK3 block
   // It should not be here. Judiging by the data sheet, the use must  
   // wait for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
   this->rdsSetTxToggle(); 
-  delay(60); // This time is very critical and may need to be tuned 
+  delay(this->rdsSyncTime); // This time is very critical and may need to be tuned. Check the function/method rdsSetSyncTime 
   // checks for the RDS_TXUPD . 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(1);
@@ -1354,7 +1354,7 @@ void QN8066::rdsSetStationName(char *stationName) {
  * @brief Sends the Program Service Message
  * @details Like rdsSendPS this method sends the Station Name or other 8 char message.
  * @param ps - String with the name of Station or message limeted to 8 character.
- * @param groupTransmissionCoun - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
+ * @param groupTransmissionCount - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
  * @details Example
  * @code 
  * #include <QN8066.h>
@@ -1371,7 +1371,7 @@ void QN8066::rdsSetStationName(char *stationName) {
  * }
  * @endcode    
  */
-void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCoun) {
+void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCount) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
@@ -1398,7 +1398,7 @@ void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCoun) {
   // It is important to ensure that the 2A or 2B groups are transmitted continuously and in 
   // sync so that receivers can correctly piece together the parts of the text and display 
   // them to the listener without interruptions.
-  for ( uint8_t k  = 0; k < groupTransmissionCoun; k++) { // Just a test. To be removed
+  for ( uint8_t k  = 0; k < groupTransmissionCount; k++) { // Just a test. To be removed
     for (uint8_t i = 0; i < 8; i+=2) { 
       b4.byteContent[0] = ps[i]; 
       b4.byteContent[1] = ps[i+1];
@@ -1414,7 +1414,7 @@ void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCoun) {
  * @brief Sends RDS Radio Text Message (group 2A)
  * 
  * @param rt - Radio Text (string of 32 character)
- * @param groupTransmissionCoun - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
+ * @param groupTransmissionCount - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
  *
  * @code 
  * #include <QN8066.h>
@@ -1431,7 +1431,7 @@ void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCoun) {
  * }
  * @endcode  
  */
-void QN8066::rdsSendRTMessage(char *rt, uint8_t groupTransmissionCoun) {
+void QN8066::rdsSendRTMessage(char *rt, uint8_t groupTransmissionCount) {
 
     // Flushes any previus data
     this->rdsSetTxToggle();
@@ -1458,7 +1458,7 @@ void QN8066::rdsSendRTMessage(char *rt, uint8_t groupTransmissionCoun) {
     // It is important to ensure that the 2A or 2B groups are transmitted continuously and in 
     // sync so that receivers can correctly piece together the parts of the text and display 
     // them to the listener without interruptions.    
-    for ( uint8_t k  = 0; k < groupTransmissionCoun; k++) { 
+    for ( uint8_t k  = 0; k < groupTransmissionCount; k++) { 
       for (uint8_t i = 0; i < numGroups; i++) {
           block2.group2Field.address = i; 
           RDS_BLOCK3 block3; 

@@ -38,6 +38,17 @@
 #define CMD_MENU PB3
 #define TIME_RDS_ON_DISPLAY 2300
 
+#define CMD_NO_PRESSED 7    // 111
+#define CMD_DOWN_PRESSED 6  // 110
+#define CMD_UP_PRESSED 5    // 101
+#define CMD_MENU_PRESSED 3  // 011
+
+#define CTRL_FREQ  0
+#define CTRL_MONO  1
+#define CTRL_RDS   2 
+
+uint8_t cmdCtrl = 0; // 0 - change frequency; 1 - switch stereo/mono; 2 - switch RDS on/off        
+
 #define VALID_DATA 85
 
 char ps[] = "QN8066TX";
@@ -50,7 +61,9 @@ uint16_t currentFrequency = 1069; // 106.9 MHz is the default frequency
 uint8_t currentRDS = 0;           // Default no RDS 
 uint8_t currentMono = 0;          // Default Stereo
 
+
 QN8066 tx;
+
 
 void setup() {
   pinMode(CMD_UP, INPUT_PULLUP);
@@ -68,17 +81,22 @@ void setup() {
   delay(2000);
   oled.clear();
   // End Splash
-  tx.setup();
 
+  tx.setup();
+  delay(500);
   // Restores the latest frequency and audio mute statis saved into the EEPROM
   if (EEPROM.read(0) == VALID_DATA) {
      readEEPROM(); 
   } else {
     writeEEPROM();    // Writes into EEPROM the default values 
-  }
+  } 
   tx.setTX(currentFrequency);
-  tx.rdsTxEnable(currentRDS);
-  tx.setTxMono(currentMono);    //  1 = Mono; 0 = Stereo 
+  // tx.rdsTxEnable(currentRDS);
+  // tx.setTxMono(currentMono);    //  1 = Mono; 0 = Stereo 
+
+  tx.rdsSetSyncTime(30); // Needed due to the low speed that the Attiny was configured (1MHz clock)
+  tx.rdsTxEnable(true);
+  tx.setTxMono(false);    
 
   showStatus();
 }
@@ -108,27 +126,44 @@ void showStatus() {
   oled.print(strFrequency);
 }
 
-void loop() {
-  /* 
-  uint8_t bkey;
-  bkey = ((digitalRead(CMD_UP) << 2) | (digitalRead(CMD_DOWN) << 1)) | digitalRead(CMD_MENU);  // 3, 5 or 6 (Pressed = 0 - considering just one button pressed)
-  if (bkey != 0b111) {                                                                             // if none of them is pressed (not igual to 0b011, 0b101 or 0b110) then do nothing.
-    if (bkey == 0b011)                                                                             // 3
-      // UP
-    else if (bkey == 0b101)  // 5
-      // UP
-    else                     // 6
-      // MENU
-    showStatus();
-    delay(200);
-    // Saves the current frequency if it has changed.
-    currentFrequency = tx.getFrequency();
-    EEPROM.update(0, VALID_DATA);               // Says that a valid frequency will be saved
-    EEPROM.update(1, currentFrequency >> 8);    // stores the current Frequency HIGH byte
-    EEPROM.update(2, currentFrequency & 0xFF);  // stores the current Frequency LOW byte
-    EEPROM.update(3, tx.isMuted());             // Stores the current audio mute status
+/*
+ Returns:
+          7 if no key is pressed. -  111 - NO PRESSED
+          6 if BT_DOWN is pressed -  110 - CMD_UP PRESSED 
+          5 if BT_UP is pressed   -  101 - CMD_DOWN PRESSED 
+          3 if BT_MENU is pressed -  011 - CMD_MENU 
+  // TODO - Debounce process 
+*/
+int8_t checkButton() {
+  uint8_t button;
+  for (uint8_t i = 0; i < 5; i++) {
+    // Please... check it out later
+    button = digitalRead(CMD_MENU) << 2 | digitalRead(CMD_DOWN) << 1 | digitalRead(CMD_UP);
+    delay(30);
   }
-  */
+  return button;
+}
 
-  delay(5);
+void doCtrl( uint8_t cmd) {
+
+  // TODO
+
+}
+
+void loop() {
+  
+  uint8_t bkey = checkButton();
+  
+  if (bkey != CMD_NO_PRESSED) {                                                                            
+    // TODO
+    doCtrl( bkey );
+  }
+
+
+  delay(800);
+  tx.rdsSendPS(ps,20);
+  delay(200);
+  tx.rdsSendRTMessage(rt,30);
+
+
 }
