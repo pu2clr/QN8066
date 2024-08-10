@@ -1301,10 +1301,10 @@ void QN8066::rdsClearBuffer() {
  * @ingroup group05 TX RDS
  * @brief Sends a RDS group (four blocks)  to the QN8066
  * @details Each block is packaged in 16 bits word (two bytes)
- * @param block1 
- * @param block2 
- * @param block3 
- * @param block4  
+ * @param block1 - RDS_BLOCK1 datatype
+ * @param block2 - RDS_BLOCK2 datatype
+ * @param block3 - RDS_BLOCK3 datatype
+ * @param block4 - RDS_BLOCK4 datatype 
  */
 void QN8066::rdsSendGroup(RDS_BLOCK1 block1, RDS_BLOCK2 block2, RDS_BLOCK3 block3, RDS_BLOCK4 block4) {
 
@@ -1328,19 +1328,14 @@ void QN8066::rdsSendGroup(RDS_BLOCK1 block1, RDS_BLOCK2 block2, RDS_BLOCK3 block
   // It should not be here. Judiging by the data sheet, the use must  
   // wait for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
   this->rdsSetTxToggle(); 
-   delay(60); // This time is very critical and may need to be tuned 
+  delay(60); // This time is very critical and may need to be tuned 
   // checks for the RDS_TXUPD . 
   while ( this->rdsGetTxUpdated() == toggle  && count < 10) { 
     delay(1);
     count++;
   }
-
   if (count >= 10 ) 
     this->rdsSendError = 1;
-
-   // It should be here.
-  // this->rdsSetTxToggle(); 
- 
 }
 
 /**
@@ -1348,14 +1343,11 @@ void QN8066::rdsSendGroup(RDS_BLOCK1 block1, RDS_BLOCK2 block2, RDS_BLOCK3 block
  * @brief Sets the station name 
  * 
  * @param stationName 
- 
  */
 void QN8066::rdsSetStationName(char *stationName) { 
   strncpy(this->rdsStationName,stationName,8);
   rdsStationName[8] = '\0';
 }
-
-
 
 /**
  * @ingroup group05 TX RDS
@@ -1387,9 +1379,6 @@ void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCoun) {
   RDS_BLOCK4 b4;
 
   this->rdsSetStationName(ps);
-
-  // Flushes any previus data
-  // this->rdsSetTxToggle();
 
   b1.pi = this->rdsPI;
 
@@ -1551,7 +1540,6 @@ void QN8066::setStnby(bool value) {
   system1.raw = this->getRegister(QN_SYSTEM1);
   system1.arg.stnby = value;
   this->setRegister(QN_SYSTEM1, system1.raw);
-
 }
 
 
