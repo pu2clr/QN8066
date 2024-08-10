@@ -121,8 +121,7 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 
 ### Attention
 
-* __The Logic signals level of the QN8066 device works from 1.6V to 3.6V (see Datasheet, ELECTRICAL SPECIFICATIONS, section Recommended Operating Conditions). If you are using a 5V Arduino board, that Arduino will send 5V signals to the QN8066 device through the digital pins and the I2C bus. That configuration can make the system unstable or damage the QN8066 device. To fix this, use a logic shifter chip that converts between 3.3V and 5V logic.__  
-
+* __The Logic signals level of the QN8066 device (CEN, SCL, SDA, to GND) works from 1.6V to 3.6V (see Datasheet, ELECTRICAL SPECIFICATIONS, section Recommended Operating Conditions). If you are using a 5V Arduino board, that Arduino will send 5V signals to the QN8066 device through the digital pins and the I2C bus. That configuration can make the system unstable or damage the QN8066 device. To fix this, use a logic shifter chip that converts between 3.3V and 5V logic.__  
 
 
 ## QN8066 PINOUT 
