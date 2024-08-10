@@ -63,6 +63,10 @@ There is a Facebook group called [QN80XX FM Transmitters & Receivers Enthusiasts
 
 * __Mr. Grazianny Carvalho Tavares__ - I would like to thank Mr. Grazianny Carvalho Tavares, PU7MGR, for introducing me to the QN8066 and encouraging me to develop this library. Mr. Grazianny also played a crucial role in helping me understand various concepts about FM modulation, audio quality criteria, as well as in testing the fundamental functions implemented in this library using equipment for precise value measurements.
 
+* I would like to thank Mr. __Adam Fabio__ for his article published in the online magazine [Hackaday](https://hackaday.com) titled *[Be Your Own DJ With QN8066 And An Arduino Library](https://hackaday.com/2024/08/10/be-your-own-dj-with-qn8066-and-an-arduino-library/)*.
+
+* I would like to thank Mr. __Gareth Halfacree__ for his article published in the online magazine  [hackster.io](https://www.hackster.io) titled *[Ricardo Lima Caratti's Handy Arduino Library Delivers Easy QN8066-Powered FM Radio Projects](https://www.hackster.io/news/ricardo-lima-caratti-s-handy-arduino-library-delivers-easy-qn8066-powered-fm-radio-projects-474213406313)*.
+
 
 ## Why a QN8066 library for Arduino?
 
@@ -377,6 +381,7 @@ If you find this project useful, consider making a donation so that the author o
 * [UNIVERSITY COLLEGE LONDON Department of Electronics and Electrical Engineering](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
 * [NATIONAL RADIO SYSTEMS COMMITTEE NRSC-G300-A Radio Data System "RDS" Usage Guideline April 2014](https://www.nrscstandards.org/standards-and-guidelines/documents/archive/nrsc-g300-a.pdf)
 * [Ricardo Lima Caratti's Handy Arduino Library Delivers Easy QN8066-Powered FM Radio Projects](https://www.hackster.io/news/ricardo-lima-caratti-s-handy-arduino-library-delivers-easy-qn8066-powered-fm-radio-projects-474213406313)
+* [Be Your Own DJ With QN8066 And An Arduino Library](https://hackaday.com/2024/08/10/be-your-own-dj-with-qn8066-and-an-arduino-library/)
 * [Old Version of this library - Source 1](https://www.arduino.cc/reference/en/libraries/qn8066/)
 * [Old Version of this library - Source 2](https://www.arduinolibraries.info/libraries/qn8066)
 
