@@ -1387,7 +1387,12 @@ void QN8066::rdsSendPS(char* ps) {
   b2.group0Field.versionCode = 1; // 0B - Station Name
   b2.group0Field.groupType = 0;  
   b3.raw = b1.pi;
-
+  // Sending the packet only once did not work for some types of receivers with RDS support. 
+  // Therefore, through trial and error, transmitting the same RT message three or more times
+  // made  this function works. 
+  // It is important to ensure that the 2A or 2B groups are transmitted continuously and in 
+  // sync so that receivers can correctly piece together the parts of the text and display 
+  // them to the listener without interruptions.
   for ( uint8_t k  = 0; k < 3; k++) { // Just a test. To be removed
     for (uint8_t i = 0; i < 8; i+=2) { 
       b4.byteContent[0] = ps[i]; 
@@ -1395,8 +1400,7 @@ void QN8066::rdsSendPS(char* ps) {
       this->rdsSendGroup(b1, b2, b3, b4);
       b2.group0Field.address++; 
     }
-    // delay(87); // to be removed 
-  } // To be removed
+  } 
 
 }
 
@@ -1427,17 +1431,23 @@ void QN8066::rdsSendRTMessage(char *rt) {
     block2.group2Field.versionCode = 0; // Version A
     block2.group2Field.groupType = 2;  // Group 2
 
-    for ( uint8_t k  = 0; k < 3; k++) { // Just a test. To be removed
-    for (uint8_t i = 0; i < numGroups; i++) {
-        block2.group2Field.address = i; 
-        RDS_BLOCK3 block3; 
-        block3.byteContent[0] = rt[i * 4];
-        block3.byteContent[1] = rt[i * 4 + 1];
-        RDS_BLOCK4 block4;
-        block4.byteContent[0] = rt[i * 4 + 2];
-        block4.byteContent[1] = rt[i * 4 + 3]; 
-        this->rdsSendGroup(block1, block2, block3, block4);
-    }
+    // Sending the packet only once did not work for some types of receivers with RDS support. 
+    // Therefore, through trial and error, transmitting the same RT message three or more times
+    // made  this function feasible.
+    // It is important to ensure that the 2A or 2B groups are transmitted continuously and in 
+    // sync so that receivers can correctly piece together the parts of the text and display 
+    // them to the listener without interruptions.    
+    for ( uint8_t k  = 0; k < 4; k++) { 
+      for (uint8_t i = 0; i < numGroups; i++) {
+          block2.group2Field.address = i; 
+          RDS_BLOCK3 block3; 
+          block3.byteContent[0] = rt[i * 4];
+          block3.byteContent[1] = rt[i * 4 + 1];
+          RDS_BLOCK4 block4;
+          block4.byteContent[0] = rt[i * 4 + 2];
+          block4.byteContent[1] = rt[i * 4 + 3]; 
+          this->rdsSendGroup(block1, block2, block3, block4);
+      }
     }
 }
 

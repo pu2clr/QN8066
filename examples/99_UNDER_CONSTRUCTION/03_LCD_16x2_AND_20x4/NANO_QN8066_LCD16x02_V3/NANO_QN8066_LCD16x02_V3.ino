@@ -220,6 +220,22 @@ TableValue txRdsFreqDev[] = {
   { 52, "18,2kHz" }   // 3
 };
 
+TableValue txRdsProgramType[] = {
+  {   0, "No PTY"      },  // 0
+  {   1, "News"        },  // 1
+  {   3, "Information" },  // 2
+  {   4, "Sport"       },  // 3
+  {   5, "Education"   },  // 4
+  {   7, "Culture"     },  // 5
+  {   8, "Science"     },  // 6
+  {  10, "Pop Music"   },  // 7 
+  {  11, "Rock Music"  },  // 8
+  {  20, "Religion"    },  // 9
+  {  24, "Jazz Music"  },  // 10
+  {  29, "Documentary" }   // 11
+};
+
+
 
 // Menu Itens
 const char *menu[] = { "Frequency",
@@ -234,6 +250,7 @@ const char *menu[] = { "Frequency",
                        "Freq. Deriv.",
                        "Buffer gain",
                        "RDS Freq. Dev.",
+                       "RDS PTY",
                        "Main Screen" };
 int8_t menuIdx = 0;
 const int lastMenu = (sizeof(menu) / sizeof(menu[0])) - 1;  // Laste menu item position
@@ -252,7 +269,8 @@ enum MenuKeys {
   KEY_FREQ_DERIVATION,      // 9
   KEY_BUFFER_GAIN,          // 10
   KEY_RDS_FREQ_DEV,         // 11
-  KEY_MAIN_SCREEN           // 12
+  KEY_RDS_PTY,              // 12
+  KEY_MAIN_SCREEN           // 13
 };
 
 /*
@@ -274,23 +292,29 @@ KeyValue keyValue[] = {
   { 2, tabTxFrequencyDeviation },  // KEY_FREQ_DERIVATION
   { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN
   { 0, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
+  { 4, txRdsProgramType},          // KEY_RDS_PTY 
   { 0, NULL }                      // KEY_MAIN_SCREEN
 };
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 // Station Name (PS) messages
-char *rdsPSmsg[] = { (char *)"PU2CLR  ",
-                     (char *)"QN8066  ",
-                     (char *)"ARDUINO ",
-                     (char *)"LIBRARY ",
-                     (char *)"FM TX   " };
+char *rdsPSmsg[] = { (char *)"PU2CLR \r",
+                     (char *)"QN8066 \r",
+                     (char *)"ARDUINO\r",
+                     (char *)"LIBRARY\r",
+                     (char *)"FM TX  \r" };
 
 // Radio Text (RT) messages
-char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY   ",
-                     (char *)"FM TRANSMITTER WITH RDS SERVICE ",
-                     (char *)"https://github.com/pu2clr/QN8066",
-                     (char *)"BE MEMBER  FACEBOOK GROUP QN8066",
-                     (char *)"QN8066 HOMEBREW FM TRANSMITTER " };
+// Apparently, some receivers seem to work better when the special character 0xD (\r) 
+// is added at the end of the string (message). Therefore, although it is technically 
+// possible to work with messages up to 64 characters long, it is recommended to keep 
+// the message length within 32 characters by default, reserving the 32nd character for
+// the '\r' as shown below.
+char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY  \r",
+                     (char *)"FM TRANSMITTER WITH RDS SERVICE\r",
+                     (char *)"github.com/pu2clr/QN8066       \r",
+                     (char *)"FM Transmitters Enthusiasts    \r",
+                     (char *)"QN8066 HOMEBREW FM TRANSMITTER \r" };
 
 const uint8_t lastRdsPS = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1;
 const uint8_t lastRdsRT = (sizeof(rdsRTmsg) / sizeof(rdsRTmsg[0])) - 1;
@@ -344,6 +368,7 @@ void setup() {
     // Defult values
     txFrequency = 1069;
     pwmPowerDuty = 50;
+    keyValue[KEY_RDS_PTY].key = 0;   // PTY = No PTY 
     saveAllTransmitterInformation();
   }
 
@@ -368,6 +393,7 @@ void setup() {
   tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx);
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
   tx.rdsSetFrequencyDerivation(keyValue[KEY_RDS_FREQ_DEV].value[keyValue[KEY_RDS_FREQ_DEV].key].idx);
+  tx.rdsSetPTY(keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx);
 
   showStatus(lcdPage);
 
@@ -375,7 +401,6 @@ void setup() {
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
     delay(1000);
     tx.rdsInitTx(0, 0, 0);  // Initialize RDS transmission: set countryID, programId, and reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-    tx.rdsSetPTY(1);        // Set Program Type: 1 represents News, modify as needed or make it dynamic
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
 
@@ -412,6 +437,7 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address + 11, keyValue[KEY_FREQ_DERIVATION].key);
   EEPROM.update(eeprom_address + 12, keyValue[KEY_BUFFER_GAIN].key);
   EEPROM.update(eeprom_address + 13, keyValue[KEY_RDS_FREQ_DEV].key);
+  EEPROM.update(eeprom_address + 14, keyValue[KEY_RDS_PTY].key);
 }
 // Read the previous transmitter setup
 void readAllTransmitterInformation() {
@@ -428,6 +454,7 @@ void readAllTransmitterInformation() {
   keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address + 11);
   keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address + 12);
   keyValue[KEY_RDS_FREQ_DEV].key = EEPROM.read(eeprom_address + 13);
+  keyValue[KEY_RDS_PTY].key = EEPROM.read(eeprom_address + 14);
 }
 
 // Enable or disable PWM duty cycle
@@ -707,7 +734,10 @@ uint8_t doMenu(uint8_t idxMenu) {
       },
                 &keyValue[idxMenu], 1, 0, 3);
       break;
-    case 12:
+    case 12: 
+        runAction([](uint8_t value) {tx.rdsSetPTY(value);}, &keyValue[idxMenu], 1, 0, 11); 
+        break;   
+    case 13:
       enablePWM(pwmPowerDuty);  // Turn the PWM on again.
       return 0;
       break;
@@ -738,6 +768,7 @@ void sendRDS() {
   // PS refreshing control
   if ((millis() - rdsTimePS) > RDS_PS_REFRESH_TIME) {
     if (idxRdsPS > lastRdsPS) idxRdsPS = 0;
+    delay(100);
     tx.rdsSendPS(rdsPSmsg[idxRdsPS]);
     idxRdsPS++;
     rdsTimePS = millis();
@@ -746,6 +777,7 @@ void sendRDS() {
   // RT refreshing control
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
+    delay(100);
     tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);
     idxRdsRT++;
     rdsTimeRT = millis();
