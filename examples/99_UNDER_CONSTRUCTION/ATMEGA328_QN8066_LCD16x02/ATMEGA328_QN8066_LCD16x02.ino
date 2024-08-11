@@ -1,4 +1,6 @@
 /*
+  UNDER CONSTRUCTION...
+  
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
   This sketch uses an Arduino Nano with LCD16X02.
 
@@ -570,11 +572,11 @@ int8_t browseParameter() {
   do {
     browse = checkEncoder();
     if (browse == ENCODER_LEFT)  // Down/Left pressed
-      return -1;
+      return ENCODER_LEFT;
     else if (browse == ENCODER_RIGHT)  // Up/Right pressed
-      return 1;
+      return ENCODER_RIGHT;
   } while (browse == ENCODER_NO_ACTION);
-  return 0;
+  return BT_MENU_PRESSED;
 }
 // Shows current menu data
 void showMenu(uint8_t idx) {
@@ -594,7 +596,7 @@ void showMenu(uint8_t idx) {
 void doFrequency() {
   showFrequency();
   int8_t key = browseParameter();
-  while (key != 0) {
+  while (key != BT_MENU_PRESSED) {
     if (key == -1) {
       if (txFrequency < 640)  // If less than 64 MHz
         txFrequency = 1080;
@@ -616,13 +618,13 @@ void doFrequency() {
 void doPower() {
   showPower();
   int8_t key = browseParameter();
-  while (key != 0) {
-    if (key == -1) {
+  while (key != BT_MENU_PRESSED) {
+    if (key == ENCODER_LEFT) {
       if (pwmPowerDuty >= 25)
         pwmPowerDuty -= pwmDutyStep;
       else
         pwmPowerDuty = 0;
-    } else if (key == 1) {
+    } else if (key == ENCODER_RIGHT) {
       if (pwmPowerDuty <= 225)
         pwmPowerDuty += pwmDutyStep;
       else
@@ -651,8 +653,8 @@ void doPower() {
 void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t min, uint8_t max) {
   showParameter((char *)tab->value[tab->key].desc);
   int8_t key = browseParameter();
-  while (key != 0) {
-    if (key == 1) {
+  while (key != BT_MENU_PRESSED) {
+    if (key == ENCODER_RIGHT) {
       if (tab->key == max)
         tab->key = min;
       else
@@ -814,13 +816,13 @@ void loop() {
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
     key = browseParameter();
-    while (key != 0) {
-      if (key == -1) {
+    while (key != BT_MENU_PRESSED) {
+      if (key == ENCODER_LEFT) {
         if (menuIdx == 0)
           menuIdx = lastMenu;
         else
           menuIdx--;
-      } else if (key == 1) {
+      } else if (key == ENCODER_RIGHT) {
         if (menuIdx == lastMenu)
           menuIdx = 0;
         else
