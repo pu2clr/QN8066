@@ -54,7 +54,9 @@ void setup() {
   tx.setup();
   tx.setTX(currentFrequency);
   tx.setTxMono(false);   //  Stereo
-  tx.rdsSetSyncTime(30); // Needed due to the low speed that the Attiny was configured (1MHz clock)
+  tx.rdsSetSyncTime(30); // 30 ms of delay time - Needed due to the low speed that the Attiny was configured (1MHz clock)
+  tx.rdsSetRepeatSendGroup(20); // Repeat 20 times each RDS block sent to the QN8066
+  tx.rdsSetPTY(5); // Program type is EDUCATION if you are using RDS or ROCK if you are using RBDS. See: https://en.wikipedia.org/wiki/Radio_Data_System
   tx.rdsTxEnable(true);
   showStatus();
 }
@@ -69,8 +71,8 @@ void showStatus() {
 }
 
 void loop() {
-  tx.rdsSendPS(ps,20);
+  tx.rdsSendPS(ps);
   delay(200);
-  tx.rdsSendRTMessage(rt,30);
+  tx.rdsSendRTMessage(rt);
   delay(800);
 }

@@ -1004,6 +1004,7 @@ public:
   * @ingroup group05 TX RDS
   * @brief Sets the Program Type (PTY)
   * @param pty - Program type
+  * @see The table of PTY Program Type for RDS and RDBS can be checkd here: https://en.wikipedia.org/wiki/Radio_Data_System
   */
   void rdsSetPTY(uint16_t pty) {this->rdsPTY = pty;};
 
@@ -1058,6 +1059,12 @@ public:
   */
   inline void rdsSetSyncTime(uint8_t syncTime) {this->rdsSyncTime = syncTime; };
   
+    /**
+  * @ingroup group05 TX RDS
+  * @brief Sets the number of time that a group will be sent at once 
+  * @details The default value is 5. 
+  * @param count - number of times 
+  */
   inline void rdsSetRepeatSendGroup (uint8_t count) {this->rdsRepeatGroup = count;};
 
   void resetFsm();
