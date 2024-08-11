@@ -228,9 +228,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gae77d8522db113f8fa9d44ec14f2c3534"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534">rdsSet4KMode</a> (uint8_t value)</td></tr>
 <tr class="memdesc:gae77d8522db113f8fa9d44ec14f2c3534"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS 4K Mode .  <br /></td></tr>
 <tr class="separator:gae77d8522db113f8fa9d44ec14f2c3534"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga0811c7b248ce2d5b74f584f35907a455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0811c7b248ce2d5b74f584f35907a455">rdsInitTx</a> (uint8_t countryId=0, uint8_t programId=0, uint8_t reference=0)</td></tr>
-<tr class="memdesc:ga0811c7b248ce2d5b74f584f35907a455"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets some RDS parameters.  <br /></td></tr>
-<tr class="separator:ga0811c7b248ce2d5b74f584f35907a455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga1a57c3319d117ae38fa5fc3478b026e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga1a57c3319d117ae38fa5fc3478b026e0">rdsInitTx</a> (uint8_t countryId=0, uint8_t programId=0, uint8_t reference=0, uint8_t rdsSyncTime=60, uint8_t rdsRepeatGroup=5)</td></tr>
+<tr class="memdesc:ga1a57c3319d117ae38fa5fc3478b026e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets some RDS parameters.  <br /></td></tr>
+<tr class="separator:ga1a57c3319d117ae38fa5fc3478b026e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0783a3be6aacd1bbff0e5abdfc78d04c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c">rdsSetInterrupt</a> (uint8_t value)</td></tr>
 <tr class="memdesc:ga0783a3be6aacd1bbff0e5abdfc78d04c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS interrupt.  <br /></td></tr>
 <tr class="separator:ga0783a3be6aacd1bbff0e5abdfc78d04c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -255,15 +255,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ga57ee54e06de2618ec40cddde6b62560c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga57ee54e06de2618ec40cddde6b62560c">rdsSendGroup</a> (<a class="el" href="group__group00.html#union_r_d_s___b_l_o_c_k1">RDS_BLOCK1</a> blockA, <a class="el" href="group__group00.html#union_r_d_s___b_l_o_c_k2">RDS_BLOCK2</a> blockB, <a class="el" href="group__group00.html#union_r_d_s___b_l_o_c_k3">RDS_BLOCK3</a> blockC, <a class="el" href="group__group00.html#union_r_d_s___b_l_o_c_k4">RDS_BLOCK4</a> blockD)</td></tr>
 <tr class="memdesc:ga57ee54e06de2618ec40cddde6b62560c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends a RDS group (four blocks) to the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a>.  <br /></td></tr>
 <tr class="separator:ga57ee54e06de2618ec40cddde6b62560c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga71194adfa621d4ff30879ef539dea705"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga71194adfa621d4ff30879ef539dea705">rdsSendPS</a> (char *ps=NULL, uint8_t groupTransmissionCount=4)</td></tr>
-<tr class="memdesc:ga71194adfa621d4ff30879ef539dea705"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the Program Service Message.  <br /></td></tr>
-<tr class="separator:ga71194adfa621d4ff30879ef539dea705"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2beb7d1a42e9aa2ecf72427318b40d1b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b">rdsSendPS</a> (char *ps=NULL)</td></tr>
+<tr class="memdesc:ga2beb7d1a42e9aa2ecf72427318b40d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the Program Service Message.  <br /></td></tr>
+<tr class="separator:ga2beb7d1a42e9aa2ecf72427318b40d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f">rdsSetStationName</a> (char *stationName)</td></tr>
 <tr class="memdesc:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the station name.  <br /></td></tr>
 <tr class="separator:ga8a4a20dea21a4dd04cb4836b1514786f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga2b4745d58f5a843f208030c52fb3cb22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga2b4745d58f5a843f208030c52fb3cb22">rdsSendRTMessage</a> (char *rtText, uint8_t groupTransmissionCount=4)</td></tr>
-<tr class="memdesc:ga2b4745d58f5a843f208030c52fb3cb22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends RDS Radio Text Message (group 2A)  <br /></td></tr>
-<tr class="separator:ga2b4745d58f5a843f208030c52fb3cb22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga085fa9c2b4753a7f7135bd0e7c9b7852"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852">rdsSendRTMessage</a> (char *rtText)</td></tr>
+<tr class="memdesc:ga085fa9c2b4753a7f7135bd0e7c9b7852"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends RDS Radio Text Message (group 2A)  <br /></td></tr>
+<tr class="separator:ga085fa9c2b4753a7f7135bd0e7c9b7852"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f0428bf860631dc7169c6def5d5f2b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3">rdsWriteBlock</a> (uint8_t rdsRegister, uint16_t block)</td></tr>
 <tr class="separator:a6f0428bf860631dc7169c6def5d5f2b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gabff1b72ccfef9356650ad42beb41f62c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gabff1b72ccfef9356650ad42beb41f62c">rdsSetPI</a> (uint16_t pi)</td></tr>
@@ -299,6 +299,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gadf9a03570842fe995bf7594b8964ed91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91">rdsSetSyncTime</a> (uint8_t syncTime)</td></tr>
 <tr class="memdesc:gadf9a03570842fe995bf7594b8964ed91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the wait time for the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> to be available to send the next RDS block.  <br /></td></tr>
 <tr class="separator:gadf9a03570842fe995bf7594b8964ed91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4050b3c3e3e96cf7a80468d2daa97ce7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a4050b3c3e3e96cf7a80468d2daa97ce7">rdsSetRepeatSendGroup</a> (uint8_t count)</td></tr>
+<tr class="separator:a4050b3c3e3e96cf7a80468d2daa97ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga1cbeccfe43f36b25bf01692b25bd12c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7">resetFsm</a> ()</td></tr>
 <tr class="memdesc:ga1cbeccfe43f36b25bf01692b25bd12c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Resets the state to initial states and recalibrate all blocks.  <br /></td></tr>
 <tr class="separator:ga1cbeccfe43f36b25bf01692b25bd12c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -460,6 +462,32 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4050b3c3e3e96cf7a80468d2daa97ce7" name="a4050b3c3e3e96cf7a80468d2daa97ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4050b3c3e3e96cf7a80468d2daa97ce7">&#9670;&#160;</a></span>rdsSetRepeatSendGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::rdsSetRepeatSendGroup </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>count</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>
