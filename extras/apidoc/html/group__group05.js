@@ -19,7 +19,6 @@ var group__group05 =
     [ "QN8066::rdsTxEnable", "group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1", null ],
     [ "QN8066::rdsSetTxToggle", "group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7", null ],
     [ "QN8066::rdsGetTxUpdated", "group__group05.html#gab18543166cfd0ca104df9a269a990552", null ],
-    [ "QN8066::rdsWriteTxBuffer", "group__group05.html#gad08b61283a37563712c2b6b8f59e5046", null ],
     [ "QN8066::rdsSetFrequencyDerivation", "group__group05.html#ga662a1d34329657b1d2fbb93f44901bab", null ],
     [ "QN8066::rdsSetTxLineIn", "group__group05.html#ga27d182aa90e915b86139d0ae63350fc8", null ],
     [ "QN8066::rdsSendGroup", "group__group05.html#ga57ee54e06de2618ec40cddde6b62560c", null ],

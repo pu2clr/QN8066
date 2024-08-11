@@ -52,7 +52,6 @@ var NAVTREEINDEX0 =
 "annotated.html":[3,0],
 "class_q_n8066.html":[3,0,0],
 "class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1":[3,0,0,29],
-"class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3":[3,0,0,55],
 "class_q_n8066.html#a7ea04cd950a6627cd494c7cd48abbe92":[3,0,0,5],
 "class_q_n8066.html#a801b74d0c6d39c9c828f20a46fb3ce7c":[3,0,0,33],
 "class_q_n8066.html#a8f5f8f73c0d0f1faa96a6b5bb8bde49b":[3,0,0,34],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "group__group00.html#structqn8066__cca_8arg":[2,7,33],
 "group__group00.html#structqn8066__ch__step_8arg":[2,7,38],
 "group__group00.html#structqn8066__cid1_8arg":[2,7,34],
-"group__group00.html#structqn8066__cid2_8arg":[2,7,35]
+"group__group00.html#structqn8066__cid2_8arg":[2,7,35],
+"group__group00.html#structqn8066__gplt_8arg":[2,7,47]
 };

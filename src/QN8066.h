@@ -840,12 +840,12 @@ private:
   qn8066_vol_ctl vol_ctl;
 
 
-  uint8_t rdsSyncTime = 60;             // Time in ms to wait for sending the next group - Default value is 60 ms 
-  uint8_t rdsRepeatGroup = 5;           // Number of times that a RDS group will send at once.
+  uint8_t rdsSyncTime = 60;               //!< Wait time in milliseconds before sending the next group - Default is 60 ms. 
+  uint8_t rdsRepeatGroup = 5;             //!< Number of times an RDS group will be transmitted consecutively.
 
-  char rdsStationName[9] = " QN8066\r"; 
+  char rdsStationName[9] = " QN8066\r";   //!< Default Program Station (PS)
   uint16_t rdsPI = 33179;    //!< Default value for piCode (0x819B)
-  uint8_t rdsPTY = 5;       //!< Default program type (PTY) 5 is "Education"
+  uint8_t rdsPTY = 5;       //!< The default program type (PTY) is 5, which is "Education" for RDS and "Rock" for RDBS.
   uint8_t rdsTP = 0;        //!< Traffic Program (TP)
   uint8_t rdsSendError = 0;
 
@@ -875,8 +875,6 @@ public:
   qn8066_status3 getStatus3();
 
 
-
-
   /**
    * @brief SYSTEM1 SETUP
    *
@@ -890,7 +888,6 @@ public:
   uint8_t getTxMono();
   void setTxPreEmphasis( uint8_t value = 75);
   void setPreEmphasis(uint8_t value = 1);
-
 
   void setTxOffAfterOneMinuteNoAudio(bool value);  
   void setTxOffAfterOneMinute(uint8_t value);
@@ -971,7 +968,6 @@ public:
   void rdsTxEnable(bool value);   
   uint8_t rdsSetTxToggle();
   bool rdsGetTxUpdated();
-  void rdsWriteTxBuffer(const char *text);
   void rdsSetFrequencyDerivation(uint8_t freq = 6);
   void rdsSetTxLineIn(bool value = 0); 
 
@@ -981,7 +977,6 @@ public:
 
   void rdsSetStationName(char *stationName);
   void rdsSendRTMessage(char *rtText);
-  void rdsWriteBlock(uint8_t rdsRegister, uint16_t block); 
 
   /**
   * @ingroup group05 TX RDS

@@ -1190,33 +1190,6 @@ bool QN8066::rdsGetTxUpdated() {
 
 /**
  * @ingroup group05 TX RDS
- * @brief Writes the RDS data bytes to be sent (SEE TX_RDSD0 to TX_RDSD7 registers)
- * @details The data written into RDSD0~RDSD7 cannot be sent out if user didn’t toggle RDSTXRDY to allow the data loaded into internal transmitting buffer.
- * @param text (point to array of char with 8 bytes to be loaded into the RDS data buffer)
- * @code 
- * #include <QN8066.h>
- * QN8066 tx;
- * void setup() {
- *   tx.setup();
- *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
- *   tx.rdsTxEnable(true);
- *   tx.rdsWriteTxBuffer();
- * }
- *
- * void loop() {
- * }
- * @endcode   
- */
-void QN8066::rdsWriteTxBuffer(const char *text) { 
-  for (uint8_t address = QN_TX_RDSD0; address <= QN_TX_RDSD7; address++ ) {
-    this->setRegister(address, *text++);
-  }
-  this->rdsSetTxToggle();
-  delay(1);
-}
-
-/**
- * @ingroup group05 TX RDS
  * @brief Sets RDS frequency deviation.
  * @details RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. 
  * @details RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode.
@@ -1267,13 +1240,6 @@ void QN8066::rdsSetTxLineIn(bool value) {
   rds.raw = this->getRegister(QN_RDS);
   rds.arg.line_in_en = value;
   this->setRegister(QN_RDS, rds.raw);  
-} 
-
-
-
-void QN8066::rdsWriteBlock(uint8_t rdsRegister, uint16_t block) {
-  this->setRegister(rdsRegister, block>>8 );
-  this->setRegister(rdsRegister, block & 0xFF);
 } 
 
 /**
@@ -1368,7 +1334,7 @@ void QN8066::rdsSetStationName(char *stationName) {
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
  *   tx.rdsTxEnable(true);
  *   delay(100);
- *   tx.rdsSendPS("STATIONX"); // transmit STATIONX this->rdsRepeatGroup times
+ *   tx.rdsSendPS("STATIONX"); // transmit "STATIONX" this->rdsRepeatGroup times
  * }
  *
  * void loop() {
@@ -1427,7 +1393,7 @@ void QN8066::rdsSendPS(char* ps) {
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
  *   tx.rdsTxEnable(true);
  *   delay(100);
- *   tx.rdsSendRTMessage("IT IS AN EXAMPLE..."); // transmits the message this->rdsRepeatGroup times
+ *   tx.rdsSendRTMessage("IT IS AN EXAMPLE..."); // transmits the message "IT IS AN EXAMPLE..." this->rdsRepeatGroup times
  * }
  *
  * void loop() {

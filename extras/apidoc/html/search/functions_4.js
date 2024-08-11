@@ -24,8 +24,6 @@ var searchData=
   ['rdssettxlinein_21',['rdsSetTxLineIn',['../group__group05.html#ga27d182aa90e915b86139d0ae63350fc8',1,'QN8066']]],
   ['rdssettxtoggle_22',['rdsSetTxToggle',['../group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7',1,'QN8066']]],
   ['rdstxenable_23',['rdsTxEnable',['../group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1',1,'QN8066']]],
-  ['rdswriteblock_24',['rdsWriteBlock',['../class_q_n8066.html#a6f0428bf860631dc7169c6def5d5f2b3',1,'QN8066']]],
-  ['rdswritetxbuffer_25',['rdsWriteTxBuffer',['../group__group05.html#gad08b61283a37563712c2b6b8f59e5046',1,'QN8066']]],
-  ['resetaudiopeak_26',['resetAudioPeak',['../group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed',1,'QN8066']]],
-  ['resetfsm_27',['resetFsm',['../group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7',1,'QN8066']]]
+  ['resetaudiopeak_24',['resetAudioPeak',['../group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed',1,'QN8066']]],
+  ['resetfsm_25',['resetFsm',['../group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7',1,'QN8066']]]
 ];
