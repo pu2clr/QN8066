@@ -840,7 +840,8 @@ private:
   qn8066_vol_ctl vol_ctl;
 
 
-  uint8_t rdsSyncTime = 60;             // Time in ms to wait fro send the next group - Default value is 60 ms 
+  uint8_t rdsSyncTime = 60;             // Time in ms to wait for sending the next group - Default value is 60 ms 
+  uint8_t rdsRepeatGroup = 5;           // Number of times that a RDS group will send at once.
 
   char rdsStationName[9] = " QN8066\r"; 
   uint16_t rdsPI = 33179;    //!< Default value for piCode (0x819B)
@@ -964,7 +965,7 @@ public:
 
   void rdsSetMode(uint8_t mode); 
   void rdsSet4KMode(uint8_t value);
-  void rdsInitTx(uint8_t countryId = 0, uint8_t programId = 0, uint8_t reference = 0);
+  void rdsInitTx(uint8_t countryId = 0, uint8_t programId = 0, uint8_t reference = 0, uint8_t rdsSyncTime = 60, uint8_t rdsRepeatGroup = 5 );
   void rdsSetInterrupt(uint8_t value);
 
   void rdsTxEnable(bool value);   
@@ -975,11 +976,11 @@ public:
   void rdsSetTxLineIn(bool value = 0); 
 
   void rdsSendGroup(RDS_BLOCK1 blockA, RDS_BLOCK2 blockB, RDS_BLOCK3 blockC, RDS_BLOCK4 blockD);
-  void rdsSendPS(char* ps = NULL, uint8_t groupTransmissionCount = 4); 
+  void rdsSendPS(char* ps = NULL); 
 
 
   void rdsSetStationName(char *stationName);
-  void rdsSendRTMessage(char *rtText,  uint8_t groupTransmissionCount = 4);
+  void rdsSendRTMessage(char *rtText);
   void rdsWriteBlock(uint8_t rdsRegister, uint16_t block); 
 
   /**
@@ -1056,6 +1057,8 @@ public:
   * @param syncTime - time in ms 
   */
   inline void rdsSetSyncTime(uint8_t syncTime) {this->rdsSyncTime = syncTime; };
+  
+  inline void rdsSetRepeatSendGroup (uint8_t count) {this->rdsRepeatGroup = count;};
 
   void resetFsm();
   uint8_t getFsmStateCode();

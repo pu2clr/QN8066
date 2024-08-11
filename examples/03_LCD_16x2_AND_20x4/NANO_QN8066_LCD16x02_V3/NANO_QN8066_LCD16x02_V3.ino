@@ -214,10 +214,12 @@ TableValue tabMonoStereo[] = {
 
 
 TableValue txRdsFreqDev[] = {
-  { 13, " 4,5kHz" },  // 0
-  { 26, " 9,1kHz" },  // 1
-  { 39, "13,6kHz" },  // 2
-  { 52, "18,2kHz" }   // 3
+  {  6, " 2,1kHz "},  // 0
+  {  8, " 3,0kHz "},  // 1
+  { 13, " 4,5kHz" },  // 2
+  { 26, " 9,1kHz" },  // 3
+  { 39, "13,6kHz" },  // 4
+  { 52, "18,2kHz" }   // 5
 };
 
 
@@ -273,7 +275,7 @@ KeyValue keyValue[] = {
   { 2, tabGainTxPilot },           // KEY_GAIN_PILOT
   { 2, tabTxFrequencyDeviation },  // KEY_FREQ_DERIVATION
   { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN
-  { 0, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
+  { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
   { 0, NULL }                      // KEY_MAIN_SCREEN
 };
 
@@ -379,7 +381,7 @@ void setup() {
   // Checking RDS... UNDER CONSTRUCTION...
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
     delay(1000);
-    tx.rdsInitTx(0, 0, 0);  // Initialize RDS transmission: set countryID, programId, and reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+    tx.rdsInitTx(0, 0, 0, 50, 5);  // RDS transmission configuration: set countryID, programId, and reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
     tx.rdsSetPTY(1);        // Set Program Type: 1 represents News, modify as needed or make it dynamic
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
@@ -680,7 +682,7 @@ uint8_t doMenu(uint8_t idxMenu) {
       runAction([](uint8_t value) {tx.setTxInputBufferGain(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
     case 11:
-      runAction([](uint8_t value) {tx.rdsSetFrequencyDerivation(value);}, &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.rdsSetFrequencyDerivation(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
     case 12:
       enablePWM(pwmPowerDuty);  // Turn the PWM on again.

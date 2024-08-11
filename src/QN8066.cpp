@@ -1064,6 +1064,8 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * @param countryId - Country Identifier (First 4 Bits)
  * @param programId - Program Id code
  * @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
+ * @param rdsSyncTime - Time in ms to wait for sending the next group - Default value is 60 ms 
+ * @param rdsRepeatGroup -  Number of times that a RDS group will send at once. - Default is 5.
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1082,9 +1084,11 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * }
  * @endcode   
  */
-void QN8066::rdsInitTx(uint8_t countryId, uint8_t programId, uint8_t reference) {
+void QN8066::rdsInitTx(uint8_t countryId, uint8_t programId, uint8_t reference, uint8_t rdsSyncTime, uint8_t rdsRepeatGroup) {
   // this->setRegister(0x6E, 0B10110111);  // TEST - Stop Auto Gain Correction (AGC)
   this->rdsSetPI(countryId, programId, reference );
+  this->rdsSyncTime = rdsSyncTime; 
+  this->rdsRepeatGroup = rdsRepeatGroup;
   delay(100);
 }
 
@@ -1353,8 +1357,8 @@ void QN8066::rdsSetStationName(char *stationName) {
  * @ingroup group05 TX RDS
  * @brief Sends the Program Service Message
  * @details Like rdsSendPS this method sends the Station Name or other 8 char message.
+ * @details This function repeats sending a group this->rdsRepeatGroup times.
  * @param ps - String with the name of Station or message limeted to 8 character.
- * @param groupTransmissionCount - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
  * @details Example
  * @code 
  * #include <QN8066.h>
@@ -1364,14 +1368,14 @@ void QN8066::rdsSetStationName(char *stationName) {
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
  *   tx.rdsTxEnable(true);
  *   delay(100);
- *   tx.rdsSendPS("STATIONX", 3); // transmit STATIONX three times for a short time 
+ *   tx.rdsSendPS("STATIONX"); // transmit STATIONX this->rdsRepeatGroup times
  * }
  *
  * void loop() {
  * }
  * @endcode    
  */
-void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCount) {
+void QN8066::rdsSendPS(char* ps) {
 
   RDS_BLOCK1 b1;
   RDS_BLOCK2 b2;
@@ -1398,7 +1402,7 @@ void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCount) {
   // It is important to ensure that the 2A or 2B groups are transmitted continuously and in 
   // sync so that receivers can correctly piece together the parts of the text and display 
   // them to the listener without interruptions.
-  for ( uint8_t k  = 0; k < groupTransmissionCount; k++) { // Just a test. To be removed
+  for ( uint8_t k  = 0; k < this->rdsRepeatGroup; k++) { 
     for (uint8_t i = 0; i < 8; i+=2) { 
       b4.byteContent[0] = ps[i]; 
       b4.byteContent[1] = ps[i+1];
@@ -1412,9 +1416,8 @@ void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCount) {
 /**
  * @ingroup group05 TX RDS
  * @brief Sends RDS Radio Text Message (group 2A)
- * 
+ * @details This function repeats sending a group this->rdsRepeatGroup times.
  * @param rt - Radio Text (string of 32 character)
- * @param groupTransmissionCount - number of times the  group 2A must be sent to ensure continuous and synchronized transmission (default 4)
  *
  * @code 
  * #include <QN8066.h>
@@ -1424,14 +1427,14 @@ void QN8066::rdsSendPS(char* ps, uint8_t groupTransmissionCount) {
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
  *   tx.rdsTxEnable(true);
  *   delay(100);
- *   tx.rdsSendRTMessage("IT IS AN EXAMPLE...", 4); // transmits the message four times for a short time 
+ *   tx.rdsSendRTMessage("IT IS AN EXAMPLE..."); // transmits the message this->rdsRepeatGroup times
  * }
  *
  * void loop() {
  * }
  * @endcode  
  */
-void QN8066::rdsSendRTMessage(char *rt, uint8_t groupTransmissionCount) {
+void QN8066::rdsSendRTMessage(char *rt) {
 
     // Flushes any previus data
     this->rdsSetTxToggle();
@@ -1458,7 +1461,7 @@ void QN8066::rdsSendRTMessage(char *rt, uint8_t groupTransmissionCount) {
     // It is important to ensure that the 2A or 2B groups are transmitted continuously and in 
     // sync so that receivers can correctly piece together the parts of the text and display 
     // them to the listener without interruptions.    
-    for ( uint8_t k  = 0; k < groupTransmissionCount; k++) { 
+    for ( uint8_t k  = 0; k < this->rdsRepeatGroup; k++) { 
       for (uint8_t i = 0; i < numGroups; i++) {
           block2.group2Field.address = i; 
           RDS_BLOCK3 block3; 
