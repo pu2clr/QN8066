@@ -17,7 +17,7 @@ var searchData=
   ['rdssetmode_14',['rdsSetMode',['../group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a',1,'QN8066']]],
   ['rdssetpi_15',['rdsSetPI',['../group__group05.html#gabff1b72ccfef9356650ad42beb41f62c',1,'QN8066::rdsSetPI(uint16_t pi)'],['../group__group05.html#gae61a8f8f5af9015db21c0e283deaadb7',1,'QN8066::rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference=0)']]],
   ['rdssetpty_16',['rdsSetPTY',['../group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b',1,'QN8066']]],
-  ['rdssetrepeatsendgroup_17',['rdsSetRepeatSendGroup',['../class_q_n8066.html#a4050b3c3e3e96cf7a80468d2daa97ce7',1,'QN8066']]],
+  ['rdssetrepeatsendgroup_17',['rdsSetRepeatSendGroup',['../group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7',1,'QN8066']]],
   ['rdssetstationname_18',['rdsSetStationName',['../group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f',1,'QN8066']]],
   ['rdssetsynctime_19',['rdsSetSyncTime',['../group__group05.html#gadf9a03570842fe995bf7594b8964ed91',1,'QN8066']]],
   ['rdssettp_20',['rdsSetTP',['../group__group05.html#gaa49bb620515b40371af65135ad35a759',1,'QN8066']]],

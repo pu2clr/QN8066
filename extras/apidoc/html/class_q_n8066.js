@@ -67,7 +67,7 @@ var class_q_n8066 =
     [ "rdsGetError", "group__group05.html#ga39fca640c878f92ed9c15f000620161e", null ],
     [ "rdsClearBuffer", "group__group05.html#gadae22b8660f72a32479c9fc6c891aff6", null ],
     [ "rdsSetSyncTime", "group__group05.html#gadf9a03570842fe995bf7594b8964ed91", null ],
-    [ "rdsSetRepeatSendGroup", "class_q_n8066.html#a4050b3c3e3e96cf7a80468d2daa97ce7", null ],
+    [ "rdsSetRepeatSendGroup", "group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7", null ],
     [ "resetFsm", "group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7", null ],
     [ "getFsmStateCode", "group__group10.html#ga679e38373a2db0083d3f4bde4b6f2f9a", null ],
     [ "convertToChar", "group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8", null ],

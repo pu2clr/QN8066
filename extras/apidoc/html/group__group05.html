@@ -128,6 +128,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gadf9a03570842fe995bf7594b8964ed91"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91">QN8066::rdsSetSyncTime</a> (uint8_t syncTime)</td></tr>
 <tr class="memdesc:gadf9a03570842fe995bf7594b8964ed91"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the wait time for the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> to be available to send the next RDS block.  <br /></td></tr>
 <tr class="separator:gadf9a03570842fe995bf7594b8964ed91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga4050b3c3e3e96cf7a80468d2daa97ce7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7">QN8066::rdsSetRepeatSendGroup</a> (uint8_t count)</td></tr>
+<tr class="memdesc:ga4050b3c3e3e96cf7a80468d2daa97ce7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the number of time that a group will be sent at once.  <br /></td></tr>
+<tr class="separator:ga4050b3c3e3e96cf7a80468d2daa97ce7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga0ae8735b4150105b54fc9ace31788e9a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a">QN8066::rdsSetMode</a> (uint8_t mode)</td></tr>
 <tr class="memdesc:ga0ae8735b4150105b54fc9ace31788e9a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets RDS Mode Selection.  <br /></td></tr>
 <tr class="separator:ga0ae8735b4150105b54fc9ace31788e9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -274,6 +277,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section see"><dt>See also</dt><dd>The table of PTY Program Type for RDS and RDBS can be checkd here: <a href="https://en.wikipedia.org/wiki/Radio_Data_System">https://en.wikipedia.org/wiki/Radio_Data_System</a> </dd></dl>
 
 </div>
 </div>
@@ -479,6 +483,40 @@ Functions</h2></td></tr>
 <p>The default time is 60ms, but depending on the microcontroller you are using, it may be necessary to reduce this time. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">syncTime</td><td>- time in ms </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga4050b3c3e3e96cf7a80468d2daa97ce7" name="ga4050b3c3e3e96cf7a80468d2daa97ce7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4050b3c3e3e96cf7a80468d2daa97ce7">&#9670;&#160;</a></span>rdsSetRepeatSendGroup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::rdsSetRepeatSendGroup </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>count</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the number of time that a group will be sent at once. </p>
+<p>The default value is 5. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">count</td><td>- number of times </td></tr>
   </table>
   </dd>
 </dl>
