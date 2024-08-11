@@ -33,6 +33,8 @@
     point, you can change pages by pressing UP or DOWN. This way, you can check the changes 
     made.     
 
+  Check the RDS functions documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
+
   Wire up on Arduino UNO, Nano or Pro mini
 
   | Device name               | Device Pin / Description  |  Arduino Pin  |
