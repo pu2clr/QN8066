@@ -64,7 +64,7 @@ uint8_t QN8066::scanI2CBus(uint8_t *device) {
 /**
  * @ingroup group02 I2C
  * @brief Gets register information
- *
+ * @details 8066 commands. It provides a means to run commands that are not currently supported by the standard API.
  * @param registerNumber
  * @return uint8_t Value of the register
  */
@@ -82,7 +82,7 @@ uint8_t QN8066::getRegister(uint8_t registerNumber) {
 /**
  * @ingroup group02 I2C
  * @brief Stores a velue to a given register
- *
+ * @details 8066 commands. It provides a means to run commands that are not currently supported by the standard API.
  * @param registerNumber
  * @param value
  */
@@ -99,6 +99,25 @@ void QN8066::setRegister(uint8_t registerNumber, uint8_t value) {
  * @ingroup group02 Device Status
  * @brief Gets the current device Status stored in STATUS1 register
  * @return qn8066_status1
+ * @see QUINTIC Datasheet - Rev 0.2,  Page 24. 
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   Serial.begin(9600);
+ *   tx.setup();
+ *   Serial.print("\nStarting the system...");
+ *   tx.setTX(1069); // Sets the transmitter to 106.9 MHz 
+ *   tx.setTxStereo(true);
+ *   qn8066_status1 s1 = tx.getStatus1();
+ *   Serial.println(s1.arg.FSM); // Shows  FSM state code - QUINTIC Datasheet - Rev 0.2,  Page 24. 
+ * }
+ * void loop() {
+ *   delay(5);
+ *}
+ * @endcode
+ *   
  */
 qn8066_status1 QN8066::getStatus1() {
   qn8066_status1 value;
@@ -110,6 +129,24 @@ qn8066_status1 QN8066::getStatus1() {
  * @ingroup group02 Device Status
  * @brief Gets the current device Status stored in STATUS2 register
  * @return qn8066_status2
+ * @see QUINTIC Datasheet - Rev 0.2,  Page 28.  
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   Serial.begin(9600);
+ *   tx.setup();
+ *   Serial.print("\nStarting the system...");
+ *   tx.setTX(1069); // Sets the transmitter to 106.9 MHz 
+ *   tx.setTxStereo(true);
+ *   qn8066_status2 s2 = tx.getStatus2();
+ *   Serial.println(s2.arg.RDSSYNC); // Shows RDS block synchronous indicator. 
+ * }
+ * void loop() {
+ *   delay(5);
+ *}
+ * @endcode 
  */
 qn8066_status2 QN8066::getStatus2() {
   qn8066_status2 value;
@@ -121,6 +158,25 @@ qn8066_status2 QN8066::getStatus2() {
  * @ingroup group02 Device Status
  * @brief Gets the current device Status stored in STATUS3 register
  * @return qn8066_status3
+ * @see QUINTIC Datasheet - Rev 0.2,  Page 30.   
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   Serial.begin(9600);
+ *   tx.setup();
+ *   Serial.print("\nStarting the system...");
+ *   tx.setTX(1069); // Sets the transmitter to 106.9 MHz 
+ *   tx.setTxStereo(true);
+ *   ...
+ *   qn8066_status3 s3 = tx.getStatus2();
+ *   Serial.println(s3.arg.RDS_TXUPD); // Checks RDS TX update 
+ * }
+ * void loop() {
+ *   delay(5);
+ *}
+ * @endcode 
  */
 qn8066_status3 QN8066::getStatus3() {
   qn8066_status3 value;
