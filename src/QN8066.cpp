@@ -1005,6 +1005,7 @@ void QN8066::setToggleTxPdClear() {
   this->pac = pac;
 }
 
+
 /**
  * @ingroup group04 PA Control
  * @brief Audio peak value at ADC input
@@ -1030,14 +1031,15 @@ int QN8066::getAudioPeakValue() {
 }
 
 
-/** @defgroup group05 TX RDS Setup - UNDER CONSTRUCTION...*/
+/** @defgroup group05 TX RDS Setup */
 
 /**
  * @ingroup group05 TX RDS 
  * @brief Sets RDS Mode Selection.
  * @details if 0, Received bit-stream have both RDS and MMBS blocks (‘E’ block); 
  * @details if 1, Received bit-stream has RDS block only, no MMBS block (‘E’ block)
- * @param mode 
+ * @param mode
+ * @details Example 
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1063,6 +1065,7 @@ void QN8066::rdsSetMode(uint8_t mode) {
  * @brief Sets RDS 4K Mode .
  * @details Enable RDS RX/TX 4k Mode: with or without the privacy mode (audio scramble and RDS encryption)
  * @param value 0 or 1 
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1089,6 +1092,7 @@ void QN8066::rdsSet4KMode(uint8_t value) {
  * @details RDS RX interrupt enable. When RDS_INT_EN=1, a 4.5ms low pulse will be output from pad din (RX mode)
  * @details when a new group data is received and stored into RDS0~RDS7 (RX mode).
  * @param value 0 or 1 
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1118,6 +1122,7 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
  * @param rdsSyncTime - Time in ms to wait for sending the next group - Default value is 60 ms 
  * @param rdsRepeatGroup -  Number of times that a RDS group will send at once. - Default is 5.
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1166,6 +1171,7 @@ void QN8066::rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference) {
  * @details Enable RDS service 
  * @param value (true = enabled; false = disabled)
  * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1192,6 +1198,7 @@ void QN8066::rdsTxEnable(bool value) {
  * @details If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit. 
  * @details description the chip internally will fetch these bytes after completing transmitting of current group.
  * @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1222,6 +1229,7 @@ uint8_t QN8066::rdsSetTxToggle() {
  * @details Once the chip internally fetched these bytes, it will toggle this bit, and user can write in another group.
  * @return true 
  * @return false 
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1247,7 +1255,8 @@ bool QN8066::rdsGetTxUpdated() {
  * @details RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. 
  * @details RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode.
  * @param freq ( valid values: from 0 to 127)
- * @see Datasheet, register RDS (0x26), page 34. 
+ * @see Datasheet, register RDS (0x26), page 34.
+ * @details Example 
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1274,6 +1283,7 @@ void QN8066::rdsSetFrequencyDerivation(uint8_t freq) {
  * @brief Audio Line-in enable control
  * @param value (true = enabled; false = disabled)
  * @see Datasheet, register RDS (0x26), page 34. 
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1437,7 +1447,7 @@ void QN8066::rdsSendPS(char* ps) {
  * @brief Sends RDS Radio Text Message (group 2A)
  * @details This function repeats sending a group this->rdsRepeatGroup times.
  * @param rt - Radio Text (string of 32 character)
- *
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
@@ -1517,6 +1527,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
  * | 10 - 1010  | TRANSMIT     |
  * | 11 - 1011  | TXCCA        |
  * | Others     | Reserved     |
+ * @details Example
  * @code 
  * #include <QN8066.h>
  * QN8066 tx;
