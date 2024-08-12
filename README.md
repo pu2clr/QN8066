@@ -25,6 +25,7 @@ I hold a Master's degree in Educational Technology from the Federal University o
 ## Contents
 
 1. [Legal Compliance Guidelines](./#legal-compliance-guidelines)
+2. [QN8066 Arduino Library Features](./#qn8066-arduino-library-features)
 2. [Technical Overview of the QN8066 RX/TX Device (IC)](./#technical-overview-of-the-qn8066-rxtx-device-ic)
 3. [Why a QN8066 library for Arduino?](./#why-a-qn8066-library-for-arduino)
 4. [Groups and Forums](./#groups-and-forums)
@@ -79,6 +80,23 @@ For example, if you want to use an LCD or another display device in a project th
 Utilizing a library can reduce programming complexity and enhance the robustness of your application. It simplifies life not only for other developers but also for yourself. You don't need to be a software engineer to see the value in this. A library is similar to an integrated circuit (IC); while you could manually implement the functionality of many ICs in a circuit, doing so would significantly increase the cost, complexity, size, and potential for failure of your project. Often, it's better to abstract certain functions inside a ready-made IC. The user only needs to know how to interact with the chip, not how the chip itself is designed.
 
 Finally, if you're already using libraries to handle the I2C bus (Wire.h), TFT or OLED displays, SPI devices, and Serial UART communication, it makes sense to use a library to manage the QN8066 device as well. The QN8066 Arduino Library can add convenience, development speed, and robustness to your project. Unlike closed-source solutions, this library is open-source, allowing you to learn from and modify the code as needed.
+
+
+## QN8066 Arduino Library Features
+
+This library uses the I²C communication protocol and implements most of the functions offered by QN8066 IC from QUINTIC. This library also has primitive functions that make it easier for you to implement commands that may not have been implemented yet. As said before, this library is constantly improving. Check the API documentation before implementing a new function. It is likely that your function is already implemented. [See the API documentation for this library](). 
+
+1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://github.com/pu2clr/QN8066/blob/main/LICENSE) to know more.   
+2. Built based on QN8066 Datasheet
+3. C++ Language and Object-oriented programming. You can easily extend the QN8066 class by adding more functionalities. 
+4. API Documentation. All functions implemented in this library have documentation that can be checked in the source code or at this [link](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+4. Available on Arduino IDE (via Manage Libraries). Easy to install and use. 
+5. Cross-platform. You can compile and run this library on most of boards supported by the Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, ARM Cortex, STM32, Arduino DUE, ESP32 and more). 
+6. Simplifies projects based on QN8066
+7. [A lot of examples to guide the user](https://github.com/pu2clr/QN8066/tree/master/examples)
+8. RDS support
+9. Clock reference selection 
+
 
 
 ## Technical Overview of the QN8066 RX/TX Device (IC)
