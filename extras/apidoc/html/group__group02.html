@@ -139,7 +139,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets register information. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>8066 commands. It provides a means to run commands that are not currently supported by the standard API. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">registerNumber</td><td></td></tr>
   </table>
@@ -176,7 +176,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Stores a velue to a given register. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<p>8066 commands. It provides a means to run commands that are not currently supported by the standard API. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">registerNumber</td><td></td></tr>
     <tr><td class="paramname">value</td><td></td></tr>
@@ -203,7 +203,30 @@ Functions</h2></td></tr>
 
 <p>Gets the current device Status stored in STATUS1 register. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__group00.html#unionqn8066__status1" title="STATUS1 - System status ( Address: 0Ah - Read Only)">qn8066_status1</a> </dd></dl>
-
+<dl class="section see"><dt>See also</dt><dd>QUINTIC Datasheet - Rev 0.2, Page 24.</dd></dl>
+<p>Example </p><div class="fragment"><div class="line"><span class="preprocessor"> #include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"> <a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
+<div class="line">   Serial.begin(9600);</div>
+<div class="line">   tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
+<div class="line">   Serial.print(<span class="stringliteral">&quot;\nStarting the system...&quot;</span>);</div>
+<div class="line">   tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Sets the transmitter to 106.9 MHz </span></div>
+<div class="line">   tx.<a class="code hl_function" href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">setTxStereo</a>(<span class="keyword">true</span>);</div>
+<div class="line">   <a class="code hl_union" href="group__group00.html#unionqn8066__status1">qn8066_status1</a> s1 = tx.<a class="code hl_function" href="group__group02.html#ga42fb3ab79849550ce078c5efb591d291">getStatus1</a>();</div>
+<div class="line">   Serial.println(s1.<a class="code hl_variable" href="group__group00.html#a9235fae8b1ba8838e5dbed428d29a22d">arg</a>.FSM); <span class="comment">// Shows  FSM state code - QUINTIC Datasheet - Rev 0.2,  Page 24. </span></div>
+<div class="line"> }</div>
+<div class="line"> <span class="keywordtype">void</span> loop() {</div>
+<div class="line">   delay(5);</div>
+<div class="line">}</div>
+<div class="ttc" id="a_q_n8066_8h_html"><div class="ttname"><a href="_q_n8066_8h.html">QN8066.h</a></div></div>
+<div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:822</div></div>
+<div class="ttc" id="agroup__group00_html_a9235fae8b1ba8838e5dbed428d29a22d"><div class="ttname"><a href="group__group00.html#a9235fae8b1ba8838e5dbed428d29a22d">qn8066_status1::arg</a></div><div class="ttdeci">struct qn8066_status1::@6 arg</div></div>
+<div class="ttc" id="agroup__group00_html_unionqn8066__status1"><div class="ttname"><a href="group__group00.html#unionqn8066__status1">qn8066_status1</a></div><div class="ttdoc">STATUS1 - System status ( Address: 0Ah - Read Only)</div><div class="ttdef"><b>Definition:</b> QN8066.h:283</div></div>
+<div class="ttc" id="agroup__group02_html_ga42fb3ab79849550ce078c5efb591d291"><div class="ttname"><a href="group__group02.html#ga42fb3ab79849550ce078c5efb591d291">QN8066::getStatus1</a></div><div class="ttdeci">qn8066_status1 getStatus1()</div><div class="ttdoc">Gets the current device Status stored in STATUS1 register.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:122</div></div>
+<div class="ttc" id="agroup__group02_html_gacc2e79aa0134a657191485184b2b603b"><div class="ttname"><a href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60, uint8_t inInpedance=1, uint8_t txAgcDig=0, uint8_t txAgcBuffer=1, uint8_t txSoftClip=0)</div><div class="ttdoc">QN8066 initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:250</div></div>
+<div class="ttc" id="agroup__group04_html_ga7fbea7d2ae6bdf9719ee252e6a612a83"><div class="ttname"><a href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">QN8066::setTxStereo</a></div><div class="ttdeci">void setTxStereo(bool value=true)</div><div class="ttdoc">Set TX Stereo or Mono.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:380</div></div>
+<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:330</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="gac6731edee1a5da425a66878371b1104c" name="gac6731edee1a5da425a66878371b1104c"></a>
@@ -223,7 +246,26 @@ Functions</h2></td></tr>
 
 <p>Gets the current device Status stored in STATUS2 register. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__group00.html#unionqn8066__status2" title="STATUS2 - Receiver RDS status indicators (Address: 17h - Read Only)">qn8066_status2</a> </dd></dl>
-
+<dl class="section see"><dt>See also</dt><dd>QUINTIC Datasheet - Rev 0.2, Page 28. <br  />
+</dd></dl>
+<p>Example </p><div class="fragment"><div class="line"><span class="preprocessor"> #include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"> <a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
+<div class="line">   Serial.begin(9600);</div>
+<div class="line">   tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
+<div class="line">   Serial.print(<span class="stringliteral">&quot;\nStarting the system...&quot;</span>);</div>
+<div class="line">   tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Sets the transmitter to 106.9 MHz </span></div>
+<div class="line">   tx.<a class="code hl_function" href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">setTxStereo</a>(<span class="keyword">true</span>);</div>
+<div class="line">   <a class="code hl_union" href="group__group00.html#unionqn8066__status2">qn8066_status2</a> s2 = tx.<a class="code hl_function" href="group__group02.html#gac6731edee1a5da425a66878371b1104c">getStatus2</a>();</div>
+<div class="line">   Serial.println(s2.<a class="code hl_variable" href="group__group00.html#a12aa79b91e2994536f9668f93021fff3">arg</a>.RDSSYNC); <span class="comment">// Shows RDS block synchronous indicator. </span></div>
+<div class="line"> }</div>
+<div class="line"> <span class="keywordtype">void</span> loop() {</div>
+<div class="line">   delay(5);</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__group00_html_a12aa79b91e2994536f9668f93021fff3"><div class="ttname"><a href="group__group00.html#a12aa79b91e2994536f9668f93021fff3">qn8066_status2::arg</a></div><div class="ttdeci">struct qn8066_status2::@9 arg</div></div>
+<div class="ttc" id="agroup__group00_html_unionqn8066__status2"><div class="ttname"><a href="group__group00.html#unionqn8066__status2">qn8066_status2</a></div><div class="ttdoc">STATUS2 - Receiver RDS status indicators (Address: 17h - Read Only)</div><div class="ttdef"><b>Definition:</b> QN8066.h:403</div></div>
+<div class="ttc" id="agroup__group02_html_gac6731edee1a5da425a66878371b1104c"><div class="ttname"><a href="group__group02.html#gac6731edee1a5da425a66878371b1104c">QN8066::getStatus2</a></div><div class="ttdeci">qn8066_status2 getStatus2()</div><div class="ttdoc">Gets the current device Status stored in STATUS2 register.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:151</div></div>
+</div><!-- fragment --> 
 </div>
 </div>
 <a id="gafcb2a26df67c63e40800a29a559c5505" name="gafcb2a26df67c63e40800a29a559c5505"></a>
@@ -243,7 +285,26 @@ Functions</h2></td></tr>
 
 <p>Gets the current device Status stored in STATUS3 register. </p>
 <dl class="section return"><dt>Returns</dt><dd><a class="el" href="group__group00.html#unionqn8066__status3" title="STATUS3 - Receiver audio peak level and AGC status (Address: 1Ah - Read Only)">qn8066_status3</a> </dd></dl>
-
+<dl class="section see"><dt>See also</dt><dd>QUINTIC Datasheet - Rev 0.2, Page 30. <br  />
+</dd></dl>
+<p>Example </p><div class="fragment"><div class="line"><span class="preprocessor"> #include &lt;<a class="code" href="_q_n8066_8h.html">QN8066.h</a>&gt;</span></div>
+<div class="line"> <a class="code hl_class" href="class_q_n8066.html">QN8066</a> tx;</div>
+<div class="line"> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>() {</div>
+<div class="line">   Serial.begin(9600);</div>
+<div class="line">   tx.<a class="code hl_function" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">setup</a>();</div>
+<div class="line">   Serial.print(<span class="stringliteral">&quot;\nStarting the system...&quot;</span>);</div>
+<div class="line">   tx.<a class="code hl_function" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a>(1069); <span class="comment">// Sets the transmitter to 106.9 MHz </span></div>
+<div class="line">   tx.<a class="code hl_function" href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">setTxStereo</a>(<span class="keyword">true</span>);</div>
+<div class="line">   ...</div>
+<div class="line">   <a class="code hl_union" href="group__group00.html#unionqn8066__status3">qn8066_status3</a> s3 = tx.<a class="code hl_function" href="group__group02.html#gac6731edee1a5da425a66878371b1104c">getStatus2</a>();</div>
+<div class="line">   Serial.println(s3.<a class="code hl_variable" href="group__group00.html#a86230cd75fc03ea1a4f1b045501f035e">arg</a>.RDS_TXUPD); <span class="comment">// Checks RDS TX update </span></div>
+<div class="line"> }</div>
+<div class="line"> <span class="keywordtype">void</span> loop() {</div>
+<div class="line">   delay(5);</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__group00_html_a86230cd75fc03ea1a4f1b045501f035e"><div class="ttname"><a href="group__group00.html#a86230cd75fc03ea1a4f1b045501f035e">qn8066_status3::arg</a></div><div class="ttdeci">struct qn8066_status3::@12 arg</div></div>
+<div class="ttc" id="agroup__group00_html_unionqn8066__status3"><div class="ttname"><a href="group__group00.html#unionqn8066__status3">qn8066_status3</a></div><div class="ttdoc">STATUS3 - Receiver audio peak level and AGC status (Address: 1Ah - Read Only)</div><div class="ttdef"><b>Definition:</b> QN8066.h:482</div></div>
+</div><!-- fragment --> 
 <p class="reference">Referenced by <a class="el" href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">QN8066::getAudioPeakValue()</a>, and <a class="el" href="group__group05.html#gab18543166cfd0ca104df9a269a990552">QN8066::rdsGetTxUpdated()</a>.</p>
 
 </div>
@@ -277,11 +338,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="a_q_n8066_8h_html"><div class="ttname"><a href="_q_n8066_8h.html">QN8066.h</a></div></div>
-<div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:822</div></div>
-<div class="ttc" id="agroup__group02_html_ga2c08b4183ed0f9790be65c67b90ede93"><div class="ttname"><a href="group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93">QN8066::begin</a></div><div class="ttdeci">void begin()</div><div class="ttdoc">Device initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:155</div></div>
-<div class="ttc" id="agroup__group02_html_gacc2e79aa0134a657191485184b2b603b"><div class="ttname"><a href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60, uint8_t inInpedance=1, uint8_t txAgcDig=0, uint8_t txAgcBuffer=1, uint8_t txSoftClip=0)</div><div class="ttdoc">QN8066 initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:194</div></div>
-<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:274</div></div>
+<div class="ttc" id="agroup__group02_html_ga2c08b4183ed0f9790be65c67b90ede93"><div class="ttname"><a href="group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93">QN8066::begin</a></div><div class="ttdeci">void begin()</div><div class="ttdoc">Device initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:211</div></div>
 </div><!-- fragment --> 
 </div>
 </div>

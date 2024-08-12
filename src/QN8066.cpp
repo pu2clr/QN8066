@@ -1005,10 +1005,6 @@ void QN8066::setToggleTxPdClear() {
   this->pac = pac;
 }
 
-
-
-
-
 /**
  * @ingroup group04 PA Control
  * @brief Audio peak value at ADC input
