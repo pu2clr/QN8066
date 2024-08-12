@@ -17,9 +17,9 @@ Contact: __pu2clr@gmail.com__.
 
 I hold a Master's degree in Educational Technology from the Federal University of Ceará, where I delved into the ways technology can enhance learning experiences. My passion for computer science led me to specialize in it, focusing on Distributed Systems Development with an Object-Oriented approach, at the University of Brasília. My academic journey began with a Bachelor's degree in Information Systems from the União Pioneira de Integração Social (UPIS-Brasília). Outside the classroom, my main hobbies are electronics and Amateur Radio. 
 
-## Notice to Users Regarding Initial Version of the Library
+## Notice to Users Regarding this Library
 
-*This library has undergone thorough testing by both the author and numerous experimenters. While the implemented functions are designed to be reliable, there may still be cases where unexpected issues arise. I encourage users to reach out to me (pu2clr@gmail.com) if any problems occur. I am committed to resolving or clarifying any issues as promptly as possible. Thank you for your understanding and support.*
+*This library is continuously evolving, with both corrective and feature updates. While the implemented functions have been tested, it is possible that in certain situations, the library may exhibit unexpected behavior. I encourage users to always utilize the latest release of this library. Should you encounter any issues, please feel free to contact me at pu2clr@gmail.com. I will do my best to address or clarify any problems as quickly as possible. Thank you.*
 
 
 ## Contents
