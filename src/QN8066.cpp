@@ -1098,6 +1098,7 @@ void QN8066::rdsInitTx(uint8_t countryId, uint8_t programId, uint8_t reference, 
  * @param countryId - Country Identifier (First 4 Bits)
  * @param programId - Program Id code
  * @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
+ * @see rdsSetPI, rdsInitTx
  */
 void QN8066::rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference) {
   RDS_BLOCK1 pi; 

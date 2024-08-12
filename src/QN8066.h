@@ -978,13 +978,54 @@ public:
   void rdsSetStationName(char *stationName);
   void rdsSendRTMessage(char *rtText);
 
-  /**
+  
+ /**
   * @ingroup group05 TX RDS
   * @brief Sets the Program Identification (PI)
+  * @details The Program Identification (PI) code is a critical component of the RDS (Radio Data System) protocol. 
+  * @details It is used to uniquely identify the radio station transmitting the RDS data. The PI code is a 16-bit 
+  * @details value (4 hexadecimal digits) assigned to each station.
+  * @details PI Code Structure
+  * @details The PI code is a 16-bit binary value (4 hexadecimal digits), and its structure is as follows:
+  * @details a)	Country Identifier (First 4 Bits) - The first 4 bits of the PI code represent the country identifier. 
+  * @details    This helps to differentiate stations in different countries. For example, the code 0x1 might represent 
+  * @details    one country, while 0x2 represents another. 
+  * @details b)	Program Type (Next 4 Bits) - The next 4 bits indicate the program type. This categorizes the type of content 
+  * @details    being broadcast, such as music, news, sports, etc.
+  * @details c) Program Reference Number (Last 8 Bits) - The last 8 bits provide a unique reference number for the specific 
+  * @details    station or program.
+  * @details You can set the PI code using the rdsSetPI. The are three ways of setting PI code: 
+  * @details rdsInitTx(countryId, programId, reference); rdsSetPI(countryId, programId, reference);
+  * @details rdsSetPI(piCode);
+  * @see rdsInitTx
+  * @details Example
+  * @code 
+  * #include <QN8066.h>
+  * QN8066 tx;
+  * 
+  * uint8_t countryId = 0x1;
+  * uint8_t programId = 0x2;
+  * uint8_t reference = 0x34;
+  * 
+  * void setup() {
+  *   tx.setup();
+  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+  *   ...
+  *   tx.rdsInitTx(countryId, programId, reference); // You can use this
+  *   ...  
+  *   tx.rdsSetPI(countryId, programId, reference);  // Or this
+  *   ... 
+  *   tx.rdsSetPI(0x1234);                           // Or this
+  * }
+  *
+  * void loop() {
+  * }
+  * @endcode     
   * @param pi - PI Code
+  * 
   */
   void rdsSetPI(uint16_t pi) {this->rdsPI = pi;};
-  
+
   void rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference = 0) ;
 
 
