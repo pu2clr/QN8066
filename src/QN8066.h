@@ -925,7 +925,7 @@ public:
    * @brief Set the Crystal Frequency object
    * @details Based on the external crystal oscillator, calculates the divider
    * parameter (xtal_div). See registers XTAL_DIV0 and XTAL_DIV1
-   * @param value
+   * @param value - value in Hz of the crystal or signal clock you are using
    */
   void setCrystalFrequency(uint32_t value) { xtal_div = value / 32768; };
   void setPAC(uint8_t PA_TRGT);

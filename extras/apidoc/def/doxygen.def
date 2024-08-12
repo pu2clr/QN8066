@@ -253,12 +253,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gaee7afb6a9a31a99fc29b8b9d7d0a00bc';
-        sec-mem-ref-line = '1032';
+        sec-mem-ref-line = '1028';
         sec-mem-ref-name = 'getAudioPeakValue';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gab18543166cfd0ca104df9a269a990552';
-        sec-mem-ref-line = '1244';
+        sec-mem-ref-line = '1240';
         sec-mem-ref-name = 'rdsGetTxUpdated';
     };
     }; /* sec-member */
@@ -1373,7 +1373,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Based on the external crystal oscillator, calculates the divider
 parameter (xtal_div). See registers XTAL_DIV0 and XTAL_DIV1
-@param value
+@param value - value in Hz of the crystal or signal clock you are using
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -2059,7 +2059,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
-        sec-mem-ref-line = '1374';
+        sec-mem-ref-line = '1370';
         sec-mem-ref-name = 'rdsSetStationName';
     };
     }; /* sec-member */
@@ -2084,13 +2084,13 @@ _EnD_oF_dEf_TeXt_;
 Sets the station name.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1370 
+\iline 1366 
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
-        sec-mem-ref-line = '1401';
+        sec-mem-ref-line = '1397';
         sec-mem-ref-name = 'rdsSendPS';
     };
     }; /* sec-member */
@@ -2396,7 +2396,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Clear and Flushes the RDS Buffer.
 
-\iline 1304 
+\iline 1300 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -6593,7 +6593,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1336';
+        sec-mem-ref-line = '1332';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -6773,7 +6773,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1336';
+        sec-mem-ref-line = '1332';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7269,7 +7269,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1336';
+        sec-mem-ref-line = '1332';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7325,7 +7325,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1336';
+        sec-mem-ref-line = '1332';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */

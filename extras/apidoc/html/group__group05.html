@@ -240,7 +240,7 @@ Functions</h2></td></tr>
 <div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:822</div></div>
 <div class="ttc" id="agroup__group02_html_gacc2e79aa0134a657191485184b2b603b"><div class="ttname"><a href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60, uint8_t inInpedance=1, uint8_t txAgcDig=0, uint8_t txAgcBuffer=1, uint8_t txSoftClip=0)</div><div class="ttdoc">QN8066 initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:250</div></div>
 <div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:330</div></div>
-<div class="ttc" id="agroup__group05_html_ga1a57c3319d117ae38fa5fc3478b026e0"><div class="ttname"><a href="group__group05.html#ga1a57c3319d117ae38fa5fc3478b026e0">QN8066::rdsInitTx</a></div><div class="ttdeci">void rdsInitTx(uint8_t countryId=0, uint8_t programId=0, uint8_t reference=0, uint8_t rdsSyncTime=60, uint8_t rdsRepeatGroup=5)</div><div class="ttdoc">Sets some RDS parameters.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1143</div></div>
+<div class="ttc" id="agroup__group05_html_ga1a57c3319d117ae38fa5fc3478b026e0"><div class="ttname"><a href="group__group05.html#ga1a57c3319d117ae38fa5fc3478b026e0">QN8066::rdsInitTx</a></div><div class="ttdeci">void rdsInitTx(uint8_t countryId=0, uint8_t programId=0, uint8_t reference=0, uint8_t rdsSyncTime=60, uint8_t rdsRepeatGroup=5)</div><div class="ttdoc">Sets some RDS parameters.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1139</div></div>
 <div class="ttc" id="agroup__group05_html_gabff1b72ccfef9356650ad42beb41f62c"><div class="ttname"><a href="group__group05.html#gabff1b72ccfef9356650ad42beb41f62c">QN8066::rdsSetPI</a></div><div class="ttdeci">void rdsSetPI(uint16_t pi)</div><div class="ttdoc">Sets the Program Identification (PI)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1027</div></div>
 </div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -591,7 +591,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_ga0ae8735b4150105b54fc9ace31788e9a"><div class="ttname"><a href="group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a">QN8066::rdsSetMode</a></div><div class="ttdeci">void rdsSetMode(uint8_t mode)</div><div class="ttdoc">Sets RDS Mode Selection.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1058</div></div>
+<div class="ttc" id="agroup__group05_html_ga0ae8735b4150105b54fc9ace31788e9a"><div class="ttname"><a href="group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a">QN8066::rdsSetMode</a></div><div class="ttdeci">void rdsSetMode(uint8_t mode)</div><div class="ttdoc">Sets RDS Mode Selection.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1054</div></div>
 </div><!-- fragment --> </td></tr>
   </table>
   </dd>
@@ -628,7 +628,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_gae77d8522db113f8fa9d44ec14f2c3534"><div class="ttname"><a href="group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534">QN8066::rdsSet4KMode</a></div><div class="ttdeci">void rdsSet4KMode(uint8_t value)</div><div class="ttdoc">Sets RDS 4K Mode .</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1083</div></div>
+<div class="ttc" id="agroup__group05_html_gae77d8522db113f8fa9d44ec14f2c3534"><div class="ttname"><a href="group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534">QN8066::rdsSet4KMode</a></div><div class="ttdeci">void rdsSet4KMode(uint8_t value)</div><div class="ttdoc">Sets RDS 4K Mode .</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1079</div></div>
 </div><!-- fragment --> </td></tr>
   </table>
   </dd>
@@ -666,7 +666,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_ga0783a3be6aacd1bbff0e5abdfc78d04c"><div class="ttname"><a href="group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c">QN8066::rdsSetInterrupt</a></div><div class="ttdeci">void rdsSetInterrupt(uint8_t value)</div><div class="ttdoc">Sets RDS interrupt.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1109</div></div>
+<div class="ttc" id="agroup__group05_html_ga0783a3be6aacd1bbff0e5abdfc78d04c"><div class="ttname"><a href="group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c">QN8066::rdsSetInterrupt</a></div><div class="ttdeci">void rdsSetInterrupt(uint8_t value)</div><div class="ttdoc">Sets RDS interrupt.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1105</div></div>
 </div><!-- fragment --> </td></tr>
   </table>
   </dd>
@@ -825,7 +825,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_ga2d13af3ea121fee09799cc0277da0dc1"><div class="ttname"><a href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">QN8066::rdsTxEnable</a></div><div class="ttdeci">void rdsTxEnable(bool value)</div><div class="ttdoc">Transmitter RDS enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1186</div></div>
+<div class="ttc" id="agroup__group05_html_ga2d13af3ea121fee09799cc0277da0dc1"><div class="ttname"><a href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">QN8066::rdsTxEnable</a></div><div class="ttdeci">void rdsTxEnable(bool value)</div><div class="ttdoc">Transmitter RDS enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1182</div></div>
 </div><!-- fragment --> </dd></dl>
 
 </div>
@@ -859,7 +859,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_ga8c9d2b0e96785ff740ec0046a7bfe1d7"><div class="ttname"><a href="group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7">QN8066::rdsSetTxToggle</a></div><div class="ttdeci">uint8_t rdsSetTxToggle()</div><div class="ttdoc">RDS transmitting ready.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1214</div></div>
+<div class="ttc" id="agroup__group05_html_ga8c9d2b0e96785ff740ec0046a7bfe1d7"><div class="ttname"><a href="group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7">QN8066::rdsSetTxToggle</a></div><div class="ttdeci">uint8_t rdsSetTxToggle()</div><div class="ttdoc">RDS transmitting ready.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1210</div></div>
 </div><!-- fragment --> </dd></dl>
 
 </div>
@@ -896,7 +896,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_gab18543166cfd0ca104df9a269a990552"><div class="ttname"><a href="group__group05.html#gab18543166cfd0ca104df9a269a990552">QN8066::rdsGetTxUpdated</a></div><div class="ttdeci">bool rdsGetTxUpdated()</div><div class="ttdoc">RDS TX Updated.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1244</div></div>
+<div class="ttc" id="agroup__group05_html_gab18543166cfd0ca104df9a269a990552"><div class="ttname"><a href="group__group05.html#gab18543166cfd0ca104df9a269a990552">QN8066::rdsGetTxUpdated</a></div><div class="ttdeci">bool rdsGetTxUpdated()</div><div class="ttdoc">RDS TX Updated.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1240</div></div>
 </div><!-- fragment --> </dd></dl>
 
 <p class="reference">References <a class="el" href="group__group02.html#gafcb2a26df67c63e40800a29a559c5505">QN8066::getStatus3()</a>.</p>
@@ -938,7 +938,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_ga662a1d34329657b1d2fbb93f44901bab"><div class="ttname"><a href="group__group05.html#ga662a1d34329657b1d2fbb93f44901bab">QN8066::rdsSetFrequencyDerivation</a></div><div class="ttdeci">void rdsSetFrequencyDerivation(uint8_t freq=6)</div><div class="ttdoc">Sets RDS frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1269</div></div>
+<div class="ttc" id="agroup__group05_html_ga662a1d34329657b1d2fbb93f44901bab"><div class="ttname"><a href="group__group05.html#ga662a1d34329657b1d2fbb93f44901bab">QN8066::rdsSetFrequencyDerivation</a></div><div class="ttdeci">void rdsSetFrequencyDerivation(uint8_t freq=6)</div><div class="ttdoc">Sets RDS frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1265</div></div>
 </div><!-- fragment --> </dd></dl>
 
 </div>
@@ -977,7 +977,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_ga27d182aa90e915b86139d0ae63350fc8"><div class="ttname"><a href="group__group05.html#ga27d182aa90e915b86139d0ae63350fc8">QN8066::rdsSetTxLineIn</a></div><div class="ttdeci">void rdsSetTxLineIn(bool value=0)</div><div class="ttdoc">Audio Line-in enable control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1295</div></div>
+<div class="ttc" id="agroup__group05_html_ga27d182aa90e915b86139d0ae63350fc8"><div class="ttname"><a href="group__group05.html#ga27d182aa90e915b86139d0ae63350fc8">QN8066::rdsSetTxLineIn</a></div><div class="ttdeci">void rdsSetTxLineIn(bool value=0)</div><div class="ttdoc">Audio Line-in enable control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1291</div></div>
 </div><!-- fragment --> </dd></dl>
 
 </div>
@@ -1099,7 +1099,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_ga2beb7d1a42e9aa2ecf72427318b40d1b"><div class="ttname"><a href="group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b">QN8066::rdsSendPS</a></div><div class="ttdeci">void rdsSendPS(char *ps=NULL)</div><div class="ttdoc">Sends the Program Service Message.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1401</div></div>
+<div class="ttc" id="agroup__group05_html_ga2beb7d1a42e9aa2ecf72427318b40d1b"><div class="ttname"><a href="group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b">QN8066::rdsSendPS</a></div><div class="ttdeci">void rdsSendPS(char *ps=NULL)</div><div class="ttdoc">Sends the Program Service Message.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1397</div></div>
 </div><!-- fragment --> 
 <p class="reference">References <a class="el" href="group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f">QN8066::rdsSetStationName()</a>.</p>
 
@@ -1140,7 +1140,7 @@ false <div class="fragment"><div class="line"><span class="preprocessor">#includ
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group05_html_ga085fa9c2b4753a7f7135bd0e7c9b7852"><div class="ttname"><a href="group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852">QN8066::rdsSendRTMessage</a></div><div class="ttdeci">void rdsSendRTMessage(char *rtText)</div><div class="ttdoc">Sends RDS Radio Text Message (group 2A)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1460</div></div>
+<div class="ttc" id="agroup__group05_html_ga085fa9c2b4753a7f7135bd0e7c9b7852"><div class="ttname"><a href="group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852">QN8066::rdsSendRTMessage</a></div><div class="ttdeci">void rdsSendRTMessage(char *rtText)</div><div class="ttdoc">Sends RDS Radio Text Message (group 2A)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1456</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
