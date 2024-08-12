@@ -471,9 +471,9 @@ void readAllTransmitterInformation() {
 
 // Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
-  delay(300);
+  delay(100);
   analogWrite(PWM_PA, value);  // Turn PA off
-  delay(300);
+  delay(100);
 }
 // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
@@ -770,8 +770,10 @@ int8_t checkEncoder() {
 
   int8_t action;
 
-  if ( digitalRead(BT_MENU) == LOW )
+  if ( digitalRead(BT_MENU) == LOW ) { 
      action =  BT_MENU_PRESSED;
+     delay(30);                   // Try to avoid double click or debounce 
+  }
   else if ( encoderCount == 1) 
     action =  ENCODER_RIGHT;
   else if ( encoderCount == -1) 
@@ -810,8 +812,10 @@ void loop() {
       lcdPage++;
       if (lcdPage > 3) lcdPage = 0;
       showStatus(lcdPage);
-    } else {  // Menu Pressed
+    } else if ( BT_MENU_PRESSED == BT_MENU_PRESSED ) {  // Menu Pressed
       menuLevel = 1;
+    } else {
+      menuLevel = 0;
     }
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
