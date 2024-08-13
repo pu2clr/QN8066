@@ -105,11 +105,20 @@ C1 and C2 are 10µF capacitors.
 
 ## STANDALONE ATMEGA328 WITH MENU CONTROLLED BY ENCODER
 
+The STANDALONE ATMEGA328 version refers to using the ATmega328 microcontroller without the configurations found on Arduino boards. This setup requires a different programming interface (ISP) as well as specific settings for compilation. The crystal shown in the following circuit is optional. The ATmega328 can be configured with its internal 8MHz oscillator without any detriment to the application.
 
-![STANDALONE ATMEGA328 WITH MENU CONTROLLED BY ENCODER](./ATMEGA320_STANDALONE_ENCODER_LCD16X02.png)
+### Schematic
+
+![STANDALONE ATMEGA328 WITH MENU CONTROLLED BY ENCODER](./schematic_atmega328_encoder.png)
 
 
-Wire up using teh standalone ATmega328
+### Standalone ATmega328 Prptotype
+
+![Standalone ATmega328 Prptotype](./standalone_atmega328_prototype.jpg)
+
+Both the schematic and the sketch apply to the Arduino UNO, Nano, Pro Mini, or any other board based on the ATmega328. The operating voltage of each architecture should be considered according to the recommendations provided earlier.
+
+### Wire up using the standalone ATmega328
 
 The wiring for the standalone ATmega328 is the same as with the Nano, Uno, or Pro Mini versions. I only changed the menu button to digital pin D14/A0 to make it easier. But you can keep it on pin 8 if you want, just be careful with the physical connections.
 It is worth noting that the Up/Right and Down/Left buttons have been replaced by the encoder, which uses pins 2 and 3 of the Arduino/ATmega328. This change is beneficial because these pins allow for interrupt configuration, making the interface more responsive.
