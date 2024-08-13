@@ -1120,6 +1120,7 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * @param countryId - Country Identifier (First 4 Bits)
  * @param programId - Program Id code
  * @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
+ * @param pty       - Program type (PTY) - Default is 1 (News)
  * @param rdsSyncTime - Time in ms to wait for sending the next group - Default value is 60 ms 
  * @param rdsRepeatGroup -  Number of times that a RDS group will send at once. - Default is 5.
  * @details Example
@@ -1141,11 +1142,12 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  * }
  * @endcode   
  */
-void QN8066::rdsInitTx(uint8_t countryId, uint8_t programId, uint8_t reference, uint8_t rdsSyncTime, uint8_t rdsRepeatGroup) {
+void QN8066::rdsInitTx(uint8_t countryId, uint8_t programId, uint8_t reference, uint8_t pty, uint8_t rdsSyncTime, uint8_t rdsRepeatGroup) {
   // this->setRegister(0x6E, 0B10110111);  // TEST - Stop Auto Gain Correction (AGC)
   this->rdsSetPI(countryId, programId, reference );
   this->rdsSyncTime = rdsSyncTime; 
   this->rdsRepeatGroup = rdsRepeatGroup;
+  this->rdsPTY = pty;
   delay(100);
 }
 

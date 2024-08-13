@@ -962,7 +962,7 @@ public:
 
   void rdsSetMode(uint8_t mode); 
   void rdsSet4KMode(uint8_t value);
-  void rdsInitTx(uint8_t countryId = 0, uint8_t programId = 0, uint8_t reference = 0, uint8_t rdsSyncTime = 60, uint8_t rdsRepeatGroup = 5 );
+  void rdsInitTx(uint8_t countryId = 0, uint8_t programId = 0, uint8_t reference = 0, uint8_t pty = 1, uint8_t rdsSyncTime = 60, uint8_t rdsRepeatGroup = 5 );
   void rdsSetInterrupt(uint8_t value);
 
   void rdsTxEnable(bool value);   

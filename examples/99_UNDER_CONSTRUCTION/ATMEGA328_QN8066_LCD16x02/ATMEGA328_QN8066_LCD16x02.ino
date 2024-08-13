@@ -399,8 +399,7 @@ void setup() {
 
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    tx.rdsInitTx(0, 0, 0, 50, 5);  // RDS transmission configuration: set countryID, programId, and reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-    tx.rdsSetPTY(1);        // Set Program Type: 1 represents News, modify as needed or make it dynamic
+    tx.rdsInitTx(0x8, 0x1, 0x9B, 8 /* PTY */, 20 /* 20ms sync delay*/ , 8 /* send each group 8 times */  );  // RDS transmission configuration.see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
 
