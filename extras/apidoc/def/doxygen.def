@@ -253,12 +253,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gaee7afb6a9a31a99fc29b8b9d7d0a00bc';
-        sec-mem-ref-line = '1028';
+        sec-mem-ref-line = '1029';
         sec-mem-ref-name = 'getAudioPeakValue';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gab18543166cfd0ca104df9a269a990552';
-        sec-mem-ref-line = '1240';
+        sec-mem-ref-line = '1248';
         sec-mem-ref-name = 'rdsGetTxUpdated';
     };
     }; /* sec-member */
@@ -1573,7 +1573,8 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  if 0, Received bit-stream have both RDS and MMBS blocks (‘E’ block); 
 \ilinebr\ilinebr if 1, Received bit-stream has RDS block only, no MMBS block (‘E’ block)
-@param mode 
+@param mode
+\ilinebr\ilinebr Example 
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -1611,6 +1612,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Enable RDS RX/TX 4k Mode: with or without the privacy mode (audio scramble and RDS encryption)
 @param value 0 or 1 
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -1690,6 +1692,7 @@ _EnD_oF_dEf_TeXt_;
 @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
 @param rdsSyncTime - Time in ms to wait for sending the next group - Default value is 60 ms 
 @param rdsRepeatGroup -  Number of times that a RDS group will send at once. - Default is 5.
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -1733,6 +1736,7 @@ _EnD_oF_dEf_TeXt_;
  RDS RX interrupt enable. When RDS_INT_EN=1, a 4.5ms low pulse will be output from pad din (RX mode)
 \ilinebr\ilinebr when a new group data is received and stored into RDS0~RDS7 (RX mode).
 @param value 0 or 1 
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -1771,6 +1775,7 @@ _EnD_oF_dEf_TeXt_;
  Enable RDS service 
 @param value (true = enabled; false = disabled)
 @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -1803,6 +1808,7 @@ _EnD_oF_dEf_TeXt_;
  If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user should toggle this bit. 
 \ilinebr\ilinebr description the chip internally will fetch these bytes after completing transmitting of current group.
 @see  Pages 20 and 21 of the Datasheet (Register SYSTEM2)
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -1839,6 +1845,7 @@ _EnD_oF_dEf_TeXt_;
 \ilinebr\ilinebr Once the chip internally fetched these bytes, it will toggle this bit, and user can write in another group.
 @return true 
 @return false 
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -1887,7 +1894,8 @@ _EnD_oF_dEf_TeXt_;
  RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. 
 \ilinebr\ilinebr RDS frequency deviation = 0.207KHz*RDSFDEV in 4k mode and private mode.
 @param freq ( valid values: from 0 to 127)
-@see Datasheet, register RDS (0x26), page 34. 
+@see Datasheet, register RDS (0x26), page 34.
+\ilinebr\ilinebr Example 
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -1929,6 +1937,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 @param value (true = enabled; false = disabled)
 @see Datasheet, register RDS (0x26), page 34. 
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -2059,7 +2068,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
-        sec-mem-ref-line = '1370';
+        sec-mem-ref-line = '1380';
         sec-mem-ref-name = 'rdsSetStationName';
     };
     }; /* sec-member */
@@ -2084,13 +2093,13 @@ _EnD_oF_dEf_TeXt_;
 Sets the station name.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1366 
+\iline 1376 
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
-        sec-mem-ref-line = '1397';
+        sec-mem-ref-line = '1407';
         sec-mem-ref-name = 'rdsSendPS';
     };
     }; /* sec-member */
@@ -2118,7 +2127,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  This function repeats sending a group this->rdsRepeatGroup times.
 @param rt - Radio Text (string of 32 character)
-
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -2396,7 +2405,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Clear and Flushes the RDS Buffer.
 
-\iline 1300 
+\iline 1310 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -2499,6 +2508,7 @@ _EnD_oF_dEf_TeXt_;
 <tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 10 - 1010 \ilinebr </td>    <td class="markdownTableBodyNone"> TRANSMIT \ilinebr </td>  </tr>
 <tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 11 - 1011 \ilinebr </td>    <td class="markdownTableBodyNone"> TXCCA \ilinebr </td>  </tr>
 <tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> Others \ilinebr </td>    <td class="markdownTableBodyNone"> Reserved \ilinebr </td>  </tr></table>
+\ilinebr\ilinebr Example
 @code 
 #include <QN8066.h>
 QN8066 tx;
@@ -6593,7 +6603,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1332';
+        sec-mem-ref-line = '1342';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -6773,7 +6783,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1332';
+        sec-mem-ref-line = '1342';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7269,7 +7279,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1332';
+        sec-mem-ref-line = '1342';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7325,7 +7335,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1332';
+        sec-mem-ref-line = '1342';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
