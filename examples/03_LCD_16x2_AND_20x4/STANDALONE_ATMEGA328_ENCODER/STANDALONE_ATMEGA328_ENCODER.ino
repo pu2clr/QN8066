@@ -1,4 +1,6 @@
 /*
+  UNDER CONSTRUCTION...
+  
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
   This sketch uses an Arduino Nano with LCD16X02.
 
@@ -56,10 +58,9 @@
   |                           | PWM                       |     D9        |
   | --------------------------| --------------------------| --------------|
   | Buttons                   |                           |               |
-  |                           | Menu                      |      8        |
+  |                           | Menu                      |     A0/D14    |
   |                           | Left (Down / -)           |     10        |
   |                           | Right (Up / + )           |     11        |
-  |                           | RESET                     |      3        |
   | --------------------------| --------------------------|---------------|
 
   IMPORTANT: 
@@ -96,6 +97,7 @@
 
 #include <QN8066.h>
 #include <EEPROM.h>
+#include "Rotary.h"
 #include <LiquidCrystal.h>
 
 // LCD 16x02 or LCD20x4 PINs
@@ -107,21 +109,26 @@
 #define LCD_E 13
 
 // Enconder PINs
-#define BT_MENU 8
-#define BT_UP 10
-#define BT_DOWN 11
+#define BT_MENU 14
+
 #define PWM_PA 9
 
 
-#define BT_NO_PRESSED 7    // 111
-#define BT_DOWN_PRESSED 6  // 110
-#define BT_UP_PRESSED 5    // 101
-#define BT_MENU_PRESSED 3  // 011
+#define ENCODER_NO_ACTION 0
+#define ENCODER_LEFT -1  
+#define ENCODER_RIGHT 1
+#define BT_MENU_PRESSED 2  
+
+// Enconder PINs
+#define ENCODER_PIN_A 2
+#define ENCODER_PIN_B 3
 
 #define STEP_FREQ 1
 #define PUSH_MIN_DELAY 200
 
 #define STATUS_REFRESH_TIME 5000
+
+volatile int encoderCount = 0;
 
 int8_t lcdPage = 0;
 long showStatusTime = millis();
@@ -163,10 +170,10 @@ TableValue tabImpedance[] = {
 };
 
 TableValue tabGainTxPilot[] = {
-  { 7, "7%" },   // 0
-  { 8, "8%" },   // 1
-  { 9, "9%" },   // 2
-  { 10, "10%" }  // 3
+  { 7, " 7%" },   // 0
+  { 8, " 8%" },   // 1
+  { 9, " 9%" },   // 2
+  {10, "10%" }  // 3
 };
 
 TableValue tabTxSoftClipEnable[] = {
@@ -175,15 +182,15 @@ TableValue tabTxSoftClipEnable[] = {
 };
 
 TableValue tabTxSoftClipThreshold[] = {
-  { 0, "3dB" },    // 0
+  { 0, "3.0dB" },    // 0
   { 1, "4.5dB" },  // 1
-  { 2, "6dB" },    // 2
-  { 3, "9dB" }     // 3
+  { 2, "6.0dB" },    // 2
+  { 3, "9.0dB" }     // 3
 };
 
 TableValue tabTxFrequencyDeviation[] = {
-  { 60, " 41,5kHz" },   // 0
-  { 87, " 60,0kHz" },   // 1
+  {  60, " 41,5kHz" },   // 0
+  {  87, " 60,0kHz" },   // 1
   { 108, " 74,5kHz" },  // 2
   { 120, " 92,8kHz" },  // 3
   { 140, " 96,6kHz" },  // 4
@@ -191,17 +198,17 @@ TableValue tabTxFrequencyDeviation[] = {
 };
 
 TableValue tabTxBufferGain[] = {
-  { 0, "3dB" },   // 0
-  { 1, "6dB" },   // 1
-  { 2, "9dB" },   // 2
+  { 0, " 3dB" },   // 0
+  { 1, " 6dB" },   // 1
+  { 2, " 9dB" },   // 2
   { 3, "12dB" },  // 3
   { 4, "15dB" },  // 4
   { 5, "18dB" }   // 5
 };
 
 TableValue tabPreEmphasis[] = {
-  { 0, "50 us" },  // 0
-  { 1, "75 us" }   // 1
+  { 0, "50us" },  // 0
+  { 1, "75us" }   // 1
 };
 
 TableValue tabRDS[] = {
@@ -317,16 +324,25 @@ long rdsTimeRT = millis();
 // TX board interface
 QN8066 tx;
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
+Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
 void setup() {
 
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
   pinMode(BT_MENU, INPUT_PULLUP);
-  pinMode(BT_UP, INPUT_PULLUP);
-  pinMode(BT_DOWN, INPUT_PULLUP);
+
+
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);  
+
+
+  // controlling encoder via interrupt
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+
+
 
   tx.setI2CFastMode();
-
   lcd.begin(16, 2);
 
   // If you want to reset the eeprom, keep the BT_MENU button pressed during statup
@@ -382,8 +398,7 @@ void setup() {
 
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    tx.rdsInitTx(0, 0, 0, 50, 5);  // RDS transmission configuration: set countryID, programId, and reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-    tx.rdsSetPTY(1);        // Set Program Type: 1 represents News, modify as needed or make it dynamic
+    tx.rdsInitTx(0x8, 0x1, 0x9B, 8 /* PTY */, 20 /* 20ms sync delay*/ , 8 /* send each group 8 times */  );  // RDS transmission configuration.see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
 
@@ -391,6 +406,20 @@ void setup() {
   // TCCR0B = (TCCR0B & 0b11111000) | 0x02; // Increases the clock of PWM to 62.5 kHz.
 
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
+}
+
+
+/**
+ * Reads encoder via interrupt
+ * Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+ * if you do not add ICACHE_RAM_ATTR declaration, the system will reboot during attachInterrupt call.
+ * With ICACHE_RAM_ATTR macro you put the function on the RAM.
+ */
+void rotaryEncoder()
+{ // rotary encoder events
+  uint8_t encoderStatus = encoder.process();
+  if (encoderStatus)
+    encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
 }
 
 
@@ -440,9 +469,9 @@ void readAllTransmitterInformation() {
 
 // Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
-  delay(300);
+  delay(100);
   analogWrite(PWM_PA, value);  // Turn PA off
-  delay(300);
+  delay(100);
 }
 // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
@@ -537,15 +566,15 @@ void showParameter(char *desc) {
 }
 // Browse the parameters by polling the navigator buttons returns -1 (left/down), 0 (if Menu pressed), 1 (right/up).
 int8_t browseParameter() {
-  uint8_t browse;
+  int8_t browse;
   do {
-    browse = checkButton();
-    if (browse == BT_DOWN_PRESSED)  // Down/Left pressed
-      return -1;
-    else if (browse == BT_UP_PRESSED)  // Up/Right pressed
-      return 1;
-  } while (browse == BT_NO_PRESSED);
-  return 0;
+    browse = checkEncoder();
+    if (browse == ENCODER_LEFT)  // Down/Left pressed
+      return ENCODER_LEFT;
+    else if (browse == ENCODER_RIGHT)  // Up/Right pressed
+      return ENCODER_RIGHT;
+  } while (browse == ENCODER_NO_ACTION);
+  return BT_MENU_PRESSED;
 }
 // Shows current menu data
 void showMenu(uint8_t idx) {
@@ -565,7 +594,7 @@ void showMenu(uint8_t idx) {
 void doFrequency() {
   showFrequency();
   int8_t key = browseParameter();
-  while (key != 0) {
+  while (key != BT_MENU_PRESSED) {
     if (key == -1) {
       if (txFrequency < 640)  // If less than 64 MHz
         txFrequency = 1080;
@@ -581,19 +610,19 @@ void doFrequency() {
     showFrequency();
     key = browseParameter();
   }
-  menuLevel = 0;
+  // menuLevel = 0;
 }
 // // Processes the change to a new power (PWM duty cycle)
 void doPower() {
   showPower();
   int8_t key = browseParameter();
-  while (key != 0) {
-    if (key == -1) {
+  while (key != BT_MENU_PRESSED) {
+    if (key == ENCODER_LEFT) {
       if (pwmPowerDuty >= 25)
         pwmPowerDuty -= pwmDutyStep;
       else
         pwmPowerDuty = 0;
-    } else if (key == 1) {
+    } else if (key == ENCODER_RIGHT) {
       if (pwmPowerDuty <= 225)
         pwmPowerDuty += pwmDutyStep;
       else
@@ -603,7 +632,7 @@ void doPower() {
     showPower();
     key = browseParameter();
   }
-  menuLevel = 0;
+  // menuLevel = 0;
 }
 /**
  * @brief Runs the action menu to modify the given parameter.
@@ -622,8 +651,8 @@ void doPower() {
 void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t min, uint8_t max) {
   showParameter((char *)tab->value[tab->key].desc);
   int8_t key = browseParameter();
-  while (key != 0) {
-    if (key == 1) {
+  while (key != BT_MENU_PRESSED) {
+    if (key == ENCODER_RIGHT) {
       if (tab->key == max)
         tab->key = min;
       else
@@ -638,7 +667,7 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t
     showParameter((char *)tab->value[tab->key].desc);
     key = browseParameter();
   }
-  menuLevel = 0;
+  // menuLevel = 0;
 }
 // // Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
@@ -733,21 +762,26 @@ void sendRDS() {
 }
 
 /*
- Returns:
-          7 if no key is pressed. -  111 - BT_NO_PRESSED
-          6 if BT_DOWN is pressed -  110 - BT_DOWN_PRESSED 
-          5 if BT_UP is pressed   -  101 - BT_UP_PRESSED 
-          3 if BT_MENU is pressed -  011 - BT_MENU_PRESSED
   // TODO - Debounce process 
 */
-int8_t checkButton() {
-  uint8_t button;
-  for (uint8_t i = 0; i < 5; i++) {
-    // Please... check it out later
-    button = digitalRead(BT_MENU) << 2 | digitalRead(BT_DOWN) << 1 | digitalRead(BT_UP);
-    delay(30);
+int8_t checkEncoder() {
+
+  int8_t action;
+
+  if ( digitalRead(BT_MENU) == LOW ) { 
+     action =  BT_MENU_PRESSED;
+     delay(250);                   // Try to avoid double click or debounce 
   }
-  return button;
+  else if ( encoderCount == 1) 
+    action =  ENCODER_RIGHT;
+  else if ( encoderCount == -1) 
+    action =  ENCODER_LEFT;
+  else
+    action = ENCODER_NO_ACTION;  
+
+  encoderCount = 0;
+
+  return action;
 }
 
 // Main loop
@@ -755,7 +789,7 @@ void loop() {
   int8_t key;
   if (menuLevel == 0) {
     showStatus(lcdPage);
-    while ((key = checkButton()) == BT_NO_PRESSED) {
+    while ((key = checkEncoder()) == ENCODER_NO_ACTION) {
 
       // RDS UNDER CONSTRUCTION...
       if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
@@ -768,27 +802,28 @@ void loop() {
         showStatusTime = millis();
       }
     }
-    if (key == BT_DOWN_PRESSED) {  // Down Pressed
+
+    if (key == ENCODER_LEFT) {  // Down Pressed
       lcdPage--;
       if (lcdPage < 0) lcdPage = 3;
       showStatus(lcdPage);
-    } else if (key == BT_UP_PRESSED) {  // Up Pressed
+    } else if (key == ENCODER_RIGHT) {  // Up Pressed
       lcdPage++;
       if (lcdPage > 3) lcdPage = 0;
       showStatus(lcdPage);
-    } else {  // Menu Pressed
+    } else if ( key == BT_MENU_PRESSED  ) {  // Menu Pressed
       menuLevel = 1;
-    }
+    } 
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
     key = browseParameter();
-    while (key != 0) {
-      if (key == -1) {
+    while (key != BT_MENU_PRESSED) {
+      if (key == ENCODER_LEFT) {
         if (menuIdx == 0)
           menuIdx = lastMenu;
         else
           menuIdx--;
-      } else if (key == 1) {
+      } else if (key == ENCODER_RIGHT) {
         if (menuIdx == lastMenu)
           menuIdx = 0;
         else

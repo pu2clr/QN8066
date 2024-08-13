@@ -44,7 +44,6 @@ The following schematic illustrates the connections between the Arduino Nano, th
   |                           | Menu                      |      8        |
   |                           | Left (Down / -)           |     10        |
   |                           | Right (Up / + )           |     11        |
-  |                           | RESET                     |      3        |
 
 
 ### IMPORTANT
@@ -104,6 +103,40 @@ The IC labeled "7660 AIBAZ DNY17P" is commonly known as the ICL7660. It is a DC-
 C1 and C2 are 10µF capacitors.
 
 
+## STANDALONE ATMEGA328 WITH MENU CONTROLLED BY ENCODER
+
+
+![STANDALONE ATMEGA328 WITH MENU CONTROLLED BY ENCODER](./ATMEGA320_STANDALONE_ENCODER_LCD16X02.png)
+
+
+Wire up using teh standalone ATmega328
+
+The wiring for the standalone ATmega328 is the same as with the Nano, Uno, or Pro Mini versions. I only changed the menu button to digital pin D14/A0 to make it easier. But you can keep it on pin 8 if you want, just be careful with the physical connections.
+
+
+| Device name               | Device Pin / Description  |  Arduino Pin  |
+| --------------------------| --------------------      | ------------  |
+|    LCD 16x2 or 20x4       |                           |               |
+|                           | D4                        |     D7        |
+|                           | D5                        |     D6        |
+|                           | D6                        |     D5        |
+|                           | D7                        |     D4        |
+|                           | RS                        |     D12       |
+|                           | E/ENA                     |     D13       |
+|                           | RW & VSS & K (16)         |    GND        |
+|                           | A (15) & VDD              |    +Vcc       |
+| --------------------------| ------------------------- | --------------|
+| QN8066                    |                           |               |
+| DIY KIT 5˜7W              | ------------------------- | --------------|
+|                           | SDA                       |     A4        |
+|                           | SCLK                      |     A5        |
+|                           | PWM                       |     D9        |
+| --------------------------| --------------------------| --------------|
+| Buttons                   |                           |               |
+|                           | Menu                      |     A0/D14    |
+|                           | Left (Down / -)           |     10        |
+|                           | Right (Up / + )           |     11        |
+| --------------------------| --------------------------|---------------|
 
 ## Videos related to this example
 
