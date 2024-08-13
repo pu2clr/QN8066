@@ -19,22 +19,6 @@
              posted in this repository for this example for more details.
 
 
-  This program uses the Arduino EEPROM to store the transmitter configuration parameters. 
-  Below are some operational commands:
-  1. If necessary, press the MENU button when turning on the system to reset the EEPROM and 
-     return the transmitter to the default settings.
-  2. On the main screen, click the UP or DOWN button to display information pages about the 
-     current state of the transmitter.
-  3. Press the MENU button to enter the parameter navigation mode.
-  3.1. At this level, press UP or DOWN to select the option or parameter you want to change.
-  3.2. Press the MENU button again to enter parameter editing mode.
-  3.3. Press the UP and DOWN buttons to change the parameters.
-  3.4. Press the MENU button to confirm and save the selected parameter. At this point, the
-       menu returns to the previous level, allowing you to select another parameter to change.
-  4. The "Main Screen" option returns the system to the initial screen. Remember that at this 
-    point, you can change pages by pressing UP or DOWN. This way, you can check the changes 
-    made.     
-
   Check the RDS functions documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
 
   Wire up on Arduino UNO, Nano or Pro mini
@@ -68,11 +52,14 @@
 
   Usage and Operation Instructions:
 
-  1) To access the MENU, quickly press the knob or rotary shaft of the encoder down. 
-  2) Select the menu item you wish to adjust by turning the encoder clockwise or counterclockwise. 
-  3) Once you've chosen the item you want to change, press the encoder again. 
-  4) Turn the encoder clockwise or counterclockwise to select the new parameters. 
-  5) Finally, press the encoder one more time to confirm and apply the parameter change.
+  1) This program uses the internal ATmega328 EEPROM to store the transmitter configuration parameters. 
+     If necessary, press the MENU button when turning on the system to reset the EEPROM and 
+     return the transmitter to the default settings.
+  2) To access the MENU, quickly press the knob or rotary shaft of the encoder down. 
+  3) Select the menu item you wish to adjust by turning the encoder clockwise or counterclockwise. 
+  4) Once you've chosen the item you want to change, press the encoder again. 
+  5) Turn the encoder clockwise or counterclockwise to select the new parameters. 
+  6) Finally, press the encoder one more time to confirm and apply the parameter change.
 
   It is important to highlight that if RDS is activated/enabled, it will be temporarily disabled while
   the user interacts with the MENU and parameter adjustments. Once the adjustments are complete, the 
@@ -80,7 +67,9 @@
   as RDS processing requires synchronization and a processing load that can, to some extent, impact the
   user interface.
 
-
+  If you have RDS enabled, it's possible that the first movement of the encoder or button may not respond
+  immediately. As soon as the system responds for the first time, RDS is temporarily disabled, and the 
+  system’s response becomes more fluid.
 
 
   Prototype documentation: https://pu2clr.github.io/QN8066/
