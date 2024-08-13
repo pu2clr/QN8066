@@ -112,6 +112,7 @@ C1 and C2 are 10µF capacitors.
 Wire up using teh standalone ATmega328
 
 The wiring for the standalone ATmega328 is the same as with the Nano, Uno, or Pro Mini versions. I only changed the menu button to digital pin D14/A0 to make it easier. But you can keep it on pin 8 if you want, just be careful with the physical connections.
+It is worth noting that the Up/Right and Down/Left buttons have been replaced by the encoder, which uses pins 2 and 3 of the Arduino/ATmega328. This change is beneficial because these pins allow for interrupt configuration, making the interface more responsive.
 
 
 | Device name               | Device Pin / Description  |  Arduino Pin  |
@@ -132,10 +133,11 @@ The wiring for the standalone ATmega328 is the same as with the Nano, Uno, or Pr
 |                           | SCLK                      |     A5        |
 |                           | PWM                       |     D9        |
 | --------------------------| --------------------------| --------------|
-| Buttons                   |                           |               |
+| Button                    |                           |               |
 |                           | Menu                      |     A0/D14    |
-|                           | Left (Down / -)           |     10        |
-|                           | Right (Up / + )           |     11        |
+| Encoder                   |                           |               | 
+|                           | Left                      |     D2        |
+|                           | Right                     |     D3        |
 | --------------------------| --------------------------|---------------|
 
 ## Videos related to this example
