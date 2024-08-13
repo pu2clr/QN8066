@@ -128,8 +128,13 @@
 #define PUSH_MIN_DELAY 200
 
 #define STATUS_REFRESH_TIME 5000
+#define STOP_RDS_TIME 10000
+
 
 volatile int encoderCount = 0;
+
+bool stopRDSforWhile = false;
+long stopRDSTime = millis();
 
 int8_t lcdPage = 0;
 long showStatusTime = millis();
@@ -793,8 +798,14 @@ void loop() {
     while ((key = checkEncoder()) == ENCODER_NO_ACTION) {
 
       // RDS UNDER CONSTRUCTION...
-      if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
+      if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1  && !stopRDSforWhile )   {
         sendRDS();
+      }
+
+      if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 && stopRDSforWhile && (millis() - stopRDSTime) > STOP_RDS_TIME ) { 
+        stopRDSforWhile = false; 
+        tx.rdsTxEnable(true);
+        stopRDSTime = millis();
       }
 
       // Refresh Status
@@ -803,7 +814,9 @@ void loop() {
         showStatusTime = millis();
       }
     }
-
+    // If you RDS is configured, stop for a while the RDS processing to improve the encoder and buttons response. 
+    stopRDSforWhile = true;
+    if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) tx.rdsTxEnable(false);
     if (key == ENCODER_LEFT) {  // Down Pressed
       lcdPage--;
       if (lcdPage < 0) lcdPage = 3;
@@ -838,6 +851,7 @@ void loop() {
     menuLevel = doMenu(menuIdx);
   }
 
+  stopRDSTime = millis();           // Back RDS only on main manu / main screen
 
   delay(5);
 }
