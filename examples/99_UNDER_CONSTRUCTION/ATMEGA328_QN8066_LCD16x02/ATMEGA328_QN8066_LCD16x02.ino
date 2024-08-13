@@ -171,10 +171,10 @@ TableValue tabImpedance[] = {
 };
 
 TableValue tabGainTxPilot[] = {
-  { 7, "7%" },   // 0
-  { 8, "8%" },   // 1
-  { 9, "9%" },   // 2
-  { 10, "10%" }  // 3
+  { 7, " 7%" },   // 0
+  { 8, " 8%" },   // 1
+  { 9, " 9%" },   // 2
+  {10, "10%" }  // 3
 };
 
 TableValue tabTxSoftClipEnable[] = {
@@ -183,15 +183,15 @@ TableValue tabTxSoftClipEnable[] = {
 };
 
 TableValue tabTxSoftClipThreshold[] = {
-  { 0, "3dB" },    // 0
+  { 0, "3.0dB" },    // 0
   { 1, "4.5dB" },  // 1
-  { 2, "6dB" },    // 2
-  { 3, "9dB" }     // 3
+  { 2, "6.0dB" },    // 2
+  { 3, "9.0dB" }     // 3
 };
 
 TableValue tabTxFrequencyDeviation[] = {
-  { 60, " 41,5kHz" },   // 0
-  { 87, " 60,0kHz" },   // 1
+  {  60, " 41,5kHz" },   // 0
+  {  87, " 60,0kHz" },   // 1
   { 108, " 74,5kHz" },  // 2
   { 120, " 92,8kHz" },  // 3
   { 140, " 96,6kHz" },  // 4
@@ -199,17 +199,17 @@ TableValue tabTxFrequencyDeviation[] = {
 };
 
 TableValue tabTxBufferGain[] = {
-  { 0, "3dB" },   // 0
-  { 1, "6dB" },   // 1
-  { 2, "9dB" },   // 2
+  { 0, " 3dB" },   // 0
+  { 1, " 6dB" },   // 1
+  { 2, " 9dB" },   // 2
   { 3, "12dB" },  // 3
   { 4, "15dB" },  // 4
   { 5, "18dB" }   // 5
 };
 
 TableValue tabPreEmphasis[] = {
-  { 0, "50 us" },  // 0
-  { 1, "75 us" }   // 1
+  { 0, "50us" },  // 0
+  { 1, "75us" }   // 1
 };
 
 TableValue tabRDS[] = {
@@ -612,7 +612,7 @@ void doFrequency() {
     showFrequency();
     key = browseParameter();
   }
-  menuLevel = 0;
+  // menuLevel = 0;
 }
 // // Processes the change to a new power (PWM duty cycle)
 void doPower() {
@@ -634,7 +634,7 @@ void doPower() {
     showPower();
     key = browseParameter();
   }
-  menuLevel = 0;
+  // menuLevel = 0;
 }
 /**
  * @brief Runs the action menu to modify the given parameter.
@@ -669,7 +669,7 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t
     showParameter((char *)tab->value[tab->key].desc);
     key = browseParameter();
   }
-  menuLevel = 0;
+  // menuLevel = 0;
 }
 // // Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
@@ -772,7 +772,7 @@ int8_t checkEncoder() {
 
   if ( digitalRead(BT_MENU) == LOW ) { 
      action =  BT_MENU_PRESSED;
-     delay(30);                   // Try to avoid double click or debounce 
+     delay(250);                   // Try to avoid double click or debounce 
   }
   else if ( encoderCount == 1) 
     action =  ENCODER_RIGHT;
@@ -804,6 +804,7 @@ void loop() {
         showStatusTime = millis();
       }
     }
+
     if (key == ENCODER_LEFT) {  // Down Pressed
       lcdPage--;
       if (lcdPage < 0) lcdPage = 3;
@@ -812,11 +813,9 @@ void loop() {
       lcdPage++;
       if (lcdPage > 3) lcdPage = 0;
       showStatus(lcdPage);
-    } else if ( BT_MENU_PRESSED == BT_MENU_PRESSED ) {  // Menu Pressed
+    } else if ( key == BT_MENU_PRESSED  ) {  // Menu Pressed
       menuLevel = 1;
-    } else {
-      menuLevel = 0;
-    }
+    } 
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
     key = browseParameter();
