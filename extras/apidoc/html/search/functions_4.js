@@ -7,7 +7,7 @@ var searchData=
   ['rdsgetpty_4',['rdsGetPTY',['../group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24',1,'QN8066']]],
   ['rdsgettp_5',['rdsGetTP',['../group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80',1,'QN8066']]],
   ['rdsgettxupdated_6',['rdsGetTxUpdated',['../group__group05.html#gab18543166cfd0ca104df9a269a990552',1,'QN8066']]],
-  ['rdsinittx_7',['rdsInitTx',['../group__group05.html#ga1a57c3319d117ae38fa5fc3478b026e0',1,'QN8066']]],
+  ['rdsinittx_7',['rdsInitTx',['../group__group05.html#gabec280b5feb7c1ecc01643dc8acbf10a',1,'QN8066']]],
   ['rdssendgroup_8',['rdsSendGroup',['../group__group05.html#ga57ee54e06de2618ec40cddde6b62560c',1,'QN8066']]],
   ['rdssendps_9',['rdsSendPS',['../group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b',1,'QN8066']]],
   ['rdssendrtmessage_10',['rdsSendRTMessage',['../group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852',1,'QN8066']]],

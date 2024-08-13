@@ -258,7 +258,7 @@ _EnD_oF_dEf_TeXt_;
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gab18543166cfd0ca104df9a269a990552';
-        sec-mem-ref-line = '1248';
+        sec-mem-ref-line = '1250';
         sec-mem-ref-name = 'rdsGetTxUpdated';
     };
     }; /* sec-member */
@@ -1629,7 +1629,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group05_1ga1a57c3319d117ae38fa5fc3478b026e0';
+      sec-mem-id   = 'group__group05_1gabec280b5feb7c1ecc01643dc8acbf10a';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -1667,6 +1667,15 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
 uint8_t
 _EnD_oF_dEf_TeXt_;
+        sec-mem-param-declname = 'pty';
+        sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
+1
+_EnD_oF_dEf_TeXt_;
+      }; /*        sec-mem-param--param */
+      sec-mem-param = {
+        sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
+uint8_t
+_EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'rdsSyncTime';
         sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
 60
@@ -1690,6 +1699,7 @@ _EnD_oF_dEf_TeXt_;
 @param countryId - Country Identifier (First 4 Bits)
 @param programId - Program Id code
 @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
+@param pty       - Program type (PTY) - Default is 1 (News)
 @param rdsSyncTime - Time in ms to wait for sending the next group - Default value is 60 ms 
 @param rdsRepeatGroup -  Number of times that a RDS group will send at once. - Default is 5.
 \ilinebr\ilinebr Example
@@ -2068,7 +2078,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
-        sec-mem-ref-line = '1380';
+        sec-mem-ref-line = '1382';
         sec-mem-ref-name = 'rdsSetStationName';
     };
     }; /* sec-member */
@@ -2093,13 +2103,13 @@ _EnD_oF_dEf_TeXt_;
 Sets the station name.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1376 
+\iline 1378 
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
-        sec-mem-ref-line = '1407';
+        sec-mem-ref-line = '1409';
         sec-mem-ref-name = 'rdsSendPS';
     };
     }; /* sec-member */
@@ -2405,7 +2415,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Clear and Flushes the RDS Buffer.
 
-\iline 1310 
+\iline 1312 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -6603,7 +6613,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1342';
+        sec-mem-ref-line = '1344';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -6783,7 +6793,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1342';
+        sec-mem-ref-line = '1344';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7279,7 +7289,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1342';
+        sec-mem-ref-line = '1344';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7335,7 +7345,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1342';
+        sec-mem-ref-line = '1344';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */

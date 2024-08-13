@@ -43,7 +43,7 @@ var class_q_n8066 =
     [ "setStnby", "group__group10.html#gaf5d0674bf9692155c9bc8badb3162c7a", null ],
     [ "rdsSetMode", "group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a", null ],
     [ "rdsSet4KMode", "group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534", null ],
-    [ "rdsInitTx", "group__group05.html#ga1a57c3319d117ae38fa5fc3478b026e0", null ],
+    [ "rdsInitTx", "group__group05.html#gabec280b5feb7c1ecc01643dc8acbf10a", null ],
     [ "rdsSetInterrupt", "group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c", null ],
     [ "rdsTxEnable", "group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1", null ],
     [ "rdsSetTxToggle", "group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7", null ],

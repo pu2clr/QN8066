@@ -14,7 +14,7 @@ var group__group05 =
     [ "QN8066::rdsSetMode", "group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a", null ],
     [ "QN8066::rdsSet4KMode", "group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534", null ],
     [ "QN8066::rdsSetInterrupt", "group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c", null ],
-    [ "QN8066::rdsInitTx", "group__group05.html#ga1a57c3319d117ae38fa5fc3478b026e0", null ],
+    [ "QN8066::rdsInitTx", "group__group05.html#gabec280b5feb7c1ecc01643dc8acbf10a", null ],
     [ "QN8066::rdsSetPI", "group__group05.html#gae61a8f8f5af9015db21c0e283deaadb7", null ],
     [ "QN8066::rdsTxEnable", "group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1", null ],
     [ "QN8066::rdsSetTxToggle", "group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7", null ],
