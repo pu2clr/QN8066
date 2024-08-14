@@ -1,6 +1,5 @@
 /*
-  UNDER CONSTRUCTION...
-  
+ 
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
   This sketch uses an Arduino Nano with LCD16X02.
 
@@ -749,9 +748,7 @@ void sendRDS() {
   }
 }
 
-/*
-  // TODO - Debounce process 
-*/
+
 int8_t checkEncoder() {
 
   int8_t action;
