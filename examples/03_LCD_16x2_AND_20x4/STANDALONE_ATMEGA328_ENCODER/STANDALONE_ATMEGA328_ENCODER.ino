@@ -9,15 +9,6 @@
   ATTENTION: TO RESET the EEPROM: Turn your receiver on with the MENU push button pressed.
 
   Read more at https://pu2clr.github.io/QN8066/
-
-  ATTENTION: Preferably use an Arduino that operates at 3.3V instead of an 
-             Arduino that operates at 5V. Consider adding two 10K pull-up 
-             resistors to the I2C bus to improve system stability.
-             If you are using a 5V Arduino, consider adding two more 150R r
-             esistors in series with the I2C bus. See the 'schematic diagram' 
-             posted in this repository for this example for more details.
-
-
   Check the RDS functions documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
 
   Wire up on Arduino UNO, Nano or Pro mini
@@ -74,7 +65,7 @@
   Prototype documentation: https://pu2clr.github.io/QN8066/
   PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
 
-  By PU2CLR, Ricardo,  Feb  2023.
+  By PU2CLR, Ricardo,  Aug 2024.
 */
 
 #include <QN8066.h>
@@ -385,7 +376,7 @@ void setup() {
 
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    tx.rdsInitTx(0x8, 0x1, 0x9B, 8 /* PTY */, 20 /* 20ms sync delay*/ , 8 /* send each group 8 times */  );  // RDS transmission configuration.see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
+    tx.rdsInitTx(0x8, 0x1, 0x9B, 8 , 50 , 5 );  // RDS transmission configuration. See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
 
