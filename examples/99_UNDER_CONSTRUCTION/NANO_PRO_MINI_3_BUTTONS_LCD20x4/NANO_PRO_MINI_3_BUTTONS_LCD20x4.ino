@@ -33,6 +33,8 @@
     point, you can change pages by pressing UP or DOWN. This way, you can check the changes 
     made.     
 
+  Check the RDS functions documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
+
   Wire up on Arduino UNO, Nano or Pro mini
 
   | Device name               | Device Pin / Description  |  Arduino Pin  |
@@ -57,7 +59,6 @@
   |                           | Menu                      |      8        |
   |                           | Left (Down / -)           |     10        |
   |                           | Right (Up / + )           |     11        |
-  |                           | RESET                     |      3        |
   | --------------------------| --------------------------|---------------|
 
   IMPORTANT: 
@@ -214,27 +215,13 @@ TableValue tabMonoStereo[] = {
 
 
 TableValue txRdsFreqDev[] = {
-  { 13, " 4,5kHz" },  // 0
-  { 26, " 9,1kHz" },  // 1
-  { 39, "13,6kHz" },  // 2
-  { 52, "18,2kHz" }   // 3
+  {  6, " 2,1kHz "},  // 0
+  {  8, " 3,0kHz "},  // 1
+  { 13, " 4,5kHz" },  // 2
+  { 26, " 9,1kHz" },  // 3
+  { 39, "13,6kHz" },  // 4
+  { 52, "18,2kHz" }   // 5
 };
-
-TableValue txRdsProgramType[] = {
-  {   0, "No PTY"      },  // 0
-  {   1, "News"        },  // 1
-  {   3, "Information" },  // 2
-  {   4, "Sport"       },  // 3
-  {   5, "Education"   },  // 4
-  {   7, "Culture"     },  // 5
-  {   8, "Science"     },  // 6
-  {  10, "Pop Music"   },  // 7 
-  {  11, "Rock Music"  },  // 8
-  {  20, "Religion"    },  // 9
-  {  24, "Jazz Music"  },  // 10
-  {  29, "Documentary" }   // 11
-};
-
 
 
 // Menu Itens
@@ -250,7 +237,6 @@ const char *menu[] = { "Frequency",
                        "Freq. Deriv.",
                        "Buffer gain",
                        "RDS Freq. Dev.",
-                       "RDS PTY",
                        "Main Screen" };
 int8_t menuIdx = 0;
 const int lastMenu = (sizeof(menu) / sizeof(menu[0])) - 1;  // Laste menu item position
@@ -269,8 +255,7 @@ enum MenuKeys {
   KEY_FREQ_DERIVATION,      // 9
   KEY_BUFFER_GAIN,          // 10
   KEY_RDS_FREQ_DEV,         // 11
-  KEY_RDS_PTY,              // 12
-  KEY_MAIN_SCREEN           // 13
+  KEY_MAIN_SCREEN           // 12
 };
 
 /*
@@ -291,8 +276,7 @@ KeyValue keyValue[] = {
   { 2, tabGainTxPilot },           // KEY_GAIN_PILOT
   { 2, tabTxFrequencyDeviation },  // KEY_FREQ_DERIVATION
   { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN
-  { 0, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
-  { 4, txRdsProgramType},          // KEY_RDS_PTY 
+  { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
   { 0, NULL }                      // KEY_MAIN_SCREEN
 };
 
@@ -342,7 +326,7 @@ void setup() {
 
   tx.setI2CFastMode();
 
-  lcd.begin(16, 2);
+  lcd.begin(20, 4);
 
   // If you want to reset the eeprom, keep the BT_MENU button pressed during statup
   if (digitalRead(BT_MENU) == LOW) {
@@ -368,7 +352,6 @@ void setup() {
     // Defult values
     txFrequency = 1069;
     pwmPowerDuty = 50;
-    keyValue[KEY_RDS_PTY].key = 0;   // PTY = No PTY 
     saveAllTransmitterInformation();
   }
 
@@ -393,14 +376,13 @@ void setup() {
   tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx);
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
   tx.rdsSetFrequencyDerivation(keyValue[KEY_RDS_FREQ_DEV].value[keyValue[KEY_RDS_FREQ_DEV].key].idx);
-  tx.rdsSetPTY(keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx);
 
   showStatus(lcdPage);
 
-  // Checking RDS... UNDER CONSTRUCTION...
+  // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    delay(1000);
-    tx.rdsInitTx(0, 0, 0);  // Initialize RDS transmission: set countryID, programId, and reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+    tx.rdsInitTx(0, 0, 0, 50, 5);  // RDS transmission configuration: set countryID, programId, and reference (see: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+    tx.rdsSetPTY(1);        // Set Program Type: 1 represents News, modify as needed or make it dynamic
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
 
@@ -437,7 +419,6 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address + 11, keyValue[KEY_FREQ_DERIVATION].key);
   EEPROM.update(eeprom_address + 12, keyValue[KEY_BUFFER_GAIN].key);
   EEPROM.update(eeprom_address + 13, keyValue[KEY_RDS_FREQ_DEV].key);
-  EEPROM.update(eeprom_address + 14, keyValue[KEY_RDS_PTY].key);
 }
 // Read the previous transmitter setup
 void readAllTransmitterInformation() {
@@ -454,7 +435,6 @@ void readAllTransmitterInformation() {
   keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address + 11);
   keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address + 12);
   keyValue[KEY_RDS_FREQ_DEV].key = EEPROM.read(eeprom_address + 13);
-  keyValue[KEY_RDS_PTY].key = EEPROM.read(eeprom_address + 14);
 }
 
 // Enable or disable PWM duty cycle
@@ -473,10 +453,15 @@ void switchTxFrequency(uint16_t freq) {
 // Shows the first message after turn the transmitter on
 void showSplash() {
   lcd.setCursor(0, 0);
-  lcd.print("PU2CLR-QN8066");
-  delay(1000);
+  lcd.print("QN8066");
   lcd.setCursor(0, 1);
-  lcd.print("Arduino Library");
+  lcd.print("FM RDS TRANSMITTER");
+
+  delay(1000);
+  lcd.setCursor(0, 2);
+  lcd.print("PU2CLR - QN8066");
+  lcd.setCursor(0, 3);
+  lcd.print("ARDUINO LIBRARY");  
   lcd.display();
   delay(1000);
 }
@@ -509,13 +494,13 @@ void showStatus(uint8_t page) {
     lcd.setCursor(0, 0);
     lcd.print(strFrequency);
     lcd.print("MHz");
-    lcd.setCursor(10, 0);
+    lcd.setCursor(14, 0);
     // lcd.print(  tabMonoStereo[idxStereoMono].desc );
     lcd.print(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].desc);  // Mono Stereo
     lcd.setCursor(0, 1);
     lcd.print(tx.getAudioPeakValue());
     lcd.print("mV");
-    lcd.setCursor(10, 1);
+    lcd.setCursor(14, 1);
     sprintf(str, "PA:%d%%", pwmPowerDuty * 100 / 255);
     lcd.print(str);
     tx.resetAudioPeak();
@@ -675,69 +660,36 @@ uint8_t doMenu(uint8_t idxMenu) {
       doPower();
       break;
     case 2:
-      runAction([](uint8_t value) {
-        tx.setTxMono(value);
-      },
-                &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {tx.setTxMono(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 3:
-      runAction([](uint8_t value) {
-        tx.setPreEmphasis(value);
-      },
-                &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {tx.setPreEmphasis(value);},&keyValue[idxMenu], 1, 0, 1);
       break;
     case 4:
-      runAction([](uint8_t value) {
-        tx.rdsTxEnable(value);
-      },
-                &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {tx.rdsTxEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 5:
-      runAction([](uint8_t value) {
-        tx.setTxInputImpedance(value);
-      },
-                &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.setTxInputImpedance(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 6:
-      runAction([](uint8_t value) {
-        tx.setTxSoftClippingEnable(value);
-      },
-                &keyValue[idxMenu], 1, 0, 1);
+      runAction([](uint8_t value) {tx.setTxSoftClippingEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
     case 7:
-      runAction([](uint8_t value) {
-        tx.setTxSoftClipThreshold(value);
-      },
-                &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.setTxSoftClipThreshold(value);},&keyValue[idxMenu], 1, 0, 3);
       break;
     case 8:
-      runAction([](uint8_t value) {
-        tx.setTxPilotGain(value);
-      },
-                &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.setTxPilotGain(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
     case 9:
-      runAction([](uint8_t value) {
-        tx.setTxFrequencyDerivation(value);
-      },
-                &keyValue[idxMenu], 1, 0, 5);
+      runAction([](uint8_t value) {tx.setTxFrequencyDerivation(value);},&keyValue[idxMenu], 1, 0, 5);
       break;
     case 10:
-      runAction([](uint8_t value) {
-        tx.setTxInputBufferGain(value);
-      },
-                &keyValue[idxMenu], 1, 0, 5);
+      runAction([](uint8_t value) {tx.setTxInputBufferGain(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
     case 11:
-      runAction([](uint8_t value) {
-        tx.rdsSetFrequencyDerivation(value);
-      },
-                &keyValue[idxMenu], 1, 0, 3);
+      runAction([](uint8_t value) {tx.rdsSetFrequencyDerivation(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
-    case 12: 
-        runAction([](uint8_t value) {tx.rdsSetPTY(value);}, &keyValue[idxMenu], 1, 0, 11); 
-        break;   
-    case 13:
+    case 12:
       enablePWM(pwmPowerDuty);  // Turn the PWM on again.
       return 0;
       break;
@@ -778,7 +730,7 @@ void sendRDS() {
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
     delay(100);
-    tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);
+    tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     idxRdsRT++;
     rdsTimeRT = millis();
   }
