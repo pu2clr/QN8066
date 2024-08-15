@@ -338,8 +338,8 @@ void QN8066::setTX(uint16_t frequency) {
   this->setRegister(QN_XTAL_DIV0, this->xtal_div & 0xFF); // Lower 8 bits of xtal_div[10:0].
   this->setRegister(QN_XTAL_DIV1, (this->xtal_div >> 8) |  0B0001000); // Higher 3 bits of xtal_div[10:0].
   this->setRegister(QN_XTAL_DIV2, 0B01011100); // XTAL_DIV2 = > 01011100 (It is the default value)
-  this->system1.raw = 0B00001011;
-  this->setRegister(QN_SYSTEM1, this->system1.raw); // SYSTEM1 => 00001011 => Set TX On
+
+  // this->setRegister(QN_SYSTEM1, this->system1.raw); // SYSTEM1 => 00001011 => Set TX On
   this->setRegister(QN_FDEV, this->fdev.raw);    // FDEV => 01111101 => 125 (Decimal)
   this->setRegister(QN_RDS, this->rds.raw);     // RDS => 00111100 => Line_in_en = 0; RDSFDEV = 60 (Decimal) 
   this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
@@ -354,10 +354,11 @@ void QN8066::setTX(uint16_t frequency) {
   this->setRegister(0x49, 0B11011111); 
   this->setRegister(0x6E, 0B11111111); 
 
+  this->system1.raw = 0B00001011;
   this->setRegister(QN_SYSTEM1, this->system1.raw); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
   // this->setRegister(QN_REG_VGA, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
   this->setRegister(QN_REG_VGA, this->reg_vga.raw); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
-
+  delay(100);
 }
 
 

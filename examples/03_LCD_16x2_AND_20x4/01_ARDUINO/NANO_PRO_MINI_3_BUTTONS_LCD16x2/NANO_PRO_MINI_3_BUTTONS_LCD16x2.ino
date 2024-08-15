@@ -359,9 +359,9 @@ void setup() {
 
   tx.setup();
   tx.setTX(txFrequency);
-  delay(500);
+  delay(100);
 
-  tx.resetAudioPeak();
+  // tx.resetAudioPeak();
 
   // Due to the architecture of the KIT, the PWM interferes with I2C communication.
   // Therefore, before changing the transmitter's configuration parameters, it must be disabled (Duty 0).
