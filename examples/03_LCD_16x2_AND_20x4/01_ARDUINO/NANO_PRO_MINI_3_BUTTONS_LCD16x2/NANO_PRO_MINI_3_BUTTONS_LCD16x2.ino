@@ -489,7 +489,6 @@ void showStatus(uint8_t page) {
     lcd.print(strFrequency);
     lcd.print("MHz");
     lcd.setCursor(10, 0);
-    // lcd.print(  tabMonoStereo[idxStereoMono].desc );
     lcd.print(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].desc);  // Mono Stereo
     lcd.setCursor(0, 1);
     lcd.print(tx.getAudioPeakValue());
