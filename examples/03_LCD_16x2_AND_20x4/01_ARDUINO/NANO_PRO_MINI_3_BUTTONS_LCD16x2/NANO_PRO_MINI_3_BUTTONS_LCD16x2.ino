@@ -393,12 +393,22 @@ void setup() {
 
 
 void checkQN8066() {
-  if (!tx.detectDevice()) {
-    lcd.setCursor(0, 0);
-    lcd.print("No QN8066 found!");
-    while (1)
-      ;
+  uint8_t count = 0;
+  lcd.setCursor(7, 1);
+  lcd.print(" ");
+  while (!tx.detectDevice() && (count < 50) ) {
+    lcd.setCursor(7, 1);
+    lcd.print("#");
+    delay(10);
+    // lcd.setCursor(0, 0);
+    // lcd.print("No QN8066 found!");
+    // while (1)
+    //  ;
+    tx.stopTransmitting();
+    count++;
   }
+  if (count > 0)
+    tx.startTransmitting();
 }
 
 // Saves current transmitter setup

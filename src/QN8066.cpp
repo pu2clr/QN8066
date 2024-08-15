@@ -219,7 +219,7 @@ void  QN8066::begin() {
  * @details This function enable or disable transmission
  * @param value - 0 = disable; 1 = enable
  */
-void QN8066::setTxMode(uint8_t value) {
+inline void QN8066::setTxMode(uint8_t value) {
   this->system1.arg.txreq = value;
   this->setRegister(QN_SYSTEM1, this->system1.raw);
 }
@@ -280,11 +280,15 @@ void QN8066::setup(uint16_t xtalDiv,
                    uint8_t txSoftClipThreshold,  uint8_t oneMinutOff, uint8_t gainTxPLT,
                    uint8_t txFreqDev,  uint8_t rdsLineIn, uint8_t rdsFreqDev, 
                    uint8_t inInpedance, uint8_t txAgcDig, uint8_t txAgcBuffer, uint8_t txSoftClip ) {
+  
+  Wire.begin();
+
   delay(200); // Chip power-up time
 
   this->xtal_div = xtalDiv;
 
   this->system1.raw = 0B11100011;
+  
   this->system2.raw = 0;
   this->system2.arg.tx_mono = mono;   // Default stereo
   this->system2.arg.tx_rdsen = rds;   // RDS ON
@@ -316,8 +320,6 @@ void QN8066::setup(uint16_t xtalDiv,
   this->reg_vga.arg.TXAGC_GVGA = txAgcBuffer;
   this->reg_vga.arg.tx_sftclpen = txSoftClip;
 
-
-  Wire.begin();
 }
 
 /** @defgroup group03 RX Functions (Under construction...)*/
@@ -356,6 +358,7 @@ void QN8066::setRX() {
  * @todo Under improvements 
  */
 void QN8066::setTX(uint16_t frequency) {
+  this->system1.raw = 0B11100011;
   this->setRegister(QN_SYSTEM1, this->system1.raw); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
   this->setRegister(QN_SYSTEM2, this->system2.raw); 
   this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy); // Toggle 
