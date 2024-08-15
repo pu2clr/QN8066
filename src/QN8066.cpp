@@ -215,6 +215,33 @@ void  QN8066::begin() {
 
 /**
  * @ingroup group02 Init Device
+ * @brief Set transmission request
+ * @details This function enable or disable transmission
+ * @param value - 0 = disable; 1 = enable
+ */
+void QN8066::setTxMode(uint8_t value) {
+  this->system1.arg.txreq = value;
+  this->setRegister(QN_SYSTEM1, this->system1.raw);
+}
+
+/**
+ * @ingroup group02 Init Device
+ * @brief Stops transmitting
+ */
+void QN8066::stopTransmitting() {
+  this->setTxMode(0);
+}
+
+/**
+ * @ingroup group02 Init Device
+ * @brief Starts transmitting
+ */
+void QN8066::startTransmitting() {
+  this->setTxMode(1);
+}
+
+/**
+ * @ingroup group02 Init Device
  * @brief QN8066 initial configuration
  * @details This function can be called without arguments (parameters). In this case, the default value will be assumed. See the following list of parameters.
  * @param xtalDiv  - Divider based on frequency select of reference clock source. Default 1000 (see Datasheet pag. 18 and 23).

@@ -116,6 +116,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ga2c08b4183ed0f9790be65c67b90ede93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93">QN8066::begin</a> ()</td></tr>
 <tr class="memdesc:ga2c08b4183ed0f9790be65c67b90ede93"><td class="mdescLeft">&#160;</td><td class="mdescRight">Device initial configuration.  <br /></td></tr>
 <tr class="separator:ga2c08b4183ed0f9790be65c67b90ede93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga160b5271537b74ba694c4033dec5f915"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group02.html#ga160b5271537b74ba694c4033dec5f915">QN8066::setTxMode</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga160b5271537b74ba694c4033dec5f915"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set transmission request.  <br /></td></tr>
+<tr class="separator:ga160b5271537b74ba694c4033dec5f915"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga801b74d0c6d39c9c828f20a46fb3ce7c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group02.html#ga801b74d0c6d39c9c828f20a46fb3ce7c">QN8066::stopTransmitting</a> ()</td></tr>
+<tr class="memdesc:ga801b74d0c6d39c9c828f20a46fb3ce7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stops transmitting.  <br /></td></tr>
+<tr class="separator:ga801b74d0c6d39c9c828f20a46fb3ce7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga8f5f8f73c0d0f1faa96a6b5bb8bde49b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group02.html#ga8f5f8f73c0d0f1faa96a6b5bb8bde49b">QN8066::startTransmitting</a> ()</td></tr>
+<tr class="memdesc:ga8f5f8f73c0d0f1faa96a6b5bb8bde49b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts transmitting.  <br /></td></tr>
+<tr class="separator:ga8f5f8f73c0d0f1faa96a6b5bb8bde49b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:gacc2e79aa0134a657191485184b2b603b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">QN8066::setup</a> (uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60, uint8_t inInpedance=1, uint8_t txAgcDig=0, uint8_t txAgcBuffer=1, uint8_t txSoftClip=0)</td></tr>
 <tr class="memdesc:gacc2e79aa0134a657191485184b2b603b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> initial configuration.  <br /></td></tr>
 <tr class="separator:gacc2e79aa0134a657191485184b2b603b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,9 +232,9 @@ Functions</h2></td></tr>
 <div class="ttc" id="agroup__group00_html_a9235fae8b1ba8838e5dbed428d29a22d"><div class="ttname"><a href="group__group00.html#a9235fae8b1ba8838e5dbed428d29a22d">qn8066_status1::arg</a></div><div class="ttdeci">struct qn8066_status1::@6 arg</div></div>
 <div class="ttc" id="agroup__group00_html_unionqn8066__status1"><div class="ttname"><a href="group__group00.html#unionqn8066__status1">qn8066_status1</a></div><div class="ttdoc">STATUS1 - System status ( Address: 0Ah - Read Only)</div><div class="ttdef"><b>Definition:</b> QN8066.h:283</div></div>
 <div class="ttc" id="agroup__group02_html_ga42fb3ab79849550ce078c5efb591d291"><div class="ttname"><a href="group__group02.html#ga42fb3ab79849550ce078c5efb591d291">QN8066::getStatus1</a></div><div class="ttdeci">qn8066_status1 getStatus1()</div><div class="ttdoc">Gets the current device Status stored in STATUS1 register.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:122</div></div>
-<div class="ttc" id="agroup__group02_html_gacc2e79aa0134a657191485184b2b603b"><div class="ttname"><a href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60, uint8_t inInpedance=1, uint8_t txAgcDig=0, uint8_t txAgcBuffer=1, uint8_t txSoftClip=0)</div><div class="ttdoc">QN8066 initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:250</div></div>
-<div class="ttc" id="agroup__group04_html_ga7fbea7d2ae6bdf9719ee252e6a612a83"><div class="ttname"><a href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">QN8066::setTxStereo</a></div><div class="ttdeci">void setTxStereo(bool value=true)</div><div class="ttdoc">Set TX Stereo or Mono.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:380</div></div>
-<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:330</div></div>
+<div class="ttc" id="agroup__group02_html_gacc2e79aa0134a657191485184b2b603b"><div class="ttname"><a href="group__group02.html#gacc2e79aa0134a657191485184b2b603b">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60, uint8_t inInpedance=1, uint8_t txAgcDig=0, uint8_t txAgcBuffer=1, uint8_t txSoftClip=0)</div><div class="ttdoc">QN8066 initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:277</div></div>
+<div class="ttc" id="agroup__group04_html_ga7fbea7d2ae6bdf9719ee252e6a612a83"><div class="ttname"><a href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">QN8066::setTxStereo</a></div><div class="ttdeci">void setTxStereo(bool value=true)</div><div class="ttdoc">Set TX Stereo or Mono.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:411</div></div>
+<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:358</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -340,6 +349,70 @@ Functions</h2></td></tr>
 <div class="line">}</div>
 <div class="ttc" id="agroup__group02_html_ga2c08b4183ed0f9790be65c67b90ede93"><div class="ttname"><a href="group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93">QN8066::begin</a></div><div class="ttdeci">void begin()</div><div class="ttdoc">Device initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:211</div></div>
 </div><!-- fragment --> 
+</div>
+</div>
+<a id="ga160b5271537b74ba694c4033dec5f915" name="ga160b5271537b74ba694c4033dec5f915"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga160b5271537b74ba694c4033dec5f915">&#9670;&#160;</a></span>setTxMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setTxMode </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set transmission request. </p>
+<p>This function enable or disable transmission </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>- 0 = disable; 1 = enable </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ga801b74d0c6d39c9c828f20a46fb3ce7c" name="ga801b74d0c6d39c9c828f20a46fb3ce7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga801b74d0c6d39c9c828f20a46fb3ce7c">&#9670;&#160;</a></span>stopTransmitting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::stopTransmitting </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stops transmitting. </p>
+
+</div>
+</div>
+<a id="ga8f5f8f73c0d0f1faa96a6b5bb8bde49b" name="ga8f5f8f73c0d0f1faa96a6b5bb8bde49b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8f5f8f73c0d0f1faa96a6b5bb8bde49b">&#9670;&#160;</a></span>startTransmitting()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::startTransmitting </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Starts transmitting. </p>
+
 </div>
 </div>
 <a id="gacc2e79aa0134a657191485184b2b603b" name="gacc2e79aa0134a657191485184b2b603b"></a>

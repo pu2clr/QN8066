@@ -6,5 +6,8 @@ var group__group02 =
     [ "QN8066::getStatus2", "group__group02.html#gac6731edee1a5da425a66878371b1104c", null ],
     [ "QN8066::getStatus3", "group__group02.html#gafcb2a26df67c63e40800a29a559c5505", null ],
     [ "QN8066::begin", "group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93", null ],
+    [ "QN8066::setTxMode", "group__group02.html#ga160b5271537b74ba694c4033dec5f915", null ],
+    [ "QN8066::stopTransmitting", "group__group02.html#ga801b74d0c6d39c9c828f20a46fb3ce7c", null ],
+    [ "QN8066::startTransmitting", "group__group02.html#ga8f5f8f73c0d0f1faa96a6b5bb8bde49b", null ],
     [ "QN8066::setup", "group__group02.html#gacc2e79aa0134a657191485184b2b603b", null ]
 ];

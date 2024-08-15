@@ -51,8 +51,10 @@ void setup() {
     tx.getRegister(0x49);       // Read = 0x25    
     tx.setRegister(0x49,0x05);  // 00000101   
     tx.getRegister(0x6E);       // Read = 0xB7 
+
     tx.getRegister(0x00);       // Read = 0x0B
     tx.setRegister(0x00,0x0B);  // 00001011
+    
     tx.getRegister(0x19);       // Read = 0x23 
     tx.setRegister(0x19,0x23);  // 00100011
     tx.setRegister(0x1B,0xAF);  // 10101111

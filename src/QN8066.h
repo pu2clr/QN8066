@@ -824,7 +824,7 @@ private:
   uint16_t resetDelay = 1000;   //!<< Delay after reset (default 1s)
   uint16_t xtal_div = 1000;
 
-  qn8066_system2 system1;
+  qn8066_system1 system1;
   qn8066_system2 system2;
   qn8066_gplt gplt;
   qn8066_cca cca;
@@ -916,9 +916,14 @@ public:
              uint8_t txFreqDev = 125, uint8_t rdsLineIn = 0, uint8_t rdsFreqDev = 60, 
              uint8_t inInpedance = 1, uint8_t txAgcDig = 0, uint8_t txAgcBuffer = 1 , uint8_t txSoftClip = 0 );
 
+
   void updateTxSetup();
+
+
+  void setTxMode(uint8_t value);
   void stopTransmitting();
   void startTransmitting();
+
 
   /**
    * @ingroup group01
