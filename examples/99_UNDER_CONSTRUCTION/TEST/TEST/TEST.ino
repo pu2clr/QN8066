@@ -2,7 +2,7 @@
 QN8066 tx;
 void setup() {
     tx.begin();
-    tx.setRegister(0x00,0xE3);
+    tx.setRegister(0x00,0xE3); 
     tx.setRegister(0x01,0x00);
     tx.setRegister(0x02,0x50);
     tx.setRegister(0x07,0xE8);
