@@ -330,7 +330,16 @@ Based on several experiments I conducted with this kit, I observed instability i
 
 4. **Wire-up organization**: Shortening and organizing the I2C bus lines that connect the KIT to the microcontroller significantly improves system stability. 
 
-5. **Good grounding**: Through good grounding, it was possible to make the system stable. It was possible to transmit for several hours without interruption and without communication problems with the I2C.
+5. **Good grounding**: Through good grounding, it was possible to make the system more stable.
+
+6. **System Stability of the KIT Powered via Microcontroller (Tests and Results)**: Without using the power module, that is, by only powering the QN8066 stage of the board through the interface connector with the microcontroller, the system remains stable. The example sketches provided in this library ran for hours without any instability. The sketch developed for the Arduino Pro Mini and LCD16x2 was subjected to a test lasting over 16 hours without any issues.
+
+
+#### The following are some references to reports that may align with what was previously mentioned.
+
+[Dynamic_RDS - FM Transmitter Plugin for Falcon Player](https://github.com/ShadowLight8/Dynamic_RDS)
+[New 30W FM PLL Stereo Broadcast Transmitter Spectrum](https://youtu.be/l84aCG7SQ6M?si=fOy0QYjhkpQpiQg4)
+
 
 It is important to highlight that this library was not developed exclusively to work with this kit. In fact, it was designed to work with any architecture involving the QN8066 via the I2C protocol. That said, it is crucial for the designer or experimenter to keep in mind the necessary precautions to provide a stable system. There are various literatures that can help follow the best design practices involving I2C communication.
 
