@@ -392,6 +392,11 @@ void setup() {
 
 void checkQN8066(char c) {
   uint8_t count = 0;
+
+  if ( (millis() - i2c_monitor_time) < 250) return;
+  
+  i2c_monitor_time = millis();
+
   while (!tx.detectDevice() && (count < 20) ) {
     // tx.stopTransmitting();
     Wire.end();
@@ -646,6 +651,7 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t
     }
     actionFunc(tab->value[tab->key].idx);
     showParameter((char *)tab->value[tab->key].desc);
+    checkQN8066('&');
     key = browseParameter();
   }
   menuLevel = 0;
@@ -758,11 +764,6 @@ int8_t checkButton() {
     delay(30);
   }
   
-  if ( (millis() - i2c_monitor_time) > 250) {
-    checkQN8066('#');
-    i2c_monitor_time = millis();
-  }
-
   return button;
 }
 
@@ -800,6 +801,7 @@ void loop() {
     showMenu(menuIdx);
     key = browseParameter();
     while (key != 0) {
+      checkQN8066('#');
       if (key == -1) {
         if (menuIdx == 0)
           menuIdx = lastMenu;
@@ -816,6 +818,7 @@ void loop() {
     }
     menuLevel = 2;
   } else if (menuLevel == 2) {
+    checkQN8066('%');
     menuLevel = doMenu(menuIdx);
   }
 
