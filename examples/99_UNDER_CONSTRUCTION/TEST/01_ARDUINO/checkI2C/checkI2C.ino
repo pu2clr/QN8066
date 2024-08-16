@@ -134,7 +134,7 @@ const int eeprom_address = 0;
 
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
 // So, if the duty is 25 the power is about 0,7W =>  Power = duty * 7 / 255
-uint8_t pwmPowerDuty = 50;  // Initial power/duty.
+uint8_t pwmPowerDuty = 0;  // Initial power/duty.
 uint8_t pwmDutyStep = 25;   // PWM Duty increment and decrement step
 
 // Tables and parameter values based on QN8066 register (see datasheet)
@@ -352,7 +352,7 @@ void setup() {
   } else {
     // Defult values
     txFrequency = 1069;
-    pwmPowerDuty = 50;
+    pwmPowerDuty = 0;
     saveAllTransmitterInformation();
   }
 
