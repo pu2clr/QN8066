@@ -334,6 +334,9 @@ Based on several experiments I conducted with this kit, I observed instability i
 
 6. **System Stability of the KIT Powered via Microcontroller (Tests and Results)**: Without using the power module, that is, by only powering the QN8066 stage of the board through the interface connector with the microcontroller, the system remains stable. The example sketches provided in this library ran for hours without any instability. The sketch developed for the Arduino Pro Mini and LCD16x2 was subjected to a test lasting over 16 hours without any issues.
 
+7. **Impact of RF Interference on I2C Communication in Power Control Systems**: There is another point to consider that might somewhat absolve the issue of power control via I2C. As the bandwidth increases, the transmitter's power also rises. It's possible that excessive RF signal in close proximity to the circuit is disrupting the I2C communication. When using a "dummy load," there is a noticeable reduction in I2C communication errors. This can be demonstrated by eliminating the I2C control and manually controlling it by applying a voltage of 3.3V or lower to the power control line. In my experiments, the I2C communication errors persisted, causing system instability.
+
+8. **Enhancing System Stability Through Shielding and Isolation (Future Testing Considerations)**: Finally, I believe that good shielding of the KIT in a metal enclosure, as well as isolating the microcontroller from the transmitter (in a separate enclosure), could significantly improve the system. This is something to be tested in the future.
 
 #### The following are some references to reports that may align with what was previously mentioned.
 
