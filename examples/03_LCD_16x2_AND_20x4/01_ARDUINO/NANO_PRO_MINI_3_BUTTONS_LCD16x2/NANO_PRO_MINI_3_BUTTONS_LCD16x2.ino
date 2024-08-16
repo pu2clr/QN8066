@@ -120,7 +120,7 @@
 #define STEP_FREQ 1
 #define PUSH_MIN_DELAY 200
 
-#define STATUS_REFRESH_TIME 5000
+#define STATUS_REFRESH_TIME 4000
 
 int8_t lcdPage = 0;
 long showStatusTime = millis();
@@ -318,7 +318,6 @@ QN8066 tx;
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
 void setup() {
-
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
   pinMode(BT_MENU, INPUT_PULLUP);
   pinMode(BT_UP, INPUT_PULLUP);
@@ -381,12 +380,9 @@ void setup() {
 
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    tx.rdsInitTx(0, 0, 0, 5, 50, 5);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+    tx.rdsInitTx(0, 0, 0, 5, 50, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
-
-  // Adjust clock divider (Timer0) 
-  // TCCR0B = (TCCR0B & 0b11111000) | 0x02; // Increases the clock of PWM to 62.5 kHz.
 
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
 }
@@ -394,21 +390,20 @@ void setup() {
 
 void checkQN8066() {
   uint8_t count = 0;
-  lcd.setCursor(7, 1);
-  lcd.print(" ");
-  while (!tx.detectDevice() && (count < 50) ) {
-    lcd.setCursor(7, 1);
-    lcd.print("#");
-    delay(10);
-    // lcd.setCursor(0, 0);
-    // lcd.print("No QN8066 found!");
-    // while (1)
-    //  ;
-    tx.stopTransmitting();
+  while (!tx.detectDevice() && (count < 20) ) {
+    // tx.stopTransmitting();
+    Wire.end();
+    delay(1);
+    Wire.begin();
+    delay(2);  
     count++;
   }
-  if (count > 0)
+  // lcd.setCursor(7, 1);
+  if (count > 0) {
+    // lcd.setCursor(7, 1);
+    // lcd.print('#'); 
     tx.startTransmitting();
+  }
 }
 
 // Saves current transmitter setup
@@ -448,9 +443,14 @@ void readAllTransmitterInformation() {
 
 // Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
-  delay(300);
-  analogWrite(PWM_PA, value);  // Turn PA off
-  delay(300);
+    if ( value == 0) { 
+      analogWrite(PWM_PA, value);
+      return;
+    }
+    for (uint8_t i = 0; i < value; i++) {
+       analogWrite(PWM_PA, i);
+       delay(5);
+    }
 }
 // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
@@ -479,7 +479,7 @@ void showFrequency() {
 }
 // Shows the current power in percent (duty cycle)
 void showPower() {
-  char strPower[7];
+  char strPower[12];
   // uint16_t currentPower = (uint16_t)(pwmPowerDuty * 7 / 255);
   uint16_t currentPower = (uint16_t)(pwmPowerDuty * 100 / 255);
   sprintf(strPower, "%d%%  ", currentPower);
@@ -488,7 +488,7 @@ void showPower() {
 }
 // Shows the general current transmitter status
 void showStatus(uint8_t page) {
-  char strFrequency[7];
+  char strFrequency[9];
   char str[20];
 
   lcd.clear();
@@ -774,6 +774,7 @@ void loop() {
         showStatus(lcdPage);
         showStatusTime = millis();
       }
+
     }
     if (key == BT_DOWN_PRESSED) {  // Down Pressed
       lcdPage--;
