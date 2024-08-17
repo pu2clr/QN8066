@@ -63,8 +63,8 @@
   hobbyists. It's likely that many already have one at home, or even an Arduino Uno,
   which shares the same architecture.
 
-  Prototype documentation: https://pu2clr.github.io/RDA5807/
-  PU2CLR RDA5807 API documentation: https://pu2clr.github.io/RDA5807/extras/apidoc/html/
+  Prototype documentation: https://pu2clr.github.io/QN8066/
+  PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
 
   By PU2CLR, Ricardo,  Feb  2023.
 */
