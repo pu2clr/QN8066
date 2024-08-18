@@ -52,6 +52,9 @@ void setup() {
   // Assuming you are using a 32.768 kHz active crystal, a digital signal, and LO<RF, 
   // the image is on the lower side.
   tx.setXtal(1,1,0); 
+  // tx.setXtal(100,1,0); // If you are using 3,768 active crystal
+  // tx.setXtal(1000,1,0); // If you are using 32,768,000 active crystal
+
   delay(100);
   tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
 
