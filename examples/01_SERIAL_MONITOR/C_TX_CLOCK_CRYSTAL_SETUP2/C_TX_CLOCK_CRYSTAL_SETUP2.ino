@@ -36,6 +36,10 @@ QN8066 tx;
 
 char str[80];
 
+char *rdsPS = (char *) "QN8066  ";
+char *rdsRT = (char *) "STANDALONE QN8066 ARDUINO SETUP";
+uint8_t pty = 5; // Education in RDS and Rock in RBDS
+
 void setup() {
 
   Serial.begin(9600);
@@ -58,7 +62,10 @@ void setup() {
   delay(100);
   tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
 
-  sprintf(str, "\n\nBroadcasting...");
+  tx.rdsTxEnable(true);
+  tx.rdsInitTx(0x8,0x1,0x9B,pty,50,6);
+
+  sprintf(str, "\n\nBroadcasting with RDS...");
   Serial.print(str);
 }
 
@@ -66,5 +73,8 @@ void loop() {
     sprintf(str,"\nFSM: %d\nAudio Peak: %d mV", tx.getFsmStateCode(), tx.getAudioPeakValue());
     Serial.print(str);
     tx.resetAudioPeak();
+    tx.rdsSendPS(rdsPS);
+    delay(100);
+    tx.rdsSendRTMessage(rdsRT);
     delay(15000);
 }
