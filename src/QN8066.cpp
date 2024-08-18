@@ -409,6 +409,17 @@ void QN8066::setTX(uint16_t frequency) {
  * @ingroup group02 Init Device
  * @brief QN8066 initial configuration of the of reference clock source
  * @details Reference clock source based on the active crystal or signal generator you are using. 
+ * @details The table below shows some tested sources (active crystal or signal generator) and divider values 
+ * |   Source (kHz)  | Divider       | 
+ * | --------------  | ------------- |
+ * |  32.768         |      1        | 
+ * |  < 1,310.720    | did not work  |   
+ * |  1,310.720      |    40         | 
+ * |  1,638.400      |    50         | 
+ * |  3,276.800      |   100         | 
+ * |  13,107.200     |   400         | 
+ * |  16,384.000     |   500         | 
+ * |  32,768,000     |  1000         |  
  * @param xtalDiv  - Divider based on frequency select of reference clock source. Default 1000 (see Datasheet pag. 18 and 23).
  * @param xtalInj - type of the reference clock source (0 = Inject sine-wave clock; 1 = Inject digital clock).
  * @param imageRejection - Image Rejection (0=LO<RF, image is in lower side; 1=LO>RF, image is in upper side).

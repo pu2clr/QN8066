@@ -253,12 +253,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gaee7afb6a9a31a99fc29b8b9d7d0a00bc';
-        sec-mem-ref-line = '1105';
+        sec-mem-ref-line = '1116';
         sec-mem-ref-name = 'getAudioPeakValue';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gab18543166cfd0ca104df9a269a990552';
-        sec-mem-ref-line = '1326';
+        sec-mem-ref-line = '1337';
         sec-mem-ref-name = 'rdsGetTxUpdated';
     };
     }; /* sec-member */
@@ -1409,6 +1409,17 @@ QN8066 initial configuration of the of reference clock source.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
  Reference clock source based on the active crystal or signal generator you are using. 
+\ilinebr\ilinebr The table below shows some tested sources (active crystal or signal generator) and divider values 
+<table class="markdownTable">
+  <tr class="markdownTableHead">    <th class="markdownTableHeadNone"> Source (kHz) \ilinebr </th>    <th class="markdownTableHeadNone"> Divider \ilinebr </th>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 32.768 \ilinebr </td>    <td class="markdownTableBodyNone"> 1 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> < 1,310.720 \ilinebr </td>    <td class="markdownTableBodyNone"> did not work \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 1,310.720 \ilinebr </td>    <td class="markdownTableBodyNone"> 40 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 1,638.400 \ilinebr </td>    <td class="markdownTableBodyNone"> 50 \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 3,276.800 \ilinebr </td>    <td class="markdownTableBodyNone"> 100 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 13,107.200 \ilinebr </td>    <td class="markdownTableBodyNone"> 400 \ilinebr </td>  </tr>
+<tr class="markdownTableRowOdd">    <td class="markdownTableBodyNone"> 16,384.000 \ilinebr </td>    <td class="markdownTableBodyNone"> 500 \ilinebr </td>  </tr>
+<tr class="markdownTableRowEven">    <td class="markdownTableBodyNone"> 32,768,000 \ilinebr </td>    <td class="markdownTableBodyNone"> 1000 \ilinebr </td>  </tr></table>
 @param xtalDiv  - Divider based on frequency select of reference clock source. Default 1000 (see Datasheet pag. 18 and 23).
 @param xtalInj - type of the reference clock source (0 = Inject sine-wave clock; 1 = Inject digital clock).
 @param imageRejection - Image Rejection (0=LO<RF, image is in lower side; 1=LO>RF, image is in upper side).
@@ -1533,7 +1544,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gaf68d40e6fdc7a17cb64d883d93af3886';
-        sec-mem-ref-line = '1076';
+        sec-mem-ref-line = '1087';
         sec-mem-ref-name = 'setToggleTxPdClear';
     };
     }; /* sec-member */
@@ -2128,7 +2139,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
-        sec-mem-ref-line = '1458';
+        sec-mem-ref-line = '1469';
         sec-mem-ref-name = 'rdsSetStationName';
     };
     }; /* sec-member */
@@ -2153,13 +2164,13 @@ _EnD_oF_dEf_TeXt_;
 Sets the station name.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1454 
+\iline 1465 
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
-        sec-mem-ref-line = '1485';
+        sec-mem-ref-line = '1496';
         sec-mem-ref-name = 'rdsSendPS';
     };
     }; /* sec-member */
@@ -2465,7 +2476,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Clear and Flushes the RDS Buffer.
 
-\iline 1388 
+\iline 1399 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -6663,7 +6674,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1420';
+        sec-mem-ref-line = '1431';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -6843,7 +6854,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1420';
+        sec-mem-ref-line = '1431';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7339,7 +7350,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1420';
+        sec-mem-ref-line = '1431';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7395,7 +7406,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1420';
+        sec-mem-ref-line = '1431';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
