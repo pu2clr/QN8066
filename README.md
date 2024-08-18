@@ -32,12 +32,13 @@ I hold a Master's degree in Educational Technology from the Federal University o
 5. [QN8066 Functional Blocks](./#qn8066-functional-blocks)
 6. [QN8066 PINOUT](./#qn8066-pinout)
 7. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
-8. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
-9. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-10. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
-11. [Boards where this library can be compiled](./#boards-where-this-library-can-be-compiled)
-12. [Donate](./#donate)
-13. [References](./#references)
+8. [Homemade setup with the QN8066](./#homemade-setup-with-the-qn8066)
+9. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
+10. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+11. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
+12. [Boards where this library can be compiled](./#boards-where-this-library-can-be-compiled)
+13. [Donate](./#donate)
+14. [References](./#references)
 
 ## Legal Compliance Guidelines
 
@@ -250,6 +251,8 @@ The table below shows some tested sources (active crystal or signal generator) a
 |  16,384.000     |   500         | 
 |  32,768,000     |  1000         |  
 
+#### Example 1
+
 ```cpp
 /**
 
@@ -291,6 +294,41 @@ void setup() {
                1,  // PreEmphasis = 75
                1); // 1 if XCLK pin is receiving a digital clock. set it to 0 if you are using a sine-wave oscillator. 
 
+  tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
+  sprintf(str, "\n\nBroadcasting...");
+  Serial.print(str);
+}
+void loop() {
+    sprintf(str,"\nFSM: %d\nAudio Peak: %d mV", tx.getFsmStateCode(), tx.getAudioPeakValue());
+    Serial.print(str);
+    tx.resetAudioPeak();
+    delay(15000);
+}
+```
+
+#### Example 2
+
+```cpp
+
+#include <QN8066.h>
+#define FREQUENCY 1069   // 106.9 MHz 
+QN8066 tx;
+char str[80];
+void setup() {
+  Serial.begin(9600);
+  while (!Serial) ;
+  delay(100); // Wait a bit while the system stabilizes.
+  if (!tx.detectDevice()) {
+    Serial.println("\nDevice QN8066 not detected");
+    while (1);
+  }
+  tx.begin();
+  // Assuming you are using a 32.768 kHz active crystal, a digital signal, and LO<RF, 
+  // the image is on the lower side.
+  tx.setXtal(1,1,0); 
+  // tx.setXtal(100,1,0); // If you are using 3,768 active crystal
+  // tx.setXtal(1000,1,0); // If you are using 32,768,000 active crystal
+  delay(100);
   tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
