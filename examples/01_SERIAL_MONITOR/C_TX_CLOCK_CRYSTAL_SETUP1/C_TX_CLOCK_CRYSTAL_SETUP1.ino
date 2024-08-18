@@ -64,8 +64,6 @@ void setup() {
 
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
-
-  analogWrite(9, 50);  // It is about 1/5 of the max power. It is between 1 and 1,4 W
 }
 
 void loop() {

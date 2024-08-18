@@ -210,6 +210,19 @@ qn8066_status3 QN8066::getStatus3() {
 
 void  QN8066::begin() {
   delay(600); // Chip power-up time
+
+  this->system1.raw = 0B11100011;
+  this->system2.raw = 0;
+  this->cca.raw = this->getRegister(QN_CCA);
+  this->cca.arg.xtal_inj = 1; 
+  this->gplt.raw = this->getRegister(QN_GPLT);
+  this->fdev.raw = this->getRegister(QN_FDEV);
+  this->rds.raw = this->getRegister(QN_RDS);
+  this->reg_vga.raw = this->getRegister(QN_REG_VGA);
+  this->int_ctrl.raw = this->getRegister(QN_INT_CTRL);
+  this->pac.raw = this->getRegister(QN_PAC);
+  this->vol_ctl.raw = this->getRegister(QN_VOL_CTL);
+
   Wire.begin();
 }
 
