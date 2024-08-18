@@ -307,6 +307,35 @@ The Arduino Nano is used in some examples in this library because it's popular a
 See also [DIY Kit 5W-7W FM example](https://github.com/pu2clr/QN8066/tree/main/examples/01_SERIAL_MONITOR/B_TX)
 
 
+## Homemade setup with the QN8066
+
+The following figures illustrate a homemade setup with the QN8066. As you can see, only a few components are needed to build an FM transmitter with the QN8066. The key component is the 32.768 kHz active crystal (32,768 Hz). The QN8066 allows for other signal source configurations. As far as I understand, there is no possibility of using passive crystals. The QN8066 requires an active signal source provided by a generator.
+
+![Standalone QN8066 setup 0](./extras/images/STANDALONE_QN8066_00.jpg)
+
+
+![Standalone QN8066 setup 1](./extras/images/STANDALONE_QN8066_01.jpg)
+
+
+![Standalone QN8066 setup 2](./extras/images/STANDALONE_QN8066_02.jpg)
+
+
+
+Through some functions in the Arduino library, you can configure the active crystal you intend to use. Check the setup and begin functions for more details. 
+
+The table below shows some tested sources (active crystal or signal generator) and divider values 
+ * |   Source (kHz)  | Divider       | 
+ * | --------------  | ------------- |
+ * |  32.768         |      1        | 
+ * |  < 1,310.720    | did not work  |   
+ * |  1,310.720      |    40         | 
+ * |  1,638.400      |    50         | 
+ * |  3,276.800      |   100         | 
+ * |  13,107.200     |   400         | 
+ * |  16,384.000     |   500         | 
+ * |  32,768,000     |  1000         |  
+
+
 ## DIY Kit 5W-7W FM connected with Arduino Pro Mini
 
 The following figure shows the "DIY Kit 5W-7W FM TRANSMITTER" connected to the Arduino Pro Mini. The following link provides more operational details. [Click here to watch the video.](https://youtu.be/3V40yuwN-Vk?si=-umWUd4IRooRauze)

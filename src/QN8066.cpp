@@ -428,6 +428,7 @@ void QN8066::setTX(uint16_t frequency) {
  * #include <QN8066.h>
  * QN8066 tx;
  * void setup() {
+ *   tx.begin();
  *   tx.setXtal(1,1,1);
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
  * }
