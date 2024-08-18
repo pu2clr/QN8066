@@ -406,6 +406,35 @@ void QN8066::setTX(uint16_t frequency) {
 
 
 /**
+ * @ingroup group02 Init Device
+ * @brief QN8066 initial configuration of the of reference clock source
+ * @details Reference clock source based on the active crystal or signal generator you are using. 
+ * @param xtalDiv  - Divider based on frequency select of reference clock source. Default 1000 (see Datasheet pag. 18 and 23).
+ * @param xtalInj - type of the reference clock source (0 = Inject sine-wave clock; 1 = Inject digital clock).
+ * @param imageRejection - Image Rejection (0=LO<RF, image is in lower side; 1=LO>RF, image is in upper side).
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setXtal(1,1,1);
+ *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode 
+*/
+void QN8066::setXtal(uint16_t divider, uint8_t xtalInj, uint8_t imageRejection) {
+    this->xtal_div = divider;
+    this->cca.arg.xtal_inj = xtalInj;
+    this->cca.arg.imr = imageRejection;
+}
+
+
+
+
+/**
  * @ingroup group04  TX Setup
  * @brief Set TX Stereo or Mono
  * @details  

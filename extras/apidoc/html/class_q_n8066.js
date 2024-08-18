@@ -36,7 +36,7 @@ var class_q_n8066 =
     [ "setTxMode", "group__group02.html#ga160b5271537b74ba694c4033dec5f915", null ],
     [ "stopTransmitting", "group__group02.html#ga801b74d0c6d39c9c828f20a46fb3ce7c", null ],
     [ "startTransmitting", "group__group02.html#ga8f5f8f73c0d0f1faa96a6b5bb8bde49b", null ],
-    [ "setCrystalFrequency", "group__group01.html#ga0f7771a1c7fd08c5c832a54cfad4cbca", null ],
+    [ "setXtal", "group__group02.html#ga84ef4ffd06a76d817114cbd2e222f6e5", null ],
     [ "setPAC", "group__group04.html#ga90eeea994b03d7c31ac09426982884c0", null ],
     [ "setToggleTxPdClear", "group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886", null ],
     [ "resetAudioPeak", "group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed", null ],

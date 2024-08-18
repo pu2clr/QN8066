@@ -9,5 +9,6 @@ var group__group02 =
     [ "QN8066::setTxMode", "group__group02.html#ga160b5271537b74ba694c4033dec5f915", null ],
     [ "QN8066::stopTransmitting", "group__group02.html#ga801b74d0c6d39c9c828f20a46fb3ce7c", null ],
     [ "QN8066::startTransmitting", "group__group02.html#ga8f5f8f73c0d0f1faa96a6b5bb8bde49b", null ],
-    [ "QN8066::setup", "group__group02.html#gacc2e79aa0134a657191485184b2b603b", null ]
+    [ "QN8066::setup", "group__group02.html#gacc2e79aa0134a657191485184b2b603b", null ],
+    [ "QN8066::setXtal", "group__group02.html#ga84ef4ffd06a76d817114cbd2e222f6e5", null ]
 ];
