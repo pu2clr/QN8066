@@ -221,6 +221,87 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 
 
 
+## Homemade setup with the QN8066
+
+The following figures illustrate a homemade setup with the QN8066. As you can see, only a few components are needed to build an FM transmitter with the QN8066. The key component is the 32.768 kHz active crystal (32,768 Hz). The QN8066 allows for other signal source configurations. As far as I understand, there is no possibility of using passive crystals. The QN8066 requires an active signal source provided by a generator.
+
+![Standalone QN8066 setup 0](./extras/images/STANDALONE_QN8066_00.jpg)
+
+
+![Standalone QN8066 setup 1](./extras/images/STANDALONE_QN8066_01.jpg)
+
+
+![Standalone QN8066 setup 2](./extras/images/STANDALONE_QN8066_02.jpg)
+
+
+
+Through some functions in the Arduino library, you can configure the active crystal you intend to use. Check the setup and begin functions for more details. 
+
+The table below shows some tested sources (active crystal or signal generator) and divider values. 
+
+|   Source (kHz)  | Divider       | 
+| --------------  | ------------- |
+|  32.768         |      1        | 
+|  < 1,310.720    | did not work  |   
+|  1,310.720      |    40         | 
+|  1,638.400      |    50         | 
+|  3,276.800      |   100         | 
+|  13,107.200     |   400         | 
+|  16,384.000     |   500         | 
+|  32,768,000     |  1000         |  
+
+```cpp
+/**
+
+This sketch works on Arduino Pro Mini, Nano, UNO, or any other board based on the ATMega328. 
+IMPORTANTE: Refer to the documentation if you are using a 5V microcontroller instead of a 3.3V one.
+
+This sketch illustrates the clock configuration used on the XCLK pin of the QN8066. 
+Depending on the active crystal or signal generator you are using, it is important 
+to set the correct frequency and signal waveform type for the QN8066 to function 
+properly.
+
+IMPORTANT: The QN8066 works with active crystals or signal generators. 
+           Passive crystals will not work with the QN8066.
+
+Author: Ricardo Lima Caratti (PU2CLR) - 2024
+*/
+
+#include <QN8066.h>
+#define FREQUENCY 1069 // 106.9 MHz 
+QN8066 tx;
+char str[80];
+void setup() {
+  Serial.begin(9600);
+  while (!Serial) ;
+  delay(100); // Wait a bit while the system stabilizes.
+  if (!tx.detectDevice()) {
+    Serial.println("\nDevice QN8066 not detected");
+    while (1);
+  }
+  // The call to the setup function below illustrates the use of a 32.768 kHz crystal. 
+  // Since the reference clock for the QN8066 is exactly 32.768 kHz, you can provide the 
+  // frequency value of the crystal you are using divided by 32.768. 
+  // For example: if you are using a 32.768 kHz active crystal, then you should provide the 
+  // divisor value of 1. If the signal generator (active crystal) produces a sine wave, 
+  // enter the value 0, and if it is a digital signal, you should enter the value 1. See below.  
+  tx.setup(1,      // Divider based on frequency select of reference clock source. The crystal used here is 32.768 kHz  
+           false,  // Mono False => TX will start in stereo mode
+           false,  // TX will start in RDS OFF
+               1,  // PreEmphasis = 75
+               1); // 1 if XCLK pin is receiving a digital clock. set it to 0 if you are using a sine-wave oscillator. 
+
+  tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
+  sprintf(str, "\n\nBroadcasting...");
+  Serial.print(str);
+}
+void loop() {
+    sprintf(str,"\nFSM: %d\nAudio Peak: %d mV", tx.getFsmStateCode(), tx.getAudioPeakValue());
+    Serial.print(str);
+    tx.resetAudioPeak();
+    delay(15000);
+}
+```
 
 ## DIY Kit 5W-7W FM Transceiver
 
@@ -307,33 +388,6 @@ The Arduino Nano is used in some examples in this library because it's popular a
 See also [DIY Kit 5W-7W FM example](https://github.com/pu2clr/QN8066/tree/main/examples/01_SERIAL_MONITOR/B_TX)
 
 
-## Homemade setup with the QN8066
-
-The following figures illustrate a homemade setup with the QN8066. As you can see, only a few components are needed to build an FM transmitter with the QN8066. The key component is the 32.768 kHz active crystal (32,768 Hz). The QN8066 allows for other signal source configurations. As far as I understand, there is no possibility of using passive crystals. The QN8066 requires an active signal source provided by a generator.
-
-![Standalone QN8066 setup 0](./extras/images/STANDALONE_QN8066_00.jpg)
-
-
-![Standalone QN8066 setup 1](./extras/images/STANDALONE_QN8066_01.jpg)
-
-
-![Standalone QN8066 setup 2](./extras/images/STANDALONE_QN8066_02.jpg)
-
-
-
-Through some functions in the Arduino library, you can configure the active crystal you intend to use. Check the setup and begin functions for more details. 
-
-The table below shows some tested sources (active crystal or signal generator) and divider values 
- * |   Source (kHz)  | Divider       | 
- * | --------------  | ------------- |
- * |  32.768         |      1        | 
- * |  < 1,310.720    | did not work  |   
- * |  1,310.720      |    40         | 
- * |  1,638.400      |    50         | 
- * |  3,276.800      |   100         | 
- * |  13,107.200     |   400         | 
- * |  16,384.000     |   500         | 
- * |  32,768,000     |  1000         |  
 
 
 ## DIY Kit 5W-7W FM connected with Arduino Pro Mini
