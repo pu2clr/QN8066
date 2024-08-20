@@ -127,7 +127,7 @@ long showStatusTime = millis();
 
 uint8_t menuLevel = 0;
 
-const uint8_t app_id = 86;  // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 80;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
@@ -393,13 +393,12 @@ void setup() {
   tx.setTxMono(keyValue[KEY_MONO_STEREO].value[keyValue[KEY_MONO_STEREO].key].idx);
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
   tx.rdsSetFrequencyDerivation(keyValue[KEY_RDS_FREQ_DEV].value[keyValue[KEY_RDS_FREQ_DEV].key].idx);
-  tx.rdsSetPTY(keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx);
-
   showStatus(lcdPage);
 
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    tx.rdsInitTx(0, 0, 0, 5, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+    uint8_t ptyIdx = keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx;
+    tx.rdsInitTx(0, 0, 0, ptyIdx, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
 
