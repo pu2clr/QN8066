@@ -46,8 +46,6 @@
 #define LCD_RS 12
 #define LCD_E 13
 
-char *ps = (char *) "QN8066  "; // Program Station / Station Name
-char *rt = (char *) "PU2CLR - QN8066 ARDUINO LIBRARY "; // Radio Text
 uint8_t pty = 5; // Program Type - "Education" in RDS and "Rock" in RBDS see: https://en.wikipedia.org/wiki/Radio_Data_System
 uint16_t txFrequency = 1069;  // 106.9 MHz
 
@@ -66,10 +64,10 @@ void setup() {
     while (1) 
       ;
   }
-  tx.begin();
+  tx.setup();
   tx.setTX(txFrequency); // Sets the trasmitter to 106.9 MHz
   tx.rdsTxEnable(true);
-  tx.rdsInitTx(0, 0, 0, pty, 25, 8);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+  tx.rdsInitTx(0, 0, 0, pty, 30, 8);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
   showStatus();
 
   delay(1000);
@@ -92,22 +90,18 @@ void showStatus() {
   lcd.setCursor(0, 0);
   lcd.print(strFrequency);
   lcd.print("MHz");
-  lcd.setCursor(0,1);
-  lcd.print(ps);
-  // lcd.display();
+
+  lcd.display();
 }
 
-void sendRDS() {
-  tx.rdsSendPS(ps);
-  delay(200);
-  tx.rdsSendRTMessage(rt);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
-}
-
-uint8_t toggle = 0;
 
 void loop() {
-  sendRDS();
-  delay(5000);
-  lcd.setCursor(14,1);
-  lcd.print(toggle = !toggle);
+  tx.rdsSendPS((char *) "PU2CLR \r");
+  delay(2000);
+  tx.rdsSendRT((char *) "QN8066 ARDUINO LIBRARY       \r" );
+  delay(15000);
+  tx.rdsSendPS((char *) "QN8066 \r");
+  delay(2000);
+  tx.rdsSendRT((char *) "FM TRANSMITTER WITH RDS      \r" );
+  delay(15000);
 }

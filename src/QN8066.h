@@ -975,7 +975,30 @@ public:
 
 
   void rdsSetStationName(char *stationName);
-  void rdsSendRTMessage(char *rtText);
+  void rdsSendRTMessage(char *rt);
+  /**
+ * @ingroup group05 TX RDS
+ * @brief Sends RDS Radio Text Message (group 2A)
+ * @details It is a synonym to rdsSendRTMessage. This function repeats sending a group this->rdsRepeatGroup times.
+ * @param rt - Radio Text (string of 32 character)
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+ *   tx.rdsTxEnable(true);
+ *   delay(100);
+ *   tx.rdsSendRT("IT IS AN EXAMPLE..."); // transmits the message "IT IS AN EXAMPLE..." this->rdsRepeatGroup times
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode  
+ */
+  inline void rdsSendRT(char *rt) {this->rdsSendRTMessage(rt); };
+
 
   
  /**
