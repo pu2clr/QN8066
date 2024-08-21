@@ -103,7 +103,11 @@ void sendRDS() {
   tx.rdsSendRTMessage(rt);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
 }
 
+uint8_t toggle = 0;
+
 void loop() {
   sendRDS();
   delay(5000);
+  lcd.setCursor(14,1);
+  lcd.print(toggle = !toggle);
 }
