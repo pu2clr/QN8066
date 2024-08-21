@@ -69,8 +69,7 @@ void setup() {
   tx.setup();
   tx.setTX(txFrequency); // Sets the trasmitter to 106.9 MHz
   tx.rdsTxEnable(true);
-  tx.rdsInitTx(0, 0, 0, 5, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-  tx.rdsSetPTY(pty);
+  tx.rdsInitTx(0, 0, 0, pty, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
   sendRDS();              // Control the RDS PS and RT messages with this function
   delay(1000);
 }
