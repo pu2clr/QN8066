@@ -35,7 +35,7 @@ void setup() {
   tx.setTxStereo(true);
   tx.setTxPreEmphasis(75);
   tx.setTxInputImpedance(0);  // 0=10; 1 = 20; 2=40 (default); 3=80. Kohms.
-  tx.setTxInputBufferGain(5); // With input inpedance 0 (10K), and input buffer
+  tx.setTxInputBufferGain(5); // With input impedance 0 (10K), and input buffer
                               // 5, the gain shoud be 18dB
   tx.setTxSoftClippingEnable(false);
   tx.setTxSoftClipThreshold(2);

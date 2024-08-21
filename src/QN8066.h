@@ -914,7 +914,7 @@ public:
              uint8_t xtalInj = 0, uint8_t imageRejection = 1, 
              uint8_t txSoftClipThreshold = 0,  uint8_t oneMinutOff = 3, uint8_t gainTxPLT =9,
              uint8_t txFreqDev = 125, uint8_t rdsLineIn = 0, uint8_t rdsFreqDev = 60, 
-             uint8_t inInpedance = 1, uint8_t txAgcDig = 0, uint8_t txAgcBuffer = 1 , uint8_t txSoftClip = 0 );
+             uint8_t inImpedance = 1, uint8_t txAgcDig = 0, uint8_t txAgcBuffer = 1 , uint8_t txSoftClip = 0 );
 
 
   void updateTxSetup();

@@ -194,7 +194,7 @@ TableValue tabMonoStereo [] = {
 
 uint16_t txFrequency = 1069;  // Default frequency is 106.9 MHz
 
-uint8_t inputInpedance = 2;  // Default 20 KOhms
+uint8_t inputImpedance = 2;  // Default 20 KOhms
 bool bShow = false;
 
 // TX board interface
@@ -275,7 +275,7 @@ void setup() {
 void saveAllTransmitterInformation() {
   // The update function/method writes data only if the current data is not equal to the stored data.
   EEPROM.update(eeprom_address, app_id);
-  EEPROM.update(eeprom_address + 1, inputInpedance);      // stores the current inputInpedance
+  EEPROM.update(eeprom_address + 1, inputImpedance);      // stores the current inputImpedance
   EEPROM.update(eeprom_address + 2, txFrequency >> 8);    // stores the current Frequency HIGH byte for the band
   EEPROM.update(eeprom_address + 3, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
   EEPROM.update(eeprom_address + 4, idxRDS);
@@ -295,7 +295,7 @@ void saveAllTransmitterInformation() {
 
 
 void readAllTransmitterInformation() {
-  inputInpedance = EEPROM.read(eeprom_address + 1);
+  inputImpedance = EEPROM.read(eeprom_address + 1);
   txFrequency = EEPROM.read(eeprom_address + 2) << 8;
   txFrequency |= EEPROM.read(eeprom_address + 3);
   idxRDS = EEPROM.read(eeprom_address + 4);

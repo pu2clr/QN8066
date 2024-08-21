@@ -116,7 +116,7 @@ void setup() {
 1: Stereo = On
 2: Pre-emphasis = 50 us
 3: RDS = Enable
-4: Inpedance = 20K
+4: Impedance = 20K
 5: Sft Clip.. = Disable
 6: Thres = 3dB
 7: Gain Pilot = 10%

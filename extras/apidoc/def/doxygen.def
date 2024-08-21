@@ -1225,7 +1225,7 @@ _EnD_oF_dEf_TeXt_;
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
 uint8_t
 _EnD_oF_dEf_TeXt_;
-        sec-mem-param-declname = 'inInpedance';
+        sec-mem-param-declname = 'inImpedance';
         sec-mem-param-defval = <<_EnD_oF_dEf_TeXt_
 1
 _EnD_oF_dEf_TeXt_;
@@ -1276,7 +1276,7 @@ _EnD_oF_dEf_TeXt_;
 @param txFreqDev - Specify total TX frequency deviation. TX frequency deviation = 0.69KHz*TX_FEDV. Default 125.
 @param rdsLineIn - Audio Line-in enable control. Default 0  <br>
 @param rdsFreqDev - RDS frequency deviation. RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. Default 60
-@param inInpedance - TX mode input impedance for both L/R channels (Default 1 => 20K )
+@param inImpedance - TX mode input impedance for both L/R channels (Default 1 => 20K )
 @param txAgcDig - TX digital gain (Default 0)
 @param txAgcBuffer - TX input buffer gain (Default 1)
 @param txSoftClip - TX soft clipping enable (Default 0 - Disable)

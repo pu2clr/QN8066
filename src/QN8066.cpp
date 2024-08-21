@@ -269,7 +269,7 @@ void QN8066::startTransmitting() {
  * @param txFreqDev - Specify total TX frequency deviation. TX frequency deviation = 0.69KHz*TX_FEDV. Default 125.
  * @param rdsLineIn - Audio Line-in enable control. Default 0  
  * @param rdsFreqDev - RDS frequency deviation. RDS frequency deviation = 0.35KHz*RDSFDEV in normal mode. Default 60
- * @param inInpedance - TX mode input impedance for both L/R channels (Default 1 => 20K )
+ * @param inImpedance - TX mode input impedance for both L/R channels (Default 1 => 20K )
  * @param txAgcDig - TX digital gain (Default 0)
  * @param txAgcBuffer - TX input buffer gain (Default 1)
  * @param txSoftClip - TX soft clipping enable (Default 0 - Disable)
@@ -292,7 +292,7 @@ void QN8066::setup(uint16_t xtalDiv,
                    uint8_t PreEmphasis,  uint8_t xtalInj, uint8_t imageRejection,
                    uint8_t txSoftClipThreshold,  uint8_t oneMinutOff, uint8_t gainTxPLT,
                    uint8_t txFreqDev,  uint8_t rdsLineIn, uint8_t rdsFreqDev, 
-                   uint8_t inInpedance, uint8_t txAgcDig, uint8_t txAgcBuffer, uint8_t txSoftClip ) {
+                   uint8_t inImpedance, uint8_t txAgcDig, uint8_t txAgcBuffer, uint8_t txSoftClip ) {
   
   Wire.begin();
 
@@ -328,7 +328,7 @@ void QN8066::setup(uint16_t xtalDiv,
 
   // REG_VGA
   // this->reg_vga.raw = this->getRegister(QN_REG_VGA);
-  this->reg_vga.arg.RIN = inInpedance;
+  this->reg_vga.arg.RIN = inImpedance;
   this->reg_vga.arg.TXAGC_GDB = txAgcDig; 
   this->reg_vga.arg.TXAGC_GVGA = txAgcBuffer;
   this->reg_vga.arg.tx_sftclpen = txSoftClip;
