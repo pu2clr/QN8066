@@ -519,7 +519,7 @@ void showStatus() {
   lcd.print("MHz");
 
   // Frequency
-  lcd.setCursor(9, 0);
+  lcd.setCursor(14, 0);
   lcd.print(keyValue[KEY_MONO_STEREO].value[keyValue[KEY_MONO_STEREO].key].desc);  // Mono Stereo
 
   // Audio Peak
@@ -529,12 +529,12 @@ void showStatus() {
   tx.resetAudioPeak();
 
   // Power reference
-  lcd.setCursor(9, 1);
+  lcd.setCursor(14, 1);
   sprintf(str, "PA:%d%%", pwmPowerDuty * 100 / 255);
   lcd.print(str);
 
   // RDS
-  sprintf(str, "PS: x%s PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
+  sprintf(str, "PS:%s   PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
   lcd.setCursor(0, 2);
   lcd.print(str);
   lcd.setCursor(0, 3);
@@ -808,7 +808,7 @@ void loop() {
   int8_t key;
   if (menuLevel == 0) {
     showStatus();
-    while ((key = checkButton()) == BT_NO_PRESSED) {
+    while ((key = checkButton()) != BT_MENU_PRESSED) {
 
       // RDS UNDER CONSTRUCTION...
       if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
@@ -821,9 +821,7 @@ void loop() {
         showStatusTime = millis();
       }
     }
-    if (key == BT_DOWN_PRESSED) {  // Down Pressed
-      menuLevel = 1;
-    }
+    menuLevel = 1;
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
     key = browseParameter();
