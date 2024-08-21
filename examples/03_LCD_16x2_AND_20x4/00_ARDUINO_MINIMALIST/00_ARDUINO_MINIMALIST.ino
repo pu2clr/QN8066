@@ -86,7 +86,7 @@ void showSplash() {
 }
 
 void showStatus(uint8_t page) {
-  char strFrequency[7];
+  char strFrequency[10];
   char str[20];
   lcd.clear();
   tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
