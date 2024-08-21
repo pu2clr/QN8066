@@ -66,11 +66,12 @@ void setup() {
     while (1) 
       ;
   }
-  tx.setup();
+  tx.begin();
   tx.setTX(txFrequency); // Sets the trasmitter to 106.9 MHz
   tx.rdsTxEnable(true);
-  tx.rdsInitTx(0, 0, 0, pty, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-  sendRDS();              // Control the RDS PS and RT messages with this function
+  tx.rdsInitTx(0, 0, 0, pty, 25, 8);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+  showStatus();
+
   delay(1000);
 }
 
@@ -84,21 +85,21 @@ void showSplash() {
   delay(1500);
 }
 
-void showStatus(uint8_t page) {
-  char strFrequency[10];
-  char str[20];
-  lcd.clear();
+void showStatus() {
+  char strFrequency[12];
+  // lcd.clear();
   tx.convertToChar(txFrequency, strFrequency, 4, 3, ',');  // Convert the selected frequency a array of char
   lcd.setCursor(0, 0);
   lcd.print(strFrequency);
   lcd.print("MHz");
   lcd.setCursor(0,1);
   lcd.print(ps);
-  lcd.display();
+  // lcd.display();
 }
 
 void sendRDS() {
   tx.rdsSendPS(ps);
+  delay(200);
   tx.rdsSendRTMessage(rt);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
 }
 
