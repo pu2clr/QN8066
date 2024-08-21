@@ -38,7 +38,8 @@ I hold a Master's degree in Educational Technology from the Federal University o
 11. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
 12. [Boards where this library can be compiled](./#boards-where-this-library-can-be-compiled)
 13. [Donate](./#donate)
-14. [References](./#references)
+14. [Most Frequent Problems](./#most-frequent-problems)
+15. [References](./#references)
 
 ## Legal Compliance Guidelines
 
