@@ -511,6 +511,25 @@ If you find this project useful, consider making a donation so that the author o
 ![Donate](./extras/images/QR_Code.png) 
 
 
+## Most Frequent Problems
+
+1. Avoid using a computer connected to the mains during testing. The electrical grid can disturb the communication between the Arduino based board and the QN8066 device.
+2. Check the I2C bus pull-up resistors.
+3. Check the voltage on the digital pins of the QN8066.  It is not be greater than 3.6V.  
+4. If you are using the Arduino Pro Mini 3.3V (8MHz), be sure you selected the correct board on Arduino IDE Tools menu, Processor: __"Atmega328P (3.3V, 8MHz)"__. By default, the Arduino IDE uses the Pro Mini 5V processor version.
+5. Do not try to power an ATmega328 Arduino Board designed to work with 5V and 16MHz with a 3.3V supply. That configuration will make your system unstable. See [ATmega328P Datasheet](http://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-7810-Automotive-Microcontrollers-ATmega328P_Datasheet.pdf).
+6. Do not try to power your Arduino based board designed to work with 3.3V with greater voltage. See the technical specifications of your Arduino Board and remember that the maximum voltage of the QN8066 digital interface is 3.6V.
+7. During the implementation of your sketch, do not use high power (above 1/2 W) through an RF amplifier without proper shielding practices. The QN8066, particularly the I2C bus, is sensitive to spurious RF signals and may lose communication with the controller. Preferably, use a dummy load.
+8. Avoid using long wiring for the I2C connection.
+ 
+
+
+
+
+
+
+
+
 
 ## References 
 
