@@ -1070,186 +1070,209 @@ $(document).ready(function(){initNavTree('_q_n8066_8h_source.html',''); initResi
 <div class="line"><a id="l00975" name="l00975"></a><span class="lineno">  975</span> </div>
 <div class="line"><a id="l00976" name="l00976"></a><span class="lineno">  976</span> </div>
 <div class="line"><a id="l00977" name="l00977"></a><span class="lineno">  977</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f">rdsSetStationName</a>(<span class="keywordtype">char</span> *stationName);</div>
-<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852">rdsSendRTMessage</a>(<span class="keywordtype">char</span> *rtText);</div>
-<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span> </div>
-<div class="line"><a id="l00980" name="l00980"></a><span class="lineno">  980</span> </div>
-<div class="line"><a id="l00981" name="l00981"></a><span class="lineno">  981</span> <span class="comment">/**</span></div>
-<div class="line"><span class="lineno">  982</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno">  983</span><span class="comment">  * @brief Sets the Program Identification (PI)</span></div>
-<div class="line"><span class="lineno">  984</span><span class="comment">  * @details The Program Identification (PI) code is a critical component of the RDS (Radio Data System) protocol. </span></div>
-<div class="line"><span class="lineno">  985</span><span class="comment">  * @details It is used to uniquely identify the radio station transmitting the RDS data. The PI code is a 16-bit </span></div>
-<div class="line"><span class="lineno">  986</span><span class="comment">  * @details value (4 hexadecimal digits) assigned to each station.</span></div>
-<div class="line"><span class="lineno">  987</span><span class="comment">  * @details PI Code Structure</span></div>
-<div class="line"><span class="lineno">  988</span><span class="comment">  * @details The PI code is a 16-bit binary value (4 hexadecimal digits), and its structure is as follows:</span></div>
-<div class="line"><span class="lineno">  989</span><span class="comment">  * @details a) Country Identifier (First 4 Bits) - The first 4 bits of the PI code represent the country identifier. </span></div>
-<div class="line"><span class="lineno">  990</span><span class="comment">  * @details    This helps to differentiate stations in different countries. For example, the code 0x1 might represent </span></div>
-<div class="line"><span class="lineno">  991</span><span class="comment">  * @details    one country, while 0x2 represents another. </span></div>
-<div class="line"><span class="lineno">  992</span><span class="comment">  * @details b) Program Type (Next 4 Bits) - The next 4 bits indicate the program type. This categorizes the type of content </span></div>
-<div class="line"><span class="lineno">  993</span><span class="comment">  * @details    being broadcast, such as music, news, sports, etc.</span></div>
-<div class="line"><span class="lineno">  994</span><span class="comment">  * @details c) Program Reference Number (Last 8 Bits) - The last 8 bits provide a unique reference number for the specific </span></div>
-<div class="line"><span class="lineno">  995</span><span class="comment">  * @details    station or program.</span></div>
-<div class="line"><span class="lineno">  996</span><span class="comment">  * @details You can set the PI code using the rdsSetPI. The are three ways of setting PI code: </span></div>
-<div class="line"><span class="lineno">  997</span><span class="comment">  * @details rdsInitTx(countryId, programId, reference); rdsSetPI(countryId, programId, reference);</span></div>
-<div class="line"><span class="lineno">  998</span><span class="comment">  * @details rdsSetPI(piCode);</span></div>
-<div class="line"><span class="lineno">  999</span><span class="comment">  * @see rdsInitTx</span></div>
-<div class="line"><span class="lineno"> 1000</span><span class="comment">  * @details Example</span></div>
-<div class="line"><span class="lineno"> 1001</span><span class="comment">  * @code </span></div>
-<div class="line"><span class="lineno"> 1002</span><span class="comment">  * #include &lt;QN8066.h&gt;</span></div>
-<div class="line"><span class="lineno"> 1003</span><span class="comment">  * QN8066 tx;</span></div>
-<div class="line"><span class="lineno"> 1004</span><span class="comment">  * </span></div>
-<div class="line"><span class="lineno"> 1005</span><span class="comment">  * uint8_t countryId = 0x1;</span></div>
-<div class="line"><span class="lineno"> 1006</span><span class="comment">  * uint8_t programId = 0x2;</span></div>
-<div class="line"><span class="lineno"> 1007</span><span class="comment">  * uint8_t reference = 0x34;</span></div>
-<div class="line"><span class="lineno"> 1008</span><span class="comment">  * </span></div>
-<div class="line"><span class="lineno"> 1009</span><span class="comment">  * void setup() {</span></div>
-<div class="line"><span class="lineno"> 1010</span><span class="comment">  *   tx.setup();</span></div>
-<div class="line"><span class="lineno"> 1011</span><span class="comment">  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz </span></div>
-<div class="line"><span class="lineno"> 1012</span><span class="comment">  *   ...</span></div>
-<div class="line"><span class="lineno"> 1013</span><span class="comment">  *   tx.rdsInitTx(countryId, programId, reference); // You can use this</span></div>
-<div class="line"><span class="lineno"> 1014</span><span class="comment">  *   ...  </span></div>
-<div class="line"><span class="lineno"> 1015</span><span class="comment">  *   tx.rdsSetPI(countryId, programId, reference);  // Or this</span></div>
-<div class="line"><span class="lineno"> 1016</span><span class="comment">  *   ... </span></div>
-<div class="line"><span class="lineno"> 1017</span><span class="comment">  *   tx.rdsSetPI(0x1234);                           // Or this</span></div>
-<div class="line"><span class="lineno"> 1018</span><span class="comment">  * }</span></div>
-<div class="line"><span class="lineno"> 1019</span><span class="comment">  *</span></div>
-<div class="line"><span class="lineno"> 1020</span><span class="comment">  * void loop() {</span></div>
-<div class="line"><span class="lineno"> 1021</span><span class="comment">  * }</span></div>
-<div class="line"><span class="lineno"> 1022</span><span class="comment">  * @endcode     </span></div>
-<div class="line"><span class="lineno"> 1023</span><span class="comment">  * @param pi - PI Code</span></div>
-<div class="line"><span class="lineno"> 1024</span><span class="comment">  * </span></div>
-<div class="line"><span class="lineno"> 1025</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01026" name="l01026"></a><span class="lineno"><a class="line" href="group__group05.html#gabff1b72ccfef9356650ad42beb41f62c"> 1026</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gabff1b72ccfef9356650ad42beb41f62c">rdsSetPI</a>(uint16_t pi) {<span class="keyword">this</span>-&gt;rdsPI = pi;};</div>
-<div class="line"><a id="l01027" name="l01027"></a><span class="lineno"> 1027</span> </div>
-<div class="line"><a id="l01028" name="l01028"></a><span class="lineno"> 1028</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gae61a8f8f5af9015db21c0e283deaadb7">rdsSetPI</a>(uint8_t countryId, uint8_t programId, uint8_t reference = 0) ;</div>
-<div class="line"><a id="l01029" name="l01029"></a><span class="lineno"> 1029</span> </div>
-<div class="line"><a id="l01030" name="l01030"></a><span class="lineno"> 1030</span> </div>
-<div class="line"><a id="l01031" name="l01031"></a><span class="lineno"> 1031</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1032</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1033</span><span class="comment">  * @brief Gets the Program Identification (PI)</span></div>
-<div class="line"><span class="lineno"> 1034</span><span class="comment">  * @param pi - PI Code</span></div>
-<div class="line"><span class="lineno"> 1035</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01036" name="l01036"></a><span class="lineno"><a class="line" href="group__group05.html#gad3065e17bdc43e22833cf509f4002f0e"> 1036</a></span>  <a class="code hl_function" href="group__group05.html#gad3065e17bdc43e22833cf509f4002f0e">uint8_t</a> <a class="code hl_function" href="group__group05.html#gad3065e17bdc43e22833cf509f4002f0e">rdsGetPI</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsPI;};</div>
-<div class="line"><a id="l01037" name="l01037"></a><span class="lineno"> 1037</span> </div>
-<div class="line"><a id="l01038" name="l01038"></a><span class="lineno"> 1038</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1039</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1040</span><span class="comment">  * @brief Sets the Program Type (PTY)</span></div>
-<div class="line"><span class="lineno"> 1041</span><span class="comment">  * @param pty - Program type</span></div>
-<div class="line"><span class="lineno"> 1042</span><span class="comment">  * @see The table of PTY Program Type for RDS and RDBS can be checkd here: https://en.wikipedia.org/wiki/Radio_Data_System</span></div>
-<div class="line"><span class="lineno"> 1043</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01044" name="l01044"></a><span class="lineno"><a class="line" href="group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b"> 1044</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b">rdsSetPTY</a>(uint16_t pty) {<span class="keyword">this</span>-&gt;rdsPTY = pty;};</div>
-<div class="line"><a id="l01045" name="l01045"></a><span class="lineno"> 1045</span> </div>
-<div class="line"><a id="l01046" name="l01046"></a><span class="lineno"> 1046</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1047</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1048</span><span class="comment">  * @brief Gets the Program Type (PTY)</span></div>
-<div class="line"><span class="lineno"> 1049</span><span class="comment">  * @param pty - Program type</span></div>
-<div class="line"><span class="lineno"> 1050</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"><a class="line" href="group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24"> 1051</a></span>  <a class="code hl_function" href="group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24">uint8_t</a> <a class="code hl_function" href="group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24">rdsGetPTY</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsPTY;};</div>
+<div class="line"><a id="l00978" name="l00978"></a><span class="lineno">  978</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga76dc7b86d565705fd980a11123e77f0c">rdsSendRTMessage</a>(<span class="keywordtype">char</span> *rt);</div>
+<div class="line"><a id="l00979" name="l00979"></a><span class="lineno">  979</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno">  980</span><span class="comment"> * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno">  981</span><span class="comment"> * @brief Sends RDS Radio Text Message (group 2A)</span></div>
+<div class="line"><span class="lineno">  982</span><span class="comment"> * @details It is a synonym to rdsSendRTMessage. This function repeats sending a group this-&gt;rdsRepeatGroup times.</span></div>
+<div class="line"><span class="lineno">  983</span><span class="comment"> * @param rt - Radio Text (string of 32 character)</span></div>
+<div class="line"><span class="lineno">  984</span><span class="comment"> * @details Example</span></div>
+<div class="line"><span class="lineno">  985</span><span class="comment"> * @code </span></div>
+<div class="line"><span class="lineno">  986</span><span class="comment"> * #include &lt;QN8066.h&gt;</span></div>
+<div class="line"><span class="lineno">  987</span><span class="comment"> * QN8066 tx;</span></div>
+<div class="line"><span class="lineno">  988</span><span class="comment"> * void setup() {</span></div>
+<div class="line"><span class="lineno">  989</span><span class="comment"> *   tx.setup();</span></div>
+<div class="line"><span class="lineno">  990</span><span class="comment"> *   tx.setTX(1069); // Set the transmitter to 106.9 MHz </span></div>
+<div class="line"><span class="lineno">  991</span><span class="comment"> *   tx.rdsTxEnable(true);</span></div>
+<div class="line"><span class="lineno">  992</span><span class="comment"> *   delay(100);</span></div>
+<div class="line"><span class="lineno">  993</span><span class="comment"> *   tx.rdsSendRT(&quot;IT IS AN EXAMPLE...&quot;); // transmits the message &quot;IT IS AN EXAMPLE...&quot; this-&gt;rdsRepeatGroup times</span></div>
+<div class="line"><span class="lineno">  994</span><span class="comment"> * }</span></div>
+<div class="line"><span class="lineno">  995</span><span class="comment"> *</span></div>
+<div class="line"><span class="lineno">  996</span><span class="comment"> * void loop() {</span></div>
+<div class="line"><span class="lineno">  997</span><span class="comment"> * }</span></div>
+<div class="line"><span class="lineno">  998</span><span class="comment"> * @endcode  </span></div>
+<div class="line"><span class="lineno">  999</span><span class="comment"> */</span></div>
+<div class="line"><a id="l01000" name="l01000"></a><span class="lineno"><a class="line" href="group__group05.html#ga71c2ee1fa72737f39ff0111ade745e89"> 1000</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga71c2ee1fa72737f39ff0111ade745e89">rdsSendRT</a>(<span class="keywordtype">char</span> *rt) {<span class="keyword">this</span><a class="code hl_function" href="group__group05.html#ga76dc7b86d565705fd980a11123e77f0c">-&gt;</a><a class="code hl_function" href="group__group05.html#ga76dc7b86d565705fd980a11123e77f0c">rdsSendRTMessage</a><a class="code hl_function" href="group__group05.html#ga76dc7b86d565705fd980a11123e77f0c">(</a>rt<a class="code hl_function" href="group__group05.html#ga76dc7b86d565705fd980a11123e77f0c">)</a>; };</div>
+<div class="line"><a id="l01001" name="l01001"></a><span class="lineno"> 1001</span> </div>
+<div class="line"><a id="l01002" name="l01002"></a><span class="lineno"> 1002</span> </div>
+<div class="line"><a id="l01003" name="l01003"></a><span class="lineno"> 1003</span> </div>
+<div class="line"><a id="l01004" name="l01004"></a><span class="lineno"> 1004</span> <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1005</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno"> 1006</span><span class="comment">  * @brief Sets the Program Identification (PI)</span></div>
+<div class="line"><span class="lineno"> 1007</span><span class="comment">  * @details The Program Identification (PI) code is a critical component of the RDS (Radio Data System) protocol. </span></div>
+<div class="line"><span class="lineno"> 1008</span><span class="comment">  * @details It is used to uniquely identify the radio station transmitting the RDS data. The PI code is a 16-bit </span></div>
+<div class="line"><span class="lineno"> 1009</span><span class="comment">  * @details value (4 hexadecimal digits) assigned to each station.</span></div>
+<div class="line"><span class="lineno"> 1010</span><span class="comment">  * @details PI Code Structure</span></div>
+<div class="line"><span class="lineno"> 1011</span><span class="comment">  * @details The PI code is a 16-bit binary value (4 hexadecimal digits), and its structure is as follows:</span></div>
+<div class="line"><span class="lineno"> 1012</span><span class="comment">  * @details a) Country Identifier (First 4 Bits) - The first 4 bits of the PI code represent the country identifier. </span></div>
+<div class="line"><span class="lineno"> 1013</span><span class="comment">  * @details    This helps to differentiate stations in different countries. For example, the code 0x1 might represent </span></div>
+<div class="line"><span class="lineno"> 1014</span><span class="comment">  * @details    one country, while 0x2 represents another. </span></div>
+<div class="line"><span class="lineno"> 1015</span><span class="comment">  * @details b) Program Type (Next 4 Bits) - The next 4 bits indicate the program type. This categorizes the type of content </span></div>
+<div class="line"><span class="lineno"> 1016</span><span class="comment">  * @details    being broadcast, such as music, news, sports, etc.</span></div>
+<div class="line"><span class="lineno"> 1017</span><span class="comment">  * @details c) Program Reference Number (Last 8 Bits) - The last 8 bits provide a unique reference number for the specific </span></div>
+<div class="line"><span class="lineno"> 1018</span><span class="comment">  * @details    station or program.</span></div>
+<div class="line"><span class="lineno"> 1019</span><span class="comment">  * @details You can set the PI code using the rdsSetPI. The are three ways of setting PI code: </span></div>
+<div class="line"><span class="lineno"> 1020</span><span class="comment">  * @details rdsInitTx(countryId, programId, reference); rdsSetPI(countryId, programId, reference);</span></div>
+<div class="line"><span class="lineno"> 1021</span><span class="comment">  * @details rdsSetPI(piCode);</span></div>
+<div class="line"><span class="lineno"> 1022</span><span class="comment">  * @see rdsInitTx</span></div>
+<div class="line"><span class="lineno"> 1023</span><span class="comment">  * @details Example</span></div>
+<div class="line"><span class="lineno"> 1024</span><span class="comment">  * @code </span></div>
+<div class="line"><span class="lineno"> 1025</span><span class="comment">  * #include &lt;QN8066.h&gt;</span></div>
+<div class="line"><span class="lineno"> 1026</span><span class="comment">  * QN8066 tx;</span></div>
+<div class="line"><span class="lineno"> 1027</span><span class="comment">  * </span></div>
+<div class="line"><span class="lineno"> 1028</span><span class="comment">  * uint8_t countryId = 0x1;</span></div>
+<div class="line"><span class="lineno"> 1029</span><span class="comment">  * uint8_t programId = 0x2;</span></div>
+<div class="line"><span class="lineno"> 1030</span><span class="comment">  * uint8_t reference = 0x34;</span></div>
+<div class="line"><span class="lineno"> 1031</span><span class="comment">  * </span></div>
+<div class="line"><span class="lineno"> 1032</span><span class="comment">  * void setup() {</span></div>
+<div class="line"><span class="lineno"> 1033</span><span class="comment">  *   tx.setup();</span></div>
+<div class="line"><span class="lineno"> 1034</span><span class="comment">  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz </span></div>
+<div class="line"><span class="lineno"> 1035</span><span class="comment">  *   ...</span></div>
+<div class="line"><span class="lineno"> 1036</span><span class="comment">  *   tx.rdsInitTx(countryId, programId, reference); // You can use this</span></div>
+<div class="line"><span class="lineno"> 1037</span><span class="comment">  *   ...  </span></div>
+<div class="line"><span class="lineno"> 1038</span><span class="comment">  *   tx.rdsSetPI(countryId, programId, reference);  // Or this</span></div>
+<div class="line"><span class="lineno"> 1039</span><span class="comment">  *   ... </span></div>
+<div class="line"><span class="lineno"> 1040</span><span class="comment">  *   tx.rdsSetPI(0x1234);                           // Or this</span></div>
+<div class="line"><span class="lineno"> 1041</span><span class="comment">  * }</span></div>
+<div class="line"><span class="lineno"> 1042</span><span class="comment">  *</span></div>
+<div class="line"><span class="lineno"> 1043</span><span class="comment">  * void loop() {</span></div>
+<div class="line"><span class="lineno"> 1044</span><span class="comment">  * }</span></div>
+<div class="line"><span class="lineno"> 1045</span><span class="comment">  * @endcode     </span></div>
+<div class="line"><span class="lineno"> 1046</span><span class="comment">  * @param pi - PI Code</span></div>
+<div class="line"><span class="lineno"> 1047</span><span class="comment">  * </span></div>
+<div class="line"><span class="lineno"> 1048</span><span class="comment">  */</span></div>
+<div class="line"><a id="l01049" name="l01049"></a><span class="lineno"><a class="line" href="group__group05.html#gabff1b72ccfef9356650ad42beb41f62c"> 1049</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gabff1b72ccfef9356650ad42beb41f62c">rdsSetPI</a>(uint16_t pi) {<span class="keyword">this</span>-&gt;rdsPI = pi;};</div>
+<div class="line"><a id="l01050" name="l01050"></a><span class="lineno"> 1050</span> </div>
+<div class="line"><a id="l01051" name="l01051"></a><span class="lineno"> 1051</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gae61a8f8f5af9015db21c0e283deaadb7">rdsSetPI</a>(uint8_t countryId, uint8_t programId, uint8_t reference = 0) ;</div>
 <div class="line"><a id="l01052" name="l01052"></a><span class="lineno"> 1052</span> </div>
 <div class="line"><a id="l01053" name="l01053"></a><span class="lineno"> 1053</span> </div>
 <div class="line"><a id="l01054" name="l01054"></a><span class="lineno"> 1054</span>  <span class="comment">/**</span></div>
 <div class="line"><span class="lineno"> 1055</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1056</span><span class="comment">  * @brief Sets the Traffic Program.</span></div>
-<div class="line"><span class="lineno"> 1057</span><span class="comment">  * @param tp - tp Code</span></div>
+<div class="line"><span class="lineno"> 1056</span><span class="comment">  * @brief Gets the Program Identification (PI)</span></div>
+<div class="line"><span class="lineno"> 1057</span><span class="comment">  * @param pi - PI Code</span></div>
 <div class="line"><span class="lineno"> 1058</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"><a class="line" href="group__group05.html#gaa49bb620515b40371af65135ad35a759"> 1059</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gaa49bb620515b40371af65135ad35a759">rdsSetTP</a>(uint16_t tp) {<span class="keyword">this</span>-&gt;rdsTP = tp;};</div>
+<div class="line"><a id="l01059" name="l01059"></a><span class="lineno"><a class="line" href="group__group05.html#gad3065e17bdc43e22833cf509f4002f0e"> 1059</a></span>  <a class="code hl_function" href="group__group05.html#gad3065e17bdc43e22833cf509f4002f0e">uint8_t</a> <a class="code hl_function" href="group__group05.html#gad3065e17bdc43e22833cf509f4002f0e">rdsGetPI</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsPI;};</div>
 <div class="line"><a id="l01060" name="l01060"></a><span class="lineno"> 1060</span> </div>
 <div class="line"><a id="l01061" name="l01061"></a><span class="lineno"> 1061</span>  <span class="comment">/**</span></div>
 <div class="line"><span class="lineno"> 1062</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1063</span><span class="comment">  * @brief Sets the Traffic Program.</span></div>
-<div class="line"><span class="lineno"> 1064</span><span class="comment">  * @param tp - tp Code</span></div>
-<div class="line"><span class="lineno"> 1065</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01066" name="l01066"></a><span class="lineno"><a class="line" href="group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80"> 1066</a></span>  <a class="code hl_function" href="group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80">uint8_t</a> <a class="code hl_function" href="group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80">rdsGetTP</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsTP;};</div>
-<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"> 1067</span> </div>
+<div class="line"><span class="lineno"> 1063</span><span class="comment">  * @brief Sets the Program Type (PTY)</span></div>
+<div class="line"><span class="lineno"> 1064</span><span class="comment">  * @param pty - Program type</span></div>
+<div class="line"><span class="lineno"> 1065</span><span class="comment">  * @see The table of PTY Program Type for RDS and RDBS can be checkd here: https://en.wikipedia.org/wiki/Radio_Data_System</span></div>
+<div class="line"><span class="lineno"> 1066</span><span class="comment">  */</span></div>
+<div class="line"><a id="l01067" name="l01067"></a><span class="lineno"><a class="line" href="group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b"> 1067</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b">rdsSetPTY</a>(uint16_t pty) {<span class="keyword">this</span>-&gt;rdsPTY = pty;};</div>
 <div class="line"><a id="l01068" name="l01068"></a><span class="lineno"> 1068</span> </div>
 <div class="line"><a id="l01069" name="l01069"></a><span class="lineno"> 1069</span>  <span class="comment">/**</span></div>
 <div class="line"><span class="lineno"> 1070</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1071</span><span class="comment">  * @brief Gets the Program Station (Station Name).</span></div>
-<div class="line"><span class="lineno"> 1072</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01073" name="l01073"></a><span class="lineno"><a class="line" href="group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0"> 1073</a></span>  <span class="keywordtype">char</span>* <a class="code hl_function" href="group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0">rdsGetPS</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsStationName;};</div>
-<div class="line"><a id="l01074" name="l01074"></a><span class="lineno"> 1074</span> </div>
+<div class="line"><span class="lineno"> 1071</span><span class="comment">  * @brief Gets the Program Type (PTY)</span></div>
+<div class="line"><span class="lineno"> 1072</span><span class="comment">  * @param pty - Program type</span></div>
+<div class="line"><span class="lineno"> 1073</span><span class="comment">  */</span></div>
+<div class="line"><a id="l01074" name="l01074"></a><span class="lineno"><a class="line" href="group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24"> 1074</a></span>  <a class="code hl_function" href="group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24">uint8_t</a> <a class="code hl_function" href="group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24">rdsGetPTY</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsPTY;};</div>
 <div class="line"><a id="l01075" name="l01075"></a><span class="lineno"> 1075</span> </div>
-<div class="line"><a id="l01076" name="l01076"></a><span class="lineno"> 1076</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1077</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1078</span><span class="comment">  * @brief Gets TX RDS error setup</span></div>
-<div class="line"><span class="lineno"> 1079</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01080" name="l01080"></a><span class="lineno"><a class="line" href="group__group05.html#ga39fca640c878f92ed9c15f000620161e"> 1080</a></span>  <a class="code hl_function" href="group__group05.html#ga39fca640c878f92ed9c15f000620161e">uint8_t</a> <a class="code hl_function" href="group__group05.html#ga39fca640c878f92ed9c15f000620161e">rdsGetError</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsSendError;};</div>
-<div class="line"><a id="l01081" name="l01081"></a><span class="lineno"> 1081</span> </div>
-<div class="line"><a id="l01082" name="l01082"></a><span class="lineno"> 1082</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1083</span><span class="comment">   * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1084</span><span class="comment">   * @brief Clear RDS register (Buffer)</span></div>
-<div class="line"><span class="lineno"> 1085</span><span class="comment">   */</span></div>
-<div class="line"><a id="l01086" name="l01086"></a><span class="lineno"> 1086</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gadae22b8660f72a32479c9fc6c891aff6">rdsClearBuffer</a>();</div>
-<div class="line"><a id="l01087" name="l01087"></a><span class="lineno"> 1087</span> </div>
-<div class="line"><a id="l01088" name="l01088"></a><span class="lineno"> 1088</span> </div>
-<div class="line"><a id="l01089" name="l01089"></a><span class="lineno"> 1089</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1090</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1091</span><span class="comment">  * @brief Sets the wait time for the QN8066 to be available to send the next RDS block.</span></div>
-<div class="line"><span class="lineno"> 1092</span><span class="comment">  * @details The default time is 60ms, but depending on the microcontroller you are using, it may be necessary to reduce this time.</span></div>
-<div class="line"><span class="lineno"> 1093</span><span class="comment">  * @param syncTime - time in ms </span></div>
-<div class="line"><span class="lineno"> 1094</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01095" name="l01095"></a><span class="lineno"><a class="line" href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91"> 1095</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91">rdsSetSyncTime</a>(uint8_t syncTime) {<span class="keyword">this</span>-&gt;rdsSyncTime = syncTime; };</div>
-<div class="line"><a id="l01096" name="l01096"></a><span class="lineno"> 1096</span> </div>
-<div class="line"><a id="l01097" name="l01097"></a><span class="lineno"> 1097</span>    <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1098</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
-<div class="line"><span class="lineno"> 1099</span><span class="comment">  * @brief Sets the number of time that a group will be sent at once </span></div>
-<div class="line"><span class="lineno"> 1100</span><span class="comment">  * @details The default value is 5. </span></div>
-<div class="line"><span class="lineno"> 1101</span><span class="comment">  * @param count - number of times </span></div>
+<div class="line"><a id="l01076" name="l01076"></a><span class="lineno"> 1076</span> </div>
+<div class="line"><a id="l01077" name="l01077"></a><span class="lineno"> 1077</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1078</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno"> 1079</span><span class="comment">  * @brief Sets the Traffic Program.</span></div>
+<div class="line"><span class="lineno"> 1080</span><span class="comment">  * @param tp - tp Code</span></div>
+<div class="line"><span class="lineno"> 1081</span><span class="comment">  */</span></div>
+<div class="line"><a id="l01082" name="l01082"></a><span class="lineno"><a class="line" href="group__group05.html#gaa49bb620515b40371af65135ad35a759"> 1082</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gaa49bb620515b40371af65135ad35a759">rdsSetTP</a>(uint16_t tp) {<span class="keyword">this</span>-&gt;rdsTP = tp;};</div>
+<div class="line"><a id="l01083" name="l01083"></a><span class="lineno"> 1083</span> </div>
+<div class="line"><a id="l01084" name="l01084"></a><span class="lineno"> 1084</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1085</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno"> 1086</span><span class="comment">  * @brief Sets the Traffic Program.</span></div>
+<div class="line"><span class="lineno"> 1087</span><span class="comment">  * @param tp - tp Code</span></div>
+<div class="line"><span class="lineno"> 1088</span><span class="comment">  */</span></div>
+<div class="line"><a id="l01089" name="l01089"></a><span class="lineno"><a class="line" href="group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80"> 1089</a></span>  <a class="code hl_function" href="group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80">uint8_t</a> <a class="code hl_function" href="group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80">rdsGetTP</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsTP;};</div>
+<div class="line"><a id="l01090" name="l01090"></a><span class="lineno"> 1090</span> </div>
+<div class="line"><a id="l01091" name="l01091"></a><span class="lineno"> 1091</span> </div>
+<div class="line"><a id="l01092" name="l01092"></a><span class="lineno"> 1092</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1093</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno"> 1094</span><span class="comment">  * @brief Gets the Program Station (Station Name).</span></div>
+<div class="line"><span class="lineno"> 1095</span><span class="comment">  */</span></div>
+<div class="line"><a id="l01096" name="l01096"></a><span class="lineno"><a class="line" href="group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0"> 1096</a></span>  <span class="keywordtype">char</span>* <a class="code hl_function" href="group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0">rdsGetPS</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsStationName;};</div>
+<div class="line"><a id="l01097" name="l01097"></a><span class="lineno"> 1097</span> </div>
+<div class="line"><a id="l01098" name="l01098"></a><span class="lineno"> 1098</span> </div>
+<div class="line"><a id="l01099" name="l01099"></a><span class="lineno"> 1099</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1100</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno"> 1101</span><span class="comment">  * @brief Gets TX RDS error setup</span></div>
 <div class="line"><span class="lineno"> 1102</span><span class="comment">  */</span></div>
-<div class="line"><a id="l01103" name="l01103"></a><span class="lineno"><a class="line" href="group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7"> 1103</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7">rdsSetRepeatSendGroup</a> (uint8_t count) {<span class="keyword">this</span>-&gt;rdsRepeatGroup = count;};</div>
+<div class="line"><a id="l01103" name="l01103"></a><span class="lineno"><a class="line" href="group__group05.html#ga39fca640c878f92ed9c15f000620161e"> 1103</a></span>  <a class="code hl_function" href="group__group05.html#ga39fca640c878f92ed9c15f000620161e">uint8_t</a> <a class="code hl_function" href="group__group05.html#ga39fca640c878f92ed9c15f000620161e">rdsGetError</a>() {<span class="keywordflow">return</span> <span class="keyword">this</span>-&gt;rdsSendError;};</div>
 <div class="line"><a id="l01104" name="l01104"></a><span class="lineno"> 1104</span> </div>
-<div class="line"><a id="l01105" name="l01105"></a><span class="lineno"> 1105</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7">resetFsm</a>();</div>
-<div class="line"><a id="l01106" name="l01106"></a><span class="lineno"> 1106</span>  <a class="code hl_function" href="group__group10.html#ga679e38373a2db0083d3f4bde4b6f2f9a">uint8_t</a> <a class="code hl_function" href="group__group10.html#ga679e38373a2db0083d3f4bde4b6f2f9a">getFsmStateCode</a>();</div>
-<div class="line"><a id="l01107" name="l01107"></a><span class="lineno"> 1107</span> </div>
-<div class="line"><a id="l01108" name="l01108"></a><span class="lineno"> 1108</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8">convertToChar</a>(uint16_t value, <span class="keywordtype">char</span> *strValue, uint8_t len, uint8_t dot, uint8_t separator = <span class="stringliteral">&#39;.&#39;</span>, <span class="keywordtype">bool</span> remove_leading_zeros = <span class="keyword">true</span>);</div>
-<div class="line"><a id="l01109" name="l01109"></a><span class="lineno"> 1109</span> </div>
-<div class="line"><a id="l01110" name="l01110"></a><span class="lineno"> 1110</span><span class="comment">/*******************************************************************************</span></div>
-<div class="line"><span class="lineno"> 1111</span><span class="comment">  * The functions below modify the clock frequency for I2C communication.</span></div>
-<div class="line"><span class="lineno"> 1112</span><span class="comment">  * 100kHz  is usually the baseline.</span></div>
-<div class="line"><span class="lineno"> 1113</span><span class="comment">  * Use one of these funcition if you have a problem on the default configuration.</span></div>
-<div class="line"><span class="lineno"> 1114</span><span class="comment">  *******************************************************************************/</span></div>
-<div class="line"><a id="l01115" name="l01115"></a><span class="lineno"> 1115</span> </div>
-<div class="line"><a id="l01116" name="l01116"></a><span class="lineno"> 1116</span>  <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1117</span><span class="comment">   * @ingroup group99 MCU I2C Speed</span></div>
-<div class="line"><span class="lineno"> 1118</span><span class="comment">   * @brief Sets I2C bus to 10kHz</span></div>
-<div class="line"><span class="lineno"> 1119</span><span class="comment">   */</span></div>
-<div class="line"><a id="l01120" name="l01120"></a><span class="lineno"><a class="line" href="group__group99.html#ga104da6a0d233f020bb63d62e37a7bf92"> 1120</a></span>   <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#ga104da6a0d233f020bb63d62e37a7bf92">setI2CLowSpeedMode</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l01121" name="l01121"></a><span class="lineno"> 1121</span>  {</div>
-<div class="line"><a id="l01122" name="l01122"></a><span class="lineno"> 1122</span>       Wire.setClock(10000);</div>
-<div class="line"><a id="l01123" name="l01123"></a><span class="lineno"> 1123</span>  };</div>
-<div class="line"><a id="l01124" name="l01124"></a><span class="lineno"> 1124</span> </div>
-<div class="line"><a id="l01125" name="l01125"></a><span class="lineno"> 1125</span>    <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1126</span><span class="comment">     * @ingroup group99 MCU I2C Speed</span></div>
-<div class="line"><span class="lineno"> 1127</span><span class="comment">     *</span></div>
-<div class="line"><span class="lineno"> 1128</span><span class="comment">     * @brief Sets I2C bus to 100kHz</span></div>
-<div class="line"><span class="lineno"> 1129</span><span class="comment">     */</span></div>
-<div class="line"><a id="l01130" name="l01130"></a><span class="lineno"><a class="line" href="group__group99.html#ga123240957823800eb7cd05f1e216b30c"> 1130</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#ga123240957823800eb7cd05f1e216b30c">setI2CStandardMode</a>(<span class="keywordtype">void</span>) { Wire.setClock(100000); };</div>
-<div class="line"><a id="l01131" name="l01131"></a><span class="lineno"> 1131</span> </div>
-<div class="line"><a id="l01132" name="l01132"></a><span class="lineno"> 1132</span>    <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1133</span><span class="comment">     * @ingroup group99 MCU I2C Speed</span></div>
-<div class="line"><span class="lineno"> 1134</span><span class="comment">     *</span></div>
-<div class="line"><span class="lineno"> 1135</span><span class="comment">     * @brief Sets I2C bus to 400kHz</span></div>
-<div class="line"><span class="lineno"> 1136</span><span class="comment">     */</span></div>
-<div class="line"><a id="l01137" name="l01137"></a><span class="lineno"><a class="line" href="group__group99.html#gab3c28cf6010a9cf24243ca9980c841f2"> 1137</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#gab3c28cf6010a9cf24243ca9980c841f2">setI2CFastMode</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l01138" name="l01138"></a><span class="lineno"> 1138</span>    {</div>
-<div class="line"><a id="l01139" name="l01139"></a><span class="lineno"> 1139</span>        Wire.setClock(400000);</div>
-<div class="line"><a id="l01140" name="l01140"></a><span class="lineno"> 1140</span>    };</div>
-<div class="line"><a id="l01141" name="l01141"></a><span class="lineno"> 1141</span> </div>
-<div class="line"><a id="l01142" name="l01142"></a><span class="lineno"> 1142</span>    <span class="comment">/**</span></div>
-<div class="line"><span class="lineno"> 1143</span><span class="comment">     * @ingroup group99 MCU I2C Speed</span></div>
-<div class="line"><span class="lineno"> 1144</span><span class="comment">     *</span></div>
-<div class="line"><span class="lineno"> 1145</span><span class="comment">     * @brief Sets the I2C bus to a given value.</span></div>
-<div class="line"><span class="lineno"> 1146</span><span class="comment">     * ATTENTION: use this function with caution</span></div>
-<div class="line"><span class="lineno"> 1147</span><span class="comment">     *</span></div>
-<div class="line"><span class="lineno"> 1148</span><span class="comment">     * @param value in Hz. For example: The values 500000 sets the bus to 500kHz.</span></div>
-<div class="line"><span class="lineno"> 1149</span><span class="comment">     */</span></div>
-<div class="line"><a id="l01150" name="l01150"></a><span class="lineno"><a class="line" href="group__group99.html#gab7dfd8ab098f5cac471e0e25016e63da"> 1150</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#gab7dfd8ab098f5cac471e0e25016e63da">setI2CFastModeCustom</a>(<span class="keywordtype">long</span> value = 500000) { Wire.setClock(value); };</div>
-<div class="line"><a id="l01151" name="l01151"></a><span class="lineno"> 1151</span> </div>
-<div class="line"><a id="l01152" name="l01152"></a><span class="lineno"> 1152</span> </div>
-<div class="line"><a id="l01153" name="l01153"></a><span class="lineno"> 1153</span> </div>
-<div class="line"><a id="l01154" name="l01154"></a><span class="lineno"> 1154</span>};</div>
-<div class="line"><a id="l01155" name="l01155"></a><span class="lineno"> 1155</span> </div>
-<div class="line"><a id="l01156" name="l01156"></a><span class="lineno"> 1156</span> </div>
-<div class="line"><a id="l01157" name="l01157"></a><span class="lineno"> 1157</span><span class="preprocessor">#</span><span class="preprocessor">endif</span> <span class="comment">// _QN8066_H</span></div>
+<div class="line"><a id="l01105" name="l01105"></a><span class="lineno"> 1105</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1106</span><span class="comment">   * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno"> 1107</span><span class="comment">   * @brief Clear RDS register (Buffer)</span></div>
+<div class="line"><span class="lineno"> 1108</span><span class="comment">   */</span></div>
+<div class="line"><a id="l01109" name="l01109"></a><span class="lineno"> 1109</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gadae22b8660f72a32479c9fc6c891aff6">rdsClearBuffer</a>();</div>
+<div class="line"><a id="l01110" name="l01110"></a><span class="lineno"> 1110</span> </div>
+<div class="line"><a id="l01111" name="l01111"></a><span class="lineno"> 1111</span> </div>
+<div class="line"><a id="l01112" name="l01112"></a><span class="lineno"> 1112</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1113</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno"> 1114</span><span class="comment">  * @brief Sets the wait time for the QN8066 to be available to send the next RDS block.</span></div>
+<div class="line"><span class="lineno"> 1115</span><span class="comment">  * @details The default time is 60ms, but depending on the microcontroller you are using, it may be necessary to reduce this time.</span></div>
+<div class="line"><span class="lineno"> 1116</span><span class="comment">  * @param syncTime - time in ms </span></div>
+<div class="line"><span class="lineno"> 1117</span><span class="comment">  */</span></div>
+<div class="line"><a id="l01118" name="l01118"></a><span class="lineno"><a class="line" href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91"> 1118</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91">rdsSetSyncTime</a>(uint8_t syncTime) {<span class="keyword">this</span>-&gt;rdsSyncTime = syncTime; };</div>
+<div class="line"><a id="l01119" name="l01119"></a><span class="lineno"> 1119</span> </div>
+<div class="line"><a id="l01120" name="l01120"></a><span class="lineno"> 1120</span>    <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1121</span><span class="comment">  * @ingroup group05 TX RDS</span></div>
+<div class="line"><span class="lineno"> 1122</span><span class="comment">  * @brief Sets the number of time that a group will be sent at once </span></div>
+<div class="line"><span class="lineno"> 1123</span><span class="comment">  * @details The default value is 5. </span></div>
+<div class="line"><span class="lineno"> 1124</span><span class="comment">  * @param count - number of times </span></div>
+<div class="line"><span class="lineno"> 1125</span><span class="comment">  */</span></div>
+<div class="line"><a id="l01126" name="l01126"></a><span class="lineno"><a class="line" href="group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7"> 1126</a></span>  <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7">rdsSetRepeatSendGroup</a> (uint8_t count) {<span class="keyword">this</span>-&gt;rdsRepeatGroup = count;};</div>
+<div class="line"><a id="l01127" name="l01127"></a><span class="lineno"> 1127</span> </div>
+<div class="line"><a id="l01128" name="l01128"></a><span class="lineno"> 1128</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7">resetFsm</a>();</div>
+<div class="line"><a id="l01129" name="l01129"></a><span class="lineno"> 1129</span>  <a class="code hl_function" href="group__group10.html#ga679e38373a2db0083d3f4bde4b6f2f9a">uint8_t</a> <a class="code hl_function" href="group__group10.html#ga679e38373a2db0083d3f4bde4b6f2f9a">getFsmStateCode</a>();</div>
+<div class="line"><a id="l01130" name="l01130"></a><span class="lineno"> 1130</span> </div>
+<div class="line"><a id="l01131" name="l01131"></a><span class="lineno"> 1131</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8">convertToChar</a>(uint16_t value, <span class="keywordtype">char</span> *strValue, uint8_t len, uint8_t dot, uint8_t separator = <span class="stringliteral">&#39;.&#39;</span>, <span class="keywordtype">bool</span> remove_leading_zeros = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l01132" name="l01132"></a><span class="lineno"> 1132</span> </div>
+<div class="line"><a id="l01133" name="l01133"></a><span class="lineno"> 1133</span><span class="comment">/*******************************************************************************</span></div>
+<div class="line"><span class="lineno"> 1134</span><span class="comment">  * The functions below modify the clock frequency for I2C communication.</span></div>
+<div class="line"><span class="lineno"> 1135</span><span class="comment">  * 100kHz  is usually the baseline.</span></div>
+<div class="line"><span class="lineno"> 1136</span><span class="comment">  * Use one of these funcition if you have a problem on the default configuration.</span></div>
+<div class="line"><span class="lineno"> 1137</span><span class="comment">  *******************************************************************************/</span></div>
+<div class="line"><a id="l01138" name="l01138"></a><span class="lineno"> 1138</span> </div>
+<div class="line"><a id="l01139" name="l01139"></a><span class="lineno"> 1139</span>  <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1140</span><span class="comment">   * @ingroup group99 MCU I2C Speed</span></div>
+<div class="line"><span class="lineno"> 1141</span><span class="comment">   * @brief Sets I2C bus to 10kHz</span></div>
+<div class="line"><span class="lineno"> 1142</span><span class="comment">   */</span></div>
+<div class="line"><a id="l01143" name="l01143"></a><span class="lineno"><a class="line" href="group__group99.html#ga104da6a0d233f020bb63d62e37a7bf92"> 1143</a></span>   <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#ga104da6a0d233f020bb63d62e37a7bf92">setI2CLowSpeedMode</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l01144" name="l01144"></a><span class="lineno"> 1144</span>  {</div>
+<div class="line"><a id="l01145" name="l01145"></a><span class="lineno"> 1145</span>       Wire.setClock(10000);</div>
+<div class="line"><a id="l01146" name="l01146"></a><span class="lineno"> 1146</span>  };</div>
+<div class="line"><a id="l01147" name="l01147"></a><span class="lineno"> 1147</span> </div>
+<div class="line"><a id="l01148" name="l01148"></a><span class="lineno"> 1148</span>    <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1149</span><span class="comment">     * @ingroup group99 MCU I2C Speed</span></div>
+<div class="line"><span class="lineno"> 1150</span><span class="comment">     *</span></div>
+<div class="line"><span class="lineno"> 1151</span><span class="comment">     * @brief Sets I2C bus to 100kHz</span></div>
+<div class="line"><span class="lineno"> 1152</span><span class="comment">     */</span></div>
+<div class="line"><a id="l01153" name="l01153"></a><span class="lineno"><a class="line" href="group__group99.html#ga123240957823800eb7cd05f1e216b30c"> 1153</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#ga123240957823800eb7cd05f1e216b30c">setI2CStandardMode</a>(<span class="keywordtype">void</span>) { Wire.setClock(100000); };</div>
+<div class="line"><a id="l01154" name="l01154"></a><span class="lineno"> 1154</span> </div>
+<div class="line"><a id="l01155" name="l01155"></a><span class="lineno"> 1155</span>    <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1156</span><span class="comment">     * @ingroup group99 MCU I2C Speed</span></div>
+<div class="line"><span class="lineno"> 1157</span><span class="comment">     *</span></div>
+<div class="line"><span class="lineno"> 1158</span><span class="comment">     * @brief Sets I2C bus to 400kHz</span></div>
+<div class="line"><span class="lineno"> 1159</span><span class="comment">     */</span></div>
+<div class="line"><a id="l01160" name="l01160"></a><span class="lineno"><a class="line" href="group__group99.html#gab3c28cf6010a9cf24243ca9980c841f2"> 1160</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#gab3c28cf6010a9cf24243ca9980c841f2">setI2CFastMode</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l01161" name="l01161"></a><span class="lineno"> 1161</span>    {</div>
+<div class="line"><a id="l01162" name="l01162"></a><span class="lineno"> 1162</span>        Wire.setClock(400000);</div>
+<div class="line"><a id="l01163" name="l01163"></a><span class="lineno"> 1163</span>    };</div>
+<div class="line"><a id="l01164" name="l01164"></a><span class="lineno"> 1164</span> </div>
+<div class="line"><a id="l01165" name="l01165"></a><span class="lineno"> 1165</span>    <span class="comment">/**</span></div>
+<div class="line"><span class="lineno"> 1166</span><span class="comment">     * @ingroup group99 MCU I2C Speed</span></div>
+<div class="line"><span class="lineno"> 1167</span><span class="comment">     *</span></div>
+<div class="line"><span class="lineno"> 1168</span><span class="comment">     * @brief Sets the I2C bus to a given value.</span></div>
+<div class="line"><span class="lineno"> 1169</span><span class="comment">     * ATTENTION: use this function with caution</span></div>
+<div class="line"><span class="lineno"> 1170</span><span class="comment">     *</span></div>
+<div class="line"><span class="lineno"> 1171</span><span class="comment">     * @param value in Hz. For example: The values 500000 sets the bus to 500kHz.</span></div>
+<div class="line"><span class="lineno"> 1172</span><span class="comment">     */</span></div>
+<div class="line"><a id="l01173" name="l01173"></a><span class="lineno"><a class="line" href="group__group99.html#gab7dfd8ab098f5cac471e0e25016e63da"> 1173</a></span>    <span class="keyword">inline</span> <span class="keywordtype">void</span> <a class="code hl_function" href="group__group99.html#gab7dfd8ab098f5cac471e0e25016e63da">setI2CFastModeCustom</a>(<span class="keywordtype">long</span> value = 500000) { Wire.setClock(value); };</div>
+<div class="line"><a id="l01174" name="l01174"></a><span class="lineno"> 1174</span> </div>
+<div class="line"><a id="l01175" name="l01175"></a><span class="lineno"> 1175</span> </div>
+<div class="line"><a id="l01176" name="l01176"></a><span class="lineno"> 1176</span> </div>
+<div class="line"><a id="l01177" name="l01177"></a><span class="lineno"> 1177</span>};</div>
+<div class="line"><a id="l01178" name="l01178"></a><span class="lineno"> 1178</span> </div>
+<div class="line"><a id="l01179" name="l01179"></a><span class="lineno"> 1179</span> </div>
+<div class="line"><a id="l01180" name="l01180"></a><span class="lineno"> 1180</span><span class="preprocessor">#</span><span class="preprocessor">endif</span> <span class="comment">// _QN8066_H</span></div>
 <div class="ttc" id="a_q_n8066_8h_html_a048fcb16109846e7310ad6bd3f98b66a"><div class="ttname"><a href="_q_n8066_8h.html#a048fcb16109846e7310ad6bd3f98b66a">QN_TX_RDSD1</a></div><div class="ttdeci">#define QN_TX_RDSD1</div><div class="ttdef"><b>Definition:</b> QN8066.h:58</div></div>
 <div class="ttc" id="a_q_n8066_8h_html_a0fd6103a891427dc8bb3c9c37d78d2d5"><div class="ttname"><a href="_q_n8066_8h.html#a0fd6103a891427dc8bb3c9c37d78d2d5">QN_INT_CTRL</a></div><div class="ttdeci">#define QN_INT_CTRL</div><div class="ttdef"><b>Definition:</b> QN8066.h:54</div></div>
 <div class="ttc" id="a_q_n8066_8h_html_a206019212ffb67958b188358b75698d2"><div class="ttname"><a href="_q_n8066_8h.html#a206019212ffb67958b188358b75698d2">QN_SYSTEM2</a></div><div class="ttdeci">#define QN_SYSTEM2</div><div class="ttdef"><b>Definition:</b> QN8066.h:30</div></div>
@@ -1366,38 +1389,39 @@ $(document).ready(function(){initNavTree('_q_n8066_8h_source.html',''); initResi
 <div class="ttc" id="agroup__group04_html_gaee7afb6a9a31a99fc29b8b9d7d0a00bc"><div class="ttname"><a href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">QN8066::getAudioPeakValue</a></div><div class="ttdeci">int getAudioPeakValue()</div><div class="ttdoc">Audio peak value at ADC input.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1117</div></div>
 <div class="ttc" id="agroup__group04_html_gaf68d40e6fdc7a17cb64d883d93af3886"><div class="ttname"><a href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a></div><div class="ttdeci">void setToggleTxPdClear()</div><div class="ttdoc">TX Audio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1088</div></div>
 <div class="ttc" id="agroup__group05_html_ga0783a3be6aacd1bbff0e5abdfc78d04c"><div class="ttname"><a href="group__group05.html#ga0783a3be6aacd1bbff0e5abdfc78d04c">QN8066::rdsSetInterrupt</a></div><div class="ttdeci">void rdsSetInterrupt(uint8_t value)</div><div class="ttdoc">Sets RDS interrupt.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1197</div></div>
-<div class="ttc" id="agroup__group05_html_ga085fa9c2b4753a7f7135bd0e7c9b7852"><div class="ttname"><a href="group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852">QN8066::rdsSendRTMessage</a></div><div class="ttdeci">void rdsSendRTMessage(char *rtText)</div><div class="ttdoc">Sends RDS Radio Text Message (group 2A)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1556</div></div>
 <div class="ttc" id="agroup__group05_html_ga0ae8735b4150105b54fc9ace31788e9a"><div class="ttname"><a href="group__group05.html#ga0ae8735b4150105b54fc9ace31788e9a">QN8066::rdsSetMode</a></div><div class="ttdeci">void rdsSetMode(uint8_t mode)</div><div class="ttdoc">Sets RDS Mode Selection.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1144</div></div>
 <div class="ttc" id="agroup__group05_html_ga27d182aa90e915b86139d0ae63350fc8"><div class="ttname"><a href="group__group05.html#ga27d182aa90e915b86139d0ae63350fc8">QN8066::rdsSetTxLineIn</a></div><div class="ttdeci">void rdsSetTxLineIn(bool value=0)</div><div class="ttdoc">Audio Line-in enable control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1391</div></div>
 <div class="ttc" id="agroup__group05_html_ga2beb7d1a42e9aa2ecf72427318b40d1b"><div class="ttname"><a href="group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b">QN8066::rdsSendPS</a></div><div class="ttdeci">void rdsSendPS(char *ps=NULL)</div><div class="ttdoc">Sends the Program Service Message.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1497</div></div>
 <div class="ttc" id="agroup__group05_html_ga2d13af3ea121fee09799cc0277da0dc1"><div class="ttname"><a href="group__group05.html#ga2d13af3ea121fee09799cc0277da0dc1">QN8066::rdsTxEnable</a></div><div class="ttdeci">void rdsTxEnable(bool value)</div><div class="ttdoc">Transmitter RDS enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1278</div></div>
-<div class="ttc" id="agroup__group05_html_ga301effc2ac8ceb3359da26fc6e4f8d24"><div class="ttname"><a href="group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24">QN8066::rdsGetPTY</a></div><div class="ttdeci">uint8_t rdsGetPTY()</div><div class="ttdoc">Gets the Program Type (PTY)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1051</div></div>
-<div class="ttc" id="agroup__group05_html_ga39fca640c878f92ed9c15f000620161e"><div class="ttname"><a href="group__group05.html#ga39fca640c878f92ed9c15f000620161e">QN8066::rdsGetError</a></div><div class="ttdeci">uint8_t rdsGetError()</div><div class="ttdoc">Gets TX RDS error setup.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1080</div></div>
-<div class="ttc" id="agroup__group05_html_ga4050b3c3e3e96cf7a80468d2daa97ce7"><div class="ttname"><a href="group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7">QN8066::rdsSetRepeatSendGroup</a></div><div class="ttdeci">void rdsSetRepeatSendGroup(uint8_t count)</div><div class="ttdoc">Sets the number of time that a group will be sent at once.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1103</div></div>
+<div class="ttc" id="agroup__group05_html_ga301effc2ac8ceb3359da26fc6e4f8d24"><div class="ttname"><a href="group__group05.html#ga301effc2ac8ceb3359da26fc6e4f8d24">QN8066::rdsGetPTY</a></div><div class="ttdeci">uint8_t rdsGetPTY()</div><div class="ttdoc">Gets the Program Type (PTY)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1074</div></div>
+<div class="ttc" id="agroup__group05_html_ga39fca640c878f92ed9c15f000620161e"><div class="ttname"><a href="group__group05.html#ga39fca640c878f92ed9c15f000620161e">QN8066::rdsGetError</a></div><div class="ttdeci">uint8_t rdsGetError()</div><div class="ttdoc">Gets TX RDS error setup.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1103</div></div>
+<div class="ttc" id="agroup__group05_html_ga4050b3c3e3e96cf7a80468d2daa97ce7"><div class="ttname"><a href="group__group05.html#ga4050b3c3e3e96cf7a80468d2daa97ce7">QN8066::rdsSetRepeatSendGroup</a></div><div class="ttdeci">void rdsSetRepeatSendGroup(uint8_t count)</div><div class="ttdoc">Sets the number of time that a group will be sent at once.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1126</div></div>
 <div class="ttc" id="agroup__group05_html_ga57ee54e06de2618ec40cddde6b62560c"><div class="ttname"><a href="group__group05.html#ga57ee54e06de2618ec40cddde6b62560c">QN8066::rdsSendGroup</a></div><div class="ttdeci">void rdsSendGroup(RDS_BLOCK1 blockA, RDS_BLOCK2 blockB, RDS_BLOCK3 blockC, RDS_BLOCK4 blockD)</div><div class="ttdoc">Sends a RDS group (four blocks) to the QN8066.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1432</div></div>
 <div class="ttc" id="agroup__group05_html_ga662a1d34329657b1d2fbb93f44901bab"><div class="ttname"><a href="group__group05.html#ga662a1d34329657b1d2fbb93f44901bab">QN8066::rdsSetFrequencyDerivation</a></div><div class="ttdeci">void rdsSetFrequencyDerivation(uint8_t freq=6)</div><div class="ttdoc">Sets RDS frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1364</div></div>
+<div class="ttc" id="agroup__group05_html_ga71c2ee1fa72737f39ff0111ade745e89"><div class="ttname"><a href="group__group05.html#ga71c2ee1fa72737f39ff0111ade745e89">QN8066::rdsSendRT</a></div><div class="ttdeci">void rdsSendRT(char *rt)</div><div class="ttdoc">Sends RDS Radio Text Message (group 2A)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1000</div></div>
+<div class="ttc" id="agroup__group05_html_ga76dc7b86d565705fd980a11123e77f0c"><div class="ttname"><a href="group__group05.html#ga76dc7b86d565705fd980a11123e77f0c">QN8066::rdsSendRTMessage</a></div><div class="ttdeci">void rdsSendRTMessage(char *rt)</div><div class="ttdoc">Sends RDS Radio Text Message (group 2A)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1556</div></div>
 <div class="ttc" id="agroup__group05_html_ga8a4a20dea21a4dd04cb4836b1514786f"><div class="ttname"><a href="group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f">QN8066::rdsSetStationName</a></div><div class="ttdeci">void rdsSetStationName(char *stationName)</div><div class="ttdoc">Sets the station name.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1470</div></div>
-<div class="ttc" id="agroup__group05_html_ga8a972dd27044d708e0fcd01e45d3fba0"><div class="ttname"><a href="group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0">QN8066::rdsGetPS</a></div><div class="ttdeci">char * rdsGetPS()</div><div class="ttdoc">Gets the Program Station (Station Name).</div><div class="ttdef"><b>Definition:</b> QN8066.h:1073</div></div>
+<div class="ttc" id="agroup__group05_html_ga8a972dd27044d708e0fcd01e45d3fba0"><div class="ttname"><a href="group__group05.html#ga8a972dd27044d708e0fcd01e45d3fba0">QN8066::rdsGetPS</a></div><div class="ttdeci">char * rdsGetPS()</div><div class="ttdoc">Gets the Program Station (Station Name).</div><div class="ttdef"><b>Definition:</b> QN8066.h:1096</div></div>
 <div class="ttc" id="agroup__group05_html_ga8c9d2b0e96785ff740ec0046a7bfe1d7"><div class="ttname"><a href="group__group05.html#ga8c9d2b0e96785ff740ec0046a7bfe1d7">QN8066::rdsSetTxToggle</a></div><div class="ttdeci">uint8_t rdsSetTxToggle()</div><div class="ttdoc">RDS transmitting ready.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1307</div></div>
-<div class="ttc" id="agroup__group05_html_gaa49bb620515b40371af65135ad35a759"><div class="ttname"><a href="group__group05.html#gaa49bb620515b40371af65135ad35a759">QN8066::rdsSetTP</a></div><div class="ttdeci">void rdsSetTP(uint16_t tp)</div><div class="ttdoc">Sets the Traffic Program.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1059</div></div>
-<div class="ttc" id="agroup__group05_html_gaa859334b8f4811bffa0ca215d61e3a80"><div class="ttname"><a href="group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80">QN8066::rdsGetTP</a></div><div class="ttdeci">uint8_t rdsGetTP()</div><div class="ttdoc">Sets the Traffic Program.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1066</div></div>
+<div class="ttc" id="agroup__group05_html_gaa49bb620515b40371af65135ad35a759"><div class="ttname"><a href="group__group05.html#gaa49bb620515b40371af65135ad35a759">QN8066::rdsSetTP</a></div><div class="ttdeci">void rdsSetTP(uint16_t tp)</div><div class="ttdoc">Sets the Traffic Program.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1082</div></div>
+<div class="ttc" id="agroup__group05_html_gaa859334b8f4811bffa0ca215d61e3a80"><div class="ttname"><a href="group__group05.html#gaa859334b8f4811bffa0ca215d61e3a80">QN8066::rdsGetTP</a></div><div class="ttdeci">uint8_t rdsGetTP()</div><div class="ttdoc">Sets the Traffic Program.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1089</div></div>
 <div class="ttc" id="agroup__group05_html_gab18543166cfd0ca104df9a269a990552"><div class="ttname"><a href="group__group05.html#gab18543166cfd0ca104df9a269a990552">QN8066::rdsGetTxUpdated</a></div><div class="ttdeci">bool rdsGetTxUpdated()</div><div class="ttdoc">RDS TX Updated.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1338</div></div>
-<div class="ttc" id="agroup__group05_html_gab3d1ba5b96d54061aa61768c94498f3b"><div class="ttname"><a href="group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b">QN8066::rdsSetPTY</a></div><div class="ttdeci">void rdsSetPTY(uint16_t pty)</div><div class="ttdoc">Sets the Program Type (PTY)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1044</div></div>
+<div class="ttc" id="agroup__group05_html_gab3d1ba5b96d54061aa61768c94498f3b"><div class="ttname"><a href="group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b">QN8066::rdsSetPTY</a></div><div class="ttdeci">void rdsSetPTY(uint16_t pty)</div><div class="ttdoc">Sets the Program Type (PTY)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1067</div></div>
 <div class="ttc" id="agroup__group05_html_gabec280b5feb7c1ecc01643dc8acbf10a"><div class="ttname"><a href="group__group05.html#gabec280b5feb7c1ecc01643dc8acbf10a">QN8066::rdsInitTx</a></div><div class="ttdeci">void rdsInitTx(uint8_t countryId=0, uint8_t programId=0, uint8_t reference=0, uint8_t pty=1, uint8_t rdsSyncTime=60, uint8_t rdsRepeatGroup=5)</div><div class="ttdoc">Sets some RDS parameters.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1233</div></div>
-<div class="ttc" id="agroup__group05_html_gabff1b72ccfef9356650ad42beb41f62c"><div class="ttname"><a href="group__group05.html#gabff1b72ccfef9356650ad42beb41f62c">QN8066::rdsSetPI</a></div><div class="ttdeci">void rdsSetPI(uint16_t pi)</div><div class="ttdoc">Sets the Program Identification (PI)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1026</div></div>
-<div class="ttc" id="agroup__group05_html_gad3065e17bdc43e22833cf509f4002f0e"><div class="ttname"><a href="group__group05.html#gad3065e17bdc43e22833cf509f4002f0e">QN8066::rdsGetPI</a></div><div class="ttdeci">uint8_t rdsGetPI()</div><div class="ttdoc">Gets the Program Identification (PI)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1036</div></div>
+<div class="ttc" id="agroup__group05_html_gabff1b72ccfef9356650ad42beb41f62c"><div class="ttname"><a href="group__group05.html#gabff1b72ccfef9356650ad42beb41f62c">QN8066::rdsSetPI</a></div><div class="ttdeci">void rdsSetPI(uint16_t pi)</div><div class="ttdoc">Sets the Program Identification (PI)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1049</div></div>
+<div class="ttc" id="agroup__group05_html_gad3065e17bdc43e22833cf509f4002f0e"><div class="ttname"><a href="group__group05.html#gad3065e17bdc43e22833cf509f4002f0e">QN8066::rdsGetPI</a></div><div class="ttdeci">uint8_t rdsGetPI()</div><div class="ttdoc">Gets the Program Identification (PI)</div><div class="ttdef"><b>Definition:</b> QN8066.h:1059</div></div>
 <div class="ttc" id="agroup__group05_html_gadae22b8660f72a32479c9fc6c891aff6"><div class="ttname"><a href="group__group05.html#gadae22b8660f72a32479c9fc6c891aff6">QN8066::rdsClearBuffer</a></div><div class="ttdeci">void rdsClearBuffer()</div><div class="ttdoc">Clear RDS register (Buffer)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1403</div></div>
-<div class="ttc" id="agroup__group05_html_gadf9a03570842fe995bf7594b8964ed91"><div class="ttname"><a href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91">QN8066::rdsSetSyncTime</a></div><div class="ttdeci">void rdsSetSyncTime(uint8_t syncTime)</div><div class="ttdoc">Sets the wait time for the QN8066 to be available to send the next RDS block.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1095</div></div>
+<div class="ttc" id="agroup__group05_html_gadf9a03570842fe995bf7594b8964ed91"><div class="ttname"><a href="group__group05.html#gadf9a03570842fe995bf7594b8964ed91">QN8066::rdsSetSyncTime</a></div><div class="ttdeci">void rdsSetSyncTime(uint8_t syncTime)</div><div class="ttdoc">Sets the wait time for the QN8066 to be available to send the next RDS block.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1118</div></div>
 <div class="ttc" id="agroup__group05_html_gae61a8f8f5af9015db21c0e283deaadb7"><div class="ttname"><a href="group__group05.html#gae61a8f8f5af9015db21c0e283deaadb7">QN8066::rdsSetPI</a></div><div class="ttdeci">void rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference=0)</div><div class="ttdoc">Sets the Program Identification (PI)</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1250</div></div>
 <div class="ttc" id="agroup__group05_html_gae77d8522db113f8fa9d44ec14f2c3534"><div class="ttname"><a href="group__group05.html#gae77d8522db113f8fa9d44ec14f2c3534">QN8066::rdsSet4KMode</a></div><div class="ttdeci">void rdsSet4KMode(uint8_t value)</div><div class="ttdoc">Sets RDS 4K Mode .</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1170</div></div>
 <div class="ttc" id="agroup__group10_html_ga1cbeccfe43f36b25bf01692b25bd12c7"><div class="ttname"><a href="group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7">QN8066::resetFsm</a></div><div class="ttdeci">void resetFsm()</div><div class="ttdoc">Resets the state to initial states and recalibrate all blocks.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1648</div></div>
 <div class="ttc" id="agroup__group10_html_ga679e38373a2db0083d3f4bde4b6f2f9a"><div class="ttname"><a href="group__group10.html#ga679e38373a2db0083d3f4bde4b6f2f9a">QN8066::getFsmStateCode</a></div><div class="ttdeci">uint8_t getFsmStateCode()</div><div class="ttdoc">Get the FSM State Code.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1637</div></div>
 <div class="ttc" id="agroup__group10_html_gaf5d0674bf9692155c9bc8badb3162c7a"><div class="ttname"><a href="group__group10.html#gaf5d0674bf9692155c9bc8badb3162c7a">QN8066::setStnby</a></div><div class="ttdeci">void setStnby(bool value)</div><div class="ttdoc">Request Immediately enter Standby mode whatever state chip is in.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1661</div></div>
-<div class="ttc" id="agroup__group99_html_ga104da6a0d233f020bb63d62e37a7bf92"><div class="ttname"><a href="group__group99.html#ga104da6a0d233f020bb63d62e37a7bf92">QN8066::setI2CLowSpeedMode</a></div><div class="ttdeci">void setI2CLowSpeedMode(void)</div><div class="ttdoc">Sets I2C bus to 10kHz.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1120</div></div>
-<div class="ttc" id="agroup__group99_html_ga123240957823800eb7cd05f1e216b30c"><div class="ttname"><a href="group__group99.html#ga123240957823800eb7cd05f1e216b30c">QN8066::setI2CStandardMode</a></div><div class="ttdeci">void setI2CStandardMode(void)</div><div class="ttdoc">Sets I2C bus to 100kHz.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1130</div></div>
+<div class="ttc" id="agroup__group99_html_ga104da6a0d233f020bb63d62e37a7bf92"><div class="ttname"><a href="group__group99.html#ga104da6a0d233f020bb63d62e37a7bf92">QN8066::setI2CLowSpeedMode</a></div><div class="ttdeci">void setI2CLowSpeedMode(void)</div><div class="ttdoc">Sets I2C bus to 10kHz.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1143</div></div>
+<div class="ttc" id="agroup__group99_html_ga123240957823800eb7cd05f1e216b30c"><div class="ttname"><a href="group__group99.html#ga123240957823800eb7cd05f1e216b30c">QN8066::setI2CStandardMode</a></div><div class="ttdeci">void setI2CStandardMode(void)</div><div class="ttdoc">Sets I2C bus to 100kHz.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1153</div></div>
 <div class="ttc" id="agroup__group99_html_ga2a96d812724a3f6394f6419e2712d6d8"><div class="ttname"><a href="group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8">QN8066::convertToChar</a></div><div class="ttdeci">void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator='.', bool remove_leading_zeros=true)</div><div class="ttdoc">Converts a number to a char array.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1700</div></div>
-<div class="ttc" id="agroup__group99_html_gab3c28cf6010a9cf24243ca9980c841f2"><div class="ttname"><a href="group__group99.html#gab3c28cf6010a9cf24243ca9980c841f2">QN8066::setI2CFastMode</a></div><div class="ttdeci">void setI2CFastMode(void)</div><div class="ttdoc">Sets I2C bus to 400kHz.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1137</div></div>
-<div class="ttc" id="agroup__group99_html_gab7dfd8ab098f5cac471e0e25016e63da"><div class="ttname"><a href="group__group99.html#gab7dfd8ab098f5cac471e0e25016e63da">QN8066::setI2CFastModeCustom</a></div><div class="ttdeci">void setI2CFastModeCustom(long value=500000)</div><div class="ttdoc">Sets the I2C bus to a given value. ATTENTION: use this function with caution.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1150</div></div>
+<div class="ttc" id="agroup__group99_html_gab3c28cf6010a9cf24243ca9980c841f2"><div class="ttname"><a href="group__group99.html#gab3c28cf6010a9cf24243ca9980c841f2">QN8066::setI2CFastMode</a></div><div class="ttdeci">void setI2CFastMode(void)</div><div class="ttdoc">Sets I2C bus to 400kHz.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1160</div></div>
+<div class="ttc" id="agroup__group99_html_gab7dfd8ab098f5cac471e0e25016e63da"><div class="ttname"><a href="group__group99.html#gab7dfd8ab098f5cac471e0e25016e63da">QN8066::setI2CFastModeCustom</a></div><div class="ttdeci">void setI2CFastModeCustom(long value=500000)</div><div class="ttdoc">Sets the I2C bus to a given value. ATTENTION: use this function with caution.</div><div class="ttdef"><b>Definition:</b> QN8066.h:1173</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

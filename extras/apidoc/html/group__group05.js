@@ -1,5 +1,6 @@
 var group__group05 =
 [
+    [ "QN8066::rdsSendRT", "group__group05.html#ga71c2ee1fa72737f39ff0111ade745e89", null ],
     [ "QN8066::rdsSetPI", "group__group05.html#gabff1b72ccfef9356650ad42beb41f62c", null ],
     [ "QN8066::rdsGetPI", "group__group05.html#gad3065e17bdc43e22833cf509f4002f0e", null ],
     [ "QN8066::rdsSetPTY", "group__group05.html#gab3d1ba5b96d54061aa61768c94498f3b", null ],
@@ -24,5 +25,5 @@ var group__group05 =
     [ "QN8066::rdsSendGroup", "group__group05.html#ga57ee54e06de2618ec40cddde6b62560c", null ],
     [ "QN8066::rdsSetStationName", "group__group05.html#ga8a4a20dea21a4dd04cb4836b1514786f", null ],
     [ "QN8066::rdsSendPS", "group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b", null ],
-    [ "QN8066::rdsSendRTMessage", "group__group05.html#ga085fa9c2b4753a7f7135bd0e7c9b7852", null ]
+    [ "QN8066::rdsSendRTMessage", "group__group05.html#ga76dc7b86d565705fd980a11123e77f0c", null ]
 ];
