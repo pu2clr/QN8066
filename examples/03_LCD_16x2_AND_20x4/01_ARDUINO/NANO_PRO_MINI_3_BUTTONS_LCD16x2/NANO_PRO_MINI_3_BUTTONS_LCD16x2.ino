@@ -162,9 +162,9 @@ TableValue tabImpedance[] = {
 };
 
 TableValue tabGainTxPilot[] = {
-  { 7, "7%" },   // 0
-  { 8, "8%" },   // 1
-  { 9, "9%" },   // 2
+  { 7,  " 7%" },   // 0
+  { 8,  " 8%" },   // 1
+  { 9,  " 9%" },   // 2
   { 10, "10%" }  // 3
 };
 
@@ -174,15 +174,15 @@ TableValue tabTxSoftClipEnable[] = {
 };
 
 TableValue tabTxSoftClipThreshold[] = {
-  { 0, "3dB" },    // 0
+  { 0, "  3dB" },    // 0
   { 1, "4.5dB" },  // 1
-  { 2, "6dB" },    // 2
-  { 3, "9dB" }     // 3
+  { 2, "  6dB" },    // 2
+  { 3, "  9dB" }     // 3
 };
 
 TableValue tabTxFrequencyDeviation[] = {
-  { 60, " 41,5kHz" },   // 0
-  { 87, " 60,0kHz" },   // 1
+  { 60,  " 41,5kHz" },   // 0
+  { 87,  " 60,0kHz" },   // 1
   { 108, " 74,5kHz" },  // 2
   { 120, " 92,8kHz" },  // 3
   { 140, " 96,6kHz" },  // 4
@@ -190,9 +190,9 @@ TableValue tabTxFrequencyDeviation[] = {
 };
 
 TableValue tabTxBufferGain[] = {
-  { 0, "3dB" },   // 0
-  { 1, "6dB" },   // 1
-  { 2, "9dB" },   // 2
+  { 0, " 3dB" },   // 0
+  { 1, " 6dB" },   // 1
+  { 2, " 9dB" },   // 2
   { 3, "12dB" },  // 3
   { 4, "15dB" },  // 4
   { 5, "18dB" }   // 5
