@@ -667,7 +667,8 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t
   }
   menuLevel = 0;
 }
-// // Processes the current menu option selected
+
+// Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
   enablePWM(0);  // The PWM seems to interfere with the communication with the QN8066.
   delay(PUSH_MIN_DELAY);

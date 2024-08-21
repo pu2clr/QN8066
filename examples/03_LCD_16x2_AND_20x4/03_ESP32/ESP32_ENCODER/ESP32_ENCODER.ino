@@ -82,7 +82,7 @@ long showStatusTime = millis();
 
 uint8_t menuLevel = 0;
 
-const uint8_t app_id = 86;  // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 66;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 
 // The PWM duty can be set from 25 to 255 where 255 is the max power (7W) .
@@ -163,6 +163,21 @@ TableValue tabRDS[] = {
   { 1, "Enable " }   // 1
 };
 
+TableValue tabRdsPty[] {     // See https://en.wikipedia.org/wiki/Radio_Data_System if you want to change this table 
+  { 0, "No program"},
+  { 1, "News"},
+  { 3, "Inf./Sports"},
+  { 4, "Sport/Talk"},
+  { 5, "Education/Rock"},
+  { 7, "Cult./Adult hits"},
+  { 8, "Science/S.rock"},
+  {10, "Pop Mus/Country" },
+  {16, "Weather/Rhythm"},
+  {20, "Religion" },
+  {29, "Doc./Weather"},
+  {30, "Alarm/Emerg."}
+};
+
 TableValue tabMonoStereo[] = {
   { 0, "Stereo" },  // 0
   { 1, "Mono  " }   // 1 - See QN8066 data sheet
@@ -185,6 +200,7 @@ const char *menu[] = { "Frequency",
                        "Stereo/Mono",
                        "Pre-emphasis",
                        "RDS",
+                       "RDS PTY",
                        "Inpedance",
                        "Sft Clip. Enable",
                        "Sft Clip. Thres.",
@@ -198,21 +214,21 @@ const int lastMenu = (sizeof(menu) / sizeof(menu[0])) - 1;  // Laste menu item p
 
 // Define the enum with the corresponding Menu Itens QN8066 register values
 enum MenuKeys {
-  KEY_FREQUENCIA,           // 0
+  KEY_FREQUENCY,           // 0
   KEY_POWER,                // 1
-  KEY_MONO_ESTEREO,         // 2
+  KEY_MONO_STEREO,         // 2
   KEY_PRE_EMPHASIS,         // 3
   KEY_RDS,                  // 4
-  KEY_INPEDANCE,            // 5
-  KEY_SOFT_CLIP_ENABLE,     // 6
-  KEY_SOFT_CLIP_THRESHOLD,  // 7
-  KEY_GAIN_PILOT,           // 8
-  KEY_FREQ_DERIVATION,      // 9
-  KEY_BUFFER_GAIN,          // 10
-  KEY_RDS_FREQ_DEV,         // 11
-  KEY_MAIN_SCREEN           // 12
+  KEY_RDS_PTY,              // 5
+  KEY_INPEDANCE,            // 6
+  KEY_SOFT_CLIP_ENABLE,     // 7
+  KEY_SOFT_CLIP_THRESHOLD,  // 8
+  KEY_GAIN_PILOT,           // 9
+  KEY_FREQ_DERIVATION,      // 10
+  KEY_BUFFER_GAIN,          // 11
+  KEY_RDS_FREQ_DEV,         // 12
+  KEY_MAIN_SCREEN           // 13
 };
-
 /*
   The following table represents an "array" of default values (default position) for each transmitter parameter. 
   Thus, by default, the position ("key") points to the table position that corresponds to the parameter to be 
@@ -220,11 +236,12 @@ enum MenuKeys {
   parameters are added to the system. See KeyValue datatype above.
 */
 KeyValue keyValue[] = {
-  { 0, NULL },                     // KEY_FREQUENCIA
+  { 0, NULL },                     // KEY_FREQUENCY
   { 0, NULL },                     // KEY_POWER
-  { 0, tabMonoStereo },            // KEY_MONO_ESTEREO
+  { 0, tabMonoStereo },            // KEY_MONO_STEREO
   { 1, tabPreEmphasis },           // KEY_PRE_EMPHASIS
   { 0, tabRDS },                   // KEY_RDS
+  { 6, tabRdsPty},                 // KEY_RDS_PTY 
   { 2, tabImpedance },             // KEY_INPEDANCE
   { 0, tabTxSoftClipEnable },      // KEY_SOFT_CLIP_ENABLE
   { 1, tabTxSoftClipThreshold },   // KEY_SOFT_CLIP_THRESHOLD
@@ -339,7 +356,7 @@ void setup() {
   tx.setTxSoftClipThreshold(keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
   tx.setPreEmphasis(keyValue[KEY_PRE_EMPHASIS].value[keyValue[KEY_PRE_EMPHASIS].key].idx);
   tx.rdsTxEnable(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
-  tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx);
+  tx.setTxMono(keyValue[KEY_MONO_STEREO].value[keyValue[KEY_MONO_STEREO].key].idx);
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
   tx.rdsSetFrequencyDerivation(keyValue[KEY_RDS_FREQ_DEV].value[keyValue[KEY_RDS_FREQ_DEV].key].idx);
 
@@ -347,7 +364,8 @@ void setup() {
 
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    tx.rdsInitTx(0x8, 0x1, 0x9B, 8, 50 , 5 );  // RDS transmission configuration. See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
+    uint8_t ptyIdx = keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx;
+    tx.rdsInitTx(0, 0, 0, ptyIdx, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
 
@@ -389,7 +407,7 @@ void saveAllTransmitterInformation() {
   EEPROM.write(eeprom_address + 1, txFrequency >> 8);    // stores the current Frequency HIGH byte for the band
   EEPROM.write(eeprom_address + 2, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
   EEPROM.write(eeprom_address + 3, pwmPowerDuty);
-  EEPROM.write(eeprom_address + 4, keyValue[KEY_MONO_ESTEREO].key);
+  EEPROM.write(eeprom_address + 4, keyValue[KEY_MONO_STEREO].key);
   EEPROM.write(eeprom_address + 5, keyValue[KEY_PRE_EMPHASIS].key);
   EEPROM.write(eeprom_address + 6, keyValue[KEY_RDS].key);
   EEPROM.write(eeprom_address + 7, keyValue[KEY_INPEDANCE].key);
@@ -399,6 +417,7 @@ void saveAllTransmitterInformation() {
   EEPROM.write(eeprom_address + 11, keyValue[KEY_FREQ_DERIVATION].key);
   EEPROM.write(eeprom_address + 12, keyValue[KEY_BUFFER_GAIN].key);
   EEPROM.write(eeprom_address + 13, keyValue[KEY_RDS_FREQ_DEV].key);
+  EEPROM.write(eeprom_address + 14, keyValue[KEY_RDS_PTY].key);
   
   EEPROM.end();
 
@@ -408,7 +427,7 @@ void readAllTransmitterInformation() {
   txFrequency = EEPROM.read(eeprom_address + 1) << 8;
   txFrequency |= EEPROM.read(eeprom_address + 2);
   pwmPowerDuty = EEPROM.read(eeprom_address + 3);
-  keyValue[KEY_MONO_ESTEREO].key = EEPROM.read(eeprom_address + 4);
+  keyValue[KEY_MONO_STEREO].key = EEPROM.read(eeprom_address + 4);
   keyValue[KEY_PRE_EMPHASIS].key = EEPROM.read(eeprom_address + 5);
   keyValue[KEY_RDS].key = EEPROM.read(eeprom_address + 6);
   keyValue[KEY_INPEDANCE].key = EEPROM.read(eeprom_address + 7);
@@ -418,13 +437,19 @@ void readAllTransmitterInformation() {
   keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address + 11);
   keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address + 12);
   keyValue[KEY_RDS_FREQ_DEV].key = EEPROM.read(eeprom_address + 13);
+  keyValue[KEY_RDS_PTY].key = EEPROM.read(eeprom_address + 14);
 }
 
 // Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
-  delay(100);
-  analogWrite(PWM_PA, value);  // Turn PA off
-  delay(100);
+    if ( value == 0) { 
+      analogWrite(PWM_PA, value);
+      return;
+    }
+    for (uint8_t i = 0; i < value; i++) {
+       analogWrite(PWM_PA, i);
+       delay(5);
+    }
 }
 // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
@@ -474,7 +499,7 @@ void showStatus(uint8_t page) {
     lcd.print("MHz");
     lcd.setCursor(10, 0);
     // lcd.print(  tabMonoStereo[idxStereoMono].desc );
-    lcd.print(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].desc);  // Mono Stereo
+    lcd.print(keyValue[KEY_MONO_STEREO].value[keyValue[KEY_MONO_STEREO].key].desc);  // Mono Stereo
     lcd.setCursor(0, 1);
     lcd.print(tx.getAudioPeakValue());
     lcd.print("mV");
@@ -622,52 +647,56 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t
   }
   // menuLevel = 0;
 }
-// // Processes the current menu option selected
+
+// Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
   enablePWM(0);  // The PWM seems to interfere with the communication with the QN8066.
   delay(PUSH_MIN_DELAY);
   switch (idxMenu) {
-    case 0:
+    case KEY_FREQUENCY:
       lcd.setCursor(9, 1);
       lcd.print("<<");  // it just indicates the edit mode
       doFrequency();
       break;
-    case 1:
+    case KEY_POWER:
       lcd.setCursor(9, 1);
       lcd.print("<<");  // it just indicates the edit mode
       doPower();
       break;
-    case 2:
+    case KEY_MONO_STEREO:
       runAction([](uint8_t value) {tx.setTxMono(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
-    case 3:
+    case KEY_PRE_EMPHASIS:
       runAction([](uint8_t value) {tx.setPreEmphasis(value);},&keyValue[idxMenu], 1, 0, 1);
       break;
-    case 4:
+    case KEY_RDS:
       runAction([](uint8_t value) {tx.rdsTxEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
-    case 5:
+    case KEY_RDS_PTY: 
+      runAction([](uint8_t value) {tx.rdsSetPTY(value);}, &keyValue[idxMenu], 1, 0, 11);
+      break;
+    case KEY_INPEDANCE:
       runAction([](uint8_t value) {tx.setTxInputImpedance(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
-    case 6:
+    case KEY_SOFT_CLIP_ENABLE:
       runAction([](uint8_t value) {tx.setTxSoftClippingEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
-    case 7:
+    case KEY_SOFT_CLIP_THRESHOLD:
       runAction([](uint8_t value) {tx.setTxSoftClipThreshold(value);},&keyValue[idxMenu], 1, 0, 3);
       break;
-    case 8:
+    case KEY_GAIN_PILOT:
       runAction([](uint8_t value) {tx.setTxPilotGain(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
-    case 9:
+    case KEY_FREQ_DERIVATION:
       runAction([](uint8_t value) {tx.setTxFrequencyDerivation(value);},&keyValue[idxMenu], 1, 0, 5);
       break;
-    case 10:
+    case KEY_BUFFER_GAIN:
       runAction([](uint8_t value) {tx.setTxInputBufferGain(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
-    case 11:
+    case KEY_RDS_FREQ_DEV:
       runAction([](uint8_t value) {tx.rdsSetFrequencyDerivation(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
-    case 12:
+    case KEY_MAIN_SCREEN:
       enablePWM(pwmPowerDuty);  // Turn the PWM on again.
       return 0;
       break;
@@ -678,6 +707,7 @@ uint8_t doMenu(uint8_t idxMenu) {
   saveAllTransmitterInformation();  // Saves the current modified data to the EEPROM
   return 1;
 }
+
 
 /**
    Here are some recommended configurations for testing the RDS features
