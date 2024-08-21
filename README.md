@@ -514,8 +514,6 @@ If you find this project useful, consider making a donation so that the author o
 
 ## Most Frequent Problems
 
-### The system is unstable or does not start
-
 1. Avoid using a computer connected to the mains during testing. The electrical grid can disturb the communication between the Arduino based board and the QN8066 device.
 2. Check the I2C bus pull-up resistors.
 3. Check the voltage on the digital pins of the QN8066.  It is not be greater than 3.6V.  
@@ -524,7 +522,15 @@ If you find this project useful, consider making a donation so that the author o
 6. Do not try to power your Arduino based board designed to work with 3.3V with greater voltage. See the technical specifications of your Arduino Board and remember that the maximum voltage of the QN8066 digital interface is 3.6V.
 7. During the implementation of your sketch, do not use high power (above 1/2 W) through an RF amplifier without proper shielding practices. The QN8066, particularly the I2C bus, is sensitive to spurious RF signals and may lose communication with the controller. Preferably, use a dummy load.
 8. Avoid using long wiring for the I2C connection.
+9. **Good grounding**: Through good grounding, it was possible to make the system more stable.
  
+
+
+
+
+
+
+
 
 
 ## References 
