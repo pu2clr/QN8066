@@ -216,7 +216,7 @@ const char *menu[] = { "Frequency",
                        "Stereo/Mono",
                        "Pre-emphasis",
                        "RDS",
-                       "Inpedance",
+                       "Impedance",
                        "Sft Clip. Enable",
                        "Sft Clip. Thres.",
                        "Gain Pilot",
@@ -234,7 +234,7 @@ enum MenuKeys {
   KEY_MONO_ESTEREO,         // 2
   KEY_PRE_EMPHASIS,         // 3
   KEY_RDS,                  // 4
-  KEY_INPEDANCE,            // 5
+  KEY_IMPEDANCE,            // 5
   KEY_SOFT_CLIP_ENABLE,     // 6
   KEY_SOFT_CLIP_THRESHOLD,  // 7
   KEY_GAIN_PILOT,           // 8
@@ -256,7 +256,7 @@ KeyValue keyValue[] = {
   { 0, tabMonoStereo },            // KEY_MONO_ESTEREO
   { 1, tabPreEmphasis },           // KEY_PRE_EMPHASIS
   { 0, tabRDS },                   // KEY_RDS
-  { 2, tabImpedance },             // KEY_INPEDANCE
+  { 2, tabImpedance },             // KEY_IMPEDANCE
   { 0, tabTxSoftClipEnable },      // KEY_SOFT_CLIP_ENABLE
   { 1, tabTxSoftClipThreshold },   // KEY_SOFT_CLIP_THRESHOLD
   { 2, tabGainTxPilot },           // KEY_GAIN_PILOT
@@ -362,7 +362,7 @@ void setup() {
   // Therefore, before changing the transmitter's configuration parameters, it must be disabled (Duty 0).
 
   // Sets the transmitter with the previous setup parameters
-  tx.setTxInputImpedance(keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].idx);  // 40Kohm
+  tx.setTxInputImpedance(keyValue[KEY_IMPEDANCE].value[keyValue[KEY_IMPEDANCE].key].idx);  // 40Kohm
   tx.setTxPilotGain(keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].idx);
   tx.setTxSoftClippingEnable(keyValue[KEY_SOFT_CLIP_ENABLE].value[keyValue[KEY_SOFT_CLIP_ENABLE].key].idx);
   tx.setTxSoftClipThreshold(keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
@@ -420,7 +420,7 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address + 4, keyValue[KEY_MONO_ESTEREO].key);
   EEPROM.update(eeprom_address + 5, keyValue[KEY_PRE_EMPHASIS].key);
   EEPROM.update(eeprom_address + 6, keyValue[KEY_RDS].key);
-  EEPROM.update(eeprom_address + 7, keyValue[KEY_INPEDANCE].key);
+  EEPROM.update(eeprom_address + 7, keyValue[KEY_IMPEDANCE].key);
   EEPROM.update(eeprom_address + 8, keyValue[KEY_SOFT_CLIP_ENABLE].key);
   EEPROM.update(eeprom_address + 9, keyValue[KEY_SOFT_CLIP_THRESHOLD].key);
   EEPROM.update(eeprom_address + 10, keyValue[KEY_GAIN_PILOT].key);
@@ -436,7 +436,7 @@ void readAllTransmitterInformation() {
   keyValue[KEY_MONO_ESTEREO].key = EEPROM.read(eeprom_address + 4);
   keyValue[KEY_PRE_EMPHASIS].key = EEPROM.read(eeprom_address + 5);
   keyValue[KEY_RDS].key = EEPROM.read(eeprom_address + 6);
-  keyValue[KEY_INPEDANCE].key = EEPROM.read(eeprom_address + 7);
+  keyValue[KEY_IMPEDANCE].key = EEPROM.read(eeprom_address + 7);
   keyValue[KEY_SOFT_CLIP_ENABLE].key = EEPROM.read(eeprom_address + 8);
   keyValue[KEY_SOFT_CLIP_THRESHOLD].key = EEPROM.read(eeprom_address + 9);
   keyValue[KEY_GAIN_PILOT].key = EEPROM.read(eeprom_address + 10);
@@ -511,7 +511,7 @@ void showStatus(uint8_t page) {
     lcd.setCursor(0, 0);
     sprintf(str, "FSM: %d", tx.getFsmStateCode());
     lcd.print(str);
-    sprintf(str, "RIN:%s", keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].desc);
+    sprintf(str, "RIN:%s", keyValue[KEY_IMPEDANCE].value[keyValue[KEY_IMPEDANCE].key].desc);
     lcd.setCursor(9, 0);
     lcd.print(str);
     lcd.setCursor(0, 1);

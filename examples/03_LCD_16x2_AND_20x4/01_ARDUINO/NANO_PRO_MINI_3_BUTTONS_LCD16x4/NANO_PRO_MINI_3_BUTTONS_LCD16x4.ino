@@ -242,16 +242,16 @@ TableValue txRdsFreqDev[] = {
 const char *menu[] = { "Frequency",
                        "Power",
                        "Stereo/Mono",
+                       "Gain Pilot", 
+                       "Freq. Deriv.",                                             
                        "Pre-emphasis",
                        "RDS",
+                       "RDS Freq. Dev.",                       
                        "RDS PTY",
-                       "Inpedance",
+                       "Impedance",
+                       "Buffer gain",                       
                        "Sft Clip. Enable",
                        "Sft Clip. Thres.",
-                       "Gain Pilot",
-                       "Freq. Deriv.",
-                       "Buffer gain",
-                       "RDS Freq. Dev.",
                        "Main Screen" };
 int8_t menuIdx = 0;
 const int lastMenu = (sizeof(menu) / sizeof(menu[0])) - 1;  // Laste menu item position
@@ -261,16 +261,16 @@ enum MenuKeys {
   KEY_FREQUENCY,            // 0
   KEY_POWER,                // 1
   KEY_MONO_STEREO,          // 2
-  KEY_PRE_EMPHASIS,         // 3
-  KEY_RDS,                  // 4
-  KEY_RDS_PTY,              // 5
-  KEY_INPEDANCE,            // 6
-  KEY_SOFT_CLIP_ENABLE,     // 7
-  KEY_SOFT_CLIP_THRESHOLD,  // 8
-  KEY_GAIN_PILOT,           // 9
-  KEY_FREQ_DERIVATION,      // 10
-  KEY_BUFFER_GAIN,          // 11
-  KEY_RDS_FREQ_DEV,         // 12
+  KEY_GAIN_PILOT,           // 3
+  KEY_FREQ_DERIVATION,      // 4  
+  KEY_PRE_EMPHASIS,         // 5
+  KEY_RDS,                  // 6
+  KEY_RDS_FREQ_DEV,         // 7  
+  KEY_RDS_PTY,              // 8
+  KEY_IMPEDANCE,            // 9
+  KEY_BUFFER_GAIN,          // 10  
+  KEY_SOFT_CLIP_ENABLE,     // 11
+  KEY_SOFT_CLIP_THRESHOLD,  // 12
   KEY_MAIN_SCREEN           // 13
 };
 
@@ -284,16 +284,16 @@ KeyValue keyValue[] = {
   { 0, NULL },                     // KEY_FREQUENCY
   { 0, NULL },                     // KEY_POWER
   { 0, tabMonoStereo },            // KEY_MONO_STEREO
+  { 2, tabGainTxPilot },           // KEY_GAIN_PILOT  
+  { 2, tabTxFrequencyDeviation },  // KEY_FREQ_DERIVATION  
   { 1, tabPreEmphasis },           // KEY_PRE_EMPHASIS
   { 0, tabRDS },                   // KEY_RDS
+  { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV  
   { 6, tabRdsPty },                // KEY_RDS_PTY
-  { 2, tabImpedance },             // KEY_INPEDANCE
+  { 2, tabImpedance },             // KEY_IMPEDANCE
+  { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN  
   { 0, tabTxSoftClipEnable },      // KEY_SOFT_CLIP_ENABLE
   { 1, tabTxSoftClipThreshold },   // KEY_SOFT_CLIP_THRESHOLD
-  { 2, tabGainTxPilot },           // KEY_GAIN_PILOT
-  { 2, tabTxFrequencyDeviation },  // KEY_FREQ_DERIVATION
-  { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN
-  { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
   { 0, NULL }                      // KEY_MAIN_SCREEN
 };
 
@@ -383,7 +383,7 @@ void setup() {
   // Therefore, before changing the transmitter's configuration parameters, it must be disabled (Duty 0).
 
   // Sets the transmitter with the previous setup parameters
-  tx.setTxInputImpedance(keyValue[KEY_INPEDANCE].value[keyValue[KEY_INPEDANCE].key].idx);  // 40Kohm
+  tx.setTxInputImpedance(keyValue[KEY_IMPEDANCE].value[keyValue[KEY_IMPEDANCE].key].idx);  // 40Kohm
   tx.setTxPilotGain(keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].idx);
   tx.setTxSoftClippingEnable(keyValue[KEY_SOFT_CLIP_ENABLE].value[keyValue[KEY_SOFT_CLIP_ENABLE].key].idx);
   tx.setTxSoftClipThreshold(keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
@@ -433,7 +433,7 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address + 4, keyValue[KEY_MONO_STEREO].key);
   EEPROM.update(eeprom_address + 5, keyValue[KEY_PRE_EMPHASIS].key);
   EEPROM.update(eeprom_address + 6, keyValue[KEY_RDS].key);
-  EEPROM.update(eeprom_address + 7, keyValue[KEY_INPEDANCE].key);
+  EEPROM.update(eeprom_address + 7, keyValue[KEY_IMPEDANCE].key);
   EEPROM.update(eeprom_address + 8, keyValue[KEY_SOFT_CLIP_ENABLE].key);
   EEPROM.update(eeprom_address + 9, keyValue[KEY_SOFT_CLIP_THRESHOLD].key);
   EEPROM.update(eeprom_address + 10, keyValue[KEY_GAIN_PILOT].key);
@@ -450,7 +450,7 @@ void readAllTransmitterInformation() {
   keyValue[KEY_MONO_STEREO].key = EEPROM.read(eeprom_address + 4);
   keyValue[KEY_PRE_EMPHASIS].key = EEPROM.read(eeprom_address + 5);
   keyValue[KEY_RDS].key = EEPROM.read(eeprom_address + 6);
-  keyValue[KEY_INPEDANCE].key = EEPROM.read(eeprom_address + 7);
+  keyValue[KEY_IMPEDANCE].key = EEPROM.read(eeprom_address + 7);
   keyValue[KEY_SOFT_CLIP_ENABLE].key = EEPROM.read(eeprom_address + 8);
   keyValue[KEY_SOFT_CLIP_THRESHOLD].key = EEPROM.read(eeprom_address + 9);
   keyValue[KEY_GAIN_PILOT].key = EEPROM.read(eeprom_address + 10);
@@ -700,7 +700,7 @@ uint8_t doMenu(uint8_t idxMenu) {
       },
                 &keyValue[idxMenu], 1, 0, 11);
       break;
-    case KEY_INPEDANCE:
+    case KEY_IMPEDANCE:
       runAction([](uint8_t value) {
         tx.setTxInputImpedance(value);
       },

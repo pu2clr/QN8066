@@ -106,7 +106,7 @@ const uint8_t app_id = 86;  // Useful to check the EEPROM content before process
 const int eeprom_address = 0;
 
 // Menu
-const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Inpedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "Freq. Deriv.", "Buffer gain", "Main Screen" };
+const char *menu[] = { "Frequency", "Power", "Stereo/Mono", "Pre-emphasis", "RDS", "Impedance","Sft Clip. Enable",  "Sft Clip. Thres.",  "Gain Pilot", "Freq. Deriv.", "Buffer gain", "Main Screen" };
 int8_t menuIdx = 0;
 const int lastMenu = 11;
 
