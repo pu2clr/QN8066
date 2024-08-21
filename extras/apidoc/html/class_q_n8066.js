@@ -31,7 +31,7 @@ var class_q_n8066 =
     [ "setTxFrequencyDerivation", "group__group04.html#ga88ea23b676feb40a15725b9273eca95b", null ],
     [ "setResetDelay", "class_q_n8066.html#a0f742e2c0b420df9d26b83dd6ed43bb1", null ],
     [ "begin", "group__group02.html#ga2c08b4183ed0f9790be65c67b90ede93", null ],
-    [ "setup", "group__group02.html#gacc2e79aa0134a657191485184b2b603b", null ],
+    [ "setup", "group__group02.html#gaea0b761c45ccf8a361a84aedaaa91bb2", null ],
     [ "updateTxSetup", "group__group04.html#ga366e4fed2331cd9c22efb4ae555a5c57", null ],
     [ "setTxMode", "group__group02.html#ga160b5271537b74ba694c4033dec5f915", null ],
     [ "stopTransmitting", "group__group02.html#ga801b74d0c6d39c9c828f20a46fb3ce7c", null ],

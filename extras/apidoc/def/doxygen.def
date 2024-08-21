@@ -1106,7 +1106,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group02_1gacc2e79aa0134a657191485184b2b603b';
+      sec-mem-id   = 'group__group02_1gaea0b761c45ccf8a361a84aedaaa91bb2';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_

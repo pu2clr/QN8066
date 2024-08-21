@@ -30,7 +30,7 @@ var searchData=
   ['settxsoftclippingenable_27',['setTxSoftClippingEnable',['../group__group04.html#gab21e226857d1b2ac384623fd47784ce5',1,'QN8066']]],
   ['settxsoftclipthreshold_28',['setTxSoftClipThreshold',['../group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426',1,'QN8066']]],
   ['settxstereo_29',['setTxStereo',['../group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83',1,'QN8066']]],
-  ['setup_30',['setup',['../group__group02.html#gacc2e79aa0134a657191485184b2b603b',1,'QN8066']]],
+  ['setup_30',['setup',['../group__group02.html#gaea0b761c45ccf8a361a84aedaaa91bb2',1,'QN8066']]],
   ['setxtal_31',['setXtal',['../group__group02.html#ga84ef4ffd06a76d817114cbd2e222f6e5',1,'QN8066']]],
   ['starttransmitting_32',['startTransmitting',['../group__group02.html#ga8f5f8f73c0d0f1faa96a6b5bb8bde49b',1,'QN8066']]],
   ['stoptransmitting_33',['stopTransmitting',['../group__group02.html#ga801b74d0c6d39c9c828f20a46fb3ce7c',1,'QN8066']]]
