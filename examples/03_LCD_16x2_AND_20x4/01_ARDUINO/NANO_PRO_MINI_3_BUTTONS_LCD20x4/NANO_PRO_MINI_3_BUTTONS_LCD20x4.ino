@@ -289,7 +289,7 @@ KeyValue keyValue[] = {
   { 1, tabPreEmphasis },           // KEY_PRE_EMPHASIS
   { 0, tabRDS },                   // KEY_RDS
   { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV  
-  { 6, tabRdsPty },                // KEY_RDS_PTY
+  { 0, tabRdsPty },                // KEY_RDS_PTY
   { 2, tabImpedance },             // KEY_IMPEDANCE
   { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN  
   { 0, tabTxSoftClipEnable },      // KEY_SOFT_CLIP_ENABLE
@@ -392,6 +392,8 @@ void setup() {
   tx.setTxMono(keyValue[KEY_MONO_STEREO].value[keyValue[KEY_MONO_STEREO].key].idx);
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
   tx.rdsSetFrequencyDerivation(keyValue[KEY_RDS_FREQ_DEV].value[keyValue[KEY_RDS_FREQ_DEV].key].idx);
+  tx.setTxFrequencyDerivation(keyValue[KEY_FREQ_DERIVATION].value[keyValue[KEY_FREQ_DERIVATION].key].idx);
+  
   showStatus();
 
   // Checking RDS setup

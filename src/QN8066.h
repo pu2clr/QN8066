@@ -845,7 +845,7 @@ private:
 
   char rdsStationName[9] = " QN8066\r";   //!< Default Program Station (PS)
   uint16_t rdsPI = 33179;    //!< Default value for piCode (0x819B)
-  uint8_t rdsPTY = 5;       //!< The default program type (PTY) is 5, which is "Education" for RDS and "Rock" for RDBS.
+  uint8_t rdsPTY = 0;       //!< The default program type (PTY) is 5, which is "Education" for RDS and "Rock" for RDBS.
   uint8_t rdsTP = 0;        //!< Traffic Program (TP)
   uint8_t rdsSendError = 0;
 

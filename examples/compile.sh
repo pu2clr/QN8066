@@ -21,7 +21,7 @@ arduino-cli compile -b arduino:avr:nano ./02_RDS/TX_RDS2 --output-dir ~/Download
 
 
 echo "---> LCD16x02 - Minimalist"   
-arduino-cli compile -b arduino:avr:nano ./03_LCD_16x2_AND_20x4/01_ARDUINO/00_ARDUINO_MINIMALIST --output-dir ~/Downloads/hex/atmega/00_ARDUINO_MINIMALIST
+arduino-cli compile -b arduino:avr:nano ./03_LCD_16x2_AND_20x4/00_ARDUINO_MINIMALIST --output-dir ~/Downloads/hex/atmega/00_ARDUINO_MINIMALIST
 
 
 echo "---> Arduino Atmega328 LCD16x02"   
