@@ -1871,5 +1871,3 @@ void QN8066::convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t 
         }
     }
 }
-
-
