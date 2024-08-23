@@ -1044,7 +1044,7 @@ public:
   * }
   * @endcode     
   * @param pi - PI Code
-  * 
+  * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup 
   */
   void rdsSetPI(uint16_t pi) {this->rdsPI = pi;};
 
@@ -1055,6 +1055,7 @@ public:
   * @ingroup group05 TX RDS
   * @brief Gets the Program Identification (PI)
   * @param pi - PI Code
+  * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup   
   */
   uint8_t rdsGetPI() {return this->rdsPI;};
 
@@ -1063,6 +1064,7 @@ public:
   * @brief Sets the Program Type (PTY)
   * @param pty - Program type
   * @see The table of PTY Program Type for RDS and RDBS can be checkd here: https://en.wikipedia.org/wiki/Radio_Data_System
+  * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup   
   */
   void rdsSetPTY(uint16_t pty) {this->rdsPTY = pty;};
 
@@ -1070,6 +1072,7 @@ public:
   * @ingroup group05 TX RDS
   * @brief Gets the Program Type (PTY)
   * @param pty - Program type
+  * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup   
   */
   uint8_t rdsGetPTY() {return this->rdsPTY;};
 
@@ -1078,6 +1081,7 @@ public:
   * @ingroup group05 TX RDS
   * @brief Sets the Traffic Program.
   * @param tp - tp Code
+  * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup   
   */
   void rdsSetTP(uint16_t tp) {this->rdsTP = tp;};
 
@@ -1085,6 +1089,7 @@ public:
   * @ingroup group05 TX RDS
   * @brief Sets the Traffic Program.
   * @param tp - tp Code
+  * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup  
   */
   uint8_t rdsGetTP() {return this->rdsTP;};
 
@@ -1114,6 +1119,7 @@ public:
   * @brief Sets the wait time for the QN8066 to be available to send the next RDS block.
   * @details The default time is 60ms, but depending on the microcontroller you are using, it may be necessary to reduce this time.
   * @param syncTime - time in ms 
+  * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup   
   */
   inline void rdsSetSyncTime(uint8_t syncTime) {this->rdsSyncTime = syncTime; };
   
@@ -1122,6 +1128,7 @@ public:
   * @brief Sets the number of time that a group will be sent at once 
   * @details The default value is 5. 
   * @param count - number of times 
+  * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup   
   */
   inline void rdsSetRepeatSendGroup (uint8_t count) {this->rdsRepeatGroup = count;};
 

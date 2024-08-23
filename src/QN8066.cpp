@@ -1228,7 +1228,8 @@ void QN8066::rdsSetInterrupt(uint8_t value) {
  *
  * void loop() {
  * }
- * @endcode   
+ * @endcode  
+ * @see rdsSetPI, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup 
  */
 void QN8066::rdsInitTx(uint8_t countryId, uint8_t programId, uint8_t reference, uint8_t pty, uint8_t rdsSyncTime, uint8_t rdsRepeatGroup) {
   // this->setRegister(0x6E, 0B10110111);  // TEST - Stop Auto Gain Correction (AGC)
@@ -1245,7 +1246,7 @@ void QN8066::rdsInitTx(uint8_t countryId, uint8_t programId, uint8_t reference, 
  * @param countryId - Country Identifier (First 4 Bits)
  * @param programId - Program Id code
  * @param reference - Program Reference Number  (8 bits). It  provides a unique reference number for the specific station or program.
- * @see rdsSetPI, rdsInitTx
+ * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup
  */
 void QN8066::rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference) {
   RDS_BLOCK1 pi; 
@@ -1274,6 +1275,7 @@ void QN8066::rdsSetPI(uint8_t countryId, uint8_t programId, uint8_t reference) {
  * void loop() {
  * }
  * @endcode   
+ * @see rdsSetPI, rdsInitTx, rdsTxEnable, rdsGetPI, rdsSetPTY, rdsGetPTY, rdsSetTP, rdsGetTP rdsSetSyncTime, rdsSetRepeatSendGroup 
  */
 void QN8066::rdsTxEnable(bool value) {
   qn8066_system2 system2;
