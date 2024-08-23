@@ -122,6 +122,9 @@
 
 #define STATUS_REFRESH_TIME 4000
 
+#define MAX_LCD_COL 16
+#define MAX_LCD_LIN 2
+
 int8_t lcdPage = 0;
 long showStatusTime = millis();
 
@@ -162,9 +165,9 @@ TableValue tabImpedance[] = {
 };
 
 TableValue tabGainTxPilot[] = {
-  { 7,  " 7%" },   // 0
-  { 8,  " 8%" },   // 1
-  { 9,  " 9%" },   // 2
+  { 7,  "7%" },   // 0
+  { 8,  "8%" },   // 1
+  { 9,  "9%" },   // 2
   { 10, "10%" }  // 3
 };
 
@@ -174,18 +177,18 @@ TableValue tabTxSoftClipEnable[] = {
 };
 
 TableValue tabTxSoftClipThreshold[] = {
-  { 0, "  3dB" },    // 0
+  { 0, "3dB" },    // 0
   { 1, "4.5dB" },  // 1
-  { 2, "  6dB" },    // 2
-  { 3, "  9dB" }     // 3
+  { 2, "6dB" },    // 2
+  { 3, "9dB" }     // 3
 };
 
 TableValue tabTxFrequencyDeviation[] = {
-  { 60,  " 41,5kHz" },   // 0
-  { 87,  " 60,0kHz" },   // 1
-  { 108, " 74,5kHz" },  // 2
-  { 120, " 92,8kHz" },  // 3
-  { 140, " 96,6kHz" },  // 4
+  { 60,  "41,5kHz" },   // 0
+  { 87,  "60,0kHz" },   // 1
+  { 108, "74,5kHz" },  // 2
+  { 120, "92,8kHz" },  // 3
+  { 140, "96,6kHz" },  // 4
   { 160, "110,4kHz" }   // 5
 };
 
@@ -343,7 +346,7 @@ void setup() {
 
   tx.setI2CFastMode();
 
-  lcd.begin(16, 2);
+  lcd.begin(MAX_LCD_COL, MAX_LCD_LIN);
 
   // If you want to reset the eeprom, keep the BT_MENU button pressed during statup
   if (digitalRead(BT_MENU) == LOW) {
@@ -556,8 +559,15 @@ void showStatus(uint8_t page) {
   }
   lcd.display();
 }
+
+void lcdClearLine(uint8_t line) {
+  lcd.setCursor(0, line);
+  for (uint8_t i = 0; i < MAX_LCD_COL; i++) 
+    lcd.print(' ');
+}
 // Shows the given parameter to be updated
 void showParameter(char *desc) {
+  lcdClearLine(1);
   lcd.setCursor(0, 1);
   lcd.print(">");
   lcd.print(desc);

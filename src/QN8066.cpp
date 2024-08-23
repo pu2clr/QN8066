@@ -486,8 +486,27 @@ bool QN8066::isRxStereo() {
  * @param stopFrequyency - final frequency to stop the search.
  * @param frequencyStep  - 0 = 50KHz; 1 = 100KHz; 2 =  200KHz
  */
-void QN8066::scanRxStation(uint16_t startFrequency, uint16_t stopFrequyency, uint16_t frequencyStep ) {
-  // TODO
+void QN8066::scanRxStation(uint16_t startFrequency, uint16_t stopFrequyency, uint8_t frequencyStep ) {
+
+  qn8066_ch_start start; 
+  qn8066_ch_stop stop; 
+  qn8066_ch_step step; 
+
+  step.raw = this->getRegister(QN_CH_STEP);
+
+  int16_t auxFreq = (startFrequency - 600)  * 2;
+  start.CH_START =  0B0000000011111111 & auxFreq;
+  step.arg.CH_STA = auxFreq >> 8; 
+
+  auxFreq = (stopFrequyency - 600)  * 2;
+  stop.CH_STOP =  0B0000000011111111 & auxFreq;
+  step.arg.CH_STP = auxFreq >> 8;
+
+  step.arg.CH_FSTEP =  frequencyStep; 
+
+  this->setRegister(QN_CH_START,start.raw);
+  this->setRegister(QN_CH_STOP, stop.raw);
+  this->setRegister(QN_CH_STEP, step.raw);
 } 
 
 /** @defgroup group04 TX Functions*/
