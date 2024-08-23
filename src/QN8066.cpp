@@ -340,12 +340,95 @@ void QN8066::setup(uint16_t xtalDiv,
 /**
  * @ingroup group03 RX
  * @brief sets the devive to RX
+ * @param frequency - frequency that the receiver will start
  */
-void QN8066::setRX() {
-  uint8_t value = 0B11100011;
-  this->setRegister(QN_SYSTEM1, value);
-  // TODO...
+void QN8066::setRX(uint16_t frequency) {
+  this->system1.raw = 0B11100011;
+  this->setRegister(QN_SYSTEM1, this->system1.raw); // SYSTEM1 => 11100011  =>  swrst = 1; recal = 1; stnby = 1; ccs_ch_dis = 1; cca_ch_dis = 1
+  this->setRegister(QN_SYSTEM2, this->system2.raw); 
+  this->system2.arg.rdsrdy = !(this->system2.arg.rdsrdy); // Toggle 
+  this->setRegister(QN_SYSTEM2, this->system2.raw); 
+  this->setRegister(QN_CCA, this->cca.raw); // CCA => 01010000 => xtal_inj = 0; imr = 1; SNR_CCA_TH = 010000
+  // Sets the crystal oscillator divider
+  this->setRegister(QN_XTAL_DIV0, this->xtal_div & 0xFF); // Lower 8 bits of xtal_div[10:0].
+  this->setRegister(QN_XTAL_DIV1, (this->xtal_div >> 8) |  0B0001000); // Higher 3 bits of xtal_div[10:0].
+  this->setRegister(QN_XTAL_DIV2, 0B01011100); // XTAL_DIV2 = > 01011100 (It is the default value)
+
+  // this->setRegister(QN_SYSTEM1, this->system1.raw); // SYSTEM1 => 00001011 => Set TX On
+  this->setRegister(QN_FDEV, this->fdev.raw);    // FDEV => 01111101 => 125 (Decimal)
+  this->setRegister(QN_RDS, this->rds.raw);     // RDS => 00111100 => Line_in_en = 0; RDSFDEV = 60 (Decimal) 
+  this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
+
+  int16_t auxFreq = (frequency - 600)  * 2;
+  this->int_ctrl.raw =  0B00100000 | auxFreq >> 8;
+  this->setRegister(QN_INT_CTRL,this->int_ctrl.raw );
+  this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
+
+  // Checking unkown registers
+  // this->setRegister(0x49, 0B11101000); 
+  this->setRegister(0x49, 0B11011111); 
+  this->setRegister(0x6E, 0B11111111); 
+
+  this->system1.raw = 0B00010011; // Receiver request
+  this->setRegister(QN_SYSTEM1, this->system1.raw); // SYSTEM1 => 00001011 => txreq = 1; ccs_ch_dis = 1; cca_ch_dis = 1 
+  // this->setRegister(QN_REG_VGA, 0B01011011); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
+  this->setRegister(QN_REG_VGA, this->reg_vga.raw); // REG_VGA =>  01011011 => Tx_sftclpen = 0; TXAGC_GVGA = 101; TXAGC_GDB = 10; RIN = 11 (80K)
+  delay(100);
 }
+
+/**
+ * @ingroup group03 RX
+ * @brief sets the receiver frequency
+ */
+void QN8066::setRxFrequency(uint16_t frequency) {
+  int16_t auxFreq = (frequency - 600)  * 2;
+  this->int_ctrl.raw =  0B00100000 | auxFreq >> 8;
+  this->setRegister(QN_INT_CTRL,this->int_ctrl.raw );
+  this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
+}
+
+
+/**
+ * @ingroup group03 RX
+ * @brief Enables RDS for RX
+ */
+void QN8066::rdsEnableRX(bool value) {
+  this->system2.arg.rx_rdsen = value; 
+  this->setRegister(QN_SYSTEM2, this->system2.raw);
+}
+
+
+/**
+ * @ingroup group03 RX
+ * @brief Mute or unmute the audio in receiver mode
+ * @param value - if true mutes the audio; if false, mute disabled 
+ */
+void QN8066::setAudioMuteRX(bool value) {
+  this->system2.arg.rx_mute = value; 
+  this->setRegister(QN_SYSTEM2, this->system2.raw);
+}
+
+/**
+ * @ingroup group03 RX
+ * @brief Gets the current SNR (Estimated RF input)
+ * @return current SNR in dB
+ */
+uint8_t QN8066::getRxSNR() {
+  return  this->getRegister(QN_SNR);
+}
+
+
+/**
+ * @ingroup group03 RX
+ * @brief Gets the current RSSI
+ * @details In-band signal RSSI (Received signal strength indicator) dBuV value. dBuV=RSSI-49
+ * @return current RSSI in dB
+ */
+uint8_t QN8066::getRxRSSI() {
+    return  this->getRegister(QN_RSSISIG);
+}
+
+
 
 /** @defgroup group04 TX Functions*/
 

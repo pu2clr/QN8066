@@ -155,7 +155,7 @@ typedef union {
 typedef union {
   uint8_t SNRDB;
   uint8_t raw;
-} qn8066_srn;
+} qn8066_snr;
 
 /**
  * @ingroup group00
@@ -879,7 +879,14 @@ public:
    * @brief SYSTEM1 SETUP
    *
    */
-  void setRX();
+  void setRX(uint16_t frequency);
+  void setRxFrequency(uint16_t frequency);
+  void rdsEnableRX(bool value);
+  void setAudioMuteRX(bool value);
+  uint8_t getRxSNR();
+  uint8_t getRxRSSI();
+  
+
   
   void setTX(uint16_t frequency); // RESET the system and set to TX mode at a given frequency
 

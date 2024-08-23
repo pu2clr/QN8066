@@ -12,9 +12,9 @@ var group__group00 =
       [ "arg", "group__group00.html#a6644e1f724bc53eb6745f345235fb782", null ],
       [ "raw", "group__group00.html#ad51b4d4d9ddac0d28a7afa941512bbbd", null ]
     ] ],
-    [ "qn8066_srn", "group__group00.html#unionqn8066__srn", [
-      [ "SNRDB", "group__group00.html#a40858883345a2297b86e1adfeea40baa", null ],
-      [ "raw", "group__group00.html#a6996a52c351a3941227d852940d4e56a", null ]
+    [ "qn8066_snr", "group__group00.html#unionqn8066__snr", [
+      [ "SNRDB", "group__group00.html#aa0e9d284450bf6a500fed7ad493bed14", null ],
+      [ "raw", "group__group00.html#afd8b39b3e1720c73b76bb4eb9b0a7407", null ]
     ] ],
     [ "qn8066_rssisig", "group__group00.html#unionqn8066__rssisig", [
       [ "RSSISIG", "group__group00.html#a61a09b9e91ca909dce119c219c6a9bf2", null ],

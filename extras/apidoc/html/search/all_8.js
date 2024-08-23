@@ -33,7 +33,7 @@ var searchData=
   ['qn8066_5frx_5fch_30',['qn8066_rx_ch',['../group__group00.html#unionqn8066__rx__ch',1,'']]],
   ['qn8066_5frx_5frds_31',['qn8066_rx_rds',['../group__group00.html#unionqn8066__rx__rds',1,'']]],
   ['qn8066_5frx_5frds_2earg_32',['qn8066_rx_rds.arg',['../group__group00.html#structqn8066__rx__rds_8arg',1,'']]],
-  ['qn8066_5fsrn_33',['qn8066_srn',['../group__group00.html#unionqn8066__srn',1,'']]],
+  ['qn8066_5fsnr_33',['qn8066_snr',['../group__group00.html#unionqn8066__snr',1,'']]],
   ['qn8066_5fstatus1_34',['qn8066_status1',['../group__group00.html#unionqn8066__status1',1,'']]],
   ['qn8066_5fstatus1_2earg_35',['qn8066_status1.arg',['../group__group00.html#structqn8066__status1_8arg',1,'']]],
   ['qn8066_5fstatus2_36',['qn8066_status2',['../group__group00.html#unionqn8066__status2',1,'']]],
