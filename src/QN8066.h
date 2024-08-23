@@ -892,8 +892,7 @@ public:
   bool isRxStereo();
 
 
-  void scanStationStart(); 
-  void scanStationStop();
+  void scanRxStation(uint16_t startFrequency, uint16_t stopFrequyency, uint16_t frequencyStep ); 
 
 
 

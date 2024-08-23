@@ -212,8 +212,8 @@ Functions</h2></td></tr>
 <div class="ttc" id="a_q_n8066_8h_html"><div class="ttname"><a href="_q_n8066_8h.html">QN8066.h</a></div></div>
 <div class="ttc" id="aclass_q_n8066_html"><div class="ttname"><a href="class_q_n8066.html">QN8066</a></div><div class="ttdoc">QN8066 Class.</div><div class="ttdef"><b>Definition:</b> QN8066.h:822</div></div>
 <div class="ttc" id="agroup__group02_html_gaea0b761c45ccf8a361a84aedaaa91bb2"><div class="ttname"><a href="group__group02.html#gaea0b761c45ccf8a361a84aedaaa91bb2">QN8066::setup</a></div><div class="ttdeci">void setup(uint16_t xtalDiv=1000, bool mono=false, bool rds=false, uint8_t PreEmphasis=0, uint8_t xtalInj=0, uint8_t imageRejection=1, uint8_t txSoftClipThreshold=0, uint8_t oneMinutOff=3, uint8_t gainTxPLT=9, uint8_t txFreqDev=125, uint8_t rdsLineIn=0, uint8_t rdsFreqDev=60, uint8_t inImpedance=1, uint8_t txAgcDig=0, uint8_t txAgcBuffer=1, uint8_t txSoftClip=0)</div><div class="ttdoc">QN8066 initial configuration.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:290</div></div>
-<div class="ttc" id="agroup__group04_html_ga78ce701a735ccc6a02fb75a2a51f48ed"><div class="ttname"><a href="group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed">QN8066::resetAudioPeak</a></div><div class="ttdeci">void resetAudioPeak()</div><div class="ttdoc">TX Audio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.h:970</div></div>
-<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:508</div></div>
+<div class="ttc" id="agroup__group04_html_ga78ce701a735ccc6a02fb75a2a51f48ed"><div class="ttname"><a href="group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed">QN8066::resetAudioPeak</a></div><div class="ttdeci">void resetAudioPeak()</div><div class="ttdoc">TX Audio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.h:969</div></div>
+<div class="ttc" id="agroup__group04_html_ga8ba44d4f2df4cd694886cbe73f73cfaa"><div class="ttname"><a href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">QN8066::setTX</a></div><div class="ttdeci">void setTX(uint16_t frequency)</div><div class="ttdoc">Sets the TX mode.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:516</div></div>
 </div><!-- fragment --> 
 <p class="reference">References <a class="el" href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear()</a>.</p>
 
@@ -291,7 +291,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga7fbea7d2ae6bdf9719ee252e6a612a83"><div class="ttname"><a href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">QN8066::setTxStereo</a></div><div class="ttdeci">void setTxStereo(bool value=true)</div><div class="ttdoc">Set TX Stereo or Mono.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:603</div></div>
+<div class="ttc" id="agroup__group04_html_ga7fbea7d2ae6bdf9719ee252e6a612a83"><div class="ttname"><a href="group__group04.html#ga7fbea7d2ae6bdf9719ee252e6a612a83">QN8066::setTxStereo</a></div><div class="ttdeci">void setTxStereo(bool value=true)</div><div class="ttdoc">Set TX Stereo or Mono.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:611</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -329,7 +329,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga469cbfe6404a8ef59a98e805fb5095fb"><div class="ttname"><a href="group__group04.html#ga469cbfe6404a8ef59a98e805fb5095fb">QN8066::setTxMono</a></div><div class="ttdeci">void setTxMono(uint8_t value=0)</div><div class="ttdoc">Set TX Stereo or Mono (Same setTxStereo )</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:630</div></div>
+<div class="ttc" id="agroup__group04_html_ga469cbfe6404a8ef59a98e805fb5095fb"><div class="ttname"><a href="group__group04.html#ga469cbfe6404a8ef59a98e805fb5095fb">QN8066::setTxMono</a></div><div class="ttdeci">void setTxMono(uint8_t value=0)</div><div class="ttdoc">Set TX Stereo or Mono (Same setTxStereo )</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:638</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -362,7 +362,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga859311799654c9a914daa41c74c7bfcd"><div class="ttname"><a href="group__group04.html#ga859311799654c9a914daa41c74c7bfcd">QN8066::getTxMono</a></div><div class="ttdeci">uint8_t getTxMono()</div><div class="ttdoc">Gets TX Stereo or Mono setup.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:658</div></div>
+<div class="ttc" id="agroup__group04_html_ga859311799654c9a914daa41c74c7bfcd"><div class="ttname"><a href="group__group04.html#ga859311799654c9a914daa41c74c7bfcd">QN8066::getTxMono</a></div><div class="ttdeci">uint8_t getTxMono()</div><div class="ttdoc">Gets TX Stereo or Mono setup.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:666</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -399,7 +399,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_gab1a0d8a388d2ca976c67b2f31c4d8be1"><div class="ttname"><a href="group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1">QN8066::setTxPreEmphasis</a></div><div class="ttdeci">void setTxPreEmphasis(uint8_t value=75)</div><div class="ttdoc">Pre-emphasis and de-emphasis time constant.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:682</div></div>
+<div class="ttc" id="agroup__group04_html_gab1a0d8a388d2ca976c67b2f31c4d8be1"><div class="ttname"><a href="group__group04.html#gab1a0d8a388d2ca976c67b2f31c4d8be1">QN8066::setTxPreEmphasis</a></div><div class="ttdeci">void setTxPreEmphasis(uint8_t value=75)</div><div class="ttdoc">Pre-emphasis and de-emphasis time constant.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:690</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -436,7 +436,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga70f715c1483a62426d8368c1defa93dd"><div class="ttname"><a href="group__group04.html#ga70f715c1483a62426d8368c1defa93dd">QN8066::setPreEmphasis</a></div><div class="ttdeci">void setPreEmphasis(uint8_t value=1)</div><div class="ttdoc">Pre-emphasis and de-emphasis time constant - Same setTxPreEmphasis.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:710</div></div>
+<div class="ttc" id="agroup__group04_html_ga70f715c1483a62426d8368c1defa93dd"><div class="ttname"><a href="group__group04.html#ga70f715c1483a62426d8368c1defa93dd">QN8066::setPreEmphasis</a></div><div class="ttdeci">void setPreEmphasis(uint8_t value=1)</div><div class="ttdoc">Pre-emphasis and de-emphasis time constant - Same setTxPreEmphasis.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:718</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -474,7 +474,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_gad46b7a63f4c0887a2b0c9b1b068739d4"><div class="ttname"><a href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">QN8066::setTxPilotGain</a></div><div class="ttdeci">void setTxPilotGain(uint8_t value)</div><div class="ttdoc">Gain of TX pilot to adjust pilot frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:738</div></div>
+<div class="ttc" id="agroup__group04_html_gad46b7a63f4c0887a2b0c9b1b068739d4"><div class="ttname"><a href="group__group04.html#gad46b7a63f4c0887a2b0c9b1b068739d4">QN8066::setTxPilotGain</a></div><div class="ttdeci">void setTxPilotGain(uint8_t value)</div><div class="ttdoc">Gain of TX pilot to adjust pilot frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:746</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -524,7 +524,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga7e51f19bfb612210c48d3e1e85b7b426"><div class="ttname"><a href="group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426">QN8066::setTxSoftClipThreshold</a></div><div class="ttdeci">void setTxSoftClipThreshold(uint8_t value)</div><div class="ttdoc">TX soft clip threshold.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:775</div></div>
+<div class="ttc" id="agroup__group04_html_ga7e51f19bfb612210c48d3e1e85b7b426"><div class="ttname"><a href="group__group04.html#ga7e51f19bfb612210c48d3e1e85b7b426">QN8066::setTxSoftClipThreshold</a></div><div class="ttdeci">void setTxSoftClipThreshold(uint8_t value)</div><div class="ttdoc">TX soft clip threshold.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:783</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -561,7 +561,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga59c9bd87716f1c0ffb1be2a143a95571"><div class="ttname"><a href="group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571">QN8066::setTxOffAfterOneMinuteNoAudio</a></div><div class="ttdeci">void setTxOffAfterOneMinuteNoAudio(bool value)</div><div class="ttdoc">Set of 1 minute time for PA off when no audio.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:801</div></div>
+<div class="ttc" id="agroup__group04_html_ga59c9bd87716f1c0ffb1be2a143a95571"><div class="ttname"><a href="group__group04.html#ga59c9bd87716f1c0ffb1be2a143a95571">QN8066::setTxOffAfterOneMinuteNoAudio</a></div><div class="ttdeci">void setTxOffAfterOneMinuteNoAudio(bool value)</div><div class="ttdoc">Set of 1 minute time for PA off when no audio.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:809</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -598,7 +598,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_gad1cad21dc29703b30df776dbbb98a08a"><div class="ttname"><a href="group__group04.html#gad1cad21dc29703b30df776dbbb98a08a">QN8066::setTxOffAfterOneMinute</a></div><div class="ttdeci">void setTxOffAfterOneMinute(uint8_t value)</div><div class="ttdoc">Sets PA Off after 1 minute time when no audio.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:828</div></div>
+<div class="ttc" id="agroup__group04_html_gad1cad21dc29703b30df776dbbb98a08a"><div class="ttname"><a href="group__group04.html#gad1cad21dc29703b30df776dbbb98a08a">QN8066::setTxOffAfterOneMinute</a></div><div class="ttdeci">void setTxOffAfterOneMinute(uint8_t value)</div><div class="ttdoc">Sets PA Off after 1 minute time when no audio.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:836</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -635,7 +635,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga85384e9b43f34c41e7b9d4699cb6bfc7"><div class="ttname"><a href="group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7">QN8066::setAudioAnalogGain</a></div><div class="ttdeci">void setAudioAnalogGain(uint8_t value)</div><div class="ttdoc">Sets volume control gain of analog portion.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:855</div></div>
+<div class="ttc" id="agroup__group04_html_ga85384e9b43f34c41e7b9d4699cb6bfc7"><div class="ttname"><a href="group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7">QN8066::setAudioAnalogGain</a></div><div class="ttdeci">void setAudioAnalogGain(uint8_t value)</div><div class="ttdoc">Sets volume control gain of analog portion.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:863</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -672,7 +672,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga4670b899f6f3df01c4d967b7f461318a"><div class="ttname"><a href="group__group04.html#ga4670b899f6f3df01c4d967b7f461318a">QN8066::setAudioDigitalGain</a></div><div class="ttdeci">void setAudioDigitalGain(uint8_t value)</div><div class="ttdoc">Sets set digital volume gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:885</div></div>
+<div class="ttc" id="agroup__group04_html_ga4670b899f6f3df01c4d967b7f461318a"><div class="ttname"><a href="group__group04.html#ga4670b899f6f3df01c4d967b7f461318a">QN8066::setAudioDigitalGain</a></div><div class="ttdeci">void setAudioDigitalGain(uint8_t value)</div><div class="ttdoc">Sets set digital volume gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:893</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -709,7 +709,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_gadfd3134c2de7e8dd2e079e3abfbfe7a0"><div class="ttname"><a href="group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0">QN8066::setAudioDacHold</a></div><div class="ttdeci">void setAudioDacHold(bool value)</div><div class="ttdoc">DAC output control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:915</div></div>
+<div class="ttc" id="agroup__group04_html_gadfd3134c2de7e8dd2e079e3abfbfe7a0"><div class="ttname"><a href="group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0">QN8066::setAudioDacHold</a></div><div class="ttdeci">void setAudioDacHold(bool value)</div><div class="ttdoc">DAC output control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:923</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -746,7 +746,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_gade021b98b99e9239c390461d22020c4e"><div class="ttname"><a href="group__group04.html#gade021b98b99e9239c390461d22020c4e">QN8066::setAudioTxDiff</a></div><div class="ttdeci">void setAudioTxDiff(bool value)</div><div class="ttdoc">Tx audio input mode selection.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:943</div></div>
+<div class="ttc" id="agroup__group04_html_gade021b98b99e9239c390461d22020c4e"><div class="ttname"><a href="group__group04.html#gade021b98b99e9239c390461d22020c4e">QN8066::setAudioTxDiff</a></div><div class="ttdeci">void setAudioTxDiff(bool value)</div><div class="ttdoc">Tx audio input mode selection.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:951</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -797,7 +797,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga751bb2147b6355745b261cc8f86a017c"><div class="ttname"><a href="group__group04.html#ga751bb2147b6355745b261cc8f86a017c">QN8066::setTxInputImpedance</a></div><div class="ttdeci">void setTxInputImpedance(uint8_t value)</div><div class="ttdoc">TX mode input impedance for both L/R channels.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:981</div></div>
+<div class="ttc" id="agroup__group04_html_ga751bb2147b6355745b261cc8f86a017c"><div class="ttname"><a href="group__group04.html#ga751bb2147b6355745b261cc8f86a017c">QN8066::setTxInputImpedance</a></div><div class="ttdeci">void setTxInputImpedance(uint8_t value)</div><div class="ttdoc">TX mode input impedance for both L/R channels.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:989</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -849,7 +849,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga8eb4772b22c08ce7b44e52b01af342f5"><div class="ttname"><a href="group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5">QN8066::setTxDigitalGain</a></div><div class="ttdeci">void setTxDigitalGain(uint8_t value)</div><div class="ttdoc">TX digital gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1019</div></div>
+<div class="ttc" id="agroup__group04_html_ga8eb4772b22c08ce7b44e52b01af342f5"><div class="ttname"><a href="group__group04.html#ga8eb4772b22c08ce7b44e52b01af342f5">QN8066::setTxDigitalGain</a></div><div class="ttdeci">void setTxDigitalGain(uint8_t value)</div><div class="ttdoc">TX digital gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1027</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -907,7 +907,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga09843594c1c9203a738c3a18cbc78403"><div class="ttname"><a href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a></div><div class="ttdeci">void setTxInputBufferGain(uint8_t value)</div><div class="ttdoc">TX input buffer gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1059</div></div>
+<div class="ttc" id="agroup__group04_html_ga09843594c1c9203a738c3a18cbc78403"><div class="ttname"><a href="group__group04.html#ga09843594c1c9203a738c3a18cbc78403">QN8066::setTxInputBufferGain</a></div><div class="ttdeci">void setTxInputBufferGain(uint8_t value)</div><div class="ttdoc">TX input buffer gain.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1067</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -944,7 +944,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_gab21e226857d1b2ac384623fd47784ce5"><div class="ttname"><a href="group__group04.html#gab21e226857d1b2ac384623fd47784ce5">QN8066::setTxSoftClippingEnable</a></div><div class="ttdeci">void setTxSoftClippingEnable(bool value)</div><div class="ttdoc">TX soft clipping enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1087</div></div>
+<div class="ttc" id="agroup__group04_html_gab21e226857d1b2ac384623fd47784ce5"><div class="ttname"><a href="group__group04.html#gab21e226857d1b2ac384623fd47784ce5">QN8066::setTxSoftClippingEnable</a></div><div class="ttdeci">void setTxSoftClippingEnable(bool value)</div><div class="ttdoc">TX soft clipping enable.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1095</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -982,7 +982,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga88ea23b676feb40a15725b9273eca95b"><div class="ttname"><a href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">QN8066::setTxFrequencyDerivation</a></div><div class="ttdeci">void setTxFrequencyDerivation(uint8_t value)</div><div class="ttdoc">Specify total TX frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1115</div></div>
+<div class="ttc" id="agroup__group04_html_ga88ea23b676feb40a15725b9273eca95b"><div class="ttname"><a href="group__group04.html#ga88ea23b676feb40a15725b9273eca95b">QN8066::setTxFrequencyDerivation</a></div><div class="ttdeci">void setTxFrequencyDerivation(uint8_t value)</div><div class="ttdoc">Specify total TX frequency deviation.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1123</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1019,7 +1019,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_ga90eeea994b03d7c31ac09426982884c0"><div class="ttname"><a href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">QN8066::setPAC</a></div><div class="ttdeci">void setPAC(uint8_t PA_TRGT)</div><div class="ttdoc">PA output power target control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1139</div></div>
+<div class="ttc" id="agroup__group04_html_ga90eeea994b03d7c31ac09426982884c0"><div class="ttname"><a href="group__group04.html#ga90eeea994b03d7c31ac09426982884c0">QN8066::setPAC</a></div><div class="ttdeci">void setPAC(uint8_t PA_TRGT)</div><div class="ttdoc">PA output power target control.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1147</div></div>
 </div><!-- fragment --> 
 </div>
 </div>
@@ -1070,7 +1070,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_gaf68d40e6fdc7a17cb64d883d93af3886"><div class="ttname"><a href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a></div><div class="ttdeci">void setToggleTxPdClear()</div><div class="ttdoc">TX Audio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1223</div></div>
+<div class="ttc" id="agroup__group04_html_gaf68d40e6fdc7a17cb64d883d93af3886"><div class="ttname"><a href="group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886">QN8066::setToggleTxPdClear</a></div><div class="ttdeci">void setToggleTxPdClear()</div><div class="ttdoc">TX Audio peak clear signal.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1231</div></div>
 </div><!-- fragment --> 
 <p class="reference">Referenced by <a class="el" href="group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed">QN8066::resetAudioPeak()</a>.</p>
 
@@ -1104,7 +1104,7 @@ Functions</h2></td></tr>
 <div class="line"> </div>
 <div class="line"><span class="keywordtype">void</span> loop() {</div>
 <div class="line">}</div>
-<div class="ttc" id="agroup__group04_html_gaee7afb6a9a31a99fc29b8b9d7d0a00bc"><div class="ttname"><a href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">QN8066::getAudioPeakValue</a></div><div class="ttdeci">int getAudioPeakValue()</div><div class="ttdoc">Audio peak value at ADC input.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1252</div></div>
+<div class="ttc" id="agroup__group04_html_gaee7afb6a9a31a99fc29b8b9d7d0a00bc"><div class="ttname"><a href="group__group04.html#gaee7afb6a9a31a99fc29b8b9d7d0a00bc">QN8066::getAudioPeakValue</a></div><div class="ttdeci">int getAudioPeakValue()</div><div class="ttdoc">Audio peak value at ADC input.</div><div class="ttdef"><b>Definition:</b> QN8066.cpp:1260</div></div>
 </div><!-- fragment --> 
 <p class="reference">References <a class="el" href="group__group02.html#gafcb2a26df67c63e40800a29a559c5505">QN8066::getStatus3()</a>.</p>
 

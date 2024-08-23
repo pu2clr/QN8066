@@ -478,9 +478,17 @@ bool QN8066::isRxStereo() {
   return !(s1.arg.ST_MO_RX);
 }
 
-
-
-
+/**
+ * @ingroup group03 RX
+ * @brief   Scans a station
+ * @details Searches for a station within a specified frequency range.
+ * @param startFrequency - initial frequency to start the search.
+ * @param stopFrequyency - final frequency to stop the search.
+ * @param frequencyStep  - 0 = 50KHz; 1 = 100KHz; 2 =  200KHz
+ */
+void QN8066::scanRxStation(uint16_t startFrequency, uint16_t stopFrequyency, uint16_t frequencyStep ) {
+  // TODO
+} 
 
 /** @defgroup group04 TX Functions*/
 

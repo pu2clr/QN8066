@@ -128,6 +128,9 @@ Functions</h2></td></tr>
 <tr class="memitem:gac2fa9debab7269066cb939d5fa768d97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gac2fa9debab7269066cb939d5fa768d97">QN8066::isRxStereo</a> ()</td></tr>
 <tr class="memdesc:gac2fa9debab7269066cb939d5fa768d97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stereo receiving status.  <br /></td></tr>
 <tr class="separator:gac2fa9debab7269066cb939d5fa768d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaa679e9b03e5143c4164925bbf749e212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gaa679e9b03e5143c4164925bbf749e212">QN8066::scanRxStation</a> (uint16_t startFrequency, uint16_t stopFrequyency, uint16_t frequencyStep)</td></tr>
+<tr class="memdesc:gaa679e9b03e5143c4164925bbf749e212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scans a station.  <br /></td></tr>
+<tr class="separator:gaa679e9b03e5143c4164925bbf749e212"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -345,6 +348,50 @@ false not found a valid channel </dd></dl>
 
 <p>Stereo receiving status. </p>
 <dl class="section return"><dt>Returns</dt><dd>true - Stereo </dd></dl>
+
+</div>
+</div>
+<a id="gaa679e9b03e5143c4164925bbf749e212" name="gaa679e9b03e5143c4164925bbf749e212"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa679e9b03e5143c4164925bbf749e212">&#9670;&#160;</a></span>scanRxStation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::scanRxStation </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>startFrequency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>stopFrequyency</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>frequencyStep</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Scans a station. </p>
+<p>Searches for a station within a specified frequency range. </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">startFrequency</td><td>- initial frequency to start the search. </td></tr>
+    <tr><td class="paramname">stopFrequyency</td><td>- final frequency to stop the search. </td></tr>
+    <tr><td class="paramname">frequencyStep</td><td>- 0 = 50KHz; 1 = 100KHz; 2 = 200KHz </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
