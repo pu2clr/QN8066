@@ -885,7 +885,17 @@ public:
   void setAudioMuteRX(bool value);
   uint8_t getRxSNR();
   uint8_t getRxRSSI();
-  
+
+  bool isValidRxChannel();
+  bool isRxReceiving();
+  bool isRxAgcStable(); 
+  bool isRxStereo();
+
+
+  void scanStationStart(); 
+  void scanStationStop();
+
+
 
   
   void setTX(uint16_t frequency); // RESET the system and set to TX mode at a given frequency

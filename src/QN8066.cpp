@@ -428,6 +428,58 @@ uint8_t QN8066::getRxRSSI() {
     return  this->getRegister(QN_RSSISIG);
 }
 
+/**
+ * @ingroup group03 RX
+ * @brief   Gets a valid or no valid rx channel
+ * @details RXCCA status flag. To indicate whether a valid channel is found during RX CCA. 
+ * @details If a valid channel is found, channel index will stay there, and RXCCA_FAIL=0; 
+ * @details otherwise, it will stay at the end of scan range and RXCCA_FAIL=1.
+ * @return  true   valid channel
+ * @return  false  not found a valid channel
+ */
+bool QN8066::isValidRxChannel() {
+  qn8066_status1 s1;
+  s1.raw = this->getRegister(QN_STATUS1);
+  return !(s1.arg.rxcca_fail);
+}
+
+/**
+ * @ingroup group03 RX
+ * @brief   Receiver status 
+ * @return  true - Is receiving 
+ */
+bool QN8066::isRxReceiving() {
+  qn8066_status1 s1;
+  s1.raw = this->getRegister(QN_STATUS1);
+  return s1.arg.RXSTATUS;
+
+}
+
+/**
+ * @ingroup group03 RX
+ * @brief   RX AGC Status
+ * @details RX AGC Settling status
+ * @return  true - Settled / Stabled
+ */
+bool QN8066::isRxAgcStable() {
+  qn8066_status1 s1;
+  s1.raw = this->getRegister(QN_STATUS1);
+  return s1.arg.RXAGCSET;
+}
+
+/**
+ * @ingroup group03 RX
+ * @brief   Stereo receiving status
+ * @return  true - Stereo
+ */
+bool QN8066::isRxStereo() {
+  qn8066_status1 s1;
+  s1.raw = this->getRegister(QN_STATUS1);
+  return !(s1.arg.ST_MO_RX);
+}
+
+
+
 
 
 /** @defgroup group04 TX Functions*/
