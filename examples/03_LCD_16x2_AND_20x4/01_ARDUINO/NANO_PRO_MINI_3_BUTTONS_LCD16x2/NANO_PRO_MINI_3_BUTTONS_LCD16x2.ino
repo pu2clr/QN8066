@@ -172,8 +172,8 @@ TableValue tabGainTxPilot[] = {
 };
 
 TableValue tabTxSoftClipEnable[] = {
-  { 0, "Disable " },  // 0
-  { 1, "Enable  " }   // 1
+  { 0, "Disable" },  // 0
+  { 1, "Enable" }   // 1
 };
 
 TableValue tabTxSoftClipThreshold[] = {
@@ -208,7 +208,7 @@ TableValue tabPreEmphasis[] = {
 
 TableValue tabRDS[] = {
   { 0, "Disable" },  // 0
-  { 1, "Enable " }   // 1
+  { 1, "Enable" }   // 1
 };
 
 TableValue tabRdsPty[] {     // See https://en.wikipedia.org/wiki/Radio_Data_System if you want to change this table 
@@ -228,15 +228,15 @@ TableValue tabRdsPty[] {     // See https://en.wikipedia.org/wiki/Radio_Data_Sys
 
 TableValue tabMonoStereo[] = {
   { 0, "Stereo" },  // 0
-  { 1, "Mono  " }   // 1 - See QN8066 data sheet
+  { 1, "Mono" }   // 1 - See QN8066 data sheet
 };
 
 
 TableValue txRdsFreqDev[] = {
-  {  6, " 2,1kHz "},  // 0
-  {  8, " 3,0kHz "},  // 1
-  { 13, " 4,5kHz" },  // 2
-  { 26, " 9,1kHz" },  // 3
+  {  6, "2,1kHz"},  // 0
+  {  8, "3,0kHz"},  // 1
+  { 13, "4,5kHz" },  // 2
+  { 26, "9,1kHz" },  // 3
   { 39, "13,6kHz" },  // 4
   { 52, "18,2kHz" }   // 5
 };
