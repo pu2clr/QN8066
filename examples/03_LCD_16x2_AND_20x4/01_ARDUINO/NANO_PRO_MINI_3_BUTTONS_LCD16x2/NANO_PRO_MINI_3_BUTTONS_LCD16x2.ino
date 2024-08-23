@@ -246,32 +246,32 @@ const char *menu[] = { "Frequency",
                        "Pre-emphasis",
                        "RDS",
                        "RDS PTY",
+                       "RDS Freq. Dev.",                       
                        "Impedance",
                        "Sft Clip. Enable",
                        "Sft Clip. Thres.",
                        "Gain Pilot",
                        "Freq. Deriv.",
                        "Buffer gain",
-                       "RDS Freq. Dev.",
                        "Main Screen" };
 int8_t menuIdx = 0;
 const int lastMenu = (sizeof(menu) / sizeof(menu[0])) - 1;  // Laste menu item position
 
 // Define the enum with the corresponding Menu Itens QN8066 register values
 enum MenuKeys {
-  KEY_FREQUENCY,           // 0
+  KEY_FREQUENCY,            // 0
   KEY_POWER,                // 1
-  KEY_MONO_STEREO,         // 2
+  KEY_MONO_STEREO,          // 2
   KEY_PRE_EMPHASIS,         // 3
   KEY_RDS,                  // 4
   KEY_RDS_PTY,              // 5
-  KEY_IMPEDANCE,            // 6
-  KEY_SOFT_CLIP_ENABLE,     // 7
-  KEY_SOFT_CLIP_THRESHOLD,  // 8
-  KEY_GAIN_PILOT,           // 9
-  KEY_FREQ_DERIVATION,      // 10
-  KEY_BUFFER_GAIN,          // 11
-  KEY_RDS_FREQ_DEV,         // 12
+  KEY_RDS_FREQ_DEV,         // 6  
+  KEY_IMPEDANCE,            // 7
+  KEY_SOFT_CLIP_ENABLE,     // 8
+  KEY_SOFT_CLIP_THRESHOLD,  // 9
+  KEY_GAIN_PILOT,           // 10
+  KEY_FREQ_DERIVATION,      // 11
+  KEY_BUFFER_GAIN,          // 12
   KEY_MAIN_SCREEN           // 13
 };
 
@@ -288,13 +288,13 @@ KeyValue keyValue[] = {
   { 1, tabPreEmphasis },           // KEY_PRE_EMPHASIS
   { 0, tabRDS },                   // KEY_RDS
   { 6, tabRdsPty},                 // KEY_RDS_PTY 
+  { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV  
   { 2, tabImpedance },             // KEY_IMPEDANCE
   { 0, tabTxSoftClipEnable },      // KEY_SOFT_CLIP_ENABLE
   { 1, tabTxSoftClipThreshold },   // KEY_SOFT_CLIP_THRESHOLD
   { 2, tabGainTxPilot },           // KEY_GAIN_PILOT
   { 2, tabTxFrequencyDeviation },  // KEY_FREQ_DERIVATION
   { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN
-  { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
   { 0, NULL }                      // KEY_MAIN_SCREEN
 };
 
