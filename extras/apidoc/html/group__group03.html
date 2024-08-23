@@ -116,6 +116,18 @@ Functions</h2></td></tr>
 <tr class="memitem:gad8f2261c25c21c1b5fdb6c8dfcce529f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gad8f2261c25c21c1b5fdb6c8dfcce529f">QN8066::getRxRSSI</a> ()</td></tr>
 <tr class="memdesc:gad8f2261c25c21c1b5fdb6c8dfcce529f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current RSSI.  <br /></td></tr>
 <tr class="separator:gad8f2261c25c21c1b5fdb6c8dfcce529f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaac312f3f32e979f447ee20b414f87acb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gaac312f3f32e979f447ee20b414f87acb">QN8066::isValidRxChannel</a> ()</td></tr>
+<tr class="memdesc:gaac312f3f32e979f447ee20b414f87acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a valid or no valid rx channel.  <br /></td></tr>
+<tr class="separator:gaac312f3f32e979f447ee20b414f87acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6661b4c1e2d2759e96b3fd752e2f72a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gae6661b4c1e2d2759e96b3fd752e2f72a">QN8066::isRxReceiving</a> ()</td></tr>
+<tr class="memdesc:gae6661b4c1e2d2759e96b3fd752e2f72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receiver status.  <br /></td></tr>
+<tr class="separator:gae6661b4c1e2d2759e96b3fd752e2f72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20cf63d284b1c4f858a66f9e37784f8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga20cf63d284b1c4f858a66f9e37784f8b">QN8066::isRxAgcStable</a> ()</td></tr>
+<tr class="memdesc:ga20cf63d284b1c4f858a66f9e37784f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RX AGC Status.  <br /></td></tr>
+<tr class="separator:ga20cf63d284b1c4f858a66f9e37784f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2fa9debab7269066cb939d5fa768d97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gac2fa9debab7269066cb939d5fa768d97">QN8066::isRxStereo</a> ()</td></tr>
+<tr class="memdesc:gac2fa9debab7269066cb939d5fa768d97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stereo receiving status.  <br /></td></tr>
+<tr class="separator:gac2fa9debab7269066cb939d5fa768d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <h2 class="groupheader">Function Documentation</h2>
@@ -249,6 +261,90 @@ Functions</h2></td></tr>
 
 <p>Gets the current RSSI. </p>
 <p>In-band signal RSSI (Received signal strength indicator) dBuV value. dBuV=RSSI-49 </p><dl class="section return"><dt>Returns</dt><dd>current RSSI in dB </dd></dl>
+
+</div>
+</div>
+<a id="gaac312f3f32e979f447ee20b414f87acb" name="gaac312f3f32e979f447ee20b414f87acb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaac312f3f32e979f447ee20b414f87acb">&#9670;&#160;</a></span>isValidRxChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QN8066::isValidRxChannel </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets a valid or no valid rx channel. </p>
+<p>RXCCA status flag. To indicate whether a valid channel is found during RX CCA.</p>
+<p>If a valid channel is found, channel index will stay there, and RXCCA_FAIL=0;</p>
+<p>otherwise, it will stay at the end of scan range and RXCCA_FAIL=1. </p><dl class="section return"><dt>Returns</dt><dd>true valid channel </dd>
+<dd>
+false not found a valid channel </dd></dl>
+
+</div>
+</div>
+<a id="gae6661b4c1e2d2759e96b3fd752e2f72a" name="gae6661b4c1e2d2759e96b3fd752e2f72a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae6661b4c1e2d2759e96b3fd752e2f72a">&#9670;&#160;</a></span>isRxReceiving()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QN8066::isRxReceiving </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Receiver status. </p>
+<dl class="section return"><dt>Returns</dt><dd>true - Is receiving </dd></dl>
+
+</div>
+</div>
+<a id="ga20cf63d284b1c4f858a66f9e37784f8b" name="ga20cf63d284b1c4f858a66f9e37784f8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga20cf63d284b1c4f858a66f9e37784f8b">&#9670;&#160;</a></span>isRxAgcStable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QN8066::isRxAgcStable </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>RX AGC Status. </p>
+<p>RX AGC Settling status </p><dl class="section return"><dt>Returns</dt><dd>true - Settled / Stabled </dd></dl>
+
+</div>
+</div>
+<a id="gac2fa9debab7269066cb939d5fa768d97" name="gac2fa9debab7269066cb939d5fa768d97"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac2fa9debab7269066cb939d5fa768d97">&#9670;&#160;</a></span>isRxStereo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool QN8066::isRxStereo </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Stereo receiving status. </p>
+<dl class="section return"><dt>Returns</dt><dd>true - Stereo </dd></dl>
 
 </div>
 </div>

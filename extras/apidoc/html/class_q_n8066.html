@@ -147,6 +147,22 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gad8f2261c25c21c1b5fdb6c8dfcce529f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gad8f2261c25c21c1b5fdb6c8dfcce529f">getRxRSSI</a> ()</td></tr>
 <tr class="memdesc:gad8f2261c25c21c1b5fdb6c8dfcce529f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the current RSSI.  <br /></td></tr>
 <tr class="separator:gad8f2261c25c21c1b5fdb6c8dfcce529f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gaac312f3f32e979f447ee20b414f87acb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gaac312f3f32e979f447ee20b414f87acb">isValidRxChannel</a> ()</td></tr>
+<tr class="memdesc:gaac312f3f32e979f447ee20b414f87acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets a valid or no valid rx channel.  <br /></td></tr>
+<tr class="separator:gaac312f3f32e979f447ee20b414f87acb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gae6661b4c1e2d2759e96b3fd752e2f72a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gae6661b4c1e2d2759e96b3fd752e2f72a">isRxReceiving</a> ()</td></tr>
+<tr class="memdesc:gae6661b4c1e2d2759e96b3fd752e2f72a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receiver status.  <br /></td></tr>
+<tr class="separator:gae6661b4c1e2d2759e96b3fd752e2f72a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga20cf63d284b1c4f858a66f9e37784f8b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga20cf63d284b1c4f858a66f9e37784f8b">isRxAgcStable</a> ()</td></tr>
+<tr class="memdesc:ga20cf63d284b1c4f858a66f9e37784f8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">RX AGC Status.  <br /></td></tr>
+<tr class="separator:ga20cf63d284b1c4f858a66f9e37784f8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gac2fa9debab7269066cb939d5fa768d97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gac2fa9debab7269066cb939d5fa768d97">isRxStereo</a> ()</td></tr>
+<tr class="memdesc:gac2fa9debab7269066cb939d5fa768d97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stereo receiving status.  <br /></td></tr>
+<tr class="separator:gac2fa9debab7269066cb939d5fa768d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02dfceb1e11cef93247249e7b34f3201"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#a02dfceb1e11cef93247249e7b34f3201">scanStationStart</a> ()</td></tr>
+<tr class="separator:a02dfceb1e11cef93247249e7b34f3201"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2e552fff9d8194a4b3ba4ebedaa25c8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#ab2e552fff9d8194a4b3ba4ebedaa25c8">scanStationStop</a> ()</td></tr>
+<tr class="separator:ab2e552fff9d8194a4b3ba4ebedaa25c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga8ba44d4f2df4cd694886cbe73f73cfaa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group04.html#ga8ba44d4f2df4cd694886cbe73f73cfaa">setTX</a> (uint16_t frequency)</td></tr>
 <tr class="memdesc:ga8ba44d4f2df4cd694886cbe73f73cfaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the TX mode.  <br /></td></tr>
 <tr class="separator:ga8ba44d4f2df4cd694886cbe73f73cfaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -393,6 +409,40 @@ Public Member Functions</h2></td></tr>
 <span class="mlabels"><span class="mlabel">inline</span></span>  </td>
   </tr>
 </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a02dfceb1e11cef93247249e7b34f3201" name="a02dfceb1e11cef93247249e7b34f3201"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a02dfceb1e11cef93247249e7b34f3201">&#9670;&#160;</a></span>scanStationStart()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::scanStationStart </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab2e552fff9d8194a4b3ba4ebedaa25c8" name="ab2e552fff9d8194a4b3ba4ebedaa25c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2e552fff9d8194a4b3ba4ebedaa25c8">&#9670;&#160;</a></span>scanStationStop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::scanStationStop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>

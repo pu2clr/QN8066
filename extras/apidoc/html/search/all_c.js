@@ -1,5 +1,8 @@
 var searchData=
 [
-  ['union_2c_20struct_20and_20defined_20data_20types_0',['Union, Struct and Defined Data Types',['../group__group00.html',1,'']]],
-  ['updatetxsetup_1',['updateTxSetup',['../group__group04.html#ga366e4fed2331cd9c22efb4ae555a5c57',1,'QN8066']]]
+  ['todo_20list_0',['Todo List',['../todo.html',1,'']]],
+  ['tx_20functions_1',['TX Functions',['../group__group04.html',1,'']]],
+  ['tx_20rds_20setup_2',['TX RDS Setup',['../group__group05.html',1,'']]],
+  ['tx_5ffdev_3',['TX_FDEV',['../group__group00.html#aa9ca38832753bba16465221f780ff741',1,'qn8066_fdev']]],
+  ['txch_4',['TXCH',['../group__group00.html#a4dd6233934e3ad24b0da1b7228c37749',1,'qn8066_txch']]]
 ];
