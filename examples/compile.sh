@@ -33,7 +33,7 @@ arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NAN
 
 
 echo "MiniCore - It can help you to save memory on ATmega328"
-arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./03_LCD_16x2_AND_20x4/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./03_TX_LCD_16x2_AND_20x4/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4
 
 echo "ESP32"
 echo "ESP32 LCD16x2 AND ENCODER"
