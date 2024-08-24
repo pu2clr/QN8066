@@ -38,6 +38,6 @@ var searchData=
   ['resetaudiopeak_35',['resetAudioPeak',['../group__group04.html#ga78ce701a735ccc6a02fb75a2a51f48ed',1,'QN8066']]],
   ['resetfsm_36',['resetFsm',['../group__group10.html#ga1cbeccfe43f36b25bf01692b25bd12c7',1,'QN8066']]],
   ['rssisig_37',['RSSISIG',['../group__group00.html#a61a09b9e91ca909dce119c219c6a9bf2',1,'qn8066_rssisig']]],
-  ['rx_20functions_20_28under_20construction_2e_2e_2e_29_38',['RX Functions (Under construction...)',['../group__group03.html',1,'']]],
+  ['rx_20functions_38',['RX Functions',['../group__group03.html',1,'']]],
   ['rxch_39',['RXCH',['../group__group00.html#a71ec139018e291d638500f9821b2718f',1,'qn8066_rx_ch']]]
 ];

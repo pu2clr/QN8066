@@ -10,5 +10,5 @@ var group__group03 =
     [ "QN8066::isRxReceiving", "group__group03.html#gae6661b4c1e2d2759e96b3fd752e2f72a", null ],
     [ "QN8066::isRxAgcStable", "group__group03.html#ga20cf63d284b1c4f858a66f9e37784f8b", null ],
     [ "QN8066::isRxStereo", "group__group03.html#gac2fa9debab7269066cb939d5fa768d97", null ],
-    [ "QN8066::scanRxStation", "group__group03.html#gaa679e9b03e5143c4164925bbf749e212", null ]
+    [ "QN8066::scanRxStation", "group__group03.html#ga280bda358f444acb7068c461d6a290c9", null ]
 ];

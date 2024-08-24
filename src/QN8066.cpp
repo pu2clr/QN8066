@@ -187,6 +187,7 @@ qn8066_status3 QN8066::getStatus3() {
 /**
  * @ingroup group02 Init Device
  * @brief Device initial configuration
+ * @details The functions described in this group are used to configure the QN8066.
  */
 
 /**
@@ -335,7 +336,11 @@ void QN8066::setup(uint16_t xtalDiv,
 
 }
 
-/** @defgroup group03 RX Functions (Under construction...)*/
+/** 
+ * @defgroup group03 RX Functions 
+ * @brief QN8066 Receiver funtions
+ * @details The functions defined in this group are responsible for controlling the reception of the QN8066.    
+*/
 
 /**
  * @ingroup group03 RX
@@ -518,7 +523,10 @@ void QN8066::scanRxStation(uint16_t startFrequency, uint16_t stopFrequyency, uin
   this->setRegister(QN_CH_STEP, step.raw);
 } 
 
-/** @defgroup group04 TX Functions*/
+/** 
+ * @defgroup group04 TX Functions
+ * @details The functions defined in this group are responsible for controlling the transmitting  of the QN8066.
+ */
 
 /**
  * @ingroup group04 Start TX

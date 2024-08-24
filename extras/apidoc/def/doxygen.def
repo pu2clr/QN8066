@@ -253,12 +253,12 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gaee7afb6a9a31a99fc29b8b9d7d0a00bc';
-        sec-mem-ref-line = '1260';
+        sec-mem-ref-line = '1296';
         sec-mem-ref-name = 'getAudioPeakValue';
     };
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gab18543166cfd0ca104df9a269a990552';
-        sec-mem-ref-line = '1483';
+        sec-mem-ref-line = '1519';
         sec-mem-ref-name = 'rdsGetTxUpdated';
     };
     }; /* sec-member */
@@ -478,7 +478,7 @@ _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
       sec-mem-kind = 'function';
-      sec-mem-id   = 'group__group03_1gaa679e9b03e5143c4164925bbf749e212';
+      sec-mem-id   = 'group__group03_1ga280bda358f444acb7068c461d6a290c9';
       sec-mem-virt = normal;
       sec-mem-prot = public;
       sec-mem-type = <<_EnD_oF_dEf_TeXt_
@@ -499,7 +499,7 @@ _EnD_oF_dEf_TeXt_;
       }; /*        sec-mem-param--param */
       sec-mem-param = {
         sec-mem-param-type = <<_EnD_oF_dEf_TeXt_
-uint16_t
+uint8_t
 _EnD_oF_dEf_TeXt_;
         sec-mem-param-declname = 'frequencyStep';
       }; /*        sec-mem-param--param */
@@ -1320,6 +1320,9 @@ _EnD_oF_dEf_TeXt_;
 Device initial configuration.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
+ The functions described in this group are used to configure the QN8066.
+  
+
 Starts the  QN8066 instance.  <br>
 \ilinebr\ilinebr It is a minimalist code to initiate the QN8066 device. Use the function setup if you want more option during the start process.
 \ilinebr\ilinebr Example
@@ -1778,7 +1781,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1gaf68d40e6fdc7a17cb64d883d93af3886';
-        sec-mem-ref-line = '1231';
+        sec-mem-ref-line = '1267';
         sec-mem-ref-name = 'setToggleTxPdClear';
     };
     }; /* sec-member */
@@ -2375,7 +2378,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga8a4a20dea21a4dd04cb4836b1514786f';
-        sec-mem-ref-line = '1615';
+        sec-mem-ref-line = '1651';
         sec-mem-ref-name = 'rdsSetStationName';
     };
     }; /* sec-member */
@@ -2400,13 +2403,13 @@ _EnD_oF_dEf_TeXt_;
 Sets the station name.
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
-\iline 1611 
+\iline 1647 
 
 @param stationName 
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga2beb7d1a42e9aa2ecf72427318b40d1b';
-        sec-mem-ref-line = '1642';
+        sec-mem-ref-line = '1678';
         sec-mem-ref-name = 'rdsSendPS';
     };
     }; /* sec-member */
@@ -2496,7 +2499,7 @@ void loop() {
 _EnD_oF_dEf_TeXt_;
       sec-mem-referenceto = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga76dc7b86d565705fd980a11123e77f0c';
-        sec-mem-ref-line = '1701';
+        sec-mem-ref-line = '1737';
         sec-mem-ref-name = 'rdsSendRTMessage';
     };
     }; /* sec-member */
@@ -2767,7 +2770,7 @@ _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 Clear and Flushes the RDS Buffer.
 
-\iline 1545 
+\iline 1581 
 _EnD_oF_dEf_TeXt_;
     }; /* sec-member */
     sec-member = {
@@ -6967,7 +6970,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1577';
+        sec-mem-ref-line = '1613';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7147,7 +7150,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1577';
+        sec-mem-ref-line = '1613';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7643,7 +7646,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1577';
+        sec-mem-ref-line = '1613';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */
@@ -7699,7 +7702,7 @@ _EnD_oF_dEf_TeXt_;
 _EnD_oF_dEf_TeXt_;
       sec-mem-referencedby = {
         sec-mem-ref-id = '_q_n8066_8cpp_1ga57ee54e06de2618ec40cddde6b62560c';
-        sec-mem-ref-line = '1577';
+        sec-mem-ref-line = '1613';
         sec-mem-ref-name = 'QN8066::rdsSendGroup';
     };
     }; /* sec-member */

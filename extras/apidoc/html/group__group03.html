@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>PU2CLR QN8066 Arduino Library: RX Functions (Under construction...)</title>
+<title>PU2CLR QN8066 Arduino Library: RX Functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -92,9 +92,12 @@ $(document).ready(function(){initNavTree('group__group03.html',''); initResizabl
 <div class="header">
   <div class="summary">
 <a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">RX Functions (Under construction...)</div></div>
+  <div class="headertitle"><div class="title">RX Functions</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p><a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> Receiver funtions.  
+<a href="#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -128,11 +131,14 @@ Functions</h2></td></tr>
 <tr class="memitem:gac2fa9debab7269066cb939d5fa768d97"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gac2fa9debab7269066cb939d5fa768d97">QN8066::isRxStereo</a> ()</td></tr>
 <tr class="memdesc:gac2fa9debab7269066cb939d5fa768d97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Stereo receiving status.  <br /></td></tr>
 <tr class="separator:gac2fa9debab7269066cb939d5fa768d97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gaa679e9b03e5143c4164925bbf749e212"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gaa679e9b03e5143c4164925bbf749e212">QN8066::scanRxStation</a> (uint16_t startFrequency, uint16_t stopFrequyency, uint16_t frequencyStep)</td></tr>
-<tr class="memdesc:gaa679e9b03e5143c4164925bbf749e212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scans a station.  <br /></td></tr>
-<tr class="separator:gaa679e9b03e5143c4164925bbf749e212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga280bda358f444acb7068c461d6a290c9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga280bda358f444acb7068c461d6a290c9">QN8066::scanRxStation</a> (uint16_t startFrequency, uint16_t stopFrequyency, uint8_t frequencyStep)</td></tr>
+<tr class="memdesc:ga280bda358f444acb7068c461d6a290c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Scans a station.  <br /></td></tr>
+<tr class="separator:ga280bda358f444acb7068c461d6a290c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p><a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a> Receiver funtions. </p>
+<p>The functions defined in this group are responsible for controlling the reception of the <a class="el" href="class_q_n8066.html" title="QN8066 Class.">QN8066</a>. <br  />
+ </p>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ga7403d7df07554c5641e32e47230acb8e" name="ga7403d7df07554c5641e32e47230acb8e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga7403d7df07554c5641e32e47230acb8e">&#9670;&#160;</a></span>setRX()</h2>
@@ -351,8 +357,8 @@ false not found a valid channel </dd></dl>
 
 </div>
 </div>
-<a id="gaa679e9b03e5143c4164925bbf749e212" name="gaa679e9b03e5143c4164925bbf749e212"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#gaa679e9b03e5143c4164925bbf749e212">&#9670;&#160;</a></span>scanRxStation()</h2>
+<a id="ga280bda358f444acb7068c461d6a290c9" name="ga280bda358f444acb7068c461d6a290c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga280bda358f444acb7068c461d6a290c9">&#9670;&#160;</a></span>scanRxStation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +378,7 @@ false not found a valid channel </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramtype">uint8_t&#160;</td>
           <td class="paramname"><em>frequencyStep</em>&#160;</td>
         </tr>
         <tr>

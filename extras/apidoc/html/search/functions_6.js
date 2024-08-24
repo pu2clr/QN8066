@@ -1,7 +1,7 @@
 var searchData=
 [
   ['scani2cbus_0',['scanI2CBus',['../group__group01.html#gaaa669543d461aa2f6817de6a5fea9a85',1,'QN8066']]],
-  ['scanrxstation_1',['scanRxStation',['../group__group03.html#gaa679e9b03e5143c4164925bbf749e212',1,'QN8066']]],
+  ['scanrxstation_1',['scanRxStation',['../group__group03.html#ga280bda358f444acb7068c461d6a290c9',1,'QN8066']]],
   ['setaudioanaloggain_2',['setAudioAnalogGain',['../group__group04.html#ga85384e9b43f34c41e7b9d4699cb6bfc7',1,'QN8066']]],
   ['setaudiodachold_3',['setAudioDacHold',['../group__group04.html#gadfd3134c2de7e8dd2e079e3abfbfe7a0',1,'QN8066']]],
   ['setaudiodigitalgain_4',['setAudioDigitalGain',['../group__group04.html#ga4670b899f6f3df01c4d967b7f461318a',1,'QN8066']]],
