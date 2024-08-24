@@ -10,26 +10,26 @@
 
 echo "**** Arduino ATmega328 based board ***"
 echo "---> A_MINIMALIST_TX"
-arduino-cli compile -b arduino:avr:nano ./01_SERIAL_MONITOR/A_MINIMALIST_TX --output-dir ~/Downloads/hex/atmega/A_MINIMALIST_TX
+arduino-cli compile -b arduino:avr:nano ./01_TX_SERIAL_MONITOR/A_MINIMALIST_TX --output-dir ~/Downloads/hex/atmega/A_MINIMALIST_TX
 echo "---> A_TX"
-arduino-cli compile -b arduino:avr:nano ./01_SERIAL_MONITOR/A_TX --output-dir ~/Downloads/hex/atmega/A_TX
+arduino-cli compile -b arduino:avr:nano ./01_TX_SERIAL_MONITOR/A_TX --output-dir ~/Downloads/hex/atmega/A_TX
 echo "---> B_TX"
-arduino-cli compile -b arduino:avr:nano ./01_SERIAL_MONITOR/B_TX --output-dir ~/Downloads/hex/atmega/B_TX
+arduino-cli compile -b arduino:avr:nano ./01_TX_SERIAL_MONITOR/B_TX --output-dir ~/Downloads/hex/atmega/B_TX
 echo "---> TX_RDS"
-arduino-cli compile -b arduino:avr:nano ./02_RDS/TX_RDS1 --output-dir ~/Downloads/hex/atmega/TX_RDS1
-arduino-cli compile -b arduino:avr:nano ./02_RDS/TX_RDS2 --output-dir ~/Downloads/hex/atmega/TX_RDS2
+arduino-cli compile -b arduino:avr:nano ./02_TX_RDS/TX_RDS1 --output-dir ~/Downloads/hex/atmega/TX_RDS1
+arduino-cli compile -b arduino:avr:nano ./02_TX_RDS/TX_RDS2 --output-dir ~/Downloads/hex/atmega/TX_RDS2
 
 
 echo "---> LCD16x02 - Minimalist"   
-arduino-cli compile -b arduino:avr:nano ./03_LCD_16x2_AND_20x4/00_ARDUINO_MINIMALIST --output-dir ~/Downloads/hex/atmega/00_ARDUINO_MINIMALIST
+arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/00_ARDUINO_MINIMALIST --output-dir ~/Downloads/hex/atmega/00_ARDUINO_MINIMALIST
 
 
 echo "---> Arduino Atmega328 LCD16x02"   
-arduino-cli compile -b arduino:avr:nano ./03_LCD_16x2_AND_20x4/00_ARDUINO_MINIMALIST --output-dir ~/Downloads/hex/atmega/LCD16x2_arduino
+arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/00_ARDUINO_MINIMALIST --output-dir ~/Downloads/hex/atmega/LCD16x2_arduino
 
 
 echo "---> Arduino Atmega328 LCD20x04"   
-arduino-cli compile -b arduino:avr:nano ./03_LCD_16x2_AND_20x4/01_ARDUINO/NANO_PRO_MINI_3_BUTTONS_LCD20x4 --output-dir ~/Downloads/hex/atmega/LCD20x4_arduino
+arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NANO_PRO_MINI_3_BUTTONS_LCD20x4 --output-dir ~/Downloads/hex/atmega/LCD20x4_arduino
 
 
 echo "MiniCore - It can help you to save memory on ATmega328"
@@ -37,10 +37,15 @@ arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./
 
 echo "ESP32"
 echo "ESP32 LCD16x2 AND ENCODER"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./03_LCD_16x2_AND_20x4/03_ESP32/ESP32_ENCODER --output-dir ~/Downloads/hex/ESP32/DEVM/LCD16x2_encoder
-
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./03_TX_LCD_16x2_AND_20x4/03_ESP32/ESP32_ENCODER --output-dir ~/Downloads/hex/ESP32/DEVM/LCD16x2_encoder
 
 
 echo "ATTINY85"
-arduino-cli compile --fqbn ATTinyCore:avr:attinyx5:clock=1internal ./06_ATTINY85_RDS_OLED --output-dir ~/Downloads/hex/ATTIMY85/ATTINY85
+arduino-cli compile --fqbn ATTinyCore:avr:attinyx5:clock=1internal ./06_TX_ATTINY85_RDS_OLED --output-dir ~/Downloads/hex/ATTIMY85/ATTINY85
+
+
+echo "---> RX - SAERIAL MONITOR"   
+arduino-cli compile -b arduino:avr:nano ./50_RX_SERIAL_MONITOR/01_RX_A --output-dir ~/Downloads/hex/atmega/50_RX_A
+
+
 

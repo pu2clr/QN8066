@@ -890,12 +890,15 @@ public:
   bool isRxReceiving();
   bool isRxAgcStable(); 
   bool isRxStereo();
-
-
   void scanRxStation(uint16_t startFrequency, uint16_t stopFrequyency, uint8_t frequencyStep ); 
 
-
-
+  // RX RDS
+  void rdsRxEnable(bool value);
+  char *rdsRxGetPS(char *ps);
+  char *rdsRxGetRT(char *rt);
+  char *rdsRxGetTime(char *time);
+  
+  
   
   void setTX(uint16_t frequency); // RESET the system and set to TX mode at a given frequency
 

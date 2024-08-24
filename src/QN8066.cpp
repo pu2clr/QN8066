@@ -524,6 +524,56 @@ void QN8066::scanRxStation(uint16_t startFrequency, uint16_t stopFrequyency, uin
 } 
 
 /** 
+ * @defgroup group031 RX RDS Functions 
+ * @brief QN8066 RDS Receiver 
+ * @details Functions to decode RDS service  
+*/
+
+/**
+ * @defgroup group031 RX RDS Functions 
+ * @brief Enables RX RDS
+ * @todo under construction...
+ */
+void QN8066::rdsRxEnable(bool value) {
+  this->system2.arg.rx_rdsen = value; 
+  this->setRegister(QN_SYSTEM2, this->system2.raw);
+}
+
+/**
+ * @defgroup group031 RX RDS Functions 
+ * @brief Gets the current Program Station 
+ * @todo under construction...
+ */
+char* QN8066::rdsRxGetPS(char *ps) {
+
+  return ps;
+}
+
+/**
+ * @defgroup group031 RX RDS Functions 
+ * @brief Gets the current Radio Text
+ * @todo under construction...
+ */
+char* QN8066::rdsRxGetRT(char *rt) {
+
+  return rt;
+}
+
+/**
+ * @defgroup group031 RX RDS Functions 
+ * @brief Gets the current Date and time 
+ * @todo under construction...
+ */
+char* QN8066::rdsRxGetTime(char *time) {
+  
+  return time;
+}
+
+
+
+
+
+/** 
  * @defgroup group04 TX Functions
  * @details The functions defined in this group are responsible for controlling the transmitting  of the QN8066.
  */
