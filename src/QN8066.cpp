@@ -360,9 +360,13 @@ void QN8066::setRX(uint16_t frequency) {
   this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
 
   int16_t auxFreq = (frequency - 600)  * 2;
-  this->int_ctrl.raw =  0B00100000 | auxFreq >> 8;
-  this->setRegister(QN_INT_CTRL,this->int_ctrl.raw );
-  this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
+  qn8066_rx_ch rxch; 
+  qn8066_ch_step ch_step;
+  ch_step.raw = this->getRegister(QN_CH_STEP);
+  ch_step.arg.RXCH  =  0B0000000000000011 & (auxFreq >> 8);
+  rxch.RXCH =  0B0000000011111111 & auxFreq;
+  this->setRegister(QN_CH_STEP, ch_step.raw );
+  this->setRegister(QN_RX_CH,rxch.RXCH);
 
   // Checking unkown registers
   // this->setRegister(0x49, 0B11101000); 
@@ -382,9 +386,14 @@ void QN8066::setRX(uint16_t frequency) {
  */
 void QN8066::setRxFrequency(uint16_t frequency) {
   int16_t auxFreq = (frequency - 600)  * 2;
-  this->int_ctrl.raw =  0B00100000 | auxFreq >> 8;
-  this->setRegister(QN_INT_CTRL,this->int_ctrl.raw );
-  this->setRegister(QN_TXCH, 0B11111111 & auxFreq);
+  qn8066_rx_ch rxch; 
+  qn8066_ch_step ch_step;
+  ch_step.raw = this->getRegister(QN_CH_STEP);
+  ch_step.arg.RXCH  =  0B0000000000000011 & (auxFreq >> 8);
+  rxch.RXCH =  0B0000000011111111 & auxFreq;
+  this->setRegister(QN_CH_STEP, ch_step.raw );
+  this->setRegister(QN_RX_CH,rxch.RXCH);
+
 }
 
 
