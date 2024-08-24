@@ -135,6 +135,14 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:gac41366461ca535228b158dc3c8fe0f4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gac41366461ca535228b158dc3c8fe0f4a">setRxFrequency</a> (uint16_t frequency)</td></tr>
 <tr class="memdesc:gac41366461ca535228b158dc3c8fe0f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the receiver frequency  <br /></td></tr>
 <tr class="separator:gac41366461ca535228b158dc3c8fe0f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga710168acdbfeb293106443d780423b3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga710168acdbfeb293106443d780423b3b">setRxFrequencyUp</a> ()</td></tr>
+<tr class="memdesc:ga710168acdbfeb293106443d780423b3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the current receiver frequency.  <br /></td></tr>
+<tr class="separator:ga710168acdbfeb293106443d780423b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga7a7914b4a28ef5f67f25a5295aefca2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga7a7914b4a28ef5f67f25a5295aefca2d">setRxFrequencyDown</a> ()</td></tr>
+<tr class="memdesc:ga7a7914b4a28ef5f67f25a5295aefca2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrements the current receiver frequency.  <br /></td></tr>
+<tr class="separator:ga7a7914b4a28ef5f67f25a5295aefca2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4f49455b11ae615af52bcdcd3092446"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_q_n8066.html#af4f49455b11ae615af52bcdcd3092446">getRxCurrentFrequency</a> ()</td></tr>
+<tr class="separator:af4f49455b11ae615af52bcdcd3092446"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga01c237be23f6fd2c1bb5672803cf5bdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga01c237be23f6fd2c1bb5672803cf5bdb">rdsEnableRX</a> (bool value)</td></tr>
 <tr class="memdesc:ga01c237be23f6fd2c1bb5672803cf5bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables RDS for RX.  <br /></td></tr>
 <tr class="separator:ga01c237be23f6fd2c1bb5672803cf5bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -352,6 +360,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ga2a96d812724a3f6394f6419e2712d6d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group99.html#ga2a96d812724a3f6394f6419e2712d6d8">convertToChar</a> (uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator='.', bool remove_leading_zeros=true)</td></tr>
 <tr class="memdesc:ga2a96d812724a3f6394f6419e2712d6d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a number to a char array.  <br /></td></tr>
 <tr class="separator:ga2a96d812724a3f6394f6419e2712d6d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga2b8d1f6f3d79f7ac15e5502d86df0f97"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group99.html#ga2b8d1f6f3d79f7ac15e5502d86df0f97">formatCurrentFrequency</a> (char decimalSeparator=',')</td></tr>
+<tr class="memdesc:ga2b8d1f6f3d79f7ac15e5502d86df0f97"><td class="mdescLeft">&#160;</td><td class="mdescRight">Convert the current frequency to a formated string (char *) frequency.  <br /></td></tr>
+<tr class="separator:ga2b8d1f6f3d79f7ac15e5502d86df0f97"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga104da6a0d233f020bb63d62e37a7bf92"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group99.html#ga104da6a0d233f020bb63d62e37a7bf92">setI2CLowSpeedMode</a> (void)</td></tr>
 <tr class="memdesc:ga104da6a0d233f020bb63d62e37a7bf92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets I2C bus to 10kHz.  <br /></td></tr>
 <tr class="separator:ga104da6a0d233f020bb63d62e37a7bf92"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -406,6 +417,31 @@ Public Member Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="group__group00.html#unionqn8066__cid2">qn8066_cid2</a> QN8066::getDeviceProductFamily </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af4f49455b11ae615af52bcdcd3092446" name="af4f49455b11ae615af52bcdcd3092446"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af4f49455b11ae615af52bcdcd3092446">&#9670;&#160;</a></span>getRxCurrentFrequency()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t QN8066::getRxCurrentFrequency </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>

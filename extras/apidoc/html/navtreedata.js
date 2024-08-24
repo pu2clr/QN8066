@@ -50,7 +50,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_q_n8066_8cpp.html",
-"group__group00.html#structqn8066__cid2_8arg"
+"group__group00.html#structqn8066__cid1_8arg"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
