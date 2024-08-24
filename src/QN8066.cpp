@@ -390,14 +390,32 @@ void QN8066::setRX(uint16_t frequency) {
  * @brief sets the receiver frequency
  */
 void QN8066::setRxFrequency(uint16_t frequency) {
-  int16_t auxFreq = (frequency - 600)  * 2;
+  this->rxCurrentFrequency = (frequency - 600)  * 2;
   qn8066_rx_ch rxch; 
   qn8066_ch_step ch_step;
   ch_step.raw = this->getRegister(QN_CH_STEP);
-  ch_step.arg.RXCH  =  0B0000000000000011 & (auxFreq >> 8);
-  rxch.RXCH =  0B0000000011111111 & auxFreq;
+  ch_step.arg.RXCH  =  0B0000000000000011 & (this->rxCurrentFrequency >> 8);
+  rxch.RXCH =  0B0000000011111111 & this->rxCurrentFrequency;
   this->setRegister(QN_CH_STEP, ch_step.raw );
   this->setRegister(QN_RX_CH,rxch.RXCH);
+}
+
+
+/**
+ * @ingroup group03 RX
+ * @brief Increments  the current  receiver frequency
+ * @todo under construction...
+ */
+void QN8066::setRxFrequencyUp() {
+
+}
+
+/**
+ * @ingroup group03 RX
+ * @brief Decrements  the current receiver frequency
+ * @todo under construction...
+ */
+void QN8066::setRxFrequencyDown() {
 
 }
 
@@ -1956,4 +1974,18 @@ void QN8066::convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t 
                 strValue[1] = ' ';
         }
     }
+}
+
+/**
+ * @ingroup group99 Covert numbers to char array
+ * @brief Convert the current frequency to a formated string (char *) frequency
+ * @details The current frequency is the latest setted frequency by setFrequency, seek, setFrequencyUp and setFrequencyDown.
+ * @param char decimalSeparator - the symbol that separates the decimal part (Exe: . or ,)
+ * @return point char string strFrequency (member variable)
+ * @see setFrequency, seek, setFrequencyUp and setFrequencyDown
+*/
+char* QN8066::formatCurrentFrequency(char decimalSeparator)
+{
+   this->convertToChar(this->rxCurrentFrequency, this->strRxCurrentFrequency, 4, 3, decimalSeparator, true);
+   return this->strRxCurrentFrequency;
 }

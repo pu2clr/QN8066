@@ -849,6 +849,8 @@ private:
   uint8_t rdsTP = 0;        //!< Traffic Program (TP)
   uint8_t rdsSendError = 0;
 
+  char strRxCurrentFrequency[8];  // Stores formated current frequency
+  uint16_t rxCurrentFrequency; 
 
 protected:
 public:
@@ -881,6 +883,9 @@ public:
    */
   void setRX(uint16_t frequency);
   void setRxFrequency(uint16_t frequency);
+  void setRxFrequencyUp();
+  void setRxFrequencyDown();
+  inline uint16_t getRxCurrentFrequency(){ return this->rxCurrentFrequency;}; 
   void rdsEnableRX(bool value);
   void setAudioMuteRX(bool value);
   uint8_t getRxSNR();
@@ -1155,6 +1160,7 @@ public:
   uint8_t getFsmStateCode();
 
   void convertToChar(uint16_t value, char *strValue, uint8_t len, uint8_t dot, uint8_t separator = '.', bool remove_leading_zeros = true);
+  char* formatCurrentFrequency(char decimalSeparator = ',');
 
 /*******************************************************************************
   * The functions below modify the clock frequency for I2C communication.
