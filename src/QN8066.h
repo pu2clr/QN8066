@@ -851,7 +851,7 @@ private:
 
   char strRxCurrentFrequency[8];  // Stores formated current frequency
   uint16_t rxCurrentFrequency; 
-  uint8_t  rxCurrentStep;
+  uint8_t  rxCurrentStep = 1;
   
   uint16_t minimalFrequency = 640;
   uint16_t maximalFrequency = 1080;
