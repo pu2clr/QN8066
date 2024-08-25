@@ -853,8 +853,8 @@ private:
   uint16_t rxCurrentFrequency; 
   uint8_t  rxCurrentStep = 1;     //!<  current frequency step. Default is 100kHz
   
-  uint16_t minimalFrequency = 640;
-  uint16_t maximalFrequency = 1080;
+  uint16_t minimalFrequency = 639;
+  uint16_t maximalFrequency = 1081;
 
 
 

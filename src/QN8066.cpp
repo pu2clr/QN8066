@@ -365,12 +365,13 @@ void QN8066::setRX(uint16_t frequency) {
   this->setRegister(QN_RDS, this->rds.raw);     // RDS => 00111100 => Line_in_en = 0; RDSFDEV = 60 (Decimal) 
   this->setRegister(QN_GPLT, this->gplt.raw);    // GPLT => 00111001 => Tx_sftclpth = 00 (12’d2051 - 3db back off from 0.5v); t1m_sel = 11 (Infinity); GAIN_TXPLT = 1001 (9% 75 kHz)
 
-  int16_t auxFreq = (frequency - 600)  * 2;
+  this->rxCurrentFrequency = frequency;
+  uint16_t channel = (frequency - 600)  * 2;
   qn8066_rx_ch rxch; 
   qn8066_ch_step ch_step;
   ch_step.raw = this->getRegister(QN_CH_STEP);
-  ch_step.arg.RXCH  =  0B0000000000000011 & (auxFreq >> 8);
-  rxch.RXCH =  0B0000000011111111 & auxFreq;
+  ch_step.arg.RXCH  =  0B0000000000000011 & (channel >> 8);
+  rxch.RXCH =  0B0000000011111111 & channel;
   this->setRegister(QN_CH_STEP, ch_step.raw );
   this->setRegister(QN_RX_CH,rxch.RXCH);
 
@@ -391,12 +392,13 @@ void QN8066::setRX(uint16_t frequency) {
  * @brief sets the receiver frequency
  */
 void QN8066::setRxFrequency(uint16_t frequency) {
-  this->rxCurrentFrequency = (frequency - 600)  * 2;
+  this->rxCurrentFrequency = frequency;
+  uint16_t channel = (frequency - 600)  * 2;
   qn8066_rx_ch rxch; 
   qn8066_ch_step ch_step;
   ch_step.raw = this->getRegister(QN_CH_STEP);
-  ch_step.arg.RXCH  =  0B0000000000000011 & (this->rxCurrentFrequency >> 8);
-  rxch.RXCH =  0B0000000011111111 & this->rxCurrentFrequency;
+  ch_step.arg.RXCH  =  0B0000000000000011 & (channel >> 8);
+  rxch.RXCH =  0B0000000011111111 & channel;
   this->setRegister(QN_CH_STEP, ch_step.raw );
   this->setRegister(QN_RX_CH,rxch.RXCH);
 }

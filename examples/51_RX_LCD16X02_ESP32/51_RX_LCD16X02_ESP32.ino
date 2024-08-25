@@ -82,7 +82,7 @@
 
 #define EEPROM_SIZE 512
 
-const uint8_t app_id = 47;  // Useful to check the EEPROM content before processing useful data
+const uint8_t app_id = 66;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
 long storeTime = millis();
 
@@ -137,17 +137,24 @@ void setup() {
 
   rx.begin();
 
+  // Check the setXtal function if you are using a active crystal not equal to 32.768 MHz
+  rx.setXtal(1, 1, 0 ); // Using a 32.768 kHz  active crystal instead a 32.768 MHz.  
+
   delay(100);
 
   // Checking the EEPROM content
   if (EEPROM.read(eeprom_address) == app_id) {
     readAllReceiverInformation();
   } else {
-    currentFrequency = previousFrequency = 1039;
+    currentFrequency = previousFrequency = 939;
   }
 
   rx.setRX(currentFrequency);
+  rx.setRxFrequencyStep(2);         // Sets the frequency step to 200 kHz
+  rx.setRxFrequencyRange(641,1079); // Sets the FM frequency range from 64,1 MHz to 107.9 MHz
+
   lcd.clear();
+
   showStatus();
 }
 
