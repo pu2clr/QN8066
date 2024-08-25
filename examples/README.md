@@ -55,6 +55,11 @@ The pictures below show some active crystals used during the tests.
 ![32.768 MHz active crystal](../extras/images/act_crystal_02.jpg)
 
 
+See these sketches showing active crystal setup: 
+
+* [Clock setup 1](./01_TX_SERIAL_MONITOR/C_TX_CLOCK_CRYSTAL_SETUP1/)
+* [Clock setup 2](./01_TX_SERIAL_MONITOR/C_TX_CLOCK_CRYSTAL_SETUP2/)
+
 
 ## Documentation 
 
