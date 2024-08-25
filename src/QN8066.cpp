@@ -346,6 +346,7 @@ void QN8066::setup(uint16_t xtalDiv,
  * @ingroup group03 RX
  * @brief sets the devive to RX
  * @param frequency - frequency that the receiver will start
+ * @todo Need to be optimized to improve space size
  */
 void QN8066::setRX(uint16_t frequency) {
   this->system1.raw = 0B11100011;
@@ -416,6 +417,17 @@ void QN8066::setRxFrequencyUp() {
  * @todo under construction...
  */
 void QN8066::setRxFrequencyDown() {
+
+}
+
+/**
+ * @ingroup group03 RX
+ * @brief Sets the current Step frequency 
+ * @details 0 =  50KHz;  1 = 100KHz;  2 =  200KHz; 3 = Reserved
+ * @param value 
+ */
+void QN8066::setRxFrequencyStep(uint8_t value) {
+  
 
 }
 
@@ -615,7 +627,7 @@ char* QN8066::rdsRxGetTime(char *time) {
  * void loop() {
  * }
  * @endcode 
- * @todo Under improvements 
+ * @todo Under improvements -  Need to be optimized to improve space size
  */
 void QN8066::setTX(uint16_t frequency) {
   this->system1.raw = 0B11100011;

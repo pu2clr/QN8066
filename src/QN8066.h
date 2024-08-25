@@ -851,6 +851,7 @@ private:
 
   char strRxCurrentFrequency[8];  // Stores formated current frequency
   uint16_t rxCurrentFrequency; 
+  uint8_t  rxCurrentStep;
 
 protected:
 public:
@@ -885,6 +886,7 @@ public:
   void setRxFrequency(uint16_t frequency);
   void setRxFrequencyUp();
   void setRxFrequencyDown();
+  void setRxFrequencyStep(uint8_t value);
   inline uint16_t getRxCurrentFrequency(){ return this->rxCurrentFrequency;}; 
   void rdsEnableRX(bool value);
   void setAudioMuteRX(bool value);
