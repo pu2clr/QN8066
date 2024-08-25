@@ -107,12 +107,18 @@ Functions</h2></td></tr>
 <tr class="memitem:gac41366461ca535228b158dc3c8fe0f4a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gac41366461ca535228b158dc3c8fe0f4a">QN8066::setRxFrequency</a> (uint16_t frequency)</td></tr>
 <tr class="memdesc:gac41366461ca535228b158dc3c8fe0f4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">sets the receiver frequency  <br /></td></tr>
 <tr class="separator:gac41366461ca535228b158dc3c8fe0f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:gacc6c79edb22073333b7b5c6ee4d75a98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#gacc6c79edb22073333b7b5c6ee4d75a98">QN8066::setRxFrequencyRange</a> (uint16_t min=640, uint16_t max=1080)</td></tr>
+<tr class="memdesc:gacc6c79edb22073333b7b5c6ee4d75a98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the frequency range of the receiver.  <br /></td></tr>
+<tr class="separator:gacc6c79edb22073333b7b5c6ee4d75a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga710168acdbfeb293106443d780423b3b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga710168acdbfeb293106443d780423b3b">QN8066::setRxFrequencyUp</a> ()</td></tr>
 <tr class="memdesc:ga710168acdbfeb293106443d780423b3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Increments the current receiver frequency.  <br /></td></tr>
 <tr class="separator:ga710168acdbfeb293106443d780423b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga7a7914b4a28ef5f67f25a5295aefca2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga7a7914b4a28ef5f67f25a5295aefca2d">QN8066::setRxFrequencyDown</a> ()</td></tr>
 <tr class="memdesc:ga7a7914b4a28ef5f67f25a5295aefca2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Decrements the current receiver frequency.  <br /></td></tr>
 <tr class="separator:ga7a7914b4a28ef5f67f25a5295aefca2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ga291b6796b9d6e261ae0caf85ff02cfe7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga291b6796b9d6e261ae0caf85ff02cfe7">QN8066::setRxFrequencyStep</a> (uint8_t value)</td></tr>
+<tr class="memdesc:ga291b6796b9d6e261ae0caf85ff02cfe7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the current Step frequency.  <br /></td></tr>
+<tr class="separator:ga291b6796b9d6e261ae0caf85ff02cfe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga01c237be23f6fd2c1bb5672803cf5bdb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__group03.html#ga01c237be23f6fd2c1bb5672803cf5bdb">QN8066::rdsEnableRX</a> (bool value)</td></tr>
 <tr class="memdesc:ga01c237be23f6fd2c1bb5672803cf5bdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enables RDS for RX.  <br /></td></tr>
 <tr class="separator:ga01c237be23f6fd2c1bb5672803cf5bdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -170,6 +176,7 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>Need to be optimized to improve space size </dd></dl>
 
 </div>
 </div>
@@ -193,6 +200,43 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="gacc6c79edb22073333b7b5c6ee4d75a98" name="gacc6c79edb22073333b7b5c6ee4d75a98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gacc6c79edb22073333b7b5c6ee4d75a98">&#9670;&#160;</a></span>setRxFrequencyRange()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setRxFrequencyRange </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>min</em> = <code>640</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t&#160;</td>
+          <td class="paramname"><em>max</em> = <code>1080</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the frequency range of the receiver. </p>
+<p>default values is 64.0 Mhz (640) to 108.0 MHz (1080) </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">min</td><td></td></tr>
+    <tr><td class="paramname">max</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a id="ga710168acdbfeb293106443d780423b3b" name="ga710168acdbfeb293106443d780423b3b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ga710168acdbfeb293106443d780423b3b">&#9670;&#160;</a></span>setRxFrequencyUp()</h2>
 
@@ -209,7 +253,7 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Increments the current receiver frequency. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>under construction... </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>under construction... </dd></dl>
 
 </div>
 </div>
@@ -229,7 +273,33 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Decrements the current receiver frequency. </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>under construction... </dd></dl>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000003">Todo:</a></b></dt><dd>under construction... </dd></dl>
+
+</div>
+</div>
+<a id="ga291b6796b9d6e261ae0caf85ff02cfe7" name="ga291b6796b9d6e261ae0caf85ff02cfe7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga291b6796b9d6e261ae0caf85ff02cfe7">&#9670;&#160;</a></span>setRxFrequencyStep()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void QN8066::setRxFrequencyStep </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets the current Step frequency. </p>
+<p>0 = 50KHz; 1 = 100KHz; 2 = 200KHz; 3 = Reserved </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

@@ -852,6 +852,11 @@ private:
   char strRxCurrentFrequency[8];  // Stores formated current frequency
   uint16_t rxCurrentFrequency; 
   uint8_t  rxCurrentStep;
+  
+  uint16_t minimalFrequency = 640;
+  uint16_t maximalFrequency = 1080;
+
+
 
 protected:
 public:
@@ -892,6 +897,7 @@ public:
   void setAudioMuteRX(bool value);
   uint8_t getRxSNR();
   uint8_t getRxRSSI();
+  void setRxFrequencyRange(uint16_t min = 640, uint16_t max = 1080);
 
   bool isValidRxChannel();
   bool isRxReceiving();

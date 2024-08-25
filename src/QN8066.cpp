@@ -401,6 +401,17 @@ void QN8066::setRxFrequency(uint16_t frequency) {
   this->setRegister(QN_RX_CH,rxch.RXCH);
 }
 
+/**
+ * @ingroup group03 RX
+ * @brief Sets the frequency range of the receiver
+ * @details default values is 64.0 Mhz (640) to 108.0 MHz (1080)
+ * @param min 
+ * @param max 
+ */
+void QN8066::setRxFrequencyRange(uint16_t min, uint16_t max ) {
+  this->minimalFrequency = min;
+  this->maximalFrequency = max;
+}
 
 /**
  * @ingroup group03 RX
@@ -409,6 +420,11 @@ void QN8066::setRxFrequency(uint16_t frequency) {
  */
 void QN8066::setRxFrequencyUp() {
 
+  this->rxCurrentFrequency += this->rxCurrentStep;
+  if ( this->rxCurrentFrequency > this->maximalFrequency ) 
+    this->rxCurrentFrequency = this->minimalFrequency;
+
+  this->setRxFrequency(this->rxCurrentFrequency);
 }
 
 /**
@@ -417,6 +433,12 @@ void QN8066::setRxFrequencyUp() {
  * @todo under construction...
  */
 void QN8066::setRxFrequencyDown() {
+
+  this->rxCurrentFrequency -= this->rxCurrentStep;
+  if ( this->rxCurrentFrequency < this->minimalFrequency ) 
+    this->rxCurrentFrequency = this->maximalFrequency;
+
+  this->setRxFrequency(this->rxCurrentFrequency);
 
 }
 
@@ -427,8 +449,11 @@ void QN8066::setRxFrequencyDown() {
  * @param value 
  */
 void QN8066::setRxFrequencyStep(uint8_t value) {
-  
-
+  qn8066_ch_step step;
+  step.raw = this->getRegister(QN_CH_STEP);
+  step.arg.CH_FSTEP = value; 
+  this->rxCurrentStep = value;
+  this->setRegister(QN_CH_STEP, step.raw);
 }
 
 
