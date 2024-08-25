@@ -25,7 +25,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">PU2CLR QN8066 Arduino Library<span id="projectnumber">&#160;1.1.3</span>
+   <div id="projectname">PU2CLR QN8066 Arduino Library<span id="projectnumber">&#160;1.3.0</span>
    </div>
    <div id="projectbrief">Arduino Library for QN8066Devices - By Ricardo Lima Caratti</div>
   </td>
@@ -946,7 +946,7 @@ $(document).ready(function(){initNavTree('_q_n8066_8h_source.html',''); initResi
 <div class="line"><a id="l00851" name="l00851"></a><span class="lineno">  851</span> </div>
 <div class="line"><a id="l00852" name="l00852"></a><span class="lineno">  852</span>  <span class="keywordtype">char</span> strRxCurrentFrequency[8];  <span class="comment">// Stores formated current frequency</span></div>
 <div class="line"><a id="l00853" name="l00853"></a><span class="lineno">  853</span>  uint16_t rxCurrentFrequency;</div>
-<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>  uint8_t  rxCurrentStep;</div>
+<div class="line"><a id="l00854" name="l00854"></a><span class="lineno">  854</span>  uint8_t  rxCurrentStep = 1;     <span class="comment">//!&lt;  current frequency step. Default is 100kHz</span></div>
 <div class="line"><a id="l00855" name="l00855"></a><span class="lineno">  855</span> </div>
 <div class="line"><a id="l00856" name="l00856"></a><span class="lineno">  856</span>  uint16_t minimalFrequency = 640;</div>
 <div class="line"><a id="l00857" name="l00857"></a><span class="lineno">  857</span>  uint16_t maximalFrequency = 1080;</div>

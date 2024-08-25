@@ -3810,10 +3810,13 @@ _EnD_oF_dEf_TeXt_;
 uint8_t
 _EnD_oF_dEf_TeXt_;
       sec-mem-name = 'rxCurrentStep';
+      sec-mem-initializer = <<_EnD_oF_dEf_TeXt_
+= 1
+_EnD_oF_dEf_TeXt_;
       sec-mem-desc-file = '/Users/rcaratti/Desenvolvimento/eu/Arduino/DSP/QN8066/QN8066/src/QN8066.h';
       sec-mem-desc-line = '854';
       sec-mem-briefdesc =    <<_EnD_oF_dEf_TeXt_
-
+current frequency step. Default is 100kHz
 _EnD_oF_dEf_TeXt_;
       sec-mem-documentation = <<_EnD_oF_dEf_TeXt_
 
