@@ -1,9 +1,9 @@
 /*
   UNDER CONSTRUCTION...
 
-  ESP32 Dev Modeule version.
+  ATMEGA328 Dev Modeule version.
 
-  This sketch uses an ESP32 with LCD16X02 DISPLAY
+  This sketch uses an ATMEGA328 with LCD16X02 DISPLAY
   It is also a FM receiver capable to tune your local FM stations.
   This sketch saves the latest status of the receiver into the Atmega328 eeprom.
 
@@ -11,34 +11,33 @@
 
   Read more on https://pu2clr.github.io/QN8066/
 
-  Wire up ESP32 Dev Module, QN8066 and LCD16x02 or LCD16x04
+  Wire up ATMEGA328 Dev Module, QN8066 and LCD16x02 or LCD16x04
+  Wire up on Arduino UNO, Nano or Pro mini
 
   | Device name               | Device Pin / Description  |  Arduino Pin  |
   | --------------------------| --------------------      | ------------  |
   |    LCD 16x2 or 20x4       |                           |               |
-  |                           | D4                        |  GPIO18       |
-  |                           | D5                        |  GPIO17       |
-  |                           | D6                        |  GPIO16       |
-  |                           | D7                        |  GPIO15       |
-  |                           | RS                        |  GPIO19       |
-  |                           | E/ENA                     |  GPIO23       |
-  |                           | RW & VSS & K (16)         |  GND          |
-  |                           | A (15) & VDD              |  +Vcc         |
+  |                           | D4                        |     D7        |
+  |                           | D5                        |     D6        |
+  |                           | D6                        |     D5        |
+  |                           | D7                        |     D4        |
+  |                           | RS                        |     D12       |
+  |                           | E/ENA                     |     D13       |
+  |                           | RW & VSS & K (16)         |    GND        |
+  |                           | A (15) & VDD              |    +Vcc       |
   | --------------------------| ------------------------- | --------------|
-  | QN8066                   |                            |               | 
-  |                           | VCC                       |  3.3V         |
-  |                           | SDIO / SDA                |  GPI21        |
-  |                           | SCLK                      |  GPI22        |
-  | Buttons                   |                           |               |
-  |                           | Volume Up                 |  GPIO32       |
-  |                           | Volume Down               |  GPIO33       |
-  |                           | Stereo/Mono               |  GPIO25       |
+  | QN8066                    |                           |               |
+  | DIY KIT 5˜7W              | ------------------------- | --------------|
+  |                           | SDA                       |     A4        |
+  |                           | SCLK                      |     A5        |
+  |                           | PWM                       |     D9        |
   | --------------------------| --------------------------| --------------|
+  | Button                    |                           |               |
+  |                           | Menu                      |     A0/D14    |
   | Encoder                   |                           |               |
-  |                           | A                         |  GPIO13       |
-  |                           | B                         |  GPIO14       |
-  |                           | PUSH BUTTON (encoder)     |  GPIO27       |
-  | 
+  |                           | Left                      |     D2        |
+  |                           | Right                     |     D3        |
+  | --------------------------| --------------------------|---------------|
 
   Prototype documentation: https://pu2clr.github.io/QN8066/
   PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
@@ -55,32 +54,29 @@
 #include "Rotary.h"
 
 // LCD 16x02 or LCD20x4 PINs
-#define LCD_D7 15
-#define LCD_D6 16
-#define LCD_D5 17
-#define LCD_D4 18
-#define LCD_RS 19
-#define LCD_E 23
+#define LCD_D7  4
+#define LCD_D6  5
+#define LCD_D5  6
+#define LCD_D4  7
+#define LCD_RS  12
+#define LCD_E   13
 
-#define RST_PIN 12
 #define SDIO_PIN 21
 
 // Enconder PINs
-#define ENCODER_PIN_A 13
-#define ENCODER_PIN_B 14
+// Enconder PINs
+#define ENCODER_PIN_A 2
+#define ENCODER_PIN_B 3
 
 // Buttons controllers
-#define VOLUME_UP 32      // Volume Up
-#define VOLUME_DOWN 33    // Volume Down
-#define SWITCH_STEREO 26  // Stereo ON/OFF
-#define SEEK_FUNCTION 27  // Seek function
+#define SWITCH_STEREO  8  // Stereo ON/OFF
+#define SEEK_FUNCTION 14  // Seek function
 
 #define POLLING_TIME 1900
 
 #define STORE_TIME 10000  // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
 #define PUSH_MIN_DELAY 300
 
-#define EEPROM_SIZE 512
 
 const uint8_t app_id = 66;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
@@ -110,8 +106,6 @@ void setup() {
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);
 
   // Push button pin
-  pinMode(VOLUME_UP, INPUT_PULLUP);
-  pinMode(VOLUME_DOWN, INPUT_PULLUP);
   pinMode(SWITCH_STEREO, INPUT_PULLUP);
   pinMode(SEEK_FUNCTION, INPUT_PULLUP);
 
@@ -119,7 +113,6 @@ void setup() {
   lcd.begin(16, 2);
   showSplash();
 
-  EEPROM.begin(EEPROM_SIZE);
 
   // If you want to reset the eeprom, keep the ENCODER PUSH BUTTON  pressed during statup
   if (digitalRead(SEEK_FUNCTION) == LOW) {
@@ -161,13 +154,10 @@ void setup() {
 
 
 void saveAllReceiverInformation() {
-  EEPROM.begin(EEPROM_SIZE);
-
   // The write function/method writes data only if the current data is not equal to the stored data.
   EEPROM.write(eeprom_address, app_id);
   EEPROM.write(eeprom_address + 1, currentFrequency >> 8);    // stores the current Frequency HIGH byte for the band
   EEPROM.write(eeprom_address + 2, currentFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
-  EEPROM.end();
 }
 
 void readAllReceiverInformation() {
