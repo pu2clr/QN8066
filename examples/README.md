@@ -26,16 +26,16 @@ The reference clock for the QN8066 is 32.768 kHz. It is important that you use a
 
 The table below shows some tested sources (active crystal or signal generator) and divider values.  
 
-|   Source (kHz)  | Divider       | 
-| --------------  | ------------- |
-|  32.768         |      1        | 
-|  < 1,310.720    | did not work  |   
-|  1,310.720      |    40         | 
-|  1,638.400      |    50         | 
-|  3,276.800      |   100         | 
-|  13,107.200     |   400         | 
-|  16,384.000     |   500         | 
-|  32,768,000     |  1000         |  
+|   Source (kHz)            | Divider       | 
+| ------------------------- | ------------- |
+|  32.768                   |      1        | 
+|  > 32.868 and < 1,310.720 | did not work  |   
+|  1,310.720                |    40         | 
+|  1,638.400                |    50         | 
+|  3,276.800                |   100         | 
+|  13,107.200               |   400         | 
+|  16,384.000               |   500         | 
+|  32,768,000               |  1000         |  
 
 
 Note in the table above that values between 65.636 kHz and 1,310.720 kHz did not work. Only an active crystal of 32.768 kHz or a multiple of this value above or equal to 1,310.720 kHz worked in the tests conducted by the author of this library. By default, this library assumes that you are using a 32.768 MHz signal source.
