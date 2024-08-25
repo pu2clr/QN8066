@@ -1,6 +1,6 @@
 # [QN8066 FM DSP RX/TX  Arduino Library](https://pu2clr.github.io/QN8066/)
 
-This library is intended to provide an easy-to-use interface for controlling the QN8066 FM transceiver. 
+This library is intended to provide an easy-to-use interface for controlling the QN8066 FM transceiver and receiver. 
 
 The primary goal of this Arduino library project for the QN8066 is to simplify the development of robust applications using this device. I hope that hobbyists, electronics technicians, radio amateurs, and others interested in this work will find success in their projects. All the C/C++ funcions and methods are documented [here].(https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
 
