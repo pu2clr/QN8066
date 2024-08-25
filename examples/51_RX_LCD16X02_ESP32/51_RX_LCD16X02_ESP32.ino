@@ -138,7 +138,7 @@ void setup() {
   rx.begin();
 
   // Check the setXtal function if you are using a active crystal not equal to 32.768 MHz
-  rx.setXtal(1, 1, 0 ); // Using a 32.768 kHz  active crystal instead a 32.768 MHz.  
+  // rx.setXtal(1, 1, 0 ); // Using a 32.768 kHz  active crystal instead a 32.768 MHz.  
 
   delay(100);
 

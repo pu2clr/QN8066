@@ -403,7 +403,7 @@ void setup() {
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
     uint8_t ptyIdx = keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx;
-    tx.rdsInitTx(0, 0, 0, ptyIdx, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+    tx.rdsInitTx(0x8,0x1,0x9B, ptyIdx, 25, 8);   // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
     sendRDS();              // Control the RDS PS and RT messages with this function
   }
 
