@@ -51,7 +51,8 @@ The pictures below show some active crystals used during the tests.
 
 ![Other 32.768 kHz active crystal](../extras/images/act_crystal_03.jpg)
 
-![32.768 MHz active crystal](../extras/images/act_crystal_02.jpgg)
+
+![32.768 MHz active crystal](../extras/images/act_crystal_02.jpg)
 
 
 
