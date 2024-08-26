@@ -329,6 +329,10 @@ uint8_t idxRdsRT = 0;
 long rdsTimePS = millis();
 long rdsTimeRT = millis();
 
+long  timeInTheAr = millis();
+long  countI2CError = 0;  
+long  countTime = 0;
+
 
 // TX board interface
 QN8066 tx;
@@ -419,6 +423,7 @@ void checkQN8066() {
   }
   // lcd.setCursor(7, 1);
   if (count > 0) {
+     countI2CError++; 
     // lcd.setCursor(7, 1);
     // lcd.print('#');
     tx.startTransmitting();
@@ -546,6 +551,18 @@ void showStatus() {
   lcd.setCursor(14, 3);
   sprintf(str, "FSM:%d", tx.getFsmStateCode());
   lcd.print(str);
+
+  // DEBUG - Monitoring time and I2C error 
+  if ( (millis() - timeInTheAr) > 60000) { 
+    countTime++;
+    timeInTheAr = millis();
+  }
+
+  lcd.setCursor(10, 0);
+  lcd.print(countI2CError);
+  lcd.setCursor(8, 1);
+  lcd.print(countTime);
+  // END DEBUG
 
   lcd.display();
 }
