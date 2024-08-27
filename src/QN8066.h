@@ -810,6 +810,20 @@ typedef union {
 } RDS_BLOCK4;
 
 
+typedef union
+{
+    struct
+    {
+        uint32_t offset : 5;       //!< Local Time Offset
+        uint32_t offset_sense : 1; //!< Local Offset Sign ( 0 = + , 1 = - )
+        uint32_t minute : 6;       //!< UTC Minutes
+        uint32_t hour : 5;         //!< UTC Hours
+        uint32_t mjd : 17;         //!< Modified Julian Day Code
+    } arg;
+    uint8_t raw[6];
+} RDS_DATE_TIME;
+
+
 
 /**
  * @ingroup  CLASSDEF
@@ -1030,6 +1044,8 @@ public:
  * @endcode  
  */
   inline void rdsSendRT(char *rt) {this->rdsSendRTMessage(rt); };
+
+  void rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, int8_t offset);
 
 
   
