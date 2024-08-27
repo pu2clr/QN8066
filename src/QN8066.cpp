@@ -1895,6 +1895,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
  */
 void QN8066::rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, int8_t offset) {
 
+  // Under construction...
   // RDS_DATE_TIME rdsDateTime;
 
   uint32_t mjd = (1461 * (year + 4800 + (month - 14) / 12)) / 4 +
@@ -1926,11 +1927,11 @@ void QN8066::rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t 
   block2.commonFields.versionCode = 0; // Version A
   block2.commonFields.programType = this->rdsPTY; 
   block2.commonFields.trafficProgramCode = this->rdsTP; 
-  block2.commonFields.additionalData = (min & 0x3F); // UTC Minutes
+  block2.commonFields.additionalData = (mjd >> 15 ); // UTC Minutes
 
-  block3.raw = (mjd << 1) | ((hour & 0x1F) << 5) | ((min & 0x3F) >> 6);
-  block4.raw = ((offset < 0) ? 1 : 0) << 5; // Local Offset Sign (0 = + , 1 = -)
-  block4.raw |= (abs(offset) & 0x1F) << 10; // Local Time Offset
+  block3.raw = ( (mjd  & 0B00111111111111111) << 1) | ((hour >> 4);
+  block4.raw =  0; // hour << 1    min   ((offset < 0) ? 1 : 0) << 5; // Local Offset Sign (0 = + , 1 = -)
+  //block4.raw |= (abs(offset) & 0x1F) << 10; // Local Time Offset
 
   for ( uint8_t k  = 0; k < this->rdsRepeatGroup; k++) 
     this->rdsSendGroup(block1, block2, block3, block4);
