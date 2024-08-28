@@ -807,14 +807,13 @@ typedef union {
 typedef union {
   unsigned char byteContent[2];
   struct {
-    uint16_t  hour: 4; //!< Four least significant bits of the hour - UTC Hours (0–23)
+    uint16_t  offset: 5; //!< Local Time Offset  
+    uint16_t  offset_sign: 1; //!< Offset sign (+/-) 
     uint16_t  min:  6; //!< UTC Minutes (0–59)  
-    uint16_t  offset_sign: 1; //!< Offset sign (+/-)
-    uint16_t  offset: 5; //!< Local Time Offset   
+    uint16_t  hour: 4; //!< Four least significant bits of the hour - UTC Hours (0–23)
   } utc;
   uint16_t raw;
 } RDS_BLOCK4;
-
 
 typedef union
 {

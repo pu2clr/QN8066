@@ -1730,11 +1730,11 @@ void QN8066::rdsSendGroup(RDS_BLOCK1 block1, RDS_BLOCK2 block2, RDS_BLOCK3 block
   this->setRegister(QN_TX_RDSD2, block2.byteContent[1]); // Most Significant Byte First.
   this->setRegister(QN_TX_RDSD3, block2.byteContent[0]);
   
-  this->setRegister(QN_TX_RDSD4, block3.byteContent[0]); // First character first 
-  this->setRegister(QN_TX_RDSD5, block3.byteContent[1]);
+  this->setRegister(QN_TX_RDSD4, block3.byteContent[1]); // First character first 
+  this->setRegister(QN_TX_RDSD5, block3.byteContent[0]);
   
-  this->setRegister(QN_TX_RDSD6, block4.byteContent[0]);
-  this->setRegister(QN_TX_RDSD7, block4.byteContent[1]);
+  this->setRegister(QN_TX_RDSD6, block4.byteContent[1]);
+  this->setRegister(QN_TX_RDSD7, block4.byteContent[0]);
 
   // It should not be here. Judiging by the data sheet, the use must  
   // wait for the RDS_TXUPD before toggling the RDSRDY bit in the SYSTEM2 register. 
@@ -1811,8 +1811,8 @@ void QN8066::rdsSendPS(char* ps) {
   // them to the listener without interruptions.
   for ( uint8_t k  = 0; k < this->rdsRepeatGroup; k++) { 
     for (uint8_t i = 0; i < 8; i+=2) { 
-      b4.byteContent[0] = ps[i]; 
-      b4.byteContent[1] = ps[i+1];
+      b4.byteContent[1] = ps[i]; 
+      b4.byteContent[0] = ps[i+1];
       this->rdsSendGroup(b1, b2, b3, b4);
       b2.group0Field.address++; 
     }
@@ -1872,11 +1872,11 @@ void QN8066::rdsSendRTMessage(char *rt) {
       for (uint8_t i = 0; i < numGroups; i++) {
           block2.group2Field.address = i; 
           RDS_BLOCK3 block3; 
-          block3.byteContent[0] = rt[i * 4];
-          block3.byteContent[1] = rt[i * 4 + 1];
+          block3.byteContent[1] = rt[i * 4];
+          block3.byteContent[0] = rt[i * 4 + 1];
           RDS_BLOCK4 block4;
-          block4.byteContent[0] = rt[i * 4 + 2];
-          block4.byteContent[1] = rt[i * 4 + 3]; 
+          block4.byteContent[1] = rt[i * 4 + 2];
+          block4.byteContent[0] = rt[i * 4 + 3]; 
           this->rdsSendGroup(block1, block2, block3, block4);
       }
     }
