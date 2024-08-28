@@ -11,6 +11,6 @@ void setup() {
 void loop() {
     tx.rdsSendPS(ps);
     tx.rdsSendRTMessage(rt);
-    // tx.rdsSendDateTime(2024, 8, 26, 23, 20, -3);
-    delay(3000);    
+    tx.rdsSendDateTime(1964, 04, 03, 23, 50, -3);
+    delay(10000);    
 }

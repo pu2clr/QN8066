@@ -1883,7 +1883,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
 }
 
 
-int32_t QN8066::calculateMJD(int year, int month, int day) {
+int32_t QN8066::calculateMJD(uint16_t year, uint8_t month, uint8_t day) {
     // Adjust moth and year 
     if (month <= 2) {
         year -= 1;
@@ -1946,8 +1946,8 @@ void QN8066::rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t 
   block2.commonFields.trafficProgramCode = this->rdsTP; 
   block2.commonFields.additionalData = (mjd >> 15 ); // UTC Minutes
 
-  block3.raw = (mjd  & 0B00111111111111111) << 1 | (hour >> 4);
-  block4.utc.hour =  (0B11111111 &  hour << 1); 
+  block3.raw = ((mjd & 0B00111111111111111) << 1) | (hour >> 4);
+  block4.utc.hour =  (0B01111 &  hour ); 
   block4.utc.min =  min; 
   block4.utc.offset_sign =  (offset < 0) ? 1 : 0;  // Local Offset Sign (0 = + , 1 = -)
   block4.utc.offset =  offset;
