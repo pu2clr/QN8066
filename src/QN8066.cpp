@@ -1882,6 +1882,25 @@ void QN8066::rdsSendRTMessage(char *rt) {
     }
 }
 
+
+int32_t QN8066::calculateMJD(int year, int month, int day) {
+    // Adjust moth and year 
+    if (month <= 2) {
+        year -= 1;
+        month += 12;
+    }
+
+    // Julian Date
+    int yearA = year / 100;
+    int yearB = 2 - yearA + (yearA/ 4);
+    int32_t jd = (int)(365.25 * (year + 4716)) + (int)(30.6001 * (month + 1)) + day + yearB - 1524;
+
+    // MJD (Modified Julian Date)
+    int32_t mjd = jd - 2400001;
+
+    return mjd;
+}
+
 /**
  * @ingroup group05 TX RDS
  * @brief Sends the RDS Date Time information
@@ -1898,9 +1917,7 @@ void QN8066::rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t 
   // Under construction...
   // RDS_DATE_TIME rdsDateTime;
 
-  uint32_t mjd = (1461 * (year + 4800 + (month - 14) / 12)) / 4 +
-           (367 * (month - 2 - 12 * ((month - 14) / 12))) / 12 -
-           (3 * ((year + 4900 + (month - 14) / 12) / 100)) / 4 + day - 32075 - 2400001;
+  int32_t mjd = this->calculateMJD(year,month,day);
 
   /*
   rdsDateTime.arg.mjd = mjd;
@@ -1929,9 +1946,11 @@ void QN8066::rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t 
   block2.commonFields.trafficProgramCode = this->rdsTP; 
   block2.commonFields.additionalData = (mjd >> 15 ); // UTC Minutes
 
-  block3.raw = ( (mjd  & 0B00111111111111111) << 1) | ((hour >> 4);
-  block4.raw =  0; // hour << 1    min   ((offset < 0) ? 1 : 0) << 5; // Local Offset Sign (0 = + , 1 = -)
-  //block4.raw |= (abs(offset) & 0x1F) << 10; // Local Time Offset
+  block3.raw = (mjd  & 0B00111111111111111) << 1 | (hour >> 4);
+  block4.utc.hour =  (0B11111111 &  hour << 1); 
+  block4.utc.min =  min; 
+  block4.utc.offset_sign =  (offset < 0) ? 1 : 0;  // Local Offset Sign (0 = + , 1 = -)
+  block4.utc.offset =  offset;
 
   for ( uint8_t k  = 0; k < this->rdsRepeatGroup; k++) 
     this->rdsSendGroup(block1, block2, block3, block4);

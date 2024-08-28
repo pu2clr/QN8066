@@ -806,6 +806,12 @@ typedef union {
  */
 typedef union {
   unsigned char byteContent[2];
+  struct {
+    uint16_t  hour: 4; //!< Four least significant bits of the hour - UTC Hours (0–23)
+    uint16_t  min:  6; //!< UTC Minutes (0–59)  
+    uint16_t  offset_sign: 1; //!< Offset sign (+/-)
+    uint16_t  offset: 5; //!< Local Time Offset   
+  } utc;
   uint16_t raw;
 } RDS_BLOCK4;
 
@@ -1045,6 +1051,7 @@ public:
  */
   inline void rdsSendRT(char *rt) {this->rdsSendRTMessage(rt); };
 
+  int32_t QN8066::calculateMJD(int year, int month, int day);
   void rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, int8_t offset);
 
 
