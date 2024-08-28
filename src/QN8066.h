@@ -829,6 +829,11 @@ typedef union
 } RDS_DATE_TIME;
 
 
+typedef union { 
+  uint16_t value;
+  uint8_t  raw[2];  
+} WORD16;
+
 
 /**
  * @ingroup  CLASSDEF

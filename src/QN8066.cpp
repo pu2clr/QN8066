@@ -1883,6 +1883,17 @@ void QN8066::rdsSendRTMessage(char *rt) {
 }
 
 
+/**
+ * @ingroup group05 TX RDS
+ * @brief Calculates the Modified Julian Date 
+ * 
+ * @param year  
+ * @param month 
+ * @param day 
+ * @return int32_t 
+ * @see https://gssc.esa.int/navipedia/index.php/Julian_Date
+ * @see https://quasar.as.utexas.edu/BillInfo/JulianDatesG.html
+ */
 int32_t QN8066::calculateMJD(uint16_t year, uint8_t month, uint8_t day) {
     // Adjust moth and year 
     if (month <= 2) {
@@ -1946,7 +1957,13 @@ void QN8066::rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t 
   block2.commonFields.trafficProgramCode = this->rdsTP; 
   block2.commonFields.additionalData = (mjd >> 15 ); // UTC Minutes
 
-  block3.raw = ((mjd & 0B00111111111111111) << 1) | (hour >> 4);
+  WORD16 auxMJD; 
+
+  auxMJD.value = ((mjd & 0B00111111111111111) << 1) | (hour >> 4);
+
+  block3.byteContent[1] = auxMJD.raw[1];
+  block3.byteContent[0] = auxMJD.raw[0];
+
   block4.utc.hour =  (0B01111 &  hour ); 
   block4.utc.min =  min; 
   block4.utc.offset_sign =  (offset < 0) ? 1 : 0;  // Local Offset Sign (0 = + , 1 = -)
