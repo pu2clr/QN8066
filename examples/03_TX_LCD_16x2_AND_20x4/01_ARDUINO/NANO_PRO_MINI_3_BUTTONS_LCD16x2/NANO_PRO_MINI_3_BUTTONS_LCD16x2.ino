@@ -344,6 +344,8 @@ void setup() {
   pinMode(BT_UP, INPUT_PULLUP);
   pinMode(BT_DOWN, INPUT_PULLUP);
 
+  enablePWM(0);  // PWM disable
+
   tx.setI2CFastMode();
 
   lcd.begin(MAX_LCD_COL, MAX_LCD_LIN);
@@ -371,11 +373,10 @@ void setup() {
   } else {
     // Defult values
     txFrequency = 1069;
-    pwmPowerDuty = 50;
+    pwmPowerDuty = 0;
     saveAllTransmitterInformation();
   }
 
-  enablePWM(0);  // PWM disable
 
   tx.setup();
   tx.setTX(txFrequency);
@@ -402,9 +403,8 @@ void setup() {
 
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    uint8_t ptyIdx = keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx;
-    tx.rdsInitTx(0x8,0x1,0x9B, ptyIdx, 50, 8);   // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-    sendRDS();              // Control the RDS PS and RT messages with this function
+    startRDS();
+    sendRDS();                             // Control the RDS PS and RT messages with this function
   }
 
   enablePWM(pwmPowerDuty);  // It is about 1/5 of the max power. At 50 duty cycle, it is between 1 and 1,4 W
@@ -427,6 +427,11 @@ void checkQN8066() {
     // lcd.print('#'); 
     tx.startTransmitting();
   }
+}
+
+void startRDS() {
+    uint8_t ptyIdx = keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx;
+    tx.rdsInitTx(0x8,0x1,0x9B, ptyIdx, 50, 8);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html) 
 }
 
 // Saves current transmitter setup
@@ -703,6 +708,7 @@ uint8_t doMenu(uint8_t idxMenu) {
       break;
     case KEY_RDS:
       runAction([](uint8_t value) {tx.rdsTxEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
+      startRDS();
       break;
     case KEY_RDS_PTY: 
       runAction([](uint8_t value) {tx.rdsSetPTY(value);}, &keyValue[idxMenu], 1, 0, 11);
