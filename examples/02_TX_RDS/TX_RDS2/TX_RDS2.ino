@@ -11,6 +11,9 @@ void setup() {
 void loop() {
     tx.rdsSendPS(ps);
     tx.rdsSendRTMessage(rt);
-    tx.rdsSendDateTime(2024, 8, 28, 23, 01, 0);
+    // To use the function (service) below, you will need to add an integrated clock to your 
+    // system that provides the date and time to the system. The following example presents 
+    // only a fixed date and time and is intended solely to illustrate the use of the function.
+    tx.rdsSendDateTime(2024, 8, 29, 12, 45, 0);
     delay(10000);    
 }

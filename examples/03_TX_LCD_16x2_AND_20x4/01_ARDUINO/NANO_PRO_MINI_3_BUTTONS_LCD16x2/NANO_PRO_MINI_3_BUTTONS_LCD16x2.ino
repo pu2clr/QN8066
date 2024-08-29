@@ -329,9 +329,11 @@ uint8_t idxRdsRT = 0;
 
 #define RDS_PS_REFRESH_TIME 5000
 #define RDS_RT_REFRESH_TIME 15000
+#define RDS_DT_REFRESH_TIME 60000 // Date and Time Service
 
 long rdsTimePS = millis();
 long rdsTimeRT = millis();
+long rdsDateTime = millis();
 
 
 // TX board interface
@@ -778,6 +780,17 @@ void sendRDS() {
     tx.rdsSendRT(rdsRTmsg[idxRdsRT]);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     idxRdsRT++;
     rdsTimeRT = millis();
+  }
+
+
+  // Date Time Service refreshing control
+  if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
+    delay(100);
+    // To use the function (service) below, you will need to add an integrated clock to your 
+    // system that provides the date and time to the system. The following example presents 
+    // only a fixed date and time and is intended solely to illustrate the use of the function.
+    tx.rdsSendDateTime(2024, 8, 30, 13, 01, 0);  // Sends Year = 2024; month = 8; day = 29; At 12:45 (local time)    
+    rdsDateTime = millis();
   }
 }
 

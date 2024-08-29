@@ -1886,7 +1886,6 @@ void QN8066::rdsSendRTMessage(char *rt) {
 /**
  * @ingroup group05 TX RDS
  * @brief Calculates the Modified Julian Date 
- * 
  * @param year  
  * @param month 
  * @param day 
@@ -1904,19 +1903,19 @@ int32_t QN8066::calculateMJD(uint16_t year, uint8_t month, uint8_t day) {
     // Julian Date
     int yearA = year / 100;
     int yearB = 2 - yearA + (yearA/ 4);
-    int32_t jd = (int)(365.25 * (year + 4716)) + (int)(30.6001 * (month + 1)) + day + yearB - 1524;
+    long jd = (long)(365.25 * (year + 4716)) + (long)(30.6001 * (month + 1)) + day + yearB - 1524;
 
     // MJD (Modified Julian Date)
     int32_t mjd = jd - 2400001;
 
-    // return mjd;
-    // See: https://core2.gsfc.nasa.gov/time/mjd2000.html
-    return 51543; // Should show 01, 30, 2000
+    return mjd;
 }
 
 /**
  * @ingroup group05 TX RDS
  * @brief Sends the RDS Date Time information
+ * @details To use this function (service), you will need to add an integrated clock to your system that provides 
+ * @details the date and time to the system. 
  * @param year 
  * @param month 
  * @param day 
