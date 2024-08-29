@@ -1,6 +1,21 @@
 var _q_n8066_8h =
 [
+    [ "RDS_DATE_TIME", "_q_n8066_8h.html#union_r_d_s___d_a_t_e___t_i_m_e", [
+      [ "arg", "_q_n8066_8h.html#a070caa1f26ff3aa97f4b3a5bc63dc1c9", null ],
+      [ "raw", "_q_n8066_8h.html#a9b776bf6269905dec6876f68678e1b4b", null ]
+    ] ],
+    [ "WORD16", "_q_n8066_8h.html#union_w_o_r_d16", [
+      [ "value", "_q_n8066_8h.html#a92e796cee399aa41917dc6be1e54e700", null ],
+      [ "raw", "_q_n8066_8h.html#ad336065ab4afef420c3391caba14bd98", null ]
+    ] ],
     [ "QN8066", "class_q_n8066.html", "class_q_n8066" ],
+    [ "RDS_DATE_TIME.arg", "_q_n8066_8h.html#struct_r_d_s___d_a_t_e___t_i_m_e_8arg", [
+      [ "offset", "_q_n8066_8h.html#a7a86c157ee9713c34fbd7a1ee40f0c5a", null ],
+      [ "offset_sense", "_q_n8066_8h.html#a5ba6e404c489ff4f757e7c77cb9fa310", null ],
+      [ "minute", "_q_n8066_8h.html#a0a7d55be9d12a369a6a8da0fb517fba4", null ],
+      [ "hour", "_q_n8066_8h.html#a896c55cc5e46fab38ce9f51ebf7bfcd3", null ],
+      [ "mjd", "_q_n8066_8h.html#a7f7685b39180278dd0fa69f523c7bd24", null ]
+    ] ],
     [ "QN8066_I2C_ADDRESS", "_q_n8066_8h.html#afdd7823b8f59d88e390d2f1f15a69051", null ],
     [ "QN8066_RESET_DELAY", "_q_n8066_8h.html#aead9915b3f68765817e6d8bc6122d9e3", null ],
     [ "QN8066_DELAY_COMMAND", "_q_n8066_8h.html#a5028d25f8fc86e6f7ec7ebcf63585805", null ],

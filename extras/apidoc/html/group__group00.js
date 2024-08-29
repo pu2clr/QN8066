@@ -126,6 +126,7 @@ var group__group00 =
     ] ],
     [ "RDS_BLOCK4", "group__group00.html#union_r_d_s___b_l_o_c_k4", [
       [ "byteContent", "group__group00.html#a2ebd666d81ec4045210e00afb9358f4f", null ],
+      [ "utc", "group__group00.html#afdc8a7aa16cc0f04bec0c41b67a4572b", null ],
       [ "raw", "group__group00.html#a10f3f208449a1ffe5de720ac90513710", null ]
     ] ],
     [ "qn8066_system1.arg", "group__group00.html#structqn8066__system1_8arg", [
@@ -280,5 +281,11 @@ var group__group00 =
       [ "trafficProgramCode", "group__group00.html#a59e69d63ce38754ea53c4461b5cba1e2", null ],
       [ "versionCode", "group__group00.html#a20583dcf173525a78f726ef45329c5ae", null ],
       [ "groupType", "group__group00.html#a19223bd3731a4215ead3ba6a1eb8bbe8", null ]
+    ] ],
+    [ "RDS_BLOCK4.utc", "group__group00.html#struct_r_d_s___b_l_o_c_k4_8utc", [
+      [ "offset", "group__group00.html#a7a86c157ee9713c34fbd7a1ee40f0c5a", null ],
+      [ "offset_sign", "group__group00.html#aee932c9e9cab385238fb0f8da1525708", null ],
+      [ "min", "group__group00.html#ad8bd79cc131920d5de426f914d17405a", null ],
+      [ "hour", "group__group00.html#a896c55cc5e46fab38ce9f51ebf7bfcd3", null ]
     ] ]
 ];
