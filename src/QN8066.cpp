@@ -1910,7 +1910,8 @@ int32_t QN8066::calculateMJD(uint16_t year, uint8_t month, uint8_t day) {
     int32_t mjd = jd - 2400001;
 
     // return mjd;
-    return 55165;
+    // See: https://core2.gsfc.nasa.gov/time/mjd2000.html
+    return 51543; // Should show 01, 30, 2000
 }
 
 /**
