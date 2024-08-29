@@ -2,6 +2,7 @@
  * @file 01_RTC_DS1302.ino
  * @author Ricardo Lima Caratti (pu2clr@gmail.com)
  * @brief This sketch is a tool for configuring the DS1302-based Real-Time Clock (RTC). Please follow the comments in the sketch for guidance.
+ * @details Install the library Ds1302 (A C/C++ library to use DS1302 RTC chip.) by Rafa Couto <caligari@treboada.net>  
  * @date 2024-08-29
  */
 
