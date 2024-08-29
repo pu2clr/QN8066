@@ -1926,24 +1926,7 @@ int32_t QN8066::calculateMJD(uint16_t year, uint8_t month, uint8_t day) {
  */
 void QN8066::rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, int8_t offset) {
 
-  // Under construction...
-  // RDS_DATE_TIME rdsDateTime;
-
   int32_t mjd = this->calculateMJD(year,month,day);
-
-  /*
-  rdsDateTime.arg.mjd = mjd;
-  rdsDateTime.arg.hour = hour;
-  rdsDateTime.arg.minute = min;
-
-  if (offset < 0) {
-      rdsDateTime.arg.offset_sense = 1; // Negative offset
-      rdsDateTime.arg.offset = -offset;
-  } else {
-      rdsDateTime.arg.offset_sense = 0; // Positive offset
-      rdsDateTime.arg.offset = offset;
-  }
-  */
 
   RDS_BLOCK1 block1;
   RDS_BLOCK2 block2;
