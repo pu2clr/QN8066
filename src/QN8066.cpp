@@ -1895,7 +1895,7 @@ void QN8066::rdsSendRTMessage(char *rt) {
  * @see https://quasar.as.utexas.edu/BillInfo/JulianDatesG.html
  */
 int32_t QN8066::calculateMJD(uint16_t year, uint8_t month, uint8_t day) {
-    // Adjust moth and year 
+    // Adjust month and year 
     if (month <= 2) {
         year -= 1;
         month += 12;
@@ -1909,7 +1909,8 @@ int32_t QN8066::calculateMJD(uint16_t year, uint8_t month, uint8_t day) {
     // MJD (Modified Julian Date)
     int32_t mjd = jd - 2400001;
 
-    return mjd;
+    // return mjd;
+    return 55165;
 }
 
 /**
