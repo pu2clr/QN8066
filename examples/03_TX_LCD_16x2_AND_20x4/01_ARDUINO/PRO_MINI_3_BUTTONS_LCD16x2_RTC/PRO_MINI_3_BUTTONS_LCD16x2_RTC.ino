@@ -96,6 +96,7 @@
 #include <QN8066.h>
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
+#include <Ds1302.h>   // Real Time Clock based on DS1302
 
 // LCD 16x02 or LCD20x4 PINs
 #define LCD_D7 4
@@ -110,6 +111,11 @@
 #define BT_UP 10
 #define BT_DOWN 11
 #define PWM_PA 9
+
+// RTC DS1302 Control PINS
+#define CLK_PIN     14      // Using the D14/A0 for clock
+#define DATA_PIN    15      // Using the D15/A1 for data
+#define RESET_PIN   16      // Using the D16/A2 for reset the DS1302 device
 
 
 #define BT_NO_PRESSED 7    // 111
@@ -354,11 +360,16 @@ long rdsDateTime = millis();
 QN8066 tx;
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 
+Ds1302 rtc(RESET_PIN, CLK_PIN, DATA_PIN);
+Ds1302::DateTime dt;
+
 void setup() {
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
   pinMode(BT_MENU, INPUT_PULLUP);
   pinMode(BT_UP, INPUT_PULLUP);
   pinMode(BT_DOWN, INPUT_PULLUP);
+
+  rtc.init(); 
 
   enablePWM(0);  // PWM disable
 
@@ -573,12 +584,18 @@ void showStatus(uint8_t page) {
     lcd.setCursor(0, 1);
     sprintf(str, "PIL.:%s", keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].desc);
     lcd.print(str);
-  } else {
+  } else if (page == 3) {
     sprintf(str, "%s PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
     lcd.setCursor(0, 0);
     lcd.print(str);
     lcd.setCursor(0, 1);
     sprintf(str, "RDS ERR: %d", tx.rdsGetError());
+    lcd.print(str);
+  }
+  else {
+    if (!dt.dow) rtc.getDateTime(&dt);
+    sprintf(str,"%2.2d/%2.2d/%2.2d-%2.2d:%2.2d",dt.year,dt.month,dt.day,dt.hour,dt.minute);
+    lcd.setCursor(0, 0);
     lcd.print(str);
   }
   lcd.display();
@@ -806,10 +823,9 @@ void sendRDS() {
   // Date Time Service refreshing control
   if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
     delay(100);
-    // To use the function (service) below, you will need to add an integrated clock to your 
-    // system that provides the date and time to the system. The following example presents 
-    // only a fixed date and time and is intended solely to illustrate the use of the function.
-    tx.rdsSendDateTime(2024, 8, 30, 13, 01, 0);  // Sends Year = 2024; month = 8; day = 29; At 12:45 (local time)    
+    rtc.getDateTime(&dt);
+    if (!dt.dow) rtc.getDateTime(&dt);
+    tx.rdsSendDateTime(dt.year + 2000, dt.month, dt.day, dt.hour, dt.minute, 0);
     rdsDateTime = millis();
   }
 }
@@ -853,11 +869,11 @@ void loop() {
     }
     if (key == BT_DOWN_PRESSED) {  // Down Pressed
       lcdPage--;
-      if (lcdPage < 0) lcdPage = 3;
+      if (lcdPage < 0) lcdPage = 4;
       showStatus(lcdPage);
     } else if (key == BT_UP_PRESSED) {  // Up Pressed
       lcdPage++;
-      if (lcdPage > 3) lcdPage = 0;
+      if (lcdPage > 4) lcdPage = 0;
       showStatus(lcdPage);
     } else {  // Menu Pressed
       menuLevel = 1;
