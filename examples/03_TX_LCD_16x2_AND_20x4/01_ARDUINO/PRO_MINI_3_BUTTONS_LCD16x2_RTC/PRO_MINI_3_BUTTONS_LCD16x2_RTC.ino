@@ -1,6 +1,8 @@
 /*
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
-  This sketch uses an Arduino Nano with LCD16X02.
+  This sketch was developed to run on Arduino Pro Mini (3.3V 8MHz) with LCD16X02.
+
+  This sketch uses the DS1302 RTC (Real Time Clock) to provide RDS Date and Time service.
 
   ABOUT THE ATMEGA328 EEPROM and saving the receiver current information
   ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.
@@ -347,13 +349,18 @@ const uint8_t lastRdsRT = (sizeof(rdsRTmsg) / sizeof(rdsRTmsg[0])) - 1;
 uint8_t idxRdsPS = 0;
 uint8_t idxRdsRT = 0;
 
-#define RDS_PS_REFRESH_TIME 5000
-#define RDS_RT_REFRESH_TIME 15000
+#define RDS_PS_REFRESH_TIME 11000
+#define RDS_RT_REFRESH_TIME 18000
 #define RDS_DT_REFRESH_TIME 60000 // Date and Time Service
+
+#define STOP_RDS_TIME 10000
 
 long rdsTimePS = millis();
 long rdsTimeRT = millis();
 long rdsDateTime = millis();
+long stopRDSTime = millis();
+
+bool stopRDSforWhile = false;
 
 
 // TX board interface
@@ -459,7 +466,7 @@ void checkQN8066() {
 
 void startRDS() {
     uint8_t ptyIdx = keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx;
-    tx.rdsInitTx(0x8,0x1,0x9B, ptyIdx, 50, 8);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html) 
+    tx.rdsInitTx(0x8,0x1,0x9B, ptyIdx, 30, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html) 
 }
 
 // Saves current transmitter setup
@@ -804,7 +811,6 @@ void sendRDS() {
   // PS refreshing control
   if ((millis() - rdsTimePS) > RDS_PS_REFRESH_TIME) {
     if (idxRdsPS > lastRdsPS) idxRdsPS = 0;
-    delay(100);
     tx.rdsSendPS(rdsPSmsg[idxRdsPS]);
     idxRdsPS++;
     rdsTimePS = millis();
@@ -813,16 +819,13 @@ void sendRDS() {
   // RT refreshing control
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
-    delay(100);
     tx.rdsSendRT(rdsRTmsg[idxRdsRT]);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     idxRdsRT++;
     rdsTimeRT = millis();
   }
 
-
   // Date Time Service refreshing control
   if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
-    delay(100);
     rtc.getDateTime(&dt);
     if (!dt.dow) rtc.getDateTime(&dt);
     tx.rdsSendDateTime(dt.year + 2000, dt.month, dt.day, dt.hour, dt.minute, 0);
@@ -855,10 +858,15 @@ void loop() {
     showStatus(lcdPage);
     while ((key = checkButton()) == BT_NO_PRESSED) {
 
-      // RDS UNDER CONSTRUCTION...
-      if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
+      if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1  && !stopRDSforWhile ) {
         sendRDS();
       }
+
+      if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1 && stopRDSforWhile && (millis() - stopRDSTime) > STOP_RDS_TIME ) { 
+        stopRDSforWhile = false; 
+        tx.rdsTxEnable(true);
+        stopRDSTime = millis();
+      }     
 
       // Refresh Status
       if ((millis() - showStatusTime) > STATUS_REFRESH_TIME) {
@@ -867,6 +875,10 @@ void loop() {
       }
 
     }
+    // If using RDS, Disable RDS for while 
+    stopRDSforWhile = true;
+    if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) tx.rdsTxEnable(false);
+
     if (key == BT_DOWN_PRESSED) {  // Down Pressed
       lcdPage--;
       if (lcdPage < 0) lcdPage = 4;
@@ -878,6 +890,7 @@ void loop() {
     } else {  // Menu Pressed
       menuLevel = 1;
     }
+    delay(100);
   } else if (menuLevel == 1) {
     showMenu(menuIdx);
     key = browseParameter();
@@ -901,6 +914,7 @@ void loop() {
     menuLevel = doMenu(menuIdx);
   }
 
+  stopRDSTime = millis();           // Back RDS only on main manu / main screen
 
-  delay(5);
+  delay(2);
 }
