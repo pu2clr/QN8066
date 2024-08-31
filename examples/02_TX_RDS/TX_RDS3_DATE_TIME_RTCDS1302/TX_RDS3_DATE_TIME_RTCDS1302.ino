@@ -24,18 +24,19 @@ void setup() {
 
   // To set the RTC, uncomment this block of lines, compile and upload the sketch to the Arduino. 
   // Once the clock is set, comment out the lines again, compile and upload the sketch.  
+  
   /*
   dt.year = 24;
   dt.month = 8;
   dt.day = 29;
   dt.dow = 1;
-  dt.hour = 19;
-  dt.minute = 51;
+  dt.hour = 23;
+  dt.minute = 16;
   dt.second = 30;
 
   rtc.setDateTime(&dt);
+  
   */
-
 
 }
 void loop() {
