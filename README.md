@@ -70,6 +70,7 @@ There is a Facebook group called [QN80XX FM Transmitters & Receivers Enthusiasts
 
 * I would like to thank Mr. __Gareth Halfacree__ for his article published in the online magazine  [hackster.io](https://www.hackster.io) titled *[Ricardo Lima Caratti's Handy Arduino Library Delivers Easy QN8066-Powered FM Radio Projects](https://www.hackster.io/news/ricardo-lima-caratti-s-handy-arduino-library-delivers-easy-qn8066-powered-fm-radio-projects-474213406313)*.
 
+* Mr. Elionaldo Gomes da Silva, PY2EGS, to share his [board Layout project with Nano and LCD](./extras/schematics/NANO_LCD16x2_BOARD/)
 
 ## Why a QN8066 library for Arduino?
 
