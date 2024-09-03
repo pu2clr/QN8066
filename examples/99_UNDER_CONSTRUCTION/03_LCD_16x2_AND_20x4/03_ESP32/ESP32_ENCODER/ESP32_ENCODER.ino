@@ -318,7 +318,8 @@ void setup() {
   // To keep the ESP32's internal RTC updated, you'll need to use a battery that constantly powers the system. 
   // The line below will set the date and time on the ESP32's internal RTC. Once the clock is set, comment out 
   // this line and upload the sketch again.  
-  rtc.setTime(30, 35, 8, 3, 9, 2024);  // 3th Sep 2024 08:35:30
+  rtc.setTime(00,1 , 17, 3, 10, 2024);  // sec, minute, hour, day, month, year - ? Why 10 is September? 
+  
 
   tx.setI2CFastMode();
   lcd.begin(16, 2);
