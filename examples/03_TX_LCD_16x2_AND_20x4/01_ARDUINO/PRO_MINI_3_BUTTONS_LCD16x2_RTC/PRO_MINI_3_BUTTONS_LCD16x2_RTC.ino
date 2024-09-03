@@ -350,8 +350,8 @@ uint8_t idxRdsPS = 0;
 uint8_t idxRdsRT = 0;
 
 #define RDS_PS_REFRESH_TIME 11000
-#define RDS_RT_REFRESH_TIME 18000
-#define RDS_DT_REFRESH_TIME 60000 // Date and Time Service
+#define RDS_RT_REFRESH_TIME 23000
+#define RDS_DT_REFRESH_TIME 59000 // Date and Time Service
 
 #define STOP_RDS_TIME 10000
 
