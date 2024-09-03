@@ -148,30 +148,30 @@ TableValue tabImpedance[] = {
 };
 
 TableValue tabGainTxPilot[] = {
-  { 7, " 7%" },   // 0
-  { 8, " 8%" },   // 1
-  { 9, " 9%" },   // 2
-  {10, "10%" }  // 3
+  { 7,  "7%" },   // 0
+  { 8,  "8%" },   // 1
+  { 9,  "9%" },   // 2
+  { 10, "10%" }  // 3
 };
 
 TableValue tabTxSoftClipEnable[] = {
-  { 0, "Disable " },  // 0
-  { 1, "Enable  " }   // 1
+  { 0, "Disable" },  // 0
+  { 1, "Enable" }   // 1
 };
 
 TableValue tabTxSoftClipThreshold[] = {
-  { 0, "3.0dB" },    // 0
+  { 0, "3dB" },    // 0
   { 1, "4.5dB" },  // 1
-  { 2, "6.0dB" },    // 2
-  { 3, "9.0dB" }     // 3
+  { 2, "6dB" },    // 2
+  { 3, "9dB" }     // 3
 };
 
 TableValue tabTxFrequencyDeviation[] = {
-  {  60, " 41,5kHz" },   // 0
-  {  87, " 60,0kHz" },   // 1
-  { 108, " 74,5kHz" },  // 2
-  { 120, " 92,8kHz" },  // 3
-  { 140, " 96,6kHz" },  // 4
+  { 60,  "41,5kHz" },   // 0
+  { 87,  "60,0kHz" },   // 1
+  { 108, "74,5kHz" },  // 2
+  { 120, "92,8kHz" },  // 3
+  { 140, "96,6kHz" },  // 4
   { 160, "110,4kHz" }   // 5
 };
 
@@ -185,63 +185,93 @@ TableValue tabTxBufferGain[] = {
 };
 
 TableValue tabPreEmphasis[] = {
-  { 0, "50us" },  // 0
-  { 1, "75us" }   // 1
+  { 0, "50 us" },  // 0
+  { 1, "75 us" }   // 1
 };
 
 TableValue tabRDS[] = {
   { 0, "Disable" },  // 0
-  { 1, "Enable " }   // 1
+  { 1, "Enable" }   // 1
+};
+
+TableValue tabRdsPty[] {     // See https://en.wikipedia.org/wiki/Radio_Data_System if you want to change this table 
+  { 0, "No program"},
+  { 1, "News"},
+  { 3, "Inf./Sports"},
+  { 4, "Sport/Talk"},
+  { 5, "Education/Rock"},
+  { 7, "Cult./Adult hits"},
+  { 8, "Science/S.rock"},
+  {10, "Pop Mus/Country" },
+  {16, "Weather/Rhythm"},
+  {20, "Religion" },
+  {29, "Doc./Weather"},
+  {30, "Alarm/Emerg."}
 };
 
 TableValue tabMonoStereo[] = {
   { 0, "Stereo" },  // 0
-  { 1, "Mono  " }   // 1 - See QN8066 data sheet
+  { 1, "Mono" }   // 1 - See QN8066 data sheet
 };
 
 
 TableValue txRdsFreqDev[] = {
-  {  6, " 2,1kHz "},  // 0
-  {  8, " 3,0kHz "},  // 1
-  { 13, " 4,5kHz" },  // 2
-  { 26, " 9,1kHz" },  // 3
+  {  6, "2,1kHz"},  // 0
+  {  8, "3,0kHz"},  // 1
+  { 13, "4,5kHz" },  // 2
+  { 26, "9,1kHz" },  // 3
   { 39, "13,6kHz" },  // 4
   { 52, "18,2kHz" }   // 5
 };
 
 
+TableValue txPac[] = {
+  { 24, " 92 dBu"}, // 0
+  { 30, " 97 dBu"}, // 1
+  { 40, "106 dBu"}, // 2
+  { 50, "115 dBu"}, // 3
+  { 55, "120 dBu"}  // 4
+};
+
+
+
+
 // Menu Itens
 const char *menu[] = { "Frequency",
                        "Power",
+                       "PAC Power Target",
                        "Stereo/Mono",
                        "Pre-emphasis",
                        "RDS",
+                       "RDS PTY",
+                       "RDS Freq. Dev.",                       
                        "Impedance",
                        "Sft Clip. Enable",
                        "Sft Clip. Thres.",
                        "Gain Pilot",
                        "Freq. Deriv.",
                        "Buffer gain",
-                       "RDS Freq. Dev.",
                        "Main Screen" };
 int8_t menuIdx = 0;
 const int lastMenu = (sizeof(menu) / sizeof(menu[0])) - 1;  // Laste menu item position
 
 // Define the enum with the corresponding Menu Itens QN8066 register values
 enum MenuKeys {
-  KEY_FREQUENCIA,           // 0
+  KEY_FREQUENCY,            // 0
   KEY_POWER,                // 1
-  KEY_MONO_ESTEREO,         // 2
-  KEY_PRE_EMPHASIS,         // 3
-  KEY_RDS,                  // 4
-  KEY_IMPEDANCE,            // 5
-  KEY_SOFT_CLIP_ENABLE,     // 6
-  KEY_SOFT_CLIP_THRESHOLD,  // 7
-  KEY_GAIN_PILOT,           // 8
-  KEY_FREQ_DERIVATION,      // 9
-  KEY_BUFFER_GAIN,          // 10
-  KEY_RDS_FREQ_DEV,         // 11
-  KEY_MAIN_SCREEN           // 12
+  KEY_PAC,                  // 2
+  KEY_MONO_STEREO,          // 3
+  KEY_PRE_EMPHASIS,         // 4
+  KEY_RDS,                  // 5
+  KEY_RDS_PTY,              // 5
+  KEY_RDS_FREQ_DEV,         // 7  
+  KEY_IMPEDANCE,            // 8
+  KEY_SOFT_CLIP_ENABLE,     // 9
+  KEY_SOFT_CLIP_THRESHOLD,  // 10
+  KEY_GAIN_PILOT,           // 11
+  KEY_FREQ_DERIVATION,      // 12
+  KEY_BUFFER_GAIN,          // 13
+  KEY_MAIN_SCREEN           // 14
 };
 
 /*
@@ -251,18 +281,20 @@ enum MenuKeys {
   parameters are added to the system. See KeyValue datatype above.
 */
 KeyValue keyValue[] = {
-  { 0, NULL },                     // KEY_FREQUENCIA
+  { 0, NULL },                     // KEY_FREQUENCY
   { 0, NULL },                     // KEY_POWER
-  { 0, tabMonoStereo },            // KEY_MONO_ESTEREO
+  { 4, txPac},                     // KEY_PAC
+  { 0, tabMonoStereo },            // KEY_MONO_STEREO
   { 1, tabPreEmphasis },           // KEY_PRE_EMPHASIS
   { 0, tabRDS },                   // KEY_RDS
+  { 6, tabRdsPty},                 // KEY_RDS_PTY 
+  { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV  
   { 2, tabImpedance },             // KEY_IMPEDANCE
   { 0, tabTxSoftClipEnable },      // KEY_SOFT_CLIP_ENABLE
   { 1, tabTxSoftClipThreshold },   // KEY_SOFT_CLIP_THRESHOLD
   { 2, tabGainTxPilot },           // KEY_GAIN_PILOT
   { 2, tabTxFrequencyDeviation },  // KEY_FREQ_DERIVATION
   { 1, tabTxBufferGain },          // KEY_BUFFER_GAIN
-  { 2, txRdsFreqDev },             // KEY_RDS_FREQ_DEV
   { 0, NULL }                      // KEY_MAIN_SCREEN
 };
 
@@ -292,11 +324,13 @@ const uint8_t lastRdsRT = (sizeof(rdsRTmsg) / sizeof(rdsRTmsg[0])) - 1;
 uint8_t idxRdsPS = 0;
 uint8_t idxRdsRT = 0;
 
-#define RDS_PS_REFRESH_TIME 5000
-#define RDS_RT_REFRESH_TIME 15000
+#define RDS_PS_REFRESH_TIME 7000
+#define RDS_RT_REFRESH_TIME 19000
+#define RDS_DT_REFRESH_TIME 60000 // Date and Time Service
 
 long rdsTimePS = millis();
 long rdsTimeRT = millis();
+long rdsDateTime = millis();
 
 
 // TX board interface
@@ -361,25 +395,27 @@ void setup() {
   // Due to the architecture of the KIT, the PWM interferes with I2C communication.
   // Therefore, before changing the transmitter's configuration parameters, it must be disabled (Duty 0).
 
-  // Sets the transmitter with the previous setup parameters
+    // Sets the transmitter with the previous setup parameters
   tx.setTxInputImpedance(keyValue[KEY_IMPEDANCE].value[keyValue[KEY_IMPEDANCE].key].idx);  // 40Kohm
   tx.setTxPilotGain(keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].idx);
   tx.setTxSoftClippingEnable(keyValue[KEY_SOFT_CLIP_ENABLE].value[keyValue[KEY_SOFT_CLIP_ENABLE].key].idx);
   tx.setTxSoftClipThreshold(keyValue[KEY_SOFT_CLIP_THRESHOLD].value[keyValue[KEY_SOFT_CLIP_THRESHOLD].key].idx);
   tx.setPreEmphasis(keyValue[KEY_PRE_EMPHASIS].value[keyValue[KEY_PRE_EMPHASIS].key].idx);
   tx.rdsTxEnable(keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx);
-  tx.setTxMono(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].idx);
+  tx.setTxMono(keyValue[KEY_MONO_STEREO].value[keyValue[KEY_MONO_STEREO].key].idx);
   tx.setTxInputBufferGain(keyValue[KEY_BUFFER_GAIN].value[keyValue[KEY_BUFFER_GAIN].key].idx);
   tx.rdsSetFrequencyDerivation(keyValue[KEY_RDS_FREQ_DEV].value[keyValue[KEY_RDS_FREQ_DEV].key].idx);
   tx.setTxFrequencyDerivation(keyValue[KEY_FREQ_DERIVATION].value[keyValue[KEY_FREQ_DERIVATION].key].idx);
+  tx.setPAC(keyValue[KEY_PAC].value[keyValue[KEY_PAC].key].idx);
 
   showStatus(lcdPage);
 
   // Checking RDS setup
   if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) {
-    tx.rdsInitTx(0x8, 0x1, 0x9B, 8 , 50 , 5 );  // RDS transmission configuration. See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
-    sendRDS();              // Control the RDS PS and RT messages with this function
+    startRDS();
+    sendRDS();                             // Control the RDS PS and RT messages with this function
   }
+
 
   // Adjust clock divider (Timer0) 
   // TCCR0B = (TCCR0B & 0b11111000) | 0x02; // Increases the clock of PWM to 62.5 kHz.
@@ -402,6 +438,11 @@ void rotaryEncoder()
 }
 
 
+void startRDS() {
+    uint8_t ptyIdx = keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx;
+    tx.rdsInitTx(0x8,0x1,0x9B, ptyIdx, 50, 8);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html) 
+}
+
 void checkQN8066() {
   if (!tx.detectDevice()) {
     lcd.setCursor(0, 0);
@@ -418,7 +459,7 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address + 1, txFrequency >> 8);    // stores the current Frequency HIGH byte for the band
   EEPROM.update(eeprom_address + 2, txFrequency & 0xFF);  // stores the current Frequency LOW byte for the band
   EEPROM.update(eeprom_address + 3, pwmPowerDuty);
-  EEPROM.update(eeprom_address + 4, keyValue[KEY_MONO_ESTEREO].key);
+  EEPROM.update(eeprom_address + 4, keyValue[KEY_MONO_STEREO].key);
   EEPROM.update(eeprom_address + 5, keyValue[KEY_PRE_EMPHASIS].key);
   EEPROM.update(eeprom_address + 6, keyValue[KEY_RDS].key);
   EEPROM.update(eeprom_address + 7, keyValue[KEY_IMPEDANCE].key);
@@ -428,13 +469,15 @@ void saveAllTransmitterInformation() {
   EEPROM.update(eeprom_address + 11, keyValue[KEY_FREQ_DERIVATION].key);
   EEPROM.update(eeprom_address + 12, keyValue[KEY_BUFFER_GAIN].key);
   EEPROM.update(eeprom_address + 13, keyValue[KEY_RDS_FREQ_DEV].key);
+  EEPROM.update(eeprom_address + 14, keyValue[KEY_RDS_PTY].key);
+  EEPROM.update(eeprom_address + 15, keyValue[KEY_PAC].key);
 }
 // Read the previous transmitter setup
 void readAllTransmitterInformation() {
   txFrequency = EEPROM.read(eeprom_address + 1) << 8;
   txFrequency |= EEPROM.read(eeprom_address + 2);
   pwmPowerDuty = EEPROM.read(eeprom_address + 3);
-  keyValue[KEY_MONO_ESTEREO].key = EEPROM.read(eeprom_address + 4);
+  keyValue[KEY_MONO_STEREO].key = EEPROM.read(eeprom_address + 4);
   keyValue[KEY_PRE_EMPHASIS].key = EEPROM.read(eeprom_address + 5);
   keyValue[KEY_RDS].key = EEPROM.read(eeprom_address + 6);
   keyValue[KEY_IMPEDANCE].key = EEPROM.read(eeprom_address + 7);
@@ -444,6 +487,8 @@ void readAllTransmitterInformation() {
   keyValue[KEY_FREQ_DERIVATION].key = EEPROM.read(eeprom_address + 11);
   keyValue[KEY_BUFFER_GAIN].key = EEPROM.read(eeprom_address + 12);
   keyValue[KEY_RDS_FREQ_DEV].key = EEPROM.read(eeprom_address + 13);
+  keyValue[KEY_RDS_PTY].key = EEPROM.read(eeprom_address + 14);
+  keyValue[KEY_PAC].key = EEPROM.read(eeprom_address + 15);
 }
 
 // Enable or disable PWM duty cycle
@@ -500,7 +545,7 @@ void showStatus(uint8_t page) {
     lcd.print("MHz");
     lcd.setCursor(10, 0);
     // lcd.print(  tabMonoStereo[idxStereoMono].desc );
-    lcd.print(keyValue[KEY_MONO_ESTEREO].value[keyValue[KEY_MONO_ESTEREO].key].desc);  // Mono Stereo
+    lcd.print(keyValue[KEY_MONO_STEREO].value[keyValue[KEY_MONO_STEREO].key].desc);  // Mono Stereo
     lcd.setCursor(0, 1);
     lcd.print(tx.getAudioPeakValue());
     lcd.print("mV");
@@ -648,52 +693,60 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t
   }
   // menuLevel = 0;
 }
-// // Processes the current menu option selected
+
+// Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
   enablePWM(0);  // The PWM seems to interfere with the communication with the QN8066.
   delay(PUSH_MIN_DELAY);
   switch (idxMenu) {
-    case 0:
+    case KEY_FREQUENCY:
       lcd.setCursor(9, 1);
       lcd.print("<<");  // it just indicates the edit mode
       doFrequency();
       break;
-    case 1:
+    case KEY_POWER:
       lcd.setCursor(9, 1);
       lcd.print("<<");  // it just indicates the edit mode
       doPower();
       break;
-    case 2:
+    case KEY_PAC:
+      runAction([](uint8_t value) {tx.setPAC(value);}, &keyValue[idxMenu], 1, 0, 4);
+      break;      
+    case KEY_MONO_STEREO:
       runAction([](uint8_t value) {tx.setTxMono(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
-    case 3:
+    case KEY_PRE_EMPHASIS:
       runAction([](uint8_t value) {tx.setPreEmphasis(value);},&keyValue[idxMenu], 1, 0, 1);
       break;
-    case 4:
+    case KEY_RDS:
       runAction([](uint8_t value) {tx.rdsTxEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
+      startRDS();
       break;
-    case 5:
+    case KEY_RDS_PTY: 
+      runAction([](uint8_t value) {tx.rdsSetPTY(value);}, &keyValue[idxMenu], 1, 0, 11);
+      break;
+    case KEY_IMPEDANCE:
       runAction([](uint8_t value) {tx.setTxInputImpedance(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
-    case 6:
+    case KEY_SOFT_CLIP_ENABLE:
       runAction([](uint8_t value) {tx.setTxSoftClippingEnable(value);}, &keyValue[idxMenu], 1, 0, 1);
       break;
-    case 7:
+    case KEY_SOFT_CLIP_THRESHOLD:
       runAction([](uint8_t value) {tx.setTxSoftClipThreshold(value);},&keyValue[idxMenu], 1, 0, 3);
       break;
-    case 8:
+    case KEY_GAIN_PILOT:
       runAction([](uint8_t value) {tx.setTxPilotGain(value);}, &keyValue[idxMenu], 1, 0, 3);
       break;
-    case 9:
+    case KEY_FREQ_DERIVATION:
       runAction([](uint8_t value) {tx.setTxFrequencyDerivation(value);},&keyValue[idxMenu], 1, 0, 5);
       break;
-    case 10:
+    case KEY_BUFFER_GAIN:
       runAction([](uint8_t value) {tx.setTxInputBufferGain(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
-    case 11:
+    case KEY_RDS_FREQ_DEV:
       runAction([](uint8_t value) {tx.rdsSetFrequencyDerivation(value);}, &keyValue[idxMenu], 1, 0, 5);
       break;
-    case 12:
+    case KEY_MAIN_SCREEN:
       enablePWM(pwmPowerDuty);  // Turn the PWM on again.
       return 0;
       break;
@@ -734,9 +787,20 @@ void sendRDS() {
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
     delay(100);
-    tx.rdsSendRTMessage(rdsRTmsg[idxRdsRT]);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
+    tx.rdsSendRT(rdsRTmsg[idxRdsRT]);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     idxRdsRT++;
     rdsTimeRT = millis();
+  }
+
+
+  // Date Time Service refreshing control
+  if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
+    delay(100);
+    // To use the function (service) below, you will need to add an integrated clock to your 
+    // system that provides the date and time to the system. The following example presents 
+    // only a fixed date and time and is intended solely to illustrate the use of the function.
+    tx.rdsSendDateTime(2024, 8, 30, 13, 01, 0);  // Sends Year = 2024; month = 8; day = 29; At 12:45 (local time)    
+    rdsDateTime = millis();
   }
 }
 
