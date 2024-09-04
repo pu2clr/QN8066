@@ -1,15 +1,10 @@
 /*
+  
+  UNDER CONSTRUCTION...
+  
   This sketch runs on ESP32 device LilyGO T-Embed panel.
   
-  The interface design of the sketch used here was written by Volos (https://github.com/VolosR/TEmbedFMRadio). 
-  The Volos' project is a receiver based on the TEA5767 device and I have adapted it to the SI473X device.
-  This sketch implements the main functions of the SI4732/SI4735. It is  a  complete  radio  capable  to  
-  tune  on  AM  and  SSB  modes from 150 to 30.000 kHz  and also FM mode from 64 to 108 MHz.
 
-  Please, read the file user_manual.txt or README.md files for more details. 
-
-  The  purpose  of  this  example  is  to  demonstrate a prototype  receiver based  on  the  SI4735-D60 or Si4732-A10  and  the
-  "PU2CLR SI4735 Arduino Library". It is not the purpose of this prototype  to provide you a beautiful interface. You can do it better.
 
   ESP32 and components wire up.
 
@@ -27,31 +22,25 @@
   | LCD LED                |                              |  GPIO 15  |  
   | Power ON               |                              |  GPIO 46  |
   |                        |                              |           |
-  | SI453X MCU RESET PIN   |                              |           |
-  |  See table below       | ESP32 PIN USED FOR RESETTING |  GPIO 16  |  
+  | PWM POWER CONTROL PIN  |                              |           |
+  | DIY FM TRANSMITTER     |                              |  GPIO 16  |  
 
 
-  ESP32 and SI4735-D60 or SI4732-A10 wire up
 
-  | Si4735  | SI4732   | DESC.  | ESP32    (GPIO)    |
-  |---------| -------- |--------|--------------------|
-  | pin 15  |  pin 9   | RESET  |   12 (GPIO12)      |
-  | pin 18  |  pin 12  | SDIO   |   21 (SDA / GPI21) |
-  | pin 17  |  pin 11  | SCLK   |   22 (SCL / GPI22) |
 
   If you are using the SI4732-A10, check the corresponding pin numbers.
 
   References: 
-  About LilyGO T-Embed and SI473X: https://github.com/pu2clr/SI4735/tree/master/examples/SI47XX_KITS/Lilygo_t_embed
-  About PU2CLR SI4735 Arduino Library: https://pu2clr.github.io/SI4735/
-  PU2CLR Si47XX API documentation: https://pu2clr.github.io/SI4735/extras/apidoc/html/
+  About LilyGO T-Embed and SI473X: https://github.com/pu2clr/QN8066/tree/master/examples/SI47XX_KITS/Lilygo_t_embed
+  About PU2CLR QN8066 Arduino Library: https://pu2clr.github.io/QN8066/
+  PU2CLR Si47XX API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
 
   By PU2CLR, Ricardo, Dec  2022.
 */
 
 #include <Wire.h>
 #include "EEPROM.h"
-#include <SI4735.h>
+#include <QN8066.h>
 #include <FastLED.h>
 #include <TFT_eSPI.h>
 #include <Battery18650Stats.h>  // Install it from: https://github.com/danilopinotti/Battery18650Stats
@@ -90,16 +79,6 @@ const uint16_t size_content = sizeof ssb_patch_content;  // see patch_init.h
 #define DEFAULT_VOLUME 60     // change it for your favorite sound volume
 #define ELAPSED_TIME_BATERRY 60000
 
-#define POLLING_RDS 40
-
-#define FM 0
-#define LSB 1
-#define USB 2
-#define AM 3
-#define LW 4
-
-#define SSB 1
-
 #define EEPROM_SIZE 512
 
 #define STORE_TIME 10000  // Time of inactivity to make the current receiver status writable (10s / 10000 milliseconds).
@@ -116,162 +95,7 @@ Battery18650Stats battery(PIN_BAT_VOLT);
 // EEPROM - Stroring control variables
 const uint8_t app_id = 47;  // Useful to check the EEPROM content before processing useful data
 const int eeprom_address = 0;
-long storeTime = millis();
 
-bool itIsTimeToSave = false;
-
-bool bfoOn = false;
-bool ssbLoaded = false;
-
-int8_t agcIdx = 0;
-uint8_t disableAgc = 0;
-int8_t agcNdx = 0;
-int8_t softMuteMaxAttIdx = 4;
-uint8_t countClick = 0;
-
-uint8_t seekDirection = 1;
-
-bool cmdBand = false;
-bool cmdVolume = false;
-bool cmdAgc = false;
-bool cmdBandwidth = false;
-bool cmdStep = false;
-bool cmdMode = false;
-bool cmdMenu = false;
-bool cmdSoftMuteMaxAtt = false;
-bool cmdAvc = false;
-
-bool fmRDS = false;
-
-int16_t currentBFO = 0;
-long elapsedRSSI = millis();
-long elapsedButton = millis();
-long elapsedBattery = millis();
-long elapsedClick = millis();
-long elapsedCommand = millis();
-volatile int encoderCount = 0;
-uint16_t currentFrequency;
-
-const uint8_t currentBFOStep = 10;
-
-const char *menu[] = { "Volume", "Step", "Mode", "BFO", "BW", "AGC/Att", "AVC", "SoftMute", "Seek" };
-int8_t menuIdx = 0;
-const int lastMenu = 8;
-int8_t currentMenuCmd = -1;
-
-int8_t avcIdx = 38;
-
-typedef struct
-{
-  uint8_t idx;       // SI473X device bandwidth index
-  const char *desc;  // bandwidth description
-} Bandwidth;
-
-int8_t bwIdxSSB = 4;
-const int8_t maxSsbBw = 5;
-Bandwidth bandwidthSSB[] = {
-  { 4, "0.5" },
-  { 5, "1.0" },
-  { 0, "1.2" },
-  { 1, "2.2" },
-  { 2, "3.0" },
-  { 3, "4.0" }
-};
-
-int8_t bwIdxAM = 4;
-const int8_t maxAmBw = 6;
-Bandwidth bandwidthAM[] = {
-  { 4, "1.0" },
-  { 5, "1.8" },
-  { 3, "2.0" },
-  { 6, "2.5" },
-  { 2, "3.0" },
-  { 1, "4.0" },
-  { 0, "6.0" }
-};
-
-int8_t bwIdxFM = 0;
-const int8_t maxFmBw = 4;
-
-Bandwidth bandwidthFM[] = {
-  { 0, "AUT" },  // Automatic - default
-  { 1, "110" },  // Force wide (110 kHz) channel filter.
-  { 2, " 84" },
-  { 3, " 60" },
-  { 4, " 40" }
-};
-
-int tabAmStep[] = { 1,      // 0
-                    5,      // 1
-                    9,      // 2
-                    10,     // 3
-                    50,     // 4
-                    100 };  // 5
-
-const int lastAmStep = (sizeof tabAmStep / sizeof(int)) - 1;
-int idxAmStep = 3;
-
-int tabFmStep[] = { 5, 10, 20 };
-const int lastFmStep = (sizeof tabFmStep / sizeof(int)) - 1;
-int idxFmStep = 1;
-
-uint16_t currentStepIdx = 1;
-
-const char *bandModeDesc[] = { "FM ", "LSB", "USB", "AM " };
-uint8_t currentMode = FM;
-
-/**
- *  Band data structure
- */
-typedef struct
-{
-  const char *bandName;   // Band description
-  uint8_t bandType;       // Band type (FM, MW or SW)
-  uint16_t minimumFreq;   // Minimum frequency of the band
-  uint16_t maximumFreq;   // maximum frequency of the band
-  uint16_t currentFreq;   // Default frequency or current frequency
-  int8_t currentStepIdx;  // Idex of tabStepAM:  Defeult frequency step (See tabStepAM)
-  int8_t bandwidthIdx;    // Index of the table bandwidthFM, bandwidthAM or bandwidthSSB;
-} Band;
-
-/*
-   Band table
-   YOU CAN CONFIGURE YOUR OWN BAND PLAN. Be guided by the comments.
-   To add a new band, all you have to do is insert a new line in the table below. No extra code will be needed.
-   You can remove a band by deleting a line if you do not want a given band. 
-   Also, you can change the parameters of the band.
-   ATTENTION: You have to RESET the eeprom after adding or removing a line of this table. 
-              Turn your receiver on with the encoder push button pressed at first time to RESET the eeprom content.  
-*/
-Band band[] = {
-  { "VHF", FM_BAND_TYPE, 6400, 10800, 10270, 2, 0 },
-  { "MW1", MW_BAND_TYPE, 150, 1720, 810, 3, 4 },
-  { "MW2", MW_BAND_TYPE, 531, 1701, 783, 2, 4 },
-  { "MW2", MW_BAND_TYPE, 1700, 3500, 2500, 1, 4 },
-  { "80M", MW_BAND_TYPE, 3500, 4000, 3700, 0, 4 },
-  { "SW1", SW_BAND_TYPE, 4000, 5500, 4885, 1, 4 },
-  { "SW2", SW_BAND_TYPE, 5500, 6500, 6000, 1, 4 },
-  { "40M", SW_BAND_TYPE, 6500, 7300, 7100, 0, 4 },
-  { "SW3", SW_BAND_TYPE, 7200, 8000, 7200, 1, 4 },
-  { "SW4", SW_BAND_TYPE, 9000, 11000, 9500, 1, 4 },
-  { "SW5", SW_BAND_TYPE, 11100, 13000, 11900, 1, 4 },
-  { "SW6", SW_BAND_TYPE, 13000, 14000, 13500, 1, 4 },
-  { "20M", SW_BAND_TYPE, 14000, 15000, 14200, 0, 4 },
-  { "SW7", SW_BAND_TYPE, 15000, 17000, 15300, 1, 4 },
-  { "SW8", SW_BAND_TYPE, 17000, 18000, 17500, 1, 4 },
-  { "15M", SW_BAND_TYPE, 20000, 21400, 21100, 0, 4 },
-  { "SW9", SW_BAND_TYPE, 21400, 22800, 21500, 1, 4 },
-  { "CB ", SW_BAND_TYPE, 26000, 28000, 27500, 0, 4 },
-  { "10M", SW_BAND_TYPE, 28000, 30000, 28400, 0, 4 },
-  { "ALL", SW_BAND_TYPE, 150, 30000, 15000, 0, 4 }  // All band. LW, MW and SW (from 150kHz to 30MHz)
-};
-
-const int lastBand = (sizeof band / sizeof(Band)) - 1;
-int bandIdx = 0;
-int tabStep[] = { 1, 5, 10, 50, 100, 500, 1000 };
-const int lastStep = (sizeof tabStep / sizeof(int)) - 1;
-uint8_t rssi = 0;
-uint8_t volume = DEFAULT_VOLUME;
 
 CRGB leds[NUM_LEDS];
 
@@ -281,7 +105,7 @@ Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 TFT_eSPI tft = TFT_eSPI();
 TFT_eSprite spr = TFT_eSprite(&tft);
 
-SI4735 rx;
+QN8066 tx;
 
 void setup() {
   // Encoder pins
@@ -324,16 +148,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
 
-  rx.getDeviceI2CAddress(RESET_PIN);  // Looks for the I2C bus address and set it.  Returns 0 if error
-  rx.setup(RESET_PIN, MW_BAND_TYPE);
 
-  delay(300);
-
-  // Checking the EEPROM content
-  if (EEPROM.read(eeprom_address) == app_id) {
-    readAllReceiverInformation();
-  } else
-    rx.setVolume(volume);
 
   leds[0] = CRGB::Green;
   leds[1] = CRGB::Green;
@@ -344,10 +159,6 @@ void setup() {
   leds[6] = CRGB::Green;
   FastLED.show();
 
-  // rx.setMaxDelaySetFrequency(20); // Sets the Max Delay after Set Frequency
-
-  useBand();
-  showStatus();
 }
 
 // Turn the device and display on (true) or off (false)
@@ -366,7 +177,7 @@ void splash() {
   spr.fillSprite(TFT_BLACK);
   spr.setTextColor(TFT_WHITE, TFT_BLACK);
   spr.setFreeFont(&Orbitron_Light_24);
-  spr.drawString(" PU2CLR SI4735", 140, 12);
+  spr.drawString(" PU2CLR QN8066", 140, 12);
   spr.drawString("Arduino Library", 140, 60);
   spr.pushSprite(0, 0);
   delay(700);
@@ -391,122 +202,16 @@ void printParam(const char *msg) {
    The EEPROM.update avoid write the same data in the same memory position. It will save unnecessary recording.
 */
 void saveAllReceiverInformation() {
-  int addr_offset;
 
-  EEPROM.begin(EEPROM_SIZE);
-  EEPROM.write(eeprom_address, app_id);              // stores the app id;
-  EEPROM.write(eeprom_address + 1, rx.getVolume());  // stores the current Volume
-  EEPROM.write(eeprom_address + 2, bandIdx);         // Stores the current band
-  EEPROM.write(eeprom_address + 3, fmRDS);
-  EEPROM.write(eeprom_address + 4, currentMode);  // Stores the current Mode (FM / AM / SSB)
-  EEPROM.write(eeprom_address + 5, currentBFO >> 8);
-  EEPROM.write(eeprom_address + 6, currentBFO & 0XFF);
-  EEPROM.commit();
-
-  addr_offset = 7;
-  band[bandIdx].currentFreq = currentFrequency;
-
-  for (int i = 0; i <= lastBand; i++) {
-    EEPROM.write(addr_offset++, (band[i].currentFreq >> 8));    // stores the current Frequency HIGH byte for the band
-    EEPROM.write(addr_offset++, (band[i].currentFreq & 0xFF));  // stores the current Frequency LOW byte for the band
-    EEPROM.write(addr_offset++, band[i].currentStepIdx);        // Stores current step of the band
-    EEPROM.write(addr_offset++, band[i].bandwidthIdx);          // table index (direct position) of bandwidth
-    EEPROM.commit();
-  }
-  // Saves AVC and AGC/Att status
-  EEPROM.write(addr_offset++, avcIdx);
-  EEPROM.write(addr_offset++, agcIdx);
-  EEPROM.write(addr_offset++, agcNdx);
-  EEPROM.end();
 }
 
 /**
  * reads the last receiver status from eeprom. 
  */
 void readAllReceiverInformation() {
-  uint8_t volume;
-  int addr_offset;
-  int bwIdx;
-  EEPROM.begin(EEPROM_SIZE);
 
-  volume = EEPROM.read(eeprom_address + 1);  // Gets the stored volume;
-  bandIdx = EEPROM.read(eeprom_address + 2);
-  fmRDS = EEPROM.read(eeprom_address + 3);
-  currentMode = EEPROM.read(eeprom_address + 4);
-  currentBFO = EEPROM.read(eeprom_address + 5) << 8;
-  currentBFO |= EEPROM.read(eeprom_address + 6);
-
-  addr_offset = 7;
-  for (int i = 0; i <= lastBand; i++) {
-    band[i].currentFreq = EEPROM.read(addr_offset++) << 8;
-    band[i].currentFreq |= EEPROM.read(addr_offset++);
-    band[i].currentStepIdx = EEPROM.read(addr_offset++);
-    band[i].bandwidthIdx = EEPROM.read(addr_offset++);
-  }
-  // Rescues the previous  AVC and AGC/Att status
-  avcIdx = EEPROM.read(addr_offset++);
-  agcIdx = EEPROM.read(addr_offset++);
-  agcNdx = EEPROM.read(addr_offset++);
-  EEPROM.end();
-  currentFrequency = band[bandIdx].currentFreq;
-
-  if (band[bandIdx].bandType == FM_BAND_TYPE) {
-    currentStepIdx = idxFmStep = band[bandIdx].currentStepIdx;
-    rx.setFrequencyStep(tabFmStep[currentStepIdx]);
-  } else {
-    currentStepIdx = idxAmStep = band[bandIdx].currentStepIdx;
-    rx.setFrequencyStep(tabAmStep[currentStepIdx]);
-  }
-
-  bwIdx = band[bandIdx].bandwidthIdx;
-
-  if (currentMode == LSB || currentMode == USB) {
-    loadSSB();
-    bwIdxSSB = (bwIdx > 5) ? 5 : bwIdx;
-    rx.setSSBAudioBandwidth(bandwidthSSB[bwIdxSSB].idx);
-    // If audio bandwidth selected is about 2 kHz or below, it is recommended to set Sideband Cutoff Filter to 0.
-    if (bandwidthSSB[bwIdxSSB].idx == 0 || bandwidthSSB[bwIdxSSB].idx == 4 || bandwidthSSB[bwIdxSSB].idx == 5)
-      rx.setSSBSidebandCutoffFilter(0);
-    else
-      rx.setSSBSidebandCutoffFilter(1);
-  } else if (currentMode == AM) {
-    bwIdxAM = bwIdx;
-    rx.setBandwidth(bandwidthAM[bwIdxAM].idx, 1);
-  } else {
-    bwIdxFM = bwIdx;
-    rx.setFmBandwidth(bandwidthFM[bwIdxFM].idx);
-  }
-
-  delay(50);
-  rx.setVolume(volume);
 }
 
-/*
- * To store any change into the EEPROM, it is needed at least STORE_TIME  milliseconds of inactivity.
- */
-void resetEepromDelay() {
-  elapsedCommand = storeTime = millis();
-  itIsTimeToSave = true;
-}
-
-/**
-    Set all command flags to false
-    When all flags are disabled (false), the encoder controls the frequency
-*/
-void disableCommands() {
-  cmdBand = false;
-  bfoOn = false;
-  cmdVolume = false;
-  cmdAgc = false;
-  cmdBandwidth = false;
-  cmdStep = false;
-  cmdMode = false;
-  cmdMenu = false;
-  cmdSoftMuteMaxAtt = false;
-  cmdAvc = false;
-  countClick = 0;
-  showCommandStatus((char *)"VFO ");
-}
 
 /**
  * Reads encoder via interrupt
@@ -569,7 +274,7 @@ void showFrequency() {
 
   spr.pushSprite(0, 0);
 
-  showRSSI();
+  showAudioPeak();
   showMode();
 }
 
@@ -616,7 +321,7 @@ void showBattery() {
  */
 void showStatus() {
   showFrequency();
-  showRSSI();
+  showAudioPeak();
 }
 
 /**
@@ -640,40 +345,40 @@ void showBandwidth() {
 /*
  * Concert rssi to VU
 */
-int getStrength(uint8_t rssi) {
-  if ((rssi >= 0) and (rssi <= 1))
+int getAudioPeak(uint8_t audioPeak) {
+  if ((audioPeak >= 0) and (audioPeak <= 1))
     return 1;  // S0
-  if ((rssi > 1) and (rssi <= 1))
+  if ((audioPeak > 1) and (audioPeak <= 1))
     return 2;  // S1
-  if ((rssi > 2) and (rssi <= 3))
+  if ((audioPeak > 2) and (audioPeak <= 3))
     return 3;  // S2
-  if ((rssi > 3) and (rssi <= 4))
+  if ((audioPeak > 3) and (audioPeak <= 4))
     return 4;  // S3
-  if ((rssi > 4) and (rssi <= 10))
+  if ((audioPeak > 4) and (audioPeak <= 10))
     return 5;  // S4
-  if ((rssi > 10) and (rssi <= 16))
+  if ((audioPeak > 10) and (audioPeak <= 16))
     return 6;  // S5
-  if ((rssi > 16) and (rssi <= 22))
+  if ((audioPeak > 16) and (audioPeak <= 22))
     return 7;  // S6
-  if ((rssi > 22) and (rssi <= 28))
+  if ((audioPeak > 22) and (audioPeak <= 28))
     return 8;  // S7
-  if ((rssi > 28) and (rssi <= 34))
+  if ((audioPeak > 28) and (audioPeak <= 34))
     return 9;  // S8
-  if ((rssi > 34) and (rssi <= 44))
+  if ((audioPeak > 34) and (audioPeak <= 44))
     return 10;  // S9
-  if ((rssi > 44) and (rssi <= 54))
+  if ((audioPeak > 44) and (audioPeak <= 54))
     return 11;  // S9 +10
-  if ((rssi > 54) and (rssi <= 64))
+  if ((audioPeak > 54) and (audioPeak <= 64))
     return 12;  // S9 +20
-  if ((rssi > 64) and (rssi <= 74))
+  if ((audioPeak > 64) and (audioPeak <= 74))
     return 13;  // S9 +30
-  if ((rssi > 74) and (rssi <= 84))
+  if ((audioPeak > 74) and (audioPeak <= 84))
     return 14;  // S9 +40
-  if ((rssi > 84) and (rssi <= 94))
+  if ((audioPeak > 84) and (audioPeak <= 94))
     return 15;  // S9 +50
-  if (rssi > 94)
+  if (audioPeak > 94)
     return 16;  // S9 +60
-  if (rssi > 95)
+  if (audioPeak > 95)
     return 17;  //>S9 +60
 
   return 0;
@@ -682,10 +387,10 @@ int getStrength(uint8_t rssi) {
 /**
  *   Shows the current RSSI and SNR status
  */
-void showRSSI() {
+void showAudioPeak() {
   spr.fillRect(240, 20, 76, 88, TFT_BLACK);  // Clear the indicator areas
 
-  for (int i = 0; i < getStrength(rssi); i++) {
+  for (int i = 0; i < getAudioPeak(rssi); i++) {
     if (i < 9)
       spr.fillRect(244 + (i * 4), 80 - i, 2, 4 + i, TFT_GREEN);
     else
@@ -1289,7 +994,7 @@ void loop() {
     int aux = rx.getCurrentRSSI();
     if (rssi != aux && !isMenuMode()) {
       rssi = aux;
-      showRSSI();
+      showAudioPeak();
     }
     elapsedRSSI = millis();
   }
