@@ -324,8 +324,8 @@ const uint8_t lastRdsRT = (sizeof(rdsRTmsg) / sizeof(rdsRTmsg[0])) - 1;
 uint8_t idxRdsPS = 0;
 uint8_t idxRdsRT = 0;
 
-#define RDS_PS_REFRESH_TIME 5000
-#define RDS_RT_REFRESH_TIME 15000
+#define RDS_PS_REFRESH_TIME 7000
+#define RDS_RT_REFRESH_TIME 17000
 
 long rdsTimePS = millis();
 long rdsTimeRT = millis();
