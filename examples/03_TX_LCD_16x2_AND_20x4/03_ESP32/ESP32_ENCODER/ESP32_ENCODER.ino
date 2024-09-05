@@ -75,6 +75,7 @@
 #define STOP_RDS_TIME 10000
 
 volatile int encoderCount = 0;
+volatile int menuProcessKey = 0;
 
 bool stopRDSforWhile = false;
 long stopRDSTime = millis();
@@ -307,6 +308,8 @@ void setup() {
   // controlling encoder via interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(BT_MENU), menuProcess, CHANGE);
+
 
 
 
@@ -389,6 +392,12 @@ void rotaryEncoder()
   uint8_t encoderStatus = encoder.process();
   if (encoderStatus)
     encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
+}
+
+
+void menuProcess()
+{ // rotary encoder events
+  menuProcessKey = 1;
 }
 
 
@@ -753,7 +762,7 @@ int8_t checkEncoder() {
 
   int8_t action;
 
-  if ( digitalRead(BT_MENU) == LOW ) { 
+  if ( menuProcessKey == 1 ) { 
      action =  BT_MENU_PRESSED;
      delay(250);                   // Try to avoid double click or debounce 
   }
@@ -765,7 +774,8 @@ int8_t checkEncoder() {
     action = ENCODER_NO_ACTION;  
 
   encoderCount = 0;
-
+  menuProcessKey = 0;
+  
   return action;
 }
 
