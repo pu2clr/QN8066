@@ -427,8 +427,6 @@ void setup() {
 /**
  * Reads encoder via interrupt
  * Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
- * if you do not add ICACHE_RAM_ATTR declaration, the system will reboot during attachInterrupt call.
- * With ICACHE_RAM_ATTR macro you put the function on the RAM.
  */
 void rotaryEncoder()
 { // rotary encoder events
@@ -792,7 +790,6 @@ void sendRDS() {
     rdsTimeRT = millis();
   }
 
-
   // Date Time Service refreshing control
   if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
     delay(100);
@@ -832,7 +829,6 @@ void loop() {
     showStatus(lcdPage);
     while ((key = checkEncoder()) == ENCODER_NO_ACTION) {
 
-      // RDS UNDER CONSTRUCTION...
       if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1  && !stopRDSforWhile )   {
         sendRDS();
       }
