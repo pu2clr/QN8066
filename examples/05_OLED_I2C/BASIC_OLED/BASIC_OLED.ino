@@ -23,7 +23,8 @@ char *ps[] = { (char *)"PU2CLR \r",
                (char *)"QN8066 \r",
                (char *)"ARDUINO\r",
                (char *)"LIBRARY\r",
-               (char *)"FM TX  \r" };
+               (char *)"FM TX  \r",
+               (char *)"DIY TX \r"};
       
 // Radio Text (RT) messages
 // Apparently, some receivers seem to work better when the special character 0xD (\r) 
@@ -31,11 +32,13 @@ char *ps[] = { (char *)"PU2CLR \r",
 // possible to work with messages up to 64 characters long, it is recommended to keep 
 // the message length within 32 characters by default, reserving the 32nd character for
 // the '\r' as shown below.
-char *rt[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY  \r",
+char *rt[] = { (char *)"PU2CLR - QN8066 ARDUINO LIBRARY\r",
                (char *)"FM TRANSMITTER WITH RDS SERVICE\r",
-               (char *)"github.com/pu2clr/QN8066       \r",
-               (char *)"FM Transmitters Enthusiasts    \r",
-               (char *)"QN8066 HOMEBREW FM TRANSMITTER \r" };
+               (char *)"DIY QN8066 FM TRANSMITTER KIT  \r",
+               (char *)"DO IT YOURSELF - FM TRANSMITTER\r",
+               (char *)"  github.com/pu2clr/QN8066     \r",
+               (char *)"  FM Transmitters Enthusiasts  \r",
+               (char *)" QN8066 HOMEBREW FM TRANSMITTER\r" };
 
 const uint8_t lastPS = ( sizeof(ps) / sizeof(ps[0])) - 1;
 const uint8_t lastRT = ( sizeof(rt) / sizeof(rt[0])) - 1;                    
