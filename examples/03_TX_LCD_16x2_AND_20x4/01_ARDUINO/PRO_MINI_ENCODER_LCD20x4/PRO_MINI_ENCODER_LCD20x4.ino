@@ -21,16 +21,16 @@
   Below are some operational commands:
   1. If necessary, press the MENU button when turning on the system to reset the EEPROM and 
      return the transmitter to the default settings.
-  2. On the main screen, click the UP or DOWN button to display information pages about the 
+  2. On the main screen, turn the encoder clockwise and counterclockwise to display information pages about the 
      current state of the transmitter.
-  3. Press the MENU button to enter the parameter navigation mode.
-  3.1. At this level, press UP or DOWN to select the option or parameter you want to change.
-  3.2. Press the MENU button again to enter parameter editing mode.
-  3.3. Press the UP and DOWN buttons to change the parameters.
-  3.4. Press the MENU button to confirm and save the selected parameter. At this point, the
+  3. Press the MENU button (encoder push button) to enter the parameter navigation mode.
+  3.1. At this level, turn the encoder clockwise and counterclockwise to select the option or parameter you want to change.
+  3.2. Press the push button again to enter parameter editing mode.
+  3.3. turn the encoder clockwise and counterclockwise to change the parameters.
+  3.4. Press the push button button to confirm and save the selected parameter. At this point, the
        menu returns to the previous level, allowing you to select another parameter to change.
   4. The "Main Screen" option returns the system to the initial screen. Remember that at this 
-    point, you can change pages by pressing UP or DOWN. This way, you can check the changes 
+    point, you can change pages by turn the encoder clockwise and counterclockwise This way, you can check the changes 
     made.     
 
   Check the RDS functions documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
