@@ -25,15 +25,22 @@ arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/00_ARDUINO_MIN
 
 
 echo "---> Arduino Atmega328 LCD16x02"   
-arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/00_ARDUINO_MINIMALIST --output-dir ~/Downloads/hex/atmega/LCD16x2_arduino
+arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NANO_PRO_MINI_3_BUTTONS_LCD16x2 --output-dir ~/Downloads/hex/atmega/NANO_PRO_MINI_3_BUTTONS_LCD16x2
+arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/PRO_MINI_3_BUTTONS_LCD16x2_RTC --output-dir ~/Downloads/hex/atmega/PRO_MINI_3_BUTTONS_LCD16x2_RTC
+
+
 
 
 echo "---> Arduino Atmega328 LCD20x04"   
-arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NANO_PRO_MINI_3_BUTTONS_LCD20x4 --output-dir ~/Downloads/hex/atmega/LCD20x4_arduino
+arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NANO_PRO_MINI_3_BUTTONS_LCD20x4 --output-dir ~/Downloads/hex/atmega/NANO_PRO_MINI_3_BUTTONS_LCD20x4
+arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NANO_PRO_MINI_3_BUTTONS_LCD20x4 --output-dir ~/Downloads/hex/atmega/NANO_PRO_MINI_3_BUTTONS_LCD20x4
+arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/PRO_MINI_ENCODER_LCD20x4 --output-dir ~/Downloads/hex/atmega/PRO_MINI_ENCODER_LCD20x4
 
 
 echo "MiniCore - It can help you to save memory on ATmega328"
-arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./03_TX_LCD_16x2_AND_20x4/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./03_TX_LCD_16x2_AND_20x4/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER_V1 --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4_V1
+arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./03_TX_LCD_16x2_AND_20x4/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER_V2 --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4_V2
+
 
 echo "ESP32"
 echo "ESP32 LCD16x2 AND ENCODER"
