@@ -22,17 +22,17 @@ void setup() {
 
   // To set the RTC, uncomment this block of lines, compile and upload the sketch to the Arduino. 
   // Once the clock is set, comment out the lines again, compile and upload the sketch.  
-  /*
+  
   dt.year = 24;
-  dt.month = 8;
-  dt.day = 29;
+  dt.month = 9;
+  dt.day = 7;
   dt.dow = 1;
-  dt.hour = 19;
-  dt.minute = 45;
-  dt.second = 30;
-
+  dt.hour = 6;
+  dt.minute = 49;
+  dt.second = 10;
   rtc.setDateTime(&dt);
-  */
+  dt.dow = 0;
+  rtc.setDateTime(&dt);
 
 }
 
@@ -40,10 +40,10 @@ char str[80];
 void loop() {
   //Obtém as informações de tempo atual
   rtc.getDateTime(&dt);
-  if (dt.dow) {
+  // if (dt.dow) {
     sprintf(str,"\n=> %2.2d/%2.2d/20%2.2d - %d:%d:%d", dt.day, dt.month, dt.year, dt.hour, dt.minute, dt.second);
     Serial.print(str);
-  }
+  // }
 
   delay(1000);
 }

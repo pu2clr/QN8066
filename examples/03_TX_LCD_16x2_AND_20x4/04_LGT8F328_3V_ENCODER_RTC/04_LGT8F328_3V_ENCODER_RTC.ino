@@ -369,14 +369,14 @@ void setup() {
   /*
   dt.year = 24;
   dt.month = 9;
-  dt.day = 6;
+  dt.day = 7;
   dt.dow = 1;
-  dt.hour = 22;
-  dt.minute = 30;
-  dt.second = 0;
+  dt.hour = 6;
+  dt.minute = 55;
+  dt.second = 10;
   rtc.setDateTime(&dt);
   */
-
+  
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
   pinMode(BT_MENU, INPUT_PULLUP);
 
