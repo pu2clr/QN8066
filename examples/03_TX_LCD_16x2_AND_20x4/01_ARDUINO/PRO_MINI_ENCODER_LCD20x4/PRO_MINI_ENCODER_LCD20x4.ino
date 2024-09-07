@@ -605,7 +605,7 @@ void showMenu(uint8_t idx) {
 void doFrequency() {
   showFrequency();
   int8_t key = browseParameter();
-  while (key != 0) {
+  while (key != BT_MENU_PRESSED) {
     if (key == -1) {
       if (txFrequency < 640)   // If less than 64 MHz
         txFrequency = 1080;
@@ -628,7 +628,7 @@ void doFrequency() {
 void doPower() {
   showPower();
   int8_t key = browseParameter();
-  while (key != 0) {
+  while (key != BT_MENU_PRESSED) {
     if (key == -1) {
       if (pwmPowerDuty >= 25)
         pwmPowerDuty -= pwmDutyStep;
