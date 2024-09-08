@@ -332,7 +332,7 @@ char *rdsPSmsg[] = { (char *)"PU2CLR \r",
 char *rdsRTmsg[] = { (char *)"PU2CLR QN8066 ARDUINO LIBRARY  \r",
                      (char *)"FM TRANSMITTER WITH RDS SERVICE\r",
                      (char *)"github.com/pu2clr/QN8066       \r",
-                     (char *)"FM Transmitters Enthusiasts    \r",
+                     (char *)"FM TX for Enthusiasts          \r",
                      (char *)"QN8066 HOMEBREW FM TRANSMITTER \r" };
 
 const uint8_t lastRdsPS = (sizeof(rdsPSmsg) / sizeof(rdsPSmsg[0])) - 1;
@@ -405,7 +405,7 @@ void setup() {
   }
 
   showSplash();
-  delay(2000);
+  delay(1000);
 
   lcd.clear();
 
@@ -425,7 +425,7 @@ void setup() {
 
   tx.setup();
   tx.setTX(txFrequency);
-  delay(500);
+  delay(300);
 
   tx.resetAudioPeak();
 
@@ -543,11 +543,11 @@ void switchTxFrequency(uint16_t freq) {
 void showSplash() {
   lcd.setCursor(0, 0);
   lcd.print("PU2CLR-QN8066");
-  delay(1000);
+  delay(500);
   lcd.setCursor(0, 1);
   lcd.print("Arduino Library");
   lcd.display();
-  delay(1000);
+  delay(500);
 }
 // Show the current frequency
 void showFrequency() {
@@ -606,17 +606,24 @@ void showStatus(uint8_t page) {
     sprintf(str, "PIL.:%s", keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].desc);
     lcd.print(str);
   } else if (page == 3) {
-    sprintf(str, "%s PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
+    char strAux[16];
+    strncpy(strAux, tx.rdsGetPS(), 7);
+    strAux[7] = '\0';
+    sprintf(str, "PS:%sPTY:%2d", strAux, tx.rdsGetPTY());
     lcd.setCursor(0, 0);
     lcd.print(str);
     lcd.setCursor(0, 1);
-    sprintf(str, "RDS ERR: %d", tx.rdsGetError());
+    strncpy(strAux, rdsRTmsg[idxRdsRT],14);
+    strAux[14] = '\0';
+    sprintf(str, "RT:%s", strAux);
     lcd.print(str);
   }
   else {
+    lcd.setCursor(0, 0);      
+    lcd.print("RDS DT Service");
     if (!dt.dow) rtc.getDateTime(&dt);
     sprintf(str,"%2.2d/%2.2d/%2.2d-%2.2d:%2.2d",dt.year,dt.month,dt.day,dt.hour,dt.minute);
-    lcd.setCursor(0, 0);
+    lcd.setCursor(0, 1);
     lcd.print(str);
   }  
   lcd.display();
@@ -817,17 +824,17 @@ void sendRDS() {
 
   // PS refreshing control
   if ((millis() - rdsTimePS) > RDS_PS_REFRESH_TIME) {
-    if (idxRdsPS > lastRdsPS) idxRdsPS = 0;
     tx.rdsSendPS(rdsPSmsg[idxRdsPS]);
     idxRdsPS++;
+    if (idxRdsPS > lastRdsPS) idxRdsPS = 0;
     rdsTimePS = millis();
   }
 
   // RT refreshing control
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
-    if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
     tx.rdsSendRT(rdsRTmsg[idxRdsRT]);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     idxRdsRT++;
+    if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
     rdsTimeRT = millis();
   }
 
