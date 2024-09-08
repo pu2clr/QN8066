@@ -371,9 +371,9 @@ void setup() {
   dt.month = 9;
   dt.day = 7;
   dt.dow = 1;
-  dt.hour = 6;
-  dt.minute = 55;
-  dt.second = 10;
+  dt.hour = 21;
+  dt.minute = 41;
+  dt.second = 15;
   rtc.setDateTime(&dt);
   */
   
