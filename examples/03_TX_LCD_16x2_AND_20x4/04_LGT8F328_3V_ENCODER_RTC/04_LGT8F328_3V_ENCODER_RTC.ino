@@ -475,7 +475,7 @@ void rotaryEncoder()
 
 void startRDS() {
     uint8_t ptyIdx = keyValue[KEY_RDS_PTY].value[keyValue[KEY_RDS_PTY].key].idx;
-    tx.rdsInitTx(0x8,0x1,0x9B, ptyIdx, 50, 8);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html) 
+    tx.rdsInitTx(0x8,0x1,0x9B, ptyIdx, 50, 4);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html) 
 }
 
 void checkQN8066() {
@@ -606,23 +606,18 @@ void showStatus(uint8_t page) {
     sprintf(str, "PIL.:%s", keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].desc);
     lcd.print(str);
   } else if (page == 3) {
-    char strAux[16];
-    strncpy(strAux, tx.rdsGetPS(), 7);
-    strAux[7] = '\0';
-    sprintf(str, "PS:%sPTY:%2d", strAux, tx.rdsGetPTY());
+    sprintf(str, "PS:%.6s PTY:%2d", tx.rdsGetPS() , tx.rdsGetPTY());
     lcd.setCursor(0, 0);
     lcd.print(str);
     lcd.setCursor(0, 1);
-    strncpy(strAux, rdsRTmsg[idxRdsRT],14);
-    strAux[14] = '\0';
-    sprintf(str, "RT:%s", strAux);
+    sprintf(str, "RT:%.14s", rdsRTmsg[idxRdsRT] );
     lcd.print(str);
   }
   else {
     lcd.setCursor(0, 0);      
     lcd.print("RDS DT Service");
     if (!dt.dow) rtc.getDateTime(&dt);
-    sprintf(str,"%2.2d/%2.2d/%2.2d-%2.2d:%2.2d",dt.year,dt.month,dt.day,dt.hour,dt.minute);
+    sprintf(str,"%2.2d/%2.2d/%2.2d %2.2d:%2.2d",dt.year,dt.month,dt.day,dt.hour,dt.minute);
     lcd.setCursor(0, 1);
     lcd.print(str);
   }  
