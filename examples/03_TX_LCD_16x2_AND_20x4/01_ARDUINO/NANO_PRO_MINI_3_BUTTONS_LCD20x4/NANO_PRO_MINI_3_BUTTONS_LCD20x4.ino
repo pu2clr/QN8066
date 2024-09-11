@@ -487,9 +487,9 @@ void enablePWM(uint8_t value) {
 }
 // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
-  enablePWM(0);  // PWM duty cycle disabled
+  // enablePWM(0);  // PWM duty cycle disabled
   tx.setTX(txFrequency = freq);
-  enablePWM(pwmPowerDuty);  // PWM duty cycle anable
+  // enablePWM(pwmPowerDuty);  // PWM duty cycle anable
   showFrequency();
 }
 // Shows the first message after turn the transmitter on
@@ -689,13 +689,14 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t
 
 // Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
-  enablePWM(0);  // The PWM seems to interfere with the communication with the QN8066.
   delay(PUSH_MIN_DELAY);
   switch (idxMenu) {
     case KEY_FREQUENCY:
+      enablePWM(0);  // The PWM seems to interfere with the communication with the QN8066.
       lcd.setCursor(9, 1);
       lcd.print("<<");  // it just indicates the edit mode
       doFrequency();
+      enablePWM(pwmPowerDuty);          // Turn the PWM on again.
       break;
     case KEY_POWER:
       lcd.setCursor(9, 1);
@@ -770,13 +771,11 @@ uint8_t doMenu(uint8_t idxMenu) {
                 &keyValue[idxMenu], 1, 0, 5);
       break;
     case KEY_MAIN_SCREEN:
-      enablePWM(pwmPowerDuty);  // Turn the PWM on again.
       return 0;
       break;
     default:
       break;
   }
-  enablePWM(pwmPowerDuty);          // Turn the PWM on again.
   saveAllTransmitterInformation();  // Saves the current modified data to the EEPROM
   return 1;
 }
