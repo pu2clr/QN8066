@@ -43,11 +43,12 @@ echo "This may take several minutes or hours. Please wait!"
 echo "Installing the libraries"
 #uncomment the lines if you and to include more libraries 
 arduino-cli lib install "QN8066"
-arduino-cli lib install "Adafruit BusIO"
-arduino-cli lib install "Adafruit SH110X"
-arduino-cli lib install "Adafruit SSD1306"
-arduino-cli lib install "Adafruit ST7735 and ST7789 Library"
-arduino-cli lib install "Adafruit PCD8544 Nokia 5110 LCD library"
+arduino-cli lib install "Ds1302"
+# arduino-cli lib install "Adafruit BusIO"
+# arduino-cli lib install "Adafruit SH110X"
+# arduino-cli lib install "Adafruit SSD1306"
+# arduino-cli lib install "Adafruit ST7735 and ST7789 Library"
+# arduino-cli lib install "Adafruit PCD8544 Nokia 5110 LCD library"
 # arduino-cli lib install "Adafruit TouchScreen"
 # arduino-cli lib install "ES32Lab"
 # arduino-cli lib install "Etherkit Si5351"
@@ -79,11 +80,11 @@ arduino-cli core install MiniCore:avr
 arduino-cli core install arduino:sam
 arduino-cli core install esp32:esp32
 # arduino-cli core install esp8266:esp8266
-# arduino-cli core install stm32duino:STM32F1
+arduino-cli core install stm32duino:STM32F1
 # arduino-cli core install stm32duino:STM32F4
 # arduino-cli core install STM32:stm32
 # arduino-cli core install STMicroelectronics:stm32
-# arduino-cli core install rp2040:rp2040
+arduino-cli core install rp2040:rp2040
 # arduino-cli core install Seeeduino:samd
 # arduino-cli core install ATTinyCore:avr
 # arduino-cli core install MegaCore:avr
