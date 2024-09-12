@@ -29,8 +29,6 @@ arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NAN
 arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/PRO_MINI_3_BUTTONS_LCD16x2_RTC --output-dir ~/Downloads/hex/atmega/PRO_MINI_3_BUTTONS_LCD16x2_RTC
 
 
-
-
 echo "---> Arduino Atmega328 LCD20x04"   
 arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NANO_PRO_MINI_3_BUTTONS_LCD20x4 --output-dir ~/Downloads/hex/atmega/NANO_PRO_MINI_3_BUTTONS_LCD20x4
 arduino-cli compile -b arduino:avr:nano ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/NANO_PRO_MINI_3_BUTTONS_LCD20x4 --output-dir ~/Downloads/hex/atmega/NANO_PRO_MINI_3_BUTTONS_LCD20x4
@@ -46,6 +44,8 @@ echo "ESP32"
 echo "ESP32 LCD16x2 AND ENCODER"
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./03_TX_LCD_16x2_AND_20x4/03_ESP32/ESP32_ENCODER --output-dir ~/Downloads/hex/ESP32/DEVM/LCD16x2_encoder
 
+echo "---> LGT8F328 LCD"
+arduino-cli compile -b lgt8fx:avr:328 ./03_TX_LCD_16x2_AND_20x4/04_LGT8F328_3V_ENCODER_RTC --output-dir ~/Downloads/hex/lgt8fx/LGT8F328_LCD2
 
 echo "ATTINY85"
 arduino-cli compile --fqbn ATTinyCore:avr:attinyx5:clock=1internal ./06_TX_ATTINY85_RDS_OLED --output-dir ~/Downloads/hex/ATTIMY85/ATTINY85
