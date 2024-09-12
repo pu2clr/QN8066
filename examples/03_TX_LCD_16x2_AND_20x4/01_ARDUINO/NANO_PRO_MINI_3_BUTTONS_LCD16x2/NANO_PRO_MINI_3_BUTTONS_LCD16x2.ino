@@ -492,6 +492,7 @@ void readAllTransmitterInformation() {
 
 // Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
+    pinMode(PWM_PA, OUTPUT); 
     if ( value == 0) { 
       analogWrite(PWM_PA, value);
       return;
@@ -503,9 +504,7 @@ void enablePWM(uint8_t value) {
 }
 // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
-  // enablePWM(0);  // PWM duty cycle disabled
   tx.setTX(txFrequency = freq);
-  // enablePWM(pwmPowerDuty);  // PWM duty cycle anable
   showFrequency();
 }
 // Shows the first message after turn the transmitter on
@@ -662,6 +661,7 @@ void doPower() {
       else
         pwmPowerDuty = 255;
     }
+    pinMode(PWM_PA, OUTPUT); 
     analogWrite(PWM_PA, pwmPowerDuty);
     showPower();
     key = browseParameter();

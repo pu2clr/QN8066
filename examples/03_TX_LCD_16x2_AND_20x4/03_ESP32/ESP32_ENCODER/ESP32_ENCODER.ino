@@ -28,6 +28,8 @@
   |                           | A                         |  GPIO13       |
   |                           | B                         |  GPIO14       |
   |                           | PUSH BUTTON (encoder)     |  GPIO27       |
+  | PWM                       |                           |               |
+  |                           |                           |  GPIO12       | 
   | 
 
   Prototype documentation: https://pu2clr.github.io/QN8066/
@@ -58,7 +60,7 @@
 #define ENCODER_PIN_B 14
 #define BT_MENU 27
 
-#define PWM_PA 26
+#define PWM_PA 12
 
 #define EEPROM_SIZE 512
 

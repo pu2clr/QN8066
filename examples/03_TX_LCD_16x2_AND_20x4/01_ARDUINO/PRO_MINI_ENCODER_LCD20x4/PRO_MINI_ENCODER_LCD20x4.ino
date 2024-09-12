@@ -107,7 +107,7 @@
 #define LCD_E 13
 
 // Enconder PINs
-#define BT_MENU 14
+#define BT_MENU 8
 
 #define PWM_PA 9
 
@@ -472,6 +472,7 @@ void readAllTransmitterInformation() {
 
     // Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
+  pinMode(PWM_PA, OUTPUT); 
   if (value == 0) {
     analogWrite(PWM_PA, value);
     return;
@@ -484,9 +485,7 @@ void enablePWM(uint8_t value) {
        
     // Switches the the current frequency to a new frequency
 void switchTxFrequency(uint16_t freq) {
-  // enablePWM(0);  // PWM duty cycle disabled
   tx.setTX(txFrequency = freq);
-  // enablePWM(pwmPowerDuty);  // PWM duty cycle anable
   showFrequency();
 }
     
@@ -640,6 +639,7 @@ void doPower() {
       else
         pwmPowerDuty = 255;
     }
+    pinMode(PWM_PA, OUTPUT); 
     analogWrite(PWM_PA, pwmPowerDuty);
     showPower();
     key = browseParameter();
@@ -685,6 +685,7 @@ void runAction(void (*actionFunc)(uint8_t), KeyValue *tab, uint8_t step, uint8_t
 // Processes the current menu option selected
 uint8_t doMenu(uint8_t idxMenu) {
   delay(PUSH_MIN_DELAY);
+  enablePWM(0);  
   switch (idxMenu) {
     case KEY_FREQUENCY:
       enablePWM(0);            // The PWM seems to interfere with the communication with the QN8066.

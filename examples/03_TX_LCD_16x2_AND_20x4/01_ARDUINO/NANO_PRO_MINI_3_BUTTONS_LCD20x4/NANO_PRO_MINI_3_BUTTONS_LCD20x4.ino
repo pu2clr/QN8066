@@ -476,6 +476,7 @@ void readAllTransmitterInformation() {
 
 // Enable or disable PWM duty cycle
 void enablePWM(uint8_t value) {
+  pinMode(PWM_PA, OUTPUT);
   if (value == 0) {
     analogWrite(PWM_PA, value);
     return;
@@ -645,6 +646,7 @@ void doPower() {
       else
         pwmPowerDuty = 255;
     }
+    pinMode(PWM_PA, OUTPUT);
     analogWrite(PWM_PA, pwmPowerDuty);
     showPower();
     key = browseParameter();
