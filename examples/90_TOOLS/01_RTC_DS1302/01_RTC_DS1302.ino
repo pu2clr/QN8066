@@ -25,11 +25,11 @@ void setup() {
   
   dt.year = 24;
   dt.month = 9;
-  dt.day = 7;
+  dt.day = 12;
   dt.dow = 1;
-  dt.hour = 6;
-  dt.minute = 49;
-  dt.second = 10;
+  dt.hour = 15;
+  dt.minute = 26;
+  dt.second = 50;
   rtc.setDateTime(&dt);
   dt.dow = 0;
   rtc.setDateTime(&dt);

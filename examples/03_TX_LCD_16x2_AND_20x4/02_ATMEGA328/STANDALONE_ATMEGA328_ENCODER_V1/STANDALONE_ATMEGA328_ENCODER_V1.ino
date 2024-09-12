@@ -32,7 +32,7 @@
   |                           | PWM                       |     D9        |
   | --------------------------| --------------------------| --------------|
   | Button                    |                           |               |
-  |                           | Menu                      |     A0/D14    |
+  |                           | Menu                      |     D8        |
   | Encoder                   |                           |               |
   |                           | Left                      |     D2        |
   |                           | Right                     |     D3        |
@@ -82,7 +82,7 @@
 #define LCD_E 13
 
 // Enconder PINs
-#define BT_MENU 14
+#define BT_MENU 8
 
 #define PWM_PA 9
 

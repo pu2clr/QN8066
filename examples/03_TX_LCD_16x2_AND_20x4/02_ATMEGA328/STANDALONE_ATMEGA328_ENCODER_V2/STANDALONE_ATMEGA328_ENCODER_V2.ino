@@ -3,6 +3,8 @@
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
   This sketch uses an Arduino Nano with LCD16X02.
 
+  This sketch uses the DS1302 RTC (Real Time Clock) to provide RDS Date and Time service.
+
   ABOUT THE ATMEGA328 EEPROM and saving the receiver current information
   ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.
 
@@ -32,7 +34,7 @@
   |                           | PWM                       |     D9        |
   | --------------------------| --------------------------| --------------|
   | Button                    |                           |               |
-  |                           | Menu                      |     A0/D14    |
+  |                           | Menu                      |     D8        |
   | Encoder                   |                           |               |
   |                           | Left                      |     D2        |
   |                           | Right                     |     D3        |
@@ -72,6 +74,7 @@
 #include <EEPROM.h>
 #include "Rotary.h"
 #include <LiquidCrystal.h>
+#include <Ds1302.h>   // Real Time Clock based on DS1302
 
 // LCD 16x02 or LCD20x4 PINs
 #define LCD_D7 4
@@ -82,9 +85,14 @@
 #define LCD_E 13
 
 // Enconder PINs
-#define BT_MENU 14
+#define BT_MENU 8
 
 #define PWM_PA 9
+
+// RTC DS1302 Control PINS
+#define CLK_PIN     14      // Using the D14/A0 for clock
+#define DATA_PIN    15      // Using the D15/A1 for data
+#define RESET_PIN   16      // Using the D16/A2 for reset the DS1302 device
 
 
 #define ENCODER_NO_ACTION 0
@@ -338,7 +346,27 @@ QN8066 tx;
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
 
+Ds1302 rtc(RESET_PIN, CLK_PIN, DATA_PIN);
+Ds1302::DateTime dt;
+
 void setup() {
+
+  rtc.init(); 
+
+  // To set the RTC, uncomment this block of lines, compile and upload the sketch to the Arduino. 
+  // Once the clock is set, comment out the lines again, compile and upload the sketch.  
+  /*
+  dt.year = 24;
+  dt.month = 9;
+  dt.day = 12;
+  dt.dow = 1;
+  dt.hour = 14;
+  dt.minute = 52;
+  dt.second = 0;
+  rtc.setDateTime(&dt);
+  dt.dow = 0;
+  rtc.setDateTime(&dt);  
+  */
 
   pinMode(PWM_PA, OUTPUT);  // Sets the Arduino PIN to operate with with PWM
   pinMode(BT_MENU, INPUT_PULLUP);
@@ -569,13 +597,18 @@ void showStatus(uint8_t page) {
     lcd.setCursor(0, 1);
     sprintf(str, "PIL.:%s", keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].desc);
     lcd.print(str);
-  } else {
+  } else if (page == 3) {
     sprintf(str, "%s PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
     lcd.setCursor(0, 0);
     lcd.print(str);
     lcd.setCursor(0, 1);
     sprintf(str, "RDS ERR: %d", tx.rdsGetError());
     lcd.print(str);
+  } else {
+    if (!dt.dow) rtc.getDateTime(&dt);
+    sprintf(str,"%2.2d/%2.2d/%2.2d-%2.2d:%2.2d",dt.year,dt.month,dt.day,dt.hour,dt.minute);
+    lcd.setCursor(0, 0);
+    lcd.print(str);   
   }
   lcd.display();
 }
@@ -776,7 +809,6 @@ void sendRDS() {
   // PS refreshing control
   if ((millis() - rdsTimePS) > RDS_PS_REFRESH_TIME) {
     if (idxRdsPS > lastRdsPS) idxRdsPS = 0;
-    delay(100);
     tx.rdsSendPS(rdsPSmsg[idxRdsPS]);
     idxRdsPS++;
     rdsTimePS = millis();
@@ -785,7 +817,6 @@ void sendRDS() {
   // RT refreshing control
   if ((millis() - rdsTimeRT) > RDS_RT_REFRESH_TIME) {
     if (idxRdsRT > lastRdsRT) idxRdsRT = 0;
-    delay(100);
     tx.rdsSendRT(rdsRTmsg[idxRdsRT]);     // See rdsSendRTMessage in https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html
     idxRdsRT++;
     rdsTimeRT = millis();
@@ -793,11 +824,9 @@ void sendRDS() {
 
   // Date Time Service refreshing control
   if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
-    delay(100);
-    // To use the function (service) below, you will need to add an integrated clock to your 
-    // system that provides the date and time to the system. The following example presents 
-    // only a fixed date and time and is intended solely to illustrate the use of the function.
-    tx.rdsSendDateTime(2024, 8, 30, 13, 01, 0);  // Sends Year = 2024; month = 8; day = 29; At 12:45 (local time)    
+    rtc.getDateTime(&dt);
+    if (!dt.dow) rtc.getDateTime(&dt);
+    tx.rdsSendDateTime(dt.year + 2000, dt.month, dt.day, dt.hour, dt.minute, 0);
     rdsDateTime = millis();
   }
 }
@@ -851,11 +880,11 @@ void loop() {
     if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) tx.rdsTxEnable(false);
     if (key == ENCODER_LEFT) {  // Down Pressed
       lcdPage--;
-      if (lcdPage < 0) lcdPage = 3;
+      if (lcdPage < 0) lcdPage = 4;
       showStatus(lcdPage);
     } else if (key == ENCODER_RIGHT) {  // Up Pressed
       lcdPage++;
-      if (lcdPage > 3) lcdPage = 0;
+      if (lcdPage > 4) lcdPage = 0;
       showStatus(lcdPage);
     } else if ( key == BT_MENU_PRESSED  ) {  // Menu Pressed
       menuLevel = 1;
