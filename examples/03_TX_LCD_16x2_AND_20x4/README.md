@@ -149,6 +149,14 @@ It is worth noting that the Up/Right and Down/Left buttons have been replaced by
 |                           | Right                     |     D3        |
 | --------------------------| --------------------------|---------------|
 
+
+### LGT8F328 with encoder and DS1302 RTC schematic
+
+The following schematic presents a version of the controller with the LGT8F328 microcontroller integrated with an LCD, a Rotary Encoder, and a real-time clock based on the DS1302.
+
+![LGT8F328 with encoder and DS1302 RTC schematic](./schematic_LGT8F328_encoder.png)
+
+
 ## Videos related to this example
 
 * [QN8066 Arduino Library by PU2CLR - Part 2](https://youtu.be/3V40yuwN-Vk?si=ZDTcvcty_OK6Nm9N)
