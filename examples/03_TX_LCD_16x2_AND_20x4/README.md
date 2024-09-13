@@ -143,7 +143,7 @@ It is worth noting that the Up/Right and Down/Left buttons have been replaced by
 |                           | PWM                       |     D9        |
 | --------------------------| --------------------------| --------------|
 | Button                    |                           |               |
-|                           | Menu                      |     A0/D14    |
+|                           | Menu                      |     D8        |
 | Encoder                   |                           |               | 
 |                           | Left                      |     D2        |
 |                           | Right                     |     D3        |
