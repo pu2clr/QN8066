@@ -224,6 +224,20 @@ The QN8066 is a highly integrated and versatile receiver/transmitter (RX/TX) dev
 
 
 
+## QN8066 and Arduino based on ATmega328 or LGT8F328
+
+The following electrical circuit presents the basic interface configurations of the QN8066 device with an Arduino microcontroller based on the ATmega328 or equivalent, such as the LGT8F328.
+
+![QN8066 and Arduino based on ATmega328 or LGT8F328](./extras/schematics/QN8066_BASIC_SETUP/schematic_qn8066_arduino_basic_setup.png)
+
+
+**ATTENTION:** 
+The QN8066 datasheet specifies a maximum digital interface voltage (SCL, SDA, INT, and CE) of 3.6V. Therefore, it's recommended to use Arduino boards that operate at 3.3V. In tests conducted by the author of this library, the Arduino Nano, which operates at 5V, worked without issues. However, it's important to note that this practice is not recommended and may pose a risk of damaging the QN8066. Alternatives include the LGT8F328 (a cheaper Nano-compatible version) and the Arduino Pro Mini (8MHz), both of which operate perfectly at 3.3V. Important: The author of this library is not responsible for any damages that may occur in your experiments based on the information shared in this documentation.
+
+
+**The QN8066 depends on an active crystal (oscillator) for its operation. Although this library is configured for a 32.768 MHz crystal by default, it offers flexibility to accommodate other active crystal or signal generator frequencies. The following section outlines a few oscillator options suitable for the QN8066.**
+
+
 ## Homemade setup with the QN8066
 
 The following figures illustrate a homemade setup with the QN8066. As you can see, only a few components are needed to build an FM transmitter with the QN8066. The key component is the 32.768 kHz active crystal (32,768 Hz). The QN8066 allows for other signal source configurations. As far as I understand, there is no possibility of using passive crystals. The QN8066 requires an active signal source provided by a generator.
