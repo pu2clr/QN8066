@@ -32,14 +32,15 @@ I hold a Master's degree in Educational Technology from the Federal University o
 5. [QN8066 Functional Blocks](./#qn8066-functional-blocks)
 6. [QN8066 PINOUT](./#qn8066-pinout)
 7. [QN8066 Summary of User Control Registers](./#qn8066-summary-of-user-control-registers)
-8. [Homemade setup with the QN8066](./#homemade-setup-with-the-qn8066)
-9. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
-10. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
-11. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
-12. [Boards where this library can be compiled](./#boards-where-this-library-can-be-compiled)
-13. [Donate](./#donate)
-14. [Most Frequent Problems](./#most-frequent-problems)
-15. [References](./#references)
+8. [QN8066 and Arduino based on ATmega328 or LGT8F328](./#qn8066-and-arduino-based-on-atmega328-or-lgt8f328)
+9. [Homemade setup with the QN8066](./#homemade-setup-with-the-qn8066)
+10. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
+11. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+12. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
+13. [Boards where this library can be compiled](./#boards-where-this-library-can-be-compiled)
+14. [Donate](./#donate)
+15. [Most Frequent Problems](./#most-frequent-problems)
+16. [References](./#references)
 
 ## Legal Compliance Guidelines
 
