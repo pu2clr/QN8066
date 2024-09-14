@@ -240,7 +240,16 @@ The QN8066 datasheet specifies a maximum digital interface voltage (SCL, SDA, IN
 
 ## Homemade setup with the QN8066
 
-The following figures illustrate a homemade setup with the QN8066. As you can see, only a few components are needed to build an FM transmitter with the QN8066. The key component is the 32.768 kHz active crystal (32,768 Hz). The QN8066 allows for other signal source configurations. As far as I understand, there is no possibility of using passive crystals. The QN8066 requires an active signal source provided by a generator.
+The following figures illustrate a homemade setup with the QN8066. As you can see, only a few components are needed to build an FM transmitter with the QN8066. The goal here is provide a visual representation of a basic QN8066 circuit assembled on a breadboard. It's important to note that a 32.768 MHz active crystal is utilized in this particular setup.
+
+![QN8066 BASIC SETUP](./extras/images/QN8066_BASIC_SETUP.jpg)
+
+The diagram below presents a fundamental setup of the QN8066 interfaced with an ATmega328 microcontroller.
+
+![QN8066 AND ARDUINO BASIC SETUP](./extras/images/QN8066_ARDUINO_BASIC_SETUP.jpg)
+
+
+The next prototype uses a 32.768 kHz active crystal, not a 32.768 MHz one. Even with a simpler setup, the circuit worked as expected. Both prototypes demonstrate how few components are needed for this system. 
 
 ![Standalone QN8066 setup 0](./extras/images/STANDALONE_QN8066_00.jpg)
 
@@ -266,6 +275,10 @@ The table below shows some tested sources (active crystal or signal generator) a
 |  13,107.200     |   400         | 
 |  16,384.000     |   500         | 
 |  32,768,000     |  1000         |  
+
+
+**IMPORTANTE:** As far as I understand, there is no possibility of using passive crystals. The QN8066 requires an active signal source provided by a generator.
+
 
 #### Example 1
 
