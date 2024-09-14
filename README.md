@@ -251,8 +251,6 @@ The diagram below presents a fundamental setup of the QN8066 interfaced with an 
 
 The next prototype uses a 32.768 kHz active crystal, not a 32.768 MHz one. Even with a simpler setup, the circuit worked as expected. Both prototypes demonstrate how few components are needed for this system. 
 
-![Standalone QN8066 setup 0](./extras/images/STANDALONE_QN8066_00.jpg)
-
 
 ![Standalone QN8066 setup 1](./extras/images/STANDALONE_QN8066_01.jpg)
 
