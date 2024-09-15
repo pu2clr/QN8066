@@ -332,6 +332,12 @@ long rdsTimePS = millis();
 long rdsTimeRT = millis();
 long rdsDateTime = millis();
 
+
+long  timeInTheAr = millis();
+long  countI2CError = 0;  
+long  countTime = 0;
+
+
       // TX board interface
 QN8066 tx;
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
@@ -561,6 +567,19 @@ void showStatus() {
   lcd.setCursor(14, 3);
   sprintf(str, "FSM:%d", tx.getFsmStateCode());
   lcd.print(str);
+
+
+  // DEBUG - Monitoring time and I2C error 
+  if ( (millis() - timeInTheAr) > 60000) { 
+    countTime++;
+    timeInTheAr = millis();
+  }
+
+  lcd.setCursor(10, 0);
+  lcd.print(countI2CError);
+  lcd.setCursor(8, 1);
+  lcd.print(countTime);
+  // END DEBUG
   
   lcd.display();
 }

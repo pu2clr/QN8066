@@ -349,6 +349,11 @@ long rdsTimePS = millis();
 long rdsTimeRT = millis();
 long rdsDateTime = millis();
 
+// *** DEBUG
+long  timeInTheAr = millis();
+long  countI2CError = 0;  
+long  countTime = 0;
+// ****
 
 // TX board interface
 QN8066 tx;
@@ -613,14 +618,27 @@ void showStatus(uint8_t page) {
     sprintf(str, "RT:%.14s", rdsRTmsg[idxRdsRT] );
     lcd.print(str);
   }
-  else {
+  else if ( page == 4) {
     lcd.setCursor(0, 0);      
     lcd.print("RDS DT Service");
     if (!dt.dow) rtc.getDateTime(&dt);
     sprintf(str,"%2.2d/%2.2d/%2.2d %2.2d:%2.2d",dt.year,dt.month,dt.day,dt.hour,dt.minute);
     lcd.setCursor(0, 1);
     lcd.print(str);
-  }  
+  } else {
+    lcd.setCursor(0, 0);      
+    lcd.print("Time on the Air");
+    sprintf(str, "%ld min.", countTime);
+    lcd.setCursor(0, 1);
+    lcd.print(str);
+  } 
+
+  // DEBUG - Monitoring time and I2C error 
+  if ( (millis() - timeInTheAr) > 60000) { 
+    countTime++;
+    timeInTheAr = millis();
+  }
+
   lcd.display();
 }
 // Shows the given parameter to be updated
@@ -890,11 +908,11 @@ void loop() {
     if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) tx.rdsTxEnable(false);
     if (key == ENCODER_LEFT) {  // Down Pressed
       lcdPage--;
-      if (lcdPage < 0) lcdPage = 4;
+      if (lcdPage < 0) lcdPage = 5;
       showStatus(lcdPage);
     } else if (key == ENCODER_RIGHT) {  // Up Pressed
       lcdPage++;
-      if (lcdPage > 4) lcdPage = 0;
+      if (lcdPage > 5) lcdPage = 0;
       showStatus(lcdPage);
     } else if ( key == BT_MENU_PRESSED  ) {  // Menu Pressed
       menuLevel = 1;
