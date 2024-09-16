@@ -1,6 +1,8 @@
 # QN8066 Arduino Library and LCD 16x02 examples
 
-The sketches provided in this repository have been thoroughly tested and verified to work seamlessly on Arduino Uno, Nano, Pro Mini, and LGT8F328 boards. However, to ensure optimal performance and avoid potential issues, please carefully review the best practices outlined in the documentation for the QN8066 module, your specific controller board, and this repository.
+The sketches provided in this repository have been thoroughly tested and verified to work seamlessly on Arduino Uno, Nano, Pro Mini, and LGT8F328 boards. However, to ensure optimal performance and avoid potential issues, please carefully review the best practices outlined in the documentation for the QN8066 module, your specific controller board, and this repository. 
+
+**Please note that the ESP32 version, found in this folder, has some variations in pin mappings and EEPROM handling compared to the Arduino and LGT8F328 versions. For specific details on these differences, consult the documentation within the sketch.**
 
 
 ## Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic
