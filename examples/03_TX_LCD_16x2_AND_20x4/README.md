@@ -1,5 +1,7 @@
 # QN8066 Arduino Library and LCD 16x02 examples
 
+The sketches provided in this repository have been thoroughly tested and verified to work seamlessly on Arduino Uno, Nano, Pro Mini, and LGT8F328 boards. However, to ensure optimal performance and avoid potential issues, please carefully review the best practices outlined in the documentation for the QN8066 module, your specific controller board, and this repository.
+
 
 ## Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic
 
@@ -150,7 +152,7 @@ It is worth noting that the Up/Right and Down/Left buttons have been replaced by
 | --------------------------| --------------------------|---------------|
 
 
-### LGT8F328 with encoder and DS1302 RTC schematic
+### Arduino Nano or LGT8F328 with encoder and DS1302 RTC schematic
 
 The following schematic presents a version of the controller with the LGT8F328 microcontroller integrated with an LCD, a Rotary Encoder, and a real-time clock based on the DS1302.
 
