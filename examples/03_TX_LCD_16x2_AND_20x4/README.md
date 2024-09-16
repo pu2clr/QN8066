@@ -8,7 +8,7 @@ The sketches provided in this repository have been thoroughly tested and verifie
 The sketch found in the **00_ARDUINO_MINIMALIST** folder is a basic version designed to guide users in creating their own projects with LCD16x2, LCD20x4, or other LCD displays. As a result, no user controls are implemented in this sketch.
 
 
-## Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic
+## Arduino Nano or LGT8F328P and "KIT DIY 5~7W FM TRANSMITTER" schematic
 
 The following schematic illustrates the connections between the Arduino Nano, the "KIT DIY 5~7W FM TRANSMITTER," and either the LCD 16x2 or the LCD 20x4. It is important to note that both the LCD 16x2 and the LCD 20x4 have the same pin configuration. This means that there are no electrical changes when using one or the other.
 
@@ -67,7 +67,9 @@ The following schematic illustrates the connections between the Arduino Nano, th
 
 **For the Arduino Nano, the adaptation used in this example involves using a 3.3V to 5V voltage converter to power the Arduino and placing two 150-ohm resistors in series with the I2C bus and two pull-up 10K resistors connected to the I2C wires.  Although this is not best practice, it works to some extent. If you insist in using a Arduino Nano, a more appropriate solution would be to use a bidirectional I2C level shifter to make the I2C communication compatible with both the Arduino Nano and the kit**.
 
-**Finally, the Arduino Nano was used in this example because it is widely used by most hobbyists. It's likely that many already have one at home, or even an Arduino Uno, which shares the same architecture**.
+**Finally, the Arduino Nano was used in this example because it is widely used by most hobbyists. It's likely that many already have one at home, or even an Arduino Uno, which shares the same architecture**. 
+
+**The LGT8F328P is a microcontroller that is designed to be compatible with the popular ATmega328P,  which is widely used in Arduino boards like the Arduino Uno. The LGT8F328P is manufactured by LogicGreen and is often considered a more cost-effective or feature-rich alternative to the ATmega328P. One advantage of using the LGT8F328 board over the Nano is that, in addition to having the same pin configuration as the Nano V3, it operates at 3.3V, allowing for direct integration with the QN8066 if additional resources are required.** 
 
 
 #### An alternative of connecting Arduino Nano and the KIT 
