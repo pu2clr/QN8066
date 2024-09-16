@@ -15,14 +15,25 @@ __This project centers around a library designed to control QN8066 devices using
 The examples shown in this library use **106.9 MHz** as the test frequency. Consider changing this frequency to another of your preference. Be aware that the use of FM transmitters is regulated by the laws and regulations of each country. **It is crucial to ensure that your use of any FM transmitter complies with the applicable legal requirements and does not violate any broadcasting regulations**.
 
 
-This library is still in its initial version. Although the implemented functions have been tested with the examples, it is possible that in some situations it may present issues or not respond as expected. Therefore, I ask users to contact me (pu2clr@gmail.com) to report any problems. I will do my best to resolve or clarify the issue as quickly as possible. Thank you.
+This library is under active development and may be updated with new features or bug fixes. Although the implemented functions have been tested with the examples, it is possible that in some situations it may present issues or not respond as expected. Therefore, I ask users to contact me (pu2clr@gmail.com) to report any problems. I will do my best to resolve or clarify the issue as quickly as possible. Thank you.
+
+
+## QN8066 Basic Setup
+
+The following electrical circuit demonstrates the basic interface configurations of the QN8066 device with an Arduino microcontroller based on the ATmega328 or an equivalent, such as the LGT8F328. It can be easily adapted for use with other microcontrollers.
+
+![QN8066 Basic Setup](../extras/schematics/QN8066_BASIC_SETUP/schematic_qn8066_arduino_basic_setup.png)
+
+
+By default, this library assumes that the active crystal or oscillator/signal generator used operates at 32.768 MHz. However, it is important to note that the system can be configured with other frequencies, such as 32.768 kHz or values above or equal to 1,310.720 kHz that are divisible by 32.768 (see the __setup()__ and __setXtal()__ functions). See the section below for more details. 
+
 
 
 ## Active Crystal and Arduino Library setup 
 
 The QN8066 requires an external clock signal on pin 14 (XCLK) to operate correctly. This signal, provided by a clock generator, can be either sinusoidal or square in form. The library includes specific functions for configuring this clock source, ensuring that the QN8066 receives the appropriate signal for efficient operation.
 
-The reference clock for the QN8066 is 32.768 kHz. It is important that you use a signal source with this value or a multiple of this value. Thus, if you are using a 32.768 MHz active crystal, you must specify a divisor of 1000 to the system, indicating that the signal source value divided by 1000 will result in 32.768 kHz.
+The __reference clock for the QN8066 is 32.768 kHz__. It is important that you use a signal source with this value or a multiple of this value. Thus, if you are using a 32.768 MHz active crystal, you must specify a divisor of 1000 to the system (it is the default value used by this library), indicating that the signal source value divided by 1000 will result in 32.768 kHz.
 
 The table below shows some tested sources (active crystal or signal generator) and divider values.  
 
@@ -35,7 +46,7 @@ The table below shows some tested sources (active crystal or signal generator) a
 |  3,276.800                |   100         | 
 |  13,107.200               |   400         | 
 |  16,384.000               |   500         | 
-|  32,768,000               |  1000         |  
+|  32,768,000  (default)    |  1000         |  
 
 
 Note in the table above that values between 65.636 kHz and 1,310.720 kHz did not work. Only an active crystal of 32.768 kHz or a multiple of this value above or equal to 1,310.720 kHz worked in the tests conducted by the author of this library. By default, this library assumes that you are using a 32.768 MHz signal source.
@@ -50,7 +61,6 @@ The pictures below show some active crystals used during the tests.
 ![32.768 kHz active crystal](../extras/images/act_crystal_01.jpg)
 
 ![Other 32.768 kHz active crystal](../extras/images/act_crystal_03.jpg)
-
 
 ![32.768 MHz active crystal](../extras/images/act_crystal_02.jpg)
 
