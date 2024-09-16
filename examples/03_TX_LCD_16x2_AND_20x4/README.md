@@ -5,6 +5,9 @@ The sketches provided in this repository have been thoroughly tested and verifie
 **Please note that the ESP32 version, found in this folder, has some variations in pin mappings and EEPROM handling compared to the Arduino and LGT8F328 versions. For specific details on these differences, consult the documentation within the sketch.**
 
 
+The sketch found in the **00_ARDUINO_MINIMALIST** folder is a basic version designed to guide users in creating their own projects with LCD16x2, LCD20x4, or other LCD displays. As a result, no user controls are implemented in this sketch.
+
+
 ## Arduino Nano and "KIT DIY 5~7W FM TRANSMITTER" schematic
 
 The following schematic illustrates the connections between the Arduino Nano, the "KIT DIY 5~7W FM TRANSMITTER," and either the LCD 16x2 or the LCD 20x4. It is important to note that both the LCD 16x2 and the LCD 20x4 have the same pin configuration. This means that there are no electrical changes when using one or the other.
