@@ -3,6 +3,8 @@
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
   This sketch uses an Arduino Nano with LCD16X02.
 
+  This sketch has been successfully tested on Arduino Uno, Nano, Pro Mini, and LGT8F328 boards.
+
   The LGT8F328P is a microcontroller that is designed to be compatible with the popular ATmega328P, 
   which is widely used in Arduino boards like the Arduino Uno. The LGT8F328P is manufactured by LogicGreen 
   and is often considered a more cost-effective or feature-rich alternative to the ATmega328P.

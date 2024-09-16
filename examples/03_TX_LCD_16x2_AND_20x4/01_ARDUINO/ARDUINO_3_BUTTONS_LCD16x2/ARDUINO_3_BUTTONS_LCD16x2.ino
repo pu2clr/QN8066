@@ -2,6 +2,8 @@
   DIY KIT 5~7W QN8066 FM TRANSMITTER controlled by Arduino Nano
   This sketch uses an Arduino Nano with LCD16X02.
 
+  This sketch has been successfully tested on Arduino Uno, Nano, Pro Mini, and LGT8F328 boards.
+
   ABOUT THE ATMEGA328 EEPROM and saving the receiver current information
   ATMEL says the lifetime of an EEPROM memory position is about 100,000 writes.
 
