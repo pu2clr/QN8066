@@ -1,8 +1,8 @@
 # Various subjects related to the contents of this repository
 
 
-1. [About RDS]()
-2. [Practical Guide to Building an Inductor Using Copper Wire]()
+1. [About RDS](https://github.com/pu2clr/QN8066/tree/main/extras/doc#packaging-and-transmitting-rds-messages-using-the-qn8066)
+2. [Practical Guide to Building an Inductor Using Copper Wire](https://github.com/pu2clr/QN8066/tree/main/extras/doc#practical-guide-to-building-an-inductor-using-copper-wire)
 
 
 ## Packaging and transmitting RDS messages using the QN8066
@@ -62,6 +62,23 @@ Each block in RDS has the following structure:
 PI Code Function: Identifies the radio station. This code is essential for allowing receivers to identify the source of the radio signal.
 
 **You don't need to calculate the Checksum to implement RDS services on the QN8066. This control is handled by the QN8066 itself. Basically, all you need to do is correctly fill in the PI Code.**
+
+##### PI Code Structure
+
+The PI code is a 16-bit binary value (4 hexadecimal digits), and its structure is as follows:
+
+* Country Identifier (First 4 Bits) - The first 4 bits of the PI code represent the country identifier. This helps to differentiate stations in different countries. For example, the code 0x1 might represent one country, while 0x2 represents another. 
+* Program Type (Next 4 Bits) - The next 4 bits indicate the program type. This categorizes the type of content being broadcast, such as music, news, sports, etc.
+* Program Reference Number (Last 8 Bits) - The last 8 bits provide a unique reference number for the specific station or program.
+
+###### Example
+
+Let's consider an example PI code: 0x1234.
+
+* 0x1: Country identifier
+* 0x2: Program type
+* 0x34: Program reference number
+
 
 
 #### Block 2: Group Application Code and Variable Information
@@ -134,6 +151,55 @@ These examples show that the content of Block 3 depends on the type and version 
 | 4A	                 | Clock Time and Date (CT) |
 | 5A	                 | Transparent Data Channels (TDC) |
 | 5B	                 | PI Code|
+
+
+##### Block 4: Specific Data for RDS Service
+
+
+| Bits  | Description | 
+| ----  | ----------- | 
+| 0-15	| Specific service data (e.g., Program Service name, PS) |
+| 16-25 | Checksum (processed internally by the QN8066) |
+
+
+Function: Contains specific RDS service data, such as the station name or text messages.
+
+Practical Example: Group Type 0B for Transmitting Station Name
+
+A group type 0B is used to transmit the station name (PS - Program Service). Let's see how each block is structured in this context:
+
+
+###### Block 1:
+
+   Bits 0-15	 PI code (example: 0x1234)
+
+
+###### Block 2:
+
+| Bits  | Description | 
+| ----  | ----------- | 
+|  0-3	| Group Type Code (0000 for type 0) |
+|   4	| Group Version (1 for version B) |
+|   5   | Traffic Indicator (0 or 1) |
+| 6-10  | Program Type Code (e.g., 00100 for news) |
+| 11-15 | Additional data (zeros if not used) |
+
+
+
+###### Block 3:
+
+Bits 0-15	 PI code (repetition)
+
+###### Block 4:
+
+Bits 0-15	 Station name data (two ASCII characters, e.g., 'RA')
+
+
+
+This implementation considers the concepts of blocks and groups in RDS, detailing each block within the group type 0B to transmit the station name.
+
+
+
 
 
 
