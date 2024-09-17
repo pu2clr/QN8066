@@ -3,6 +3,7 @@
 
 1. [About RDS](https://github.com/pu2clr/QN8066/tree/main/extras/doc#packaging-and-transmitting-rds-messages-using-the-qn8066)
 2. [Practical Guide to Building an Inductor Using Copper Wire](https://github.com/pu2clr/QN8066/tree/main/extras/doc#practical-guide-to-building-an-inductor-using-copper-wire)
+3. [Small RF Amplifier for QN8066 base on S9018]()
 
 
 ## Packaging and transmitting RDS messages using the QN8066
@@ -200,9 +201,6 @@ This implementation considers the concepts of blocks and groups in RDS, detailin
 
 
 
-
-
-
 ## Practical Guide to Building an Inductor Using Copper Wire
 
 To create inductor using copper wire, you can follow a practical approach. The inductance of an inductor depends on factors such as the number of turns, the coil diameter, and the coil length. Here's a basic method to calculate and build your inductor:
@@ -233,11 +231,31 @@ Building such small inductors often requires fine adjustments. The final inducta
 
 ### Tools to measure inductance
 
-Use an inductance meter (LCR meter) to check the inductance value. If you don’t reach 150 nH initially, you can adjust the number of turns or the coil diameter.
+Use an inductance meter (LCR meter) to check the inductance value. For instance, if you need a 150 nH inductor and don't achieve 150 nH initially, you can adjust the number of turns or the coil diameter accordingly.
 
 ### Practical Example
 
 - If you use a mold with a **5 mm diameter** (0.2 inches) and wind about **5 to 7 turns**, you should be close to achieving a 150 nH inductance.
 
+The table below gives approximate values for the number of turns and coil diameter required for each inductance. The actual results may vary depending on the wire used, coil length, and other factors.
+
+
+| Inductance | Diameter (mm) | Diameter (inches) | Turns |
+|------------|----------------|-------------------|-------|
+| 47 nH      | 3 mm           | 0.12 inches       | 3     |
+| 100 nH     | 4 mm           | 0.16 inches       | 4     |
+| 150 nH     | 5 mm           | 0.20 inches       | 5-7   |
+| 200 nH     | 6 mm           | 0.24 inches       | 8     |
+| 500 nH     | 8 mm           | 0.31 inches       | 10-12 |
+| 1 µH       | 10 mm          | 0.39 inches       | 15-18 |
+
+
+
+
 You can also simulate these parameters using an [online inductor calculator](https://www.translatorscafe.com/unit-converter/pt-BR/calculator/coil-inductance/#google_vignette) or make experimental adjustments based on your measurements.
 
+
+
+## Small RF Amplifier for QN8066
+
+![Small RF Amplifier for QN8066](./SMALL_RF_AMP.png)
