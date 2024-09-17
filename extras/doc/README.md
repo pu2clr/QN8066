@@ -1,9 +1,9 @@
 # Various subjects related to the contents of this repository
 
 
-1. [About RDS](https://github.com/pu2clr/QN8066/tree/main/extras/doc#packaging-and-transmitting-rds-messages-using-the-qn8066)
-2. [Practical Guide to Building an Inductor Using Copper Wire](https://github.com/pu2clr/QN8066/tree/main/extras/doc#practical-guide-to-building-an-inductor-using-copper-wire)
-3. [Small RF Amplifier for QN8066 base on S9018]()
+1. [About RDS](./#packaging-and-transmitting-rds-messages-using-the-qn8066)
+2. [Practical Guide to Building an Inductor Using Copper Wire](./#practical-guide-to-building-an-inductor-using-copper-wire)
+3. [Small RF Amplifier for QN8066 base on S9018](./#small-rf-amplifier-for-qn8066)
 
 
 ## Packaging and transmitting RDS messages using the QN8066
