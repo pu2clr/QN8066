@@ -258,4 +258,7 @@ You can also simulate these parameters using an [online inductor calculator](htt
 
 ## Small RF Amplifier for QN8066
 
+The circuit below is designed around the 2SC9018 transistor and can be used to enhance the FM broadcasting performance of the QN8066. It is straightforward, utilizing only a single 2SC9018 transistor and a few passive components.
+
+
 ![Small RF Amplifier for QN8066](./SMALL_RF_AMP.png)
