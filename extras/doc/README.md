@@ -78,6 +78,64 @@ PI Code Function: Identifies the radio station. This code is essential for allow
 Function: Specifies the type of data being transmitted and includes information such as program type (e.g., news, music) and whether the station transmits traffic information.
 
 
+#### Block 3: Additional Data or PI Repetition
+
+Can contain additional data related to the group or repeat the PI code (especially in version B groups).
+
+| Bits  | Description | 
+| ----  | ----------- | 
+| 0-15	|  Additional data or PI code (depending on the group type and version) |
+| 16-25	|  Checksum (processed internally by the QN8066) |
+
+
+When the  Block 3 is not just a repetition of Block 1, it contents of Block 3 can vary depending on the type and version of the group. Here are some examples of how Block 3 can be used:
+
+##### Group Type 0A and 0B: 
+
+1. In Group 0A, Block 3 contains a list of Alternative Frequencies (AF) that the receiver can use to find the same station on a different frequency.
+2. In Group 0B, Block 3 is a repetition of the PI code found in Block 1.
+
+##### Group Type 1A and 1B:
+
+* In Group 1A, Block 3 contains Program Item Number (PIN) information, which identifies specific programs broadcast by the station.
+* In Group 1B, Block 3 is a repetition of the PI code found in Block 1.
+
+##### Group Type 2A and 2B:
+
+* In Group 2A, Block 3 contains part of the 64-character Radiotext (RT) message.
+* In Group 2B, Block 3 is used to transmit 32 characters of Radiotext (RT).
+
+
+##### Group Type 3A:
+
+* In Group 3A, Block 3 is used to transmit Open Data Applications (ODA) information.
+
+##### Group Type 4A:
+
+* In Group 4A, Block 3 is used to transmit Clock Time and Date (CT) information.
+
+##### Group Type 5A and 5B:
+
+* In Group 5A, Block 3 is used to transmit Transparent Data Channels (TDC) information.
+* In Group 5B, Block 3 is a repetition of the PI code found in Block 1.
+
+
+These examples show that the content of Block 3 depends on the type and version of the group. Here is an overview of the most common groups and the content of Block 3 for each:
+
+| Type and group version | Description   |
+| ---------------------- | ------------- |
+| 0A                     | Alternative Frequencies (AF) |
+| 0B                     | PI Code |
+| 1A                     | Program Item Number (PIN) |
+| 1B                     | PI Code |
+| 2A                     | Radiotext (part 1) |
+| 2B	                 | Radiotext (part 2) |
+| 3A    	             | Open Data Applications (ODA) |
+| 4A	                 | Clock Time and Date (CT) |
+| 5A	                 | Transparent Data Channels (TDC) |
+| 5B	                 | PI Code|
+
+
 
 ## Practical Guide to Building an Inductor Using Copper Wire
 
