@@ -13,3 +13,6 @@ To setup ATtiny85 on Arduino IDE, go to Tools Menu, Board, Board Manager and ins
 ![Arduino IDE setup](./attiny8X_arduino_setup.png)
 
 
+![Arduino IDE setup](./attiny8X_arduino_setup1.png)
+
+
