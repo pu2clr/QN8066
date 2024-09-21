@@ -19,11 +19,11 @@ char ps[10] = "       \r";
 char rt[34] = "                               \r";
 
 
-// Configurações da rede Wi-Fi
-const char* ssid = "your ssid";
-const char* password = "your password";
+// Wi-Fi setup
+const char* ssid = "Your WIFI SSID";
+const char* password = "Your password";
 
-// Servidor Web na porta 80
+// Web server
 WebServer server(80);
 
 QN8066 tx;
@@ -31,7 +31,7 @@ QN8066 tx;
 void handleRoot() {
   String htmlPage = "<html><head>";
  
-  // Adicionando estilo CSS para centralizar o formulário e ajustar a tabela
+  // HTML page and form setup
   htmlPage += "<style>";
   htmlPage += "body { font-family: Arial, sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; }";
   htmlPage += "h1 { text-align: center; margin-bottom: 20px; }"; // Centraliza o título e coloca espaço abaixo
@@ -47,27 +47,27 @@ void handleRoot() {
   htmlPage += "<h1>FM Transmitter Configuration</h1>";
 
 
-  // Formulário com Ajax e solução tradicional
+  // Open Form
   htmlPage += "<form method='POST' action='/setParameters'>";
   
-  // Tabela para alinhar campos e botões
+  // Open Table
   htmlPage += "<table>";
   
-  // Linha da frequência de transmissão
+  // Frequency
   htmlPage += "<tr>";
   htmlPage += "<td>Transmission Frequency (MHz):</td>";
   htmlPage += "<td><input type='text' id='frequency' name='frequency' maxlength='6' size='6'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"frequency\")'>Set</button></td>";
   htmlPage += "</tr>";
   
-  // Linha da potência
+  // Power
   htmlPage += "<tr>";
   htmlPage += "<td>Power:</td>";
   htmlPage += "<td><input type='text' id='power' name='power'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"power\")'>Set</button></td>";
   htmlPage += "</tr>";
   
-  // Linha do RDS PTY (ComboBox)
+  // Program Type list
   htmlPage += "<tr>";
   htmlPage += "<td>RDS PTY:</td>";
   htmlPage += "<td><select id='rds_pty' name='rds_pty'>";
@@ -87,38 +87,91 @@ void handleRoot() {
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_pty\")'>Set</button></td>";
   htmlPage += "</tr>";
   
-  // Linha do RDS PS
+  //RDS Program Station (PS)
   htmlPage += "<tr>";
   htmlPage += "<td>RDS PS:</td>";
   htmlPage += "<td><input type='text' id='rds_ps' name='rds_ps' maxlength='8'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_ps\")'>Set</button></td>";
   htmlPage += "</tr>";
   
-  // Linha do RDS RT
+  // RDS Radio Text (RT)
   htmlPage += "<tr>";
   htmlPage += "<td>RDS RT:</td>";
   htmlPage += "<td><input type='text' id='rds_rt' name='rds_rt' maxlength='32'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_rt\")'>Set</button></td>";
   htmlPage += "</tr>";
   
-  // Linha do RDS DT
+  // RDS Date and Time setup
   htmlPage += "<tr>";
   htmlPage += "<td>RDS DT:</td>";
   htmlPage += "<td><input type='text' id='rds_dt' name='rds_dt' maxlength='32'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_dt\")'>Set</button></td>";
   htmlPage += "</tr>";
-  
+
+  // Frequency Derivation list
+  htmlPage += "<tr>";
+  htmlPage += "<td>Frequency Derivation:</td>";
+  htmlPage += "<td><select id='frequency_derivation' name='frequency_derivation'>";
+  htmlPage += "<option value='60'>41.5kHz</option>";
+  htmlPage += "<option value='87'>60.0kHz</option>";
+  htmlPage += "<option value='108'>74.5kHz</option>";
+  htmlPage += "<option value='120'>92,8kHz</option>";
+  htmlPage += "<option value='140'>96.6kHz</option>";
+  htmlPage += "<option value='160'>110.4kHz</option>";
+  htmlPage += "</select></td>";
+  htmlPage += "<td><button type='button' onclick='sendData(\"frequency_derivation\")'>Set</button></td>";
+  htmlPage += "</tr>";
+
+
+  // Impedance
+  htmlPage += "<tr>";
+  htmlPage += "<td>Input Impedance:</td>";
+  htmlPage += "<td><select id='input_impedance' name='input_impedance'>";
+  htmlPage += "<option value='0'>10K</option>";
+  htmlPage += "<option value='1'>20K</option>";
+  htmlPage += "<option value='2'>40K</option>";
+  htmlPage += "<option value='3'>80K</option>";
+  htmlPage += "</select></td>";
+  htmlPage += "<td><button type='button' onclick='sendData(\"input_impedance\")'>Set</button></td>";
+  htmlPage += "</tr>";
+
+
+  htmlPage += "<tr>";
+  htmlPage += "<td>Stereo/Mono:</td>";
+  htmlPage += "<td><button type='button' id='stereoToggle' onclick='toggleStereo()'>Stereo</button></td>";
+  htmlPage += "</tr>";
+
   // Fechar tabela e botão de enviar o formulário completo (solução tradicional)
   htmlPage += "</table><br>";
   htmlPage += "<input type='submit' value='Submit All Parameters'>";
   
-  // Fechar o formulário
+  // Close form
   htmlPage += "</form>";
   
-  // Script para enviar dados via Ajax (envio individual)
   htmlPage += "<script>";
+  htmlPage += "var isStereo = true;";
+
+  htmlPage += "function toggleStereo() {";
+  htmlPage += "  var button = document.getElementById('stereoToggle');";
+  htmlPage += "  if (isStereo) {";
+  htmlPage += "    button.innerHTML = 'Mono';";
+  htmlPage += "    isStereo = false;";
+  htmlPage += "  } else {";
+  htmlPage += "    button.innerHTML = 'Stereo';";
+  htmlPage += "    isStereo = true;";
+  htmlPage += "  }";
+  htmlPage += "  // Envia a mudança de status Stereo/Mono via Ajax";
+  htmlPage += "  sendData('stereo');";
+  htmlPage += "}";
+
   htmlPage += "function sendData(fieldId) {";
-  htmlPage += "  var value = document.getElementById(fieldId).value;";
+  htmlPage += "  var value;";
+  htmlPage += "  if (fieldId == 'stereo') {";
+  htmlPage += "    value = isStereo ? 'Stereo' : 'Mono';";
+  htmlPage += "  } else {";
+  htmlPage += "    value = document.getElementById(fieldId).value;";
+  htmlPage += "  }";
+
   htmlPage += "  var xhr = new XMLHttpRequest();";
   htmlPage += "  xhr.open('POST', '/update', true);";
   htmlPage += "  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');";
@@ -139,34 +192,11 @@ void handleRoot() {
 }
 
 
-void habdleConfig() {
-  String htmlPage = "<html><body>";
-  htmlPage += "<h1>QN8066 Transmitter Config</h1>";
-  htmlPage += "<form action=\"/setParameters\" method=\"POST\">";
-  
-  // Tabela para organizar os campos em colunas alinhadas
-  htmlPage += "<table>";
-  
-  htmlPage += "<tr><td>PAC:</td>";
-  htmlPage += "<td><input type=\"text\" name=\"pac\" maxlength=\"6\" size=\"6\"></td></tr>";
-  
-
-  htmlPage += "<tr><td>Stereo:</td>";
-  htmlPage += "<td><input type=\"text\" name=\"stereo\" maxlength=\"3\" size=\"3\"></td></tr>";
-
-  htmlPage += "</table><br>";
-  htmlPage += "<input type=\"submit\" value=\"Set Transmitter\">";
-  htmlPage += "</form></body></html>";
-  
-  server.send(200, "text/html", htmlPage);
-}
-
 void handleUpdate() {
   String field = server.argName(0);  // Nome do campo enviado (por exemplo, "frequency", "rds_ps")
   String value = server.arg(0);      // Valor enviado
 
   int nLen;
-
 
   // Processa e aplica o valor do campo correspondente
   if (field == "frequency") {
@@ -198,20 +228,30 @@ void handleUpdate() {
     rt[nLen] = '\r';
     rt[nLen+1] = '\0';
     Serial.println("RDS RT updated to: " + String(rt));
+  } else if (field == "frequency_derivation") {
+    String frequency_derivation = server.arg("frequency_derivation");
+    tx.setTxFrequencyDerivation(frequency_derivation.toInt());   
+    Serial.println("Frequency Derivation updated to: " + String(frequency_derivation)); 
+  } else if (field == "input_impedance") {
+    String input_impedance = server.arg("input_impedance");
+    tx.setTxInputImpedance(input_impedance.toInt());   
+    Serial.println("Input Impedance updated to: " + String(input_impedance)); 
   }
 
-  // Enviar resposta ao cliente confirmando o recebimento do campo
   server.send(200, "text/plain", field + " has been updated.");
 }
 
 
-// Função para tratar o envio do formulário
+// Handle Forms 
 void handleFormSubmit() {
+
   String frequency = server.arg("frequency");
   String power = server.arg("power");
   String rds_pty = server.arg("rds_pty");
   String rds_ps = server.arg("rds_ps");
   String rds_rt = server.arg("rds_rt");
+  String frequency_derivation = server.arg("frequency_derivation");
+  String input_impedance = server.arg("input_impedance");
 
   // Aqui você pode adicionar o código para enviar essas configurações para o QN8066
   // Como por exemplo, configurar a frequência de transmissão, potência, e os parâmetros RDS.
@@ -223,6 +263,9 @@ void handleFormSubmit() {
   response += "<p>RDS PTY: " + rds_pty + "</p>";
   response += "<p>RDS PS: " + rds_ps + "</p>";
   response += "<p>RDS RT: " + rds_rt + "</p>";
+  response += "<p>Frequency Derivation: " + frequency_derivation + "</p>";
+  response += "<p>Input Impedance: " + input_impedance + "</p>";
+
   response += "</body></html>";
   
 
@@ -231,7 +274,6 @@ void handleFormSubmit() {
     tx.setTX(currentFrequency);  
     previousFrequency = currentFrequency;
   }
-
 
   int nLen;
 
@@ -247,40 +289,10 @@ void handleFormSubmit() {
 
   tx.rdsSetPTY(rds_pty.toInt());
  
+  tx.setTxFrequencyDerivation(frequency_derivation.toInt());   
+  tx.setTxInputImpedance(input_impedance.toInt());  
 
   server.send(200, "text/html", response);
-}
-
-void setup() {
-  // Inicializa a comunicação serial
-  Serial.begin(115200);
-
-  // Conecta na rede Wi-Fi
-  WiFi.begin(ssid, password);
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to Wi-Fi...");
-  }
-  Serial.println("Wi-Fi connected!");
-
-  // Web server setup
-  server.on("/", handleRoot);  // Página principal com o formulário
-  server.on("/setParameters", HTTP_POST, handleFormSubmit);  // Rota para o envio tradicional
-  server.on("/update", HTTP_POST, handleUpdate);  // Rota para envio individual via Ajax
-  server.on("/config", habdleConfig);
-  server.begin();
-  Serial.println("\nServidor HTTP started.");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());  
-
-
-  tx.setup();
-  tx.setTX(currentFrequency);   // Sets frequency to 106.9 MHz 
-  delay(500);
-  startRDS();  
-
-  Serial.println("Trasmitting...");
-
 }
 
 void startRDS() {
@@ -303,7 +315,6 @@ void sendRDS() {
     rdsTimeRT = millis();
   }
 
-
   // Date Time Service refreshing control
   if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
     delay(100);
@@ -314,6 +325,39 @@ void sendRDS() {
     rdsDateTime = millis();
   }
 }
+
+
+void setup() {
+  // Inicializa a comunicação serial
+  Serial.begin(115200);
+
+  // Conecta na rede Wi-Fi
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(1000);
+    Serial.println("Connecting to Wi-Fi...");
+  }
+  Serial.println("Wi-Fi connected!");
+
+  // Web server setup
+  server.on("/", handleRoot);  // Página principal com o formulário
+  server.on("/setParameters", HTTP_POST, handleFormSubmit);  // Rota para o envio tradicional
+  server.on("/update", HTTP_POST, handleUpdate);  // Rota para envio individual via Ajax
+  server.begin();
+  Serial.println("\nServidor HTTP started.");
+  Serial.println("IP address: ");
+  Serial.println(WiFi.localIP());  
+
+
+  tx.setup();
+  tx.setTX(currentFrequency);   // Sets frequency to 106.9 MHz 
+  delay(500);
+  startRDS();  
+
+  Serial.println("Trasmitting...");
+
+}
+
 
 void loop() {
   sendRDS();
