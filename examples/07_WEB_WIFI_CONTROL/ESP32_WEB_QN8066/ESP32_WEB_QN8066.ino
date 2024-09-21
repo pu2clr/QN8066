@@ -19,11 +19,11 @@ char ps[10] = "       \r";
 char rt[34] = "                               \r";
 
 
-// Configurações da rede Wi-Fi
-const char* ssid = "your ssid";
-const char* password = "your password";
+// Wi-Fi setup
+const char* ssid = "Your WIFI SSID";
+const char* password = "Your password";
 
-// Servidor Web na porta 80
+// Web server
 WebServer server(80);
 
 QN8066 tx;
