@@ -53,6 +53,7 @@ char rt[34] = "                               \r";
 const char* ssid = "Your WIFI SSID";
 const char* password = "Your password";
 
+
 WiFiServer server(SOCKET_PORT);  // Socket Server using port 8066
 
 QN8066 tx;
@@ -133,12 +134,12 @@ String processCommand(String command) {
 
   // Processa o campo específico e executa a função correspondente
   if (field == "frequency") {
-    uint16_t currentFrequency = (uint16_t) ( value.toFloat() / 10.0);
+    uint16_t currentFrequency = (uint16_t) ( value.toFloat() * 10.0);
     tx.setTX(currentFrequency);  
     return "Frequency set to: " + String(currentFrequency);
   } else if (field == "rds_pty") {
-    int rds_pty = value.toInt();
-    tx.rdsSetPTY(rds_pty);  // Chama a função correspondente no QN8066
+    String rds_pty = value.substring(0,2);
+    tx.rdsSetPTY(rds_pty.toInt()); 
     return "RDS PTY set to: " + String(rds_pty);
   } else if (field == "rds_ps") {
     nLen = value.length();
@@ -147,6 +148,7 @@ String processCommand(String command) {
     ps[nLen+1] = '\0';
     return "RDS PS set to: " + value;
   } else if (field == "rds_rt") {
+    nLen = value.length();
     strncpy(rt, value.c_str(), nLen);
     ps[nLen] = '\r';
     ps[nLen+1] = '\0';

@@ -1,15 +1,23 @@
+# This program uses a socket connection to communicate with the ESP32 (running the 
+# SOCKETS_ESP32_QN8066.ino sketch) in order to control the QN8066-based transmitter.
+# The socket connection uses the IP provided by your WiFi network's DHCP and obtained 
+# by the ESP32. Check the IP in the Arduino IDE console (Serial Monitor). The port 
+# defined for the connection is 8066.
+# Author: Ricardo Lima Caratti - Sep. 2024
+
 import tkinter as tk
 from tkinter import ttk
 import socket
 
-# Função para enviar dados via socket para o ESP32
+# Function to send data via socket to the ESP32.
+# Change the IP below to the address indicated in the Arduino sketch linked to this application.
 def send_to_esp32(field, value):
     try:
-        esp32_ip = '192.168.18.155'  # IP do ESP32
-        esp32_port = 8066  # Porta de comunicação
+        esp32_ip = '192.168.18.155'  # ESP32 IP - Check it in the Arduino IDE Serial Monitor (console)
+        esp32_port = 8066  # Defined in the ESP 32 Arduino Sketch 
         message = f"{field}={value}\n"
         
-        # Conecta ao ESP32 e envia a mensagem
+        # Connects to the ESP32 and sends the message.
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect((esp32_ip, esp32_port))
             s.sendall(message.encode())
@@ -18,7 +26,7 @@ def send_to_esp32(field, value):
     except Exception as e:
         print(f'Error sending {field} to ESP32: {e}')
 
-# Funções específicas para cada campo
+# Specific functions for each field.
 def send_frequency():
     frequency = frequency_var.get()
     send_to_esp32("frequency", frequency)
@@ -39,39 +47,39 @@ def send_stereo_mono():
     stereo_mono = stereo_mono_var.get()
     send_to_esp32("stereo_mono", stereo_mono)
 
-# Criando a janela principal com Tkinter
+# Creating the main window with Tkinter.
 root = tk.Tk()
 root.title("ESP32 FM Transmitter Control")
 
-# Variáveis para os campos
+# Fields
 frequency_var = tk.StringVar()
 rds_pty_var = tk.StringVar()
 rds_ps_var = tk.StringVar()
 rds_rt_var = tk.StringVar()
 stereo_mono_var = tk.StringVar(value='Stereo')
 
-# Layout do formulário com alinhamento usando grid
+# Forms Layout 
 tk.Label(root, text="Transmission Frequency (MHz):").grid(row=0, column=0, sticky=tk.E, padx=10, pady=5)
 tk.Entry(root, textvariable=frequency_var).grid(row=0, column=1, padx=10, pady=5)
 tk.Button(root, text="Send Frequency", command=send_frequency).grid(row=0, column=2, padx=10, pady=5)
 
 tk.Label(root, text="RDS PTY:").grid(row=1, column=0, sticky=tk.E, padx=10, pady=5)
 
-# Combobox com valores descritivos e retorno de valores inteiros
+# Combobox
 rds_pty_combobox = ttk.Combobox(root, textvariable=rds_pty_var)
 rds_pty_combobox['values'] = [
     ('0', 'No program'),
     ('1', 'News'),
-    ('3', 'Inf./Sports'),
-    ('4', 'Sport/Talk'),
-    ('5', 'Education/Rock'),
-    ('7', 'Cult./Adult hits'),
-    ('8', 'Science/S.rock'),
-    ('10', 'Pop Mus/Country'),
-    ('16', 'Weather/Rhythm'),
+    ('3', 'Information'),
+    ('4', 'Sport'),
+    ('5', 'Education'),
+    ('7', 'Culture'),
+    ('8', 'Science'),
+    ('10', 'Pop Music'),
+    ('16', 'Weather'),
     ('20', 'Religion'),
-    ('29', 'Doc./Weather'),
-    ('30', 'Alarm/Emerg.')
+    ('29', 'Documentary'),
+    ('30', 'Alarm')
 ]
 rds_pty_combobox.grid(row=1, column=1, padx=10, pady=5)
 tk.Button(root, text="Send RDS PTY", command=send_rds_pty).grid(row=1, column=2, padx=10, pady=5)
@@ -90,5 +98,5 @@ stereo_mono_combobox['values'] = [(0,'Stereo'),(1,'Mono')]
 stereo_mono_combobox.grid(row=4, column=1, padx=10, pady=5)
 tk.Button(root, text="Send Stereo/Mono", command=send_stereo_mono).grid(row=4, column=2, padx=10, pady=5)
 
-# Inicia a interface
+# Start interface
 root.mainloop()
