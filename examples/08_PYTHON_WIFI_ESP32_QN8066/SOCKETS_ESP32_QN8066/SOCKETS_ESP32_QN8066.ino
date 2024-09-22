@@ -50,8 +50,8 @@ char rt[34] = "                               \r";
 
 
 // Wi-Fi setup
-// const char* ssid = "Your WIFI SSID";
-// const char* password = "Your password";
+const char* ssid = "Your WIFI SSID";
+const char* password = "Your password";
 
 WiFiServer server(SOCKET_PORT);  // Socket Server using port 8066
 
@@ -122,7 +122,7 @@ void sendRDS() {
 
 
 // Função que processa o comando recebido e executa a função correspondente
-void processCommand(String command) {
+String processCommand(String command) {
 
   int nLen;
 
@@ -135,38 +135,35 @@ void processCommand(String command) {
   if (field == "frequency") {
     uint16_t currentFrequency = (uint16_t) ( value.toFloat() / 10.0);
     tx.setTX(currentFrequency);  
-    Serial.println("Frequency set to: " + String(currentFrequency));
-
+    return "Frequency set to: " + String(currentFrequency);
   } else if (field == "rds_pty") {
     int rds_pty = value.toInt();
     tx.rdsSetPTY(rds_pty);  // Chama a função correspondente no QN8066
-    Serial.println("RDS PTY set to: " + String(rds_pty));
+    return "RDS PTY set to: " + String(rds_pty);
   } else if (field == "rds_ps") {
     nLen = value.length();
     strncpy(ps, value.c_str(), nLen);
     ps[nLen] = '\r';
     ps[nLen+1] = '\0';
-    Serial.println("RDS PS set to: " + value);
+    return "RDS PS set to: " + value;
   } else if (field == "rds_rt") {
     strncpy(rt, value.c_str(), nLen);
     ps[nLen] = '\r';
     ps[nLen+1] = '\0';
-    // tx.rdsSetPS(value.c_str());  // Chama a função correspondente no QN8066    
-    // tx.rdsSetRT(value.c_str());  // Chama a função correspondente no QN8066
-    Serial.println("RDS RT set to: " + value);
+    return "RDS RT set to: " + value;
   } else if (field == "stereo_mono") {
-    int stereoMono = (value == "Stereo") ? 1 : 0;
-    // tx.setMono(stereoMono);  // Chama a função correspondente no QN8066
-    Serial.println("Set to: " + String(value));
+    int stereoMono = value.toInt();
+    tx.setTxMono(stereoMono);  // Chama a função correspondente no QN8066
+    return "Stereo/Mono Set to: " + String(value);
   }
+  return "OK";
 }
-
-
 
 
 void loop() {
   // Verifica se há um cliente conectado
-  WiFiClient client = server.available();
+  // WiFiClient client = server.available();
+  WiFiClient client = server.accept();
   if (client) {
     Serial.println("Client connected!");
 
@@ -177,9 +174,8 @@ void loop() {
         String command = client.readStringUntil('\n');
         Serial.println("Command received: " + command);
 
-        // Processa o comando recebido
-        processCommand(command);
-        client.println("OK");
+        String result = processCommand(command);
+        client.println( result );
       }
       sendRDS();
     }

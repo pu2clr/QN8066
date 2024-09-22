@@ -86,7 +86,7 @@ tk.Button(root, text="Send RDS RT", command=send_rds_rt).grid(row=3, column=2, p
 
 tk.Label(root, text="Stereo/Mono:").grid(row=4, column=0, sticky=tk.E, padx=10, pady=5)
 stereo_mono_combobox = ttk.Combobox(root, textvariable=stereo_mono_var)
-stereo_mono_combobox['values'] = ['Stereo', 'Mono']
+stereo_mono_combobox['values'] = [(0,'Stereo'),(1,'Mono')]
 stereo_mono_combobox.grid(row=4, column=1, padx=10, pady=5)
 tk.Button(root, text="Send Stereo/Mono", command=send_stereo_mono).grid(row=4, column=2, padx=10, pady=5)
 
