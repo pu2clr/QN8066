@@ -1,7 +1,36 @@
+/*
+  ESP32 Dev Modeule version.
+
+
+
+  Wire up ESP32 
+
+  | Device name               | Device Pin / Description  |  Arduino Pin  |
+  | --------------------------| --------------------      | ------------  |
+  | QN8066                    |                           |               | 
+  |                           | VCC                       |  3.3V         |
+  |                           | SDIO / SDA (pin 8)        |  GPIO21       |
+  |                           | SCLK (pin 7)              |  GPIO22       |
+  | --------------------------| --------------------------| --------------|
+  | PWM                       |                           |               |
+  |                           |                           |  GPIO12       | 
+
+  Prototype documentation: https://pu2clr.github.io/QN8066/
+  PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
+
+  ESP32 Internal RTC: https://github.com/fbiego/ESP32Time
+
+  By PU2CLR, Ricardo,  Feb  2024.
+*/
+
+
 #include <WiFi.h>
 #include <WebServer.h>
 #include <QN8066.h>
 
+// I2C bus pin on ESP32
+#define ESP32_I2C_SDA 21     // GPIO21
+#define ESP32_I2C_SCL 22     // GPIO22 
 
 #define RDS_PS_REFRESH_TIME 7000
 #define RDS_RT_REFRESH_TIME 17000
@@ -24,6 +53,7 @@ char rt[34] = "                               \r";
 // Wi-Fi setup
 const char* ssid = "Your WIFI SSID";
 const char* password = "Your password";
+
 
 // Web server
 WebServer server(80);
@@ -379,6 +409,9 @@ void sendRDS() {
 void setup() {
   // Inicializa a comunicação serial
   Serial.begin(115200);
+
+  // The line below may be necessary to setup I2C pins on ESP32
+  Wire.begin(ESP32_I2C_SDA, ESP32_I2C_SCL);
 
   // Conecta na rede Wi-Fi
   WiFi.begin(ssid, password);
