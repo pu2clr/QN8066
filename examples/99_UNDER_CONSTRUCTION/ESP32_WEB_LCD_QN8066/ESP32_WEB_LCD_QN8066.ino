@@ -20,8 +20,8 @@ char rt[34] = "                               \r";
 
 
 // Wi-Fi setup
-const char* ssid = "Your WIFI SSID";
-const char* password = "Your password";
+const char* ssid = "APRC";
+const char* password = "Ap69Rc642023";
 
 // Web server
 WebServer server(80);

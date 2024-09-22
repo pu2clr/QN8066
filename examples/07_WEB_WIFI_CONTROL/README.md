@@ -8,6 +8,10 @@ This folder contains a project based on the ESP32 with integrated Wi-Fi. The ESP
 ![QN8066 and ESP32 WEB SCHEMATIC](./schematic_esp32_qn8066_setup.png)
 
 
+## QN8066 ESP32 WEB SERVER CONTROL
+
+![QN8066 ESP32 WEB SERVER CONTROL](./qn8066_web_page_control.png)
+
 ## Video
 
 ![Dynamic Control of QN8066 FM Transmitter via ESP32 and Web Interface - Part 1](https://youtu.be/pnmNTlQK2fY?si=OtrqaO6e3nbYOAQB)
