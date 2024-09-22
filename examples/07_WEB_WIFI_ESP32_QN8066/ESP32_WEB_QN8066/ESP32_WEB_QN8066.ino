@@ -1,14 +1,13 @@
 /*
   ESP32 Dev Modeule version.
 
-
-
   Wire up ESP32 
 
   | Device name               | Device Pin / Description  |  Arduino Pin  |
   | --------------------------| --------------------      | ------------  |
   | QN8066                    |                           |               | 
   |                           | VCC                       |  3.3V         |
+  |                           | GND                       |  GND          |    
   |                           | SDIO / SDA (pin 8)        |  GPIO21       |
   |                           | SCLK (pin 7)              |  GPIO22       |
   | --------------------------| --------------------------| --------------|

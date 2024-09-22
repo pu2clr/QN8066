@@ -6,6 +6,23 @@ This folder contains a Python application that can be run on Windows, Linux, or 
 The ESP32 is an excellent choice for socket-based applications due to its robust networking capabilities, high performance, and ease of integration with Python. Whether you're building a home automation system, a remote control interface, or a data monitoring tool, the combination of ESP32 and Python provides a flexible and powerful solution for IoT and real-time communication projects.
 
 
+### ERSP32 and QN8066 connections
+
+
+![ERSP32 and QN8066 connections](./schematic_esp32_qn8066_setup.png)
+
+
+
+| Device name               | Device Pin / Description  |  ESP32 Pin    |
+| --------------------------| --------------------      | ------------  |
+| QN8066                    |                           |               | 
+|                           | VCC                       |  3.3V         |
+|                           | GND                       |  GND          |   
+|                           | SDIO / SDA (pin 8)        |  GPIO21       |
+|                           | SCLK (pin 7)              |  GPIO22       |
+| --------------------------| --------------------------| --------------|
+| PWM                       |                           |  GPIO12        |
+   
 
 ### Setting Up Python and Tkinter on Windows, Linux (Debian-based), and Mac OS
 
@@ -136,11 +153,11 @@ pip install socket
 Once Python and Tkinter are installed and verified, you can run your Python application by navigating to the folder where your script is located and running:
 
 ```bash
-python3 your_script.py
+python3 esp32_QN8066.py
 ```
 
-- On **Windows**, you can use `python your_script.py`.
-- On **Linux (Debian-based)** and **Mac OS**, use `python3 your_script.py`.
+- On **Windows**, you can use `python esp32_QN8066.py`.
+- On **Linux (Debian-based)** and **Mac OS**, use `python3 esp32_QN8066.py`.
 
 This will launch your GUI application built with Tkinter and communicate with the ESP32.
 
