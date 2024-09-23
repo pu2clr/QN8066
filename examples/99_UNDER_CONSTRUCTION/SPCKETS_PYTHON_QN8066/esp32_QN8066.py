@@ -23,8 +23,14 @@ def send_to_esp32(field, value):
             s.sendall(message.encode())
             response = s.recv(1024)
             print(f'Received from ESP32 ({field}):', response.decode())
+    except socket.timeout:
+        print(f"Connection to ESP32 timed out. The device may be offline.")
+    except ConnectionRefusedError:
+        print(f"Connection to ESP32 was refused. Is the device online?")
+    except socket.error as e:
+        print(f"Socket error occurred: {e}")
     except Exception as e:
-        print(f'Error sending {field} to ESP32: {e}')
+        print(f"An unexpected error occurred: {e}")        
 
 # Specific functions for each field.
 def send_frequency():
@@ -59,6 +65,14 @@ def send_buffer_gain():
     buffer_gain = buffer_gain_var.get()
     send_to_esp32("buffer_gain", buffer_gain)  
 
+def send_freq_dev():
+    freq_dev = freq_dev_var.get()
+    send_to_esp32("freq_dev", freq_dev)  
+
+def send_soft_clip():
+    soft_clip = soft_clip_var.get()
+    send_to_esp32("soft_clip", soft_clip)  
+
 
 # Creating the main window with Tkinter.
 root = tk.Tk()
@@ -74,6 +88,8 @@ stereo_mono_var = tk.StringVar(value = "0 Stereo")
 pre_emphasis_var = tk.StringVar(value = "1 70us")
 buffer_gain_var = tk.StringVar(value = "1 6dB")
 impedance_var = tk.StringVar(value = "1 20K")
+freq_dev_var = tk.StringVar(value = "74.5")
+soft_clip_var = tk.StringVar(value = "0 Disable")
 
 label_fg = '#FFFF00'  
 entry_bg = '#004d00'  
@@ -146,6 +162,17 @@ buffer_gain_combobox['values'] = [ (0, '3dB'),
 buffer_gain_combobox.grid(row=7, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_buffer_gain).grid(row=7, column=2, padx=10, pady=5)
 
+tk.Label(root, text="Frequency Deviation (kHz):", bg='#006400', fg=label_fg).grid(row=8, column=0, sticky=tk.E, padx=10, pady=5)
+freq_dev_combobox = ttk.Combobox(root, textvariable=freq_dev_var)
+freq_dev_combobox['values'] = ['41.5', '60.0', '74.5','92.8','96.6', '110.4']
+freq_dev_combobox.grid(row=8, column=1, padx=10, pady=5)
+tk.Button(root, text="Set", command=send_freq_dev).grid(row=8, column=2, padx=10, pady=5)
+
+tk.Label(root, text="Soft Clip:", bg='#006400', fg=label_fg).grid(row=9, column=0, sticky=tk.E, padx=10, pady=5)
+soft_clip_var_combobox = ttk.Combobox(root, textvariable=soft_clip_var)
+soft_clip_var_combobox['values'] = [(0,'Disable'),(1,'Enable')]
+soft_clip_var_combobox.grid(row=9, column=1, padx=10, pady=5)
+tk.Button(root, text="Set", command=send_soft_clip).grid(row=9, column=2, padx=10, pady=5)
 
 # Start interface
 root.mainloop()
