@@ -8,6 +8,8 @@ The ESP32 is an excellent choice for socket-based applications due to its robust
 
 ### ERSP32 and QN8066 connections
 
+The following electronic circuit is the same as presented in the web version. The PWM interface should only be used if you intend to utilize this type of interface to control the transmitter's power. It is important to note that the PWM is not related to the QN8066 but rather to the RF amplifier developed with this type of control.
+
 
 ![ERSP32 and QN8066 connections](./schematic_esp32_qn8066_setup.png)
 
@@ -23,6 +25,15 @@ The ESP32 is an excellent choice for socket-based applications due to its robust
 | --------------------------| --------------------------| --------------|
 | PWM                       |                           |  GPIO12        |
    
+
+## QN8066 controller based on ESP32 and Python Form via Socket
+
+The following image illustrates a form developed in Python that allows configuring a QN8066-based transmitter from a computer.
+
+![QN8066 controller based on ESP32 and Python Form via Socket](./python_qn8066_form.png)
+
+The Python application was developed using version 3.12.6 and employs the Tkinter GUI module to provide a user-friendly interface. This setup enables easy interaction with the QN8066-based transmitter. Further details regarding the environment configuration required to run this application are outlined below, including instructions on how to install dependencies and properly configure the system for optimal performance.
+
 
 ### Setting Up Python and Tkinter on Windows, Linux (Debian-based), and Mac OS
 
