@@ -186,11 +186,11 @@ String processCommand(String command) {
   } else if (field == "impedance") {
     String imp = value.substring(0,1);
     tx.setTxInputImpedance(imp.toInt());
-    return  "Inpedance set to: " + String(imp);     
+    return  "Impedance set to: " + String(imp);     
   } else if (field == "buffer_gain") {
     String gain = value.substring(0,1);
     tx.setTxInputBufferGain(gain.toInt());
-    return  "Inpedance set to: " + String(gain);   
+    return  "Impedance set to: " + String(gain);   
   } else if (field == "freq_dev") {
     float fd = value.toFloat();
     tx.rdsSetFrequencyDerivation((uint8_t) (fd / 0.69) );
