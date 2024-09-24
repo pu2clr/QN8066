@@ -1058,7 +1058,7 @@ public:
   inline void rdsSendRT(char *rt) {this->rdsSendRTMessage(rt); };
 
   int32_t calculateMJD(uint16_t year, uint8_t month, uint8_t day);
-  void rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, int8_t offset);
+  void rdsSendDateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t min, int8_t offset = 0);
 
 
   

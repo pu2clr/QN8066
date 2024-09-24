@@ -73,6 +73,10 @@ def send_soft_clip():
     soft_clip = soft_clip_var.get()
     send_to_esp32("soft_clip", soft_clip)  
 
+def send_datetime():
+    datetime_str = datetime_var.get()
+    send_to_esp32("datetime", datetime_str)    
+
 
 # Creating the main window with Tkinter.
 root = tk.Tk()
@@ -90,6 +94,7 @@ buffer_gain_var = tk.StringVar(value = "1 6dB")
 impedance_var = tk.StringVar(value = "1 20K")
 freq_dev_var = tk.StringVar(value = "74.5")
 soft_clip_var = tk.StringVar(value = "0 Disable")
+datetime_var = tk.StringVar(value="YYYY/MM/DD HH:MM")
 
 label_fg = '#FFFF00'  
 entry_bg = '#004d00'  
@@ -173,6 +178,12 @@ soft_clip_var_combobox = ttk.Combobox(root, textvariable=soft_clip_var)
 soft_clip_var_combobox['values'] = [(0,'Disable'),(1,'Enable')]
 soft_clip_var_combobox.grid(row=9, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_soft_clip).grid(row=9, column=2, padx=10, pady=5)
+
+
+tk.Label(root, text="Set Date and Time (YYYY/MM/DD HH:MM):", bg='#006400', fg=label_fg).grid(row=10, column=0, padx=10, pady=5)
+tk.Entry(root, textvariable=datetime_var).grid(row=10, column=1, padx=10, pady=5)
+tk.Button(root, text="Set", command=send_datetime).grid(row=10, column=2, padx=10, pady=5)
+
 
 # Start interface
 root.mainloop()
