@@ -69,10 +69,8 @@ char rt[33] = "QN8066 WEB Server control      \r";
 
 
 // Wi-Fi setup
-const char* ssid = "Your WIFI SSID";
-const char* password = "Your password";
-
-
+const char* ssid = "PU2CLR";            // Change to your WIFI SSID
+const char* password = "pu2clr123456";  // Change to your password
 
 // Local Time setup
 const long gmtOffset_sec = -10800;  // Brasilia local date and time offset (-3h)

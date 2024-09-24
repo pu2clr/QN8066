@@ -69,8 +69,8 @@ char ps[9] = "NO PS  \r";
 char rt[33] = "NO RT                          \r";
 
 // Wi-Fi setup
-const char* ssid = "Your WIFI SSID";
-const char* password = "Your password";
+const char* ssid =   "PU2CLR";          // Change to your WIFI SSID
+const char* password = "pu2clr123456";  // Change to your password
 
 
 
