@@ -958,6 +958,8 @@ public:
   void setTxSoftClippingEnable( bool value);
   void setTxSoftClipThreshold(uint8_t value);
   void setTxFrequencyDerivation(uint8_t value);
+  void setTxFrequencyDeviation(uint8_t value);
+  
 
   void setResetDelay(uint16_t delayAfterReset) {
     this->resetDelay = delayAfterReset;

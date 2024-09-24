@@ -1246,7 +1246,7 @@ void QN8066::setTxSoftClippingEnable( bool value) {
 
 /**
  * @ingroup group04  TX Setup
- * @brief Specify total TX frequency deviation.
+ * @brief Specify total TX frequency deviation (lagacy).
  * @details TX frequency deviation = 0.69KHz*TX_FEDV. The default value is 108 (Binary: 01101100)
  * @param value  
  * @details Example
@@ -1256,6 +1256,7 @@ void QN8066::setTxSoftClippingEnable( bool value) {
  * void setup() {
  *   tx.setup();
  *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+ *   // Please use tx.setTxFrequencyDeviation(120) instead 
  *   tx.setTxFrequencyDerivation(120);  // About +- 84 kHz
  * }
  *
@@ -1264,6 +1265,31 @@ void QN8066::setTxSoftClippingEnable( bool value) {
  * @endcode    
  */
  void QN8066::setTxFrequencyDerivation(uint8_t value) {
+  this->fdev.raw = value; 
+  this->setRegister(QN_FDEV, value );
+ }
+
+ /**
+ * @ingroup group04  TX Setup
+ * @brief Specify total TX frequency deviation.
+ * @details TX frequency deviation = 0.69KHz*TX_FEDV. The default value is 108 (Binary: 01101100)
+ * @details Same setTxFrequencyDerivation. Just an adjust of setTxFrequencyDerivation
+ * @param value  
+ * @details Example
+ * @code 
+ * #include <QN8066.h>
+ * QN8066 tx;
+ * void setup() {
+ *   tx.setup();
+ *   tx.setTX(1069); // Set the transmitter to 106.9 MHz 
+ *   tx.setTxFrequencyDeviation(120);  // About +- 84 kHz
+ * }
+ *
+ * void loop() {
+ * }
+ * @endcode    
+ */
+ void QN8066::setTxFrequencyDeviation(uint8_t value) {
   this->fdev.raw = value; 
   this->setRegister(QN_FDEV, value );
  }
