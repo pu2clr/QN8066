@@ -1,13 +1,20 @@
 # This program uses a socket connection to communicate with the ESP32 (running the 
 # SOCKETS_ESP32_QN8066.ino sketch) in order to control the QN8066-based transmitter.
 # The socket connection uses the IP provided by your WiFi network's DHCP and obtained 
-# by the ESP32. Check the IP in the Arduino IDE console (Serial Monitor). The port 
+# by the ESP32. Check the IP in the Arduino IDE console (Serial Monitor). 
+# The port numer used here is 8066 (SOCKETS_ESP32_QN8066.ino). You can change it if you need it.
+# 
+# RDS message updates such as PTY, PS, RT, and Time are not executed immediately. 
+# This may depend on the receiver's update timing as well as the distribution of 
+# each message's timing from the connected controller.
+#
 # defined for the connection is 8066.
 # Author: Ricardo Lima Caratti - Sep. 2024
 
 import tkinter as tk
 from tkinter import ttk
 import socket
+from datetime import datetime 
 
 # Function to send data via socket to the ESP32.
 # Change the IP below to the address indicated in the Arduino sketch linked to this application.
@@ -33,6 +40,7 @@ def send_to_esp32(field, value):
         print(f"An unexpected error occurred: {e}")        
 
 # Specific functions for each field.
+
 def send_frequency():
     frequency = frequency_var.get()
     send_to_esp32("frequency", frequency)
@@ -94,7 +102,7 @@ buffer_gain_var = tk.StringVar(value = "1 6dB")
 impedance_var = tk.StringVar(value = "1 20K")
 freq_dev_var = tk.StringVar(value = "74.5")
 soft_clip_var = tk.StringVar(value = "0 Disable")
-datetime_var = tk.StringVar(value="YYYY/MM/DD HH:MM")
+datetime_var = tk.StringVar(value=datetime.now().strftime("%Y/%m/%d %H:%M") )
 
 label_fg = '#FFFF00'  
 entry_bg = '#004d00'  
