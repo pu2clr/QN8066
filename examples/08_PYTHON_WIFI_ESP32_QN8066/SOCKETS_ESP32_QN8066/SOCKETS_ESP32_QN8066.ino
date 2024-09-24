@@ -158,7 +158,27 @@ String processCommand(String command) {
     int stereoMono = value.toInt();
     tx.setTxMono(stereoMono);  // Chama a função correspondente no QN8066
     return "Stereo/Mono Set to: " + String(value);
-  }
+  } else if (field == "pre_emphasis") {
+      String pe = value.substring(0,1);
+      tx.setPreEmphasis(pe.toInt());
+      return  "Pre-Emphasis set to: " + String(pe);
+  } else if (field == "impedance") {
+      String imp = value.substring(0,1);
+      tx.setTxInputImpedance(imp.toInt());
+      return  "Inpedance set to: " + String(imp);     
+  } else if (field == "buffer_gain") {
+      String gain = value.substring(0,1);
+      tx.setTxInputBufferGain(gain.toInt());
+      return  "Inpedance set to: " + String(gain);   
+  } else if (field == "freq_dev") {
+    float fd = value.toFloat();
+    tx.rdsSetFrequencyDerivation((uint8_t) (fd / 0.69) );
+    return  "Frequency Deviation set to: " + String(fd);   
+  } else if (field == "soft_clip") {
+      String sc = value.substring(0,1);
+      tx.setTxInputBufferGain(sc.toInt());
+      return  "Soft Clip set to: " + String(sc);   
+  }     
   return "OK";
 }
 
