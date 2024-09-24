@@ -1,6 +1,23 @@
 /*
   ESP32 Dev Modeule version.
 
+
+1. This sketch uses HTML form to get and process commands from external browser applications to configure the 
+   FM transmitter (see the Python example `esp32_qn8066.py`).
+2. It also utilizes the internal Real Time Clock (RTC) of the ESP32 to send RDS messages with
+   this information.
+3. Sets the Date and Time based on your network/Internet information. 
+4. You need to modify the sketch to set the local time for your location.
+5. To connect to your Wi-Fi network, you must provide the SSID and password of your router. 
+   Otherwise, this application will not function.
+6. This sketch was compiled and tested on the ESP32 Der Module. If you are using a different ESP32 model, 
+   consider reviewing the pin connections.
+7. In the Arduino IDE, during application execution, check the Serial Monitor for the IP address 
+   assigned to the ESP32 by your router's DHCP service. 
+8. RDS message updates such as PTY, PS, RT, and Time are not executed immediately. This may depend on 
+   the receiver's update timing as well as the distribution of each message's timing programmed in this sketch.   
+
+
   Wire up ESP32 
 
   | Device name               | Device Pin / Description  |  Arduino Pin  |
@@ -25,7 +42,9 @@
 
 #include <WiFi.h>
 #include <WebServer.h>
+#include <time.h>    // Using internal RTC of ESP32 
 #include <QN8066.h>
+
 
 // I2C bus pin on ESP32
 #define ESP32_I2C_SDA 21     // GPIO21
@@ -45,13 +64,19 @@ uint16_t previousFrequency = 1069; // 106.9 MHz
 
 uint8_t currentPower = 0;
 
-char ps[10] = "       \r";
-char rt[34] = "                               \r";
+char ps[9] = "PU2CLR \r";
+char rt[33] = "QN8066 WEB Server control      \r";
 
 
 // Wi-Fi setup
 const char* ssid = "Your WIFI SSID";
 const char* password = "Your password";
+
+
+
+// Local Time setup
+const long gmtOffset_sec = -10800;  // Brasilia local date and time offset (-3h)
+const int daylightOffset_sec = 0;   // There is some confusion about this here in Brazil. As of now, there is no daylight saving time in effect in Brazil.
 
 
 // Web server
@@ -155,11 +180,13 @@ void handleRoot() {
   htmlPage += "</tr>";
   
   // Linha do RDS DT
+  /*
   htmlPage += "<tr>";
   htmlPage += "<td>RDS DT:</td>";
   htmlPage += "<td><input type='text' id='rds_dt' name='rds_dt' maxlength='32'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_dt\")'>Set</button></td>";
   htmlPage += "</tr>";
+  */
   
 
 
@@ -396,14 +423,25 @@ void sendRDS() {
 
   // Date Time Service refreshing control
   if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
-    delay(100);
-    // To use the function (service) below, you will need to add an integrated clock to your 
-    // system that provides the date and time to the system. The following example presents 
-    // only a fixed date and time and is intended solely to illustrate the use of the function.
-    tx.rdsSendDateTime(2024, 8, 30, 13, 01, 0);  // Sends Year = 2024; month = 8; day = 29; At 12:45 (local time)    
+    printLocalTime();
+    struct tm timeinfo;
+    getLocalTime(&timeinfo);
+    // Sends RDS local Date and Time
+    tx.rdsSendDateTime(timeinfo.tm_year + 1900, timeinfo.tm_mon + 1, timeinfo.tm_mday, timeinfo.tm_hour, timeinfo.tm_min);  
     rdsDateTime = millis();
   }
+
 }
+
+void printLocalTime() {
+  struct tm timeinfo;
+  if (!getLocalTime(&timeinfo)) {
+    Serial.println("Local Time fails");
+    return;
+  }
+  Serial.println(&timeinfo, "%Y/%m/%d %H:%M:%S");
+}
+
 
 void setup() {
   // Inicializa a comunicação serial
@@ -434,6 +472,9 @@ void setup() {
   tx.setTX(currentFrequency);   // Sets frequency to 106.9 MHz 
   delay(500);
   startRDS();  
+
+  // Sets the current RTC based on Network if it is available  
+  configTime(gmtOffset_sec, daylightOffset_sec, "pool.ntp.org");
 
   Serial.println("Trasmitting...");
 

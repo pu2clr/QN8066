@@ -72,6 +72,8 @@ char rt[33] = "NO RT                          \r";
 const char* ssid = "Your WIFI SSID";
 const char* password = "Your password";
 
+
+
 // Local Time setup
 const long gmtOffset_sec = -10800;  // Brasilia local date and time offset (-3h)
 const int daylightOffset_sec = 0;   // There is some confusion about this here in Brazil. As of now, there is no daylight saving time in effect in Brazil.
