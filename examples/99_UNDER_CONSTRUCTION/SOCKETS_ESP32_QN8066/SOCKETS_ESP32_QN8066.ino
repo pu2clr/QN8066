@@ -3,13 +3,22 @@
 
 Key Features and Notes of This Sketch:
 
-1. This sketch uses sockets to receive commands from external applications to configure the FM transmitter (see the Python example `esp32_qn8066.py`).
-2. It also utilizes the internal Real Time Clock (RTC) of the ESP32 to send RDS messages with this information.
-3. Sets the Date and Time based on your network/Internet information or via the client application (see the Python example `esp32_qn8066.py`).
+1. This sketch uses sockets to receive commands from external applications to configure the 
+   FM transmitter (see the Python example `esp32_qn8066.py`).
+2. It also utilizes the internal Real Time Clock (RTC) of the ESP32 to send RDS messages with
+   this information.
+3. Sets the Date and Time based on your network/Internet information or via the client 
+   application (see the Python example `esp32_qn8066.py`).
 4. You need to modify the sketch to set the local time for your location.
-5. To connect to your Wi-Fi network, you must provide the SSID and password of your router. Otherwise, this application will not function.
-6. This sketch was compiled and tested on the ESP32 Der Module. If you are using a different ESP32 model, consider reviewing the pin connections.
-7. In the Arduino IDE, during application execution, check the Serial Monitor for the IP address assigned to the ESP32 by your router's DHCP service. This IP must be used in the Python application to connect to the ESP32.
+5. To connect to your Wi-Fi network, you must provide the SSID and password of your router. 
+   Otherwise, this application will not function.
+6. This sketch was compiled and tested on the ESP32 Der Module. If you are using a different ESP32 model, 
+   consider reviewing the pin connections.
+7. In the Arduino IDE, during application execution, check the Serial Monitor for the IP address 
+   assigned to the ESP32 by your router's DHCP service. This IP must be used in the Python application 
+   to connect to the ESP32.
+8. RDS message updates such as PTY, PS, RT, and Time are not executed immediately. This may depend on 
+   the receiver's update timing as well as the distribution of each message's timing programmed in this sketch.   
 
 This translation enhances clarity and structure for better readability. Let me know if you'd like further refinements!
 
@@ -56,17 +65,18 @@ uint16_t previousFrequency = 1069; // 106.9 MHz
 
 uint8_t currentPower = 0;
 
-char ps[10] = "       \r";
-char rt[34] = "                               \r";
+char ps[9] = "NO PS  \r";
+char rt[33] = "NO RT                          \r";
 
 // Wi-Fi setup
-const char* ssid = "Your WIFI SSID";
-const char* password = "Your password";
+const char* ssid =   "PU2CLR";          // Change to your WIFI SSID
+const char* password = "pu2clr123456";  // Change to your password
+
+
 
 // Local Time setup
-const long gmtOffset_sec = -10800;  // Brasilia local date and time (-3h)
+const long gmtOffset_sec = -10800;  // Brasilia local date and time offset (-3h)
 const int daylightOffset_sec = 0;   // There is some confusion about this here in Brazil. As of now, there is no daylight saving time in effect in Brazil.
-
 
 WiFiServer server(SOCKET_PORT);  // Socket Server using port 8066
 
@@ -126,37 +136,32 @@ void sendRDS() {
     rdsTimeRT = millis();
   }
 
-
   // Date Time Service refreshing control
   if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
     printLocalTime();
     struct tm timeinfo;
     getLocalTime(&timeinfo);
+    // Sends RDS local Date and Time
     tx.rdsSendDateTime(timeinfo.tm_year + 1900, timeinfo.tm_mon + 1, timeinfo.tm_mday, timeinfo.tm_hour, timeinfo.tm_min);  
     rdsDateTime = millis();
   }
 }
 
 
-// Função que processa o comando recebido e executa a função correspondente
 String processCommand(String command) {
-
   int nLen;
-
-  // Exemplo de comando recebido: "frequency=101.5"
   int separatorIndex = command.indexOf('=');
-  String field = command.substring(0, separatorIndex);  // Nome do campo
-  String value = command.substring(separatorIndex + 1); // Valor do campo
+  String field = command.substring(0, separatorIndex);  // Field name
+  String value = command.substring(separatorIndex + 1); // Field value
 
-  // Processa o campo específico e executa a função correspondente
+  // Process the QN8066 command 
   if (field == "frequency") {
     uint16_t currentFrequency = (uint16_t) ( value.toFloat() * 10.0);
     tx.setTX(currentFrequency);  
     return "Frequency set to: " + String(currentFrequency);
   } else if (field == "rds_pty") {
-    String rds_pty = value.substring(0,2);
-    tx.rdsSetPTY(rds_pty.toInt()); 
-    return "RDS PTY set to: " + String(rds_pty);
+    tx.rdsSetPTY(value.toInt()); 
+    return "RDS PTY set to: " + String(value);
   } else if (field == "rds_ps") {
     nLen = value.length();
     strncpy(ps, value.c_str(), nLen);
@@ -170,29 +175,24 @@ String processCommand(String command) {
     ps[nLen+1] = '\0';
     return "RDS RT set to: " + value;
   } else if (field == "stereo_mono") {
-    int stereoMono = value.toInt();
-    tx.setTxMono(stereoMono);  // Chama a função correspondente no QN8066
+    tx.setTxMono(value.toInt());  // 
     return "Stereo/Mono Set to: " + String(value);
   } else if (field == "pre_emphasis") {
-      String pe = value.substring(0,1);
-      tx.setPreEmphasis(pe.toInt());
-      return  "Pre-Emphasis set to: " + String(pe);
+    tx.setPreEmphasis(value.toInt());
+    return  "Pre-Emphasis set to: " + String(value);
   } else if (field == "impedance") {
-      String imp = value.substring(0,1);
-      tx.setTxInputImpedance(imp.toInt());
-      return  "Impedance set to: " + String(imp);     
+    tx.setTxInputImpedance(value.toInt());
+    return  "Impedance set to: " + String(value);     
   } else if (field == "buffer_gain") {
-      String gain = value.substring(0,1);
-      tx.setTxInputBufferGain(gain.toInt());
-      return  "Impedance set to: " + String(gain);   
+    tx.setTxInputBufferGain(value.toInt());
+    return  "Impedance set to: " + String(value);   
   } else if (field == "freq_dev") {
     float fd = value.toFloat();
     tx.rdsSetFrequencyDerivation((uint8_t) (fd / 0.69) );
     return  "Frequency Deviation set to: " + String(fd);   
   } else if (field == "soft_clip") {
-      String sc = value.substring(0,1);
-      tx.setTxInputBufferGain(sc.toInt());
-      return  "Soft Clip set to: " + String(sc);   
+    tx.setTxInputBufferGain(value.toInt());
+    return  "Soft Clip set to: " + String(value);   
   } else if (field == "datetime") { 
     setRTC(value);
     return  "Local Date and Time set to: " + String(value);
@@ -200,27 +200,19 @@ String processCommand(String command) {
   return "OK";
 }
 
-
 void setRTC(String datetime) {
-  int year = datetime.substring(0, 4).toInt();
-  int month = datetime.substring(5, 7).toInt();
-  int day = datetime.substring(8, 10).toInt();
-  int hour = datetime.substring(11, 13).toInt();
-  int minute = datetime.substring(14, 16).toInt();
-
-  // Configura o tempo no formato tm (struct time)
   struct tm tm;
-  tm.tm_year = year - 1900; // anos desde 1900
-  tm.tm_mon = month - 1;    // mês [0, 11]
-  tm.tm_mday = day;         // dia do mês [1, 31]
-  tm.tm_hour = hour;        // horas [0, 23]
-  tm.tm_min = minute;       // minutos [0, 59]
-  tm.tm_sec = 0;            // segundos
+  tm.tm_year = datetime.substring(0, 4).toInt() - 1900; // Year 
+  tm.tm_mon = datetime.substring(5, 7).toInt() - 1;     // Month [0, 11]
+  tm.tm_mday = datetime.substring(8, 10).toInt();       // Day [1, 31]
+  tm.tm_hour = datetime.substring(11, 13).toInt();      // Hour [0, 23]
+  tm.tm_min = datetime.substring(14, 16).toInt();       // Minute [0, 59]
+  tm.tm_sec = 0;            
 
   time_t t = mktime(&tm);
   struct timeval now = { .tv_sec = t };
-  settimeofday(&now, NULL); // Define ESP32 RTC time
-  Serial.println("RTC atualizado com sucesso.");
+  settimeofday(&now, NULL); // Defines ESP32 RTC time
+  Serial.println("Internal ESP32 RTC updated!");
 }
 
 void printLocalTime() {
@@ -232,18 +224,13 @@ void printLocalTime() {
   Serial.println(&timeinfo, "%Y/%m/%d %H:%M:%S");
 }
 
-
 void loop() {
-  // Verifica se há um cliente conectado
-  // WiFiClient client = server.available();
   WiFiClient client = server.accept();
   if (client) {
     Serial.println("Client connected!");
 
-    // Enquanto o cliente estiver conectado
     while (client.connected()) {
       if (client.available()) {
-        // Lê os dados enviados pelo cliente (GUI Python)
         String command = client.readStringUntil('\n');
         Serial.println("Command received: " + command);
 
@@ -252,12 +239,8 @@ void loop() {
       }
       sendRDS();
     }
-
-    // Fecha a conexão com o cliente
     client.stop();
     Serial.println("Client disconnected.");
   }
-
   sendRDS();
-
 }

@@ -20,8 +20,7 @@ from datetime import datetime
 # Change the IP below to the address indicated in the Arduino sketch linked to this application.
 def send_to_esp32(field, value):
     try:
-        # The IP information can be get usind the Arduino IDE (Serial Monitor) 
-        esp32_ip = '10.0.0.34'  # ESP32 IP - Check it in the Arduino IDE Serial Monitor (console)
+        esp32_ip = '192.168.18.155'  # ESP32 IP - Check it in the Arduino IDE Serial Monitor (console)
         esp32_port = 8066  # Defined in the ESP 32 Arduino Sketch 
         message = f"{field}={value}\n"
         
