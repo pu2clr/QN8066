@@ -47,8 +47,10 @@ def send_frequency():
     send_to_esp32("frequency", frequency)
 
 def send_rds_pty():
-    rds_pty = rds_pty_var.get()
-    send_to_esp32("rds_pty", rds_pty)
+    selected_description = rds_pty_combobox.get()
+    selected_value = pty_map[selected_description]
+    print(f"Program Type (PTY): {selected_value} ({selected_description})")
+    # send_to_esp32("rds_pty", rds_pty)
 
 def send_rds_ps():
     rds_ps = rds_ps_var.get()
@@ -59,16 +61,20 @@ def send_rds_rt():
     send_to_esp32("rds_rt", rds_rt)
 
 def send_stereo_mono():
-    stereo_mono = stereo_mono_var.get()
-    send_to_esp32("stereo_mono", stereo_mono)
+    selected_description = stereo_mono_combobox.get()
+    selected_value = stereo_mono_map[selected_description]
+    print(f"Selected Stereo/Mono: {selected_value} ({selected_description})")
+    # send_to_esp32("stereo_mono", selected_value)
 
 def send_pre_emphasis():
     pre_emphasis = pre_emphasis_var.get()
     send_to_esp32("pre_emphasis", pre_emphasis)
 
 def send_impedance():
-    impedance = impedance_var.get()
-    send_to_esp32("impedance", impedance) 
+    selected_description = impedance_combobox.get()  # Obtém a descrição selecionada
+    selected_value = impedance_map[selected_description]  # Obtém o valor numérico correspondente
+    print(f"Selected Impedance: {selected_value} ({selected_description})")
+    send_to_esp32("impedance", selected_value)    
 
 def send_buffer_gain():
     buffer_gain = buffer_gain_var.get()
@@ -116,8 +122,24 @@ impedance_map = {
     '80K': 3
 }
 
-# Lista com apenas as descrições (segunda coluna) para exibir no combobox
+pty_map = {'No program':0,
+           'News':1, 
+           'Information':3, 
+           'Sport':4, 
+           'Education':5, 
+           'Culture':7, 
+           'Science':8, 
+           'Pop Music':10, 
+           'Weather':16, 
+           'Religion':20, 
+           'Documentary':29, 
+           'Alarm':30}
+
+stereo_mono_map = {'Stereo':0,'Mono':1}
+
 impedance_descriptions = list(impedance_map.keys())
+pty_descriptions = list(pty_map.keys())
+stereo_mono_descriptions = list(stereo_mono_map.keys())
 
 # Forms Layout 
 tk.Label(root, text="Transmission Frequency (MHz):", bg='#006400', fg=label_fg).grid(row=0, column=0, sticky=tk.E, padx=10, pady=5)
@@ -127,7 +149,7 @@ tk.Button(root, text="Set", command=send_frequency).grid(row=0, column=2, padx=1
 tk.Label(root, text="RDS PTY:",bg='#006400', fg=label_fg).grid(row=1, column=0, sticky=tk.E, padx=10, pady=5)
 
 # Combobox
-rds_pty_combobox = ttk.Combobox(root, textvariable=rds_pty_var, values=list(({'No program':0,'News':1, 'Information':3, 'Sport':4, 'Education':5, 'Culture':7, 'Science':8, 'Pop Music':10, 'Weather':16, 'Religion':20, 'Documentary':29, 'Alarm':30}).keys()))
+rds_pty_combobox = ttk.Combobox(root, textvariable=rds_pty_var, values=pty_descriptions)
 rds_pty_combobox.grid(row=1, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_rds_pty).grid(row=1, column=2, padx=10, pady=5)
 
@@ -140,7 +162,7 @@ tk.Entry(root, textvariable=rds_rt_var).grid(row=3, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_rds_rt).grid(row=3, column=2, padx=10, pady=5)
 
 tk.Label(root, text="Stereo/Mono:", bg='#006400', fg=label_fg).grid(row=4, column=0, sticky=tk.E, padx=10, pady=5)
-stereo_mono_combobox = ttk.Combobox(root, textvariable=stereo_mono_var, values=list(({'Stereo':0,'Mono':1}).keys()))
+stereo_mono_combobox = ttk.Combobox(root, textvariable=stereo_mono_var, values= stereo_mono_descriptions)
 stereo_mono_combobox.grid(row=4, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_stereo_mono).grid(row=4, column=2, padx=10, pady=5)
 
