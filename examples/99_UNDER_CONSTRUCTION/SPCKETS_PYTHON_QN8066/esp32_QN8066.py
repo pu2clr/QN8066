@@ -67,26 +67,32 @@ def send_stereo_mono():
     # send_to_esp32("stereo_mono", selected_value)
 
 def send_pre_emphasis():
-    pre_emphasis = pre_emphasis_var.get()
-    send_to_esp32("pre_emphasis", pre_emphasis)
+    selected_description = pre_emphasis_combobox.get()  
+    selected_value = pre_emphasis_map[selected_description]  # Obtém o valor numérico correspondente
+    print(f"Pre-Emphasis: {selected_value} ({selected_description})") 
+    # send_to_esp32("pre_emphasis", selected_value)
 
 def send_impedance():
     selected_description = impedance_combobox.get()  # Obtém a descrição selecionada
     selected_value = impedance_map[selected_description]  # Obtém o valor numérico correspondente
     print(f"Selected Impedance: {selected_value} ({selected_description})")
-    send_to_esp32("impedance", selected_value)    
+    # send_to_esp32("impedance", selected_value)    
 
 def send_buffer_gain():
-    buffer_gain = buffer_gain_var.get()
-    send_to_esp32("buffer_gain", buffer_gain)  
+    selected_description = buffer_gain_combobox.get()  
+    selected_value = buffer_gain_map[selected_description]  # Obtém o valor numérico correspondente
+    print(f"Selected Buffer Gain: {selected_value} ({selected_description})")    
+    # send_to_esp32("buffer_gain", selected_value)  
 
 def send_freq_dev():
     freq_dev = freq_dev_var.get()
     send_to_esp32("freq_dev", freq_dev)  
 
 def send_soft_clip():
-    soft_clip = soft_clip_var.get()
-    send_to_esp32("soft_clip", soft_clip)  
+    selected_description = soft_clip_var_combobox.get()  
+    selected_value = soft_clip_map[selected_description]  
+    print(f"Selected Soft CLip: {selected_value} ({selected_description})")  
+    # send_to_esp32("soft_clip", soft_clip)  
 
 def send_datetime():
     datetime_str = datetime_var.get()
@@ -136,10 +142,16 @@ pty_map = {'No program':0,
            'Alarm':30}
 
 stereo_mono_map = {'Stereo':0,'Mono':1}
+pre_emphasis_map = {'50us':0,'75us':1}
+buffer_gain_map = {'3d{B':0,'6dB':1,'9dB':2,'12dB':3,'15dB':4,'18dB':5}
+soft_clip_map = {'Disable':0,'Enable':1}
 
 impedance_descriptions = list(impedance_map.keys())
 pty_descriptions = list(pty_map.keys())
 stereo_mono_descriptions = list(stereo_mono_map.keys())
+pre_emphasis_descriptions = list(pre_emphasis_map.keys())
+buffer_gain_descriptions = list(buffer_gain_map.keys())
+soft_clip_descriptions = list(soft_clip_map.keys())
 
 # Forms Layout 
 tk.Label(root, text="Transmission Frequency (MHz):", bg='#006400', fg=label_fg).grid(row=0, column=0, sticky=tk.E, padx=10, pady=5)
@@ -167,7 +179,7 @@ stereo_mono_combobox.grid(row=4, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_stereo_mono).grid(row=4, column=2, padx=10, pady=5)
 
 tk.Label(root, text="Pre-Emphasis:", bg='#006400', fg=label_fg).grid(row=5, column=0, sticky=tk.E, padx=10, pady=5)
-pre_emphasis_combobox = ttk.Combobox(root, textvariable=pre_emphasis_var, values=list(({'50us':0,'75us':1}).keys()))
+pre_emphasis_combobox = ttk.Combobox(root, textvariable=pre_emphasis_var, values=pre_emphasis_descriptions)
 pre_emphasis_combobox.grid(row=5, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_pre_emphasis).grid(row=5, column=2, padx=10, pady=5)
 
@@ -179,7 +191,7 @@ tk.Button(root, text="Set", command=send_impedance).grid(row=6, column=2, padx=1
 
 
 tk.Label(root, text="Buffer Gain:", bg='#006400', fg=label_fg).grid(row=7, column=0, sticky=tk.E, padx=10, pady=5)
-buffer_gain_combobox = ttk.Combobox(root, textvariable=buffer_gain_var, values = list({'3dB':0,'6dB':1,'9dB':2,'12dB':3,'15dB':4,'18dB':5})) 
+buffer_gain_combobox = ttk.Combobox(root, textvariable=buffer_gain_var, values = buffer_gain_descriptions) 
 
 buffer_gain_combobox.grid(row=7, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_buffer_gain).grid(row=7, column=2, padx=10, pady=5)
@@ -191,7 +203,7 @@ freq_dev_combobox.grid(row=8, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_freq_dev).grid(row=8, column=2, padx=10, pady=5)
 
 tk.Label(root, text="Soft Clip:", bg='#006400', fg=label_fg).grid(row=9, column=0, sticky=tk.E, padx=10, pady=5)
-soft_clip_var_combobox = ttk.Combobox(root, textvariable=soft_clip_var,values=list({'Disable':0,'Enable':1}))
+soft_clip_var_combobox = ttk.Combobox(root, textvariable=soft_clip_var,values=soft_clip_descriptions)
 soft_clip_var_combobox.grid(row=9, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_soft_clip).grid(row=9, column=2, padx=10, pady=5)
 
