@@ -50,7 +50,7 @@ def send_rds_pty():
     selected_description = rds_pty_combobox.get()
     selected_value = pty_map[selected_description]
     print(f"Program Type (PTY): {selected_value} ({selected_description})")
-    # send_to_esp32("rds_pty", rds_pty)
+    send_to_esp32("rds_pty", selected_value)
 
 def send_rds_ps():
     rds_ps = rds_ps_var.get()
@@ -64,35 +64,35 @@ def send_stereo_mono():
     selected_description = stereo_mono_combobox.get()
     selected_value = stereo_mono_map[selected_description]
     print(f"Selected Stereo/Mono: {selected_value} ({selected_description})")
-    # send_to_esp32("stereo_mono", selected_value)
+    send_to_esp32("stereo_mono", selected_value)
 
 def send_pre_emphasis():
     selected_description = pre_emphasis_combobox.get()  
     selected_value = pre_emphasis_map[selected_description]  # Obtém o valor numérico correspondente
     print(f"Pre-Emphasis: {selected_value} ({selected_description})") 
-    # send_to_esp32("pre_emphasis", selected_value)
+    send_to_esp32("pre_emphasis", selected_value)
 
 def send_impedance():
     selected_description = impedance_combobox.get()  # Obtém a descrição selecionada
     selected_value = impedance_map[selected_description]  # Obtém o valor numérico correspondente
     print(f"Selected Impedance: {selected_value} ({selected_description})")
-    # send_to_esp32("impedance", selected_value)    
+    send_to_esp32("impedance", selected_value)    
 
 def send_buffer_gain():
     selected_description = buffer_gain_combobox.get()  
     selected_value = buffer_gain_map[selected_description]  # Obtém o valor numérico correspondente
     print(f"Selected Buffer Gain: {selected_value} ({selected_description})")    
-    # send_to_esp32("buffer_gain", selected_value)  
+    send_to_esp32("buffer_gain", selected_value)  
 
 def send_freq_dev():
     freq_dev = freq_dev_var.get()
     send_to_esp32("freq_dev", freq_dev)  
 
 def send_soft_clip():
-    selected_description = soft_clip_var_combobox.get()  
+    selected_description = soft_clip_combobox.get()  
     selected_value = soft_clip_map[selected_description]  
     print(f"Selected Soft CLip: {selected_value} ({selected_description})")  
-    # send_to_esp32("soft_clip", soft_clip)  
+    send_to_esp32("soft_clip", selected_value)  
 
 def send_datetime():
     datetime_str = datetime_var.get()
@@ -203,8 +203,8 @@ freq_dev_combobox.grid(row=8, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_freq_dev).grid(row=8, column=2, padx=10, pady=5)
 
 tk.Label(root, text="Soft Clip:", bg='#006400', fg=label_fg).grid(row=9, column=0, sticky=tk.E, padx=10, pady=5)
-soft_clip_var_combobox = ttk.Combobox(root, textvariable=soft_clip_var,values=soft_clip_descriptions)
-soft_clip_var_combobox.grid(row=9, column=1, padx=10, pady=5)
+soft_clip_combobox = ttk.Combobox(root, textvariable=soft_clip_var,values=soft_clip_descriptions)
+soft_clip_combobox.grid(row=9, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_soft_clip).grid(row=9, column=2, padx=10, pady=5)
 
 tk.Label(root, text="Set Date and Time (YYYY/MM/DD HH:MM):", bg='#006400', fg=label_fg).grid(row=10, column=0, padx=10, pady=5)

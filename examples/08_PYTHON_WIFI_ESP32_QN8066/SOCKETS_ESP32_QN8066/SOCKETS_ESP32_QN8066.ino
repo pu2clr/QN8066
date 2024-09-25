@@ -160,9 +160,8 @@ String processCommand(String command) {
     tx.setTX(currentFrequency);  
     return "Frequency set to: " + String(currentFrequency);
   } else if (field == "rds_pty") {
-    String rds_pty = value.substring(0,2);
-    tx.rdsSetPTY(rds_pty.toInt()); 
-    return "RDS PTY set to: " + String(rds_pty);
+    tx.rdsSetPTY(value.toInt()); 
+    return "RDS PTY set to: " + String(value);
   } else if (field == "rds_ps") {
     nLen = value.length();
     strncpy(ps, value.c_str(), nLen);
@@ -176,29 +175,24 @@ String processCommand(String command) {
     ps[nLen+1] = '\0';
     return "RDS RT set to: " + value;
   } else if (field == "stereo_mono") {
-    int stereoMono = value.toInt();
-    tx.setTxMono(stereoMono);  // 
+    tx.setTxMono(value.toInt());  // 
     return "Stereo/Mono Set to: " + String(value);
   } else if (field == "pre_emphasis") {
-    String pe = value.substring(0,1);
-    tx.setPreEmphasis(pe.toInt());
-    return  "Pre-Emphasis set to: " + String(pe);
+    tx.setPreEmphasis(value.toInt());
+    return  "Pre-Emphasis set to: " + String(value);
   } else if (field == "impedance") {
-    String imp = value.substring(0,1);
-    tx.setTxInputImpedance(imp.toInt());
-    return  "Impedance set to: " + String(imp);     
+    tx.setTxInputImpedance(value.toInt());
+    return  "Impedance set to: " + String(value);     
   } else if (field == "buffer_gain") {
-    String gain = value.substring(0,1);
-    tx.setTxInputBufferGain(gain.toInt());
-    return  "Impedance set to: " + String(gain);   
+    tx.setTxInputBufferGain(value.toInt());
+    return  "Impedance set to: " + String(value);   
   } else if (field == "freq_dev") {
     float fd = value.toFloat();
     tx.rdsSetFrequencyDerivation((uint8_t) (fd / 0.69) );
     return  "Frequency Deviation set to: " + String(fd);   
   } else if (field == "soft_clip") {
-    String sc = value.substring(0,1);
-    tx.setTxInputBufferGain(sc.toInt());
-    return  "Soft Clip set to: " + String(sc);   
+    tx.setTxInputBufferGain(value.toInt());
+    return  "Soft Clip set to: " + String(value);   
   } else if (field == "datetime") { 
     setRTC(value);
     return  "Local Date and Time set to: " + String(value);
