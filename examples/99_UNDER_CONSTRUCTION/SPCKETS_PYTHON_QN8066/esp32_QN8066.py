@@ -109,6 +109,16 @@ label_fg = '#FFFF00'
 entry_bg = '#004d00'  
 entry_fg = '#FFFF00' 
 
+impedance_map = {
+    '10K': 0,
+    '20K': 1,
+    '40K': 2,
+    '80K': 3
+}
+
+# Lista com apenas as descrições (segunda coluna) para exibir no combobox
+impedance_descriptions = list(impedance_map.keys())
+
 # Forms Layout 
 tk.Label(root, text="Transmission Frequency (MHz):", bg='#006400', fg=label_fg).grid(row=0, column=0, sticky=tk.E, padx=10, pady=5)
 tk.Entry(root, textvariable=frequency_var).grid(row=0, column=1, padx=10, pady=5)
@@ -117,7 +127,7 @@ tk.Button(root, text="Set", command=send_frequency).grid(row=0, column=2, padx=1
 tk.Label(root, text="RDS PTY:",bg='#006400', fg=label_fg).grid(row=1, column=0, sticky=tk.E, padx=10, pady=5)
 
 # Combobox
-rds_pty_combobox = ttk.Combobox(root, textvariable=rds_pty_var, values=list({'No program':0,'News':1, 'Information':3, 'Sport':4, 'Education':5, 'Culture':7, 'Science':8, 'Pop Music':10, 'Weather':16, 'Religion':20, 'Documentary':29, 'Alarm':30}))
+rds_pty_combobox = ttk.Combobox(root, textvariable=rds_pty_var, values=list(({'No program':0,'News':1, 'Information':3, 'Sport':4, 'Education':5, 'Culture':7, 'Science':8, 'Pop Music':10, 'Weather':16, 'Religion':20, 'Documentary':29, 'Alarm':30}).keys()))
 rds_pty_combobox.grid(row=1, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_rds_pty).grid(row=1, column=2, padx=10, pady=5)
 
@@ -130,22 +140,17 @@ tk.Entry(root, textvariable=rds_rt_var).grid(row=3, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_rds_rt).grid(row=3, column=2, padx=10, pady=5)
 
 tk.Label(root, text="Stereo/Mono:", bg='#006400', fg=label_fg).grid(row=4, column=0, sticky=tk.E, padx=10, pady=5)
-stereo_mono_combobox = ttk.Combobox(root, textvariable=stereo_mono_var, values=list({'Stereo':0,'Mono':1}))
+stereo_mono_combobox = ttk.Combobox(root, textvariable=stereo_mono_var, values=list(({'Stereo':0,'Mono':1}).keys()))
 stereo_mono_combobox.grid(row=4, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_stereo_mono).grid(row=4, column=2, padx=10, pady=5)
 
 tk.Label(root, text="Pre-Emphasis:", bg='#006400', fg=label_fg).grid(row=5, column=0, sticky=tk.E, padx=10, pady=5)
-pre_emphasis_combobox = ttk.Combobox(root, textvariable=pre_emphasis_var, values=list({'50us':0,'75us':1}))
+pre_emphasis_combobox = ttk.Combobox(root, textvariable=pre_emphasis_var, values=list(({'50us':0,'75us':1}).keys()))
 pre_emphasis_combobox.grid(row=5, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_pre_emphasis).grid(row=5, column=2, padx=10, pady=5)
 
 tk.Label(root, text="Impedance:", bg='#006400', fg=label_fg).grid(row=6, column=0, sticky=tk.E, padx=10, pady=5)
-impedance_combobox = ttk.Combobox(root, textvariable=impedance_var, values = list({
-    '10K': 0,
-    '20K': 1,
-    '40K': 2,
-    '80K': 3
-}))
+impedance_combobox = ttk.Combobox(root, textvariable=impedance_var, values = impedance_descriptions)
 
 impedance_combobox.grid(row=6, column=1, padx=10, pady=5)
 tk.Button(root, text="Set", command=send_impedance).grid(row=6, column=2, padx=10, pady=5)
