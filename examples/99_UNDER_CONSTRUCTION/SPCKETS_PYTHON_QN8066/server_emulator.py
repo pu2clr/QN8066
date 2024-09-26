@@ -1,5 +1,20 @@
 import socket
 
+
+pty_tab = {'0':'No program',
+           '1':'News', 
+           '3':'Information', 
+           '4':'Sport', 
+           '5':'Education', 
+           '7':'Culture', 
+           '8':'Science', 
+           '10':'Pop Music', 
+           '16':'Weather', 
+           '20':'Religion', 
+           '29':'Documentary', 
+           '30':'Alarm'}
+
+
 # Função para processar o comando recebido
 def process_command(command):
     command = command.strip()  # Remove espaços em branco no final/início
@@ -13,12 +28,16 @@ def process_command(command):
     
     # Processa o comando e retorna uma resposta adequada
     if field == "frequency":
+        print(f"Tuning at {value}MHz")
         return f"Frequency set to: {value}"
     elif field == "rds_pty":
+        print(f"Set RDS PTY to {pty_tab[value]}")
         return f"RDS PTY set to: {value}"
     elif field == "rds_ps":
+        print(f"Set RDS Program Station to {value}")
         return f"RDS PS set to: {value}"
     elif field == "rds_rt":
+        print(f"Set RDS Radio Text to {value}")
         return f"RDS RT set to: {value}"
     elif field == "stereo_mono":
         return f"Stereo/Mono set to: {value}"
@@ -39,7 +58,7 @@ def process_command(command):
 
 # Inicia o servidor socket
 def start_server():
-    host = '0.0.0.0'  # Aceita conexões de qualquer interface de rede
+    host = '127.0.0.1'  # Aceita conexões de qualquer interface de rede
     port = 8066  # Porta do servidor, deve corresponder à do cliente
 
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
