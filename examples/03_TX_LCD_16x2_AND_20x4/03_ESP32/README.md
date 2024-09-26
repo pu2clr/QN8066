@@ -1,5 +1,14 @@
 # ESP32, QN8066, LCD16x2 and Encoder basic setup
 
+Before starting compiling ESP32 based sketches, you must configure your Arduino IDE. Follow the steps below:
+
+* Install the last version of Arduino IDE
+* Configure the ESP32 on Arduino IDE
+  * Open the Arduino IDE and select the __Preferences...__ menu item.
+  * Go to __Additional Boards Manager URLs:__ and add the URL: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+  * After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board.
+
+## ESP32 Dev Module setup
 
 Observe in the following diagram and table that the connections between the ESP32 and the QN8066, as well as the encoder and the LCD, refer to the GPIO and not to the physical pin number of the ESP32 module board. Carefully analyze the pin distribution of your ESP32 to make the correct connections
 

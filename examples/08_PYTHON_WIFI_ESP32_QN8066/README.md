@@ -6,7 +6,17 @@ This folder contains a Python application that can be run on Windows, Linux, or 
 The ESP32 is an excellent choice for socket-based applications due to its robust networking capabilities, high performance, and ease of integration with Python. Whether you're building a home automation system, a remote control interface, or a data monitoring tool, the combination of ESP32 and Python provides a flexible and powerful solution for IoT and real-time communication projects.
 
 
-### ERSP32 and QN8066 connections
+### ESP32 and QN8066 connections
+
+Before starting compiling ESP32 based sketches, you must configure your Arduino IDE. Follow the steps below:
+
+* Install the last version of Arduino IDE
+* Configure the ESP32 on Arduino IDE
+  * Open the Arduino IDE and select the __Preferences...__ menu item.
+  * Go to __Additional Boards Manager URLs:__ and add the URL: https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
+  * After adding the ESP32 URL, go to __Tools__ menu, select the __Boards__ item and then select __Boards Manager...__ option. Finally install ESP32 board.
+  
+
 
 The following electronic circuit is the same as presented in the web version. The PWM interface should only be used if you intend to utilize this type of interface to control the transmitter's power. It is important to note that the PWM is not related to the QN8066 but rather to the RF amplifier developed with this type of control.
 
