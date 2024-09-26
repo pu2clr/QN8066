@@ -8,7 +8,7 @@ See the examples below.
 
 
 
-The [Attiny core board/platafor](https://github.com/SpenceKonde/ATTinyCore/tree/v2.0.0-devThis-is-the-head-submit-PRs-against-this)m can be installed using the Arduino IDE boards manager. Insert the URL http://drazzy.com/package_drazzy.com_index.json on board manager. On menu Preferences, enter the "http://drazzy.com/package_drazzy.com_index.json" in "Additional Boards Manager URLs;
+The [Attiny core board/plataform](https://github.com/SpenceKonde/ATTinyCore/tree/v2.0.0-devThis-is-the-head-submit-PRs-against-this) can be installed using the Arduino IDE boards manager. Insert the URL http://drazzy.com/package_drazzy.com_index.json on board manager. On menu Preferences, enter the "http://drazzy.com/package_drazzy.com_index.json" in "Additional Boards Manager URLs;
 
 To setup ATtiny85 on Arduino IDE, go to Tools Menu, Board, Board Manager and install "ATTinyCore by Spence Konde". 
 
