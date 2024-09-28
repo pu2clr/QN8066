@@ -4,5 +4,12 @@ This application is very similar to the '07_WEB_WIFI_ESP32_QN8066' application, 
 
 To use this application, all you need to do is power on the ESP32, connect to the Wi-Fi network with the SSID ESP32_QN8066 (password esp32qn8066) via your computer or mobile device, and start controlling the transmitter through the web page.
 
-![UNDER CONSTRUCTION...](../../extras/images/under_construction.png)
+
+To configure the ESP32 settings with the FM transmitter, please refer to the documentation in the folder 07_WEB_WIFI_ESP32_QN8066. Once the connections are set up and the sketch is uploaded, you can access the ESP32 by following these steps: 
+
+1.  Connect your device to the Wi-Fi provided by the ESP32 (SSID: ESP32_QN8066, password: esp32qn8066); 
+2.  Use a web browser and go to the address 10.0.0.1.
+
+
+
 
