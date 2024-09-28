@@ -15,10 +15,17 @@ To configure the ESP32 settings with the FM transmitter, please refer to the doc
 ## ESP32 Access Point connection
 
 
+The following image illustrates the connection of a computer to the ESP32 via the Access Point provided by the ESP32.
+
 ![ESP32 Access Point connection 01](./ESP32_ACCESS_POINT_01.PNG)
 
+The following image illustrates the connection to the ESP32 from an iPhone.
 
 ![ESP32 Access Point connection 02](./ESP32_ACCESS_POINT_02.PNG)
+
+The following image shows a web page provided by the ESP32.
+
+![ESP32 Access Point connection 02](./ESP32_ACCESS_POINT_03.PNG)
 
 
 
