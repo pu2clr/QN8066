@@ -12,6 +12,15 @@ To configure the ESP32 settings with the FM transmitter, please refer to the doc
 
 
 
+## ESP32 Access Point connection
+
+
+![ESP32 Access Point connection 01](./ESP32_ACCESS_POINT_01.PNG)
+
+
+![ESP32 Access Point connection 02](./ESP32_ACCESS_POINT_02.PNG)
+
+
 
 
 
