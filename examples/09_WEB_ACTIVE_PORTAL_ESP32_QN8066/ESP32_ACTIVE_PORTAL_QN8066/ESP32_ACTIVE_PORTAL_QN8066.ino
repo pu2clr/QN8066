@@ -21,7 +21,7 @@
    the receiver's update timing as well as the distribution of each message's timing programmed in this sketch.   
 
 
-  Wire up ESP32 
+  Wire up ESP32 Dev Module
 
   | Device name               | Device Pin / Description  |  Arduino Pin  |
   | --------------------------| --------------------      | ------------  |
@@ -49,10 +49,16 @@
 #include <time.h>    // Using internal RTC of ESP32 
 #include <QN8066.h>
 
+#ifdef ARDUINO_ESP32C3_DEV
+  #define ESP32_I2C_SDA 4     // GPIO4
+  #define ESP32_I2C_SCL 5     // GPIO5 
+  #warning "ESP32C3 Dev Module"
+#else 
+  #define ESP32_I2C_SDA 21    // GPI21
+  #define ESP32_I2C_SCL 22    // GPI22 
+  #warning "ESP32 Dev Module"
+#endif
 
-// I2C bus pin on ESP32
-#define ESP32_I2C_SDA 21     // GPIO21
-#define ESP32_I2C_SCL 22     // GPIO22 
 
 #define RDS_PS_REFRESH_TIME 7000
 #define RDS_RT_REFRESH_TIME 17000
