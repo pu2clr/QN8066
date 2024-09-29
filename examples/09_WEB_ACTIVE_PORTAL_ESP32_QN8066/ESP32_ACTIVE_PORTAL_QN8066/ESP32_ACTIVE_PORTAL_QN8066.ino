@@ -21,18 +21,23 @@
    the receiver's update timing as well as the distribution of each message's timing programmed in this sketch.   
 
 
-  Wire up ESP32 Dev Module
 
-  | Device name               | Device Pin / Description  |  Arduino Pin  |
-  | --------------------------| --------------------      | ------------  |
-  | QN8066                    |                           |               | 
-  |                           | VCC                       |  3.3V         |
-  |                           | GND                       |  GND          |    
-  |                           | SDIO / SDA (pin 8)        |  GPIO21       |
-  |                           | SCLK (pin 7)              |  GPIO22       |
-  | --------------------------| --------------------------| --------------|
-  | PWM                       |                           |               |
-  |                           |                           |  GPIO12       | 
+  ESP32 Dev Module Wire up 
+
+  | Device name               | QN8066 Pin           |  ESP32 Dev Module |
+  | --------------------------| -------------------- | ----------------- |
+  | QN8066                    |                      |                   | 
+  |                           | VCC                  |      3.3V         |
+  |                           | GND                  |      GND          |    
+  |                           | SDIO / SDA (pin 2)   |      GPIO21 [1]   |
+  |                           | SCLK (pin 1)         |      GPIO22 [1]]  |
+  | --------------------------| ---------------------| ----------------- |
+  | PWM Power Controller [2]  |                      |                   |
+  |                           |                      |      GPIO12       | 
+
+  1. It can change if you are not using the ESP32 Dev Module. Check you ESP32 board pinout 
+  2. A suggestion if you intend to use PWM to control the RF output power of an amplifier.  
+
 
   Prototype documentation: https://pu2clr.github.io/QN8066/
   PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/

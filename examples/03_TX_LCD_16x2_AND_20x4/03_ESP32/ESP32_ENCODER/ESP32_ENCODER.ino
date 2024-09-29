@@ -7,7 +7,7 @@
 
   Wire up ESP32 Dev Module, QN8066 and LCD16x02 or LCD16x04
 
-  | Device name               | Device Pin / Description  |  Arduino Pin  |
+  | Device name               | Device Pin / Description  |  ESP32   Pin  |
   | --------------------------| --------------------      | ------------  |
   |    LCD 16x2 or 20x4       |                           |               |
   |                           | D4                        |  GPIO18       |
@@ -21,8 +21,8 @@
   | --------------------------| ------------------------- | --------------|
   | QN8066                    |                           |               | 
   |                           | VCC                       |  3.3V         |
-  |                           | SDIO / SDA (pin 8)        |  GPIO21       |
-  |                           | SCLK (pin 7)              |  GPIO22       |
+  |                           | SDIO / SDA (pin 2)        |  GPIO21 [1]   |
+  |                           | SCLK (pin 1)              |  GPIO22 [1]   |
   | --------------------------| --------------------------| --------------|
   | Encoder                   |                           |               |
   |                           | A                         |  GPIO13       |
@@ -31,6 +31,8 @@
   | PWM                       |                           |               |
   |                           |                           |  GPIO12       | 
   | 
+
+  1. It can change if you are not using the ESP32 Dev Module. Check you ESP32 board pinout 
 
   Prototype documentation: https://pu2clr.github.io/QN8066/
   PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/

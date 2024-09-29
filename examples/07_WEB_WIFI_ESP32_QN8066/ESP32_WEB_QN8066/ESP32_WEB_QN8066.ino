@@ -18,18 +18,22 @@
    the receiver's update timing as well as the distribution of each message's timing programmed in this sketch.   
 
 
-  Wire up ESP32 
+  ESP32 Dev Module Wire up 
 
-  | Device name               | Device Pin / Description  |  Arduino Pin  |
-  | --------------------------| --------------------      | ------------  |
-  | QN8066                    |                           |               | 
-  |                           | VCC                       |  3.3V         |
-  |                           | GND                       |  GND          |    
-  |                           | SDIO / SDA (pin 8)        |  GPIO21       |
-  |                           | SCLK (pin 7)              |  GPIO22       |
-  | --------------------------| --------------------------| --------------|
-  | PWM                       |                           |               |
-  |                           |                           |  GPIO12       | 
+  | Device name               | QN8066 Pin           |  ESP32 Dev Module |
+  | --------------------------| -------------------- | ----------------- |
+  | QN8066                    |                      |                   | 
+  |                           | VCC                  |      3.3V         |
+  |                           | GND                  |      GND          |    
+  |                           | SDIO / SDA (pin 2)   |      GPIO21 [1]   |
+  |                           | SCLK (pin 1)         |      GPIO22 [1]]  |
+  | --------------------------| ---------------------| ----------------- |
+  | PWM Power Controller [2]  |                      |                   |
+  |                           |                      |      GPIO12       | 
+
+  1. It can change if you are not using the ESP32 Dev Module. Check you ESP32 board pinout 
+  2. A suggestion if you intend to use PWM to control the RF output power of an amplifier.  
+
 
   Prototype documentation: https://pu2clr.github.io/QN8066/
   PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
@@ -46,9 +50,16 @@
 #include <QN8066.h>
 
 
-// I2C bus pin on ESP32
-#define ESP32_I2C_SDA 21     // GPIO21
-#define ESP32_I2C_SCL 22     // GPIO22 
+// I2C bus pin on ESP32 or ESP32C3
+#ifdef ARDUINO_ESP32C3_DEV
+  #define ESP32_I2C_SDA 4     // GPIO4
+  #define ESP32_I2C_SCL 5     // GPIO5 
+  #warning "ESP32C3 Dev Module"
+#else 
+  #define ESP32_I2C_SDA 21    // GPI21
+  #define ESP32_I2C_SCL 22    // GPI22 
+  #warning "ESP32 Dev Module"
+#endif
 
 #define RDS_PS_REFRESH_TIME 7000
 #define RDS_RT_REFRESH_TIME 17000

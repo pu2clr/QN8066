@@ -32,8 +32,8 @@ Observe in the following diagram and table that the connections between the ESP3
 | --------------------------| ------------------------- | --------------|
 | QN8066                    |                           |               | 
 |                           | VCC                       |  3.3V         |
-|                           | SDIO / SDA (pin 8)        |  GPIO21       |
-|                           | SCLK (pin 7)              |  GPIO22       |
+|                           | SDIO / SDA (pin 2)        |  GPIO21 [1]   |
+|                           | SCLK (pin 1)              |  GPIO22 [1]   |
 | --------------------------| --------------------------| --------------|
 | Encoder                   |                           |               |
 |                           | A                         |  GPIO13       |
@@ -41,3 +41,5 @@ Observe in the following diagram and table that the connections between the ESP3
 |                           | PUSH BUTTON (encoder)     |  GPIO27       |
 | PWM                       |                           |               |
 |                           |                           |  GPIO12       | 
+
+1. It can change if you are not using the ESP32 Dev Module. Check you ESP32 board pinout 
