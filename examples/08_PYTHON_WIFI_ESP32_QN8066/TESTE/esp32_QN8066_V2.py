@@ -70,7 +70,7 @@ def on_change(*args):
 def send_to_esp32(field, value):
     try:
         # The IP information can be get usind the Arduino IDE (Serial Monitor) 
-        esp32_ip = '10.0.0.143'  # ESP32 IP - Check it in the Arduino IDE Serial Monitor (console)
+        esp32_ip = '127.0.0.1'  # ESP32 IP - Check it in the Arduino IDE Serial Monitor (console)
         esp32_port = 8066  # Defined in the ESP 32 Arduino Sketch 
         message = f"{field}={value}\n"
         
