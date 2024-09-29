@@ -18,7 +18,9 @@ import json
 import os
 from datetime import datetime 
 
-json_filename = "config.json"
+
+current_directory = os.path.dirname(os.path.abspath(__file__))
+json_filename = os.path.join(current_directory, "config.json")
 
 
 def save_to_json():
@@ -55,7 +57,7 @@ def load_from_json():
             freq_dev_var.set(data.get("FREQUENCY_DEVIATION", "74.5"))
             soft_clip_var.set(data.get("SOFT_CLIP", "Disable"))
             datetime_var.set(data.get("DATETIME", datetime.now().strftime("%Y/%m/%d %H:%M")))
-            print("Configuração carregada do arquivo JSON.")
+            print("Configuração carregada do arquivo JSON.")          
     else:
         print("Using default values")
 

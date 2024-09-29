@@ -45,9 +45,16 @@ This translation enhances clarity and structure for better readability. Let me k
 #include <QN8066.h>  // Inclua sua biblioteca QN8066 aqui
 #include <time.h>    // Using internal RTC of ESP32 
 
-// I2C bus pin on ESP32
-#define ESP32_I2C_SDA 21     // GPIO21
-#define ESP32_I2C_SCL 22     // GPIO22 
+// I2C bus pin on ESP32 or ESP32C3
+#ifdef ARDUINO_ESP32C3_DEV
+  #define ESP32_I2C_SDA 4     // GPIO4
+  #define ESP32_I2C_SCL 5     // GPIO5 
+  #warning "ESP32C3 Dev Module"
+#else 
+  #define ESP32_I2C_SDA 21    // GPI21
+  #define ESP32_I2C_SCL 22    // GPI22 
+  #warning "ESP32 Dev Module"
+#endif
 
 #define SOCKET_PORT 8066
 

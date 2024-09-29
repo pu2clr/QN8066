@@ -1,0 +1,13 @@
+{
+    "FREQUENCY": "106.9",
+    "RDS_PTY": "News",
+    "RDS_PS": "QN8066TX",
+    "RDS_RT": "PU2CLR QN8066 Arduino Library",
+    "STEREO_MONO": "Stereo",
+    "PRE_EMPHASIS": "70us",
+    "IMPEDANCE": "20K",
+    "BUFFER_GAIN": "6dB",
+    "FREQUENCY_DEVIATION": "74.5",
+    "SOFT_CLIP": "Enable",
+    "DATETIME": "2024/09/28 21:40"
+}
