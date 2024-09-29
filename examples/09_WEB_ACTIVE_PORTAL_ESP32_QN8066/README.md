@@ -31,6 +31,9 @@ The following image shows a web page provided by the ESP32.
 ## QN8066 and ESP32C3 Dev Module setup
 
 
+The following images illustrate a homemade assembly of the QN8066 soldered onto an adapter board. An active 32.768 MHz crystal was used in this setup. An ESP32C3 Dev Module development board was used, but other boards such as the ESP32 Dev Module can also be used.
+
+
 ![QN8066 and ESP32C3 Dev Module setup 01](./ESP32_ACCESS_POINT_04.jpg)
 
 
