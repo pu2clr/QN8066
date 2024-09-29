@@ -56,12 +56,20 @@ arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./
 arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./98_TESTS/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER_V1 --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4_V1
 arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./98_TESTS/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER_V2 --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4_V2
 
-echo "ESP32"
+echo "ESP32 Dev Module"
 echo "ESP32 LCD16x2 AND ENCODER"
 echo "**** **** **** **** **** **** **** ***"
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./03_TX_LCD_16x2_AND_20x4/03_ESP32/ESP32_ENCODER --output-dir ~/Downloads/hex/ESP32/DEVM/LCD16x2_encoder
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./07_WEB_WIFI_ESP32_QN8066/ESP32_WEB_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_ESP32_WEB_QN8066
 arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./08_PYTHON_WIFI_ESP32_QN8066/SOCKETS_ESP32_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_SOCKETS_ESP32_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./09_WEB_ACTIVE_PORTAL_ESP32_QN8066/ESP32_ACTIVE_PORTAL_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_ACTIVE_PORTAL_QN8066
+
+echo "ESP32C3 Dev Module"
+
+arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_WEB_WIFI_ESP32_QN8066/ESP32_WEB_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_ESP32_WEB_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32c3 ./08_PYTHON_WIFI_ESP32_QN8066/SOCKETS_ESP32_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_SOCKETS_ESP32_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32c3 ./09_WEB_ACTIVE_PORTAL_ESP32_QN8066/ESP32_ACTIVE_PORTAL_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_ACTIVE_PORTAL_QN8066
+
 
 echo "ATTINY85"
 arduino-cli compile --fqbn ATTinyCore:avr:attinyx5:clock=1internal ./06_TX_ATTINY8X/06_TX_ATTINY85_RDS_OLED --output-dir ~/Downloads/hex/ATTIMY85/06_TX_ATTINY85_RDS_OLED

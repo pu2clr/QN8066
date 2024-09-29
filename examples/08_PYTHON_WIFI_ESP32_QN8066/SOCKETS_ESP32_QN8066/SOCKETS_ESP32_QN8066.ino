@@ -30,7 +30,7 @@ This translation enhances clarity and structure for better readability. Let me k
   |                           | VCC                  |      3.3V         |
   |                           | GND                  |      GND          |    
   |                           | SDIO / SDA (pin 2)   |      GPIO21 [1]   |
-  |                           | SCLK (pin 1)         |      GPIO22 [1]]  |
+  |                           | SCLK (pin 1)         |      GPIO22 [1]   |
   | --------------------------| ---------------------| ----------------- |
   | PWM Power Controller [2]  |                      |                   |
   |                           |                      |      GPIO12       | 

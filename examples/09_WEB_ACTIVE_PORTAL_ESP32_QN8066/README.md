@@ -28,6 +28,14 @@ The following image shows a web page provided by the ESP32.
 ![ESP32 Access Point connection 02](./ESP32_ACCESS_POINT_03.PNG)
 
 
+## QN8066 and ESP32C3 Dev Module setup
+
+
+![QN8066 and ESP32C3 Dev Module setup 01](./ESP32_ACCESS_POINT_04.jpg)
+
+
+![QN8066 and ESP32C3 Dev Module setup 02](./ESP32_ACCESS_POINT_05.jpg)
+
 
 
 
