@@ -303,7 +303,6 @@ void handleUpdate() {
 
   int nLen;
 
-
   // Processa e aplica o valor do campo correspondente
   if (field == "frequency") {
     String frequency = server.arg("frequency");
@@ -319,6 +318,7 @@ void handleUpdate() {
   } else if (field == "rds_pty") {
     String rds_pty = server.arg("rds_pty");
     tx.rdsSetPTY(rds_pty.toInt());
+    tx.rdsSendPS(ps);
     Serial.println("RDS PTY updated to: " + String(rds_pty));
   } else if (field == "rds_ps") {
     String rds_ps = server.arg("rds_ps");
@@ -326,6 +326,7 @@ void handleUpdate() {
     strncpy(ps, rds_ps.c_str(), nLen);
     ps[nLen] = '\r';
     ps[nLen+1] = '\0';
+    tx.rdsSendPS(ps);
     Serial.println("RDS PS updated to: " + String(ps));
   } else if (field == "rds_rt") {
     String rds_rt = server.arg("rds_rt");
@@ -333,6 +334,7 @@ void handleUpdate() {
     strncpy(rt, rds_rt.c_str(), nLen);
     rt[nLen] = '\r';
     rt[nLen+1] = '\0';
+    tx.rdsSendRT(rt); 
     Serial.println("RDS RT updated to: " + String(rt));
   } else if (field == "frequency_derivation") {
     String frequency_derivation = server.arg("frequency_derivation");
