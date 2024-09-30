@@ -203,15 +203,11 @@ void handleRoot() {
   htmlPage += "</tr>";
   
   // Linha do RDS DT
-  /*
   htmlPage += "<tr>";
-  htmlPage += "<td>RDS DT:</td>";
-  htmlPage += "<td><input type='text' id='rds_dt' name='rds_dt' maxlength='32'></td>";
-  htmlPage += "<td><button type='button' onclick='sendData(\"rds_dt\")'>Set</button></td>";
+  htmlPage += "<td>RDS DT (yyyy/mm/dd hh:mm):</td>";
+  htmlPage += "<td><input type='text' id='datetime' name='datetime' maxlength='32'></td>";
+  htmlPage += "<td><button type='button' onclick='sendData(\"datetime\")'>Set</button></td>";
   htmlPage += "</tr>";
-  */
-  
-
 
   // Frequency Derivation list
   htmlPage += "<tr>";
@@ -296,7 +292,6 @@ void handleRoot() {
 }
 
 
-
 void handleUpdate() {
   String field = server.argName(0);  // Nome do campo enviado (por exemplo, "frequency", "rds_ps")
   String value = server.arg(0);      // Valor enviado
@@ -360,7 +355,12 @@ void handleUpdate() {
     String soft_clip = server.arg("soft_clip");
     tx.setTxSoftClippingEnable(soft_clip.toInt());   
     Serial.println("Soft Clip updated to: " + String(soft_clip)); 
+  } else if (field == "datetime") {
+    String datetime = server.arg("datetime");
+    setRTC(datetime);  
+    Serial.println("Date Time updated to: " + datetime); 
   }
+
 
   // Enviar resposta ao cliente confirmando o recebimento do campo
   server.send(200, "text/plain", field + " has been updated.");
@@ -425,10 +425,36 @@ void handleFormSubmit() {
   server.send(200, "text/html", response);
 }
 
+
 void startRDS() {
     tx.rdsTxEnable(true);
     delay(200);
     tx.rdsInitTx(0x8,0x1,0x9B, 0, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html) 
+}
+
+// Gets the local Date and Time from ESP32 RTC and send RDS Date Time message
+void rdsSendDateTime() {
+    struct tm timeinfo;
+    getLocalTime(&timeinfo);
+    // Sends RDS local Date and Time
+    tx.rdsSendDateTime(timeinfo.tm_year + 1900, timeinfo.tm_mon + 1, timeinfo.tm_mday, timeinfo.tm_hour, timeinfo.tm_min);  
+}
+
+// Converts String Date format (yyyy/mm/dd hh:mm) to ESP32 RTC and update RDS Date and Time message. 
+void setRTC(String datetime) {
+  struct tm tm;
+  tm.tm_year = datetime.substring(0, 4).toInt() - 1900; // Year 
+  tm.tm_mon = datetime.substring(5, 7).toInt() - 1;     // Month [0, 11]
+  tm.tm_mday = datetime.substring(8, 10).toInt();       // Day [1, 31]
+  tm.tm_hour = datetime.substring(11, 13).toInt();      // Hour [0, 23]
+  tm.tm_min = datetime.substring(14, 16).toInt();       // Minute [0, 59]
+  tm.tm_sec = 0;            
+
+  time_t t = mktime(&tm);
+  struct timeval now = { .tv_sec = t };
+  settimeofday(&now, NULL); // Defines ESP32 RTC time
+  rdsSendDateTime();
+  Serial.println("Internal ESP32 RTC updated!");
 }
 
 void sendRDS() {
@@ -445,18 +471,15 @@ void sendRDS() {
     rdsTimeRT = millis();
   }
 
-
   // Date Time Service refreshing control
   if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
     printLocalTime();
-    struct tm timeinfo;
-    getLocalTime(&timeinfo);
-    // Sends RDS local Date and Time
-    tx.rdsSendDateTime(timeinfo.tm_year + 1900, timeinfo.tm_mon + 1, timeinfo.tm_mday, timeinfo.tm_hour, timeinfo.tm_min);  
+    rdsSendDateTime();
     rdsDateTime = millis();
   }
 
 }
+
 
 void printLocalTime() {
   struct tm timeinfo;
