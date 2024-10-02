@@ -56,6 +56,9 @@ arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./
 arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./98_TESTS/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER_V1 --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4_V1
 arduino-cli compile -b MiniCore:avr:328:bootloader=no_bootloader,LTO=Os_flto  ./98_TESTS/02_ATMEGA328/STANDALONE_ATMEGA328_ENCODER_V2 --output-dir ~/Downloads/hex/MiniCore/03_LCD_16x2_AND_20x4_V2
 
+
+echo "ESP32 -  To know your ESP32 device and detect the port: esptool.py flash_id 
+echo "************************************"
 echo "ESP32 Dev Module"
 echo "ESP32 LCD16x2 AND ENCODER"
 echo "**** **** **** **** **** **** **** ***"

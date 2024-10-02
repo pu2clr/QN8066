@@ -58,6 +58,10 @@
   #define ESP32_I2C_SDA 4     // GPIO4
   #define ESP32_I2C_SCL 5     // GPIO5 
   #warning "ESP32C3 Dev Module"
+#elif ARDUINO_LOLIN_D32 
+  #define ESP32_I2C_SDA 25     // 
+  #define ESP32_I2C_SCL 26     //  
+   #warning "LOLIN D32 / ESP32 WeMos LOLIN32 Lite Dev Module"
 #else 
   #define ESP32_I2C_SDA 21    // GPI21
   #define ESP32_I2C_SCL 22    // GPI22 
