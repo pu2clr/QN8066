@@ -25,7 +25,7 @@ The following image illustrates the connection to the ESP32 from an iPhone.
 
 The following image shows a web page provided by the ESP32.
 
-![ESP32 Access Point connection 02](./ESP32_ACCESS_POINT_03.PNG)
+![ESP32 Access Point connection 03](./ESP32_ACCESS_POINT_03.PNG)
 
 
 ## QN8066 and ESP32C3 Dev Module setup
