@@ -13,7 +13,7 @@
   |                           | D4                        |  PA4          |
   |                           | D5                        |  PA5          |
   |                           | D6                        |  PA6          |
-  |                           | D7                        |  PA7.         |
+  |                           | D7                        |  PA7          |
   |                           | RS                        |  PA1          |
   |                           | E/ENA                     |  PA2          |
   |                           | RW & VSS & K (16)         |  GND          |
