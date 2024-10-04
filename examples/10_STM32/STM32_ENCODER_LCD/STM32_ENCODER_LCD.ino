@@ -21,8 +21,8 @@
   | --------------------------| ------------------------- | --------------|
   | QN8066                    |                           |               | 
   |                           | VCC                       |  3.3V         |
-  |                           | SDIO / SDA (pin 2)        |  B7           |
-  |                           | SCLK (pin 1)              |  B6           |
+  |                           | SDIO / SDA (pin 2)        |  PB7           |
+  |                           | SCLK (pin 1)              |  PB6           |
   | --------------------------| --------------------------| --------------|
   | Encoder                   |                           |               |
   |                           | A                         |  PA9          |
@@ -64,7 +64,8 @@
 
 #define PWM_PA PA8
 
-#define EEPROM_SIZE 512
+#define STM32_I2C_SDA PB7    
+#define STM32_I2C_SCL PB6     
 
 
 #define ENCODER_NO_ACTION 0
@@ -308,6 +309,7 @@ void setup() {
 
   // EEPROM.begin();
 
+  Wire.begin(STM32_I2C_SDA, STM32_I2C_SCL);
 
   // controlling encoder via interrupt
   attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
