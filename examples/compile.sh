@@ -62,16 +62,22 @@ echo "************************************"
 echo "ESP32 Dev Module"
 echo "ESP32 LCD16x2 AND ENCODER"
 echo "**** **** **** **** **** **** **** ***"
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./03_TX_LCD_16x2_AND_20x4/03_ESP32/ESP32_ENCODER --output-dir ~/Downloads/hex/ESP32/DEVM/LCD16x2_encoder
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./07_WEB_WIFI_ESP32_QN8066/ESP32_WEB_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_ESP32_WEB_QN8066
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./08_PYTHON_WIFI_ESP32_QN8066/SOCKETS_ESP32_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_SOCKETS_ESP32_QN8066
-arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./09_WEB_ACTIVE_PORTAL_ESP32_QN8066/ESP32_ACTIVE_PORTAL_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_ACTIVE_PORTAL_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./07_ESP32/01_ESP32_LCD16x2_ENCODER/ESP32_ENCODER --output-dir ~/Downloads/hex/ESP32/DEVM/LCD16x2_encoder
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./07_ESP32/02_ESP32_WEB_WIFI_QN8066/ESP32_WEB_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_ESP32_WEB_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./07_ESP32/03_ESP32_PYTHON_WIFI_QN8066/SOCKETS_ESP32_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_SOCKETS_ESP32_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32-poe-iso ./07_ESP32/04_ESP32_WEB_ACTIVE_PORTAL_QN8066/ESP32_ACTIVE_PORTAL_QN8066 --output-dir ~/Downloads/hex/ESP32/DEVM/ESP32_ACTIVE_PORTAL_QN8066
 
 echo "ESP32C3 Dev Module"
 
-arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_WEB_WIFI_ESP32_QN8066/ESP32_WEB_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_ESP32_WEB_QN8066
-arduino-cli compile --fqbn esp32:esp32:esp32c3 ./08_PYTHON_WIFI_ESP32_QN8066/SOCKETS_ESP32_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_SOCKETS_ESP32_QN8066
-arduino-cli compile --fqbn esp32:esp32:esp32c3 ./09_WEB_ACTIVE_PORTAL_ESP32_QN8066/ESP32_ACTIVE_PORTAL_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_ACTIVE_PORTAL_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_ESP32/02_ESP32_WEB_WIFI_QN8066/ESP32_WEB_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_ESP32_WEB_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_ESP32/03_ESP32_PYTHON_WIFI_QN8066/SOCKETS_ESP32_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_SOCKETS_ESP32_QN8066
+arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_ESP32/04_ESP32_WEB_ACTIVE_PORTAL_QN8066/ESP32_ACTIVE_PORTAL_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_ACTIVE_PORTAL_QN8066
+
+
+# compiles STM32 sketch
+echo "STM32"
+# arduino-cli board -b stm32duino:STM32F1:genericSTM32F103C  details
+arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./08_STM32/STM32_ENCODER_LCD --output-dir ~/Downloads/hex/STM32/F1/STM32_ENCODER_LCD
 
 
 echo "ATTINY85"
