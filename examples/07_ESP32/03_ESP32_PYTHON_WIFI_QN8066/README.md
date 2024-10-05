@@ -21,7 +21,7 @@ Before starting compiling ESP32 based sketches, you must configure your Arduino 
 The following electronic circuit is the same as presented in the web version. The PWM interface should only be used if you intend to utilize this type of interface to control the transmitter's power. It is important to note that the PWM is not related to the QN8066 but rather to the RF amplifier developed with this type of control.
 
 
-![ERSP32 and QN8066 connections](./schematic_esp32_qn8066_setup.png)
+![ERSP32 and QN8066 connections](../01_ESP32_LCD16x2_ENCODER/schematic_esp32_qn8066_encoder_lcd16x2.jpg)
 
 
 

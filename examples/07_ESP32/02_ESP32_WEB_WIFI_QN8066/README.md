@@ -15,7 +15,7 @@ Before starting compiling ESP32 based sketches, you must configure your Arduino 
 
 ## QN8066 and ESP32 WEB SCHEMATIC
 
-![QN8066 and ESP32 WEB SCHEMATIC](./schematic_esp32_qn8066_setup.png)
+![QN8066 and ESP32 WEB SCHEMATIC](../01_ESP32_LCD16x2_ENCODER/schematic_esp32_qn8066_encoder_lcd16x2.jpg)
 
 
 ## QN8066 ESP32 WEB SERVER CONTROL
