@@ -77,7 +77,7 @@ arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_ESP32/04_ESP32_WEB_ACTIVE_PO
 # compiles STM32 sketch
 echo "STM32"
 # arduino-cli board -b stm32duino:STM32F1:genericSTM32F103C  details
-arduino-cli compile --fqbn stm32duino:STM32F1:genericSTM32F103C ./08_STM32/STM32_ENCODER_LCD --output-dir ~/Downloads/hex/STM32/F1/STM32_ENCODER_LCD
+arduino-cli compile --fqbn STMicroelectronics:stm32:GenF1:pnum=BLUEPILL_F103C8 ./08_STM32/STM32_ENCODER_LCD --output-dir ~/Downloads/hex/STM32/F1/STM32_ENCODER_LCD
 
 
 echo "ATTINY85"
