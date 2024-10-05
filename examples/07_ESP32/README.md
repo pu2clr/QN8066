@@ -12,7 +12,7 @@ The ESP32's signal generation capability can also be used to replace the active 
 
 ## ESP32 as a 32.768kHz Oscillator Source
 
-If you don’t have an active crystal available for the QN8066, you can use the ESP32 as an alternative signal generator. In this case, the ESP32 can generate the 32.768kHz signal and feed it directly to the XCLC pin of the QN8066, providing a stable clock source without the need for an external crystal.
+If you don’t have an active crystal available for the QN8066, you can try to use the ESP32 as an alternative signal generator. In this case, the ESP32 can generate the 32.768kHz signal and feed it directly to the XCLC pin of the QN8066, providing a stable clock source without the need for an external crystal.
 
 This method simplifies the setup while maintaining reliable operation.
 
