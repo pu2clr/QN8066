@@ -10,7 +10,6 @@ The ESP32's signal generation capability can also be used to replace the active 
 [Installing the ESP32 Board in Arduino IDE (Windows, Mac OS X, Linux)](https://randomnerdtutorials.com/installing-the-esp32-board-in-arduino-ide-windows-instructions/).
 
 
-
 ## ESP32 as a 32.768kHz Oscillator Source
 
 If you don’t have an active crystal available for the QN8066, you can use the ESP32 as an alternative signal generator. In this case, the ESP32 can generate the 32.768kHz signal and feed it directly to the XCLC pin of the QN8066, providing a stable clock source without the need for an external crystal.
@@ -43,9 +42,8 @@ void loop() {
 }
 ```
 
-### Explanation:
 1. **`ledcSetup`**: Configures the PWM channel with a 32.768 Hz frequency and 8-bit resolution.
 2. **`ledcAttachPin`**: Attaches the configured channel to pin 5 (this can be any available GPIO pin).
 3. **`ledcWrite`**: Starts generating the PWM signal with a 50% duty cycle (value 128 in 8-bit resolution).
 
-This code will generate a 32.768 kHz signal on the defined pin. Adjust the pin and resolution as needed.
+This code will generate a 32.768 kHz signal on the defined pin. Adjust the pin and resolution as needed. You can adapt it to ESP32 and QN8066 application. 
