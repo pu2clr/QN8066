@@ -17,7 +17,11 @@ It seems that there are several configuration options for STM32 with the Arduino
 
 The prototype assembled on a breadboard illustrates the configuration of the STM32 with the QN8066, a 16x2 LCD adapted to work with 3.3V, and a rotary encoder with a push button.
 
-![STM32, LCD16x2, Encoder and QN8066 prototype](./prototype_stm32_encoder_lcd.jpg)
+![STM32, LCD16x2, Encoder and QN8066 prototype 1](./prototype_stm32_encoder_lcd.jpg)
+
+
+![STM32, LCD16x2, Encoder and QN8066 prototype 2](./prototype_stm32_encoder_lcd_2.jpg)
+
 
 
 ## Video
