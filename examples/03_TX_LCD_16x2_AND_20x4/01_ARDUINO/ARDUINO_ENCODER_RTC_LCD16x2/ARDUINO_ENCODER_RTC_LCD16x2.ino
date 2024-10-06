@@ -13,6 +13,22 @@
 
   This sketch uses the DS1302 RTC (Real Time Clock) to provide RDS Date and Time service.
 
+  Features:
+  1) Frequency selection;
+  2) Power selection via PWM (useful if you have a PWM-controlled RF amplifier);
+  3) Stereo or Mono selection;
+  4) Pre-Emphasis selection;
+  5) RDS service (PTY, PS, RT, and Date Time);
+  6) Input impedance selection;
+  7) Soft Clipping;
+  8) Pilot Gain selection;
+  9) Frequency Deviation selection;
+  10) Buffer Gain selection;
+  11) Real-time Status display;
+  12) On-Air duration display;
+  13) Real-Time Clock support for RDS services.
+
+
   ATTENTION: TO RESET the EEPROM: Turn your receiver on with the MENU push button pressed.
 
   Read more at https://pu2clr.github.io/QN8066/

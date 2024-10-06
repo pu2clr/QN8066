@@ -1,5 +1,20 @@
 /*
-  ESP32 Dev Modeule version.
+  STM32F103
+
+  Features:
+  1) Frequency selection;
+  2) Power selection via PWM (useful if you have a PWM-controlled RF amplifier);
+  3) Stereo or Mono selection;
+  4) Pre-Emphasis selection;
+  5) RDS service (PTY, PS, RT, and Date Time);
+  6) Input impedance selection;
+  7) Soft Clipping;
+  8) Pilot Gain selection;
+  9) Frequency Deviation selection;
+  10) Buffer Gain selection;
+  11) Real-time Status display;
+  12) On-Air duration display;
+  13) Real-Time Clock support for RDS services.
 
   TO RESET the EEPROM: Turn your receiver on with the encoder push button pressed.
 
@@ -46,6 +61,7 @@
 #include <QN8066.h>
 #include <EEPROM.h>
 #include <LiquidCrystal.h>
+#include <STM32RTC.h> // Install 'STM32duino RTC' by STMicroeletronics  
 
 #include "Rotary.h"
 
@@ -288,15 +304,25 @@ uint8_t idxRdsRT = 0;
 
 #define RDS_PS_REFRESH_TIME 7000
 #define RDS_RT_REFRESH_TIME 17000
+#define RDS_DT_REFRESH_TIME 60000 // Date and Time Service
 
 long rdsTimePS = millis();
 long rdsTimeRT = millis();
+long rdsDateTime = millis();
 
+// *** DEBUG
+long  timeInTheAr = millis();
+long  countI2CError = 0;  
+long  countTime = 0;
+// ****
 
 // TX board interface
 QN8066 tx;
 LiquidCrystal lcd(LCD_RS, LCD_E, LCD_D4, LCD_D5, LCD_D6, LCD_D7);
 Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
+
+/* Get the rtc object */
+STM32RTC& rtc = STM32RTC::getInstance();
 
 void setup() {
 
@@ -307,7 +333,11 @@ void setup() {
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);  
 
-  // EEPROM.begin();
+  // Sets the current local Date and Time. - Change it for your current local time
+  // rtc.setClockSource(STM32RTC::LSE_CLOCK);
+  rtc.begin(); // initialize RTC 24H format
+  rtc.setTime(8, 35, 0); // Hour, Minute, Seconds
+  rtc.setDate(0, 6, 10, 24); // Week Day, Day, Month, Year
 
   Wire.begin(STM32_I2C_SDA, STM32_I2C_SCL);
 
@@ -536,14 +566,34 @@ void showStatus(uint8_t page) {
     lcd.setCursor(0, 1);
     sprintf(str, "PIL.:%s", keyValue[KEY_GAIN_PILOT].value[keyValue[KEY_GAIN_PILOT].key].desc);
     lcd.print(str);
-  } else {
-    sprintf(str, "%s PTY:%2d", tx.rdsGetPS(), tx.rdsGetPTY());
+  } else if (page == 3) {
+    sprintf(str, "PS:%.6s PTY:%2d", tx.rdsGetPS() , tx.rdsGetPTY());
     lcd.setCursor(0, 0);
     lcd.print(str);
     lcd.setCursor(0, 1);
-    sprintf(str, "RDS ERR: %d", tx.rdsGetError());
+    sprintf(str, "RT:%.14s", rdsRTmsg[idxRdsRT] );
     lcd.print(str);
   }
+  else if ( page == 4) {
+    lcd.setCursor(0, 0);      
+    lcd.print("RDS DT Service");
+    sprintf(str,"%2.2d/%2.2d/%2.2d %2.2d:%2.2d",rtc.getYear(),rtc.getMonth(),rtc.getDay(),rtc.getHours(), rtc.getMinutes());
+    lcd.setCursor(0, 1);
+    lcd.print(str);
+  } else {
+    lcd.setCursor(0, 0);      
+    lcd.print("Time on the Air");
+    sprintf(str, "%ld min.", countTime);
+    lcd.setCursor(0, 1);
+    lcd.print(str);
+  } 
+
+  // DEBUG - Monitoring time and I2C error 
+  if ( (millis() - timeInTheAr) > 60000) { 
+    countTime++;
+    timeInTheAr = millis();
+  }
+
   lcd.display();
 }
 // Shows the given parameter to be updated
@@ -753,6 +803,12 @@ void sendRDS() {
     idxRdsRT++;
     rdsTimeRT = millis();
   }
+
+  // Date Time Service refreshing control
+  if ((millis() - rdsDateTime) > RDS_DT_REFRESH_TIME) {
+    tx.rdsSendDateTime( rtc.getYear() + 2000, rtc.getMonth(), rtc.getDay(), rtc.getHours(), rtc.getMinutes(), 0);
+    rdsDateTime = millis();
+  }  
 }
 
 /*
@@ -808,11 +864,11 @@ void loop() {
     if (keyValue[KEY_RDS].value[keyValue[KEY_RDS].key].idx == 1) tx.rdsTxEnable(false);
     if (key == ENCODER_LEFT) {  // Down Pressed
       lcdPage--;
-      if (lcdPage < 0) lcdPage = 3;
+      if (lcdPage < 0) lcdPage = 5;
       showStatus(lcdPage);
     } else if (key == ENCODER_RIGHT) {  // Up Pressed
       lcdPage++;
-      if (lcdPage > 3) lcdPage = 0;
+      if (lcdPage > 5) lcdPage = 0;
       showStatus(lcdPage);
     } else if ( key == BT_MENU_PRESSED  ) {  // Menu Pressed
       menuLevel = 1;
