@@ -333,11 +333,11 @@ void setup() {
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);  
 
   // Sets the current local Date and Time. - Change it for your current local time
-  // rtc.setClockSource(STM32RTC::LSE_CLOCK);
+  rtc.setClockSource(STM32RTC::LSE_CLOCK);
   rtc.begin(); // initialize RTC 24H format
 
   // Comment out the next two lines if you have already set the clock and are using a battery connected to the VBat pin of the STM32.
-  rtc.setTime(8, 35, 0); // Sets Hour, Minute, Seconds
+  rtc.setTime(17, 10, 0); // Sets Hour, Minute, Seconds
   rtc.setDate(0, 6, 10, 24); // Sets Week Day, Day, Month, Year
 
   Wire.begin(STM32_I2C_SDA, STM32_I2C_SCL);
