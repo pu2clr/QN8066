@@ -24,6 +24,7 @@ The prototype assembled on a breadboard illustrates the configuration of the STM
 
 
 
-## Video
+## Videos
 
-* [STM32 microcontroller and the QN8066 FM Transmitter](https://youtu.be/Y80ud6KVOTU?si=fTDgtkt9-0fRZk56)
+* [STM32 microcontroller and the QN8066 FM Transmitter - PART 1](https://youtu.be/Y80ud6KVOTU?si=fTDgtkt9-0fRZk56)
+* [STM32 microcontroller and the QN8066 FM Transmitter - PART 2](https://youtu.be/-8GvyT7Ssvs?si=gIT9wiMmJlJ7DfpM)
