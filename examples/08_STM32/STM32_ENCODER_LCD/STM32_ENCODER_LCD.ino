@@ -20,9 +20,9 @@
 
   Read more on https://pu2clr.github.io/QN8066/
 
-  Wire up ESP32 Dev Module, QN8066 and LCD16x02 or LCD16x04
+  Wire up STM32F103 Dev Module, QN8066 and LCD16x02 or LCD16x04
 
-  | Device name               | Device Pin / Description  |  ESP32   Pin  |
+  | Device name               | Device Pin / Description  |  STM32   Pin  |
   | --------------------------| --------------------      | ------------  |
   |    LCD 16x2 or 20x4       |                           |               |
   |                           | D4                        |  PA4          |
@@ -47,12 +47,11 @@
   |                           |                           |               | 
   | 
 
-  1. It can change if you are not using the ESP32 Dev Module. Check you ESP32 board pinout 
 
   Prototype documentation: https://pu2clr.github.io/QN8066/
   PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
 
-  ESP32 Internal RTC: https://github.com/fbiego/ESP32Time
+  STM Internal RTC: https://github.com/stm32duino/STM32RTC/tree/main  
 
   By PU2CLR, Ricardo,  Feb  2024.
 */
@@ -336,8 +335,10 @@ void setup() {
   // Sets the current local Date and Time. - Change it for your current local time
   // rtc.setClockSource(STM32RTC::LSE_CLOCK);
   rtc.begin(); // initialize RTC 24H format
-  rtc.setTime(8, 35, 0); // Hour, Minute, Seconds
-  rtc.setDate(0, 6, 10, 24); // Week Day, Day, Month, Year
+
+  // Comment out the next two lines if you have already set the clock and are using a battery connected to the VBat pin of the STM32.
+  rtc.setTime(8, 35, 0); // Sets Hour, Minute, Seconds
+  rtc.setDate(0, 6, 10, 24); // Sets Week Day, Day, Month, Year
 
   Wire.begin(STM32_I2C_SDA, STM32_I2C_SCL);
 
