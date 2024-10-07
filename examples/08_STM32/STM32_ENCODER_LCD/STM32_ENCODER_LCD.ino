@@ -335,13 +335,21 @@ void setup() {
   pinMode(ENCODER_PIN_A, INPUT_PULLUP);
   pinMode(ENCODER_PIN_B, INPUT_PULLUP);  
 
+  // START - STM32 RTC Setup  
   // Sets the current local Date and Time. - Change it for your current local time
   rtc.setClockSource(STM32RTC::LSE_CLOCK); // Using external Crystal (32.768 kHz)
   rtc.begin(); // initialize RTC 24H format
-
-  // Comment out the next two lines if you have already set the clock and are using a battery connected to the VBat pin of the STM32.
-  // rtc.setTime(23, 19, 0); // Sets Hour, Minute, Seconds
-  // rtc.setDate(0, 6, 10, 24); // Sets Week Day, Day, Month, Year
+  // To set the internal RTC clock on the STM32, ensure that a battery is connected to the VBAT pin to 
+  // keep the RTC running even when the main power is off. Without this battery, the RTC will lose its 
+  // time settings when the STM32 is powered down.
+  // You can use the provided sketch to set the correct time by uploading the compiled code to the STM32. 
+  // Once the clock is set correctly, you should comment out the following two lines in the sketch, 
+  // recompile the code, and upload it again. This step prevents the clock from being reset each time the 
+  // STM32 is restarted. By following these steps, the RTC will retain the correct time the next time you
+  //  power on the STM32.
+  rtc.setTime(23, 19, 0); // Set here the current Hour, Minute and Seconds
+  rtc.setDate(0, 6, 10, 24); // Set here the current Week Day, Day, Month and Year
+  // END - STM32 RTC Setup
 
   Wire.begin(STM32_I2C_SDA, STM32_I2C_SCL);
 
