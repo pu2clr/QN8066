@@ -347,8 +347,8 @@ void setup() {
   // recompile the code, and upload it again. This step prevents the clock from being reset each time the 
   // STM32 is restarted. By following these steps, the RTC will retain the correct time the next time you
   //  power on the STM32.
-  rtc.setTime(23, 19, 0); // Set here the current Hour, Minute and Seconds
-  rtc.setDate(0, 6, 10, 24); // Set here the current Week Day, Day, Month and Year
+  // rtc.setTime(15, 20, 0); // Set here the current Hour, Minute and Seconds
+  // rtc.setDate(1, 7, 10, 24); // Set here the current Week Day, Day, Month and Year
   // END - STM32 RTC Setup
 
   Wire.begin(STM32_I2C_SDA, STM32_I2C_SCL);

@@ -18,8 +18,8 @@ void setup() {
   rtc.setClockSource(STM32RTC::LSE_CLOCK); // Using external Crystal (32.768 kHz)
   rtc.begin(); // initialize RTC 24H format
 
-  rtc.setTime(23, 19, 0); // Sets Hour, Minute, Seconds
-  rtc.setDate(0, 6, 10, 24); // Sets Week Day, Day, Month, Year    
+  rtc.setTime(15, 14, 0); // Sets Hour, Minute, Seconds
+  rtc.setDate(0, 7, 10, 24); // Sets Week Day, Day, Month, Year    
 }
 
 void loop() {
