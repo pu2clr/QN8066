@@ -94,6 +94,9 @@
 #define STATUS_REFRESH_TIME 5000
 #define STOP_RDS_TIME 10000
 
+#define MAX_LCD_COL 16
+#define MAX_LCD_LIN 2
+
 volatile int encoderCount = 0;
 volatile int menuProcessKey = 0;
 
@@ -348,7 +351,7 @@ void setup() {
   attachInterrupt(digitalPinToInterrupt(BT_MENU), menuProcess, CHANGE);
 
   tx.setI2CFastMode();
-  lcd.begin(16, 2);
+  lcd.begin(MAX_LCD_COL, MAX_LCD_LIN);
 
   // If you want to reset the eeprom, keep the BT_MENU button pressed during statup
   if (digitalRead(BT_MENU) == LOW) {
@@ -597,8 +600,16 @@ void showStatus(uint8_t page) {
 
   lcd.display();
 }
+
+void lcdClearLine(uint8_t line) {
+  lcd.setCursor(0, line);
+  for (uint8_t i = 0; i < MAX_LCD_COL; i++) 
+    lcd.print(' ');
+}
+
 // Shows the given parameter to be updated
 void showParameter(char *desc) {
+  lcdClearLine(1);
   lcd.setCursor(0, 1);
   lcd.print(">");
   lcd.print(desc);
