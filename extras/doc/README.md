@@ -260,5 +260,131 @@ You can also simulate these parameters using an [online inductor calculator](htt
 
 The circuit below is designed around the 2SC9018 transistor and can be used to enhance the FM broadcasting performance of the QN8066. It is straightforward, utilizing only a single 2SC9018 transistor and a few passive components.
 
+Here I attempt to implement a high-pass filter (above 64 MHz). A first-order LC high-pass filter can be implemented using a series inductor and a parallel capacitor at the output.
 
-![Small RF Amplifier for QN8066](./SMALL_RF_AMP.png)
+Capacitor C1: Eliminates the 1.8V BIAS from the RF output of the QN8066, allowing only the RF signal to pass.
+
+
+![Formula 01](./F1.png)
+
+
+![Formula 02](./F2.png)
+
+
+where 
+
+
+![Formula 03](./F3.png)
+
+
+#### L = 62nF and C = 62pF  
+
+fc =~ 82MHz 
+
+#### L = 100nF and C = 100pF  
+
+fc =~ 50MHz
+
+
+![Small RF Amplifier for QN8066](./small_rf_amp.jpg)
+
+
+
+## With band-pass filter from 64MHz to 109MHz
+
+
+![Small RF Amplifier for QN8066 with band-pass filter](./small_rf_amp_bpf.jpg)
+
+
+1. C1 (100 pF): Acts as a coupling capacitor, eliminating the 1.8V BIAS and allowing the RF signal to pass.
+2. L1 (62 nH): Forms part of the high-pass section, blocking frequencies below 64 MHz.
+3. C2 (100 pF): Works with L1 to create the high-pass filter.
+4. C3 (33 pF): Forms part of the low-pass section, blocking frequencies above 109 MHz.
+5. L2 (6.5 nH): Works with C3 to create the low-pass filter.
+
+
+
+
+
+The formula for a **band-pass filter** involves combining the principles of a **high-pass filter** and a **low-pass filter**. The filter allows frequencies within a specified range to pass and attenuates frequencies outside that range.
+
+### Band-Pass Filter Design
+
+For a simple **LC band-pass filter**, you need to define two cutoff frequencies:
+- **\( f_L \)**: The **lower cutoff frequency** (from the high-pass section).
+- **\( f_H \)**: The **upper cutoff frequency** (from the low-pass section).
+
+The band-pass filter consists of two parts:
+1. **High-pass section**: A capacitor and an inductor that block low frequencies.
+2. **Low-pass section**: A capacitor and an inductor that block high frequencies.
+
+### Formula for the Cutoff Frequencies:
+
+1. **High-Pass Filter Cutoff Frequency** \( f_L \):
+   The cutoff frequency for the high-pass section is determined by the series **inductor** \( L \) and the parallel **capacitor** \( C \):
+
+\[
+f_L = \frac{1}{2\pi\sqrt{L_1 \cdot C_2}}
+\]
+
+Where:
+- \( f_L \) = lower cutoff frequency (in Hz),
+- \( L_1 \) = value of the inductor in the high-pass section (in Henries),
+- \( C_2 \) = value of the capacitor in the high-pass section (in Farads).
+
+2. **Low-Pass Filter Cutoff Frequency** \( f_H \):
+   The cutoff frequency for the low-pass section is determined by the series **capacitor** \( C \) and the parallel **inductor** \( L \):
+
+\[
+f_H = \frac{1}{2\pi\sqrt{L_2 \cdot C_3}}
+\]
+
+Where:
+- \( f_H \) = upper cutoff frequency (in Hz),
+- \( L_2 \) = value of the inductor in the low-pass section (in Henries),
+- \( C_3 \) = value of the capacitor in the low-pass section (in Farads).
+
+### Example Using the Band-Pass Formula:
+For a band-pass filter with a lower cutoff frequency of **64 MHz** and an upper cutoff frequency of **109 MHz**, the formulas become:
+
+#### High-Pass Section:
+For a lower cutoff frequency \( f_L = 64 \, \text{MHz} \), and assuming \( L_1 = 62 \, \text{nH} \) (inductor):
+
+\[
+f_L = \frac{1}{2\pi\sqrt{62 \times 10^{-9} \cdot C_2}}
+\]
+
+Solving for \( C_2 \), we get:
+
+\[
+C_2 = \frac{1}{(2\pi \cdot 64 \times 10^6)^2 \cdot 62 \times 10^{-9}} \approx 62 \, \text{pF}
+\]
+
+#### Low-Pass Section:
+For an upper cutoff frequency \( f_H = 109 \, \text{MHz} \), and assuming \( C_3 = 33 \, \text{pF} \):
+
+\[
+f_H = \frac{1}{2\pi\sqrt{L_2 \cdot 33 \times 10^{-12}}}
+\]
+
+Solving for \( L_2 \), we get:
+
+\[
+L_2 = \frac{1}{(2\pi \cdot 109 \times 10^6)^2 \cdot 33 \times 10^{-12}} \approx 6.5 \, \text{nH}
+\]
+
+### Summary of the Formulas:
+- For the **high-pass** section: 
+
+\[
+f_L = \frac{1}{2\pi\sqrt{L_1 \cdot C_2}}
+\]
+
+- For the **low-pass** section: 
+
+\[
+f_H = \frac{1}{2\pi\sqrt{L_2 \cdot C_3}}
+\]
+
+By combining these two sections, you create a **band-pass filter** that allows frequencies between \( f_L \) and \( f_H \) to pass.
+
