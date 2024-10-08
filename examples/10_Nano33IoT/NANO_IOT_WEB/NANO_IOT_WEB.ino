@@ -1,8 +1,8 @@
 #include <WiFiNINA.h> // Install from https://www.arduino.cc/reference/en/libraries/wifinina/
 
 // Definição da rede Wi-Fi
-char ssid[] = "APRC";       // Coloque o nome da sua rede Wi-Fi
-char pass[] = "Ap69Rc642023";      // Coloque a senha da sua rede Wi-Fi
+char ssid[] = "PU2CLR";       // Coloque o nome da sua rede Wi-Fi
+char pass[] = "pu2clr123456";      // Coloque a senha da sua rede Wi-Fi
 
 
 uint16_t currentFrequency = 1069; // 106.9 MHz
@@ -17,36 +17,34 @@ WiFiServer server(80);          // Cria um servidor na porta 80
 WiFiClient client; 
 
 void setup() {
-  // Inicializa a comunicação serial
+  
   Serial.begin(9600);
+  Serial.println("Starting WiFi!");
 
   // Verifica o status do módulo Wi-Fi
   if (WiFi.status() == WL_NO_MODULE) {
-    Serial.println("Falha ao detectar o módulo Wi-Fi!");
+    Serial.println("WiFi Error!");
     while (true);
   }
 
-  // Conectando à rede Wi-Fi
   while (status != WL_CONNECTED) {
-    Serial.print("Tentando se conectar a: ");
+    Serial.print("Connecting to: ");
     Serial.println(ssid);
     status = WiFi.begin(ssid, pass);
-
-    delay(10000);  // Aguarde um pouco para tentar reconectar
+    delay(5000); 
   }
 
-  // Inicia o servidor
+  // Starting Server
   server.begin();
-  Serial.println("Servidor iniciado");
+  Serial.println("Server started");
   
-  // Mostra o IP do dispositivo
-  printWiFiStatus();
+  Serial.print("IP do Arduino: ");
+  Serial.println(WiFi.localIP());
+  
 }
 
 void handleRoot() {
   String htmlPage = "<html><head>";
- 
-  // Adicionando estilo CSS para centralizar o formulário e ajustar a tabela
   
   htmlPage += "<style>";
   htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;"; // Fundo verde Amazonas (#006400) e texto amarelo
@@ -139,16 +137,13 @@ void handleRoot() {
   htmlPage += "</tr>";
   
   // Linha do RDS DT
-  /*
+
   htmlPage += "<tr>";
   htmlPage += "<td>RDS DT:</td>";
   htmlPage += "<td><input type='text' id='rds_dt' name='rds_dt' maxlength='32'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_dt\")'>Set</button></td>";
   htmlPage += "</tr>";
-  */
   
-
-
   // Frequency Derivation list
   htmlPage += "<tr>";
   htmlPage += "<td>Frequency Derivation:</td>";
@@ -224,10 +219,7 @@ void handleRoot() {
   htmlPage += "}";
   htmlPage += "</script>";
   
-  // Fechar corpo e HTML
   htmlPage += "</body></html>";
-
-  // Enviar a página HTML ao cliente
   client.println(htmlPage);
 }
 
@@ -237,7 +229,7 @@ void loop() {
   // Verifica se há clientes conectados
   client = server.available();
   if (client) {
-    Serial.println("Novo cliente conectado");
+    Serial.println("Connected");
     
     // Aguarda até o cliente enviar dados
     while (client.connected()) {
@@ -245,29 +237,14 @@ void loop() {
         String request = client.readStringUntil('\r');
         Serial.println(request);
         client.flush();
-
-        // Responde com uma página HTML simples
-        // client.println("HTTP/1.1 200 OK");
-        // client.println("Content-type:text/html");
-        // client.println();
-        // client.println("<html><body><h1>Servidor HTTP Arduino Nano 33 IoT</h1>");
-        // client.println("<p>Conectado com sucesso!</p>");
-        // client.println("</body></html>");
-        // client.println();
         handleRoot();
         break;
       }
     }
     
-    // Fecha a conexão com o cliente
     client.stop();
-    Serial.println("Cliente desconectado");
+    Serial.println("Connection Closed");
   }
 }
 
-// Função auxiliar para mostrar o status da rede Wi-Fi
-void printWiFiStatus() {
-  // Mostra o IP do dispositivo
-  Serial.print("IP do Arduino: ");
-  Serial.println(WiFi.localIP());
-}
+
