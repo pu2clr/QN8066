@@ -809,7 +809,7 @@
     (property "Reference" "L2" (at 66.04 73.66 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "6.2nF" (at 66.04 76.2 0)
+    (property "Value" "6.5nF" (at 66.04 76.2 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
     (property "Footprint" "" (at 64.77 74.93 0)
