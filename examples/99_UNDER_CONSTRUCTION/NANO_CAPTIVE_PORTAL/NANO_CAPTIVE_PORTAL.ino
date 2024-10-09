@@ -86,7 +86,7 @@ void doFormParameters() {
   htmlPage += "</head><body>";
 
   htmlPage += "<h1>PU2CLR QN8066 Arduino Library</h1>";
-  htmlPage += "<h2>NANO IoT - FM Transmitter Controller</h2>";
+  htmlPage += "<h2>Arduino NANO 33 IoT - FM Transmitter Controller</h2>";
 
   // Form with Ajax and traditional solution
   htmlPage += "<form method='POST' action='/setParameters'>";
@@ -246,6 +246,47 @@ void doFormParameters() {
 
   htmlPage += "</body></html>";
   client.println(htmlPage);
+  client.println();
+}
+
+// Function to process POST requests
+void processPostRequest() {
+  // Read the body of the POST request (the form data)
+  String postBody = client.readString();
+  Serial.println("Received POST data:");
+  Serial.println(postBody);
+
+  // Parse and process the parameters sent via POST
+  if (postBody.indexOf("frequency=") >= 0) {
+    String freqStr = getValue(postBody, "frequency");
+    currentFrequency = freqStr.toInt();
+    Serial.print("Frequency set to: ");
+    Serial.println(currentFrequency);
+  }
+
+  if (postBody.indexOf("power=") >= 0) {
+    String powerStr = getValue(postBody, "power");
+    currentPower = powerStr.toInt();
+    Serial.print("Power set to: ");
+    Serial.println(currentPower);
+  }
+
+  // Respond to the client with a success message
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-type:text/plain");
+  client.println();
+  client.println("Parameters updated successfully!");
+  client.println();
+}
+
+// Function to extract value of a specific parameter from the POST body
+String getValue(String data, String field) {
+  int startIndex = data.indexOf(field + "=") + field.length() + 1;
+  int endIndex = data.indexOf('&', startIndex);
+  if (endIndex == -1) {
+    endIndex = data.length();
+  }
+  return data.substring(startIndex, endIndex);
 }
 
 
@@ -258,11 +299,20 @@ void loop() {
     // Wait for the client's HTTP request
     String request = client.readStringUntil('\r');
     Serial.println(request);
+    client.readStringUntil('\n');  // Skip the remaining headers
 
-    doFormParameters();
+    // Check if it's a POST request
+    if (request.indexOf("POST") >= 0) {
+      processPostRequest();
+    } else {
+      // For other requests (like GET), serve the HTML form
+      Serial.println("Ok");
+      doFormParameters();
+    }
 
     // Close the connection with the client
     client.stop();
     Serial.println("Client disconnected");
   }
 }
+
