@@ -236,7 +236,7 @@ void doFormParameters() {
   htmlPage += "function sendData(fieldId) {";
   htmlPage += "  var value = document.getElementById(fieldId).value;";
   htmlPage += "  var xhr = new XMLHttpRequest();";
-  htmlPage += "  xhr.open('POST', '/update', true);";
+  htmlPage += "  xhr.open('POST', '/setParameters', true);";
   htmlPage += "  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');";
   htmlPage += "  xhr.onreadystatechange = function() {";
   htmlPage += "    if (xhr.readyState == 4 && xhr.status == 200) {";
@@ -293,6 +293,16 @@ String getValue(String data, String field) {
 }
 
 
+void doNothing() {
+
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-type:text/plain");
+  client.println();
+  client.println("Nothing!");
+  client.println();
+
+}
+
 void loop() {
   // Check if there are any connected clients
   client = server.available();
@@ -304,13 +314,18 @@ void loop() {
     Serial.println(request);
     client.readStringUntil('\n');  // Skip the remaining headers
 
-    // Check if it's a POST request
-    if (request.indexOf("POST") >= 0) {
-      processPostRequest();
-    } else {
-      // For other requests (like GET), serve the HTML form
-      Serial.println("Ok");
-      doFormParameters();
+    // Process the request manually based on URL
+    if (request.indexOf("GET / ") >= 0) {
+      doFormParameters();  // Route for the root page
+    }
+    else if (request.indexOf("POST /setParameters") >= 0) {
+      doFormParameters();  // Route for handling form submission
+    }
+    else if (request.indexOf("POST /update") >= 0) {
+      processPostRequest();  // Route for handling AJAX updates
+    }
+    else {
+      doNothing();  // Handle 404 - Not Found
     }
 
     // Close the connection with the client
@@ -318,4 +333,5 @@ void loop() {
     Serial.println("Client disconnected");
   }
 }
+
 
