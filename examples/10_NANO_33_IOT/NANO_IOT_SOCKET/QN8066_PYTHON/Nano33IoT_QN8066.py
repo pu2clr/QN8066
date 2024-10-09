@@ -21,7 +21,7 @@ from datetime import datetime
 def send_to_NANO33(field, value):
     try:
         # The IP information can be get usind the Arduino IDE (Serial Monitor) 
-        NANO33_ip = '10.0.0.143'  # NANO33 IP - Check it in the Arduino IDE Serial Monitor (console)
+        NANO33_ip = '10.0.0.94'  # NANO33 IP - Check it in the Arduino IDE Serial Monitor (console)
         NANO33_port = 8066  # Defined in the ESP 32 Arduino Sketch 
         message = f"{field}={value}\n"
         
