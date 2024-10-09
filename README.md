@@ -90,16 +90,16 @@ Finally, if you're already using libraries to handle the I2C bus (Wire.h), TFT o
 
 This library uses the I²C communication protocol and implements most of the functions offered by QN8066 IC from QUINTIC. This library also has primitive functions that make it easier for you to implement commands that may not have been implemented yet. As said before, this library is constantly improving. Check the API documentation before implementing a new function. It is likely that your function is already implemented. [See the API documentation for this library](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html). 
 
-1. Open Source. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://github.com/pu2clr/QN8066/blob/main/LICENSE) to know more.   
+1. **Open Source**. It is free. You can use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software. See [MIT License](https://github.com/pu2clr/QN8066/blob/main/LICENSE) to know more.   
 2. Built based on QN8066 Datasheet
 3. C++ Language and Object-oriented programming. You can easily extend the QN8066 class by adding more functionalities. 
-4. API Documentation. All functions implemented in this library have documentation that can be checked in the source code or at this [link](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+4. **API Documentation**. All functions implemented in this library have documentation that can be checked in the source code or at this [link](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
 4. Available on Arduino IDE (via Manage Libraries). Easy to install and use. 
-5. Cross-platform. You can compile and run this library on most of boards supported by the Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, ARM Cortex, STM32, Arduino DUE, ESP32 and more). 
+5. **Cross-platform**. You can compile and run this library on most of boards supported by the Arduino IDE (Examples: ATtiny85, boards based on ATmega328 and ATmega-32u4, ATmega2560, ARM Cortex, STM32, Arduino DUE, ESP32 and more). 
 6. Simplifies projects based on QN8066
 7. [A lot of examples to guide the user](https://github.com/pu2clr/QN8066/tree/master/examples)
 8. RDS support
-9. Clock reference selection 
+9. **Clock reference selection** - The QN8066 has a pin (XCLC) that should be used to inject a signal that will be utilized by the IC as a reference clock. This signal can be 32.768 kHz or a multiple of this value. This library allows you to adapt your project to the active crystal you have available. See below for more details about it. 
 
 
 
