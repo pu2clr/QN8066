@@ -1,8 +1,8 @@
-# This program uses a socket connection to communicate with the ESP32 (running the 
-# SOCKETS_ESP32_QN8066.ino sketch) in order to control the QN8066-based transmitter.
+# This program uses a socket connection to communicate with the NANO 33 IoT (running the 
+# QN8066_CONTROLLER.ino sketch) in order to control the QN8066-based transmitter.
 # The socket connection uses the IP provided by your WiFi network's DHCP and obtained 
-# by the ESP32. Check the IP in the Arduino IDE console (Serial Monitor). 
-# The port numer used here is 8066 (SOCKETS_ESP32_QN8066.ino). You can change it if you need it.
+# by the NANO 33 IoT. Check the IP in the Arduino IDE console (Serial Monitor). 
+# The port numer used here is 8066 (QN8066_CONTROLLER.ino). You can change it if you need it.
 # 
 # RDS message updates such as PTY, PS, RT, and Time are not executed immediately. 
 # This may depend on the receiver's update timing as well as the distribution of 
@@ -16,25 +16,25 @@ from tkinter import ttk
 import socket
 from datetime import datetime 
 
-# Function to send data via socket to the ESP32.
+# Function to send data via socket to the NANO33.
 # Change the IP below to the address indicated in the Arduino sketch linked to this application.
-def send_to_esp32(field, value):
+def send_to_NANO33(field, value):
     try:
         # The IP information can be get usind the Arduino IDE (Serial Monitor) 
-        esp32_ip = '10.0.0.143'  # ESP32 IP - Check it in the Arduino IDE Serial Monitor (console)
-        esp32_port = 8066  # Defined in the ESP 32 Arduino Sketch 
+        NANO33_ip = '10.0.0.143'  # NANO33 IP - Check it in the Arduino IDE Serial Monitor (console)
+        NANO33_port = 8066  # Defined in the ESP 32 Arduino Sketch 
         message = f"{field}={value}\n"
         
-        # Connects to the ESP32 and sends the message.
+        # Connects to the NANO33 and sends the message.
         with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-            s.connect((esp32_ip, esp32_port))
+            s.connect((NANO33_ip, NANO33_port))
             s.sendall(message.encode())
             response = s.recv(1024)
-            print(f'Received from ESP32 ({field}):', response.decode())
+            print(f'Received from NANO33 ({field}):', response.decode())
     except socket.timeout:
-        print(f"Connection to ESP32 timed out. The device may be offline.")
+        print(f"Connection to NANO33 timed out. The device may be offline.")
     except ConnectionRefusedError:
-        print(f"Connection to ESP32 was refused. Is the device online?")
+        print(f"Connection to NANO33 was refused. Is the device online?")
     except socket.error as e:
         print(f"Socket error occurred: {e}")
     except Exception as e:
@@ -44,64 +44,64 @@ def send_to_esp32(field, value):
 
 def send_frequency():
     frequency = frequency_var.get()
-    send_to_esp32("frequency", frequency)
+    send_to_NANO33("frequency", frequency)
 
 def send_rds_pty():
     selected_description = rds_pty_combobox.get()
     selected_value = pty_map[selected_description]
     print(f"Program Type (PTY): {selected_value} ({selected_description})")
-    send_to_esp32("rds_pty", selected_value)
+    send_to_NANO33("rds_pty", selected_value)
 
 def send_rds_ps():
     rds_ps = rds_ps_var.get()
-    send_to_esp32("rds_ps", rds_ps)
+    send_to_NANO33("rds_ps", rds_ps)
 
 def send_rds_rt():
     rds_rt = rds_rt_var.get()
-    send_to_esp32("rds_rt", rds_rt)
+    send_to_NANO33("rds_rt", rds_rt)
 
 def send_stereo_mono():
     selected_description = stereo_mono_combobox.get()
     selected_value = stereo_mono_map[selected_description]
     print(f"Selected Stereo/Mono: {selected_value} ({selected_description})")
-    send_to_esp32("stereo_mono", selected_value)
+    send_to_NANO33("stereo_mono", selected_value)
 
 def send_pre_emphasis():
     selected_description = pre_emphasis_combobox.get()  
     selected_value = pre_emphasis_map[selected_description]  # Obtém o valor numérico correspondente
     print(f"Pre-Emphasis: {selected_value} ({selected_description})") 
-    send_to_esp32("pre_emphasis", selected_value)
+    send_to_NANO33("pre_emphasis", selected_value)
 
 def send_impedance():
     selected_description = impedance_combobox.get()  # Obtém a descrição selecionada
     selected_value = impedance_map[selected_description]  # Obtém o valor numérico correspondente
     print(f"Selected Impedance: {selected_value} ({selected_description})")
-    send_to_esp32("impedance", selected_value)    
+    send_to_NANO33("impedance", selected_value)    
 
 def send_buffer_gain():
     selected_description = buffer_gain_combobox.get()  
     selected_value = buffer_gain_map[selected_description]  # Obtém o valor numérico correspondente
     print(f"Selected Buffer Gain: {selected_value} ({selected_description})")    
-    send_to_esp32("buffer_gain", selected_value)  
+    send_to_NANO33("buffer_gain", selected_value)  
 
 def send_freq_dev():
     freq_dev = freq_dev_var.get()
-    send_to_esp32("freq_dev", freq_dev)  
+    send_to_NANO33("freq_dev", freq_dev)  
 
 def send_soft_clip():
     selected_description = soft_clip_combobox.get()  
     selected_value = soft_clip_map[selected_description]  
     print(f"Selected Soft CLip: {selected_value} ({selected_description})")  
-    send_to_esp32("soft_clip", selected_value)  
+    send_to_NANO33("soft_clip", selected_value)  
 
 def send_datetime():
     datetime_str = datetime_var.get()
-    send_to_esp32("datetime", datetime_str)    
+    send_to_NANO33("datetime", datetime_str)    
 
 
 # Creating the main window with Tkinter.
 root = tk.Tk()
-root.title("ESP32 QN8066 FM Transmitter Control")
+root.title("NANO33 QN8066 FM Transmitter Control")
 root.configure(bg='#006400')  # Green
 
 # Fields
