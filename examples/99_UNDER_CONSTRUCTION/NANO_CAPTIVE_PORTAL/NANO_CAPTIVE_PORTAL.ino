@@ -41,47 +41,46 @@ uint16_t previousFrequency = 1069;  // 106.9 MHz
 uint8_t currentPower = 0;
 
 
-// Defina o SSID e a senha do ponto de acesso
-char ssid[] = "QN8066";  // Nome da rede Wi-Fi do ponto de acesso
-char pass[] = "qn8066123456";  // Senha da rede
-IPAddress localIP(10, 0, 0, 1);     // IP fixo para o ponto de acesso
-IPAddress subnet(255, 255, 255, 0); // Máscara de sub-rede
-WiFiServer server(80);  // Configura o servidor HTTP na porta 80
+// Define the SSID and password for the access point
+char ssid[] = "QN8066";  // Wi-Fi network name for the access point
+char pass[] = "qn8066123456";  // Wi-Fi password for the access point
+IPAddress localIP(10, 0, 0, 1);     // Fixed IP for the access point
+IPAddress subnet(255, 255, 255, 0); // Subnet mask
+WiFiServer server(80);  // Sets up the HTTP server on port 80
 WiFiClient client;
 
 
 void setup() {
-  // Inicializa a comunicação serial
+  // Initialize serial communication
   Serial.begin(9600);
 
-  // Verifica se o módulo Wi-Fi está disponível
+  // Check if the Wi-Fi module is available
   if (WiFi.status() == WL_NO_MODULE) {
-    Serial.println("Falha ao detectar o módulo Wi-Fi!");
+    Serial.println("Failed to detect the Wi-Fi module!");
     while (true);
   }
 
   WiFi.config(localIP);
 
-
-  // Configura o Arduino como um ponto de acesso
-  Serial.println("Configurando o ponto de acesso...");
+  // Configure the Arduino as an access point
+  Serial.println("Setting up the access point...");
   WiFi.beginAP(ssid, pass);
 
-  // Inicia o servidor HTTP
+  // Start the HTTP server
   server.begin();
-  Serial.println("Servidor HTTP iniciado");
+  Serial.println("HTTP server started");
 }
 
 void doFormParameters() {
   String htmlPage = "<html><head>";
   htmlPage += "<style>";
-  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;";  // Fundo verde Amazonas (#006400) e texto amarelo
+  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;";  // Amazon green background (#006400) and yellow text
   htmlPage += " display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; }";
-  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }";  // Título com fonte amarela
+  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }";  // Title with yellow font
   htmlPage += "table { border-collapse: collapse; width: auto; margin-top: 20px; }";
-  htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }";                                                       // Texto da tabela amarelo
-  htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }";  // Campos com fundo verde escuro e borda amarela
-  htmlPage += "td:nth-child(1) { text-align: right; }";                                                                                 // Alinha os rótulos à direita
+  htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }";                                                       // Table text yellow
+  htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }";  // Fields with dark green background and yellow border
+  htmlPage += "td:nth-child(1) { text-align: right; }";                                                                                 // Align labels to the right
   htmlPage += "</style>";
 
   htmlPage += "</head><body>";
@@ -89,11 +88,10 @@ void doFormParameters() {
   htmlPage += "<h1>PU2CLR QN8066 Arduino Library</h1>";
   htmlPage += "<h2>NANO IoT - FM Transmitter Controller</h2>";
 
-
-  // Formulário com Ajax e solução tradicional
+  // Form with Ajax and traditional solution
   htmlPage += "<form method='POST' action='/setParameters'>";
 
-  // Tabela para alinhar campos e botões
+  // Table to align fields and buttons
   htmlPage += "<table>";
 
   // Frequency
@@ -150,7 +148,7 @@ void doFormParameters() {
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_pty\")'>Set</button></td>";
   htmlPage += "</tr>";
 
-  // RDS Programa Station (PS)
+  // RDS Program Station (PS)
   htmlPage += "<tr>";
   htmlPage += "<td>RDS PS:</td>";
   htmlPage += "<td><input type='text' id='rds_ps' name='rds_ps' maxlength='8'></td>";
@@ -164,7 +162,7 @@ void doFormParameters() {
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_rt\")'>Set</button></td>";
   htmlPage += "</tr>";
 
-  // Linha do RDS DT
+  // RDS DT line
   htmlPage += "<tr>";
   htmlPage += "<td>RDS DT:</td>";
   htmlPage += "<td><input type='text' id='rds_dt' name='rds_dt' maxlength='32'></td>";
@@ -223,15 +221,14 @@ void doFormParameters() {
   htmlPage += "<td><button type='button' onclick='sendData(\"soft_clip\")'>Set</button></td>";
   htmlPage += "</tr>";
 
-
-  // Fechar tabela e botão de enviar o formulário completo (solução tradicional)
+  // Close table and submit button for the complete form (traditional solution)
   htmlPage += "</table><br>";
   
   // htmlPage += "<input type='submit' value='Submit All Parameters'>";
   // Close the form definition
   htmlPage += "</form>";
 
-  // Script para enviar dados via Ajax (envio individual)
+  // Script to send data via Ajax (individual submission)
   htmlPage += "<script>";
   htmlPage += "function sendData(fieldId) {";
   htmlPage += "  var value = document.getElementById(fieldId).value;";
@@ -253,19 +250,19 @@ void doFormParameters() {
 
 
 void loop() {
-  // Verifica se há clientes conectados
+  // Check if there are any connected clients
   client = server.available();
   if (client) {
-    Serial.println("Novo cliente conectado");
+    Serial.println("New client connected");
 
-    // Aguarda a requisição HTTP do cliente
+    // Wait for the client's HTTP request
     String request = client.readStringUntil('\r');
     Serial.println(request);
 
     doFormParameters();
 
-    // Fecha a conexão com o cliente
+    // Close the connection with the client
     client.stop();
-    Serial.println("Cliente desconectado");
+    Serial.println("Client disconnected");
   }
 }
