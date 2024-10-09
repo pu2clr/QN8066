@@ -54,6 +54,8 @@ void setup() {
   // Initialize serial communication
   Serial.begin(9600);
 
+
+  WiFi.setHostname("qn8066");
   // Check if the Wi-Fi module is available
   if (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Failed to detect the Wi-Fi module!");
@@ -65,6 +67,7 @@ void setup() {
   // Configure the Arduino as an access point
   Serial.println("Setting up the access point...");
   WiFi.beginAP(ssid, pass);
+
 
   // Start the HTTP server
   server.begin();
