@@ -350,15 +350,15 @@ void loop() {
     client.flush();
     // Aguarda até o cliente enviar dados
     if (request.indexOf("POST") >= 0) {
-      while (client.connected()) {
-        if (client.available()) {
-          String request = client.readStringUntil('\r');
-          Serial.println(request);
-          client.flush();          
-          break;
-        }
-        doFormUpdate();
+      while (client.available()) {
+        String request = client.readStringUntil('\r');
+        Serial.println(request);
+        client.flush();   
+               
+        break;
       }
+        
+      doFormUpdate();
     } else {
       doFormParameters();  
     }
