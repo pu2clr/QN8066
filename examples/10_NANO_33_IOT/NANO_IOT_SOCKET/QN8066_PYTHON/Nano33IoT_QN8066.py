@@ -54,11 +54,11 @@ def send_rds_pty():
 
 def send_rds_ps():
     rds_ps = rds_ps_var.get()
-    send_to_NANO33("rds_ps", rds_ps[:8].ljust(8))
+    send_to_NANO33("rds_ps", rds_ps[:8].ljust(8)) # pads the string with white spaces on the right
 
 def send_rds_rt():
     rds_rt = rds_rt_var.get()
-    send_to_NANO33("rds_rt", rds_rt[:32].ljust(32))
+    send_to_NANO33("rds_rt", rds_rt[:32].ljust(32)) # pads the string with white spaces on the right
 
 def send_stereo_mono():
     selected_description = stereo_mono_combobox.get()
@@ -68,19 +68,19 @@ def send_stereo_mono():
 
 def send_pre_emphasis():
     selected_description = pre_emphasis_combobox.get()  
-    selected_value = pre_emphasis_map[selected_description]  # Obtém o valor numérico correspondente
+    selected_value = pre_emphasis_map[selected_description]  # gets the number value 
     print(f"Pre-Emphasis: {selected_value} ({selected_description})") 
     send_to_NANO33("pre_emphasis", selected_value)
 
 def send_impedance():
-    selected_description = impedance_combobox.get()  # Obtém a descrição selecionada
-    selected_value = impedance_map[selected_description]  # Obtém o valor numérico correspondente
+    selected_description = impedance_combobox.get()   
+    selected_value = impedance_map[selected_description]  
     print(f"Selected Impedance: {selected_value} ({selected_description})")
     send_to_NANO33("impedance", selected_value)    
 
 def send_buffer_gain():
     selected_description = buffer_gain_combobox.get()  
-    selected_value = buffer_gain_map[selected_description]  # Obtém o valor numérico correspondente
+    selected_value = buffer_gain_map[selected_description]  
     print(f"Selected Buffer Gain: {selected_value} ({selected_description})")    
     send_to_NANO33("buffer_gain", selected_value)  
 
