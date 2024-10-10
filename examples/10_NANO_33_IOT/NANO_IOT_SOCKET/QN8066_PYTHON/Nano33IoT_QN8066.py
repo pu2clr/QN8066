@@ -54,11 +54,11 @@ def send_rds_pty():
 
 def send_rds_ps():
     rds_ps = rds_ps_var.get()
-    send_to_NANO33("rds_ps", rds_ps)
+    send_to_NANO33("rds_ps", rds_ps[:8].ljust(8))
 
 def send_rds_rt():
     rds_rt = rds_rt_var.get()
-    send_to_NANO33("rds_rt", rds_rt)
+    send_to_NANO33("rds_rt", rds_rt[:32].ljust(32))
 
 def send_stereo_mono():
     selected_description = stereo_mono_combobox.get()

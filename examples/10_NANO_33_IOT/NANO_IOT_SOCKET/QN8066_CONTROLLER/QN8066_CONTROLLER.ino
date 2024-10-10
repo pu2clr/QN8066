@@ -32,8 +32,8 @@
 #define SOCKET_PORT 8066
 
 #define RDS_PS_REFRESH_TIME 7000
-#define RDS_RT_REFRESH_TIME 17000
-#define RDS_DT_REFRESH_TIME 59000 // Date and Time Service
+#define RDS_RT_REFRESH_TIME 31000
+#define RDS_DT_REFRESH_TIME 61000 // Date and Time Service
 
 long rdsTimePS = millis();
 long rdsTimeRT = millis();
@@ -150,7 +150,6 @@ void setRTC(String datetime) {
 
 // Parse and execute the QN8066 command
 String processCommand(String command) {
-  int nLen;
   int separatorIndex = command.indexOf('=');
   String field = command.substring(0, separatorIndex);  // Field name
   String value = command.substring(separatorIndex + 1); // Field value
@@ -165,17 +164,11 @@ String processCommand(String command) {
     tx.rdsSendPS(ps);
     return "RDS PTY set to: " + String(value);
   } else if (field == "rds_ps") {
-    nLen = value.length();
-    strncpy(ps, value.c_str(), nLen);
-    ps[nLen] = '\r';
-    ps[nLen+1] = '\0';
-    tx.rdsSendPS(ps);
+    strcpy(ps, value.c_str());
+    tx.rdsSendPS(rt);
     return "RDS PS set to: " + value;
   } else if (field == "rds_rt") {
-    nLen = value.length();
-    strncpy(rt, value.c_str(), nLen);
-    ps[nLen] = '\r';
-    ps[nLen+1] = '\0';
+    strcpy(rt, value.c_str());
     tx.rdsSendRT(rt);
     return "RDS RT set to: " + value;
   } else if (field == "stereo_mono") {
@@ -217,6 +210,8 @@ void loop() {
     while (client.connected()) {
       if (client.available()) {
         String command = client.readString();
+        Serial.print("\nCommand: ");
+        Serial.println(command);
         String result = processCommand(command);
         client.println(result);
       }
