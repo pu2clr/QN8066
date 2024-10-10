@@ -143,7 +143,7 @@ pty_map = {'No program':0,
 
 stereo_mono_map = {'Stereo':0,'Mono':1}
 pre_emphasis_map = {'50us':0,'75us':1}
-buffer_gain_map = {'3d{B':0,'6dB':1,'9dB':2,'12dB':3,'15dB':4,'18dB':5}
+buffer_gain_map = {'3dB':0,'6dB':1,'9dB':2,'12dB':3,'15dB':4,'18dB':5}
 soft_clip_map = {'Disable':0,'Enable':1}
 
 impedance_descriptions = list(impedance_map.keys())
