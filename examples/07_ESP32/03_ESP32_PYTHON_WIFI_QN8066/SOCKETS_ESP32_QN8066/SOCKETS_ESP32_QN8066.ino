@@ -160,7 +160,6 @@ void sendRDS() {
 
 
 String processCommand(String command) {
-  int nLen;
   int separatorIndex = command.indexOf('=');
   String field = command.substring(0, separatorIndex);  // Field name
   String value = command.substring(separatorIndex + 1); // Field value
@@ -172,18 +171,15 @@ String processCommand(String command) {
     return "Frequency set to: " + String(currentFrequency);
   } else if (field == "rds_pty") {
     tx.rdsSetPTY(value.toInt()); 
+    tx.rdsSendPS(ps);
     return "RDS PTY set to: " + String(value);
   } else if (field == "rds_ps") {
-    nLen = value.length();
-    strncpy(ps, value.c_str(), nLen);
-    ps[nLen] = '\r';
-    ps[nLen+1] = '\0';
+    strcpy(ps, value.c_str());
+    tx.rdsSendPS(ps);
     return "RDS PS set to: " + value;
   } else if (field == "rds_rt") {
-    nLen = value.length();
-    strncpy(rt, value.c_str(), nLen);
-    ps[nLen] = '\r';
-    ps[nLen+1] = '\0';
+    strcpy(rt, value.c_str());
+    tx.rdsSendRT(rt);
     return "RDS RT set to: " + value;
   } else if (field == "stereo_mono") {
     tx.setTxMono(value.toInt());  // 

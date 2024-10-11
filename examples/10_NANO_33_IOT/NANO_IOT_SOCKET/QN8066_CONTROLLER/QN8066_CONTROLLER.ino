@@ -112,6 +112,13 @@ void printWiFiStatus() {
 void startRDS() {
     tx.rdsTxEnable(true);
     delay(200);
+    // RDS Setup (rdsInitTx)
+    //  Country = 0x8
+    //  Program Id code = 0x1
+    //  Program Reference Number = 0x9B
+    //  Program type (PTY) = 0 (No Program)
+    //  Time in ms to wait for sending the next group = 25ms
+    //  Number of times that a RDS group will send at once = 6
     tx.rdsInitTx(0x8,0x1,0x9B, 0, 25, 6);  // See: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html) 
 }
 
