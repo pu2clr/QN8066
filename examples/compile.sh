@@ -58,6 +58,11 @@ arduino-cli compile -b lgt8fx:avr:328 ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/ARDUI
 echo "-------> ARDUINO_3_BUTTONS_LCD20x4"
 arduino-cli compile -b lgt8fx:avr:328 ./03_TX_LCD_16x2_AND_20x4/01_ARDUINO/ARDUINO_3_BUTTONS_LCD20x4 --output-dir ~/Downloads/hex/lgt8fx/LGT8F_ARDUINO_3_BUTTONS_LCD20x4
 
+echo "\n\nArduino Nano 33 IoT"
+echo "**** **** **** **** **** **** **** ***"
+arduino-cli compile --fqbn arduino:samd:nano_33_iot ./10_NANO_33_IOT/NANO_IOT_SOCKET/QN8066_CONTROLLER --output-dir ~/Downloads/hex/NANO33/QN8066_CONTROLLER
+arduino-cli compile --fqbn arduino:samd:nano_33_iot ./10_NANO_33_IOT/NANO_IOT_ENCODER_LCD16x2 --output-dir ~/Downloads/hex/NANO33/NANO_IOT_ENCODER_LCD16x2
+
 
 echo "\n\nMiniCore - It can help you to save memory on ATmega328"
 echo "**** **** **** **** **** **** **** ***"
@@ -94,6 +99,7 @@ echo "-------> 03_ESP32_PYTHON_WIFI_QN8066"
 arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_ESP32/03_ESP32_PYTHON_WIFI_QN8066/SOCKETS_ESP32_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_SOCKETS_ESP32_QN8066
 echo "-------> 04_ESP32_WEB_ACTIVE_PORTAL_QN8066"
 arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_ESP32/04_ESP32_WEB_ACTIVE_PORTAL_QN8066/ESP32_ACTIVE_PORTAL_QN8066 --output-dir ~/Downloads/hex/ESP32C3/DEVM/ESP32_ACTIVE_PORTAL_QN8066
+
 
 
 # compiles STM32 sketch
