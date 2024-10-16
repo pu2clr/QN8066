@@ -110,16 +110,22 @@ echo "-------> STM32_ENCODER_LCD"
 arduino-cli compile --fqbn STMicroelectronics:stm32:GenF1:pnum=BLUEPILL_F103C8 ./08_STM32/STM32_ENCODER_LCD --output-dir ~/Downloads/hex/STM32/F1/STM32_ENCODER_LCD
 
 
-echo "\n\nATTINY85"
+echo "\n\nATTINY"
 echo "************************************"
-echo "-------> 06_TX_ATTINY85_RDS_OLED"
-arduino-cli compile --fqbn ATTinyCore:avr:attinyx5:clock=1internal ./06_TX_ATTINY8X/06_TX_ATTINY85_RDS_OLED --output-dir ~/Downloads/hex/ATTIMY85/06_TX_ATTINY85_RDS_OLED
+echo "-------> TX_ATTINY85_RDS_OLED"
+arduino-cli compile --fqbn ATTinyCore:avr:attinyx5:clock=1internal ./06_TX_ATTINY8X/TX_ATTINY24 --output-dir ~/Downloads/hex/ATTIMY85/TX_ATTINY24
+echo "-------> TX_ATTINY44_RDS_OLED"
+arduino-cli compile --fqbn ATTinyCore:avr:attinyx4:chip=44,clock=1internal ./06_TX_ATTINY8X/TX_ATTINY44_RDS_OLED --output-dir ~/Downloads/hex/ATTIMY85/TX_ATTINY44_RDS_OLED
+echo "-------> TX_ATTINY24_RDS"
+arduino-cli compile --fqbn ATTinyCore:avr:attinyx4:chip=24,clock=1internal ./06_TX_ATTINY8X/TX_ATTINY44_RDS_OLED --output-dir ~/Downloads/hex/ATTIMY85/TX_ATTINY44_RDS_OLED
 
 
 echo "\n\nRX - SAERIAL MONITOR"   
 echo "************************************"
 echo "-------> 50_RX_SERIAL_MONITOR"
 arduino-cli compile -b arduino:avr:nano ./50_RX_SERIAL_MONITOR/01_RX_A --output-dir ~/Downloads/hex/atmega/50_RX_A
+
+
 
 
 
