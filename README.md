@@ -101,6 +101,9 @@ In light of this, to make the most of your application, it is essential to have 
  * [LLVM Link Time Optimization: Design and Implementation](https://llvm.org/docs/LinkTimeOptimization.html#llvm-link-time-optimization-design-and-implementation)
  * [What is Link Time Optimization (LTO)](https://developer.arm.com/documentation/101458/2404/Optimize/Link-Time-Optimization--LTO-/What-is-Link-Time-Optimization--LTO-)
  * [Link-Time Optimization in GCC: Requirements and High-Level Design](https://gcc.gnu.org/projects/lto/lto.pdf)
+ * [How to use the typedef struct in C](https://www.educative.io/answers/how-to-use-the-typedef-struct-in-c)
+ * [Structures, Typedef and Union in C Programming](https://binaryupdates.com/structures-typedef-union-in-c-programming/)
+ * [Bit Fields in C](https://www.geeksforgeeks.org/bit-fields-c/)
 
 
 
@@ -571,13 +574,6 @@ If you find this project useful, consider making a donation so that the author o
  
 
 
-
-
-
-
-
-
-
 ## References 
 
 * [Data Sheet - QUINTIC QN8066 Digital FM Transceiver for Portable Devices](https://vrtp.ru/index.php?act=Attach&type=post&id=913773)
@@ -592,4 +588,14 @@ If you find this project useful, consider making a donation so that the author o
 * [Be Your Own DJ With QN8066 And An Arduino Library](https://hackaday.com/2024/08/10/be-your-own-dj-with-qn8066-and-an-arduino-library/)
 * [Old Version of this library - Source 1](https://www.arduino.cc/reference/en/libraries/qn8066/)
 * [Old Version of this library - Source 2](https://www.arduinolibraries.info/libraries/qn8066)
+* [Inline Functions](https://isocpp.org/wiki/faq/inline-functions)
+* [Understanding and Exploiting Optimal Function Inlining](https://ethz.ch/content/dam/ethz/special-interest/infk/ast-dam/documents/Theodoridis-ASPLOS22-Inlining-Paper.pdf)
+* [Inline C++ code in embedded applications](https://blogs.sw.siemens.com/embedded-software/2020/07/20/inline-c-code-in-embedded-applications/)
+* [LLVM Link Time Optimization: Design and Implementation](https://llvm.org/docs/LinkTimeOptimization.html#llvm-link-time-optimization-design-and-implementation)
+* [What is Link Time Optimization (LTO)](https://developer.arm.com/documentation/101458/2404/Optimize/Link-Time-Optimization--LTO-/What-is-Link-Time-Optimization--LTO-)
+* [Link-Time Optimization in GCC: Requirements and High-Level Design](https://gcc.gnu.org/projects/lto/lto.pdf)
+* [How to use the typedef struct in C](https://www.educative.io/answers/how-to-use-the-typedef-struct-in-c)
+* [Structures, Typedef and Union in C Programming](https://binaryupdates.com/structures-typedef-union-in-c-programming/)
+* [Bit Fields in C](https://www.geeksforgeeks.org/bit-fields-c/)
+
 
