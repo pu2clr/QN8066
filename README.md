@@ -86,6 +86,24 @@ Utilizing a library can reduce programming complexity and enhance the robustness
 Finally, if you're already using libraries to handle the I2C bus (Wire.h), TFT or OLED displays, SPI devices, and Serial UART communication, it makes sense to use a library to manage the QN8066 device as well. The QN8066 Arduino Library can add convenience, development speed, and robustness to your project. Unlike closed-source solutions, this library is open-source, allowing you to learn from and modify the code as needed.
 
 
+### Efficient Use of Libraries in Microcontroller Applications
+
+Among the common myths about using this library alongside others is the assumption that it could significantly increase the final code size, making the application unfeasible for many microcontrollers. However, it is essential to highlight that, although the library contains extensive code, a large portion serves to provide directives to the C/C++ compiler and does not necessarily translate into executable code. Examples include type definitions (typedef), data structures (struct), and unions (union). Additionally, modern compilers and linkers offer powerful optimization features, notably [Link Time Optimization (LTO)](https://gcc.gnu.org/projects/lto/lto.pdf), which eliminates unused symbols and code, ensuring the final binary is lean and efficient. These optimizations, combined with dead code elimination and [inlining strategies](https://ethz.ch/content/dam/ethz/special-interest/infk/ast-dam/documents/Theodoridis-ASPLOS22-Inlining-Paper.pdf), reduce the overhead, making the use of complex libraries feasible even in resource-constrained environments.
+
+In light of this, to make the most of your application, it is essential to have a deep understanding of the microcontroller architecture you are working with, as well as the tools you are using, such as the compiler and linker.
+
+
+#### See also: 
+
+ * [Inline Functions](https://isocpp.org/wiki/faq/inline-functions)
+ * [Understanding and Exploiting Optimal Function Inlining](https://ethz.ch/content/dam/ethz/special-interest/infk/ast-dam/documents/Theodoridis-ASPLOS22-Inlining-Paper.pdf)
+ * [Inline C++ code in embedded applications](https://blogs.sw.siemens.com/embedded-software/2020/07/20/inline-c-code-in-embedded-applications/)
+ * [LLVM Link Time Optimization: Design and Implementation](https://llvm.org/docs/LinkTimeOptimization.html#llvm-link-time-optimization-design-and-implementation)
+ * [What is Link Time Optimization (LTO)](https://developer.arm.com/documentation/101458/2404/Optimize/Link-Time-Optimization--LTO-/What-is-Link-Time-Optimization--LTO-)
+ * [Link-Time Optimization in GCC: Requirements and High-Level Design](https://gcc.gnu.org/projects/lto/lto.pdf)
+
+
+
 ## QN8066 Arduino Library Features
 
 This library uses the I²C communication protocol and implements most of the functions offered by QN8066 IC from QUINTIC. This library also has primitive functions that make it easier for you to implement commands that may not have been implemented yet. As said before, this library is constantly improving. Check the API documentation before implementing a new function. It is likely that your function is already implemented. [See the API documentation for this library](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html). 
