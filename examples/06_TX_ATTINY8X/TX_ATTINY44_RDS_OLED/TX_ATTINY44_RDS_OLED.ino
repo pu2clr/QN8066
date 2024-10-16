@@ -13,13 +13,11 @@
   |                 |                  |               |
   | QN8066 & OLED   |                  |               | 
   | SDIO / SDA      |     SDA / PA6    |     7         |
-  | SCLK / CLK      |     SCL / PA4    |     8         |
+  | SCLK / CLK      |     SCL / PA4    |     9         |
 
   Compiling and uploading: 
   1) Install the ATtiny Core in Arduino IDE - Insert the URL http://drazzy.com/package_drazzy.com_index.json on board manager. 
                                               To do that, go to Preferences, enter the above URL in "Additional Boards Manager URLs. 
-                                              To setup ATtiny85 on Arduino IDE, go to Tools Menu, Board, Board Manager and install 
-                                              "ATTinyCore by Spence Konde". 
   2) Setup: Chip: Clock Source: 1MHz (Internal); LTO Enabled; millis() / macros() Enabled; 
   ATTENTION: if you select Clock source 8 MHz, for some reason, the system will work very slow. Maybe a bug. 
   See documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html 

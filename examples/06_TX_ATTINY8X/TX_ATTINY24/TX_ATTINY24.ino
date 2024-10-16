@@ -1,5 +1,4 @@
 /*
-
   Attiny24, OLED and QN8066 wireup  
   | Device pin      | Attiny85 REF pin | Physical pin  | 
   | ----------------| -----------------| ------------- | 
@@ -10,8 +9,7 @@
   |                 |                  |               |
   | QN8066 & OLED   |                  |               | 
   | SDIO / SDA      |     SDA / PA6    |     7         |
-  | SCLK / CLK      |     SCL / PA4    |     8         |
-
+  | SCLK / CLK      |     SCL / PA4    |     9         |
 
   Compiling and uploading: 
   1) Install the ATtiny Core in Arduino IDE - Insert the URL http://drazzy.com/package_drazzy.com_index.json on board manager. 
@@ -35,7 +33,7 @@ void  inline showStatus() {
 }
 
 void setup() {
-  tx.setup();
+  tx.setup(1000,false,true);
   tx.setTX(currentFrequency);
   tx.rdsTxEnable(true);
   showStatus();
@@ -43,5 +41,6 @@ void setup() {
 
 
 void loop() {
-  delay(800);
+  tx.rdsSendPS((char *) "QN8066TX");
+  delay(30000);
 }
