@@ -6,9 +6,9 @@
   ATtiny85, OLED and QN8066 wireup  
   | Device pin      | Attiny85 REF pin | Physical pin  | 
   | ----------------| -----------------| ------------- | 
-  | PUSH BUTTON     |                  |               |
-  | UP              |     PB1          |     6         | 
-  | DOWN            |     PB4          |     3         |
+  | ENCODER.        |                  |               |
+  | A               |     PB1          |     6         | 
+  | B               |     PB4          |     3         |
   | MENU            |     PB3          |     2         | 
   |                 |                  |               |
   | QN8066 & OLED   |                  |               | 
@@ -30,15 +30,38 @@
 #include <QN8066.h>
 #include <Tiny4kOLED.h>
 #include <5x5_font.h>
+#include "Rotary.h"
+
+
+#define ENCODER_PIN_A PB1
+#define ENCODER_PIN_B PB4
+#define BT_MENU PB3
+
 
 char ps[] = "QN8066TX";
 char rt[] = "PU2CLR QN8066 ARDUINO LIBRARY";
 
 uint16_t currentFrequency = 1069; // 106.9 MHz is the default frequency
 
+volatile int encoderCount = 0;
+
+Rotary encoder = Rotary(ENCODER_PIN_A, ENCODER_PIN_B);
+
 QN8066 tx;
 
 void setup() {
+
+  pinMode(BT_MENU, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_A, INPUT_PULLUP);
+  pinMode(ENCODER_PIN_B, INPUT_PULLUP);  
+
+
+  // controlling encoder via interrupt
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_A), rotaryEncoder, CHANGE);
+  attachInterrupt(digitalPinToInterrupt(ENCODER_PIN_B), rotaryEncoder, CHANGE);
+
+
+
   oled.begin();
   oled.on();
   oled.clear();
@@ -60,6 +83,19 @@ void setup() {
   tx.rdsTxEnable(true);
   showStatus();
 }
+
+
+/**
+ * Reads encoder via interrupt
+ * Use Rotary.h and  Rotary.cpp implementation to process encoder via interrupt
+ */
+void rotaryEncoder()
+{ // rotary encoder events
+  uint8_t encoderStatus = encoder.process();
+  if (encoderStatus)
+    encoderCount = (encoderStatus == DIR_CW) ? 1 : -1;
+}
+
 
 // Shows the current status
 void showStatus() {

@@ -1,11 +1,11 @@
 /*
   Attiny24, OLED and QN8066 wireup  
-  | Device pin      | Attiny85 REF pin | Physical pin  | 
+  | Device pin      | Attiny24 REF pin | Physical pin  | 
   | ----------------| -----------------| ------------- | 
   | PUSH BUTTON     |                  |               |
-  | UP              |     PB1          |     6         | 
-  | DOWN            |     PB4          |     3         |
-  | MENU            |     PB3          |     2         | 
+  | UP              |     PB1          |     2         | 
+  | DOWN            |     PB3          |     3         |
+  | MENU            |     PB2          |     4         | 
   |                 |                  |               |
   | QN8066 & OLED   |                  |               | 
   | SDIO / SDA      |     SDA / PA6    |     7         |
