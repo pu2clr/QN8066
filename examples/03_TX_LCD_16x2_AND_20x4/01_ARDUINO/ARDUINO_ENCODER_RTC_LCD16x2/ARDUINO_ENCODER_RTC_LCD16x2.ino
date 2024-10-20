@@ -391,12 +391,12 @@ void setup() {
 
   /*
   dt.year = 24;
-  dt.month = 9;
-  dt.day = 14;
+  dt.month = 10;
+  dt.day = 20;
   dt.dow = 1;
-  dt.hour = 12;
-  dt.minute = 4;
-  dt.second = 10;
+  dt.hour = 14;
+  dt.minute = 37;
+  dt.second = 0;
   rtc.setDateTime(&dt);
   */
   
