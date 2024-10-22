@@ -46,6 +46,8 @@ I hold a Master's degree in Educational Technology from the Federal University o
 
 ### Important Notice
 
+It is important to emphasize that the project presented here is not intended to encourage anyone to violate their country’s regulations regarding radio frequency emissions. The goal of this project, centered around an Arduino library for controlling the QN8066, is to facilitate the development of diverse solutions involving this device.
+
 Please, be aware that the use of FM transmitters is regulated by the laws and regulations of each country. **It is crucial to ensure that your use of any FM transmitter complies with the applicable legal requirements and does not violate any broadcasting regulations**.
 
 ### Legal Compliance Guidelines
@@ -57,6 +59,15 @@ Please, be aware that the use of FM transmitters is regulated by the laws and re
 5. **Public Safety**: Be mindful of public safety and ensure your use of the FM transmitter does not pose any risks.
 
 By following these guidelines, you can ensure that your use of the FM transmitter respects the laws and regulations of your country and does not result in any legal issues.
+
+### Brazilian legislation  example
+
+* Brazilian legislation allows some flexibility for the use of frequencies for research, experimentation, and educational purposes.
+* Although amateur radio does not cover the commercial FM band, it is regulated by Anatel and permits transmission experimentation on other frequencies to promote technical learning.
+* For educational or field transmissions, special authorization can be requested for specific events, such as science fairs or public demonstrations.
+* Experimental transmissions may be allowed in controlled environments, such as laboratories, provided the signal does not exceed the physical boundaries of the location or interfere with other services.
+* Microtransmitters or prototypes for short-range testing are tolerated as long as they operate within specific bands or with extremely low power.
+
 
 # Groups and Forums
 
