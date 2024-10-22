@@ -69,6 +69,8 @@
 #endif
 
 
+#define PWM_PIN             12
+
 #define RDS_PS_REFRESH_TIME 7000
 #define RDS_RT_REFRESH_TIME 17000
 #define RDS_DT_REFRESH_TIME 59000 // Date and Time Service
@@ -312,7 +314,9 @@ void handleUpdate() {
     }   
     Serial.println("Frequency updated to: " + String(frequency) + " MHz");
   } else if (field == "power") {
-    String power = server.arg("power");
+    int power = server.arg("power").toInt();
+    int pwm = map(power, 0, 16, 0, 255);
+    analogWrite(PWM_PIN, pwm);    // Sets the PWM correspondent to power value
     Serial.println("Power updated to: " + String(power));
   } else if (field == "rds_pty") {
     String rds_pty = server.arg("rds_pty");
