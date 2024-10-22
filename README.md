@@ -60,13 +60,16 @@ Please, be aware that the use of FM transmitters is regulated by the laws and re
 
 By following these guidelines, you can ensure that your use of the FM transmitter respects the laws and regulations of your country and does not result in any legal issues.
 
-### Brazilian legislation  example
+### Brazilian legislation notes
 
 * Brazilian legislation allows some flexibility for the use of frequencies for research, experimentation, and educational purposes.
+* FM transmitters with very low power (up to 0.5 mW) and short range can operate without a license. 
 * Although amateur radio does not cover the commercial FM band, it is regulated by Anatel and permits transmission experimentation on other frequencies to promote technical learning.
 * For educational or field transmissions, special authorization can be requested for specific events, such as science fairs or public demonstrations.
 * Experimental transmissions may be allowed in controlled environments, such as laboratories, provided the signal does not exceed the physical boundaries of the location or interfere with other services.
 * Microtransmitters or prototypes for short-range testing are tolerated as long as they operate within specific bands or with extremely low power.
+* Wireless microphones based on FM trnasmitter are legal if they comply with designated sub-bands and power limits to prevent interference. 
+* Community radio stations, limited to 25 watts and a 4 km radius, require licenses granted to non-profit organizations through the Ministry of Communications, with permits valid for 10 years and restrictions on commercial advertising.
 
 
 # Groups and Forums
