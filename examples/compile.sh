@@ -102,6 +102,12 @@ arduino-cli compile --fqbn esp32:esp32:esp32c3 ./07_ESP32/04_ESP32_WEB_ACTIVE_PO
 
 
 
+echo "\n\nESP8266 Generic Module"
+echo "************************************"
+arduino-cli compile --fqbn esp8266:esp8266:generic ./09_ESP8266/ESP8266_ACCESS_POINT_WEB --output-dir ~/Downloads/hex/ESP8266/DEVM/ESP8266_ACCESS_POINT_WEB
+
+
+
 # compiles STM32 sketch
 echo "\n\nSTM32"
 echo "************************************"
