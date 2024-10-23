@@ -22,9 +22,9 @@
 #include <QN8066.h>
 
 
-#define ESP8266_I2C_SDA 4    
-#define ESP8266_I2C_SCL 5    
-#define PWM_PIN  8
+#define ESP8266_I2C_SDA 4
+#define ESP8266_I2C_SCL 5
+#define PWM_PIN 8
 
 
 const char* ssid = "ESP8266_QN8066";
@@ -32,15 +32,15 @@ const char* password = "12345678";
 
 #define RDS_PS_REFRESH_TIME 7000
 #define RDS_RT_REFRESH_TIME 17000
-#define RDS_DT_REFRESH_TIME 59000 // Date and Time Service
+#define RDS_DT_REFRESH_TIME 59000  // Date and Time Service
 
 
 long rdsTimePS = millis();
 long rdsTimeRT = millis();
 long rdsDateTime = millis();
 
-uint16_t currentFrequency = 1069; // 106.9 MHz
-uint16_t previousFrequency = 1069; // 106.9 MHz
+uint16_t currentFrequency = 1069;   // 106.9 MHz
+uint16_t previousFrequency = 1069;  // 106.9 MHz
 
 uint8_t currentPower = 0;
 
@@ -75,19 +75,19 @@ void setup() {
 }
 
 
-void handleRoot(WiFiClient *client) {
+void handleRoot(WiFiClient* client) {
   String htmlPage = "<html><head>";
- 
+
   // Adicionando estilo CSS para centralizar o formulário e ajustar a tabela
-  
+
   htmlPage += "<style>";
-  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;"; // Fundo verde Amazonas (#006400) e texto amarelo
+  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;";  // Fundo verde Amazonas (#006400) e texto amarelo
   htmlPage += " display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; }";
-  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }"; // Título com fonte amarela
+  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }";  // Título com fonte amarela
   htmlPage += "table { border-collapse: collapse; width: auto; margin-top: 20px; }";
-  htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }"; // Texto da tabela amarelo
-  htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }"; // Campos com fundo verde escuro e borda amarela
-  htmlPage += "td:nth-child(1) { text-align: right; }"; // Alinha os rótulos à direita
+  htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }";                                                       // Texto da tabela amarelo
+  htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }";  // Campos com fundo verde escuro e borda amarela
+  htmlPage += "td:nth-child(1) { text-align: right; }";                                                                                 // Alinha os rótulos à direita
   htmlPage += "</style>";
 
   htmlPage += "</head><body>";
@@ -98,24 +98,24 @@ void handleRoot(WiFiClient *client) {
 
   // Formulário com Ajax e solução tradicional
   htmlPage += "<form method='POST' action='/setParameters'>";
-  
+
   // Tabela para alinhar campos e botões
   htmlPage += "<table>";
-  
+
   // Frequency
   htmlPage += "<tr>";
   htmlPage += "<td>Transmission Frequency (MHz):</td>";
-  htmlPage += "<td><input type='text' id='frequency' name='frequency' maxlength='6' size='6' value='" + String((float) currentFrequency / 10.0) + "'></td>"; 
+  htmlPage += "<td><input type='text' id='frequency' name='frequency' maxlength='6' size='6' value='" + String((float)currentFrequency / 10.0) + "'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"frequency\")'>Set</button></td>";
   htmlPage += "</tr>";
-  
+
   // Power (Not implemented so far)
   htmlPage += "<tr>";
   htmlPage += "<td>Power:</td>";
-  htmlPage += "<td><input type='text' id='power' name='power' maxlength='3' size='3' value='" + String(currentPower) + "'></td>"; 
+  htmlPage += "<td><input type='text' id='power' name='power' maxlength='3' size='3' value='" + String(currentPower) + "'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"power\")'>Set</button></td>";
   htmlPage += "</tr>";
-  
+
   // Stereo / Mono
   htmlPage += "<tr>";
   htmlPage += "<td>Stereo/Mono:</td>";
@@ -155,21 +155,21 @@ void handleRoot(WiFiClient *client) {
   htmlPage += "</select></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_pty\")'>Set</button></td>";
   htmlPage += "</tr>";
-  
+
   // RDS Programa Station (PS)
   htmlPage += "<tr>";
   htmlPage += "<td>RDS PS:</td>";
   htmlPage += "<td><input type='text' id='rds_ps' name='rds_ps' maxlength='8'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_ps\")'>Set</button></td>";
   htmlPage += "</tr>";
-  
+
   // RDS Radio Text (RT)
   htmlPage += "<tr>";
   htmlPage += "<td>RDS RT:</td>";
   htmlPage += "<td><input type='text' id='rds_rt' name='rds_rt' maxlength='32'></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_rt\")'>Set</button></td>";
   htmlPage += "</tr>";
-  
+
   // Linha do RDS DT
   htmlPage += "<tr>";
   htmlPage += "<td>RDS DT (yyyy/mm/dd hh:mm):</td>";
@@ -211,8 +211,8 @@ void handleRoot(WiFiClient *client) {
   htmlPage += "<option value='1' selected>6dB</option>";
   htmlPage += "<option value='2'>9dB</option>";
   htmlPage += "<option value='3'>12dB</option>";
-  htmlPage += "<option value='4'>15dB</option>";  
-  htmlPage += "<option value='5'>18dB</option>";  
+  htmlPage += "<option value='4'>15dB</option>";
+  htmlPage += "<option value='5'>18dB</option>";
   htmlPage += "</select></td>";
   htmlPage += "<td><button type='button' onclick='sendData(\"buffer_gain\")'>Set</button></td>";
   htmlPage += "</tr>";
@@ -232,10 +232,10 @@ void handleRoot(WiFiClient *client) {
   // Fechar tabela e botão de enviar o formulário completo (solução tradicional)
   htmlPage += "</table><br>";
   htmlPage += "<input type='submit' value='Submit All Parameters'>";
-  
+
   // Close the form definition
   htmlPage += "</form>";
-  
+
   // Script para enviar dados via Ajax (envio individual)
   htmlPage += "<script>";
   htmlPage += "function sendData(fieldId) {";
@@ -251,7 +251,7 @@ void handleRoot(WiFiClient *client) {
   htmlPage += "  xhr.send(fieldId + '=' + encodeURIComponent(value));";
   htmlPage += "}";
   htmlPage += "</script>";
-  
+
   // Fechar corpo e HTML
   htmlPage += "</body></html>";
 
@@ -271,77 +271,74 @@ String getValue(String data, String field) {
   return data.substring(startIndex, endIndex);
 }
 
-void handleUpdate(WiFiClient *client) {
-
-  String postBody = client->readString();
+void handleUpdate(String postBody) {
 
   int nLen;
 
-  if (postBody.indexOf("frequency=") >=0 ) {
-    String frequency = getValue(postBody, "frequency")
-    currentFrequency = (uint16_t) (frequency.toFloat() * 10);
+  if (postBody.indexOf("frequency=") >= 0) {
+    String frequency = getValue(postBody, "frequency");
+    currentFrequency = (uint16_t)(frequency.toFloat() * 10);
     if (currentFrequency != previousFrequency) {
-      tx.setTX(currentFrequency);  
+      tx.setTX(currentFrequency);
       previousFrequency = currentFrequency;
-    }   
+    }
     Serial.println("Frequency updated to: " + String(frequency) + " MHz");
-  } else if (postBody.indexOf("power=") >=0)  {
+  } else if (postBody.indexOf("power=") >= 0) {
     int power = getValue(postBody, "power").toInt();
     int pwm = map(power, 0, 16, 0, 255);
-    analogWrite(PWM_PIN, pwm);    // Sets the PWM correspondent to power value
+    analogWrite(PWM_PIN, pwm);  // Sets the PWM correspondent to power value
     Serial.println("Power updated to: " + String(power));
-  } else if (postBody.indexOf("rds_pty") >= 0) {
-    String rds_pty = getValue(postBody,"rds_pty");
+  } else if (postBody.indexOf("rds_pty=") >= 0) {
+    String rds_pty = getValue(postBody, "rds_pty");
     tx.rdsSetPTY(rds_pty.toInt());
     tx.rdsSendPS(ps);
     Serial.println("RDS PTY updated to: " + String(rds_pty));
-  } else if (field == "rds_ps") {
-    String rds_ps = server.arg("rds_ps");
+  } else if (postBody.indexOf("rds_ps=") >= 0) {
+    String rds_ps = getValue(postBody, "rds_ps");
     nLen = rds_ps.length();
     strncpy(ps, rds_ps.c_str(), nLen);
     ps[nLen] = '\r';
-    ps[nLen+1] = '\0';
+    ps[nLen + 1] = '\0';
     tx.rdsSendPS(ps);
     Serial.println("RDS PS updated to: " + String(ps));
-  } else if (field == "rds_rt") {
-    String rds_rt = server.arg("rds_rt");
+  } else if (postBody.indexOf("rds_rt=") >= 0) {
+    String rds_rt = getValue(postBody, "rds_rt");
     nLen = rds_rt.length();
     strncpy(rt, rds_rt.c_str(), nLen);
     rt[nLen] = '\r';
-    rt[nLen+1] = '\0';
-    tx.rdsSendRT(rt); 
+    rt[nLen + 1] = '\0';
+    tx.rdsSendRT(rt);
     Serial.println("RDS RT updated to: " + String(rt));
-  } else if (field == "frequency_derivation") {
-    String frequency_derivation = server.arg("frequency_derivation");
-    tx.setTxFrequencyDerivation(frequency_derivation.toInt());   
-    Serial.println("Frequency Derivation updated to: " + String(frequency_derivation)); 
-  } else if (field == "input_impedance") {
-    String input_impedance = server.arg("input_impedance");
-    tx.setTxInputImpedance(input_impedance.toInt());   
-    Serial.println("Input Impedance updated to: " + String(input_impedance)); 
-  } else if (field == "stereo_mono") {
-    String stereo_mono = server.arg("stereo_mono");
-    tx.setTxMono(stereo_mono.toInt());   
-    Serial.println("Stereo/Mono updated to: " + String(stereo_mono)); 
-  } else if (field == "buffer_gain") {
-    String buffer_gain = server.arg("buffer_gain");
-    tx.setTxInputBufferGain(buffer_gain.toInt());   
-    Serial.println("Buffer Gain updated to: " + String(buffer_gain)); 
-  } else if (field == "pre_emphasis") {
-    String pre_emphasis = server.arg("pre_emphasis");
-    tx.setPreEmphasis(pre_emphasis.toInt());   
-    Serial.println("Pre-Emphasis updated to: " + String(pre_emphasis)); 
-  } else if (field == "soft_clip") {
-    String soft_clip = server.arg("soft_clip");
-    tx.setTxSoftClippingEnable(soft_clip.toInt());   
-    Serial.println("Soft Clip updated to: " + String(soft_clip)); 
-  } else if (field == "datetime") {
-    String datetime = server.arg("datetime");
-    setRTC(datetime);  
-    Serial.println("Date Time updated to: " + datetime); 
+  } else if (postBody.indexOf("frequency_derivation=") >= 0) {
+    String frequency_derivation = getValue(postBody, "frequency_derivation");
+    tx.setTxFrequencyDerivation(frequency_derivation.toInt());
+    Serial.println("Frequency Derivation updated to: " + String(frequency_derivation));
+  } else if (postBody.indexOf("input_impedance=") >= 0) {
+    String input_impedance = getValue(postBody, "input_impedance");
+    tx.setTxInputImpedance(input_impedance.toInt());
+    Serial.println("Input Impedance updated to: " + String(input_impedance));
+  } else if (postBody.indexOf("stereo_mono=") >= 0) {
+    String stereo_mono = getValue(postBody, "stereo_mono");
+    tx.setTxMono(stereo_mono.toInt());
+    Serial.println("Stereo/Mono updated to: " + String(stereo_mono));
+  } else if (postBody.indexOf("buffer_gain=") >= 0) {
+    String buffer_gain = getValue(postBody, "buffer_gain");
+    tx.setTxInputBufferGain(buffer_gain.toInt());
+    Serial.println("Buffer Gain updated to: " + String(buffer_gain));
+  } else if (postBody.indexOf("pre_emphasis=0") >= 0) {
+    String pre_emphasis = getValue(postBody, "pre_emphasis");
+    tx.setPreEmphasis(pre_emphasis.toInt());
+    Serial.println("Pre-Emphasis updated to: " + String(pre_emphasis));
+  } else if (postBody.indexOf("soft_clip=") >= 0) {
+    String soft_clip = getValue(postBody, "soft_clip");
+    tx.setTxSoftClippingEnable(soft_clip.toInt());
+    Serial.println("Soft Clip updated to: " + String(soft_clip));
+  } else if (postBody.indexOf("datetime=") >= 0) {
+    String datetime = getValue(postBody, "datetime");
+    // setRTC(datetime);
+    Serial.println("Date Time updated to: " + datetime);
   }
-
-
+}
 
 
 void loop() {
@@ -356,54 +353,17 @@ void loop() {
     delay(1);
   }
 
-  // Lê a requisição completa do cliente
   String request = client.readString();
   Serial.println(request);
 
-  // Verifica se a requisição é do tipo POST e extrai os dados
   if (request.startsWith("POST /submit")) {
-    // Encontra o início do corpo da requisição (os dados enviados)
     int bodyIndex = request.indexOf("\r\n\r\n") + 4;
     String body = request.substring(bodyIndex);
-
-    // Extrai os valores enviados no corpo da requisição
-    int firstNameIndex = body.indexOf("FirstName=") + 10;
-    int lastNameIndex = body.indexOf("&LastName=") + 10;
-    int socialNumberIndex = body.indexOf("&SocialNumber=") + 14;
-
-    firstName = body.substring(firstNameIndex, body.indexOf('&', firstNameIndex));
-    lastName = body.substring(lastNameIndex, body.indexOf('&', lastNameIndex));
-    socialNumber = body.substring(socialNumberIndex).toInt();
-
-    // Exibe os dados no monitor serial
-    Serial.println("First Name: " + firstName);
-    Serial.println("Last Name: " + lastName);
-    Serial.println("Social Number: " + String(socialNumber));
+    handleUpdate(body);
   }
 
   handleRoot(&client);
 
-  /*
-  // Envia uma resposta HTML com o formulário
-  client.println("HTTP/1.1 200 OK");
-  client.println("Content-Type: text/html");
-  client.println();
-  client.println("<!DOCTYPE HTML>");
-  client.println("<html>");
-  client.println("<h1>Formulário de Cadastro</h1>");
-  client.println("<form action='/submit' method='POST'>");
-  client.println("First Name: <input type='text' name='FirstName'><br>");
-  client.println("Last Name: <input type='text' name='LastName'><br>");
-  client.println("Social Number: <input type='number' name='SocialNumber'><br>");
-  client.println("<input type='submit' value='Enviar'>");
-  client.println("</form>");
-  client.println("</html>");
-  */
-
-  // Aguarda até que o cliente desconecte
   delay(1);
   Serial.println("Cliente desconectado.");
 }
-
-
-
