@@ -2,6 +2,7 @@ import tkinter as tk
 import asyncio
 from bleak import BleakClient
 
+# 08:3a:f2:52:92:b0
 DEVICE_ADDRESS = "XX:XX:XX:XX:XX:XX"  # Substituir com o endereço MAC do ESP32
 CHARACTERISTIC_UUID = "0000ffe1-0000-1000-8000-00805f9b34fb"  # UUID do serviço Bluetooth
 
