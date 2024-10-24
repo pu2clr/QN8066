@@ -80,19 +80,19 @@ arduino-cli core install MiniCore:avr
 arduino-cli core install arduino:sam
 arduino-cli core install arduino:samd
 arduino-cli core install esp32:esp32
-# arduino-cli core install esp8266:esp8266
+arduino-cli core install esp8266:esp8266
 arduino-cli core install stm32duino:STM32F1
 # arduino-cli core install stm32duino:STM32F4
 # arduino-cli core install STM32:stm32
 # arduino-cli core install STMicroelectronics:stm32
 arduino-cli core install rp2040:rp2040
 # arduino-cli core install Seeeduino:samd
-# arduino-cli core install ATTinyCore:avr
+arduino-cli core install ATTinyCore:avr
 # arduino-cli core install MegaCore:avr
-# arduino-cli core install MightyCore:avr
+arduino-cli core install MightyCore:avr
 # arduino-cli core install teensy:avr
 
-echo "Run the command below if you want all libraries and boards used by all the examples of SI4735 Arduino Library"
-echo "curl -fsSL https://raw.githubusercontent.com/pu2clr/SI4735/master/examples/install_all_libraries_and_boards.sh | sh"
+echo "Run the command below if you want all libraries and boards used by all the examples of QN8066 Arduino Library"
+echo "curl -fsSL https://raw.githubusercontent.com/pu2clr/QN8066/master/examples/setup_libraries_boards.sh | sh"
 echo "Finish"
 
