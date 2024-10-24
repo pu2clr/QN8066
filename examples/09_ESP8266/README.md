@@ -31,3 +31,7 @@ After entering 10.0.0.2 in your web browser, the page below should appear.
 
 ![FM Transmitter Page](./web_page.jpg)
 
+
+## Video
+
+* [ESP8266 controlling the QN8066 FM transmitter via Wi-Fi](https://youtu.be/WVRsd0P8aRI?si=kUDwbs8J0wA0sLLK)
