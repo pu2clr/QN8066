@@ -17,7 +17,7 @@
   2. A suggestion if you intend to use PWM to control the RF output power of an amplifier. Not implemented here  
 
   Instructions: 
-  1) In your computer or mobile configure your Wi-Fi to   SSID = ESP8266_QN8066 and password = 12345678
+  1) In your computer or mobile configure your Wi-Fi go to  SSID = ESP8266_QN8066 and password = 12345678
   2) Open your Web Browser and type 10.0.0.2
   3) Depending on your receiver and the transmitter parameter you modify, it may take some time for the change to be noticed on the receiver.
 
@@ -105,8 +105,8 @@ void handleRoot(WiFiClient* client) {
 
   htmlPage += "</head><body>";
 
-  htmlPage += "<h1>PU2CLR QN8066 Arduino Library</h1>";
-  htmlPage += "<h1>FM Transmitter Configuration with ESP8266 Active Portal</h1>";
+  htmlPage += "<h1>PU2CLR - QN8066 Arduino Library</h1>";
+  htmlPage += "<h2>FM Transmitter Controlled by ESP8266 via Wi-Fi</h2>";
 
 
   // Formulário com Ajax e solução tradicional

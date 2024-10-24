@@ -14,3 +14,20 @@ The following diagram presents a basic configuration of the QN8066 and the ESP82
 ![ESP8266 and QN8066 Basic Setup](./schematic_esp8266_qn8066.jpg)
 
 
+
+## ESP8266 and QN8066 prototype
+
+![ESP8266 and QN8066 prototype](./prototype_esp8266_qn8066.jpg)
+
+
+## Information
+
+1) In your computer or mobile configure your Wi-Fi by selecting SSID = ESP8266_QN8066 and password = 12345678
+2) Open your Web Browser and type **10.0.0.2**
+3) Depending on your receiver and the transmitter parameter you modify, it may take some time for the change to be noticed on the receiver.
+
+
+After entering 10.0.0.2 in your web browser, the page below should appear.
+
+![FM Transmitter Page](./web_page.jpg)
+
