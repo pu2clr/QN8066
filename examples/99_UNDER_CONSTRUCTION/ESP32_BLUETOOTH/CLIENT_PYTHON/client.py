@@ -3,6 +3,10 @@ import asyncio
 from bleak import BleakClient
 
 # 08:3a:f2:52:92:b0
+#
+# sudo apt remove python3-tk --purge -y
+# sudo apt install python3-tk -y
+
 DEVICE_ADDRESS = "08:3a:f2:52:92:b0"  # Substituir com o endereço MAC do ESP32
 CHARACTERISTIC_UUID = "0000ffe1-0000-1000-8000-00805f9b34fb"  # UUID do serviço Bluetooth
 
