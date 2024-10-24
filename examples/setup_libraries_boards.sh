@@ -40,6 +40,7 @@ echo "Installing the libraries"
 #uncomment the lines if you and to include more libraries 
 arduino-cli lib install "QN8066"
 arduino-cli lib install "Ds1302"
+arduino-cli lib install "WiFiNINA"
 arduino-cli lib install "FlashStorage"
 # arduino-cli lib install "Adafruit BusIO"
 # arduino-cli lib install "Adafruit SH110X"
