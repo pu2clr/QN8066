@@ -42,6 +42,7 @@ arduino-cli lib install "QN8066"
 arduino-cli lib install "Ds1302"
 arduino-cli lib install "WiFiNINA"
 arduino-cli lib install "FlashStorage"
+arduino-cli lib install "STM32duino RTC"
 # arduino-cli lib install "Adafruit BusIO"
 # arduino-cli lib install "Adafruit SH110X"
 # arduino-cli lib install "Adafruit SSD1306"
@@ -76,6 +77,7 @@ arduino-cli core install arduino:avr
 arduino-cli core install lgt8fx:avr
 arduino-cli core install MiniCore:avr
 arduino-cli core install arduino:sam
+arduino-cli core install arduino:samd
 arduino-cli core install esp32:esp32
 # arduino-cli core install esp8266:esp8266
 arduino-cli core install stm32duino:STM32F1
