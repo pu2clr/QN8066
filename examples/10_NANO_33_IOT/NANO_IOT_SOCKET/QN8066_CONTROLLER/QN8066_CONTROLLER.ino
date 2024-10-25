@@ -21,6 +21,9 @@
 
   1. A suggestion if you intend to use PWM to control the RF output power of an amplifier.  
 
+  NOTE: In your computer, search for the Wi-Fi network with the SSID Nano33IoT_QN8066 
+        and connect to the Arduino Nano 33 IoT. Use the password 12345678. Run the Python Application.
+
   Prototype documentation: https://pu2clr.github.io/QN8066/
   PU2CLR QN8066 API documentation: https://pu2clr.github.io/QN8066/extras/apidoc/html/
 
@@ -49,8 +52,8 @@ char ps[9] = "QN8066 \r";
 char rt[33] = "NANO33 IOT FM TX REMOTE CONTROL\r";
 
 // WI-FI Setup
-char ssid[] = "PU2CLR";         // Wi-Fi network name
-char pass[] = "pu2clr123456";   // Wi-Fi password
+char ssid[] = "Nano33IoT_QN8066";         // Wi-Fi network name
+char pass[] = "12345678";   // Wi-Fi password
 
 int status = WL_IDLE_STATUS;
 WiFiServer server(SOCKET_PORT);        // Create a server that listens on port 8066
@@ -75,13 +78,16 @@ void setup() {
     while (true);
   }
 
-  // Connect to Wi-Fi network
-  while (status != WL_CONNECTED) {
-    Serial.print("Attempting to connect to SSID: ");
-    Serial.println(ssid);
-    status = WiFi.begin(ssid, pass);
-    delay(10000);
+  Serial.print("Setting AP...");
+  int status = WiFi.beginAP(ssid, pass);
+
+  if (status != WL_AP_LISTENING) {
+    Serial.println("Failed to start AP");
+    while (true);
   }
+
+  Serial.print("Access Point started with IP: ");
+  Serial.println(WiFi.localIP());
 
   // Start the server
   server.begin();
