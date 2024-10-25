@@ -149,4 +149,9 @@ void loop() {
 
 
 
+# Video
 
+* [Controlling the QN8066 from a Mobile Phone](https://youtu.be/IFOy-DizVIk?si=OcOq_1AbfmZeHVv7)
+* [QN8066 AND ESP32 AS ACCESS POINT AND CONTROLLER](https://youtu.be/p_rY2EnbfI8?si=8LiWqj5buV18oiZW)
+* [Python Application for Controlling QN8066 FM Transmitter via Wi-Fi with ESP32](https://youtu.be/rmlwoA_eo8c?si=9iIRzbOLn8g3Nj4P)
+* [Dynamic Control of QN8066 FM Transmitter via ESP32 and Web Interface -Part 1](https://youtu.be/pnmNTlQK2fY?si=-rsEqGGHsAY_7rbm)
