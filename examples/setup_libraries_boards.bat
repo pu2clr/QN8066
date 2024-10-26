@@ -68,6 +68,7 @@ arduino-cli core install arduino:avr
 arduino-cli core install lgt8fx:avr
 arduino-cli core install MiniCore:avr
 arduino-cli core install arduino:sam
+arduino-cli core install arduino:samd
 arduino-cli core install esp32:esp32
 arduino-cli core install esp8266:esp8266
 :: arduino-cli core install stm32duino:STM32F1
