@@ -49,7 +49,7 @@ uint8_t currentPower = 0;
 
 // 
 char ps[9] = "QN8066 \r";
-char rt[33] = "NANO33 IOT FM TX REMOTE CONTROL\r";
+char rt[33] = "Nano33IoT_QN8066 PASS:12345678\r";
 
 // WI-FI Setup
 char ssid[] = "Nano33IoT_QN8066";         // Wi-Fi network name
@@ -102,7 +102,8 @@ void setup() {
   tx.setup();
   tx.setTX(currentFrequency);   // Sets frequency to 106.9 MHz 
   delay(500);
-  startRDS();  
+  startRDS(); 
+  sendRDS(); 
 
 }
 

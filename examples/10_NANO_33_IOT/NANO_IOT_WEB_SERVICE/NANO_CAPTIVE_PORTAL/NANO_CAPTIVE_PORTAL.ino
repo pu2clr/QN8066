@@ -77,24 +77,25 @@ void setup() {
 void doFormParameters() {
   String htmlPage = "<html><head>";
   htmlPage += "<style>";
-  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;";  // Amazon green background (#006400) and yellow text
+  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;";  // Fundo verde Amazonas (#006400) e texto amarelo
   htmlPage += " display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; }";
-  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }";  // Title with yellow font
+  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }";  // Título com fonte amarela
   htmlPage += "table { border-collapse: collapse; width: auto; margin-top: 20px; }";
-  htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }";                                                       // Table text yellow
-  htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }";  // Fields with dark green background and yellow border
-  htmlPage += "td:nth-child(1) { text-align: right; }";                                                                                 // Align labels to the right
+  htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }";                                                       
+  htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }";  
+  htmlPage += "td:nth-child(1) { text-align: right; }";                                                                                 
   htmlPage += "</style>";
 
   htmlPage += "</head><body>";
 
-  htmlPage += "<h1>PU2CLR QN8066 Arduino Library</h1>";
-  htmlPage += "<h2>Arduino NANO 33 IoT - FM Transmitter Controller</h2>";
+  htmlPage += "<h1>PU2CLR - QN8066 Arduino Library</h1>";
+  htmlPage += "<h2>FM Transmitter Controlled by ESP8266 via Wi-Fi</h2>";
 
-  // Form with Ajax and traditional solution
+
+  // Formulário com Ajax e solução tradicional
   htmlPage += "<form method='POST' action='/setParameters'>";
 
-  // Table to align fields and buttons
+  // Tabela para alinhar campos e botões
   htmlPage += "<table>";
 
   // Frequency
@@ -151,7 +152,7 @@ void doFormParameters() {
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_pty\")'>Set</button></td>";
   htmlPage += "</tr>";
 
-  // RDS Program Station (PS)
+  // RDS Programa Station (PS)
   htmlPage += "<tr>";
   htmlPage += "<td>RDS PS:</td>";
   htmlPage += "<td><input type='text' id='rds_ps' name='rds_ps' maxlength='8'></td>";
@@ -165,13 +166,12 @@ void doFormParameters() {
   htmlPage += "<td><button type='button' onclick='sendData(\"rds_rt\")'>Set</button></td>";
   htmlPage += "</tr>";
 
-  // RDS DT line
+  // Linha do RDS DT
   htmlPage += "<tr>";
-  htmlPage += "<td>RDS DT:</td>";
-  htmlPage += "<td><input type='text' id='rds_dt' name='rds_dt' maxlength='32'></td>";
-  htmlPage += "<td><button type='button' onclick='sendData(\"rds_dt\")'>Set</button></td>";
+  htmlPage += "<td>RDS DT (yyyy/mm/dd hh:mm):</td>";
+  htmlPage += "<td><input type='text' id='datetime' name='datetime' maxlength='32'></td>";
+  htmlPage += "<td><button type='button' onclick='sendData(\"datetime\")'>Set</button></td>";
   htmlPage += "</tr>";
-
 
   // Frequency Derivation list
   htmlPage += "<tr>";
@@ -213,7 +213,6 @@ void doFormParameters() {
   htmlPage += "<td><button type='button' onclick='sendData(\"buffer_gain\")'>Set</button></td>";
   htmlPage += "</tr>";
 
-
   // Soft Clip
   htmlPage += "<tr>";
   htmlPage += "<td>Soft Clip:</td>";
@@ -224,19 +223,19 @@ void doFormParameters() {
   htmlPage += "<td><button type='button' onclick='sendData(\"soft_clip\")'>Set</button></td>";
   htmlPage += "</tr>";
 
-  // Close table and submit button for the complete form (traditional solution)
-  htmlPage += "</table><br>";
-  
+  // Fechar tabela e botão de enviar o formulário completo (solução tradicional)
+  // htmlPage += "</table><br>";
   // htmlPage += "<input type='submit' value='Submit All Parameters'>";
+
   // Close the form definition
   htmlPage += "</form>";
 
-  // Script to send data via Ajax (individual submission)
+  // Script para enviar dados via Ajax (envio individual)
   htmlPage += "<script>";
   htmlPage += "function sendData(fieldId) {";
   htmlPage += "  var value = document.getElementById(fieldId).value;";
   htmlPage += "  var xhr = new XMLHttpRequest();";
-  htmlPage += "  xhr.open('POST', '/setParameters', true);";
+  htmlPage += "  xhr.open('POST', '/update', true);";
   htmlPage += "  xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');";
   htmlPage += "  xhr.onreadystatechange = function() {";
   htmlPage += "    if (xhr.readyState == 4 && xhr.status == 200) {";
@@ -247,9 +246,13 @@ void doFormParameters() {
   htmlPage += "}";
   htmlPage += "</script>";
 
+  // Fechar corpo e HTML
   htmlPage += "</body></html>";
-  client.println(htmlPage);
+
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-Type: text/html");
   client.println();
+  client.println(htmlPage);
 }
 
 // Function to process POST requests
@@ -316,12 +319,15 @@ void loop() {
 
     // Process the request manually based on URL
     if (request.indexOf("GET / ") >= 0) {
+       Serial.println("---- 1");
       doFormParameters();  // Route for the root page
     }
     else if (request.indexOf("POST /setParameters") >= 0) {
+      Serial.println("---- 2");
       doFormParameters();  // Route for handling form submission
     }
     else if (request.indexOf("POST /update") >= 0) {
+      Serial.println("---- 3");
       processPostRequest();  // Route for handling AJAX updates
     }
     else {
