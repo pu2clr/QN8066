@@ -610,4 +610,8 @@ The table below shows the some boards where this library has been successfully c
 * [UNIVERSITY COLLEGE LONDON Department of Electronics and Electrical Engineering](https://haddadi.github.io/papers/RDSencoderHaddadi.pdf)
 * [Understanding and Exploiting Optimal Function Inlining](https://ethz.ch/content/dam/ethz/special-interest/infk/ast-dam/documents/Theodoridis-ASPLOS22-Inlining-Paper.pdf)
 * [What is Link Time Optimization (LTO)](https://developer.arm.com/documentation/101458/2404/Optimize/Link-Time-Optimization--LTO-/What-is-Link-Time-Optimization--LTO-)
+* [FM Transmitter Remotely Controlled Via ESP32](https://blog.pishop.co.za/fm-transmitter-remotely-controlled-via-esp32/)
+* [FM Transmitter Remotely Controlled Via ESP32](https://hackaday.com/2024/10/18/fm-transmitter-remotely-controlled-via-esp32/)
+
+
 
