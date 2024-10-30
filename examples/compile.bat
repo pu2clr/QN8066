@@ -14,6 +14,8 @@ echo "\n\n**** Arduino ATmega328 based board ***"
 echo "---> A_MINIMALIST_TX"
 echo "**** **** **** **** **** **** **** ***"
 
+set PATH=%PATH%;%HOMEPATH%
+
 arduino-cli compile -b arduino:avr:nano .\01_TX_SERIAL_MONITOR\A_MINIMALIST_TX --output-dir %homepath%\Downloads\hex\atmega\A_MINIMALIST_TX
 echo "---> A_TX"
 arduino-cli compile -b arduino:avr:nano .\01_TX_SERIAL_MONITOR\A_TX --output-dir %homepath%\Downloads\hex\atmega\A_TX
@@ -132,8 +134,4 @@ echo "\n\nRX - SAERIAL MONITOR"
 echo "************************************"
 echo "-------> 50_RX_SERIAL_MONITOR"
 arduino-cli compile -b arduino:avr:nano .\50_RX_SERIAL_MONITOR\01_RX_A --output-dir %homepath%\Downloads\hex\atmega\50_RX_A
-
-
-
-
 
