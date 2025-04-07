@@ -1319,6 +1319,13 @@ void QN8066::setPAC(uint8_t PA_TRGT) {
   this->pac.arg.PA_TRGT = PA_TRGT;
   this->pac.arg.TXPD_CLR = !(this->pac.arg.TXPD_CLR); // Reset aud_pk ( Toggle the value)
 
+  // resets the FMS bit by resetting bit 6 which will "Reset the state to initial states and recalibrate all blocks"
+  this->system1.arg.recal = 1;
+  this->setRegister(QN_SYSTEM1,this->system1.raw);    // Test
+  delay(100);
+  this->system1.arg.recal = 0;
+  this->setRegister(QN_SYSTEM1,this->system1.raw);    // Test
+
   if ( PA_TRGT > 23 ) { 
     this->setRegister(QN_PAC, this->pac.raw );
   }
