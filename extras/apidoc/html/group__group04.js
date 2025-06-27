@@ -20,6 +20,7 @@ var group__group04 =
     [ "QN8066::setTxInputBufferGain", "group__group04.html#ga09843594c1c9203a738c3a18cbc78403", null ],
     [ "QN8066::setTxSoftClippingEnable", "group__group04.html#gab21e226857d1b2ac384623fd47784ce5", null ],
     [ "QN8066::setTxFrequencyDerivation", "group__group04.html#ga88ea23b676feb40a15725b9273eca95b", null ],
+    [ "QN8066::setTxFrequencyDeviation", "group__group04.html#ga32d045330563515dd9a6145f10c3e9d8", null ],
     [ "QN8066::setPAC", "group__group04.html#ga90eeea994b03d7c31ac09426982884c0", null ],
     [ "QN8066::updateTxSetup", "group__group04.html#ga366e4fed2331cd9c22efb4ae555a5c57", null ],
     [ "QN8066::setToggleTxPdClear", "group__group04.html#gaf68d40e6fdc7a17cb64d883d93af3886", null ],

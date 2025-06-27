@@ -2,11 +2,11 @@
 
 This library is intended to provide an easy-to-use interface for controlling the QN8066 FM transceiver and receiver. 
 
-The primary goal of this Arduino library project for the QN8066 is to simplify the development of robust applications using this device. I hope that hobbyists, electronics technicians, radio amateurs, and others interested in this work will find success in their projects. All the C/C++ funcions and methods are documented [here].(https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
+The primary goal of this Arduino library project for the QN8066 is to simplify the development of robust applications using this device. I hope that hobbyists, electronics technicians, radio amateurs, and others interested in this work will find success in their projects. All the C/C++ functions and methods are documented [here](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html).
 
 
 This library can be freely distributed using the [MIT Free Software model](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
-By using or installing Library you are agreeing to the terms of the [MIT licence](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
+By using or installing this library, you are agreeing to the terms of the [MIT license](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
 
 [Copyright (c) 2024 Ricardo Lima Caratti](https://github.com/pu2clr/QN8066/blob/main/LICENSE). 
 
@@ -68,7 +68,7 @@ By following these guidelines, you can ensure that your use of the FM transmitte
 * For educational or field transmissions, special authorization can be requested for specific events, such as science fairs or public demonstrations.
 * Experimental transmissions may be allowed in controlled environments, such as laboratories, provided the signal does not exceed the physical boundaries of the location or interfere with other services.
 * Microtransmitters or prototypes for short-range testing are tolerated as long as they operate within specific bands or with extremely low power.
-* Wireless microphones based on FM trnasmitter are legal if they comply with designated sub-bands and power limits to prevent interference. 
+* Wireless microphones based on FM transmitters are legal if they comply with designated sub-bands and power limits to prevent interference. 
 * Community radio stations, limited to 25 watts and a 4 km radius, require licenses granted to non-profit organizations through the Ministry of Communications, with permits valid for 10 years and restrictions on commercial advertising.
 
 
@@ -317,7 +317,7 @@ The table below shows some tested sources (active crystal or signal generator) a
 |  32,768,000     |  1000         |  
 
 
-**IMPORTANTE:** As far as I understand, there is no possibility of using passive crystals. The QN8066 requires an active signal source provided by a generator.
+**IMPORTANT:** As far as I understand, there is no possibility of using passive crystals. The QN8066 requires an active signal source provided by a generator.
 
 
 #### Example 1
@@ -326,7 +326,7 @@ The table below shows some tested sources (active crystal or signal generator) a
 /**
 
 This sketch works on Arduino Pro Mini, Nano, UNO, or any other board based on the ATMega328. 
-IMPORTANTE: Refer to the documentation if you are using a 5V microcontroller instead of a 3.3V one.
+IMPORTANT: Refer to the documentation if you are using a 5V microcontroller instead of a 3.3V one.
 
 This sketch illustrates the clock configuration used on the XCLK pin of the QN8066. 
 Depending on the active crystal or signal generator you are using, it is important 
@@ -363,7 +363,7 @@ void setup() {
                1,  // PreEmphasis = 75
                1); // 1 if XCLK pin is receiving a digital clock. set it to 0 if you are using a sine-wave oscillator. 
 
-  tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
+  tx.setTX(FREQUENCY);    // Change the FREQUENCY constant if you want another value
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
 }
@@ -395,10 +395,10 @@ void setup() {
   // Assuming you are using a 32.768 kHz active crystal, a digital signal, and LO<RF, 
   // the image is on the lower side.
   tx.setXtal(1,1,0); 
-  // tx.setXtal(100,1,0); // If you are using 3,768 active crystal
-  // tx.setXtal(1000,1,0); // If you are using 32,768,000 active crystal
+  // tx.setXtal(100,1,0); // If you are using 3,276.8 kHz active crystal
+  // tx.setXtal(1000,1,0); // If you are using 32,768 kHz active crystal
   delay(100);
-  tx.setTX(FREQUENCY);    // Chenge the FREQUENCY constant if you want other value
+  tx.setTX(FREQUENCY);    // Change the FREQUENCY constant if you want another value
   sprintf(str, "\n\nBroadcasting...");
   Serial.print(str);
 }
@@ -412,7 +412,7 @@ void loop() {
 
 ## DIY Kit 5W-7W FM Transceiver
 
-It is possible to find Transceivers based on the QN8066 in kit form. With this library, you will also be able to control this kit, thereby expanding its original functionalities. Check AliExpress and others to check it out. 
+It is possible to find transceivers based on the QN8066 in kit form. With this library, you will also be able to control this kit, thereby expanding its original functionalities. Check AliExpress and other sources to find it. 
 
 The images below show the DIY Kit 5W-7W FM Transceiver available on AliExpress.
 
@@ -429,11 +429,11 @@ The images below show the DIY Kit 5W-7W FM Transceiver available on AliExpress.
 
 ### Using the QN8066 Arduino Library with DIY Kit 5W-7W FM Transceiver
 
-The code below is a minimalist sketch example of using this library with the DIY Kit 5W-7W FM  board. 
+The code below is a minimalist sketch example of using this library with the DIY Kit 5W-7W FM board. 
 
-#### Arduino and the  Kit 5W-7W FM connections
+#### Arduino and the Kit 5W-7W FM connections
 
-| Anduino Nano or Uno pin | Kit 5W-7W FM  |
+| Arduino Nano or Uno pin | Kit 5W-7W FM  |
 | ----------------------- | ------------- | 
 |          GND            |     GND       | 
 |           D9            |     PWM (*1)  | 
@@ -456,7 +456,7 @@ void setup() {
   dv.setup();
   Serial.print("\nStarting the system...");
   delay(1000);      
-  dv.setTX(1067); // Set the transmitter to 106.9 MHz 
+  dv.setTX(1067); // Set the transmitter to 106.7 MHz 
   dv.setTxStereo(true);
   // Now you can start PWM
   analogWrite(9, 50);  // It is about 1/5 of the max power (5~7W). It is between 1 and 1,4 W

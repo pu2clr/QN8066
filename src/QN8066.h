@@ -115,8 +115,8 @@ typedef union {
   struct {
     uint8_t tc : 1;       //!<  Pre-emphasis and de-emphasis time constant; 0 = 50; 1 = 75 
     uint8_t rdsrdy : 1;   //!<  RDS transmitting ready; - If user want the chip transmitting all the 8 bytes in RDS0~RDS7, user  should toggle this bit.
-    uint8_t tx_mute : 1;  //!<  TX audio mute enabel - 0 = Mute Disabled; 1 = Mute Enabled; 
-    uint8_t rx_mute : 1;  //!<  RX audio Mute enable - 0 = Mute Disabled; 1 = Mute Enabled
+    uint8_t tx_mute : 1;  //!<  TX audio mute enable - 0 = Mute Disabled; 1 = Mute Enabled; 
+    uint8_t rx_mute : 1;  //!<  RX audio mute enable - 0 = Mute Disabled; 1 = Mute Enabled
     uint8_t tx_mono : 1;  //!<  TX stereo and mono mode selection; 0 = Stereo;  1 = Mono
     uint8_t force_mo : 1; //!<  Force receiver in MONO mode; 0 = Not forced. ST/MONO auto selected; Forced in MONO mode
     uint8_t tx_rdsen : 1; //!<  Transmitter RDS enable; 0 = RDS Disable; 1 = RDS  Enable
@@ -136,7 +136,7 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t SNR_CCA_TH : 6; //!<  The threshold for determination of whether  current channel is valid by check its SNR.
+    uint8_t SNR_CCA_TH : 6; //!<  The threshold for determination of whether the current channel is valid by checking its SNR.
     uint8_t imr : 1;        //!<  Image Rejection. 0 = LO<RF, image is in lower side; 1 = LO>RF, image is in upper side
     uint8_t xtal_inj : 1;   //!<  Select the reference clock source. 0 = Inject sine-wave clock; 1 = Inject digital clock
   } arg;
@@ -201,7 +201,7 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t CID4 : 2; //!<  Sequency integer values from 0 to 4.
+    uint8_t CID4 : 2; //!<  Sequential integer values from 0 to 4.
     uint8_t CID3 : 6; //!<  Chip ID for product ID. 001101 = Transceiver –  QN8066; Others = Reserved unkown
   } arg;
   uint8_t raw;
@@ -444,7 +444,7 @@ typedef union {
 
 typedef union {
   struct {
-    uint8_t TXCH : 2; //!< Highest 2 bits of 10-bit channel index.  hannel freq
+    uint8_t TXCH : 2; //!< Highest 2 bits of 10-bit channel index. Channel freq
                       //!< is (60+TXCH*0.05)MHz
     uint8_t priv_mode : 1; //!< Private mode for RX/TX
     uint8_t

@@ -64,7 +64,7 @@ uint8_t QN8066::scanI2CBus(uint8_t *device) {
 /**
  * @ingroup group02 I2C
  * @brief Gets register information
- * @details 8066 commands. It provides a means to run commands that are not currently supported by the standard API.
+ * @details QN8066 commands. It provides a means to run commands that are not currently supported by the standard API.
  * @param registerNumber
  * @return uint8_t Value of the register
  */
@@ -81,8 +81,8 @@ uint8_t QN8066::getRegister(uint8_t registerNumber) {
 
 /**
  * @ingroup group02 I2C
- * @brief Stores a velue to a given register
- * @details 8066 commands. It provides a means to run commands that are not currently supported by the standard API.
+ * @brief Stores a value to a given register
+ * @details QN8066 commands. It provides a means to run commands that are not currently supported by the standard API.
  * @param registerNumber
  * @param value
  */
@@ -193,7 +193,7 @@ qn8066_status3 QN8066::getStatus3() {
 /**
  * @ingroup group02 Init Device
  * @brief Starts the  QN8066 instance.  
- * @details It is a minimalist code to initiate the QN8066 device. Use the function setup if you want more option during the start process.
+ * @details It is a minimalist code to initiate the QN8066 device. Use the function setup if you want more options during the start process.
  * @details Example
  * @code 
  * #include <QN8066.h>

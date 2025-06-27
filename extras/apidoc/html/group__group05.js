@@ -27,5 +27,5 @@ var group__group05 =
     [ "QN8066::rdsSendPS", "group__group05.html#ga2beb7d1a42e9aa2ecf72427318b40d1b", null ],
     [ "QN8066::rdsSendRTMessage", "group__group05.html#ga76dc7b86d565705fd980a11123e77f0c", null ],
     [ "QN8066::calculateMJD", "group__group05.html#gaafb2b16d7f2904675d7bd559e48c70bc", null ],
-    [ "QN8066::rdsSendDateTime", "group__group05.html#gad03b7a3081f8da6d66621c8770d98258", null ]
+    [ "QN8066::rdsSendDateTime", "group__group05.html#ga08186f6f6961d71400768c83f0a9c4fa", null ]
 ];

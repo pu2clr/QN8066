@@ -1501,13 +1501,13 @@ RDS transmitting ready; - If user want the chip transmitting all the 8 bytes in 
 <td class="fieldname">
 tx_mute: 1</td>
 <td class="fielddoc">
-TX audio mute enabel - 0 = Mute Disabled; 1 = Mute Enabled;. </td></tr>
+TX audio mute enable - 0 = Mute Disabled; 1 = Mute Enabled;. </td></tr>
 <tr><td class="fieldtype">
 <a id="a5b727daa91b43bbd84691976860677ef" name="a5b727daa91b43bbd84691976860677ef"></a>uint8_t</td>
 <td class="fieldname">
 rx_mute: 1</td>
 <td class="fielddoc">
-RX audio Mute enable - 0 = Mute Disabled; 1 = Mute Enabled. </td></tr>
+RX audio mute enable - 0 = Mute Disabled; 1 = Mute Enabled. </td></tr>
 <tr><td class="fieldtype">
 <a id="ad15421558c80b5c73a545b03dc0d10aa" name="ad15421558c80b5c73a545b03dc0d10aa"></a>uint8_t</td>
 <td class="fieldname">
@@ -1554,7 +1554,7 @@ Receiver RDS enable; 0 = RDS Disable; 1 = RDS Enable. </td></tr>
 <td class="fieldname">
 SNR_CCA_TH: 6</td>
 <td class="fielddoc">
-The threshold for determination of whether current channel is valid by check its SNR. </td></tr>
+The threshold for determination of whether the current channel is valid by checking its SNR. </td></tr>
 <tr><td class="fieldtype">
 <a id="acf5ed1f35ec8f5264e84b4f63cd708f8" name="acf5ed1f35ec8f5264e84b4f63cd708f8"></a>uint8_t</td>
 <td class="fieldname">
@@ -1624,7 +1624,7 @@ Reserved. </td></tr>
 <td class="fieldname">
 CID4: 2</td>
 <td class="fielddoc">
-Sequency integer values from 0 to 4. </td></tr>
+Sequential integer values from 0 to 4. </td></tr>
 <tr><td class="fieldtype">
 <a id="aadce06a64a0400c2f6eb3c659a2f9cde" name="aadce06a64a0400c2f6eb3c659a2f9cde"></a>uint8_t</td>
 <td class="fieldname">
@@ -1941,7 +1941,7 @@ Tx audio input mode selection. 0 = Single ended; 1 = Differential. </td></tr>
 <td class="fieldname">
 TXCH: 2</td>
 <td class="fielddoc">
-<p>Highest 2 bits of 10-bit channel index. hannel freq is (60+TXCH*0.05)MHz </p>
+<p>Highest 2 bits of 10-bit channel index. Channel freq is (60+TXCH*0.05)MHz </p>
 </td></tr>
 <tr><td class="fieldtype">
 <a id="adb4b40b3476cd528c7ce87eef4897b77" name="adb4b40b3476cd528c7ce87eef4897b77"></a>uint8_t</td>
