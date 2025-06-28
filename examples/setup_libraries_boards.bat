@@ -1,85 +1,157 @@
-:: This script runs Windows 10 and 11 and it is useful to install the basic enviroment to develop
-:: applications (receivers) using the PU2CLR Arduino Library.
-::
-:: Please, check the comments above
-::
-echo off
-:: go to homefolder
-cd %homepath%
-:: Download and install the arduino command line - arduino-cli
-echo on
-echo "Installing arduino-cli.exe to your home folder (arduino.cli.exe) 
-echo off  
-curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip --output arduinocli.zip
-tar -xf arduinocli.zip 
-:: It should be installed in the ~/bin folder
-:: Start the arduino-cli configuration
-echo on 
-echo "Configuring Arduino boards and libraries. It can take a long time...." 
-arduino-cli config init 
-:: Add all boards used by the examples (ATmega, Attiny, ESP32, STM32 etc) to the board list
-arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json http://dan.drown.org/stm32duino/package_STM32duino_index.json  http://drazzy.com/package_drazzy.com_index.json https://files.seeedstudio.com/arduino/package_seeeduino_boards_index.json https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json https://github.com/stm32duino/BoardManagerFiles/raw/master/STM32/package_stm_index.json https://mcudude.github.io/MegaCore/package_MCUdude_MegaCore_index.json https://mcudude.github.io/MightyCore/package_MCUdude_MightyCore_index.json https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json https://raw.githubusercontent.com/DavidGuo-CS/OSOYOO_Arduino/main/package_osoyoo_boards_index.json https://raw.githubusercontent.com/VSChina/azureiotdevkit_tools/master/package_azureboard_index.json  https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json  https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json https://www.pjrc.com/teensy/package_teensy_index.json
+@ECHO OFF
+REM This script installs all necessary Arduino board packages and libraries required for QN8066 library examples.
+REM It is useful for setting up a development environment on Windows CMD/PowerShell.
+REM
+REM Prerequisites:
+REM - arduino-cli must be installed and accessible from command line
+REM - Internet connection is required for downloading packages
+REM
+REM Usage: Run this script once before using compile.bat
+REM
+REM Ricardo Lima Caratti 2024
 
-:: Update the index of boards that can be installed
+echo.
+echo ==========================================
+echo Arduino CLI Configuration for QN8066 Library
+echo ==========================================
+echo.
+
+REM Check if arduino-cli is installed, if not, install it
+where arduino-cli >nul 2>nul
+if %errorlevel% neq 0 (
+    echo Arduino CLI not found. Installing arduino-cli...
+    cd %USERPROFILE%
+    echo Downloading arduino-cli.exe to your home folder...
+    curl -fsSL https://downloads.arduino.cc/arduino-cli/arduino-cli_latest_Windows_64bit.zip --output arduinocli.zip
+    tar -xf arduinocli.zip 
+    del arduinocli.zip
+    echo arduino-cli installed to %USERPROFILE%
+    echo Please add %USERPROFILE% to your PATH environment variable if not already added
+    echo.
+)
+
+echo Initializing arduino-cli configuration...
+arduino-cli config init
+
+echo.
+echo Updating arduino-cli core index...
 arduino-cli core update-index
 
-echo "This may take several minutes or hours. Please wait!"
-echo "Installing the libraries"
-:: uncomment the lines if you and to include more libraries 
-arduino-cli lib install "QN8066"
-arduino-cli lib install "Ds1302"
-arduino-cli lib install "WiFiNINA"
-arduino-cli lib install "FlashStorage"
-arduino-cli lib install "STM32duino RTC"
-arduino-cli lib install "ArduinoJson"
-:: arduino-cli lib install "Adafruit BusIO"
-:: arduino-cli lib install "Adafruit SH110X"
-:: arduino-cli lib install "Adafruit SSD1306"
-:: arduino-cli lib install "Adafruit ST7735 and ST7789 Library"
-:: arduino-cli lib install "Adafruit PCD8544 Nokia 5110 LCD library"
-:: arduino-cli lib install "Adafruit TouchScreen"
-:: arduino-cli lib install "ES32Lab"
-:: arduino-cli lib install "Etherkit Si5351"
-:: arduino-cli lib install "FlashStorage_SAMD"
-arduino-cli lib install "LiquidCrystal"
-arduino-cli lib install "LiquidCrystal I2C"
-:: arduino-cli lib install "MCUFRIEND_kbv"
-:: arduino-cli lib install "TFT_22_ILI9225"
-:: arduino-cli lib install "TFT_eSPI_ES32Lab"
-arduino-cli lib install "Tiny4kOLED"
-arduino-cli lib install "TinyOLED-Fonts"
-:: arduino-cli lib install "TM1638lite"
+echo.
+echo Configuring additional board manager URLs...
 
-echo "----------------------------------------------------"
-echo "Installing the library Adafruit_SH1106 via zip file"
-SET ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
-curl -fsSL https://github.com/wonho-maker/Adafruit_SH1106/archive/refs/heads/master.zip --output SU1106.zip
-arduino-cli lib install --zip-path ./SU1106.zip
-echo "----------------------------------------------------"
-echo "The site of library LCD5110_Graph does not allow deep linking."
-echo "So, if you need to run the example with Nokia 5110 display, please, install library LCD5110_Graph library manually." 
-echo "See: http://www.rinkydinkelectronics.com/library.php?id=47"
-echo "Download the file and run arduino-cli lib install --zip-path ~Downloads/LCD5110_Graph.zip"
-echo "----------------------------------------------------"
+echo Adding LGT8F328 board support...
+arduino-cli config set board_manager.additional_urls https://raw.githubusercontent.com/dbuezas/lgt8fx/master/package_lgt8fx_index.json --append
 
-:: uncomment the lines below if you want some additional boards 
-echo "Installing the boards"
+echo Adding MiniCore support...
+arduino-cli config set board_manager.additional_urls https://mcudude.github.io/MiniCore/package_MCUdude_MiniCore_index.json --append
+
+echo Adding ESP32 board support...
+arduino-cli config set board_manager.additional_urls https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json --append
+
+echo Adding ESP8266 board support...
+arduino-cli config set board_manager.additional_urls http://arduino.esp8266.com/stable/package_esp8266com_index.json --append
+
+echo Adding STM32 board support...
+arduino-cli config set board_manager.additional_urls https://github.com/stm32duino/BoardManagerFiles/raw/main/package_stmicroelectronics_index.json --append
+
+echo Adding ATtiny board support...
+arduino-cli config set board_manager.additional_urls https://raw.githubusercontent.com/damellis/attiny/ide-1.6.x-boards-manager/package_damellis_attiny_index.json --append
+
+echo Adding Raspberry Pi Pico support...
+arduino-cli config set board_manager.additional_urls https://github.com/earlephilhower/arduino-pico/releases/download/global/package_rp2040_index.json --append
+
+echo.
+echo Updating board manager index with new URLs...
+arduino-cli core update-index
+
+echo.
+echo Installing board packages (this may take several minutes)...
+
+echo Installing default Arduino AVR boards (Uno, Nano, Pro Mini)...
 arduino-cli core install arduino:avr
-arduino-cli core install lgt8fx:avr
-arduino-cli core install MiniCore:avr
-arduino-cli core install arduino:sam
-arduino-cli core install arduino:samd
-arduino-cli core install esp32:esp32
-arduino-cli core install esp8266:esp8266
-:: arduino-cli core install stm32duino:STM32F1
-:: arduino-cli core install stm32duino:STM32F4
-arduino-cli core install STMicroelectronics:stm32
-:: arduino-cli core install STM32:stm32
-:: arduino-cli core install rp2040:rp2040
-:: arduino-cli core install Seeeduino:samd
-arduino-cli core install ATTinyCore:avr
-:: arduino-cli core install MegaCore:avr
-:: arduino-cli core install MightyCore:avr
-:: arduino-cli core install teensy:avr
 
-echo "Finish"
+echo Installing Arduino SAMD boards (Nano 33 IoT)...
+arduino-cli core install arduino:samd
+
+echo Installing LGT8F328 board package...
+arduino-cli core install lgt8fx:avr
+
+echo Installing MiniCore package...
+arduino-cli core install MiniCore:avr
+
+echo Installing ESP32 board package...
+arduino-cli core install esp32:esp32
+
+echo Installing ESP8266 board package...
+arduino-cli core install esp8266:esp8266
+
+echo Installing STM32 board package...
+arduino-cli core install STMicroelectronics:stm32
+
+echo Installing ATtiny board package...
+arduino-cli core install ATTinyCore:avr
+
+echo Installing Raspberry Pi Pico (RP2040) board support...
+arduino-cli core install rp2040:rp2040
+
+echo.
+echo Installing required libraries...
+
+echo Installing QN8066 library...
+arduino-cli lib install "QN8066"
+
+echo Installing LiquidCrystal I2C library (for LCD examples)...
+arduino-cli lib install "LiquidCrystal I2C"
+
+echo Installing LiquidCrystal library...
+arduino-cli lib install "LiquidCrystal"
+
+echo Installing DS1302 RTC library...
+arduino-cli lib install "Ds1302"
+
+echo Installing WiFiNINA library (for Arduino Nano 33 IoT)...
+arduino-cli lib install "WiFiNINA"
+
+echo Installing FlashStorage library...
+arduino-cli lib install "FlashStorage"
+
+echo Installing STM32duino RTC library...
+arduino-cli lib install "STM32duino RTC"
+
+echo Installing ArduinoJson library...
+arduino-cli lib install "ArduinoJson"
+
+echo Installing Tiny4kOLED library (for OLED displays)...
+arduino-cli lib install "Tiny4kOLED"
+
+echo Installing TinyOLED-Fonts library...
+arduino-cli lib install "TinyOLED-Fonts"
+
+echo.
+echo Installing additional libraries via zip file...
+echo Installing Adafruit_SH1106 library...
+SET ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true
+curl -fsSL https://github.com/wonho-maker/Adafruit_SH1106/archive/refs/heads/master.zip --output SH1106.zip
+arduino-cli lib install --zip-path ./SH1106.zip
+del SH1106.zip
+
+echo.
+echo ==========================================
+echo Setup Complete!
+echo ==========================================
+echo.
+echo All board packages and libraries have been installed.
+echo You can now run compile.bat to compile all examples.
+echo.
+echo Note: The Nokia 5110 LCD library (LCD5110_Graph) needs to be installed manually
+echo as the site does not allow deep linking. If you need Nokia 5110 examples:
+echo 1. Download from: http://www.rinkydinkelectronics.com/library.php?id=47
+echo 2. Run: arduino-cli lib install --zip-path path\to\LCD5110_Graph.zip
+echo.
+echo If you encounter any issues, please ensure that:
+echo - arduino-cli is properly installed and in your PATH
+echo - You have an active internet connection
+echo - You have sufficient disk space for all packages
+echo.
+pause
