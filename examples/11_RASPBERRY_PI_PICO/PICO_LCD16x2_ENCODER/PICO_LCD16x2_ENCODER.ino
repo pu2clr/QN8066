@@ -163,7 +163,7 @@ void setup() {
   // Initialize QN8066
   tx.setup(1, false, false, 1, 1);
   tx.setTX(frequency);
-  tx.setTxPower(txPower);
+  //TO DO - Set PWM 
   tx.setTxStereo(stereoMode);
   
   Serial.println("System ready!");
@@ -278,7 +278,7 @@ void encoderISR() {
         case 1: // Power
           if (txPower < MAX_POWER) {
             txPower += POWER_STEP;
-            tx.setTxPower(txPower);
+            //TO DO - Set PWM 
           }
           break;
         case 2: // Mode
@@ -298,7 +298,7 @@ void encoderISR() {
         case 1: // Power
           if (txPower > MIN_POWER) {
             txPower -= POWER_STEP;
-            tx.setTxPower(txPower);
+            //TO DO - Set PWM 
           }
           break;
         case 2: // Mode
