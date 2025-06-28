@@ -30,6 +30,8 @@ if %errorlevel% neq 0 (
     echo.
 )
 
+arduino-cli config set network.connection_timeout 600s
+
 echo Initializing arduino-cli configuration...
 arduino-cli config init
 
