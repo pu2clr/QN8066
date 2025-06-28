@@ -60,9 +60,9 @@
 #define FREQ_STEP 1      // 0.1 MHz steps
 
 // Power levels
-#define MIN_POWER 20
-#define MAX_POWER 120
-#define POWER_STEP 10
+#define MIN_POWER 25
+#define MAX_POWER 56
+#define POWER_STEP 1
 
 // Objects
 QN8066 tx;
@@ -70,7 +70,7 @@ LiquidCrystal_I2C lcd(LCD_ADDRESS, 16, 2);
 
 // Variables
 volatile int frequency = 1069;  // 106.9 MHz
-volatile int txPower = 73;      // Default power
+volatile int txPower = 50;      // Default power
 volatile bool stereoMode = true;
 volatile int menuMode = 0;      // 0=Freq, 1=Power, 2=Mode
 volatile bool encoderButtonPressed = false;
@@ -195,6 +195,14 @@ void loop() {
   delay(50);
 }
 
+
+void setPower(int power) { 
+  if (power < MIN_POWER) power = MIN_POWER;
+  if (power > MAX_POWER) power = MAX_POWER;
+  txPower = power;
+  tx.setPAC(txPower);
+} 
+
 void updateDisplay() {
   lcd.clear();
   
@@ -278,7 +286,7 @@ void encoderISR() {
         case 1: // Power
           if (txPower < MAX_POWER) {
             txPower += POWER_STEP;
-            //TO DO - Set PWM 
+            setPower(txPower); 
           }
           break;
         case 2: // Mode
@@ -298,7 +306,7 @@ void encoderISR() {
         case 1: // Power
           if (txPower > MIN_POWER) {
             txPower -= POWER_STEP;
-            //TO DO - Set PWM 
+            setPower(txPower);
           }
           break;
         case 2: // Mode

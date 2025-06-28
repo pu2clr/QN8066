@@ -43,8 +43,7 @@
 
 // Transmission parameters
 #define FREQUENCY 1069  // 106.9 MHz - Change this to your desired frequency
-#define TX_POWER 73     // Transmission power (0-120, where 120 is maximum)
-
+#define TX_POWER 55
 QN8066 tx;
 char status_msg[100];
 
@@ -100,7 +99,7 @@ void setup() {
   tx.setTX(FREQUENCY);
   
   Serial.println("Setting transmission power...");
-  tx.setTxPower(TX_POWER);
+  setPower(TX_POWER);
   
   Serial.println("Enabling stereo transmission...");
   tx.setTxStereo(true);
@@ -112,6 +111,12 @@ void setup() {
   Serial.println("\nTransmission Status:");
   Serial.println("====================");
 }
+
+void setPower(int power) { 
+  if (power < 25) power = 25;
+  if (power > 55) power = 55;
+  tx.setPAC(power);
+} 
 
 void loop() {
   // Get and display system status
