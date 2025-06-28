@@ -31,9 +31,11 @@ https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32
 https://raw.githubusercontent.com/nulllaborg/arduino_nulllab/master/package_nulllab_boards_index.json \
 https://raw.githubusercontent.com/sleemanj/optiboot/master/dists/package_gogo_diy_attiny_index.json
 
+arduino-cli config set network.connection_timeout 600s
 
 # Update the index of boards that can be installed
 arduino-cli core update-index
+
 
 echo "This may take several minutes or hours. Please wait!"
 echo "Installing the libraries"
