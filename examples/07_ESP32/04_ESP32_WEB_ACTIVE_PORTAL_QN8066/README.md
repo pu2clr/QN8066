@@ -2,13 +2,54 @@
 
 This application is very similar to the '[02_WEB_WIFI_ESP32_QN8066](../02_ESP32_WEB_WIFI_QN8066/)' application, with one subtle difference: the ESP32 itself will provide its own internet network (Access Point), allowing you to configure the FM Transmitter by connecting your device (phone or computer) directly to the ESP32. This eliminates the need for another Wi-Fi network configured in your home or any similar setup.
 
-To use this application, all you need to do is power on the ESP32, connect to the Wi-Fi network with the SSID ESP32_QN8066 (password esp32qn8066) via your computer or mobile device, and start controlling the transmitter through the web page.
+## Requirements
 
+### Hardware
+- ESP32 development board (ESP32 Dev Module, ESP32C3 Dev Module, or compatible)
+- QN8066 FM transmitter module
+- Connecting wires
+- Optional: External antenna for better transmission range
 
-To configure the ESP32 settings with the FM transmitter, please refer to the documentation in the folder [02_WEB_WIFI_ESP32_QN8066](../02_ESP32_WEB_WIFI_QN8066/). Once the connections are set up and the sketch  ESP32_ACTIVE_PORTAL_QN8066.ino is uploaded, you can access the ESP32 by following these steps: 
+### Software
+- Arduino IDE with ESP32 board package installed
+- Required libraries:
+  - WiFi (included with ESP32 board package)
+  - WebServer (included with ESP32 board package)
+  - DNSServer (included with ESP32 board package)
+  - Wire (Arduino core library)
+  - QN8066 (this library)
 
-1.  Connect your device to the Wi-Fi provided by the ESP32 (SSID: ESP32_QN8066, password: esp32qn8066); 
-2.  Use a web browser and go to the address 10.0.0.1.
+## How to Use
+
+To use this application, follow these steps:
+
+1. **Hardware Setup**: Wire the ESP32 and QN8066 according to the connection diagram in the [02_WEB_WIFI_ESP32_QN8066](../02_ESP32_WEB_WIFI_QN8066/) folder
+2. **Upload Code**: Flash the `ESP32_ACTIVE_PORTAL_QN8066.ino` sketch to your ESP32
+3. **Power On**: Connect power to the ESP32
+4. **Connect to Access Point**: On your computer or mobile device, connect to the Wi-Fi network:
+   - **SSID**: ESP32_QN8066
+   - **Password**: esp32qn8066
+5. **Access Web Interface**: Open a web browser and navigate to **10.0.0.1**
+6. **Configure Transmitter**: Use the web interface to set frequency, power, and RDS parameters
+
+### Access Point Credentials
+- **Network Name (SSID)**: ESP32_QN8066
+- **Password**: esp32qn8066
+- **IP Address**: 10.0.0.1
+- **Gateway**: 10.0.0.1
+- **Subnet**: 255.255.255.0
+
+### Important Notes
+- The ESP32 creates its own Wi-Fi network - no internet connection required
+- The web interface includes real-time clock functionality for RDS date/time
+- Changes to transmitter settings may take a few seconds to be reflected
+- Ensure your FM receiver is tuned to the frequency set in the interface
+
+### Troubleshooting
+- **Cannot see ESP32_QN8066 network**: Check ESP32 power and code upload
+- **Cannot access 10.0.0.1**: Verify connection to ESP32_QN8066 network
+- **Web page not loading**: Try refreshing browser or clearing cache
+- **No FM transmission**: Check QN8066 connections and antenna
 
 
 

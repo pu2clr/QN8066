@@ -94,9 +94,9 @@ const char *ssid = "ESP32_QN8066";
 const char *password = "esp32qn8066";
 
 
-IPAddress local_IP(10, 0, 0, 1);        // Endereço IP fixo
-IPAddress gateway(10, 0, 0, 1);         // Gateway (o próprio ESP32)
-IPAddress subnet(255, 255, 255, 0);     // Máscara de sub-rede
+IPAddress local_IP(10, 0, 0, 1);        // Fixed IP address
+IPAddress gateway(10, 0, 0, 1);         // Gateway (the ESP32 itself)
+IPAddress subnet(255, 255, 255, 0);     // Subnet mask
 
 
 // DNS 
@@ -116,16 +116,16 @@ QN8066 tx;
 void handleRoot() {
   String htmlPage = "<html><head>";
  
-  // Adicionando estilo CSS para centralizar o formulário e ajustar a tabela
+  // Adding CSS styling to center the form and adjust the table
   
   htmlPage += "<style>";
-  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;"; // Fundo verde Amazonas (#006400) e texto amarelo
+  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;"; // Amazon green background (#006400) and yellow text
   htmlPage += " display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; }";
-  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }"; // Título com fonte amarela
+  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }"; // Title with yellow font
   htmlPage += "table { border-collapse: collapse; width: auto; margin-top: 20px; }";
-  htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }"; // Texto da tabela amarelo
-  htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }"; // Campos com fundo verde escuro e borda amarela
-  htmlPage += "td:nth-child(1) { text-align: right; }"; // Alinha os rótulos à direita
+  htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }"; // Table text in yellow
+  htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }"; // Input fields with dark green background and yellow border
+  htmlPage += "td:nth-child(1) { text-align: right; }"; // Align labels to the right
   htmlPage += "</style>";
 
   htmlPage += "</head><body>";
@@ -134,10 +134,10 @@ void handleRoot() {
   htmlPage += "<h1>FM Transmitter Configuration with ESP32 Active Portal</h1>";
 
 
-  // Formulário com Ajax e solução tradicional
+  // Form with Ajax and traditional solution
   htmlPage += "<form method='POST' action='/setParameters'>";
   
-  // Tabela para alinhar campos e botões
+  // Table to align fields and buttons
   htmlPage += "<table>";
   
   // Frequency

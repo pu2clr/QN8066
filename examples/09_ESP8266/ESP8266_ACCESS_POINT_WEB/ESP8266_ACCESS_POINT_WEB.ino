@@ -13,11 +13,11 @@
   | PWM Power Controller [2]  |                      |                   |
   |                           |                      |      GPIO8        | 
 
-  1. Please check the your  ESP8266 Dev Module pinout.  
+  1. Please check your ESP8266 Dev Module pinout.  
   2. A suggestion if you intend to use PWM to control the RF output power of an amplifier. Not implemented here  
 
   Instructions: 
-  1) In your computer or mobile configure your Wi-Fi go to  SSID = ESP8266_QN8066 and password = 12345678
+  1) In your computer or mobile device, configure your Wi-Fi to connect to SSID = ESP8266_QN8066 and password = 12345678
   2) Open your Web Browser and type 10.0.0.2
   3) Depending on your receiver and the transmitter parameter you modify, it may take some time for the change to be noticed on the receiver.
 
@@ -72,7 +72,7 @@ void setup() {
   WiFi.softAP(ssid, password);
   WiFi.softAPConfig(IPAddress(10, 0, 0, 2), IPAddress(10, 0, 0, 1), IPAddress(255, 255, 255, 0));
 
-  // Exibe o IP do AP no monitor serial
+  // Display the Access Point IP on serial monitor
   Serial.print("Access Point -  IP: ");
   Serial.println(WiFi.softAPIP());
 
@@ -94,9 +94,9 @@ void setup() {
 void handleRoot(WiFiClient* client) {
   String htmlPage = "<html><head>";
   htmlPage += "<style>";
-  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;";  // Fundo verde Amazonas (#006400) e texto amarelo
+  htmlPage += "body { font-family: Arial, sans-serif; background-color: #006400; color: yellow;";  // Amazon green background (#006400) and yellow text
   htmlPage += " display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; }";
-  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }";  // Título com fonte amarela
+  htmlPage += "h1 { text-align: center; margin-bottom: 20px; color: yellow; }";  // Title with yellow font
   htmlPage += "table { border-collapse: collapse; width: auto; margin-top: 20px; }";
   htmlPage += "td, th { border: 1px solid black; padding: 8px; color: yellow; }";                                                       
   htmlPage += "td input[type='text'], td select { width: 32ch; color: yellow; background-color: #004d00; border: 1px solid yellow; }";  

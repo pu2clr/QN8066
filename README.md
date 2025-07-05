@@ -37,10 +37,11 @@ I hold a Master's degree in Educational Technology from the Federal University o
 10. [DIY Kit 5W-7W FM Transceiver](./#diy-kit-5w-7w-fm-transceiver)
 11. [Arduino Library Documentation](https://pu2clr.github.io/QN8066/extras/apidoc/html/index.html)
 12. [**Arduino Sketch examples**](https://github.com/pu2clr/QN8066/tree/main/examples)
-13. [Boards where this library can be compiled](./#boards-where-this-library-can-be-compiled)
-14. [Donate](./#donate)
-15. [Most Frequent Problems](./#most-frequent-problems)
-16. [References](./#references)
+13. [Examples Index](./#examples-index)
+14. [Boards where this library can be compiled](./#boards-where-this-library-can-be-compiled)
+15. [Donate](./#donate)
+16. [Most Frequent Problems](./#most-frequent-problems)
+17. [References](./#references)
 
 ## Legal Compliance Guidelines
 
@@ -532,47 +533,151 @@ It is important to highlight that this library was not developed exclusively to 
 In a new project involving the QN8066, I believe a more stable approach would be not to work with power levels above ½W on the same board. An additional amplification module could be added separately from the QN8066 circuit. The organization of the printed circuit board is also a determining factor in improving the stability of the system. Preferably, the communication circuit of the microcontroller with the QN8066 should be as far away as possible from the RF circuit. The appropriate values for the pull-up resistors for the I2C bus is a variable that deserves attention. These values may depend on the length of the bus and other I2C devices that may be connected to the circuit. In my experiments, I used 10K pull-up resistors. However, lower resistance values can be tested and may further improve the stability of the system. Consider shielding the Display and microcontroller circuit so that unwanted signals and interference do not propagate to the QN8066 circuit.
 
 
-## Boards where this library can be compiled
+## Examples Index
 
-This library can be useful to develop cross-platform software. 
+This library includes a comprehensive collection of examples demonstrating various applications and configurations of the QN8066 FM transceiver. The examples are organized by hardware platform and functionality to help you quickly find the most suitable starting point for your project.
 
-The table below shows the some boards where this library has been successfully compiled.
+### Transmitter Examples
 
-|    | Board | Need voltage converter | I²C Pins | Used Reset Pin | Features |
-|--- | ----- | ---------------------- | -------- | --------- | -----  |
-|  1 | Arduino Pro Mini 3.3V 8MHz | No | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-pro-mini) |
-|  2 | Mega 2560 Pro | Yes | 20 and 21 | 12 | [More...](https://store.arduino.cc/usa/mega-2560-r3)|
-|  3 | ESP WEMOS LOLIN32 | No | GPIO21 and GPIO22 [4] | GPIO25 [5] | [More...](https://docs.platformio.org/en/latest/boards/espressif32/lolin32.html) |
-|  4 | ESP32 Dev Module | No | GPIO21 and GPIO22 [4] | GPIO25 [5]| [More...](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf) |
-|  5 | ESP32 Wrover Module | No | GPIO21 and GPIO22 [4] | GPIO25 [5]| [More...](https://www.espressif.com/sites/default/files/documentation/esp32-wrover_datasheet_en.pdf) |
-|  6 | ESP8266 | No | GPIO4 and GPIO5 | GPIO2  |  [More...](https://docs.ai-thinker.com/_media/esp8266/docs/esp-12f_product_specification_en.pdf) |
-|  7 | Arduino UNO | Yes | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-uno-rev3) |
-|  8 | Arduino NANO ATmega 328 | Yes | A4 and A5 | 12 | [More...](https://store.arduino.cc/usa/arduino-nano) |
-|  9 | Arduino NANO ATmega 168 | Yes | A4 and A5 | 12 | [More...](https://www.arduino.cc/en/uploads/Main/ArduinoNanoManual23.pdf) |
-| 10 | Arduino NANO 33 IoT | No [6] | A4 and A5 | 12 | [More...](https://www.arduino.cc/en/Guide/NANO33BLE) |
-| 11 | Arduino Yún / ATmega-32u4 | Yes | 2 and 3 | 12 | [More...](https://store.arduino.cc/usa/arduino-yun)|
-| 12 | ATtiny84 | No | 7 and 8 | 6 | [More...](http://ww1.microchip.com/downloads/en/devicedoc/Atmel-7701_Automotive-Microcontrollers-ATtiny24-44-84_Datasheet.pdf)|
-| 13 | ATtiny85 | No | 5 and 7 | 2 (D3) | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/Atmel-2586-AVR-8-bit-Microcontroller-ATtiny25-ATtiny45-ATtiny85_Datasheet.pdf)|
-| 14 | Arduino DUE | No | 2 and 3 |   12 | [More...](https://store.arduino.cc/usa/due) |
-| 15 | BlueDuino 3.3V (ATmega-32u4) | No | 2 and 3 | 10 | [More...](https://wiki.aprbrother.com/en/BlueDuino_rev2.html) |
-| 16 | Arduino Mini Pro 5V 16Mhz | Yes | 2 and 3 |  10 | [More...](https://store.arduino.cc/usa/arduino-pro-mini) |
-| 17 | STM32F746G-DISCO | No | - | - | [More...](https://www.st.com/en/evaluation-tools/32f746gdiscovery.html?fbclid=IwAR2D9OwhInHQ8WYxeflJQ7QV2aNscFbfcbeblaFcYq0angJIjCKmkQBPTBc) |
-| 18 | STM32F103 Series  |  No | PB6 (SCL) and PB7(SDA) | PA12 | [More...](https://circuitdigest.com/microcontroller-projects/getting-started-with-stm32-development-board-stm32f103c8-using-arduino-ide) |
-| 19 | STM32F411 Series  |  No | PB6 (SCL) and PB7(SDA) | PA12 | [More...](https://hackaday.com/2021/01/20/blue-pill-vs-black-pill-transitioning-from-stm32f103-to-stm32f411/) |
-| 20 | Raspberry Pi Pico  | No | GP0 (0) and GP1 (1) | GP16 (16) | [More...](https://www.tomshardware.com/how-to/program-raspberry-pi-pico-with-arduino-ide) | 
-| 21 | WeAct Studio RP2040 Pico  | No | GP0 (0) and GP1 (1) | GP16 (16) | [More...](https://productreview.click/shop/raspberry-pi-pico-board-rp2040-2mb-4mb-8mb-16mb-support-micropython-c-c、circuitpython/) | 
-| 22 | Seeeduino XIAO | No  | A4 and A5  |  3 |  [More...](https://wiki.seeedstudio.com/Seeeduino-XIAO/)  | 
-| 23 | Teensy 3.1     | No  | A4 and A5  | 12  |  [More...](https://www.pjrc.com/teensy/teensy31.html) | 
-| 24 | Teensy 4.1     | No  | A4 and A5  | 12  |  [More...](https://www.pjrc.com/store/teensy41.html) | 
-| 25 | Atmega8        | No  | PC4 and PC5 | PD6 | [More...](https://github.com/MCUdude/MightyCore) |
-| 26 | Atmega32       | No  | PC1 and PC0 | PB2 | [More...](https://github.com/MCUdude/MightyCore) |
-| 27 | Atmega128      | No  | PC1 and PC0 | PB2 | [More...](https://ww1.microchip.com/downloads/en/DeviceDoc/doc2467.pdf) |
-| 28 | LGT8F328P      | No  |  A4 and A5 | 12 | [More...](https://ett.co.th/prodAVR/NANO-F328-C/LGT8F328P.pdf) |
-| 29 | LUATOS ESP32C3 | No  |  GPIO4 and GPIO5 | GPIO8 | [More...](https://templates.blakadder.com/luatos_CORE-ESP32.html) |
+#### 1. [Basic TX Examples (Serial Monitor)](./examples/01_TX_SERIAL_MONITOR/)
+Basic FM transmitter examples that demonstrate fundamental operations using the Serial Monitor for control and feedback.
 
+1. [Device Detection](./examples/01_TX_SERIAL_MONITOR/A_DETECT_DEVICE/) - Simple device detection and basic setup
+2. [Minimalist TX](./examples/01_TX_SERIAL_MONITOR/A_MINIMALIST_TX/) - Simplest possible FM transmitter implementation
+3. [Basic TX with Full Setup](./examples/01_TX_SERIAL_MONITOR/A_TX/) - Complete basic transmitter with all features
+4. [Advanced TX Control](./examples/01_TX_SERIAL_MONITOR/B_TX/) - Enhanced transmitter with advanced control options
+5. [Crystal Clock Setup 1](./examples/01_TX_SERIAL_MONITOR/C_TX_CLOCK_CRYSTAL_SETUP1/) - Configuration for different crystal frequencies
+6. [Crystal Clock Setup 2](./examples/01_TX_SERIAL_MONITOR/C_TX_CLOCK_CRYSTAL_SETUP2/) - Alternative crystal configuration methods
 
+#### 2. [RDS Transmitter Examples](./examples/02_TX_RDS/)
+Examples demonstrating Radio Data System (RDS) functionality for enhanced FM broadcasting.
 
+1. [RDS Basic Implementation](./examples/02_TX_RDS/TX_RDS1/) - Basic RDS transmission with Program Service and Radio Text
+2. [Advanced RDS Features](./examples/02_TX_RDS/TX_RDS2/) - Extended RDS functionality and dynamic content
+3. [RDS with Real-Time Clock](./examples/02_TX_RDS/TX_RDS3_DATE_TIME_RTCDS1302/) - RDS with date/time using DS1302 RTC module
 
+#### 3. [LCD Display Transmitter Examples](./examples/03_TX_LCD_16x2_AND_20x4/)
+Complete FM transmitter projects with LCD display interfaces for user-friendly operation.
+
+1. [Arduino Minimalist LCD](./examples/03_TX_LCD_16x2_AND_20x4/00_ARDUINO_MINIMALIST/) - Simple LCD-based transmitter
+2. [Arduino Full LCD Interface](./examples/03_TX_LCD_16x2_AND_20x4/01_ARDUINO/) - Complete LCD transmitter with encoder control
+
+#### 4. [Nokia Display Examples](./examples/04_NOKIA_DISPLAY/)
+FM transmitter with Nokia 5110 display for compact, low-power applications.
+
+1. [Basic Nokia Display](./examples/04_NOKIA_DISPLAY/BASIC_NOKIA_DISPLAY/) - FM transmitter with Nokia 5110 LCD
+
+#### 5. [OLED I2C Display Examples](./examples/05_OLED_I2C/)
+Modern OLED display implementations for high-contrast, easy-to-read interfaces.
+
+1. [Basic OLED Transmitter](./examples/05_OLED_I2C/BASIC_OLED/) - FM transmitter with SSD1306 OLED display
+
+### Microcontroller-Specific Examples
+
+#### 6. [ATtiny8x Examples](./examples/06_TX_ATTINY8X/)
+Compact implementations for resource-constrained ATtiny microcontrollers.
+
+1. [ATtiny24 Transmitter](./examples/06_TX_ATTINY8X/TX_ATTINY24/) - Ultra-compact FM transmitter
+2. [ATtiny44 with RDS and OLED](./examples/06_TX_ATTINY8X/TX_ATTINY44_RDS_OLED/) - Advanced features in minimal footprint
+3. [ATtiny85 with RDS and OLED](./examples/06_TX_ATTINY8X/TX_ATTINY85_RDS_OLED/) - Maximum functionality in smallest package
+
+#### 7. [ESP32 Examples](./examples/07_ESP32/)
+Wi-Fi enabled transmitter applications with web interfaces and IoT capabilities.
+
+1. [ESP32 with LCD and Encoder](./examples/07_ESP32/01_ESP32_LCD16x2_ENCODER/) - Traditional interface with Wi-Fi capability
+2. [ESP32 Web Wi-Fi Control](./examples/07_ESP32/02_ESP32_WEB_WIFI_QN8066/) - Web-based transmitter control over Wi-Fi
+3. [ESP32 Python Wi-Fi Interface](./examples/07_ESP32/03_ESP32_PYTHON_WIFI_QN8066/) - Python API for transmitter control
+4. [ESP32 Access Point Portal](./examples/07_ESP32/04_ESP32_WEB_ACTIVE_PORTAL_QN8066/) - Standalone access point with web interface
+
+#### 8. [STM32 Examples](./examples/08_STM32/)
+High-performance implementations for STM32 ARM Cortex-M microcontrollers.
+
+1. [STM32 with Encoder and LCD](./examples/08_STM32/STM32_ENCODER_LCD/) - Professional-grade transmitter control
+
+#### 9. [ESP8266 Examples](./examples/09_ESP8266/)
+Cost-effective Wi-Fi solutions for remote transmitter control.
+
+1. [ESP8266 Access Point Web](./examples/09_ESP8266/ESP8266_ACCESS_POINT_WEB/) - Web interface via access point
+
+#### 10. [Arduino Nano 33 IoT Examples](./examples/10_NANO_33_IOT/)
+Modern Arduino with built-in Wi-Fi connectivity for IoT applications.
+
+1. [Nano IoT with Encoder and LCD](./examples/10_NANO_33_IOT/NANO_IOT_ENCODER_LCD16x2/) - Traditional control with IoT capability
+2. [Nano IoT Socket Interface](./examples/10_NANO_33_IOT/NANO_IOT_SOCKET/) - TCP socket communication with Python client
+3. [Nano IoT Web Service](./examples/10_NANO_33_IOT/NANO_IOT_WEB_SERVICE/) - Web-based transmitter control
+
+#### 11. [Raspberry Pi Pico Examples](./examples/11_RASPBERRY_PI_PICO/)
+Examples for the popular RP2040-based development board.
+
+1. [Basic Pico Transmitter](./examples/11_RASPBERRY_PI_PICO/BASIC_TX_PICO/) - Simple FM transmitter for Pico
+2. [Pico with LCD and Encoder](./examples/11_RASPBERRY_PI_PICO/PICO_LCD16x2_ENCODER/) - Full-featured transmitter interface
+
+### Receiver Examples
+
+#### 12. [Basic Receiver Examples](./examples/50_RX_SERIAL_MONITOR/)
+FM receiver implementations with serial monitor interface.
+
+1. [Basic RX Implementation](./examples/50_RX_SERIAL_MONITOR/01_RX_A/) - Simple FM receiver with serial control
+
+#### 13. [ESP32 Receiver with LCD](./examples/51_RX_LCD16X02_ESP32/)
+ESP32-based FM receiver with LCD display and rotary encoder control.
+
+#### 14. [ATmega328 Receiver with LCD](./examples/52_RX_LCD1602_ATMEGA328/)
+Traditional Arduino Nano/Uno FM receiver with LCD interface.
+
+### Utility and Development Tools
+
+#### 15. [Development Tools](./examples/90_TOOLS/)
+Useful utilities for development and testing.
+
+1. [RTC DS1302 Tools](./examples/90_TOOLS/01_RTC_DS1302/) - Real-time clock configuration utilities
+2. [STM32 RTC Tools](./examples/90_TOOLS/02_RTC_STM32/) - STM32 internal RTC configuration
+
+#### 16. [Test Examples](./examples/98_TESTS/)
+Various test implementations and experimental code.
+
+1. [ATmega328 Tests](./examples/98_TESTS/02_ATMEGA328/) - Hardware compatibility tests
+2. [3-Button LCD Interface](./examples/98_TESTS/ARDUINO_3_BUTTONS_LCD20x4_WITHOUT_RDS/) - Alternative control interface
+3. [Encoder LCD without RDS](./examples/98_TESTS/ARDUINO_ENCODER_LCD12x2_WITHOUT_RDS/) - Simplified encoder interface
+4. [Pro Mini with RTC](./examples/98_TESTS/PRO_MINI_3_BUTTONS_LCD16x2_RTC/) - Real-time clock integration
+
+#### 17. [Under Construction](./examples/99_UNDER_CONSTRUCTION/)
+Experimental and work-in-progress examples.
+
+### Access Point Examples for Remote Control
+
+The following examples demonstrate **Access Point functionality** for standalone operation without requiring external Wi-Fi networks:
+
+- **[ESP8266 Access Point Web](./examples/09_ESP8266/ESP8266_ACCESS_POINT_WEB/)** - Creates "ESP8266_QN8066" network (password: 12345678), access via 10.0.0.2
+- **[ESP32 Web Active Portal](./examples/07_ESP32/04_ESP32_WEB_ACTIVE_PORTAL_QN8066/)** - Creates "ESP32_QN8066" network (password: esp32qn8066), access via 10.0.0.1  
+- **[Nano 33 IoT Web Service](./examples/10_NANO_33_IOT/NANO_IOT_WEB_SERVICE/)** - Creates "QN8066" network (password: qn8066123456), web interface at 10.0.0.1
+- **[Nano 33 IoT Socket](./examples/10_NANO_33_IOT/NANO_IOT_SOCKET/)** - Creates "Nano33IoT_QN8066" network (password: 12345678), Python socket communication on port 8066
+
+### Getting Started Recommendations
+
+**For Beginners:**
+- Start with [Minimalist TX](./examples/01_TX_SERIAL_MONITOR/A_MINIMALIST_TX/) for basic understanding
+- Try [Basic OLED Transmitter](./examples/05_OLED_I2C/BASIC_OLED/) for a simple display interface
+
+**For Arduino Users:**
+- Use [Arduino Full LCD Interface](./examples/03_TX_LCD_16x2_AND_20x4/01_ARDUINO/) for complete functionality
+- Try [Arduino Nano 33 IoT](./examples/10_NANO_33_IOT/) examples for Wi-Fi capability
+
+**For IoT Applications:**
+- Explore [ESP32 Examples](./examples/07_ESP32/) for advanced Wi-Fi features
+- Use [Access Point examples](#access-point-examples-for-remote-control) for standalone operation
+
+**For Low-Power Applications:**
+- Check [ATtiny8x Examples](./examples/06_TX_ATTINY8X/) for minimal power consumption
+- Consider [Arduino Pro Mini examples](./examples/03_TX_LCD_16x2_AND_20x4/) running at 3.3V
+
+### Build and Compilation Tools
+
+The examples folder also includes automated build tools:
+- [compile.sh](./examples/compile.sh) - Linux/macOS compilation script for all examples
+- [compile.bat](./examples/compile.bat) - Windows compilation script for all examples  
+- [setup_libraries_boards.sh](./examples/setup_libraries_boards.sh) - Automated setup for Linux/macOS
+- [setup_libraries_boards.bat](./examples/setup_libraries_boards.bat) - Automated setup for Windows
 ## Most Frequent Problems
 
 1. Avoid using a computer connected to the mains during testing. The electrical grid can disturb the communication between the Arduino based board and the QN8066 device.

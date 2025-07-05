@@ -20,11 +20,51 @@ The following diagram presents a basic configuration of the QN8066 and the ESP82
 ![ESP8266 and QN8066 prototype](./prototype_esp8266_qn8066.jpg)
 
 
+## How to Use
+
+### Requirements
+- ESP8266 development board (NodeMCU, Wemos D1 Mini, or ESP8266 Dev Module)
+- QN8066 FM transmitter module
+- Arduino IDE with ESP8266 board package installed
+- Required libraries:
+  - ESP8266WiFi (included with ESP8266 board package)
+  - Wire (Arduino core library)
+  - QN8066 (this library)
+
+### Setup Instructions
+
+1) **Hardware Connection**: Wire the ESP8266 and QN8066 according to the diagram above
+2) **Upload Code**: Flash the `ESP8266_ACCESS_POINT_WEB.ino` sketch to your ESP8266
+3) **Connect to Access Point**: In your computer or mobile device, connect to the Wi-Fi network:
+   - **SSID**: ESP8266_QN8066
+   - **Password**: 12345678
+4) **Access Web Interface**: Open your web browser and navigate to **10.0.0.2**
+5) **Configure Transmitter**: Use the web interface to adjust frequency, power, and RDS settings
+
+### Important Notes
+
+- The ESP8266 creates its own Wi-Fi network (Access Point mode) - no internet router required
+- Changes to transmitter parameters may take a few seconds to be reflected on your FM receiver
+- Ensure your FM receiver is tuned to the frequency set in the web interface
+- The default frequency is 106.9 MHz
+
+### Troubleshooting
+
+- **Cannot see ESP8266_QN8066 network**: Check if the ESP8266 is powered and the sketch uploaded correctly
+- **Cannot access 10.0.0.2**: Ensure you're connected to the ESP8266_QN8066 network, not your home Wi-Fi
+- **No audio transmission**: Verify QN8066 connections and antenna attachment
+- **Web page doesn't load**: Try refreshing the browser or clearing cache
+
 ## Information
 
-1) In your computer or mobile configure your Wi-Fi by selecting SSID = ESP8266_QN8066 and password = 12345678
-2) Open your Web Browser and type **10.0.0.2**
-3) Depending on your receiver and the transmitter parameter you modify, it may take some time for the change to be noticed on the receiver.
+### Quick Start Summary
+
+1) In your computer or mobile device, connect to Wi-Fi network: **ESP8266_QN8066** (password: **12345678**)
+2) Open your web browser and navigate to **10.0.0.2**
+3) Use the web interface to configure the FM transmitter settings
+4) Tune your FM receiver to the frequency you set (default: 106.9 MHz)
+
+**Note**: Depending on your receiver and the transmitter parameters you modify, it may take some time for changes to be noticed on the receiver.
 
 
 After entering 10.0.0.2 in your web browser, the page below should appear.
